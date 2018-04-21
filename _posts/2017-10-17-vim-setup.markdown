@@ -5,6 +5,7 @@ date:   2017-10-17 17:31:41 +0200
 categories: [editors, vim setup]
 tags: [editors, vim, vimrc]
 comments: true
+toc: true
 ---
 
 
