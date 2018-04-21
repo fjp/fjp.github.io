@@ -26,7 +26,6 @@ repository               : "fjp/fjp.github.io" # GitHub username/repo-name e.g. 
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
-disqus-shortname         : "fjp-github-io"
 comments:
   provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2" "custom"
   disqus:
@@ -98,26 +97,26 @@ analytics:
 
 # Site Author
 author:
-  name             : Franz Pucher
+  name             : "Franz Pucher"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : Master degree in electrical engineering and software developer at EFS.
-  location         : Ingolstadt Germany
-  email            : franz.pucher@gmail.com
+  bio              : "Software developer at EFS."
+  location         : "Ingolstadt Germany"
+  email            : "franz.pucher@gmail.com"
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        :
   codepen          :
   dribbble         :
   flickr           :
-  facebook         : franz.pucher
+  facebook         : "franz.pucher"
   foursquare       :
-  github           : fjp
+  github           : "fjp"
   gitlab           :
   google_plus      :
   keybase          :
   instagram        :
   lastfm           :
-  linkedin         : franzpucher # "john-doe-12345678" (the last part of your profile url, e.g. https://www.linkedin.com/in/john-doe-12345678)
+  linkedin         : "franzpucher" # "john-doe-12345678" (the last part of your profile url, e.g. https://www.linkedin.com/in/john-doe-12345678)
   pinterest        :
   soundcloud       :
   stackoverflow    : # "123456/username" (the last part of your profile url, e.g. https://stackoverflow.com/users/123456/username)
@@ -127,7 +126,7 @@ author:
   vine             :
   weibo            :
   xing             :
-  youtube          : https://www.youtube.com/user/TheFjper # "https://youtube.com/c/MichaelRoseDesign"
+  youtube          : "https://www.youtube.com/user/TheFjper" # "https://youtube.com/c/MichaelRoseDesign"
 
 
 # Reading Files
