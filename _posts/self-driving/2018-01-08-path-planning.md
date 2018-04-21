@@ -100,7 +100,7 @@ Another option is to measure the eclidean distance between the vehicle's current
 ## Behavior Planning
 
 
-{% include figure image_path="/assets/posts/2017-12-07-path-planning/mpc-constraints.png" caption="Actuator constraints (Source: [Udacity self driving car ND](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/338b458f-7ebf-449c-9ad1-611eb933b076/concepts/5df9cd1c-b111-48e5-857c-7547f82dac0c))" %}
+{% include figure image_path="/assets/posts/2017-12-07-model-predictive-control/mpc-constraints.png" caption="Actuator constraints (Source: [Udacity self driving car ND](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/338b458f-7ebf-449c-9ad1-611eb933b076/concepts/5df9cd1c-b111-48e5-857c-7547f82dac0c))" %}
 
 To account for the mentioned actuator limits the cost function can also be used to incorporate the inputs.
 This can be used to penalize the magnitude of the inputs as well as the change rates.
@@ -132,7 +132,7 @@ The product of these two parameters results in the prediction horizon $T$, which
 In the case of a self driving vehicle the duration of this horizon should be a few seconds because the environment keeps changing.
 Long horizons increase the computation costs and do not provide more safety because the environment won't stay the same in the near future.
 
-{% include figure image_path="/assets/posts/2017-12-07-path-planning/timesteps-horizonlength.png" caption="Time steps and horizon length (Source: [Udacity self driving car ND](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/338b458f-7ebf-449c-9ad1-611eb933b076/concepts/00154b2e-bc08-4d00-b47e-c4209e3bbdc7))" %}
+{% include figure image_path="/assets/posts/2017-12-07-model-predictive-control/timesteps-horizonlength.png" caption="Time steps and horizon length (Source: [Udacity self driving car ND](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/338b458f-7ebf-449c-9ad1-611eb933b076/concepts/00154b2e-bc08-4d00-b47e-c4209e3bbdc7))" %}
 
 $$
 \label{inputs}
