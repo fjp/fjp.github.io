@@ -2,14 +2,14 @@
 main:
   - title: "Home"
     url: https://fjp.github.io/home/
-  # - title: "Quick-Start Guide"
-  #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   - title: "Blog"
     url: https://fjp.github.io/blog/
   - title: "About"
     url: https://fjp.github.io/about/
   - title: "Contact"
     url: https://fjp.github.io/contact/
+  # - title: "Quick-Start Guide"
+  #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   # - title: "Sample Posts"
   #   url: /year-archive/
   # - title: "Sample Collections"
