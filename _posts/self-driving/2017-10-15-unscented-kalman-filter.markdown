@@ -6,6 +6,7 @@ categories: [estimation, filter, Kalman]
 tags: [udacity, estimation, Kalman filter]
 comments: true
 use_math: true
+toc: true
 ---
 
 

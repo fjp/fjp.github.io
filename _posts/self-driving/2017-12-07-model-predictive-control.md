@@ -5,6 +5,7 @@ date:   2017-12-07 20:55:31 +0100
 categories: [control, model, predictive]
 tags: [udacity, mpc, control]
 use_math: true
+toc: true
 ---
 
 

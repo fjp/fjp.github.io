@@ -5,6 +5,7 @@ date:   2017-12-03 16:19:31 +0100
 categories: [control, trajectory following]
 tags: [udacity, trajectory following, mpc]
 use_math: true
+toc: true
 ---
 
 {% include figure image_path="/assets/posts/2017-12-03-trajectory-following/trajectory-following-overview.png" caption="Following trajectories (Source: [Udacity self driving car ND](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/af4fcd4f-eb1f-43d8-82b3-17bb1e71695f/concepts/7e93146c-7097-46c7-8a9f-3e3110dd854b))" %}

@@ -5,6 +5,7 @@ date:   2017-10-30 20:10:12 +0200
 categories: [self-driving, localization, basics]
 tags: [self-driving, udacity, localization]
 use_math: true
+toc: true
 ---
 
 Localization answers the following question:
