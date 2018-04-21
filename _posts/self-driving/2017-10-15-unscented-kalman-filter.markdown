@@ -1,15 +1,9 @@
 ---
-layout: posts
+layout: single
 title:  "Unscented Kalman Filter"
 date:   2017-10-15 17:31:41 +0200
-categories:
-  - estimation
-  - filter
-  - Kalman
-tags:
-  - udacity
-  - estimation
-  - Kalman filter
+categories: [estimation, filter, Kalman]
+tags: [udacity, estimation, Kalman filter]
 comments: true
 use_math: true
 ---

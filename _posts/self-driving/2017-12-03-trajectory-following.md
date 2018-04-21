@@ -2,13 +2,8 @@
 layout: single
 title: Trajectory following
 date:   2017-12-03 16:19:31 +0100
-categories:
-  - control
-  - trajectory following
-tags:
-  - udacity
-  - trajectory following
-  - mpc
+categories: [control, trajectory following]
+tags: [udacity, trajectory following, mpc]
 use_math: true
 ---
 

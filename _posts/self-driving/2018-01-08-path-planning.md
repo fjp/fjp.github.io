@@ -1,13 +1,9 @@
 ---
-layout: posts
+layout: single
 title:  Path Planning
 date:   2018-01-08 20:10:31 +0100
-categories:
-  - path planning
-  - search
-tags:
-  - udacity
-  - path planning
+categories: [path planning, search]
+tags: [udacity, path planning]
 use_math: true
 ---
 

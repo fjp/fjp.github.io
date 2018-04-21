@@ -2,15 +2,8 @@
 layout: single
 title: Vehicle Models
 date:   2017-12-03 17:19:31 +0100
-categories:
-  - control
-  - model
-  - dynamic
-tags:
-  - udacity
-  - model
-  - dynamic
-  - mpc
+categories: [control, model, dynamic]
+tags: [udacity, model, dynamic, mpc]
 use_math: true
 ---
 
