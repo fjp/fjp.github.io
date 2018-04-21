@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title: Trajectory following
 date:   2017-12-03 16:19:31 +0100
 categories:

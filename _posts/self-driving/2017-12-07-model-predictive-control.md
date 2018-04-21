@@ -1,15 +1,9 @@
 ---
-layout: posts
+layout: single
 title:  Model Predictive Control
 date:   2017-12-07 20:55:31 +0100
-categories:
-  - control
-  - model
-  - predictive
-tags:
-  - udacity
-  - mpc
-  - control
+categories: [control, model, predictive]
+tags: [udacity, mpc, control]
 use_math: true
 ---
 

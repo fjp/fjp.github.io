@@ -1,13 +1,9 @@
 ---
-layout: posts
+layout: single
 title:  "PID Control"
 date:   2017-12-03 14:24:31 +0100
-categories:
-  - control
-  - pid
-tags:
-  - udacity
-  - pid control
+categories: [control, pid]
+tags: [udacity, pid, control]
 use_math: true
 ---
 

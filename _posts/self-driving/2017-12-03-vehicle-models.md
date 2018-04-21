@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title: Vehicle Models
 date:   2017-12-03 17:19:31 +0100
 categories:

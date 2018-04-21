@@ -1,15 +1,9 @@
 ---
-layout: posts
+layout: single
 title:  "Localization"
 date:   2017-10-30 20:10:12 +0200
-categories:
-  - self-driving
-  - localization
-  - basics
-tags:
-  - self-driving
-  - udacity
-  - localization
+categories: [self-driving, localization, basics]
+tags: [self-driving, udacity, localization]
 use_math: true
 ---
 
