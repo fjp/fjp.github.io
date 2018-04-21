@@ -4,8 +4,8 @@ title:  "Unscented Kalman Filter"
 date:   2017-10-15 17:31:41 +0200
 categories: [estimation, filter, Kalman]
 tags: udacity estimation Kalman filter
-use_math: true
 comments: true
+use_math: true
 ---
 
 
