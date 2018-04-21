@@ -2,6 +2,10 @@
 layout: archive
 ---
 
+{% if page.use_math %}
+  {% include mathjax_support %}
+{% endif %}
+
 {{ content }}
 
 <ul class="taxonomy__index">
