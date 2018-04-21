@@ -5,6 +5,7 @@ date:   2017-12-03 14:24:31 +0100
 categories: [control, pid]
 tags: [udacity, pid, control]
 use_math: true
+toc: true
 ---
 
 
