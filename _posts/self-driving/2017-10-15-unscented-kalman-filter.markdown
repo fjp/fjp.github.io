@@ -19,7 +19,7 @@ The prediction step of the unscented Kalman filter consists of
 
 These steps are summarized in the following figure and explained in more detail in the next sections.
 
-{% include figure image_path="/assets/posts/2017-10-15-unscented-kalman-filter/ukf-prediction.png" caption="Unscented Kalman filter prediction (Source: [Udacity self driving car ND](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/daf3dee8-7117-48e8-a27a-fc4769d2b954/concepts/3f67dc00-84f0-442b-88bc-1edf7b69caa7))" url="https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/daf3dee8-7117-48e8-a27a-fc4769d2b954/concepts/3f67dc00-84f0-442b-88bc-1edf7b69caa7" %}
+{% include figure image_path="/assets/posts/2017-10-15-unscented-kalman-filter/ukf-prediction.png" caption="Unscented Kalman filter prediction (Source: [Udacity self driving car ND](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/daf3dee8-7117-48e8-a27a-fc4769d2b954/concepts/3f67dc00-84f0-442b-88bc-1edf7b69caa7))"  %}
 
 
 ### Generate Sigma Points
@@ -175,7 +175,7 @@ In the update step, first we predict the measurement mean $z_{k+1 \vert k}$ and 
 predicted state $x_{k+1  \vert k}$. The final step is to incorporate the sensor measurement $z_{k+1}$. These two steps are shown in
 the following figure.
 
-{% include figure image_path="/assets/posts/2017-10-15-unscented-kalman-filter/ukf-update.png" caption="Unscented Kalman filter update (Source: Udacity self driving car ND)" url="https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/daf3dee8-7117-48e8-a27a-fc4769d2b954/concepts/01af358d-e74e-4477-8cf0-4de1c451a053" %}
+{% include figure image_path="/assets/posts/2017-10-15-unscented-kalman-filter/ukf-update.png" caption="Unscented Kalman filter update (Source: [Udacity self driving car ND](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/daf3dee8-7117-48e8-a27a-fc4769d2b954/concepts/01af358d-e74e-4477-8cf0-4de1c451a053))" %}
 
 ### Predict Measurement
 
