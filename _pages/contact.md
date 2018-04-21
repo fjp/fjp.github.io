@@ -1,7 +1,7 @@
 ---
 layout: single
 title: Contact
-permalink: /about/
+permalink: /contact/
 ---
 
 Contact me
