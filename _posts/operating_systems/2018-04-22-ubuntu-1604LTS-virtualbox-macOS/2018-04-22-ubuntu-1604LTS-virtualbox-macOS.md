@@ -1,11 +1,10 @@
 ---
 layout: single
 title:  "Ubuntu 16.04 LTS Virtualbox on macOS 10.13.2 Host"
-date:   2017-10-15 17:31:41 +0200
-categories: [estimation, filter, Kalman]
-tags: [udacity, estimation, Kalman filter]
+date:   2018-04-22 19:30:00 +0200
+categories: [operating systems, virtualbox, ubuntu, macOS]
+tags: [macOS, ubuntu, 16.04, LTS, virtualbox]
 comments: true
-use_math: true
 toc: true
 ---
 
