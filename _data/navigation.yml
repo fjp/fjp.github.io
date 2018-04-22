@@ -1,13 +1,13 @@
 # main links
 main:
   - title: "Home"
-    url: https://fjp.github.io/
+    url: /
   - title: "Blog"
-    url: https://fjp.github.io/blog/
+    url: /blog/
   - title: "About"
-    url: https://fjp.github.io/about/
+    url: /about/
   - title: "Contact"
-    url: https://fjp.github.io/contact/
+    url: /contact/
   # - title: "Quick-Start Guide"
   #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   # - title: "Sample Posts"
