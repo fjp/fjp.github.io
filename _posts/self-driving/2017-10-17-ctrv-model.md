@@ -6,6 +6,10 @@ categories: [process models, model, bicycle-model]
 tags: [udacity, bicycle model]
 use_math: true
 toc: true
+# toc_label: "Unscented Kalman Filter"
+image:
+  feature: /assets/posts/2017-10-17-ctrv-model/ctrv-model.png
+  thumb: /assets/posts/2017-10-17-ctrv-model/ctrv-model.png #keep it square 200x200 px is good
 ---
 
 

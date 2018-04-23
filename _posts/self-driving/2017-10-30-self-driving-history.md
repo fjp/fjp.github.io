@@ -6,6 +6,11 @@ categories: [self-driving, history]
 tags: [self-driving, udacity, history]
 use_math: false
 toc: true
+# toc_label: "Unscented Kalman Filter"
+image:
+  feature: /assets/posts/2017-10-30-localization/localization.png
+  thumb: /assets/posts/2017-10-30-localization/localization.png #keep it square 200x200 px is good
+published: false
 ---
 
 - Ernst Dickmanns

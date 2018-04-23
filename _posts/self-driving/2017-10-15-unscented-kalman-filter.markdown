@@ -7,6 +7,10 @@ tags: [udacity, estimation, Kalman filter]
 comments: true
 use_math: true
 toc: true
+# toc_label: "Unscented Kalman Filter"
+image:
+  feature: /assets/posts/2017-10-15-unscented-kalman-filter/ukf-prediction.png
+  thumb: /assets/posts/2017-10-15-unscented-kalman-filter/ukf-prediction.png #keep it square 200x200 px is good
 ---
 
 

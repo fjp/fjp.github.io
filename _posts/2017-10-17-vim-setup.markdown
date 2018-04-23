@@ -6,6 +6,7 @@ categories: [editors, vim setup]
 tags: [editors, vim, vimrc]
 comments: true
 toc: true
+published: false
 ---
 
 

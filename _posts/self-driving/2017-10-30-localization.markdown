@@ -6,6 +6,10 @@ categories: [self-driving, localization, basics]
 tags: [self-driving, udacity, localization]
 use_math: true
 toc: true
+# toc_label: "Unscented Kalman Filter"
+image:
+  feature: /assets/posts/2017-10-30-localization/localization.png
+  thumb: /assets/posts/2017-10-30-localization/localization.png #keep it square 200x200 px is good
 ---
 
 Localization answers the following question:

@@ -10,46 +10,47 @@ header:
   cta_label: "github"
   cta_url: "https://github.com/fjp/"
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
-excerpt: "Bacon ipsum dolor sit amet salami ham hock ham, hamburger corned beef short ribs kielbasa biltong t-bone drumstick tri-tip tail sirloin pork chop."
+excerpt: "The wheel was man’s greatest invention – until he got behind it. (Bill Ireland)"
 intro:
-  - excerpt: 'Nullam suscipit et nam, tellus velit pellentesque at malesuada, enim eaque. Quis nulla, netus tempor in diam gravida tincidunt, *proin faucibus* voluptate felis id sollicitudin. Centered with `type="center"`'
+  - excerpt: "Weekly new content about self driving vehicles, robotic projects, linux, ...
+              and even more."
 feature_row:
-  - image_path: assets/images/unsplash-gallery-image-1-th.jpg
-    alt: "placeholder image 1"
-    title: "Placeholder 1"
-    excerpt: "This is some sample content that goes here with **Markdown** formatting."
-  - image_path: /assets/images/unsplash-gallery-image-2-th.jpg
-    alt: "placeholder image 2"
-    title: "Placeholder 2"
-    excerpt: "This is some sample content that goes here with **Markdown** formatting."
-    url: "#test-link"
+  - image_path: /assets/posts/2017-12-03-trajectory-following/trajectory-following-overview.png
+    alt: "Trajectory Following"
+    title: "Trajectory Following"
+    excerpt: "Where should your robot move in the next few seconds?. This important question and even more can be solved by **following trajectories**"
+  - image_path: /assets/posts/2017-10-30-localization/localization.png
+    alt: "Localization"
+    title: "Localization"
+    excerpt: "Localization is the key for a robot to navigate in a world. Learn here some localization techniques."
+    url: "/blog/"
     btn_label: "Read More"
     btn_class: "btn--primary"
-  - image_path: /assets/images/unsplash-gallery-image-3-th.jpg
-    title: "Placeholder 3"
-    excerpt: "This is some sample content that goes here with **Markdown** formatting."
+  - image_path: /assets/posts/2017-12-07-model-predictive-control/timesteps-horizonlength.png
+    title: "Model Predictive Control"
+    excerpt: "Optimal control is achieved with **Model Predictive Control**. Find out how it works and learn about its strengths and weaknesses."
 feature_row2:
-  - image_path: /assets/images/unsplash-gallery-image-2-th.jpg
-    alt: "placeholder image 2"
-    title: "Placeholder Image Left Aligned"
-    excerpt: 'This is some sample content that goes here with **Markdown** formatting. Left aligned with `type="left"`'
-    url: "#test-link"
+  - image_path: /assets/posts/2017-12-07-model-predictive-control/mpc-constraints.png
+    alt: "Path Planning"
+    title: "Path Planning"
+    excerpt: 'What is your overall goal? Not only you should ask yourself, but also a robotic vehicle requires an answer to this important question to know where it is going. To help him read about **Path Planning** first.'
+    url: "/blog/"
     btn_label: "Read More"
     btn_class: "btn--primary"
 feature_row3:
-  - image_path: /assets/images/unsplash-gallery-image-2-th.jpg
-    alt: "placeholder image 2"
-    title: "Placeholder Image Right Aligned"
-    excerpt: 'This is some sample content that goes here with **Markdown** formatting. Right aligned with `type="right"`'
-    url: "#test-link"
+  - image_path: /assets/posts/2017-10-17-ctrv-model/ctrv-model.png
+    alt: "CTRV Model"
+    title: "CTRV Model"
+    excerpt: 'The Constant Turn Rate and Constant Velocity model. One of the kinematic vehicle models.'
+    url: "/blog/"
     btn_label: "Read More"
     btn_class: "btn--primary"
 feature_row4:
-  - image_path: /assets/images/unsplash-gallery-image-2-th.jpg
-    alt: "placeholder image 2"
-    title: "Placeholder Image Center Aligned"
-    excerpt: 'This is some sample content that goes here with **Markdown** formatting. Centered with `type="center"`'
-    url: "#test-link"
+  - image_path: /assets/posts/2017-10-15-unscented-kalman-filter/ukf-prediction.png
+    alt: "ukf prediction"
+    title: "UKF Prediction"
+    excerpt: 'The famous **Unscented Kalman Filter** explained.'
+    url: "/blog/"
     btn_label: "Read More"
     btn_class: "btn--primary"
 ---
