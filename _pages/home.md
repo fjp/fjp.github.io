@@ -7,13 +7,12 @@ header:
   overlay_color: "#000"
   overlay_filter: "0.5"
   overlay_image: /assets/images/unsplash-image-1.jpg
-  cta_label: "github"
+  cta_label: "github.com/fjp"
   cta_url: "https://github.com/fjp/"
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 excerpt: "The wheel was man’s greatest invention – until he got behind it. (Bill Ireland)"
 intro:
-  - excerpt: "Weekly new content about self driving vehicles, robotic projects, linux, ...
-              and even more."
+  - excerpt: "Explore the technology of self-driving vehicles, robotic projects, linux, ... and more."
 feature_row:
   - image_path: /assets/posts/2017-12-03-trajectory-following/trajectory-following-overview.png
     alt: "Trajectory Following"
