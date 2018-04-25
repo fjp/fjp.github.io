@@ -32,7 +32,7 @@ feature_row2:
   - image_path: /assets/posts/2017-12-07-model-predictive-control/mpc-constraints.png
     alt: "Path Planning"
     title: "Path Planning"
-    excerpt: 'What is your overall goal? Not only you should ask yourself, but also a robotic vehicle requires an answer to this important question to know where it is going. To help him read about **Path Planning** first.'
+    excerpt: 'What is your overall goal? Not only you should ask yourself this question sometimes. A robot requires an answer to this important question too, in order to know where it is going. To help him, read about **Path Planning** first.'
     url: "/blog/"
     btn_label: "Read More"
     btn_class: "btn--primary"
