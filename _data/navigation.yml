@@ -4,10 +4,10 @@ main:
     url: /
   - title: "Blog"
     url: /blog/
+  - title: "Projects"
+    url: /projects-archive/
   - title: "About"
     url: /about/
-  - title: "Contact"
-    url: /contact/
   - title: "Sitemap"
     url: /sitemap/
   # - title: "Quick-Start Guide"
@@ -18,3 +18,19 @@ main:
   #   url: /collection-archive/
   # - title: "Sitemap"
   #   url: /sitemap/
+
+# main links
+autonomous_rc_car:
+  - title: "Introduction"
+    url: /projects/autonomous-rc-car/#introduction
+    children:
+      - title: "Arduino MKR1000"
+        url: /projects/autonomous-rc-car/arduino-mkr1000/
+      - title: "Raspbery Pi and ROS"
+        url: /projects/autonomous-rc-car/raspbery-pi-ros/
+      - title: "RC Car"
+        url: /projects/autonomous-rc-car/rc-car/
+      - title: "System integration"
+        url: /projects/autonomous-rc-car/system-integration/
+  - title: "Prerequisites"
+    url: /projects/autonomous-rc-car/#prerequisites
