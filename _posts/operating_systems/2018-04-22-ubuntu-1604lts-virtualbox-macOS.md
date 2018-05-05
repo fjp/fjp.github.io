@@ -6,6 +6,9 @@ categories: [operating systems, virtualbox, ubuntu, macOS]
 tags: [macOS, ubuntu, 16.04, LTS, virtualbox]
 comments: true
 toc: true
+header:
+  teaser: assets/posts/2018-04-22-ubuntu-1604lts-virtualbox-macOS/virtualbox_logo.png
+  #overlay_image: assets/posts/2018-04-22-ubuntu-1604lts-virtualbox-macOS/virtualbox_logo.png
 ---
 
 ## Setup Ubuntu Virtualbox

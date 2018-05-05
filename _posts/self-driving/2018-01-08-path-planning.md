@@ -7,14 +7,14 @@ tags: [udacity, path planning]
 use_math: true
 toc: true
 # toc_label: "Unscented Kalman Filter"
-image:
-  feature: /assets/posts/2017-12-07-model-predictive-control/mpc-constraints.png
-  thumb: /assets/posts/2017-12-07-model-predictive-control/mpc-constraints.png #keep it square 200x200 px is good
+header:
+  teaser: /assets/posts/2017-12-07-model-predictive-control/mpc-constraints.png
+  overlay_image: /assets/posts/2017-12-07-model-predictive-control/mpc-constraints.png
 ---
 
 
-Path planning generates vehicle trajectories using fused sensor to understand the environment around the vehicle
-and localization data to determin where car is located in that environment. The path planning block uses
+Path planning generates vehicle trajectories using fused sensor data to understand the environment around the vehicle
+and localization data to determine where car is located in that environment. The path planning block uses
 this data to decide where to drive next by generating a trajectory. This trajectory is passed to the controller to steer the vehicle.
 
 In the following sections summarize the foundations to

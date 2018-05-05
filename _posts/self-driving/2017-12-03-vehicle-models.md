@@ -7,9 +7,9 @@ tags: [udacity, model, dynamic, mpc]
 use_math: true
 toc: true
 # toc_label: "Unscented Kalman Filter"
-image:
-  feature: /assets/posts/2017-12-03-vehicle-models/actuator-constraints.png
-  thumb: /assets/posts/2017-12-03-vehicle-models/actuator-constraints.png #keep it square 200x200 px is good
+header:
+  teaser: /assets/posts/2017-12-03-vehicle-models/actuator-constraints.png
+  overlay_image: /assets/posts/2017-12-03-vehicle-models/actuator-constraints.png
 ---
 
 

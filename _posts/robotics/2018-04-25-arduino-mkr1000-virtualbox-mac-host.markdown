@@ -10,9 +10,9 @@ use_math: true
 toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
-image:
-  feature: /assets/images/kinetic.png
-  thumb: /assets/images/kinetic.png #keep it square 200x200 px is good
+header:
+  teaser: /assets/images/kinetic.png
+  overlay_image: /assets/images/kinetic.png
 ---
 
 
@@ -88,9 +88,9 @@ Now it is time to try uploading a first example sketch. Open the Blink example f
 
 To solve this issue enter the following command in a terminal, which will add your username to the dialout group:
 
-```
+{% highlight bash %}
 sudo usermod -a -G dialout $USER
-```
+{% endhighlight %}
 
 After that log out and back in for the changes to take effect.
 
@@ -153,62 +153,99 @@ On my machine (ubuntuBox), the repositories did not have to be configured, becau
 
 
 Next, setup your computer to accept software from packages.ros.org.
-```
+{% highlight bash %}
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-```
+{% endhighlight %}
 
 Set up your keys
-```
+{% highlight bash %}
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
-```
+{% endhighlight %}
 
 If you experience issues connecting to the keyserver, you can try it again or substituting hkp://pgp.mit.edu:80 or hkp://keyserver.ubuntu.com:80 in the previous command.
 
 ### ROS Kinetic Installation
 
 First, make sure your Debian package index is up-to-date:
-```
+
+{% highlight bash %}
 sudo apt-get update
-```
+{% endhighlight %}
 
 I used the desktop-full install option but feel free to choose lighter version of ROS (not tested though)
 
 Desktop-Full Install: (Recommended) : ROS, rqt, rviz, robot-generic libraries, 2D/3D simulators, navigation and 2D/3D perception
 
-```
+{% highlight bash %}
 sudo apt-get install ros-kinetic-desktop-full
-```
+{% endhighlight %}
 
 ### Initialize rosdep
 
 Before you can use ROS, you will need to initialize `rosdep`. `rosdep` enables you to easily install system dependencies for source you want to compile and is required to run some core components in ROS.
 
-```
+{% highlight bash %}
 sudo rosdep init
 rosdep update
-```
+{% endhighlight %}
 
 ### Environment setup
 
 It's convenient if the ROS environment variables are automatically added to your bash session every time a new shell is launched (I assume you still run bash and do not use zsh):
 
-```
+{% highlight bash %}
 echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
-```
+{% endhighlight %}
 
 If you just want to change the environment of your current shell, instead of the above you can type:
 
-```
+{% highlight bash %}
 source /opt/ros/kinetic/setup.bash
-```
+{% endhighlight %}
 
 Dependencies for building packages
 
 To install this tool and other dependencies for building ROS packages, run:
 
-```
+{% highlight bash %}
 sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential
-```
+{% endhighlight %}
 
 After that you are done installing ROS Kinetic on ubuntu 16.04. Now you can checkout some tutorials on the [ROS wiki](http://wiki.ros.org/ROS/Tutorials), for example moving turtles with your keyboard. Or follow the rest of this exciting tutorial :-)
+
+
+## Rosserial Arduino Setup
+
+To program the Arduino mkr1000 with the Arduino IDE we use ROS, specifically the [arduino rosserial](http://wiki.ros.org/rosserial_arduino) client library.
+This library can be installed with the following commands but checkout the [official wiki](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup) for other options.
+
+{% highlight bash %}
+sudo apt-get install ros-kinetic-rosserial-arduino
+sudo apt-get install ros-kinetic-rosserial
+{% endhighlight %}
+
+These commands created the ros_lib, which must be copied into the Arduino build environment to enable Arduino programs to interact with ROS.
+The <sketchbook> in ubuntu can be found at your home folder `~/Arduino`
+
+{% highlight bash %}
+cd <sketchbook>/libraries
+rm -rf ros_lib
+rosrun rosserial_arduino make_libraries.py .
+{% endhighlight %}
+
+Note: According to the [official wiki](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup), it should be possible to install ros_lib through the library manager inside the Arduino IDE (Sketch->Include Library->Manage Libraries...).
+When I tried to run an example this way I was not able to upload it due to an ROS version mismatch.
+I guess the ros_lib installed this way is not compatible with ROS kinetic previously installed on our ubuntu virtual box.
+Therefore I recommend using the installation process described above.
+
+## Hello World
+
+After you have installed the rosserial_arduino client library you are ready to upload the Hello World example.
+
+{% include figure image_path="/assets/pages/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image13.png" caption="Successful magic upload" %}
+
+
+## Servo
+
+The datasheet of the servo (Tower Pro Micro Servo 99 SG90) I used can be found [here](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf).

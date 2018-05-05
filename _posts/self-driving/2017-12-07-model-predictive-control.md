@@ -7,9 +7,9 @@ tags: [udacity, mpc, control]
 use_math: true
 toc: true
 # toc_label: "Unscented Kalman Filter"
-image:
-  feature: /assets/posts/2017-12-07-model-predictive-control/mpc-constraints.png
-  thumb: /assets/posts/2017-12-07-model-predictive-control/mpc-constraints.png #keep it square 200x200 px is good
+header:
+  teaser: /assets/posts/2017-12-07-model-predictive-control/mpc-constraints.png
+  overlay_image: /assets/posts/2017-12-07-model-predictive-control/mpc-constraints.png
 ---
 
 
