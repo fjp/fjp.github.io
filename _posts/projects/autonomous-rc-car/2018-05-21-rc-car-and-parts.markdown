@@ -12,8 +12,8 @@ toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: /assets/images/hpi-racing-bmw-m3_thumb.png
-  overlay_image: /assets/images/hpi-racing-bmw-m3.png
+  teaser: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3_thumb.png
+  overlay_image: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
 redirect_from:
   - /projects/autonomous-rc-car/
 ---
