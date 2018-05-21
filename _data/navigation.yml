@@ -29,7 +29,7 @@ autonomous_rc_car:
       - title: "Raspbery Pi and ROS"
         url: /projects/autonomous-rc-car/raspbery-pi-ros/
       - title: "RC Car"
-        url: /projects/autonomous-rc-car/rc-car/
+        url: /projects/autonomous-rc-car/rc-car-parts/
       - title: "System integration"
         url: /projects/autonomous-rc-car/system-integration/
   - title: "Prerequisites"

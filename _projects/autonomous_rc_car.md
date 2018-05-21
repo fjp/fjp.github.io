@@ -2,7 +2,7 @@
 layout: collection #collection
 title: Autonomous RC Car
 permalink: /projects/autonomous-rc-car/
-excerpt: ""
+excerpt: "Equipped with ROS and Arduino"
 header:
   overlay_image: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
