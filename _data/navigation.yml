@@ -8,6 +8,8 @@ main:
     url: /projects-archive/
   - title: "About"
     url: /about/
+  - title: "Privacy"
+    url: /privacy/
   - title: "Sitemap"
     url: /sitemap/
   # - title: "Quick-Start Guide"

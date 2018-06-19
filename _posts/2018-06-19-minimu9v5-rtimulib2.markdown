@@ -21,22 +21,33 @@ redirect_from:
 
 ## Introduction
 
-This blog post describes how to connect the [Pololu MinIMU 9 v5](https://www.pololu.com/product/2738) to a Rasperry Pi 3 B+ and use
-the [RTIMULib2]() to visualize the inertial measurement unit (imu) data such as orientation and acceleration.
+This blog post describes how to connect the [Pololu MinIMU-9 v5](https://www.pololu.com/product/2738) to a Rasperry Pi 3 B+ and use
+the [RTIMULib2](https://github.com/fjp/RTIMULib2) to visualize the inertial measurement unit (imu) data such as orientation and acceleration.
 
 ## Prerequisites
 
-This post requires that you have setup a Rasperry Pi running Linux Mate described in another blog post or the standard [Raspbian OS](https://www.raspberrypi.org/downloads/raspbian/).
+This post requires that you have setup a Rasperry Pi running Linux Mate described in another blog post or the standard [Raspbian OS](https://www.raspberrypi.org/downloads/raspbian/) and the [Pololu MinIMU-9 v5](https://www.pololu.com/product/2738) from Pololu.
+
+## Hardware
+
+The MinIMU-9 v5 PCB houses two chips. One is the [LSM6DS33](https://www.pololu.com/file/0J1087/LSM6DS33.pdf) which contains a gyroscope and a linear accelerometer and the other one is the [LIS3MDL](https://www.pololu.com/file/0J1089/LIS3MDL.pdf) that contains a 3-axis magnetometer.
+Pololu also supplies a great free piece of software ([minimu9-ahrs](https://github.com/DavidEGrayson/minimu9-ahrs)) for Raspberry Pi for reading sensor data from Pololu IMU boards over I²C. When I first got the board, I tested it with this software and it worked great. However, because I require ros support I decided to use
+the RTIMULib2 which I will explain in more detail later.
 
 ## Hardware Connection
 
 The MinIMU has six pins, which are shown in the following figure.
+Beside the VDD and GND to power the imu, the SDA (data signal) and SCL (clock signal) pins are important.
 
 {% include figure image_path="https://a.pololu-files.com/picture/0J7068.1200.jpg?b556a123006d9828b014751124c74296" caption="Pololu MinIMU-9 v5" %}
 
-To communicate with the IMU the GPIO pins of the raspberrypi can be used. By taking a look at the
+To communicate with the IMU the GPIO pins of the raspberrypi can be used.
+By taking a look at the Raspberry Pi bus leaf from splitbrain.org, we see that GPIO 2 and 3 are called SDA and SCL,
+which can be direclty connected to the corresponding imu pins.
 
 {% include figure image_path="/assets/posts/2018-06-16-minimu9v5-rtimulib2/rpiblusleaf.png" caption="Rasberry Pi Bus leaf" %}
+
+For test purposes I used a bread board and four male to femal jumper wires to to connect the PCB to the GPIO pins.
 
 ## RTIMULib2
 
@@ -90,4 +101,9 @@ Therefore the sensors (magnetometer, accelerometer and gyroscope) need to be cal
 ### Calibration
 
 Calibrate the magnetometer and the accelerometer using the buttons on top of the gui.
-A tutorial on how to calibrate these sensors is given in the Calibration.pdf in the repository.
+A tutorial on how to calibrate these sensors is given in the [Calibration.pdf](https://github.com/fjp/RTIMULib2/blob/master/Calibration.pdf) in the repository.
+
+## Future Work
+
+Instead of using the RTIMULib2 it should be possible to use the output from the mentioned [minimu9-ahrs](https://github.com/DavidEGrayson/minimu9-ahrs) program and
+create a ros node with this code.
