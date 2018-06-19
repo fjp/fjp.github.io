@@ -36,8 +36,7 @@ The MinIMU has six pins, which are shown in the following figure.
 
 To communicate with the IMU the GPIO pins of the raspberrypi can be used. By taking a look at the
 
-{% include figure image_path="/assets/posts/2018-06-19-minimu9v5-rtimulib2/rpiblusleaf.png" caption="Rasberry Pi Bus leaf" %}
-
+{% include figure image_path="/assets/posts/2018-06-16-minimu9v5-rtimulib2/rpiblusleaf.png" caption="Rasberry Pi Bus leaf" %}
 
 ## RTIMULib2
 
