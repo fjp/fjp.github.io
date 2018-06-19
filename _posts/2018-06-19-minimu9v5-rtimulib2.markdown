@@ -39,29 +39,56 @@ To communicate with the IMU the GPIO pins of the raspberrypi can be used. By tak
 {% include figure image_path="/assets/posts/2018-06-19-minimu9v5-rtimulib2/rpiblusleaf.png" caption="Rasberry Pi Bus leaf" %}
 
 
-### Standard Parts
+## RTIMULib2
 
-The transmitter and the receiver are not required to drive autonomously and therefore not explained further.
-However, if we wanted to interact with the car remotely we need to take those two parts into account.
+The RTIMULib2 did not support the LSM6DS33 and the LIS3MDL which are on the MinIMU-9 v5 PCB. Therefore, I wrote a driver to support the imu which
+can be found in [this github repository](https://github.com/fjp/RTIMULib2).
 
-#### Servo
+To install the library, just clone the repository
 
-Requires voltage to operate which is established by two wires that can be looked up in its data sheet.
-The third cable is used to command the servo to its desired angle position using a pulse width modulated signal.
+{% highlight bash %}
+git clone https://github.com/fjp/RTIMULib2
+{% endhighlight %}
 
-#### Electronic Speed Control (ESC) and Electric Motor
+Then `cd` into the new RTIMULib2 folder and build and install the library
 
-The ESC is connected to the battery and drives the motor through plus and minus connections by varying the supplied voltage.
+{% highlight bash %}
+cd RTIMULib2/RTIMULib
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+{% endhighlight %}
 
-## Parts for Autonomous Mode
+The last command copies the library into the shared library path `LD_LIBRARY_PATH` of linux.
 
-To operate autonomously we require the parts that we setup previously and some additional power supply hardware to operate them.
+To run a test program, change into the Linux folder and build the example programs in there.
 
-- Arduino MKR1000
-- Raspberry Pi 3 B+
-- Battery Pack
-- Voltage regulator to have a steady 5V power supply from the battery pack.
+{% highlight bash %}
+cd RTIMULib2/Linux
+mkdir build
+cd build
+cmake ..
+make
+{% endhighlight %}
 
-Although it would be possible to use power from the car's battery, I decided to use a separate battery pack to power the "brain"
-(Raspberry and Arduino) of the car. This decision is made to not waste the the car's main energy source and it has enough power
-for to carry this additional weight.
+These commands will create new folders inside the build directory which contain the program executables.
+
+The visual demo can be executed with the following lines of bash code:
+
+{% highlight bash %}
+cd RTIMULib2/Linux/build/RTIMULibDemoGL
+make
+./RTIMULibDemoGL
+{% endhighlight %}
+
+This should open a Qt GUI that lets you see the orientation of the imu.
+The first start time you start the GUI a file called RTIMULib.ini is created which is used to store the imu settings (address of the chips, fusion state)
+and calibration data. Furthermore, the IMU is not calibrated and will result in poor tracking behavior while rotating.
+Therefore the sensors (magnetometer, accelerometer and gyroscope) need to be calibrated which I will explain in the next section.
+
+### Calibration
+
+Calibrate the magnetometer and the accelerometer using the buttons on top of the gui.
+A tutorial on how to calibrate these sensors is given in the Calibration.pdf in the repository.
