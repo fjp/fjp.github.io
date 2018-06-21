@@ -9,7 +9,7 @@ tags: [imu, gyroscope, gyro, accelerometer, accel, magnetometer, mag, compass, i
 comments: true
 use_math: true
 toc: true
-classes: wide
+#classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
   teaser: https://a.pololu-files.com/picture/0J7057.1200.jpg?1b03058e38d92f82f95abf7a0aa39315 #/assets/projects/autonomous-rc-car/hpi-racing-bmw-m3_thumb.png
@@ -93,8 +93,11 @@ make
 ./RTIMULibDemoGL
 {% endhighlight %}
 
-This should open a Qt GUI that lets you see the orientation of the imu.
-The first start time you start the GUI a file called RTIMULib.ini is created which is used to store the imu settings (address of the chips, fusion state)
+This should establish a connection to the connected IMU and open a Qt GUI that lets you see the orientation of the imu.
+
+{% include figure image_path="/assets/posts/2018-06-16-minimu9v5-rtimulib2/RTIMULibDemoGL.png" caption="RTIMULibDemoGL" %}
+
+The first time you start the GUI a file called RTIMULib.ini is created which is used to store the imu settings (address of the chips, fusion state)
 and calibration data. Furthermore, the IMU is not calibrated and will result in poor tracking behavior while rotating.
 Therefore the sensors (magnetometer, accelerometer and gyroscope) need to be calibrated which I will explain in the next section.
 
@@ -102,6 +105,20 @@ Therefore the sensors (magnetometer, accelerometer and gyroscope) need to be cal
 
 Calibrate the magnetometer and the accelerometer using the buttons on top of the gui.
 A tutorial on how to calibrate these sensors is given in the [Calibration.pdf](https://github.com/fjp/RTIMULib2/blob/master/Calibration.pdf) in the repository.
+
+Here are two screenshots of the values after I calibrated the two sensors:
+
+{% include figure image_path="/assets/posts/2018-06-16-minimu9v5-rtimulib2/calibrate-accelerometer.png" caption="Calibrate accelerometer" %}
+
+{% include figure image_path="/assets/posts/2018-06-16-minimu9v5-rtimulib2/calibrate-magnetometer.png" caption="Calibrate magnetometer" %}
+
+
+### Troubleshooting
+
+If you have troubles to connect the IMU, take a look for errors at your terminal output and try re-connect the IMU and use the correct settings.
+Using the auto detect should help to find any supported imu.
+
+{% include figure image_path="/assets/posts/2018-06-16-minimu9v5-rtimulib2/select-imu.png" caption="Selecting the right imu" %}
 
 ## Future Work
 

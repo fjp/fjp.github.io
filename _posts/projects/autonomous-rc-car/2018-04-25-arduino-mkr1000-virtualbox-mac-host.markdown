@@ -12,8 +12,8 @@ toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: /assets/images/kinetic.png
-  overlay_image: /assets/images/kinetic.png
+  teaser: /assets/images/arduino-mkr1000.jpg
+  overlay_image: /assets/images/arduino-mkr1000.jpg
 redirect_from:
   - /projects/autonomous-rc-car/
 ---
@@ -29,13 +29,14 @@ The rc vehicle and its parts
 System integration: combining the components.
 
 
-In this part I will explore the MKR1000 and its capabilities using the Serial connection and a library called [rosserial](http://wiki.ros.org/rosserial). This library provides a client library called rosserial_arduino. It allows users to get ros nodes up and running easily.
+In this part I will show how to install the Arduino IDE on ubuntu 16.04, install ROS Kinetic and a library called [rosserial](http://wiki.ros.org/rosserial).
+This library provides a client library called rosserial_arduino, which allows us to get ros nodes up and running easily.
 
 ## Prerequisites
 
 If you followed the previous tutorial to setup a ubuntu 16.04 guest virtual machine on virtualbox running on macOS, you are ready to follow this tutorial. However, it’s not required to have ubuntu running on a virtualbox. Feel free to install ubuntu 16.04 directly on your machine to get the best experience regarding performance.
 
-The reason we use ubuntu 16.04 is that it is an LTS version and recommended by the [ROS Kinetic](http://wiki.ros.org/ROS/Installation) distribution which is itself has LTS, supported until April, 2021.
+The reason we use ubuntu 16.04 is that it is an LTS version and recommended by the [ROS Kinetic](http://wiki.ros.org/ROS/Installation) distribution which itself has LTS, supported until April, 2021.
 
 
 ## Arduino IDE
@@ -46,12 +47,12 @@ After the download finished, extract the tar using the gui or the terminal comma
 
 1st attempt running `./install.sh`
 
-{% include figure image_path="/assets/pages/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image1.png" caption="Installing Arduino IDE 1.8.5" %}
+{% include figure image_path="/assets/posts/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image1.png" caption="Installing Arduino IDE 1.8.5" %}
 
 
 2nd attempt running `./install.sh`
 
-{% include figure image_path="/assets/pages/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image2.png" caption="Installing Arduino IDE 1.8.5" %}
+{% include figure image_path="/assets/posts/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image2.png" caption="Installing Arduino IDE 1.8.5" %}
 
 
 After that you find the Arduino IDE shortcut on the desktop or through the ubuntu unity launcher. Its convenient to add a shortcut to the sidebar, which can be done while the IDE is running. Just right click the icon in the sidebar and pin it.
@@ -66,17 +67,17 @@ The following steps are necessary because I am running ubuntu in a virtualbox on
 The first important step we must take to get the Arduino IDE talking to the MKR1000 board (being able to upload sketches) is to connect it via usb and add the Arduino USB device filter to the ubuntu virtual machine. Otherwise our Mac host could claim the device for itself, which will result in errors while uploading from the ubuntu guest. Therefore, we define a device filter for the connected Arduino in the settings of the virtual machine.
 
 
-{% include figure image_path="/assets/pages/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image3.png" caption="Device filter" %}
+{% include figure image_path="/assets/posts/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image3.png" caption="Device filter" %}
 
 
 Now that we have set up a usb device filter open the Arduino IDE. Then go to the Boards Manager in the Tools menu because the MKR1000 is not available by default.
 
-{% include figure image_path="/assets/pages/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image4.png" caption="Board Manager" %}
+{% include figure image_path="/assets/posts/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image4.png" caption="Board Manager" %}
 
 
 Select the Arduino SAMD Boards (32-bits ARM Cortex-M0+) to install the latest version (1.6.18 in my case) which adds the MKR1000 to the Boards menu.
 
-{% include figure image_path="/assets/pages/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image5.png" caption="Install SAMD Boards" %}
+{% include figure image_path="/assets/posts/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image5.png" caption="Install SAMD Boards" %}
 
 
 
@@ -85,7 +86,7 @@ After the installation finished, select the MKR1000 Genuino and choose `/dev/tty
 Now it is time to try uploading a first example sketch. Open the Blink example from the File menu and press upload. While uploading you will receive an error due to missing dialout permissions for the device. The error will look something like this
 
 
-{% include figure image_path="/assets/pages/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image6.png" caption="Upload permission error" %}
+{% include figure image_path="/assets/posts/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image6.png" caption="Upload permission error" %}
 
 
 
@@ -99,26 +100,26 @@ After that log out and back in for the changes to take effect.
 
 Now when you try to re-upload see what happens:
 
-{% include figure image_path="/assets/pages/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image7.png" caption="Another error" %}
+{% include figure image_path="/assets/posts/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image7.png" caption="Another error" %}
 
 Another error :)
 
 
 When you check whether the usb device is correct you will notice that its name changed.
 
-{% include figure image_path="/assets/pages/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image8.png" caption="Installing Arduino IDE 1.8.5" %}
+{% include figure image_path="/assets/posts/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image8.png" caption="Installing Arduino IDE 1.8.5" %}
 
 
 So add this “new” device also to the list of usb devices in virtualbox.
 
-{% include figure image_path="/assets/pages/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image9.png" caption="Changed device name" %}
+{% include figure image_path="/assets/posts/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image9.png" caption="Changed device name" %}
 
 
 This previous step can be done while the machine is running, but be sure to check the device from the virtualbox Devices menu -> USB -> Arduino SA [0200]
 
 After all those errors, we reached the trickiest part. You can try to upload again but will probably receive another error
 
-{% include figure image_path="/assets/pages/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image10.png" caption="Upload error" %}
+{% include figure image_path="/assets/posts/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image10.png" caption="Upload error" %}
 
 
 
@@ -128,7 +129,7 @@ Immediately after pressing upload, press the reset button on the arduino and hol
 
 If you did the magic trick correctly, you will see a similar message like this:
 
-{% include figure image_path="/assets/pages/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image11.png" caption="Successful magic upload" %}
+{% include figure image_path="/assets/posts/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image11.png" caption="Successful magic upload" %}
 
 
 Successful magic upload. Congratulations :-)
@@ -152,7 +153,7 @@ Configure your Ubuntu repositories
 
 On my machine (ubuntuBox), the repositories did not have to be configured, because they were already set to allow "restricted," "universe," and "multiverse." However, check if it is also done on your machine by in Software & Updates.
 
-{% include figure image_path="/assets/pages/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image12.png" caption="Software & Updates" %}
+{% include figure image_path="/assets/posts/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image12.png" caption="Software & Updates" %}
 
 
 Next, setup your computer to accept software from packages.ros.org.
@@ -246,9 +247,7 @@ Therefore I recommend using the installation process described above.
 
 After you have installed the rosserial_arduino client library you are ready to upload the Hello World example.
 
-{% include figure image_path="/assets/pages/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image13.png" caption="Successful magic upload" %}
+{% include figure image_path="/assets/posts/2018-04-25-arduino-mkr1000-virtualbox-mac-host/image13.png" caption="Hello World - Arduino rosserial" %}
 
 
-## Servo
-
-The datasheet of the servo (Tower Pro Micro Servo 99 SG90) I used can be found [here](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf).
+For more exciting experiments with rosserial and servos read the [next post](/projects/autonomous-rc-car/rosserial/)
