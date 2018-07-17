@@ -203,31 +203,33 @@ timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 # Plugins (previously gems:)
 plugins:
-  - jekyll-paginate-v2 # - jekyll-paginate # - jekyll-paginate-v2
+  - jekyll-paginate # - jekyll-paginate # - jekyll-paginate-v2
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
   - jemoji
   - jekyll-seo-tag
-  - jekyll-typogrify
-  - jekyll/figure
-  - jekyll-algolia
-  - jekyll/tagging
-  - jekyll-tagging-related_posts
+#  - jekyll-typogrify
+#  - jekyll/figure
+#  - jekyll-algolia
+#  - jekyll/tagging
+#  - jekyll-tagging-related_posts
+  - jekyll-jupyter-notebook
 
 # mimic GitHub Pages with --safe
 whitelist:
-  - jekyll-paginate-v2 # - jekyll-paginate # - jekyll-paginate-v2
+  - jekyll-paginate # - jekyll-paginate # - jekyll-paginate-v2
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
   - jemoji
   - jekyll-seo-tag
-  - jekyll-typogrify
-  - jekyll/figure
-  - jekyll-algolia
-  - jekyll/tagging
-  - jekyll-tagging-related_posts
+#  - jekyll-typogrify
+#  - jekyll/figure
+#  - jekyll-algolia
+#  - jekyll/tagging
+#  - jekyll-tagging-related_posts
+  - jekyll-jupyter-notebook
 
 
 # Archives
@@ -307,3 +309,5 @@ defaults:
       #show_overlay_excerpt: false
       #sidebar:
         #nav: "docs"
+
+github: [metadata]
