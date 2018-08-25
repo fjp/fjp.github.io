@@ -37,4 +37,15 @@ The following sections introduce some topics of linear algebra. For more mathema
 
 ### Span, Bases and Linear Combinations
 
+<p>
+The span of two vectors $\vec{v}$ and $\vec{w}$ is the set of all their linear combinations.
+
+$$
+a\vec{v}+b\vec{w}
+$$
+
+where $a$ and $b$ varay over all real numbers $\mathbb{R}$.
+</p>
+{: .notice}
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/k7RM-ot2NWY?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
