@@ -28,9 +28,13 @@ redirect_from:
 
 The following sections introduce some topics of linear algebra. For more mathematical topics checkout other [![Awesome](https://awesome.re/badge.svg)](/math/) list.
 
+
 ### Vectors
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/fNk_zzaMoSs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
+
 
 
 ### Span

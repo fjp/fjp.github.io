@@ -16,7 +16,9 @@ image:
 
 ## Intoduction
 
-For structured environments like highways the following algorithm can be used if a rough path, referred to as reference, is available.
+There are many ways to plan a trajectory for a robot. A trajectory can be seen as a set of time ordered state vectors $x$.
+The following algorithm introduces a way to plan trajectories to maneuver a mobile robot in a 2D plane.
+It is specifically useful for structured environments, like highways, where a rough path, referred to as reference, is available a priori.
 
 ## Algorithm
 
