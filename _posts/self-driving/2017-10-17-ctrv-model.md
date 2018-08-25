@@ -2,6 +2,7 @@
 layout: single
 title:  CTRV Model
 date:   2017-10-17 17:31:41 +0200
+excerpt: "A mathematical model to describe the motion of a mobile robot."
 categories: [process models, model, bicycle-model]
 tags: [udacity, bicycle model]
 use_math: true
@@ -12,6 +13,7 @@ header:
   overlay_image: /assets/posts/2017-10-17-ctrv-model/ctrv-model.png
 ---
 
+## Introduction
 
 The constant turn rate and constant velocity model (in short CTRV) is used to model vehicles.
 Using the function $x_{k \vert k} = f(x_k, \nu_k)$ the model predicts the new state $x_{k \vert k}$ of the vehicle at time $k+1$

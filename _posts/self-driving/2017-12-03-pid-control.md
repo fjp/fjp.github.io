@@ -2,16 +2,18 @@
 layout: single
 title:  "PID Control"
 date:   2017-12-03 14:24:31 +0100
+excerpt: "Summary of the PID controller."
 categories: [control, pid]
 tags: [udacity, pid, control]
 use_math: true
 toc: true
 # toc_label: "Unscented Kalman Filter"
-image:
-  feature: /assets/posts/2017-12-03-dynamic-models/lat-lon-forces.png
-  thumb: /assets/posts/2017-12-03-dynamic-models/lat-lon-forces.png #keep it square 200x200 px is good
+header:
+  teaser: https://upload.wikimedia.org/wikipedia/commons/4/43/PID_en.svg
+  overlay_image: https://upload.wikimedia.org/wikipedia/commons/4/43/PID_en.svg #keep it square 200x200 px is good
 ---
 
+## Introduction
 
 Summary of the PID controller invented 1922 by [Nicolas Minorsky](https://en.wikipedia.org/wiki/Nicolas_Minorsky).
 

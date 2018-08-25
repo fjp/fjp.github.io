@@ -7,9 +7,9 @@ tags: [udacity, model, dynamic, mpc]
 use_math: true
 toc: true
 # toc_label: "Unscented Kalman Filter"
-image:
-  feature: /assets/posts/2017-12-03-dynamic-models/lat-lon-forces.png
-  thumb: /assets/posts/2017-12-03-dynamic-models/lat-lon-forces.png #keep it square 200x200 px is good
+header:
+  teaser: /assets/posts/2017-12-03-dynamic-models/lat-lon-forces.png
+  overlay_image: /assets/posts/2017-12-03-dynamic-models/lat-lon-forces.png #keep it square 200x200 px is good
 ---
 
 
