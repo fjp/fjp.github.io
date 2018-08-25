@@ -39,6 +39,8 @@ Now to include a html file inside a post use the following command:
 {% endraw %}
 {% endhighlight %}
 
+However, setting the height of the iframe using the `resizeIframe` function only works with chrome. In firefox the size change does not work.
+{: .notice--warning}
 
 In my case I put all the html files into subfolders in the root folder `asset`.  
 
@@ -49,7 +51,7 @@ The results where I included html files create with bokeh and jupyter notebook l
 Above you can see a bokeh plot that uses no interactive functionality. However,
 below is an example wit the possibility to interact by moving the slider.
 
-
+{% include notebook path="/assets/notebooks/js_on_change.html" %}
 
 
 ## Bokeh and Jupyter Notebook
