@@ -6,14 +6,15 @@ main:
     url: /blog/
   - title: "Projects"
     url: /projects-archive/
+  - title: "Mathematics"
+    url: /math/
   - title: "About"
     url: /about/
   - title: "Privacy"
     url: /privacy/
   - title: "Sitemap"
     url: /sitemap/
-  - title: "Test"
-    url: /test/
+
   # - title: "Quick-Start Guide"
   #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   # - title: "Sample Posts"
