@@ -1,6 +1,6 @@
 ---
 layout: single #collection
-title: Mathematics
+title: Mathematics - Linear Algebra
 permalink: /math/linear_algebra
 excerpt: "Awesome list on mathematical topics"
 date: 2018-08-25 15:41:35 +0200
@@ -31,12 +31,10 @@ The following sections introduce some topics of linear algebra. For more mathema
 
 ### Vectors
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/fNk_zzaMoSs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fNk_zzaMoSs?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 
+### Span, Bases and Linear Combinations
 
-
-### Span
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/fNk_zzaMoSs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/k7RM-ot2NWY?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
