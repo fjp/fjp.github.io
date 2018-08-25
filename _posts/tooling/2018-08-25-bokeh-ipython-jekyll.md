@@ -49,7 +49,7 @@ The results where I included html files create with bokeh and jupyter notebook l
 Above you can see a bokeh plot that uses no interactive functionality. However,
 below is an example wit the possibility to interact by moving the slider.
 
-{% include notebook path="/assets/notebooks/js_on_change.html" %}
+
 
 
 ## Bokeh and Jupyter Notebook
