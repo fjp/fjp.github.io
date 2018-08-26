@@ -48,6 +48,27 @@ where $a$ and $b$ varay over all real numbers $\mathbb{R}$.
 </p>
 {: .notice}
 
+<p>
+Vectors are said to be linearly independent if
+
+$$
+\vec{u} \neq a\vec{v}+b\vec{w}
+$$
+
+for all values $a$ and $b$.
+
+Otherwise they are linearly dependent if one vector can be expressed in terms of the others
+$$
+\vec{u} \neq a\vec{v}+b\vec{w}
+$$
+</p>
+{: .notice}
+
+<p>
+The basis of a vector space is a set of linearly independent vectors that span the full space
+</p>
+{: .notice}
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/k7RM-ot2NWY?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Linear Transformations
