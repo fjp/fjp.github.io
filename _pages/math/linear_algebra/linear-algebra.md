@@ -1,7 +1,7 @@
 ---
 layout: single #collection
 title: Mathematics - Linear Algebra
-permalink: /math/linear_algebra
+permalink: /math/linear-algebra
 excerpt: "Awesome list on mathematical topics"
 date: 2018-08-25 15:41:35 +0200
 categories: [math, linear algebra]
@@ -18,8 +18,6 @@ header:
   #show_overlay_excerpt: true
   #teaser: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3_thumb.png
   #overlay_image: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
-sidebar:
-    nav: "linear_algebra"
 redirect_from:
     - /math/
 ---
@@ -29,13 +27,13 @@ redirect_from:
 The following sections introduce some topics of linear algebra. For more mathematical topics checkout other [![Awesome](https://awesome.re/badge.svg)](/math/) list.
 
 
-### Vectors
+## Vectors
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/fNk_zzaMoSs?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 
-### Span, Bases and Linear Combinations
+## Span, Bases and Linear Combinations
 
 <p>
 The span of two vectors $\vec{v}$ and $\vec{w}$ is the set of all their linear combinations.
@@ -59,7 +57,7 @@ for all values $a$ and $b$.
 
 Otherwise they are linearly dependent if one vector can be expressed in terms of the others
 $$
-\vec{u} \neq a\vec{v}+b\vec{w}
+\vec{u} = a\vec{v}+b\vec{w}
 $$
 </p>
 {: .notice}
@@ -71,6 +69,25 @@ The basis of a vector space is a set of linearly independent vectors that span t
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/k7RM-ot2NWY?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-## Linear Transformations
+## Matrices as Linear Transformations
+
+Important topic in linear algebra that shows the relation between linear transformations (can be seen as a funciton $f(x)$) and matrices.
+Usually such linear transformations transform one vector $\vec{v}$ to another vector $\vec{w} = L(\vec{v})$.
+
+Given a basis with vectors $\hat{i} = \begin{bmatrix}1 & 0 \end{bmatrix}$ and $\hat{j} = \begin{bmatrix}0 & 1 \end{bmatrix}$ that span the 2D space,
+matrices can be thought of as transformations of that space.
+In a given matrix
+
+$$
+\begin{bmatrix}
+a & c \\
+b & d
+\end{bmatrix}
+$$
+
+with respect to the original basis, the first matrix column tells us where the first basis vector $\hat{i}$ lands (or gets transformed to)
+and the second column shows where the basis vector $\vec{j}$ lands in that linear transformation.  
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/kYB8IZa5AuE?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+## Matrix Multiplication as Composition

@@ -1,5 +1,5 @@
 ---
-layout: collection #collection
+layout: single #collection
 title: Autonomous RC Car
 permalink: /projects/autonomous-rc-car/
 excerpt: "Equipped with ROS and Arduino"

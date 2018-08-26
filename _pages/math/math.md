@@ -1,5 +1,5 @@
 ---
-layout: collection #collection
+layout: single #collection
 title: Mathematics
 permalink: /math/
 excerpt: "Awesome list on mathematical topics"
@@ -9,7 +9,8 @@ header:
   #caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
   #show_overlay_excerpt: true
 sidebar:
-  nav: "linear_algebra"
+  nav: "math"
+author_profile: false
 ---
 
 ## Introduction
@@ -17,5 +18,6 @@ sidebar:
 The following list divides mathematics into some of its categories. Each link
 leads you to a different [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) list that contains great resources about that specific topic.
 
-- [Linear algebra](/math/linear_algebra)
--
+- [Linear algebra](/math/linear-algebra)
+- [Calculus]()
+    - [Optimization](/math/optimization-lagrange-multipliers)

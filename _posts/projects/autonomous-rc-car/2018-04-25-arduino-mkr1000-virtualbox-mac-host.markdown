@@ -137,7 +137,7 @@ Successful magic upload. Congratulations :-)
 If the trick worked, you also see the led on the MKR1000 blinking! Congrats, this is it, your first example is running on the Arduino! The rest of this tutorial is easy.
 
 Note: Once the trick worked the first time for me, uploading other sketches succeeded even without doing this magic again.
-
+{: .notice-warning}
 
 ## Setup ROS Kinetic
 

@@ -39,3 +39,15 @@ autonomous_rc_car:
         url: /projects/autonomous-rc-car/system-integration/
   - title: "Prerequisites"
     url: /projects/autonomous-rc-car/#prerequisites
+
+
+math:
+  - title: "Introduction"
+    url: /math/#introduction
+  - title: "Linear Algebra"
+    url: /math/linear-algebra
+  - title: "Calculus"
+    url: /math/
+    children:
+      - title: "Optimization"
+        url: /math/optimization-lagrange-multipliers
