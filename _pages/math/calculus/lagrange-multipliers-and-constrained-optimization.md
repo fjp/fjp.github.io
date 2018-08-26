@@ -51,12 +51,17 @@ the gradient of $f$ evaluated at a point $(x_0, y_0)$ always gives a vector perp
 This means when the contour lines of two functions $\color{blue}f$ and $\color{red}g$ are tangent, their gradient vectors are parallel.
 This tangency means their gradient vectors align:
 
+<p>
+<strong>Tangency Condition</strong>
+
 $$
 \label{tangency}
 \nabla \color{blue}{f(x_0,y_0)} = \color{green}{\lambda_0} \nabla \color{red}{g(x_0,y_0)}
 $$
+</p>
+{: .notice}
 
-Here, \color{green}{\lambda} represents some constant. Some authors use a negative constant, -\color{green}{\lambda}.
+Here, $\color{green}{\lambda}$ represents some constant. Some authors use a negative constant, $-\color{green}{\lambda}$.
 
 Let's see what this looks like in our example where $\color{blue}{f(x,y)=2x+y}$ and $\color{red}{g(x,y)=x^2+y^2}$.
 The gradient of $f$ is
@@ -104,7 +109,7 @@ $$
 In the example from above, this leads to the following three equations and two three unknowns $x_0$, $y_0$ and $\lambda_0$.
 
 $$
-\color{red}{x_0 + y_0 = 1} \\
+\color{red}{x_0^2 + y_0^2 = 1} \\
 $$
 
 $$
@@ -114,19 +119,33 @@ $$
 \end{align}
 $$
 
+Plugging $x_0$ and $y_0$ into the third equation results in a quadratic equation with two solutions for $\lambda_0$
+
+$$
+\lambda_0 = \pm\frac{\sqrt{5}}{2}
+$$
+
+This leads to two solutions for the input pair $(x_0,y_0)$ which can be plugged into the original function $f(x,y)$.
+One input leads to the minimum and the other to the maximum value of $f$.
+
+
+In general the we can write these conditions by saying we are looking for constants $x_0$, $y_0$ and $\lambda_0$
+that satisfy the constraint and the tangency condition \ref{tangency}.
+
+[Joseph Louis Lagrange](https://en.wikipedia.org/wiki/Joseph-Louis_Lagrange) wrote down a special new function which takes in all the same input variables as $f$ and $g$,
+along with the new kid in town $\lambda$, thought of now as a variable rather than a constant.
+
 <p>
-The span of two vectors $\vec{v}$ and $\vec{w}$ is the set of all their linear combinations.
+<strong>The Lagrangian</strong>
 
 $$
-a\vec{v}+b\vec{w}
+\mathcal{L}(x,y,\dots,\color{green}{\lambda}) = \color{blue}{f(x,y,\dots)} - \color{green}{\lambda}(\color{red}{g(x,y,\dots) - c})
 $$
 
-where $a$ and $b$ varay over all real numbers $\mathbb{R}$.
+with the Lagrange multiplier $\color{green}{\lambda}$.
 </p>
 {: .notice}
 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/k7RM-ot2NWY?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## References
 
