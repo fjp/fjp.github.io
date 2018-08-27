@@ -95,6 +95,10 @@ and the second column shows where the basis vector $\vec{j}$ lands in that linea
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/XkY2DOUCWMU?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
+## Three Dimensional Linear Transformations
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rHLEWRxRGiM?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 
 ## The Determinant
 
