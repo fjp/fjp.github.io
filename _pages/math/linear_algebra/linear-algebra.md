@@ -86,7 +86,52 @@ b & d
 $$
 
 with respect to the original basis, the first matrix column tells us where the first basis vector $\hat{i}$ lands (or gets transformed to)
-and the second column shows where the basis vector $\vec{j}$ lands in that linear transformation.  
+and the second column shows where the basis vector $\vec{j}$ lands in that linear transformation.
+
+<p>
+A linear transformation is linear if it has two properties:
+
+- All lines must remain lines (without getting curved)
+- Origin must remain fixed in place
+
+which means that grid lines must remain parallel and evenly spaced.
+</p>
+{: .notice}
+
+<p>
+To program a transformation function numerically, it is only necessary to record where the basis vectors $\hat{i}$ and $\hat{j}$ each land.
+With this information, other vectors can be transformed using these transformed basis vectors as columns in a new transformation matrix.
+An arbitrary vector $\vec{v}$ can then be transformed by that matrix. This can be seen as scaling the transformed basis vectors by the
+vector components of $\vec{v}$ or as one specific linear combination.
+
+$$
+\begin{bmatrix}
+i_x & j_x \\
+i_y & j_y
+\end{bmatrix}
+\begin{bmatrix}
+v_x \\
+v_y
+\end{bmatrix} =
+\underbrace{
+v_x
+\begin{bmatrix}
+i_x \\
+i_y
+\end{bmatrix} +
+v_y
+\begin{bmatrix}
+j_x \\
+j_y
+\end{bmatrix}}_{\text{Where all the intuition is}}
+=
+\begin{bmatrix}
+i_x v_x & j_x v_y \\
+i_y v_x & j_y v_y
+\end{bmatrix}
+$$
+</p>
+{: .notice}
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/kYB8IZa5AuE?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
