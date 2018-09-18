@@ -6,6 +6,8 @@ main:
     url: /blog/
   - title: "Projects"
     url: /projects-archive/
+  - title: "Design Patterns"
+    url: /design-patterns/
   - title: "Mathematics"
     url: /math/
   - title: "About"
@@ -51,3 +53,14 @@ math:
     children:
       - title: "Optimization"
         url: /math/optimization-lagrange-multipliers
+
+
+design-patterns:
+  - title: "Introduction"
+    url: /design-patterns/
+  - title: "Strategy Pattern"
+    url: /design-patterns/strategy
+  - title: "Observer"
+    url: /design-patterns/observer
+  - title: "Decorator"
+    url: /design-patterns/decorator
