@@ -142,10 +142,56 @@ $$
 
 ## Three Dimensional Linear Transformations
 
+Transformations in three dimensions work just like transformations in two dimensions only with three dimensional vectors as input and output and three by three
+transformation matrices.
+
+<p>
+$$
+\vec{v} =
+\begin{bmatrix}
+x_i \\
+y_i \\
+z_i \\
+\end{bmatrix} \rightarrow
+L(\vec{v}) \rightarrow
+\begin{bmatrix}
+x_o \\
+y_o \\
+z_o \\
+\end{bmatrix} = \vec{w}
+$$
+</p>
+{: .notice}
+
+As in two dimensions, a three dimensional transformation is completely described by where the three unit basis vectors $\hat{i}$, $\hat{j}$, $\hat{k}$ go. Given a three dimensional transformation matrix, the output coordinates of the basis vectors are given by the matrix columns.
+Transforming a three dimensional input vector can be thought of scaling each basis vector with the corresponding input coordinate, which results in
+the transformed output vector.
+
+<p>
+$$
+\vec{w} = L(\vec{v}) =  
+\begin{bmatrix}
+\vert  & \vert & \vert \\
+\hat{i} & \hat{j} & \hat{k} \\
+\vert  & \vert  & \vert \\
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y \\
+z \\
+\end{bmatrix} =
+x \hat{i} + y \hat{j} + z \hat{k}
+$$
+</p>
+{: .notice}
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/rHLEWRxRGiM?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 ## The Determinant
+
+
+<iframe width="936" height="527" src="https://www.youtube.com/embed/Ip3X9LOh2dk?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Inverse Matrices, Column Space and Null Space
 
