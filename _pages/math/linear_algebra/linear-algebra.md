@@ -190,10 +190,114 @@ $$
 
 ## The Determinant
 
+The determinant of a matrix is the factor by which a given area, for example the unit square, increases or decreases after applying the transformation matrix.
+
+The scaling factor by which a linear transformation changes any area is called the determinant of that transformation.
+
+<p>
+$$
+\vec{w} = L(\vec{v}) =  
+\begin{bmatrix}
+\vert  & \vert & \vert \\
+\hat{i} & \hat{j} & \hat{k} \\
+\vert  & \vert  & \vert \\
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y \\
+z \\
+\end{bmatrix} =
+x \hat{i} + y \hat{j} + z \hat{k}
+$$
+</p>
+{: .notice}
+
+If the determinant is zero $\text{det}(M) = 0$ a two dimensional area is squished onto a line or even a single point when given for example the zero matrix.
+
+Negative determinant values $\text{det}(M) < 0$ describe a transformations that invert the orientation of space or put differently: flipping the space over.
+In terms of basis vectors it means that the $L(\hat{i})$ is to the left of $L(\hat{j})$ after a transformation $L$,
+where before the transformation $\hat{j}$ is to the left of $\hat{i}$.
+However, the absolute value of the determinant tells us about the factor about which the area has been scaled after applying the transformation.
+
+In three dimensions the determinant tells us how much volume gets scaled. A one by one by one cube resting on the basis vectors $\hat{i}$, $\hat{j}$, $\hat{k}$ gets
+warped into a parallelepiped after applying a transformation. The same two dimensional flipping concept is true for three dimensions,
+where the right hand rule comes into play. $\hat{i}$ goes into the direction of the forefinger,
+the middle finger points in a right angle from $\hat{i}$ and is defined as $\hat{j}$ and finally the thumb points upwards and defines $\hat{k}$.
+After this finger combination is possible after a transformation,
+the determinant is positive and the orientation has therefore not changed.
+Otherwise the determinant is negative and we could apply the left hand rule.
+
+<p>
+A determinant of zero means that the columns of the matrix are linearly dependent.
+</p>
+{: .notice}
+
+To compute the determinant of a two by two matrix we apply the following rule:
+
+<p>
+$$
+\text{det}
+\begin{bmatrix}
+a & b \\
+c & d \\
+\end{bmatrix} =
+ad - bc
+$$
+</p>
+{: .notice}
+
+<figure>
+    <a href="/assets/pages/math/determinant.png"><img src="/assets/pages/math/determinant.png"></a>
+    <figcaption>Determinant formula for a 2x2 matrix.</figcaption>
+</figure>
+
+
+For three dimensional matrices the determinant is
+
+
+<p>
+$$
+\text{det}
+\begin{bmatrix}
+\color{green}{a} & \color{red}{b} & \color{blue}{c} \\
+\color{green}{d} & \color{red}{e} & \color{blue}{f} \\
+\color{green}{g} & \color{red}{h} & \color{blue}{i} \\
+\end{bmatrix} =
+\color{green}{a} \text{det}
+\begin{bmatrix}
+\color{red}{e} & \color{blue}{f} \\
+\color{red}{h} & \color{blue}{i} \\
+\end{bmatrix} -
+\color{red}{b} \text{det}
+\begin{bmatrix}
+\color{green}{d} & \color{blue}{f} \\
+\color{green}{g} & \color{blue}{i} \\
+\end{bmatrix} +
+\color{blue}{c} \text{det}
+\begin{bmatrix}
+\color{red}{e} & \color{red}{e} \\
+\color{red}{h} & \color{red}{h} \\
+\end{bmatrix}
+$$
+</p>
+{: .notice}
+
+Taking the determinant of a composition of two matrix transformations $\text{det}(M_1M_2)$ results in the product of the
+determinants of the single matrices. Intuitively this corresponds to applying multiple factors to each resulting area after each corresponding transformation.
+
+<p>
+$$
+\text{det}(M_1M_2) = \text{det}(M_1)\text{det}(M_1)
+$$
+</p>
+{: .notice}
 
 <iframe width="936" height="527" src="https://www.youtube.com/embed/Ip3X9LOh2dk?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Inverse Matrices, Column Space and Null Space
+
+
+<iframe width="936" height="527" src="https://www.youtube.com/embed/uQhTuRlWMxw?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 ## Dot Products and Cross Products
