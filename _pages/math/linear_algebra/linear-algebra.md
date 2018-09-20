@@ -25,6 +25,8 @@ redirect_from:
 ## Introduction
 
 The following sections introduce some topics of linear algebra. For more mathematical topics checkout other [![Awesome](https://awesome.re/badge.svg)](/math/) list.
+Linear algebra can be used to describe the manipulation of space through the use of transformation matrices, which is used in computer graphics and robotics.
+It also lets us solve systems of equations.
 
 
 ## Vectors
@@ -295,6 +297,17 @@ $$
 <iframe width="936" height="527" src="https://www.youtube.com/embed/Ip3X9LOh2dk?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Inverse Matrices, Column Space and Null Space
+
+- Gaussian elimination
+- Row echelon form
+
+With linear algebra we can solve systems of equations with a list of unknown variables and a list of equations relating them.
+In linear algebra these variables get only scaled and added to each other but not modified by any other nonlinear function,
+for example squared, multiplied by each other, or the sine or cosine of that variables. 
+
+
+
+
 
 
 <iframe width="936" height="527" src="https://www.youtube.com/embed/uQhTuRlWMxw?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

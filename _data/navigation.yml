@@ -56,11 +56,28 @@ math:
 
 
 design-patterns:
-  - title: "Introduction"
+  - title: "Design Patterns"
     url: /design-patterns/
-  - title: "Strategy Pattern"
-    url: /design-patterns/strategy
-  - title: "Observer"
-    url: /design-patterns/observer
-  - title: "Decorator"
-    url: /design-patterns/decorator
+  - title: "Creational"
+    url: /design-patterns/
+    children:
+      - title: "Abstract Factory"
+        url: /design-patterns/factory
+      - title: "Builder"
+        url: /design-patterns/builder
+  - title: "Structural"
+    url: /design-patterns/
+    children:
+      - title: "Adapter"
+        url: /design-patterns/adapter
+      - title: "Bridge"
+        url: /design-patterns/bridge
+      - title: "Decorator"
+        url: /design-patterns/decorator
+  - title: "Behavioral"
+    url: /design-patterns/
+    children:
+      - title: "Strategy Pattern"
+        url: /design-patterns/strategy
+      - title: "Observer"
+        url: /design-patterns/observer
