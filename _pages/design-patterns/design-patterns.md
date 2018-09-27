@@ -45,6 +45,10 @@ Strive for loosely coupled designs between objects that interact.
 </p>
 {: .notice}
 
+Loosely coupled designs allow us to build flexible object oriented
+systems that can handle change because they minimize
+the interdependency between objects. This principle can be seen in the [observer pattern](/design-patterns/observer).
+
 
 <p>
 Classes should be open for extension, but closed for modification.

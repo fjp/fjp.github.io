@@ -174,3 +174,14 @@ public class MiniDuckSimulator {
 	}
 }
 {% endhighlight %}
+
+
+Starting this application results in the following output.
+
+{% highlight bash %}
+$java MiniDuckSimulator
+Quack
+I’m flying!!
+I can’t fly
+I’m flying with a rocket
+{% endhighlight %}
