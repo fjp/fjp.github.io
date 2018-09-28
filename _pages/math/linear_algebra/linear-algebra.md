@@ -311,9 +311,72 @@ for example squared, multiplied by each other, or the sine or cosine of that var
 
 ### Nonsquare Matrices as Transformations between Spaces
 
+With nonsquare matrices it is possible to transform between dimensions.
+
+<p>
+$$
+\underbrace{\vec{v} =
+\begin{bmatrix}
+x_i \\
+y_i \\
+\end{bmatrix}}_{\text{2D vector}} \rightarrow
+L(\vec{v}) \rightarrow
+\underbrace{\begin{bmatrix}
+x_o \\
+y_o \\
+z_o \\
+\end{bmatrix} = \vec{w}}_{\text{3D vector}}
+$$
+</p>
+{: .notice}
+
+Such transformations are also linear because the grid lines in the input and outputspace remain parallel and evenly spaced.
+Also the origin maps to the origin. The matrix columns describe where the basis vectors of the input space land (get transformed to) in the output space.
+
+A $m \times n$ matrix $\mathbf{A}\in\mathbb{R}^{m\times n}$ has $m$ rows and $n$ columns which maps
+the $n$ dimensional input space (with its $n$ basis vectors) to the $m$ dimensional output space (which has $m$ basis vectors).
+The $m$ rows indicate that the landing spots for each of those $n$ basis vectors of the input is described with
+$m$ separate coordinates.
+
+<p>
+$$
+\mathbf{A} \vec{v} =
+\begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn} \\
+\end{bmatrix}
+\begin{bmatrix}
+v_1 \\
+v_2 \\
+\vdots \\
+v_n \\
+\end{bmatrix} =
+\begin{bmatrix}
+w_1 \\
+w_2 \\
+\vdots \\
+w_m \\
+\end{bmatrix} = \vec{w}
+$$
+</p>
+{: .notice}
+
+The column space of this matrix (also the span of the columns or space where all vectors land) $n$ dimensional space slicing
+through the origin of the $m$ dimensional space. For a $3\times 2$ matrix this would be a 2 dimensional plane slicing through the origin of the
+three dimensional plane.
+
+Such a nonsquare matrix can still have full rank if the number of dimensions in the column space is equal to the
+number of dimensions of the input space.
+
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/v8VSDg_WQlA?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-## Dot Products and Cross Products
+## Dot Products and Duality
+
+
+
+<iframe width="936" height="527" src="https://www.youtube.com/embed/LyGKycYT2v0?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 ## Change of Basis
