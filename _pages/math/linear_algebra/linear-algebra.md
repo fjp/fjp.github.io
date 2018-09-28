@@ -20,6 +20,7 @@ header:
   #overlay_image: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
 redirect_from:
     - /math/
+author_profile: false
 ---
 
 ## Introduction

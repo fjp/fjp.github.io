@@ -45,6 +45,12 @@ implements a certain interface (the Observer interface).
 - We can reuse subjects or observers independently of each other.
 - Changes to either the subject or an observer will not affect the other.
 
+With the observer pattern it is possible to pull or push data from the
+observable whereas pull is considered more correct.
+
+It is also important to note that you should not depend on a specific order of
+notification for your observers.
+
 <figure>
     <a href="/assets/pages/design-patterns/observer-pattern.png"><img src="/assets/pages/design-patterns/observer-pattern.png"></a>
     <figcaption>Loosely coupled objects with the observer pattern.</figcaption>

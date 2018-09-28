@@ -55,6 +55,9 @@ Classes should be open for extension, but closed for modification.
 </p>
 {: .notice}
 
+Patterns that extend a class without modifying the class itself are the
+[observer](/design-patterns/observer) and the [decorator](/design-patterns/decorator) patterns. 
+
 
 ## References
 
