@@ -303,15 +303,15 @@ $$
 
 With linear algebra we can solve systems of equations with a list of unknown variables and a list of equations relating them.
 In linear algebra these variables get only scaled and added to each other but not modified by any other nonlinear function,
-for example squared, multiplied by each other, or the sine or cosine of that variables. 
-
-
-
-
+for example squared, multiplied by each other, or the sine or cosine of that variables.
 
 
 <iframe width="936" height="527" src="https://www.youtube.com/embed/uQhTuRlWMxw?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
+
+### Nonsquare Matrices as Transformations between Spaces
+
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/v8VSDg_WQlA?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Dot Products and Cross Products
 
