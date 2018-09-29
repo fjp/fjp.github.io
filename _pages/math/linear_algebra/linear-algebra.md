@@ -373,11 +373,36 @@ number of dimensions of the input space.
 
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/v8VSDg_WQlA?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-## Dot Products and Duality
+## Dot Product and Duality
 
+Given two vectors $\vec{v}$ and $\vec{w}$ the dot product between them is defined as
+
+<p>
+$$
+\vec{v} \cdot \vec{w} = v_1 w_1 + v_2 w_2 + \cdots + v_n w_n
+$$
+</p>
+{: .notice}
+
+which results in a single number. This means that the dot product can be interpredted as linear transformation
+that maps an $n$ dimensioanl vector the the one dimensional space (the number line).
+
+Geometrically the dot product describes a projection of one vector onto another.
+It is defined as the length of the projected vector multiplied with the length of the
+vector that defines a line on  which we projected the first vector.
+It is important to note that the dot product is commutative. Other properties are
+given by the angle between the two vectors:
+
+- If the angle $\theta$ is obtuse ($\theta > 90^\circ$) then the dot product is negative $\vec{v} \cdot \vec{w} < 0$
+- If the angle $\theta$ is acute ($\theta < 90^\circ$) then the dot product is positive $\vec{v} \cdot \vec{w} > 0$
+- The dot product is zero $\vec{v} \cdot \vec{w} = 0$ if the angle is straight ($\theta = 90\deg$)
 
 
 <iframe width="936" height="527" src="https://www.youtube.com/embed/LyGKycYT2v0?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
+
+## Corss Product
+
+<iframe width="936" height="527" src="https://www.youtube.com/embed/eu6i7WJeinw?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Change of Basis

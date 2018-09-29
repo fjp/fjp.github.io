@@ -56,7 +56,7 @@ strongest decceleration or the trajectory which accelerates the least respective
 is selected and passed to the controller.
 
 
-## Python ode in Jupyter Notebook
+## Python code in Jupyter Notebook
 
 {% include notebook path="/assets/notebooks/frenet.html" %}
 
@@ -69,10 +69,10 @@ is selected and passed to the controller.
 #### Python Implementation:
 
 - [Jupyter Notebook implementation](https://github.com/fjp/frenet/blob/master/ipython/python.ipynb)
-- https://github.com/AtsushiSakai/PythonRobotics#optimal-trajectory-in-a-frenet-frame
-- https://github.com/AtsushiSakai/PythonRobotics/tree/master/PathPlanning/FrenetOptimalTrajectory
+- [https://github.com/AtsushiSakai/PythonRobotics#optimal-trajectory-in-a-frenet-frame](https://github.com/AtsushiSakai/PythonRobotics#optimal-trajectory-in-a-frenet-frame)
+- [https://github.com/AtsushiSakai/PythonRobotics/tree/master/PathPlanning/FrenetOptimalTrajectory](https://github.com/AtsushiSakai/PythonRobotics#optimal-trajectory-in-a-frenet-frame)
 
 
 ### Matlab Implementation
 
-- https://github.com/fjp/frenet/tree/master/matlab
+- [https://github.com/fjp/frenet/tree/master/matlab](https://github.com/AtsushiSakai/PythonRobotics#optimal-trajectory-in-a-frenet-frame)
