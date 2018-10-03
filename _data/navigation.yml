@@ -61,7 +61,7 @@ design-patterns:
   - title: "Creational"
     url: /design-patterns/
     children:
-      - title: "Abstract Factory"
+      - title: "Factory"
         url: /design-patterns/factory
       - title: "Builder"
         url: /design-patterns/builder

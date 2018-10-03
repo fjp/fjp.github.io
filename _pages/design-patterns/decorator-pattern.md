@@ -2,7 +2,7 @@
 layout: single #collection
 title: The Decorator Pattern
 permalink: /design-patterns/decorator
-excerpt: "The strategy design pattern summarized."
+excerpt: "The decorator design pattern summarized."
 date: 2018-09-20 15:41:35 +0200
 categories: [programming, design patterns]
 tags: [programming, design patterns, decorator, pattern, structural]
@@ -40,6 +40,12 @@ This is done either through inheritance or interface implementation. Decorators 
 new functionality before and/or after (or even in place of) method calls to the component.
 
 Using the decorator design pattern can result in many small objects, and overuse can be complex.
+On its own, the decorator pattern adds a lot of small classes to a design which can be
+hard to understand. It also has typing problems which arise when code is dependent on a specific type,
+which is destroyed when using decorators. Decorators are typically transparent to the client of the
+component. That is, unless the client is relying on the component's concrete type. To avoid this
+drawback other design patterns such as the [factory pattern] are helpful. 
+
 
 <figure>
     <a href="/assets/pages/design-patterns/decorator-pattern.png"><img src="/assets/pages/design-patterns/decorator-pattern.png"></a>
