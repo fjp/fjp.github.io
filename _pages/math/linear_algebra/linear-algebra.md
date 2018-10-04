@@ -401,8 +401,47 @@ given by the angle between the two vectors:
 <iframe width="936" height="527" src="https://www.youtube.com/embed/LyGKycYT2v0?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
-## Corss Product
+## Cross Product
+
+The value of the cross product of two vectors $\vec{v}$ and $\vec{w}$ can be considered as the area of the parallelogram these vectors span.
+The calculation is done using the determinant which describes how the area of a linear transformation changes (resulting in the factor).
+In the definition below the two vectors describe a linear transformation of the basis vectors $\hat{i}$ and $\hat{j}$ which span
+the unit square and that has an area of one. After the transformation that square gets turned into the parallelogram which area is given in
+the formula below.
+
+<p>
+$$
+\vec{v} \times \vec{w} = \text{det}\left(
+\begin{bmatrix}
+\vert & \vert \\
+\vec{v} & \vec{w} \\
+\vert & \vert
+\end{bmatrix}
+\right)
+$$
+</p>
+{: .notice}
+
+The sign of this area depends on the orientaiton of the parallelogram, which means that the order of the cross product matters.
+
+- If $\vec{v}$ is on the right of $\vec{w}$ then the result is positive and negative otherwise.
+- The more perpendicular the vectors are, the bigger the cross product gets.
+- $(a\cdot\vec{v})\times\vec{w} = a(\vec{v}\times\vec{w})$
+
+The cross product defines a vector that is perpendicular to the the parallelogram with the resulting vector defined using the right hand rule.
+
+<p>
+$$
+\vec{v} \times \vec{w} = \vec{p}
+$$
+</p>
+{: .notice}
 
 <iframe width="936" height="527" src="https://www.youtube.com/embed/eu6i7WJeinw?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
+## Cross Product in depth
+
+<iframe width="936" height="527" src="https://www.youtube.com/embed/BaM7OCEm3G0?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Change of Basis
