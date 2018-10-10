@@ -442,6 +442,74 @@ $$
 
 ## Cross Product in depth
 
+<p>
+$$
+\vec{p} = \vec{v} \times \vec{w} = \text{det}\left(
+\begin{bmatrix}
+\hat{i} & v_1 & w_1 \\
+\hat{j} & v_2 & w_2 \\
+\hat{k} & v_3 & w_3
+\end{bmatrix}
+\right) = \hat{i}(v_2 w_3 - v_3 w_2) + \hat{j}(v_3 w_1 - v_1 w_3) + \hat{k}(v_1 w_2 - v_2 w_1)
+$$
+</p>
+{: .notice}
+
+The $\vec{p}$ has coordinates multiplied by the three basis vectors $\hat{i}$, $\hat{j}$ and $\hat{k}$
+
+- Its length is equal to the parallelogram's area which is spanned by the vectors $\vec{v}$ and $\vec{w}$.
+- The resulting vector $\vec{p}$ is perpendicular to $\vec{v}$ and $\vec{w}$ obeying the right hand rule.
+    - $\vec{v}$ index finger
+    - $\vec{w}$ middle finger
+    - $\vec{p} = \vec{v} \times \vec{w}$ thumb
+
+<p>
+<b>Numerical Formula</b>
+$$
+\begin{bmatrix}
+v_1 \\
+v_2 \\
+v_3
+\end{bmatrix} \times
+\begin{bmatrix}
+w_1 \\
+w_2 \\
+w_3
+\end{bmatrix} =
+\begin{bmatrix}
+v_2 w_3 - v_3 w_2 \\
+v_3 w_1 - v_1 w_3 \\
+v_1 w_2 - v_2 w_1
+\end{bmatrix}
+$$
+</p>
+{: .notice}
+
+
+<p>
+<b>Properties</b>
+$$
+\vec{v} \cdot (\vec{v} \times \vec{w}) = 0
+$$
+$$
+\vec{w} \cdot (\vec{v} \times \vec{w}) = 0
+$$
+$$
+\cos{\theta} = \frac{\vec{v}\cdot\vec{w}}{\Vert \vec{v} \Vert \cdot \Vert \vec{w} \Vert}
+$$
+$$
+\Vert (\vec{v}\cdot\vec{w}) \Vert = (\Vert \vec{v} \Vert)(\Vert \vec{w} \Vert) \sin{\theta}
+$$
+</p>
+{: .notice}
+
+<figure>
+    <a href="https://upload.wikimedia.org/wikipedia/commons/6/6e/Cross_product.gif"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Cross_product.gif"></a>
+    <figcaption>Cross product.</figcaption>
+</figure>
+
 <iframe width="936" height="527" src="https://www.youtube.com/embed/BaM7OCEm3G0?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Change of Basis
+
+<iframe width="936" height="527" src="https://www.youtube.com/embed/P2LTAUO1TdA?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
