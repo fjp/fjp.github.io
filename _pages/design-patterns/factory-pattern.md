@@ -398,7 +398,7 @@ public class PlumTomatoSauce implements Sauce {
 }
 {% endhighlight %}
 
-Each concrete subclass creates a family of products.
+Each concrete subclass of the abstract factory class, `IngredientFactory`, creates a family of products.
 
 {% highlight java %}
 public class ChicagoPizzaIngredientFactory
@@ -434,7 +434,7 @@ public class ChicagoPizzaIngredientFactory
 }
 {% endhighlight %}
 
-Another subclass that implements the interface and therefore creates another family of products.
+Here is another subclass that implements the abstract factory and therefore creates another family of products.
 
 {% highlight java %}
 public class NYPizzaIngredientFactory implements PizzaIngredientFactory {
@@ -466,7 +466,7 @@ public class NYPizzaIngredientFactory implements PizzaIngredientFactory {
 }
 {% endhighlight %}
 
-The creators, in this example the `PizzaStore` implementations use the abstract factory classes.
+The creators, in this example the `PizzaStore` implementations instantiate the abstract factory classes.
 
 {% highlight java %}
 public class NYPizzaStore extends PizzaStore {

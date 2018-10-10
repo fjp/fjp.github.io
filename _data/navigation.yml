@@ -63,6 +63,8 @@ design-patterns:
     children:
       - title: "Factory"
         url: /design-patterns/factory
+      - title: "Singleton"
+        url: /design-patterns/singleton
       - title: "Builder"
         url: /design-patterns/builder
   - title: "Structural"
