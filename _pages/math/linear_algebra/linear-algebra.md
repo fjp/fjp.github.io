@@ -512,4 +512,18 @@ $$
 
 ## Change of Basis
 
+
+A vector with coordinates can have different directions depending on the used coordinate system, which is defined by a set of basis vectors.
+It is possible to translate from one coordinate system to another and is called change of basis.
+
+The matrix whos columsn represent a basis $B$ with coordinates described in another basis $B'$ can be used to transform
+vectors with coordinates in $B$ to the same vector with coordinates in $B'$. The inverse matrix does the opposite.
+
+An expression like $AMA^{-1}$ is a transformation $M$ of some kind but viewed in another coordinate system.
+The middle matrix $M$ represents the transformation in $B$ and the outer matrices represent an empathy, the shift in perspective.  
+
 <iframe width="936" height="527" src="https://www.youtube.com/embed/P2LTAUO1TdA?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+## Eigenvectors and Eigenvalues
+
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/PFDu9oVAE-g?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
