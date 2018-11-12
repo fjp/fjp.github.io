@@ -2,7 +2,7 @@
 
 This repository hold the data for my blog.
 It is automatically transformed by [Jekyll](http://github.com/mojombo/jekyll) into a static site whenever I push this repository to GitHub.
-You can see the result at [fjp.github.io](fjp.github.io) or www.fjp.at.
+You can see the result at [fjp.github.io](fjp.github.io) or [fjp.at](https://fjp.at).
 
 # Setup on MacOS
 
