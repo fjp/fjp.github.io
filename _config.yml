@@ -102,7 +102,7 @@ author:
   avatar           : "/assets/images/bio-photo.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Software developer at EFS."
   location         : "Ingolstadt Germany"
-  email            : "franz.pucher@gmail.com"
+  email            : "fp@fjp.at"
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        :
