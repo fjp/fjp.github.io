@@ -3,6 +3,7 @@ layout: single
 title:  "Trajectory Planning in the Frenet Space"
 date:   2018-08-25 17:31:41 +0200
 excerpt: "Planning mobile robot trajectories in structured environments using a reference path and Frenet coordinates."
+permalink: /posts/optimal-frenet/
 categories: [robotics, trajectory planning, algorithms]
 tags: [robotics, trajectory, algorithms, planning, frenet, coordinates, path]
 comments: true
