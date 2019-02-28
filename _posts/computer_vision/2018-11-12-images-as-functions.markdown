@@ -3,6 +3,7 @@ layout: single
 title:  "Images as Functions"
 date:   2018-11-12 17:31:41 +0200
 excerpt: "Images as functions explained using matplotlib and opencv in python 3."
+permalink: /posts/computer-vision/images-as-functions/
 categories: [robotics, computer vision, algorithms]
 tags: [robotics, computer vision, python, opencv, matplotlib]
 comments: true
