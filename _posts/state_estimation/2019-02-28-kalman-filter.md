@@ -92,6 +92,81 @@ $$
 $$
 
 
+## C++ Implementation
+
+{% highlight cpp %}
+#include <iostream>
+#include <math.h>
+#include <tuple>
+#include "Core" // Eigen Library
+#include "LU"   // Eigen Library
+
+using namespace std;
+using namespace Eigen;
+
+float measurements[3] = { 1, 2, 3 };
+
+tuple<MatrixXf, MatrixXf> kalman_filter(MatrixXf x, MatrixXf P, MatrixXf u, MatrixXf F, MatrixXf H, MatrixXf R, MatrixXf I)
+{
+    for (int n = 0; n < sizeof(measurements) / sizeof(measurements[0]); n++) {
+
+        // Measurement Update
+        MatrixXf Z(1, 1);
+        Z << measurements[n];
+
+        MatrixXf y(1, 1);
+        y << Z - (H * x);
+
+        MatrixXf S(1, 1);
+        S << H * P * H.transpose() + R;
+
+        MatrixXf K(2, 1);
+        K << P * H.transpose() * S.inverse();
+
+        x << x + (K * y);
+
+        P << (I - (K * H)) * P;
+
+        // Prediction
+        x << (F * x) + u;
+        P << F * P * F.transpose();
+    }
+
+    return make_tuple(x, P);
+}
+
+int main()
+{
+
+    MatrixXf x(2, 1);// Initial state (location and velocity) 
+    x << 0,
+    	 0; 
+    MatrixXf P(2, 2);//Initial Uncertainty
+    P << 100, 0, 
+    	 0, 100; 
+    MatrixXf u(2, 1);// External Motion
+    u << 0,
+    	 0; 
+    MatrixXf F(2, 2);//Next State Function
+    F << 1, 1,
+    	 0, 1; 
+    MatrixXf H(1, 2);//Measurement Function
+    H << 1,
+    	 0; 
+    MatrixXf R(1, 1); //Measurement Uncertainty
+    R << 1;
+    MatrixXf I(2, 2);// Identity Matrix
+    I << 1, 0,
+    	 0, 1; 
+
+    tie(x, P) = kalman_filter(x, P, u, F, H, R, I);
+    cout << "x= " << x << endl;
+    cout << "P= " << P << endl;
+
+    return 0;
+}
+{% endhighlight %}
+
 ## References
 
 <a href="https://www.amazon.de/Applied-Optimal-Estimation-Mit-Press/dp/0262570483/ref=as_li_ss_il?s=books-intl-de&ie=UTF8&qid=1551390892&sr=1-1&keywords=optimal+estimation&linkCode=li2&tag=fjp-21&linkId=85bcdf63f00d2b9b918d322eb6079771&language=de_DE" target="_blank"><img border="0" src="//ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=0262570483&Format=_SL160_&ID=AsinImage&MarketPlace=DE&ServiceVersion=20070822&WS=1&tag=fjp-21&language=de_DE" ></a><img src="https://ir-de.amazon-adsystem.com/e/ir?t=fjp-21&language=de_DE&l=li2&o=3&a=0262570483" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
