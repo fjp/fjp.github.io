@@ -289,7 +289,7 @@ defaults:
       type: posts
     values:
       layout: single
-      author_profile: true
+      author_profile: false 
       read_time: true
       comments: true # true
       share: true
@@ -300,7 +300,7 @@ defaults:
       type: pages
     values:
       layout: single
-      author_profile: true
+      author_profile: false 
   # _projects
   - scope:
       path: ""
