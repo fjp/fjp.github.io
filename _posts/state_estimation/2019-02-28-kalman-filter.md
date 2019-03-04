@@ -40,7 +40,7 @@ A direct relation of the input $u$ to the output $z$ can be modeled with the mat
 
 $$
 \begin{equation}
-\mathbf{z}_{k+1} = \mathbf{H} mathbf{x}_{k+1} + \mathbf{D} mathbf{u}_{k} 
+\mathbf{z}_{k+1} = \mathbf{H} \mathbf{x}_{k+1} + \mathbf{D} \mathbf{u}_{k} 
 \label{eq:measurement-equation}
 \end{equation}
 $$
@@ -67,30 +67,70 @@ $$
 
 ### Measurment Update or Correction
 
-When a new measurement $z_{k}$ is available, the predicted states are updated using this new information. This reduces the uncertainty while taking into account the uncertainty of the measurement $\mathbf{R}_k$.
+When a new measurement $\mathbf{z}_{k}$ is available, the predicted states are updated using this new information. This reduces the uncertainty while taking into account the uncertainty of the measurement $\mathbf{R}_k$.
+To use the additional measurement information $\mathbf{z}_{k}$, it is compared to the predicted state $\hat{\textbf{x}}_{k|k-1}$ through the measurement matrix $\textbf{H}_k$. This results in what's called the residual $\ref{eq:residual}$ also know as innovation.
 
 $$
+\begin{equation}
 \tilde{\textbf{y}}_k = \textbf{z}_k - \textbf{H}_k\hat{\textbf{x}}_{k|k-1}
+\label{eq:residual}
+\end{equation}
 $$
 
-$$
-\hat{\textbf{P}}_{k} = \hat{\textbf{P}}_{k|k-1} - \hat{\textbf{K}}_k \textbf{S}_k \hat{\textbf{K}}_k^\text{T}
-$$
+The covariance of the innovation is defined in $\ref{eq:residual-cov}$.
 
 $$
-\hat{\textbf{x}}_{k} = \hat{\textbf{x}}_{k|k-1} + \hat{\textbf{K}}_k\tilde{\textbf{y}}_k
-$$
-
-$$
+\begin{equation}
 \textbf{S}_k = \textbf{H}_k \hat{\textbf{P}}_{k|k-1} \textbf{H}_k^\text{T} + \textbf{R}_k
+\label{eq:residual-cov}
+\end{equation}
 $$
 
-Kalman gain
+
+The posterior state $\ref{eq:posterior-state}$ and its covariance $\ref{eq:posterior-covariance}$ are calculated according to the followign equations.
 
 $$
+\begin{equation}
+\hat{\textbf{P}}_{k} = \hat{\textbf{P}}_{k|k-1} - \hat{\textbf{K}}_k \textbf{S}_k \hat{\textbf{K}}_k^\text{T}
+\label{eq:posterior-state}
+\end{equation}
+$$
+
+$$
+\begin{equation}
+\hat{\textbf{x}}_{k} = \hat{\textbf{x}}_{k|k-1} + \hat{\textbf{K}}_k\tilde{\textbf{y}}_k
+\label{eq:posterior-covariance}
+\end{equation}
+$$
+
+These equations make use of the Kalman gain $\ref{eq:kalman-gain}$ which takes into account the ratio of the measurement and state prediciton uncertainty. 
+
+$$
+\begin{equation}
 \hat{\textbf{K}}_k = \hat{\textbf{P}}_{k|k-1}\textbf{H}_k^\text{T}\textbf{S}_k^{-1}
+\label{eq:kalman-gain}
+\end{equation}
 $$
 
+Using the Kalman gain in $\ref{eq:posterior-covariance}$ results in the following commonly used equation.
+
+$$
+\begin{align}
+\hat{\textbf{P}}_{k} &= \hat{\textbf{P}}_{k|k-1} - \hat{\textbf{K}}_k \textbf{S}_k \hat{\textbf{K}}_k^\text{T}
+\hat{\textbf{P}}_{k} &= \hat{\textbf{P}}_{k|k-1} - \hat{\textbf{K}}_k \textbf{S}_k \left( \hat{\textbf{P}}_{k|k-1}\textbf{H}_k^\text{T}\textbf{S}_k^{-1} \right)^\text{T}
+\hat{\textbf{P}}_{k} &= \hat{\textbf{P}}_{k|k-1} - \hat{\textbf{K}}_k \textbf{S}_k \textbf{S}_k^{-1} \textbf{H}_k \hat{\textbf{P}}_{k|k-1} 
+\hat{\textbf{P}}_{k} &= \hat{\textbf{P}}_{k|k-1} - \hat{\textbf{K}}_k \textbf{H}_k \hat{\textbf{P}}_{k|k-1} 
+\hat{\textbf{P}}_{k} &= \left( \textbf{I} - \hat{\textbf{K}}_k \textbf{H}_k \right) \hat{\textbf{P}}_{k|k-1}
+\end{align}
+$$
+
+## Measuemrent Uncertainty
+
+Assuming a low measurement uncertainty $\textbf{R} = 0$ results in the following
+
+$$
+
+$$
 
 ## C++ Implementation
 
