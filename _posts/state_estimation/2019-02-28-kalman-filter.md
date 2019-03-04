@@ -26,11 +26,11 @@ the extended Kalman filter and the unscented Kalman filter are used for nonlinea
 
 In the state space representation a system is described by two linear equations. 
 The state transition equation $\ref{eq:state-transition}$ that consists of the state vector $x$ itself, which ought to be estimated, the state transition matrix $\mathbf{F}$,
-the control input vector $vec{u}_{k}$ and the input matrix $\mathbf{B}$.
+the control input vector $\mathbf{u}_{k}$ and the input matrix $\mathbf{B}$.
 
 $$
 \begin{equation}
-vec{x}_{k+1} = \mathbf{F} vec{x}_{k} + \mathbf{B} vec{u}_{k} 
+\mathbf{x}_{k+1} = \mathbf{F} \mathbf{x}_{k} + \mathbf{B} \mathbf{u}_{k} 
 \label{eq:state-transition}
 \end{equation}
 $$
@@ -40,7 +40,7 @@ A direct relation of the input $u$ to the output $z$ can be modeled with the mat
 
 $$
 \begin{equation}
-vec{z}_{k+1} = \mathbf{H} vec{x}_{k+1} + \mathbf{D} vec{u}_{k} 
+\mathbf{z}_{k+1} = \mathbf{H} mathbf{x}_{k+1} + \mathbf{D} mathbf{u}_{k} 
 \label{eq:measurement-equation}
 \end{equation}
 $$
