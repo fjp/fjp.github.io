@@ -62,9 +62,10 @@ $$
 The covariance is multiplied by the state transtion matrix squared and further increased by the uncertainty of the prediction with the matrix $\mathbf{Q}$.
 
 $$
-\hat{\mathbf{P}}_{k|k-1} =  \mathbf{F}_{k-1} \hat{\mathbf{P}}_{k-1} \mathbf{F}_{k-1}^{\text{T}} + \mathbf{Q}_{k-1}
+\hat{\mathbf{P}}_{k|k-1} =  \mathbf{F}_{k-1} \hat{\mathbf{P}}_{k-1} \mathbf{F}_{k-1}^{T} + \mathbf{Q}_{k-1}
 $$
 
+### Measurment Update or Correction
 
 $\mathbf{u}_{k}$ When a new measurement $\mathbf{z}$ is available, the predicted states are updated using this new information. This reduces the uncertainty while taking into account the uncertainty of the measurement $\mathbf{R}_k$.
 To use the additional measurement information $\mathbf{z}_{k}$, it is compared to the predicted state $\hat{\textbf{x}}_{k|k-1}$ through the measurement matrix $\textbf{H}_k$. This results in what's called the residual $\ref{eq:residual}$ also know as innovation.
