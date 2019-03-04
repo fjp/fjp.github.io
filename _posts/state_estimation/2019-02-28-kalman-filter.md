@@ -67,7 +67,7 @@ $$
 
 ### Measurment Update or Correction
 
-When a new measurement $\mathbf{z}_{k}$ is available, the predicted states are updated using this new information. This reduces the uncertainty while taking into account the uncertainty of the measurement $\mathbf{R}_k$.
+When a new measurement $\textbf{z}_{k}$ is available, the predicted states are updated using this new information. This reduces the uncertainty while taking into account the uncertainty of the measurement $\mathbf{R}_k$.
 To use the additional measurement information $\mathbf{z}_{k}$, it is compared to the predicted state $\hat{\textbf{x}}_{k|k-1}$ through the measurement matrix $\textbf{H}_k$. This results in what's called the residual $\ref{eq:residual}$ also know as innovation.
 
 $$
@@ -116,11 +116,11 @@ Using the Kalman gain in $\ref{eq:posterior-covariance}$ results in the followin
 
 $$
 \begin{align}
-\hat{\textbf{P}}_{k} &= \hat{\textbf{P}}_{k|k-1} - \hat{\textbf{K}}_k \textbf{S}_k \hat{\textbf{K}}_k^\text{T}
-\hat{\textbf{P}}_{k} &= \hat{\textbf{P}}_{k|k-1} - \hat{\textbf{K}}_k \textbf{S}_k \left( \hat{\textbf{P}}_{k|k-1}\textbf{H}_k^\text{T}\textbf{S}_k^{-1} \right)^\text{T}
-\hat{\textbf{P}}_{k} &= \hat{\textbf{P}}_{k|k-1} - \hat{\textbf{K}}_k \textbf{S}_k \textbf{S}_k^{-1} \textbf{H}_k \hat{\textbf{P}}_{k|k-1} 
-\hat{\textbf{P}}_{k} &= \hat{\textbf{P}}_{k|k-1} - \hat{\textbf{K}}_k \textbf{H}_k \hat{\textbf{P}}_{k|k-1} 
-\hat{\textbf{P}}_{k} &= \left( \textbf{I} - \hat{\textbf{K}}_k \textbf{H}_k \right) \hat{\textbf{P}}_{k|k-1}
+\hat{\textbf{P}}_{k} &= \hat{\textbf{P}}_{k|k-1} - \hat{\textbf{K}}_k \textbf{S}_k \hat{\textbf{K}}_k^\text{T} \\
+\hat{\textbf{P}}_{k} &= \hat{\textbf{P}}_{k|k-1} - \hat{\textbf{K}}_k \textbf{S}_k \left( \hat{\textbf{P}}_{k|k-1}\textbf{H}_k^\text{T}\textbf{S}_k^{-1} \right)^\text{T} \\
+\hat{\textbf{P}}_{k} &= \hat{\textbf{P}}_{k|k-1} - \hat{\textbf{K}}_k \textbf{S}_k \textbf{S}_k^{-1} \textbf{H}_k \hat{\textbf{P}}_{k|k-1} \\
+\hat{\textbf{P}}_{k} &= \hat{\textbf{P}}_{k|k-1} - \hat{\textbf{K}}_k \textbf{H}_k \hat{\textbf{P}}_{k|k-1} \\
+\hat{\textbf{P}}_{k} &= \left( \textbf{I} - \hat{\textbf{K}}_k \textbf{H}_k \right) \hat{\textbf{P}}_{k|k-1} \\
 \end{align}
 $$
 
@@ -217,6 +217,4 @@ int main()
 <a href="https://www.amazon.de/Applied-Optimal-Estimation-Mit-Press/dp/0262570483/ref=as_li_ss_il?s=books-intl-de&ie=UTF8&qid=1551390892&sr=1-1&keywords=optimal+estimation&linkCode=li2&tag=fjp-21&linkId=85bcdf63f00d2b9b918d322eb6079771&language=de_DE" target="_blank"><img border="0" src="//ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=0262570483&Format=_SL160_&ID=AsinImage&MarketPlace=DE&ServiceVersion=20070822&WS=1&tag=fjp-21&language=de_DE" ></a><img src="https://ir-de.amazon-adsystem.com/e/ir?t=fjp-21&language=de_DE&l=li2&o=3&a=0262570483" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
 
-<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-eu.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=DE&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=fjp-21&language=de_DE&marketplace=amazon&region=DE&placement=0262570483&asins=0262570483&linkId=f6134dc24565979ab7b5a80cba23af7b&show_border=false&link_opens_in_new_window=true"></iframe>
-
-<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-eu.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=DE&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=fjp-21&language=de_DE&marketplace=amazon&region=DE&placement=0262201623&asins=0262201623&linkId=e738b3cecd35ba2b6218aa0fe788a77e&show_border=true&link_opens_in_new_window=true"></iframe>
+<a href="https://www.amazon.de/Probabilistic-Robotics-INTELLIGENT-ROBOTICS-AUTONOMOUS/dp/0262201623/ref=as_li_ss_il?ie=UTF8&qid=1551730012&sr=8-1&keywords=probabilistic+robotics&linkCode=li2&tag=fjp-21&linkId=7fba87448a00855820511f309b7a4d41&language=de_DE" target="_blank"><img border="0" src="//ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=0262201623&Format=_SL160_&ID=AsinImage&MarketPlace=DE&ServiceVersion=20070822&WS=1&tag=fjp-21&language=de_DE" >test</a><img src="https://ir-de.amazon-adsystem.com/e/ir?t=fjp-21&language=de_DE&l=li2&o=3&a=0262201623" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
