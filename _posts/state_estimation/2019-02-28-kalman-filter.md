@@ -35,12 +35,12 @@ $$
 \end{equation}
 $$
 
-It is common that not all of the states of a system are observable on the output $z$. This is modeled by the output matrix $\mathbf{H}$ which maps the state $x$ to the observation $z$. 
-A direct relation of the input $u$ to the output $z$ can be modeled with the matrix $\mathbf{D}$, which is usually set to zero. 
+It is common that not all of the states of a system are observable on the output $\mathbf{z}\_{k}$. This is modeled by the output matrix $\mathbf{H}\_{k}$ which maps the state $x$ to the observation $\mathbf{z}\_{k}$. 
+A direct relation of the input $u$ to the output $\mathbf{z}\_{k}$ can be modeled with the matrix $\mathbf{D}\_{k}$, which is usually set to zero. 
 
 $$
 \begin{equation}
-\mathbf{z}_{k+1} = \mathbf{H} \mathbf{x}_{k+1} + \mathbf{D} \mathbf{u}_{k} 
+\mathbf{z}_{k} = \mathbf{H}_{k} \mathbf{x}_{k} + \mathbf{D}_{k} \mathbf{u}_{k} 
 \label{eq:measurement-equation}
 \end{equation}
 $$
@@ -93,17 +93,18 @@ The posterior state $\ref{eq:posterior-state}$ and its covariance $\ref{eq:poste
 
 $$
 \begin{equation}
-\hat{\textbf{P}}_{k} = \hat{\textbf{P}}_{k|k-1} - \hat{\textbf{K}}_k \textbf{S}_k \hat{\textbf{K}}_k^\text{T}
+\hat{\textbf{x}}_{k} = \hat{\textbf{x}}_{k|k-1} + \hat{\textbf{K}}_k\tilde{\textbf{y}}_k
 \label{eq:posterior-state}
 \end{equation}
 $$
 
 $$
 \begin{equation}
-\hat{\textbf{x}}_{k} = \hat{\textbf{x}}_{k|k-1} + \hat{\textbf{K}}_k\tilde{\textbf{y}}_k
+\hat{\textbf{P}}_{k} = \hat{\textbf{P}}_{k|k-1} - \hat{\textbf{K}}_k \textbf{S}_k \hat{\textbf{K}}_k^\text{T}
 \label{eq:posterior-covariance}
 \end{equation}
 $$
+
 
 These equations make use of the Kalman gain $\ref{eq:kalman-gain}$ which takes into account the ratio of the measurement and state prediciton uncertainty. 
 
@@ -128,11 +129,76 @@ $$
 
 ## Measuemrent Uncertainty
 
-Assuming a low measurement uncertainty $\textbf{R} = 0$ results in the following
+In the following two sections the influence of the measurement covariance are investigated
+
+### Low Measurement Uncertainty
+
+Assuming a low measurement uncertainty $\textbf{R} = 0$ means that the sensor produces perfectly accurate measurements and results in the following.
 
 $$
+\begin{align}
+\textbf{S}_k &= \textbf{H}_k \hat{\textbf{P}}_{k|k-1} \textbf{H}_k^\text{T} \\
+\hat{\textbf{K}}_k &= \hat{\textbf{P}}_{k|k-1}\textbf{H}_k^\text{T}\textbf{S}_k^{-1} \\
+\hat{\textbf{K}}_k &= \hat{\textbf{P}}_{k|k-1}\textbf{H}_k^\text{T} \left( \textbf{H}_k \hat{\textbf{P}}_{k|k-1} \textbf{H}_k^\text{T}  \right)^{-1} \\
+\hat{\textbf{K}}_k &= \hat{\textbf{P}}_{k|k-1}\textbf{H}_k^\text{T} \textbf{H}_k^\text{T,-1} \hat{\textbf{P}}_{k|k-1}^{-1} \textbf{H}_k^\text{-1}  \\
+\hat{\textbf{K}}_k &= \hat{\textbf{P}}_{k|k-1} \hat{\textbf{P}}_{k|k-1}^{-1} \textbf{H}_k^\text{-1}  \\
+\hat{\textbf{K}}_k &= \textbf{H}_k^\text{-1}  \\
+\end{align}
+$$
+
+The Kalman gain is equal to the inverse measurement matrix. Using this insight and the residual $\ref{eq:residual}$ results in the following updated mean and covariance
 
 $$
+\begin{align}
+\hat{\textbf{x}}_{k} &= \hat{\textbf{x}}_{k|k-1} + \hat{\textbf{K}}_k\tilde{\textbf{y}}_k \\
+\hat{\textbf{x}}_{k} &= \hat{\textbf{x}}_{k|k-1} + \hat{\textbf{K}}_k  \left( \textbf{z}_k - \textbf{H}_k\hat{\textbf{x}}_{k|k-1} \right) \\
+\end{align}
+$$
+
+Using the previous result that the Kalman gain is equal to the inverse measurment matrix results in
+
+$$
+\begin{align}
+\hat{\textbf{x}}_{k} &= \hat{\textbf{x}}_{k|k-1} + \textbf{H}_k^\text{-1} \left( \textbf{z}_k - \textbf{H}_k\hat{\textbf{x}}_{k|k-1} \right) \\
+\hat{\textbf{x}}_{k} &= \hat{\textbf{x}}_{k|k-1} + \textbf{H}_k^\text{-1} \textbf{z}_k - \textbf{H}_k^\text{-1} \textbf{H}_k\hat{\textbf{x}}_{k|k-1} \\
+\hat{\textbf{x}}_{k} &= \hat{\textbf{x}}_{k|k-1} + \textbf{H}_k^\text{-1} \textbf{z}_k - \hat{\textbf{x}}_{k|k-1} \\
+\hat{\textbf{x}}_{k} &= \textbf{H}_k^\text{-1} \textbf{z}_k \\
+\end{align}
+$$
+
+The final equation maps the measurement through the inverse measurement matrix to the state. This shows that a measurement uncertainty of zero results in a new mean which is entirely defined by the measurement.
+Any information that the state prediciton provided is not used for the new state because it is not needed. The measuremnt is perfect.
+
+### High Measurement Uncertainty
+
+A high measurement uncertainty $R = \infty$ on the other hand, shows a negible sensor and results in the following
+
+
+$$
+\begin{align}
+\textbf{S}_k &= \textbf{H}_k \hat{\textbf{P}}_{k|k-1} \textbf{H}_k^\text{T} + \mathbf{R}_k\\
+\textbf{S}_k &= \infty \\
+\end{align}
+$$
+
+A residual matrix of infinity results in a Kalman gain that is zero
+
+$$
+\begin{align}
+\hat{\textbf{K}}_k &= \hat{\textbf{P}}_{k|k-1}\textbf{H}_k^\text{T}\textbf{S}_k^{-1} \\
+\hat{\textbf{K}}_k &= 0 
+\end{align}
+$$
+
+Therefore the equation for the new mean is
+
+$$
+\begin{align}
+\hat{\textbf{x}}_{k} &= \hat{\textbf{x}}_{k|k-1} + \hat{\textbf{K}}_k\tilde{\textbf{y}}_k \\
+\hat{\textbf{x}}_{k} &= \hat{\textbf{x}}_{k|k-1} \\
+\end{align}
+$$
+
 
 ## C++ Implementation
 
