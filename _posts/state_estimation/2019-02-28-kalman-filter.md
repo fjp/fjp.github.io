@@ -199,6 +199,13 @@ $$
 \end{align}
 $$
 
+In this case the posterior state is entirely defined by the prior state without taking the uncertain measurement into account. 
+
+### Kalman gain
+
+The previous examples showed what happens when a sensor is either negible or completely certain about its measurement.
+In reality however, the measurement covariance matrix $\mathbf{R}$ (measurement nosie) and the state prediction covariance matrix $\mathbf{Q}$ (proces noise) are somewhere between the two extremes (zero and $\infty$).
+As shown, these two matrices influence the Kalman gain which can be seen as an averaging factor to put more trust either the measurement update or the state prediction. 
 
 ## C++ Implementation
 
