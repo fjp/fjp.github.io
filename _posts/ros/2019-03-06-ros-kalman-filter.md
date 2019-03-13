@@ -1,7 +1,7 @@
 ---
 layout: single
 title:  "ROS Kalman Filter for Sensor Fusion"
-date:   2019-03-06 17:31:41 +0200
+date:   2019-03-06 19:31:41 +0200
 excerpt: "The Kalman filter is used for state estimation and sensor fusion. This post shows how sensor fusion is done using the Kalman filter and ROS."
 permalink: /posts/ros/ros-kalman-filter/
 categories: [robotics, state estimation, Kalman filter, ros]
@@ -13,7 +13,7 @@ classes: wide
 # toc_label: "Kalman filter"
 header:
   teaser: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot.png
-  overlay_image: /assets/posts/turtlebot.png #keep it square 200x200 px is good
+  overlay_image: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot.png #keep it square 200x200 px is good
 ---
 
 
@@ -24,14 +24,14 @@ The sensor data that will be fused together comes from a robots [inertial measur
 apply sensor fusion to estimate the pose of the robot as it moves around. 
 To achieve this, the following packages are used.
 
-- *turtlebot_gazebo* launches a mobile robot in the gazebo environment.
-- *robot_pose_ekf* estimates the position and orientation of the robot.
-- *odom_to_trajectory* append the odometry values generated over time into a trajectory path.
-- *turtlebot_teleop* allows to stee the robot using keyboard commands.
-- *rviz* lets us visualize the estimated position and orientation of the robot. 
+- **turtlebot_gazebo** launches a mobile robot in the gazebo environment.
+- **robot_pose_ekf** estimates the position and orientation of the robot.
+- **odom_to_trajectory** append the odometry values generated over time into a trajectory path.
+- **turtlebot_teleop** allows to steer the robot using keyboard commands.
+- **rviz** lets us visualize the estimated position and orientation of the robot. 
 
 
-This post refers to the ROS documentation and makes use of the publisher and subscriber topics of ROS. It explains how to change the mentioned packages to integrate these nodes into a single launch file.  
+This post refers to the ROS [documentation](http://wiki.ros.org/roscpp/Overview/Publishers%20and%20Subscribers) and makes use of the [publisher](http://docs.ros.org/api/roscpp/html/classros_1_1Publisher.html) and [subscriber](http://docs.ros.org/api/roscpp/html/classros_1_1Subscriber.html) [nodes](http://wiki.ros.org/Nodes) which publish and subscribe [messages](http://wiki.ros.org/Messages) to [topics](http://wiki.ros.org/Topics) of ROS. It explains how to change the mentioned packages to integrate these nodes into a single launch file.  
 With this launch file it is possible to launch the entire environment. 
 
 ## Mobile Robot Sensors 
@@ -48,8 +48,8 @@ The imu can measure the linear velocity and the position using the accelerometer
 
 $$
 \begin{align}
-v(t_1) = v(t_0) + \int_{t_0}^{t_1} a(t) dt
-x(t_1) = x(t_0) + \int_{t_0}^{t_1} v(t) dt
+v(t_1) &= v(t_0) + \int_{t_0}^{t_1} a(t) dt \\  
+x(t_1) &= x(t_0) + \int_{t_0}^{t_1} v(t) dt \\
 \end{align}
 $$
 
@@ -108,6 +108,8 @@ git clone https://github.com/turtlebot/turtlebot_simulator
 
 *Install the dependencies*
 
+
+
 {% highlight bash %}
 cd /home/workspace/catkin_ws
 source devel/setup.bash
@@ -135,7 +137,7 @@ roslaunch turtlebot_gazebo turtlebot_world.launch
 {% endhighlight %}
 
 <figure>
-  <img src="/assets/posts/2019-03-06-ros-kalman-filter/turtlebot_gazebo" alt="Turtlebot in the gazebo simulator">
+  <img src="/assets/posts/2019-03-06-ros-kalman-filter/turtlebot_gazebo.png" alt="Turtlebot in the gazebo simulator">
   <figcaption>Gazebo simulation of the turtlebot package.</figcaption>
 </figure>
 
@@ -192,25 +194,81 @@ rosrun rqt_graph rqt_graph
 {% endhighlight %}
 
 <figure>
-  <img src="/assets/posts/2019-03-06-ros-kalman-filter/turtlebot_rqt_graph" alt="The rqt_graph of the turtlebot package">
+  <img src="/assets/posts/2019-03-06-ros-kalman-filter/turtlebot_rqt_graph.png" alt="The rqt_graph of the turtlebot package">
   <figcaption>The rqt_graph of the turtlebot package.</figcaption>
 </figure>
 
 
 ### Robot Pose EKF Package
 
-The documentation of the robot_pose_ekf package shows that the node subscribes to the rotary encoder data through the /odom topic. 
+The documentation of the [robot_pose_ekf package](http://wiki.ros.org/robot_pose_ekf) shows that the node subscribes to the rotary encoder data through the /odom topic. 
 It is also subscribing to the imu data through the /imu_data topic. Lastly the node is subscribing to three dimensional odometry data through 
 the /vo topic. These sensor data input gets fused by the ekf which results in a filtered and more accurate output pose than one sensor could provide. 
 This combined output is published by ekf node which acts as a publisher. The topic is called /robot_pose_ekf/odom_combined, which is an estimated 3D pose of the robot. 
 
+To install the package its git reposityor is cloned into the src directory of the catkin workspace.
+
+{% highlight bash %}
+cd /home/workspace/catkin_ws/src/
+git clone https://github.com/udacity/robot_pose_ekf
+{% endhighlight %}
+
+
 To interface the robot_pose_ekf package with the turtlebot_gazebo package and estimate the robots pose it is necessary to rename the following topics to match them.
-The turtlebot_gazebo package provides a rgbd topic which cannot direclty be used by the robot_pose_ekf package. Therefore we use and match only the remaining two topics:
+The turtlebot_gazebo package provides a rgbd topic which cannot direclty be used by the robot_pose_ekf package. Also the 3D odometry /vo topic of the ekf package cannot be provided by the turtlebot_gazebo package.
+Therefore we use and match only the remaining two topics:
 
 | turtlebot_gazebo | robot_pose_ekf |
 |-------|--------|
 | /odom | /odom |
 | /mobile_base/sensors/imu_data | /imu_data |
+
+These modifications can be achieved by modifying the ekf launch file robot_pose_ekf.launch in the src folder of the ekf package in order to turn off the 3D odometry.
+
+{% highlight xml %}
+<launch>
+
+<node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
+  <param name="output_frame" value="odom_combined"/>
+  <param name="base_footprint_frame" value="base_footprint"/>
+  <param name="freq" value="30.0"/>
+  <param name="sensor_timeout" value="1.0"/>  
+  <param name="odom_used" value="true"/>
+  <param name="imu_used" value="true"/>
+  <param name="vo_used" value="false"/>
+
+  <remap from="imu_data" to="/mobile_base/sensors/imu_data" />    
+</node>
+
+</launch>
+{% endhighlight %}
+
+
+*Build the package*
+
+
+{% highlight xml %}
+cd /home/workspace/catkin_ws
+catkin_make
+source devel/setup.bash
+{% endhighlight %}
+
+
+*Launch the Node*
+
+{% highlight xml %}
+roslaunch robot_pose_ekf robot_pose_ekf.launch
+{% endhighlight %}
+
+
+*Visualize the topics:*
+
+To confirm that the topics of the robot_pose_ekf package and the turtlebot_gazebo package are communicating with each other we check the rqt_graph.
+
+{% highlight xml %}
+rosrun rqt_graph rqt_graph
+{% endhighlight %}
+
 
 ### Odometry to Trajectory Package
 
