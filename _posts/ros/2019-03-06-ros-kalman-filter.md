@@ -73,7 +73,7 @@ take the smalles range of operation into account.
 
 ## The ROS Packages
 
-In the next sections the single packages are explained. To follow the instructions, a ROS catkin workspace needs to be initialized, which allows to hold the packages.
+In the next sections the single packages are explained. To follow the instructions, a ROS [catkin workspace](http://wiki.ros.org/catkin/workspaces) needs to be initialized, which allows to hold the packages.
 
 {% highlight bash %}
 mkdir -p /home/workspace/catkin_ws/src
@@ -82,6 +82,9 @@ catkin_init_workspace
 cd ..
 catkin_make
 {% endhighlight %}
+
+The [`catkin_make`](http://wiki.ros.org/catkin/commands/catkin_make) command is a convenience tool for working with catkin workspaces. Running it the first time in your workspace, it will create a `CMakeLists.txt` symlink in your `src` folder.
+This link points to a template `CMakeLists.txt` ROS provides. Calling `catkin_make` will also build any packages located in `~/catkin_ws/src`. 
 
 ### TurtleBot Gazebo Package
 
@@ -206,8 +209,15 @@ rosrun rqt_graph rqt_graph
 </figure>
 
 
+The turtlebot_gazebo node has the following subscribers and publishers that are important for us:
+
+| Subscribers | /cmd_vel_mux/input/teleop | |
+| Publishers  | /odom         | /camera/depth/image_raw | /mobile_base/sensors/imu_data
+
+
 ### Robot Pose EKF Package
 
+In this section we implement the ekf Kalman filter package to localize the robot's pose. 
 The documentation of the [robot_pose_ekf package](http://wiki.ros.org/robot_pose_ekf) shows that the node subscribes to the rotary encoder data through the /odom topic. 
 It is also subscribing to the imu data through the /imu_data topic. Lastly the node is subscribing to three dimensional odometry data through 
 the /vo topic. These sensor data input gets fused by the ekf which results in a filtered and more accurate output pose than one sensor could provide. 
@@ -230,7 +240,7 @@ Therefore we use and match only the remaining two topics:
 | /odom | /odom |
 | /mobile_base/sensors/imu_data | /imu_data |
 
-These modifications can be achieved by modifying the ekf launch file robot_pose_ekf.launch in the src folder of the ekf package in order to turn off the 3D odometry.
+These modifications can be achieved by editing the ekf launch file `robot_pose_ekf.launch` in the `src` folder of the ekf package in order to turn off the 3D odometry.
 
 {% highlight xml %}
 <launch>
@@ -276,8 +286,15 @@ To confirm that the topics of the robot_pose_ekf package and the turtlebot_gazeb
 rosrun rqt_graph rqt_graph
 {% endhighlight %}
 
+<figure>
+  <img src="/assets/posts/2019-03-06-ros-kalman-filter/turtlebot_ekf_rqt_graph.png" alt="The rqt_graph of the turtlebot and ekf package">
+  <figcaption>The rqt_graph of the turtlebot and ekf package.</figcaption>
+</figure>
+
 
 ### Odometry to Trajectory Package
+
+
 
 ### TurtleBot Teleop Package
 
