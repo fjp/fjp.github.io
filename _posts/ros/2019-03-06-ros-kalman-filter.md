@@ -55,7 +55,7 @@ $$
 
 Taking the double integral results in a noisy position. This error is accumulated even more over time and makes it necessary to check the drift or error parameters over time. 
 
-and the angular velocity by integration
+The same is done to find the orientation, by integrating the angular velocity provided by the imu.  
 
 
 ### Rotary Encoders
@@ -98,7 +98,9 @@ Here, TurtleBot2 is deployed in a gazebo environment and estimate its pose. This
 
 To obtain the list of subscriber and publisher topics we obtain the turtlebot package from ROS with the following terminal commands. This will clone the package into the catkin workspace
 
-*Clone the package*
+**Clone the package**
+
+New packages from external repositories such as github are conventionally placed into the src folder of your catkin workspace.
 
 {% highlight bash %}
 cd /home/workspace/catkin_ws/src
@@ -106,9 +108,9 @@ git clone https://github.com/turtlebot/turtlebot_simulator
 {% endhighlight %}
 
 
-*Install the dependencies*
+**Install the dependencies**
 
-
+Dependencies for a ROS package can be installed using [`rosdep`](http://docs.ros.org/independent/api/rosdep/html/) which is the dependency tool of ROS.
 
 {% highlight bash %}
 cd /home/workspace/catkin_ws
@@ -123,14 +125,19 @@ Output
 {% endhighlight %}
 
 
-*Build package and source the workspace*
+<div>
+{: .notice--info}
+The source command is required to overlay this workspace on top of your environment. To understand more about this see the general [catkin documentation](http://wiki.ros.org/catkin).
+</div>
+
+**Build package and source the workspace**
 
 {% highlight bash %}
 catkin_make
 source devel/setup.bash
 {% endhighlight %}
 
-*Launch the nodes* 
+**Launch the nodes** 
 
 {% highlight bash %}
 roslaunch turtlebot_gazebo turtlebot_world.launch
@@ -141,7 +148,7 @@ roslaunch turtlebot_gazebo turtlebot_world.launch
   <figcaption>Gazebo simulation of the turtlebot package.</figcaption>
 </figure>
 
-*List the topics*
+**List the topics**
 
 {% highlight bash %}
 rostopic list
@@ -244,7 +251,7 @@ These modifications can be achieved by modifying the ekf launch file robot_pose_
 {% endhighlight %}
 
 
-*Build the package*
+**Build the package**
 
 
 {% highlight xml %}
@@ -254,14 +261,14 @@ source devel/setup.bash
 {% endhighlight %}
 
 
-*Launch the Node*
+**Launch the Node**
 
 {% highlight xml %}
 roslaunch robot_pose_ekf robot_pose_ekf.launch
 {% endhighlight %}
 
 
-*Visualize the topics:*
+**Visualize the topics:**
 
 To confirm that the topics of the robot_pose_ekf package and the turtlebot_gazebo package are communicating with each other we check the rqt_graph.
 
