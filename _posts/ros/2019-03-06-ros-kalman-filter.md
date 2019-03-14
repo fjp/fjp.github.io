@@ -14,6 +14,23 @@ classes: wide
 header:
   teaser: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot.png
   overlay_image: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot.png #keep it square 200x200 px is good
+gallery_rviz:
+  - url: /assets/posts/2019-03-06-ros-kalman-filter/rviz01_add_robot_model.png
+    image_path: /assets/posts/2019-03-06-ros-kalman-filter/rviz01_add_robot_model.png
+    alt: "Add robot model in rviz"
+    title: "Add robot model"
+  - url: /assets/posts/2019-03-06-ros-kalman-filter/rviz02_add_camera.png
+    image_path: /assets/posts/2019-03-06-ros-kalman-filter/rviz02_add_camera.png
+    alt: "Add camera of robot in rviz"
+    title: "Add the camera of the robot"
+  - url: /assets/posts/2019-03-06-ros-kalman-filter/rviz03_add_odom_topic.png
+    image_path: /assets/posts/2019-03-06-ros-kalman-filter/rviz03_add_odom_topic.png
+    alt: "Add odom topic to rviz"
+    title: "Add the odom topic"
+  - url: /assets/posts/2019-03-06-ros-kalman-filter/rviz04_add_ekf_topic.png
+    image_path: /assets/posts/2019-03-06-ros-kalman-filter/rviz04_add_ekf_topic.png
+    alt: "Add ekf topic to rviz"
+    title: "Add the ekf topic"
 ---
 
 
@@ -264,7 +281,7 @@ These modifications can be achieved by editing the ekf launch file `robot_pose_e
 **Build the package**
 
 
-{% highlight xml %}
+{% highlight bash %}
 cd /home/workspace/catkin_ws
 catkin_make
 source devel/setup.bash
@@ -273,7 +290,7 @@ source devel/setup.bash
 
 **Launch the Node**
 
-{% highlight xml %}
+{% highlight bash %}
 roslaunch robot_pose_ekf robot_pose_ekf.launch
 {% endhighlight %}
 
@@ -282,7 +299,7 @@ roslaunch robot_pose_ekf robot_pose_ekf.launch
 
 To confirm that the topics of the robot_pose_ekf package and the turtlebot_gazebo package are communicating with each other we check the rqt_graph.
 
-{% highlight xml %}
+{% highlight bash %}
 rosrun rqt_graph rqt_graph
 {% endhighlight %}
 
@@ -294,14 +311,158 @@ rosrun rqt_graph rqt_graph
 
 ### Odometry to Trajectory Package
 
+Currently the turtlebot is publishing the unfiltered pose through the `/odom` topic and the ekf is publishing the filtered pose via the `/robot_pose_ekf/odom_combined` topic as the following commands show.
 
+{% highlight bash %}
+root@pc:/home/workspace/catkin_ws# rostopic info /odom
+Type: nav_msgs/Odometry
+
+Publishers: 
+ * /gazebo (http://pc:36747/)
+
+Subscribers: 
+ * /robot_pose_ekf (http://pc:44537/)
+
+
+root@pc:/home/workspace/catkin_ws# rostopic info /robot_pose_ekf/odom_combined 
+Type: geometry_msgs/PoseWithCovarianceStamped
+
+Publishers: 
+ * /robot_pose_ekf (http://d7ea9f1e67d3:44537/)
+
+Subscribers: None
+{% endhighlight %}
+
+To compare filtered and unfiltered trajectories it is required to append the timestamped poses, which are generated over time, to a trajectory using another node.
+To do this, two trajectories are created using the `odometry_to_trajectory` ROS package. It subscribes to odometry values and publishes trajectories.  
+The package contains two nodes, where the first node subscribes to the unfilterd robot poses and appends the last 1000 poses to a trajectory that is then published.
+The second node subscribes to the filtered robot pose from the ekf package and publishes also a trajectory using the last 1000 poses.
+
+
+**Install the package**
+
+{% highlight bash %}
+cd /home/workspace/catkin_ws/src
+git clone https://github.com/udacity/odom_to_trajectory
+{% endhighlight %}
+
+
+**Build the package**
+
+{% highlight bash %}
+cd /home/workspace/catkin_ws
+catkin_make
+source devel/setup.bash
+{% endhighlight %}
+
+
+**Launch the Node**
+
+{% highlight bash %}
+roslaunch robot_pose_ekf robot_pose_ekf.launch
+{% endhighlight %}
+
+
+**Visualize the topics:**
+
+To confirm that the topics of the robot_pose_ekf package and the turtlebot_gazebo package are communicating with each other we check the rqt_graph.
+
+{% highlight bash %}
+rosrun rqt_graph rqt_graph
+{% endhighlight %}
+
+<figure>
+  <img src="/assets/posts/2019-03-06-ros-kalman-filter/turtlebot_ekf_trajectory_rqt_graph.png" alt="The rqt_graph of the turtlebot, ekf and trajectory package">
+  <figcaption>The rqt_graph of the turtlebot ekf and trajectory package.</figcaption>
+</figure>
+
+When we show only the active nodes and topics, we see now that the /robot_pose_ekf/odom_combined topic is publishing to the subscribing /path_plotter_ekf node. 
 
 ### TurtleBot Teleop Package
 
+Currently the robot is standing still which results in trajectories with zero values and the robot is only performing sensor updates without motion updates. 
+To get more interesting trajectory data from the previously mentioned node, the robot needs to move and collect further sensory information.
+To move the robot we use the [turtlebot_teleop](http://wiki.ros.org/turtlebot_teleop) package, which lets you control a robot using the keyboard or a joystick by publishing driving commands. 
+
+The properties of this package does not subscribe to a topic. It only publishes control commands to the `/cmd_vel_mux/input/teleop` topic. 
+This topic is the same to which the turtlebot_gazebo package is subscribing.
+
+To let the turtlebot_gazebo package subscribe to the turtlebot_teleop package via the `/cmd_vel_mux/input/teleop` topic, the new node needs to be launched.
+This makes it possible to drive the robot around in the gazebo environment and create trajectories which can be compared. 
+
+
+**Install the package**
+
+{% highlight bash %}
+cd /home/workspace/catkin_ws/src
+git clone https://github.com/turtlebot/turtlebot
+{% endhighlight %}
+
+**Install the dependencies**
+
+{% highlight bash %}
+cd /home/workspace/catkin_ws
+source devel/setup.bash
+rosdep -i install turtlebot_teleop
+{% endhighlight %}
+
+
+**Build the package**
+
+{% highlight bash %}
+cd /home/workspace/catkin_ws
+catkin_make
+source devel/setup.bash
+{% endhighlight %}
+
+**Launch the Node**
+
+{% highlight bash %}
+roslaunch turtlebot_teleop keyboard_teleop.launch
+{% endhighlight %}
+
+Now it is possible to move the robot around using the keyboard commands.
+However, make sure that the terminal running the teleop node is active and receiving the keyboard commands. 
+
+{% highlight bash %}
+Control Your Turtlebot!
+---------------------------
+Moving around:
+   u    i    o
+   j    k    l
+   m    ,    .
+
+q/z : increase/decrease max speeds by 10%
+w/x : increase/decrease only linear speed by 10%
+e/c : increase/decrease only angular speed by 10%
+space key, k : force stop
+anything else : stop smoothly
+{% endhighlight %}
+
 ### Rviz Package
 
+[Rviz](http://wiki.ros.org/rviz) is used to visualize the robot data and helpful for debugging. An introduction can be found in the [user guide](http://wiki.ros.org/rviz/UserGuide).
+To display the data of the nodes that are running we run rviz.
+
+{% highlight bash %}
+rosrun rviz rviz
+{% endhighlight %}
+
+After rviz runs, its configuration needs to be configured.
+
+- Change the [Fixed Frame]() to `base_footprint`
+- Change the [Reference Frame]() to `odom`
+- Add a robot model
+- Add a camera and select `/camera/rgb/image_raw` topic
+- Add a `/ekfpath` topic and change the display name to EKFPath
+- Add a `/odom` topic and change the display name to OdomPath and its color to red `(255,0,0)`
 
 
+{% include gallery_rviz caption="Add these to the rviz configuration." %}
+
+Completing these steps will result in the following rviz configuration when the robot is controlled by the turtlebot_teleop node.
+
+{% include figure image_path="/assets/2019-03-06-ros-kalman-filter/rviz_trajectories.png" alt="Trajectories of the robot shown in rviz when it is driven around." caption="Trajectories of the robot shown in rviz when it is driven around." %}
 
 ## Links
 
