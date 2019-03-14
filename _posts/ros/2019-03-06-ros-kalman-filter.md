@@ -13,7 +13,7 @@ classes: wide
 # toc_label: "Kalman filter"
 header:
   teaser: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot.png
-  overlay_image: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot.png #keep it square 200x200 px is good
+  overlay_image: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot_gazebo.png #keep it square 200x200 px is good
 gallery_gazebo:
   - url: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot_gazebo.png
     image_path: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot_gazebo.png
@@ -504,7 +504,7 @@ The created launch file can be integrated together with the launch files of the 
 This simplifies the process of launching all the created nodes in the mentioned packages. Instead of launch them individually in seperate terminals it is sufficient to lauch the main launch file. 
 
 To achieve this, we create a main package that contains the `main.launch`.
-A new ROS package can be created with the `[catkin_create_pkg](http://wiki.ros.org/ROS/Tutorials/catkin/CreatingPackage)` command. 
+A new ROS package can be created with the [`catkin_create_pkg`](http://wiki.ros.org/ROS/Tutorials/catkin/CreatingPackage) command. 
 
 **Create a main package**
 
