@@ -14,6 +14,26 @@ classes: wide
 header:
   teaser: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot.png
   overlay_image: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot.png #keep it square 200x200 px is good
+gallery_gazebo:
+  - url: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot_gazebo.png
+    image_path: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot_gazebo.png
+    alt: "Gazebo simulation of the turtlebot package."
+    title: "Gazebo simulation of the turtlebot package."
+gallery_turtlebot:
+  - url: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot_rqt_graph.png
+    image_path: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot_rqt_graph.png
+    alt: "The rqt_graph of the turtlebot package."
+    title: "The rqt_graph of the turtlebot package."
+gallery_turtlebot_ekf:
+  - url: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot_ekf_rqt_graph.png
+    image_path: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot_ekf_rqt_graph.png
+    alt: "The rqt_graph of the turtlebot and ekf package."
+    title: "The rqt_graph of the turtlebot and ekf package."
+gallery_turtlebot_ekf_trajectory:
+  - url: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot_ekf_trajectory_rqt_graph.png
+    image_path: /assets/posts/2019-03-06-ros-kalman-filter/turtlebot_ekf_trajectory_rqt_graph.png
+    alt: "The rqt_graph of the turtlebot ekf and trajectory package."
+    title: "The rqt_graph of the turtlebot ekf and trajectory package."
 gallery_rviz:
   - url: /assets/posts/2019-03-06-ros-kalman-filter/rviz01_add_robot_model.png
     image_path: /assets/posts/2019-03-06-ros-kalman-filter/rviz01_add_robot_model.png
@@ -31,6 +51,16 @@ gallery_rviz:
     image_path: /assets/posts/2019-03-06-ros-kalman-filter/rviz04_add_ekf_topic.png
     alt: "Add ekf topic to rviz"
     title: "Add the ekf topic"
+gallery_rviz_trajectories:
+  - url: /assets/posts/2019-03-06-ros-kalman-filter/rviz_trajectories.png
+    image_path: /assets/posts/2019-03-06-ros-kalman-filter/rviz_trajectories.png
+    alt: "Trajectories of the robot shown in rviz when it is driven around."
+    title: "Trajectories of the robot shown in rviz when it is driven around."
+gallery_multiplot:
+  - url:
+    image_path:
+    alt: ""
+    title: ""
 ---
 
 
@@ -145,10 +175,8 @@ Output
 {% endhighlight %}
 
 
-<div>
 {: .notice--info}
 The source command is required to overlay this workspace on top of your environment. To understand more about this see the general [catkin documentation](http://wiki.ros.org/catkin).
-</div>
 
 **Build package and source the workspace**
 
@@ -163,10 +191,7 @@ source devel/setup.bash
 roslaunch turtlebot_gazebo turtlebot_world.launch
 {% endhighlight %}
 
-<figure>
-  <img src="/assets/posts/2019-03-06-ros-kalman-filter/turtlebot_gazebo.png" alt="Turtlebot in the gazebo simulator">
-  <figcaption>Gazebo simulation of the turtlebot package.</figcaption>
-</figure>
+{% include gallery id="gallery_gazebo" caption="Gazebo simulation of the turtlebot package." %}
 
 **List the topics**
 
@@ -220,11 +245,7 @@ It is also possible to use rqt graph to visualize the topics of the package.
 rosrun rqt_graph rqt_graph
 {% endhighlight %}
 
-<figure>
-  <img src="/assets/posts/2019-03-06-ros-kalman-filter/turtlebot_rqt_graph.png" alt="The rqt_graph of the turtlebot package">
-  <figcaption>The rqt_graph of the turtlebot package.</figcaption>
-</figure>
-
+{% include gallery id="gallery_turtlebot" caption="The rqt_graph of the turtlebot package." %}
 
 The turtlebot_gazebo node has the following subscribers and publishers that are important for us:
 
@@ -303,11 +324,7 @@ To confirm that the topics of the robot_pose_ekf package and the turtlebot_gazeb
 rosrun rqt_graph rqt_graph
 {% endhighlight %}
 
-<figure>
-  <img src="/assets/posts/2019-03-06-ros-kalman-filter/turtlebot_ekf_rqt_graph.png" alt="The rqt_graph of the turtlebot and ekf package">
-  <figcaption>The rqt_graph of the turtlebot and ekf package.</figcaption>
-</figure>
-
+{% include gallery id="gallery_turtlebot_ekf" caption="The rqt_graph of the turtlebot and ekf package." %}
 
 ### Odometry to Trajectory Package
 
@@ -371,10 +388,8 @@ To confirm that the topics of the robot_pose_ekf package and the turtlebot_gazeb
 rosrun rqt_graph rqt_graph
 {% endhighlight %}
 
-<figure>
-  <img src="/assets/posts/2019-03-06-ros-kalman-filter/turtlebot_ekf_trajectory_rqt_graph.png" alt="The rqt_graph of the turtlebot, ekf and trajectory package">
-  <figcaption>The rqt_graph of the turtlebot ekf and trajectory package.</figcaption>
-</figure>
+
+{% include gallery id="gallery_turtlebot_ekf_trajectory" caption="The rqt_graph of the turtlebot ekf and trajectory package." %}
 
 When we show only the active nodes and topics, we see now that the /robot_pose_ekf/odom_combined topic is publishing to the subscribing /path_plotter_ekf node. 
 
@@ -458,11 +473,76 @@ After rviz runs, its configuration needs to be configured.
 - Add a `/odom` topic and change the display name to OdomPath and its color to red `(255,0,0)`
 
 
-{% include gallery_rviz caption="Add these to the rviz configuration." %}
+{% include gallery id="gallery_rviz" caption="Add these to the rviz configuration." %}
 
 Completing these steps will result in the following rviz configuration when the robot is controlled by the turtlebot_teleop node.
 
-{% include figure image_path="/assets/2019-03-06-ros-kalman-filter/rviz_trajectories.png" alt="Trajectories of the robot shown in rviz when it is driven around." caption="Trajectories of the robot shown in rviz when it is driven around." %}
+{% include gallery id="gallery_rviz_trajectories" alt="Trajectories of the robot shown in rviz when it is driven around." caption="Trajectories of the robot shown in rviz when it is driven around." %}
+
+Save this rviz configuration to avoid repeating the steps above.
+You can save it for example in the `src` folder of your catkin workspace as `TurtleBotEKF.rviz`.
+
+To test if the saved configuration works, kill the rviz terminal and relaunch rviz with the following parameter.
+
+{% highlight bash %}
+rosrun rviz rviz -d /home/workspace/catkin_ws/src/TurtleBotEKF.rviz
+{% endhighlight %}
+
+It is also possible to use a launch file in order to run this rviz configuration using `roslaunch`.
+
+{% highlight xml %}
+<launch>
+  <!--RVIZ-->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d /home/workspace/catkin_ws/src/TurtleBotEKF.rviz"/>
+</launch>
+{% endhighlight %}
+
+
+## Main Launch
+
+The created launch file can be integrated together with the launch files of the other nodes in a main launch file `main.launch`. 
+This simplifies the process of launching all the created nodes in the mentioned packages. Instead of launch them individually in seperate terminals it is sufficient to lauch the main launch file. 
+
+To achieve this, we create a main package that contains the `main.launch`.
+A new ROS package can be created with the `[catkin_create_pkg](http://wiki.ros.org/ROS/Tutorials/catkin/CreatingPackage)` command. 
+
+**Create a main package**
+
+{% highlight bash %}
+/home/workspace/catkin_ws/src
+catkin_create_pkg main
+{% endhighlight %}
+
+
+**Build the package**
+
+{% highlight bash %}
+/home/workspace/catkin_ws
+catkin_make 
+{% endhighlight %}
+
+**Create and edit the main.launch file**
+
+{% highlight bash %}
+cd /home/workspace/catkin_ws/src/main
+mkdir launch
+cd launch
+vim main.launch
+{% endhighlight %}
+
+Use the content for the `main.lauch` file from [Udacity's GitHub repository](https://github.com/udacity/RoboND-EKFLab/blob/master/main/launch/main.launch).
+
+**Launch the main.launch file**
+
+{% highlight bash %}
+cd /home/workspace/catkin_ws/
+source devel/setup.bash
+roslaunch main main.launch
+{% endhighlight %}
+
+## Rqt Multiplot
+
+
 
 ## Links
 
