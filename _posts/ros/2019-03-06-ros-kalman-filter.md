@@ -549,3 +549,7 @@ roslaunch main main.launch
 - [TurtleBot](https://www.turtlebot.com/)
 - [TurtleBot on ROS](http://wiki.ros.org/Robots/TurtleBot)
 - [TurtleBot on GitHub](https://github.com/turtlebot)
+
+## Reference
+
+This post follows the EKFLab from the Robotics Nanodegree of Udacity found [here](https://eu.udacity.com/course/robotics-software-engineer--nd209)
