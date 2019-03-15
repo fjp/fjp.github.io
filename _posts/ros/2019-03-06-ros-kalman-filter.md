@@ -658,6 +658,9 @@ Follow the steps below to add two plots. One will show the unfiltered y position
 
 {% include gallery id="gallery_multiplot" caption="Configuration steps of the filtered and unfilterd position y(x) plots in the rqt_multiplot package node." %}
 
+By default the graph plotting is paused. Simply press play in `rqt_multiplot` and move the robot around. Now it is possible to visualize how close the odometry trajectory is to the filtered trajectory produced by the ekf.
+It would be beneficial to compare these results to a percise reference. 
+
 ## Links
 
 - [TurtleBot](https://www.turtlebot.com/)
