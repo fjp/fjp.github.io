@@ -73,6 +73,7 @@ gallery_multiplot:
     image_path: /assets/posts/2019-03-06-ros-kalman-filter/multiplot_filtered.png
     alt: "Settings for the plot of the filtered y over x position."
     title: "Settings for the plot of the filtered y over x position."
+gallery_multiplot_traj:
   - url: /assets/posts/2019-03-06-ros-kalman-filter/multiplot_traj.png
     image_path: /assets/posts/2019-03-06-ros-kalman-filter/multiplot_traj.png
     alt: "Plots of the unfiltered and filtered y over x positions from the odometry and ekf."
@@ -192,7 +193,7 @@ Output
 
 
 {: .notice--info}
-The source command is required to overlay this workspace on top of your environment. To understand more about this see the general [catkin documentation](http://wiki.ros.org/catkin).
+The [source command](https://en.wikipedia.org/wiki/Source_(command)) is required to overlay this workspace on top of your [environment](http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment#Managing_Your_Environment). To understand more about this see the general [catkin documentation](http://wiki.ros.org/catkin).
 
 **Build package and source the workspace**
 
@@ -659,7 +660,18 @@ Follow the steps below to add two plots. One will show the unfiltered y position
 {% include gallery id="gallery_multiplot" caption="Configuration steps of the filtered and unfilterd position y(x) plots in the rqt_multiplot package node." %}
 
 By default the graph plotting is paused. Simply press play in `rqt_multiplot` and move the robot around. Now it is possible to visualize how close the odometry trajectory is to the filtered trajectory produced by the ekf.
-It would be beneficial to compare these results to a percise reference. 
+
+{% include gallery id="gallery_multiplot_traj" caption="Plots of the unfiltered and filtered y over x positions from the odometry and ekf." %}
+
+Another comparison that is left open is to compare the filtered and unfiltered data with percise reference sensor, such as [differential gps](https://en.wikipedia.org/wiki/Differential_GPS). 
+
+## Summary
+
+This concludes the Udacity Kalman Filter Lab. We've estimated the robot's pose with an extended Kalman filter ROS package.
+That was done by remapping some publisher and subscriber topics and establishing a communication between nodes of different packages.
+To simplify the launch, all of the launch files were grouped into a single `main.launch` file, that can be launched from the terminal. 
+Access the [EKF Lab](https://github.com/udacity/RoboND-EKFLab) in the Udacity GitHub repository.
+
 
 ## Links
 
