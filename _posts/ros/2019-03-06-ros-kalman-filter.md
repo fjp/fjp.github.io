@@ -57,10 +57,26 @@ gallery_rviz_trajectories:
     alt: "Trajectories of the robot shown in rviz when it is driven around."
     title: "Trajectories of the robot shown in rviz when it is driven around."
 gallery_multiplot:
-  - url:
-    image_path:
-    alt: ""
-    title: ""
+  - url: /assets/posts/2019-03-06-ros-kalman-filter/multiplot_empty.png
+    image_path: /assets/posts/2019-03-06-ros-kalman-filter/multiplot_empty.png
+    alt: "Configure the multiplot to add plots."
+    title: "Configure the multiplot to add plots."
+  - url: /assets/posts/2019-03-06-ros-kalman-filter/multiplot_config.png
+    image_path: /assets/posts/2019-03-06-ros-kalman-filter/multiplot_config.png
+    alt: "Add these two curves to the multiplot."
+    title: "Add these two curves to the multiplot."
+  - url: /assets/posts/2019-03-06-ros-kalman-filter/multiplot_unfiltered.png
+    image_path: /assets/posts/2019-03-06-ros-kalman-filter/multiplot_unfiltered.png
+    alt: "Settings for the plot of the unfiltered y over x position."
+    title: "Settings for the plot of the unfiltered y over x position."
+  - url: /assets/posts/2019-03-06-ros-kalman-filter/multiplot_filtered.png
+    image_path: /assets/posts/2019-03-06-ros-kalman-filter/multiplot_filtered.png
+    alt: "Settings for the plot of the filtered y over x position."
+    title: "Settings for the plot of the filtered y over x position."
+  - url: /assets/posts/2019-03-06-ros-kalman-filter/multiplot_traj.png
+    image_path: /assets/posts/2019-03-06-ros-kalman-filter/multiplot_traj.png
+    alt: "Plots of the unfiltered and filtered y over x positions from the odometry and ekf."
+    title: "Plots of the unfiltered and filtered y over x positions from the odometry and ekf."
 ---
 
 
@@ -530,7 +546,84 @@ cd launch
 vim main.launch
 {% endhighlight %}
 
-Use the content for the `main.lauch` file from [Udacity's GitHub repository](https://github.com/udacity/RoboND-EKFLab/blob/master/main/launch/main.launch).
+Use the content for the `main.lauch` file from [Udacity's GitHub repository](https://github.com/udacity/RoboND-EKFLab/blob/master/main/launch/main.launch) or copy it below.
+
+{% highlight xml %}
+<launch>
+
+  <!--Robot Pose EKF Package -->
+  <!-- The path_ekf_plotter node -->
+  <node name="path_ekf_plotter" type="path_ekf_plotter.py" pkg="odom_to_trajectory">
+  </node>
+
+  <!-- The path_odom_plotter node -->
+  <node name="path_odom_plotter" type="path_odom_plotter.py" pkg="odom_to_trajectory">
+
+  <!--RobotPose EKF package-->
+  </node>
+  <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
+  <param name="output_frame" value="odom_combined"/>
+  <param name="base_footprint_frame" value="base_footprint"/>
+  <param name="freq" value="30.0"/>
+  <param name="sensor_timeout" value="1.0"/>
+  <param name="odom_used" value="true"/>
+  <param name="imu_used" value="true"/>
+  <param name="vo_used" value="false"/>
+  <remap from="imu_data" to="/mobile_base/sensors/imu_data" />
+  </node>
+
+  <!-- TurleBot Gazzebo-->
+  <arg name="world_file"  default="$(env TURTLEBOT_GAZEBO_WORLD_FILE)"/>
+
+  <arg name="base"      value="$(optenv TURTLEBOT_BASE kobuki)"/> <!-- create, roomba -->
+  <arg name="battery"   value="$(optenv TURTLEBOT_BATTERY /proc/acpi/battery/BAT0)"/>  <!-- /proc/acpi/battery/BAT0 -->
+  <arg name="gui" default="true"/>
+  <arg name="stacks"    value="$(optenv TURTLEBOT_STACKS hexagons)"/>  <!-- circles, hexagons -->
+  <arg name="3d_sensor" value="$(optenv TURTLEBOT_3D_SENSOR kinect)"/>  <!-- kinect, asus_xtion_pro -->
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="debug" value="false"/>
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="world_name" value="$(arg world_file)"/>
+  </include>
+
+  <include file="$(find turtlebot_gazebo)/launch/includes/$(arg base).launch.xml">
+    <arg name="base" value="$(arg base)"/>
+    <arg name="stacks" value="$(arg stacks)"/>
+    <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
+  </include>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+
+  <!-- Fake laser -->
+  <node pkg="nodelet" type="nodelet" name="laserscan_nodelet_manager" args="manager"/>
+  <node pkg="nodelet" type="nodelet" name="depthimage_to_laserscan"
+        args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet laserscan_nodelet_manager">
+    <param name="scan_height" value="10"/>
+    <param name="output_frame_id" value="/camera_depth_frame"/>
+    <param name="range_min" value="0.45"/>
+    <remap from="image" to="/camera/depth/image_raw"/>
+    <remap from="scan" to="/scan"/>
+  </node>
+
+  <!--RVIZ-->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d /home/workspace/catkin_ws/src/EKFLab.rviz"/>
+  <!--Use this insted if you are cloning the whole repo in your src-->
+  <!--<node pkg="rviz" type="rviz" name="rviz" args="-d /home/workspace/catkin_ws/src/RoboND-EKFLab/EKFLab.rviz"/>-->
+
+  <!--Turtlebot Teleop-->
+  <node pkg="turtlebot_teleop" type="turtlebot_teleop_key" name="turtlebot_teleop_keyboard"  output="screen">
+    <param name="scale_linear" value="0.5" type="double"/>
+    <param name="scale_angular" value="1.5" type="double"/>
+    <remap from="turtlebot_teleop_keyboard/cmd_vel" to="cmd_vel_mux/input/teleop"/>
+  </node>
+
+
+</launch>
+{% endhighlight %}
 
 **Launch the main.launch file**
 
@@ -542,7 +635,28 @@ roslaunch main main.launch
 
 ## Rqt Multiplot
 
+So far it is possible to move the robot using the turtlebot_teleop node, publish the unfiltered odometry and filtered trajectories using the ekf package.
+To visualize how close the estimated pose of the ekf is to the unfiltred odometry trajectory we use [`rqt multiplot`](https://github.com/ethz-asl/rqt_multiplot_plugin) from ROS. This is an additional package that needs to be installed.
+Note, that ROS comes with plotting package [`rqt_plot`](http://wiki.ros.org/rqt_plot) which can graph values that are echoed by different topics. However, these signals will be only plotted over time.
+To get more plotting capability, such as plotting the y position over the x position, `rqt_multiplot` is required.
 
+{% highlight bash %}
+apt-get install ros-kinetic-rqt -y
+apt-get install ros-kinetic-rqt-multiplot -y
+apt-get install libqwt-dev -y
+rm -rf ~/.config/ros.org/rqt_gui.ini
+{% endhighlight %}
+
+Then run the `rqt_multiplot` package node.
+
+{% highlight bash %}
+rosrun rqt_multiplot rqt_multiplot
+{% endhighlight %}
+
+
+Follow the steps below to add two plots. One will show the unfiltered y position over the x position. The other plot will show the filtered y(x) position from the ekf package.
+
+{% include gallery id="gallery_multiplot" caption="Configuration steps of the filtered and unfilterd position y(x) plots in the rqt_multiplot package node." %}
 
 ## Links
 
@@ -552,4 +666,4 @@ roslaunch main main.launch
 
 ## Reference
 
-This post follows the EKFLab from the Robotics Nanodegree of Udacity found [here](https://eu.udacity.com/course/robotics-software-engineer--nd209)
+This post is a summary of the EKFLab from the Robotics Nanodegree of Udacity found [here](https://eu.udacity.com/course/robotics-software-engineer--nd209)
