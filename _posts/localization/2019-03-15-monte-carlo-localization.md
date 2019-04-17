@@ -55,6 +55,46 @@ gallery_iterations:
     image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step9.png
     alt: "Iteration 9"
     title: "Iteration 9"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step10.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step10.png
+    alt: "Iteration 10"
+    title: "Iteration 10"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step11.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step11.png
+    alt: "Iteration 11"
+    title: "Iteration 11"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step12.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step12.png
+    alt: "Iteration 12"
+    title: "Iteration 12"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step13.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step13.png
+    alt: "Iteration 13"
+    title: "Iteration 13"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step14.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step14.png
+    alt: "Iteration 14"
+    title: "Iteration 14"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step15.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step15.png
+    alt: "Iteration 15"
+    title: "Iteration 15"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step16.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step16.png
+    alt: "Iteration 16"
+    title: "Iteration 16"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step17.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step17.png
+    alt: "Iteration 17"
+    title: "Iteration 17"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step18.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step18.png
+    alt: "Iteration 18"
+    title: "Iteration 18"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step19.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step19.png
+    alt: "Iteration 19"
+    title: "Iteration 19"
 ---
 
 This post is a summary of the Udacity Lab on localization using [Monte Carlo Localization](https://en.wikipedia.org/wiki/Monte_Carlo_localization) (MCL).
@@ -454,6 +494,76 @@ int main()
 }
 {% endhighlight %}
 
+
+## Compile and Run
+
+Compile with 
+
+{% highlight bash %}
+g++ solution.cpp -o app -std=c++11 -I/usr/include/python2.7 -lpython2.7
+{% endhighlight %}
+
+And finally run the program with
+
+
+{% highlight bash %}
+./app
+{% endhighlight %}
+
+This will output:
+
+{% highlight bash %}
+Step = 0, Evaluation = 4.36165
+Step = 1, Evaluation = 4.13259
+Step = 2, Evaluation = 3.42951
+Step = 3, Evaluation = 3.2404
+Step = 4, Evaluation = 2.7659
+Step = 5, Evaluation = 2.48962
+Step = 6, Evaluation = 2.31978
+Step = 7, Evaluation = 2.24096
+Step = 8, Evaluation = 2.2645
+Step = 9, Evaluation = 2.16855
+Step = 10, Evaluation = 2.0289
+Step = 11, Evaluation = 1.90762
+Step = 12, Evaluation = 1.90886
+Step = 13, Evaluation = 1.86255
+Step = 14, Evaluation = 1.80935
+Step = 15, Evaluation = 1.75033
+Step = 16, Evaluation = 1.73623
+Step = 17, Evaluation = 1.66427
+Step = 18, Evaluation = 1.65443
+Step = 19, Evaluation = 1.68175
+Step = 20, Evaluation = 1.62883
+Step = 21, Evaluation = 1.61669
+Step = 22, Evaluation = 1.60328
+Step = 23, Evaluation = 1.55554
+Step = 24, Evaluation = 1.54531
+Step = 25, Evaluation = 1.48853
+Step = 26, Evaluation = 1.52531
+Step = 27, Evaluation = 1.54713
+Step = 28, Evaluation = 1.57839
+Step = 29, Evaluation = 1.59364
+Step = 30, Evaluation = 1.65056
+Step = 31, Evaluation = 1.6718
+Step = 32, Evaluation = 1.67659
+Step = 33, Evaluation = 1.61774
+Step = 34, Evaluation = 1.57891
+Step = 35, Evaluation = 1.50999
+Step = 36, Evaluation = 1.40922
+Step = 37, Evaluation = 1.40538
+Step = 38, Evaluation = 1.41737
+Step = 39, Evaluation = 1.39369
+Step = 40, Evaluation = 1.38676
+Step = 41, Evaluation = 1.43119
+Step = 42, Evaluation = 1.39935
+Step = 43, Evaluation = 1.37321
+Step = 44, Evaluation = 1.4212
+Step = 45, Evaluation = 1.55304
+Step = 46, Evaluation = 1.75291
+Step = 47, Evaluation = 1.93479
+Step = 48, Evaluation = 1.94307
+Step = 49, Evaluation = 1.25727
+{% endhighlight %}
 
 ## Results
 
