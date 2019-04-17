@@ -12,8 +12,8 @@ toc: true
 classes: wide
 # toc_label: "Kalman filter"
 header:
-  teaser: /assets/posts/2019-04-17-monte-carlo-localization/turtlebot.png
-  overlay_image: /assets/posts/2019-04-17-monte-carlo-localization/turtlebot_gazebo.png #keep it square 200x200 px is good
+  teaser: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step0.png
+  overlay_image: /assets/posts/2019-04-17-monte-carlo-localization/particle_filters.gif #keep it square 200x200 px is good
 gallery_iterations:
   - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step0.png
     image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step0.png
