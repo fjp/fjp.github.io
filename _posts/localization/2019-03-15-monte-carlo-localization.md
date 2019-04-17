@@ -2,7 +2,7 @@
 layout: single
 title:  "Monte Carlo Localization"
 date:   2019-04-17 19:00:42 +0200
-excerpt: ""
+excerpt: "Monte Carlo Localization can be used to localize a robot in a world with its position and orientation. This post shows the basic algorithm and a c++ implementation."
 permalink: /posts/localization/mcl/
 categories: [robotics, localization, monte carlo localization]
 tags: [robotics, localization, monte carlo, mcl]
