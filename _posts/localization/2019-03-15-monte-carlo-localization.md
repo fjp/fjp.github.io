@@ -23,14 +23,38 @@ gallery_iterations:
     image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step1.png
     alt: "Iteration 1"
     title: "Iteration 1"
-  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step3.png
-    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step3.png
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step2.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step2.png
     alt: "Iteration 2"
     title: "Iteration 2"
-  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step4.png
-    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step4.png
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step3.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step3.png
     alt: "Iteration 3"
     title: "Iteration 3"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step4.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step4.png
+    alt: "Iteration 4"
+    title: "Iteration 4"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step5.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step5.png
+    alt: "Iteration 5"
+    title: "Iteration 5"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step6.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step6.png
+    alt: "Iteration 6"
+    title: "Iteration 6"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step7.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step7.png
+    alt: "Iteration 7"
+    title: "Iteration 7"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step8.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step8.png
+    alt: "Iteration 8"
+    title: "Iteration 8"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step9.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step9.png
+    alt: "Iteration 9"
+    title: "Iteration 9"
 ---
 
 This post is a summary of the Udacity Lab on localization using [Monte Carlo Localization](https://en.wikipedia.org/wiki/Monte_Carlo_localization) (MCL).
@@ -43,7 +67,6 @@ git clone https://github.com/udacity/RoboND-MCL-Lab
 {% endhighlight %}
 
 
-Further details about MCL are found in the [paper](http://robots.stanford.edu/papers/thrun.robust-mcl.pdf) of Sebastian Thrun et al. 
 
 ## Monte Carlo Localization Algorithm 
 
@@ -104,6 +127,8 @@ mt19937 gen(rd());
 double mod(double first_term, double second_term);
 double gen_real_random();
 {% endhighlight cpp %}
+
+### Robot Base Class
 
 The lab uses a robot class that initializes a robot with a random x and y location and orientation in its constructor.
 
@@ -436,6 +461,7 @@ int main()
 
 ## Links
 
+Further details about MCL are found in the [paper](http://robots.stanford.edu/papers/thrun.robust-mcl.pdf) of Sebastian Thrun et al. 
 
 ## Reference
 
