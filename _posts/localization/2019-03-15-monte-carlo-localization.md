@@ -53,10 +53,19 @@ Further details about MCL are found in the [paper](http://robots.stanford.edu/pa
 ## Monte Carlo Localization Algorithm 
 
 $$
-\begin{align}
-v(t_1) &= v(t_0) + \int_{t_0}^{t_1} a(t) dt \\  
-x(t_1) &= x(t_0) + \int_{t_0}^{t_1} v(t) dt \\
-\end{align}
+\begin{lstlisting}[mathescape=true]
+\bar{X}_t = X_t = \empty
+for m = 1 to M:
+    x\_t^{[m]} = motion_update(u_t, x\_{t-1}^{[m]}
+    w\_t^{[m]} = sensor_update(z_t, x\_{t}^{[m]}
+    \bar{X}_t = \bar{X}_t + \left < x\_{t}^{[m]}, w\_{t}^{[m]} \right >
+endfor
+for m = 1 to M:
+    draw x_t^{[m]} from \bar{X}_t with probability \prop w_t^{[m]}
+    X_t =  X_t + x_t^{[m]}
+endfor
+return X_t
+\end{lstlisting}
 $$
 
 
