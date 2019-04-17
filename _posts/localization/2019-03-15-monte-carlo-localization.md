@@ -15,22 +15,22 @@ header:
   teaser: /assets/posts/2019-04-17-monte-carlo-localization/turtlebot.png
   overlay_image: /assets/posts/2019-04-17-monte-carlo-localization/turtlebot_gazebo.png #keep it square 200x200 px is good
 gallery_iterations:
-  - url: /assets/posts/2019-04-17-monte-carlo-localization/Step0.png
-    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Step0.png
-    alt: "Add robot model in rviz"
-    title: "Add robot model"
-  - url: /assets/posts/2019-04-17-monte-carlo-localization/Step1.png
-    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Step1.png
-    alt: "Add camera of robot in rviz"
-    title: "Add the camera of the robot"
-  - url: /assets/posts/2019-04-17-monte-carlo-localization/Step3.png
-    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Step3.png
-    alt: "Add odom topic to rviz"
-    title: "Add the odom topic"
-  - url: /assets/posts/2019-04-17-monte-carlo-localization/Step4.png
-    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Step4.png
-    alt: "Add ekf topic to rviz"
-    title: "Add the ekf topic"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step0.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step0.png
+    alt: "Iteration 0"
+    title: "Iteration 0"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step1.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step1.png
+    alt: "Iteration 1"
+    title: "Iteration 1"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step3.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step3.png
+    alt: "Iteration 2"
+    title: "Iteration 2"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step4.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step4.png
+    alt: "Iteration 3"
+    title: "Iteration 3"
 ---
 
 This post is a summary of the Udacity Lab on localization using [Monte Carlo Localization](https://en.wikipedia.org/wiki/Monte_Carlo_localization) (MCL).
