@@ -11,6 +11,8 @@ use_math: true
 toc: true
 classes: wide
 # toc_label: "Kalman filter"
+header-includes:
+  - \usepackage{algorithm2e}
 header:
   teaser: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step0.png
   overlay_image: /assets/posts/2019-04-17-monte-carlo-localization/particle_filters.gif #keep it square 200x200 px is good
@@ -95,6 +97,86 @@ gallery_iterations:
     image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step19.png
     alt: "Iteration 19"
     title: "Iteration 19"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step20.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step20.png
+    alt: "Iteration 20"
+    title: "Iteration 20"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step21.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step21.png
+    alt: "Iteration 21"
+    title: "Iteration 21"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step22.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step22.png
+    alt: "Iteration 22"
+    title: "Iteration 22"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step23.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step23.png
+    alt: "Iteration 23"
+    title: "Iteration 23"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step24.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step24.png
+    alt: "Iteration 24"
+    title: "Iteration 24"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step25.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step25.png
+    alt: "Iteration 25"
+    title: "Iteration 25"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step26.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step26.png
+    alt: "Iteration 26"
+    title: "Iteration 26"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step27.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step27.png
+    alt: "Iteration 27"
+    title: "Iteration 27"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step28.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step28.png
+    alt: "Iteration 28"
+    title: "Iteration 28"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step29.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step29.png
+    alt: "Iteration 29"
+    title: "Iteration 29"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step30.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step30.png
+    alt: "Iteration 30"
+    title: "Iteration 30"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step31.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step31.png
+    alt: "Iteration 31"
+    title: "Iteration 31"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step32.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step32.png
+    alt: "Iteration 32"
+    title: "Iteration 32"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step33.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step33.png
+    alt: "Iteration 33"
+    title: "Iteration 33"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step34.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step34.png
+    alt: "Iteration 34"
+    title: "Iteration 34"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step35.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step35.png
+    alt: "Iteration 35"
+    title: "Iteration 35"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step36.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step36.png
+    alt: "Iteration 36"
+    title: "Iteration 36"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step37.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step37.png
+    alt: "Iteration 37"
+    title: "Iteration 37"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step38.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step38.png
+    alt: "Iteration 38"
+    title: "Iteration 38"
+  - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step39.png
+    image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step39.png
+    alt: "Iteration 39"
+    title: "Iteration 39"
 ---
 
 This post is a summary of the Udacity Lab on localization using [Monte Carlo Localization](https://en.wikipedia.org/wiki/Monte_Carlo_localization) (MCL).
@@ -110,8 +192,31 @@ git clone https://github.com/udacity/RoboND-MCL-Lab
 
 ## Monte Carlo Localization Algorithm 
 
+# Algorithm 1
+Just a sample algorithmn
+\begin{algorithm}[H]
+\DontPrintSemicolon
+\SetAlgoLined
+\KwResult{Write here the result}
+\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
+\Input{Write here the input}
+\Output{Write here the output}
+\BlankLine
+\While{While condition}{
+    instructions\;
+    \eIf{condition}{
+        instructions1\;
+        instructions2\;
+    }{
+        instructions3\;
+    }
+}
+\caption{While loop with If/Else condition}
+\end{algorithm} 
+
+
 $$
-\begin{lstlisting}[mathescape=true]
+\begin{algorithm}[H]
 \bar{X}_t = X_t = \empty
 for m = 1 to M:
     x\_t^{[m]} = motion_update(u_t, x\_{t-1}^{[m]}
@@ -123,7 +228,7 @@ for m = 1 to M:
     X_t =  X_t + x_t^{[m]}
 endfor
 return X_t
-\end{lstlisting}
+\end{algorithm}
 $$
 
 
