@@ -36,7 +36,7 @@ A class should only have a single responsibility. Example: Seperate `Journal` cl
 <p>
 <b>Open-Closed Principle (OCP)</b> <br>
 Entities should be open for extension but closed for modification. It is better to extend a class (for example using 
-multiple inheritance) rather than modifying a class that has already been tested (the change may be necessary due to changed requirements). Example: `Product` class with different traits (color, size) and `ProductFilter` class that has methods to filter for items in a vector that contains pointers to products (`ProductFilter::by_size`, `ProductFilter::by_color`, `ProductFilter::by_color_and_size`). Adding more methods shows that the ProductFilter class would be modified, which should be avoided following the OCP. 
+multiple inheritance) rather than modifying a class that has already been tested (the change may be necessary due to changed requirements). Example: `Product` class with different traits (color, size) and `ProductFilter` class that has methods to filter for items in a vector that contains pointers to products (`ProductFilter::by_size`, `ProductFilter::by_color`, `ProductFilter::by_color_and_size`). Adding more methods shows that the ProductFilter class would be modified, which should be avoided following the OCP. Instead, make a robust class, where the behavior can be changed dynamically. To solve this problem use for example the Specification Pattern (which is no GOF pattern).
 </p>
 {: .notice}
 
