@@ -29,14 +29,14 @@ The following list shows some important design patterns, which are design princi
 
 <p>
 <b>Single Responsibility Principle (SRP)</b> <br>
-A class should only have a single responsibility. Example: Seperate Journal class and PersistanceManager class for saving the journal entries instead of putting the saving functionality into the Journal class itself.
+A class should only have a single responsibility. Example: Seperate `Journal` class and `PersistanceManager` class for saving the journal entries instead of putting the saving functionality into the `Journal` class itself.
 </p>
 {: .notice}
 
 <p>
 <b>Open-Closed Principle (OCP)</b> <br>
 Entities should be open for extension but closed for modification. It is better to extend a class (for example using 
-multiple inheritance) rather than modifying a class that has already been tested (the change may be necessary due to changed requirements)
+multiple inheritance) rather than modifying a class that has already been tested (the change may be necessary due to changed requirements). Example: `Product` class with different traits (color, size) and `ProductFilter` class that has methods to filter for items in a vector that contains pointers to products (`ProductFilter::by_size`, `ProductFilter::by_color`, `ProductFilter::by_color_and_size`). 
 </p>
 {: .notice}
 
