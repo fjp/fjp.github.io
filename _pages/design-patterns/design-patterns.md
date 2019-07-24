@@ -55,7 +55,7 @@ Example: The classical rectangles and squares example shows how this principle i
 
 <p>
 <b>Interface Segregation Principle (ISP)</b> <br>
-Many client-specific interfaces better than one general purpose interface.
+Many client-specific interfaces are better than one general purpose interface. No client (somebody how uses your code) should be forced to depend on methods that it does not use.
 </p>
 {: .notice}
 
