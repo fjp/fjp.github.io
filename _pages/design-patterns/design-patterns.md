@@ -24,6 +24,41 @@ The following list shows some important design patterns, which are design princi
 - [Factory](/design-patterns/factory)
 
 
+## SOLID Design Principles
+
+
+<p>
+<b>Single Responsibility Principle (SRP)</b> <br>
+A class should only have a single responsibility.
+</p>
+{: .notice}
+
+<p>
+<b>Open-Closed Principle (OCP)</b> <br>
+Entities should be open for extension but closed for modification. It is better to extend a class (for example using 
+multiple inheritance) rather than modifying a class that has already been tested (the change may be necessary due to changed requirements)
+</p>
+{: .notice}
+
+<p>
+<b>Liskov Substitution Principle (LSP)</b> <br>
+Objects should be replaceable with instances of their subtypes without altering program correctness.
+</p>
+{: .notice}
+
+<p>
+<b>Interface Segregation Principle (ISP)</b> <br>
+Many client-specific interfaces better than one general purpose interface.
+</p>
+{: .notice}
+
+<p>
+<b>Dependency Inversion Principle (ISP)</b> <br>
+Dependencies should be abstract rather than concrete.
+</p>
+{: .notice}
+
+
 ## Design Principles
 
 <p>
