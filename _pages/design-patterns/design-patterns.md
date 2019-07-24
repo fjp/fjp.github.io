@@ -29,22 +29,28 @@ The following list shows some important design patterns, which are design princi
 
 <p>
 <b>Single Responsibility Principle (SRP)</b> <br>
-A class should only have a single responsibility. Example: Seperate `Journal` class and `PersistanceManager` class for saving the journal entries instead of putting the saving functionality into the `Journal` class itself.
+A class should only have a single responsibility.
 </p>
 {: .notice}
+
+Example: Seperate `Journal` class and `PersistanceManager` class for saving the journal entries instead of putting the saving functionality into the `Journal` class itself.
 
 <p>
 <b>Open-Closed Principle (OCP)</b> <br>
 Entities should be open for extension but closed for modification. It is better to extend a class (for example using 
-multiple inheritance) rather than modifying a class that has already been tested (the change may be necessary due to changed requirements). Example: `Product` class with different traits (color, size) and `ProductFilter` class that has methods to filter for items in a vector that contains pointers to products (`ProductFilter::by_size`, `ProductFilter::by_color`, `ProductFilter::by_color_and_size`). Adding more methods shows that the ProductFilter class would be modified, which should be avoided following the OCP. Instead, make a robust class, where the behavior can be changed dynamically. To solve this problem use for example the Specification Pattern (which is no GOF pattern). Create a specification interface `ISpecification` that has a single pure virtual function `bool is_satisfied(T item)` to check if an item satisfies a specification. Use anotehr interface for the Filter `IFilter` with a single pure virtual funciton `vector<T*> filter(vector<T*> items, ISpecification<T>& spec)`. A concrete class that implements the IFilter interface will loop through the items and use the passed specification to return only the items that satisfy the specification. The only thing that is missing, is to implement concrete specification classes that inherit from the ISpecification interface. For example color, size and composite types that have a constructor which initializes their members (color, size, or both) and implement `is_satisfied` by comparing the passed element with the member variable. Do not modify the original classes that are probably already tested, instead extend them using inheritance.
+multiple inheritance) rather than modifying a class that has already been tested (the change may be necessary due to changed requirements).
 </p>
 {: .notice}
 
+Example: `Product` class with different traits (color, size) and `ProductFilter` class that has methods to filter for items in a vector that contains pointers to products (`ProductFilter::by_size`, `ProductFilter::by_color`, `ProductFilter::by_color_and_size`). Adding more methods shows that the ProductFilter class would be modified, which should be avoided following the OCP. Instead, make a robust class, where the behavior can be changed dynamically. To solve this problem use for example the Specification Pattern (which is no GOF pattern). Create a specification interface `ISpecification` that has a single pure virtual function `bool is_satisfied(T item)` to check if an item satisfies a specification. Use anotehr interface for the Filter `IFilter` with a single pure virtual funciton `vector<T*> filter(vector<T*> items, ISpecification<T>& spec)`. A concrete class that implements the IFilter interface will loop through the items and use the passed specification to return only the items that satisfy the specification. The only thing that is missing, is to implement concrete specification classes that inherit from the ISpecification interface. For example color, size and composite types that have a constructor which initializes their members (color, size, or both) and implement `is_satisfied` by comparing the passed element with the member variable. Do not modify the original classes that are probably already tested, instead extend them using inheritance.
+
 <p>
 <b>Liskov Substitution Principle (LSP)</b> <br>
-Objects should be replaceable with instances of their subtypes without altering program correctness.
+Objects should be replaceable with instances of their subtypes without altering the correctness of the program. 
 </p>
 {: .notice}
+
+Example: The classical rectangles and squares example shows how this principle is violated. 
 
 <p>
 <b>Interface Segregation Principle (ISP)</b> <br>
