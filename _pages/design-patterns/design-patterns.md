@@ -106,6 +106,10 @@ Depend upon abstractions. Do not depend upon concrete classes.
 </p>
 {: .notice}
 
+## Links
+
+- Boost Dependency Injection: https://boost-experimental.github.io/di/
+
 ## References
 
 {% raw %}
@@ -113,4 +117,8 @@ Depend upon abstractions. Do not depend upon concrete classes.
 <img border="0" src="//ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=0596007124&Format=_SL160_&ID=AsinImage&MarketPlace=DE&ServiceVersion=20070822&WS=1&tag=fjp-21&language=de_DE" >
 </a>
 <img src="https://ir-de.amazon-adsystem.com/e/ir?t=fjp-21&language=de_DE&l=li2&o=3&a=0596007124" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+{% endraw %}
+
+{% raw %}
+<a href="https://www.amazon.de/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612/ref=as_li_ss_il?crid=294S6ZO5GLTAX&keywords=gamma+design+patterns&qid=1563989351&s=gateway&sprefix=gamma+design,aps,230&sr=8-1&linkCode=li2&tag=fjp-21&linkId=845330f357bcc7b2eedce3e15a28c1b6&language=de_DE" target="_blank"><img border="0" src="//ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=0201633612&Format=_SL160_&ID=AsinImage&MarketPlace=DE&ServiceVersion=20070822&WS=1&tag=fjp-21&language=de_DE" ></a><img src="https://ir-de.amazon-adsystem.com/e/ir?t=fjp-21&language=de_DE&l=li2&o=3&a=0201633612" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 {% endraw %}
