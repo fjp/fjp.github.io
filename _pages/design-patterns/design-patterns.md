@@ -38,7 +38,7 @@ Example: Seperate `Journal` class and `PersistanceManager` class for saving the 
 <p>
 <b>Open-Closed Principle (OCP)</b> <br>
 Entities should be open for extension but closed for modification. It is better to extend a class (for example using 
-multiple inheritance) rather than modifying a class that has already been tested (the change may be necessary due to changed requirements).
+multiple inheritance) rather than modifying a class that has already been tested (the change may be necessary due to changed requirements). Patterns that extend a class without modifying the class itself are the [observer](/design-patterns/observer) and the [decorator](/design-patterns/decorator) patterns.
 </p>
 {: .notice}
 
@@ -60,12 +60,12 @@ Many client-specific interfaces better than one general purpose interface.
 
 <p>
 <b>Dependency Inversion Principle (ISP)</b> <br>
-Dependencies should be abstract rather than concrete.
+Dependencies should be abstract rather than concrete. Depend upon abstractions. Do not depend upon concrete classes.
 </p>
 {: .notice}
 
 
-## Design Principles
+## Further Design Principles
 
 <p>
 <b>Encapsulate what varies</b> <br>
@@ -81,40 +81,21 @@ what stays the same.
 
 <p>
 <b>Favor composition over inheritance. </b>
+With composition it is possible to delegate behaviors instead of inheriting it.
 </p>
 {: .notice}
-
-With composition it is possible to delegate behaviors instead of inheriting it.
 
 <p>
-Strive for loosely coupled designs between objects that interact.
-</p>
-{: .notice}
-
-Loosely coupled designs allow us to build flexible object oriented
+  <b>Strive for loosely coupled designs between objects that interact. </b>
+  Loosely coupled designs allow us to build flexible object oriented
 systems that can handle change because they minimize
 the interdependency between objects. This principle can be seen in the [observer pattern](/design-patterns/observer).
-
-
-<p>
-<b>Open Closed Principle</b> <br>
-Classes should be open for extension, but closed for modification.
-</p>
-{: .notice}
-
-Patterns that extend a class without modifying the class itself are the
-[observer](/design-patterns/observer) and the [decorator](/design-patterns/decorator) patterns.
-
-
-<p>
-<b>Dependency Inversion Principle</b> <br>
-Depend upon abstractions. Do not depend upon concrete classes.
 </p>
 {: .notice}
 
 ## Links
 
-- Boost Dependency Injection: https://boost-experimental.github.io/di/
+- [Boost Dependency Injection DI](https://boost-experimental.github.io/di/)
 
 ## References
 
