@@ -67,6 +67,14 @@ Dependencies should be abstract rather than concrete. Depend upon abstractions. 
 </p>
 {: .notice}
 
+Summary: 
+1. High-level modules should not depend on low-level modules. Both should depend upon abstraction. 
+Example: reporting component (high-level module) should depend on a `ConsoleLogger`, but can depend on an `ILogger`. A logging mechanism (low-level module) should also depend upon an abstraction. This makes it easier to substitue during runtime and for testing.
+2. Abstraction should not depend upon details. Details should depend upon abstractions: Dependencies on interfaces and supertypes (base classes) is better than dependencies on concrete types. This is because it is hard to substitue afterwards if a concrete type is used (for example as a function argument). Compare this with the LSP (substitue a subtype with a supertype). 
+
+Terms:
+1. Inversion of Control (IoC): the actual process of creating abstractions and getting them to replace dependencies.
+2. Dependency Injection: use of software frameworks ([boost di](https://boost-experimental.github.io/di/)) to ensure that a component's dependencies are satisfied. 
 
 ## Further Design Principles
 
