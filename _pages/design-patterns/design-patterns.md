@@ -46,11 +46,11 @@ Example: `Product` class with different traits (color, size) and `ProductFilter`
 
 <p>
 <b>Liskov Substitution Principle (LSP)</b> <br>
-Objects should be replaceable with instances of their subtypes without altering the correctness of the program. 
+Objects should be replaceable with instances of their subtypes without altering the correctness of the program. To follow this principle use the <a href="/factory/">factory pattern</a> (factory method or abstract factory).
 </p>
 {: .notice}
 
-Example: The classical rectangles and squares example shows how this principle is violated. 
+Example: The classical rectangles and squares example shows how this principle is violated. Assume a `process(Rectangles& rect)` function which can output wrong results when called with a `Square` class that inherits from, or is a base class of `Rectangle`. 
 
 <p>
 <b>Interface Segregation Principle (ISP)</b> <br>
