@@ -59,6 +59,10 @@ Many client-specific interfaces are better than one general purpose interface. N
 </p>
 {: .notice}
 
+Example: Break up an interface into multiple other interfaces. Assume a multi-function device that is able to print, scan and fax some `Documents`.  A violation would be to use a single interface `IMachine` which has pure virtual methods (`print(vector<Documents*> docs)`, `scan(vector<Documents*> docs)`, `fax(vector<Documents*> docs)`). A client that only wants to use some functionalities of this interface has to make an implementation `MFP` (Multi Functional Peripheral). This is a bad idea for two main reasons: everytime only parts of the functionality changes, all the other methods need to be recompiled too. Anotehr reason is that the client probably does not need all of the functionality but has to implement it using the `IMachine` interface.
+
+To use a big interface that contains all parts use multiple inheritance.
+
 <p>
 <b>Dependency Inversion Principle (ISP)</b> <br>
 Dependencies should be abstract rather than concrete. Depend upon abstractions. Do not depend upon concrete classes.
