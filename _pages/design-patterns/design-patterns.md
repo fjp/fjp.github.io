@@ -29,7 +29,7 @@ The following list shows some important design patterns, which are design princi
 
 <p>
 <b>Single Responsibility Principle (SRP)</b> <br>
-A class should only have a single responsibility.
+A class should only have a single responsibility. Example: Seperate Journal class and PersistanceManager class for saving the journal entries instead of putting the saving functionality into the Journal class itself.
 </p>
 {: .notice}
 
