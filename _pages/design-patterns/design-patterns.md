@@ -51,7 +51,7 @@ Objects should be replaceable with instances of their subtypes without altering 
 </p>
 {: .notice}
 
-Example: The classical rectangles and squares example shows how this principle is violated. Assume a `process(Rectangles& rect)` function which can output wrong results when called with a `Square` class that inherits from, or is a base class of `Rectangle`. 
+Example: The classical rectangles and squares example shows how this principle is violated. Assume a `process(Rectangles& rect)` function which can output wrong results when called with a `Square` class that inherits from, or is a base class of `Rectangle`. To solve this use a factory `RectangleFactory` class that has methods to generate Rectangles (`Rectangle CreateRectangel(int width, int height)`, `Rectangle CreateSquare(int size)`).
 
 <p>
 <b>Interface Segregation Principle (ISP)</b> <br>
