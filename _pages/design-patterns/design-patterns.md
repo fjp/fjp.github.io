@@ -89,7 +89,7 @@ With composition it is possible to delegate behaviors instead of inheriting it.
   <b>Strive for loosely coupled designs between objects that interact. </b>
   Loosely coupled designs allow us to build flexible object oriented
 systems that can handle change because they minimize
-the interdependency between objects. This principle can be seen in the [observer pattern](/design-patterns/observer).
+the interdependency between objects. This principle can be seen in the <a href="design-patterns/observer/">observer pattern</a>.
 </p>
 {: .notice}
 
