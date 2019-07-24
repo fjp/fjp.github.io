@@ -74,7 +74,7 @@ Example: reporting component (high-level module) should depend on a `ConsoleLogg
 
 Terms:
 1. Inversion of Control (IoC): the actual process of creating abstractions and getting them to replace dependencies.
-2. Dependency Injection: use of software frameworks ([boost di](https://boost-experimental.github.io/di/)) to ensure that a component's dependencies are satisfied. 
+2. Dependency Injection: use of software frameworks ([boost di](https://boost-experimental.github.io/di/)) to ensure that a component's dependencies are satisfied. These dependencies don't have to be concrete types but can be interfaces or supertypes. These can be substitute with the subtypes as they are configured in the inversion of control container. The Inversion of Control Container manages the dependency injection. Injection means that the Inversion of Control Container initializes dependencies of a particular class by passing them as constructor parameters.
 
 ## Further Design Principles
 
