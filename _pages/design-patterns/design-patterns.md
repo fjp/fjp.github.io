@@ -38,7 +38,7 @@ Example: Seperate `Journal` class and `PersistanceManager` class for saving the 
 <p>
 <b>Open-Closed Principle (OCP)</b> <br>
 Entities should be open for extension but closed for modification. It is better to extend a class (for example using 
-multiple inheritance) rather than modifying a class that has already been tested (the change may be necessary due to changed requirements). Patterns that extend a class without modifying the class itself are the [observer](/design-patterns/observer) and the [decorator](/design-patterns/decorator) patterns.
+multiple inheritance) rather than modifying a class that has already been tested (the change may be necessary due to changed requirements). Patterns that extend a class without modifying the class itself are the <a href="/observer/">observer pattern</a> and the <a href="/decorator/">decorator pattern</a> patterns.
 </p>
 {: .notice}
 
@@ -89,7 +89,7 @@ With composition it is possible to delegate behaviors instead of inheriting it.
   <b>Strive for loosely coupled designs between objects that interact. </b>
   Loosely coupled designs allow us to build flexible object oriented
 systems that can handle change because they minimize
-the interdependency between objects. This principle can be seen in the <a href="design-patterns/observer/">observer pattern</a>.
+the interdependency between objects. This principle can be seen in the <a href="/observer/">observer pattern</a>.
 </p>
 {: .notice}
 
