@@ -83,3 +83,8 @@ design-patterns:
         url: /design-patterns/strategy
       - title: "Observer"
         url: /design-patterns/observer
+  - title: "Functional"
+    url: /design-patterns/
+    children:
+      - title: "Monad"
+        url: /design-patterns/monad
