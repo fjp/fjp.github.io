@@ -77,7 +77,9 @@ Terms:
 2. Dependency Injection: use of software frameworks ([boost di](https://boost-experimental.github.io/di/)) to ensure that a component's dependencies are satisfied. These dependencies don't have to be concrete types but can be interfaces or supertypes. These can be substitute with the subtypes as they are configured in the inversion of control container. The Inversion of Control Container manages the dependency injection. Injection means that the Inversion of Control Container initializes dependencies of a particular class by passing them as constructor parameters.
 
 Example: Assume a car class `Car` that has a shared pointer member that points to an egnine class `Engine`, which is initialized by passing an engine object as a parameter to the constructor. This means that the engine is injected into the car, which it then depends upon. 
-In case there are other dependencies that need to be set by passing them to the constructor, all of them need to be instantiated before. A dependency injection (di) library such as [boost di](https://boost-experimental.github.io/di/) can avoid this tedious task. 
+In case there are other dependencies that need to be set by passing them to the constructor, all of them need to be instantiated before. A dependency injection (di) library such as [boost di](https://boost-experimental.github.io/di/) can avoid this tedious task. This is done using an injector that initializes all dependencies and injects them into the `Car` class. A di library does this by checking the arguments of the constructor. 
+
+Another example would be an `ILogger` interface for logging that has a virtual `LOG(const std::string& s)` method. A concrete class `ConsoleLogger : ILogger`. An injector can be bound using `bind` to use a concrete ConsoleLogger when a client requests an `ILogger`. 
 
 ## Further Design Principles
 
