@@ -1,0 +1,12 @@
+<pre id="read-{{ include.id }}" style="display:none;">
+    {{ include.code }}
+</pre>
+<div class="post-pseudocode" id="goal-{{ include.id }}"></div>
+<script type="text/javascript">
+    var code = document.getElementById("read-{{ include.id }}").textContent;
+    var parentEl = document.getElementById("goal-{{ include.id }}");
+    var options = {
+        lineNumber: true
+    };
+    pseudocode.render(code, parentEl, options);
+</script>
