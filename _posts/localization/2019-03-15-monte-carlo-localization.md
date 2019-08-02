@@ -192,8 +192,6 @@ git clone https://github.com/udacity/RoboND-MCL-Lab
 
 ## Monte Carlo Localization Algorithm 
 
-# Algorithm 1
-
 {% include pseudocode.html id="1" code="
 \begin{algorithm}
 \caption{SLAM}
