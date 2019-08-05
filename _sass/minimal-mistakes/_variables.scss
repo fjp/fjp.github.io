@@ -67,6 +67,8 @@ $success-color: #3fa63f !default;
 $warning-color: #d67f05 !default;
 $danger-color: #ee5f5b !default;
 $info-color: #3b9cba !default;
+$focus-color: $primary-color !default;
+$active-color: mix(#fff, $primary-color, 80%) !default;
 
 /* YIQ color contrast */
 $yiq-contrasted-dark-default: $dark-gray !default;
@@ -83,7 +85,6 @@ $flickr-color: #ff0084 !default;
 $foursquare-color: #0072b1 !default;
 $github-color: #171516 !default;
 $gitlab-color: #e24329 !default;
-$google-plus-color: #dd4b39 !default;
 $instagram-color: #517fa4 !default;
 $lastfm-color: #d51007 !default;
 $linkedin-color: #007bb6 !default;
@@ -135,6 +136,7 @@ $medium: 768px !default;
 $medium-wide: 900px !default;
 $large: 1024px !default;
 $x-large: 1280px !default;
+$max-width: $x-large !default;
 
 /*
    Grid
