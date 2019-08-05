@@ -192,44 +192,27 @@ git clone https://github.com/udacity/RoboND-MCL-Lab
 
 ## Monte Carlo Localization Algorithm 
 
-# Algorithm 1
-Just a sample algorithmn
-\begin{algorithm}[H]
-\DontPrintSemicolon
-\SetAlgoLined
-\KwResult{Write here the result}
-\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
-\Input{Write here the input}
-\Output{Write here the output}
-\BlankLine
-\While{While condition}{
-    instructions\;
-    \eIf{condition}{
-        instructions1\;
-        instructions2\;
-    }{
-        instructions3\;
-    }
-}
-\caption{While loop with If/Else condition}
-\end{algorithm} 
-
-
-$$
-\begin{algorithm}[H]
-\bar{X}_t = X_t = \empty
-for m = 1 to M:
-    x\_t^{[m]} = motion_update(u_t, x\_{t-1}^{[m]}
-    w\_t^{[m]} = sensor_update(z_t, x\_{t}^{[m]}
-    \bar{X}_t = \bar{X}_t + \left < x\_{t}^{[m]}, w\_{t}^{[m]} \right >
-endfor
-for m = 1 to M:
-    draw x_t^{[m]} from \bar{X}_t with probability \prop w_t^{[m]}
-    X_t =  X_t + x_t^{[m]}
-endfor
-return X_t
+{% include pseudocode.html id="1" code="
+\begin{algorithm}
+\caption{SLAM}
+\begin{algorithmic}
+\PROCEDURE{SLAM}{$X_{t-1}, u_t, z_t$}
+    \STATE $\bar{X}_t = X_t = \empty$
+    \FOR{$m = 1$ \TO $M$}
+        \STATE $x_t^{[k]} = $ \CALL{MotionUpdate}{$u_t, x_{t-1}^{[k]}$}
+        \STATE $w_t^{[k]} = $ \CALL{SensorUpdate}{$z_t, x_{t}^{[k]}$}
+        \STATE $m_t^{[k]} = $ \CALL{UpdateOccupancyGrid}{$z_t, x_{t}^{[k]}, m_{t-1}^{[k]}$}
+        \STATE $\bar{X}_t = \bar{X}_t + \left < x_{t}^{[k]}, w_{t}^{[k]} \right >$
+    \ENDFOR
+    \FOR{$k = 1$ \TO $M$}
+        \STATE draw $i$ with probability $w_t^{[i]}$ 
+        \STATE add $\left < x_t^{[i]}, m_t^{[i]} \right >$ \TO $X_t$
+    \ENDFOR
+    \RETURN $X_t$ 
+\ENDPROCEDURE
+\end{algorithmic}
 \end{algorithm}
-$$
+" %}
 
 
 ## C++ Implementation
