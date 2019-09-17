@@ -8,7 +8,11 @@ main:
     url: /projects-archive/
   - title: "Design Patterns"
     url: /design-patterns/
-  - title: "Mathematics"
+  - title: "C++"
+    url: /cpp/
+  - title: "FPV"
+    url: /fpv/
+  - title: "Math"
     url: /math/
   - title: "About"
     url: /about/
