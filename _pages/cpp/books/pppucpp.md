@@ -3,6 +3,12 @@ layout: single #collection
 title: Programming Principles and Practice using C++
 permalink: /pppucpp/
 excerpt: "Solutions of the C++ book: Proramming Principles and Practice using C++"
+categories: [programming, cpp, book]
+tags: [programming, cpp, bjarne, stroustrup, principles, practice]
+comments: true
+use_math: true
+toc: false
+# toc_label: "Unscented Kalman Filter"
 classes: wide
 header:
   #overlay_image: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
