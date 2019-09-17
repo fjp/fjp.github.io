@@ -26,3 +26,9 @@ author_profile: false
 
 
 The solutions can also be read on Read the docs: [![Documentation Status](https://readthedocs.org/projects/programming-principles-and-pratice-using-c/badge/?version=latest)](https://programming-principles-and-pratice-using-c.readthedocs.io/en/latest/?badge=latest)
+
+
+{% include_relative ../../../../README.md %}
+
+
+{% include README.md %}
