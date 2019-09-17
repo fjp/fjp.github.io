@@ -92,3 +92,39 @@ design-patterns:
     children:
       - title: "Monad"
         url: /design-patterns/monad
+
+# Cpp books
+pppucpp:
+  - title: "Computers People and Programming"
+    url: /pppucpp-ch1/
+    children:
+      - title: "Review"
+        url: /pppucpp-ch1/review
+      - title: "Terms"
+        url: /pppucpp-ch1/terms
+      - title: "Exercises"
+        url: /pppucpp-ch1/exercises
+  - title: "Hello World!"
+    url: /pppucpp-ch2/
+    children:
+      - title: "Review"
+        url: /pppucpp-ch2/review
+      - title: "Terms"
+        url: /pppucpp-ch2/terms
+      - title: "Drill"
+        url: /pppucpp-ch2/drill
+      - title: "Exercises"
+        url: /pppucpp-ch2/exercises
+  - title: "Objects, Types and Values"
+    url: /pppucpp-ch3/
+    children:
+      - title: "Review"
+        url: /pppucpp-ch3/review
+      - title: "Terms"
+        url: /pppucpp-ch3/terms
+      - title: "Drill"
+        url: /pppucpp-ch3/drill
+      - title: "Try This"
+        url: /pppucpp-ch3/trythis
+      - title: "Exercises"
+        url: /pppucpp-ch3/exercises
