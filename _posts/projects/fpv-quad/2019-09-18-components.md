@@ -42,3 +42,8 @@ redirect_from:
 
 - GetFPV: [MASTER AIRSCREW BN SERIES - 5X4.5 PROP SET X4 - BLACK](https://www.getfpv.com/master-airscrew-bn-series-5x4-5-prop-set-x4-black.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
 
+### Receiver
+
+The following receiver from [FrSky](/projects/fpv-quad/fpv-glossar/#frsky) will be installed in the quad and should be used together with a FrSky [transmitter](/projects/fpv-quad/fpv-glossar/#transmitter).
+- GetFPV: [FRSKY R-XSR 2.4GHZ 16CH ACCST MICRO RECEIVER W/ S-BUS & CPPM](https://www.getfpv.com/frsky-r-xsr-2-4ghz-16ch-accst-micro-receiver-w-s-bus-cppm.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
+
