@@ -3,6 +3,12 @@ layout: single #collection
 title: FPV Glossar
 permalink: /projects/fpv-quad/fpv-glossar/
 excerpt: "Glossar for FPV terms"
+categories: [fpv, rc, quad]
+tags: [fpv, rc, quad, getfpv, motors, brushless, esc, props, flightcontroller, antennas, camera, goggles, frsky, fatshark]
+comments: true
+comments: true
+use_math: true
+toc: false
 classes: wide
 header:
   #overlay_image: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
@@ -11,7 +17,6 @@ header:
   #show_overlay_excerpt: true
 sidebar:
   nav: "fpv"
-comments: true
 author_profile: false
 ---
 
