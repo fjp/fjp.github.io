@@ -11,7 +11,7 @@ main:
   - title: "C++"
     url: /cpp/
   - title: "FPV"
-    url: /projects/fpv-race-quad/
+    url: /projects/fpv-quad/
   - title: "Math"
     url: /math/
   - title: "About"
@@ -59,6 +59,98 @@ math:
     children:
       - title: "Optimization"
         url: /math/optimization-lagrange-multipliers
+        
+fpv:
+  - title: "Introduction"
+    url: /projects/fpv-quad/#introduction
+  - title: "Race Quad Components"
+    url: /projects/fpv-quad/components
+    children:
+      - title: "Frame"
+        url: /projects/fpv-quad/components/#frame
+    children:
+      - title: "Brushless Motors"
+        url: /projects/fpv-quad/components/#motors
+    children:
+      - title: "Brushless ESC"
+        url: /projects/fpv-quad/components/#esc
+    children:
+      - title: "Propellers"
+        url: /projects/fpv-quad/components/#props
+    children:
+      - title: "Batteries"
+        url: /projects/fpv-quad/components/#batteries
+    children:
+      - title: "Charger"
+        url: /projects/fpv-quad/components/#charger
+    children:
+      - title: "Flightcontroller"
+        url: /projects/fpv-quad/components/#flightcontroller
+    children:
+      - title: "Flightcontroller Software"
+        url: /projects/fpv-quad/components/#software
+    children:
+      - title: "RC Transmitter"
+        url: /projects/fpv-quad/components/#transmitter
+    children:
+      - title: "RC Receiver"
+        url: /projects/fpv-quad/components/#receiver
+  - title: "FPV System"
+    url: /projects/fpv-quad/fpv-system/#introduction
+    children:
+      - title: "FPV Components"
+        url: /projects/fpv-quad/fpv-system/#components
+    children:
+      - title: "Antennas"
+        url: /projects/fpv-quad/fpv-system/#antennas
+  - title: "PID Values"
+    url: /projects/fpv-quad/pid/#introduction
+    children:
+      - title: "PID Basics"
+        url: /projects/fpv-quad/pid/#theory
+    children:
+      - title: "PID Tuning"
+        url: /projects/fpv-quad/pid/#tuning
+  - title: "Thrust and Flight Time"
+    url: /projects/fpv-quad/calculations/#introduction
+    children:
+      - title: "Basic Calculations"
+        url: /projects/fpv-quad/calculations/#calculations
+    children:
+      - title: "Weight"
+        url: /projects/fpv-quad/calculations/#weight
+    children:
+      - title: "Thrust"
+        url: /projects/fpv-quad/calculations/#thrust
+    children:
+      - title: "Finding matching Motors"
+        url: /projects/fpv-quad/calculations/#motors
+    children:
+      - title: "Finding matching ESCs"
+        url: /projects/fpv-quad/calculations/#esc
+    children:
+      - title: "Flight Time Calculation"
+        url: /projects/fpv-quad/calculations/#flight-time
+  - title: "Rights"
+    url: /projects/fpv-quad/rights/#introduction
+    children:
+      - title: "Law and Insurance regulations"
+        url: /projects/fpv-quad/rights/#law-insurance
+    children:
+      - title: "Drones"
+        url: /projects/fpv-quad/rights/#drones
+  - title: "Build"
+    url: /projects/fpv-quad/build/#introduction
+    children:
+      - title: "Law and Insurance regulations"
+        url: /projects/fpv-quad/build/#part-selection
+    children:
+      - title: "Drones"
+        url: /projects/fpv-quad/build/#overview
+    children:
+      - title: "Assembly"
+        url: /projects/fpv-quad/build/#assembly
+        
 
 
 design-patterns:
