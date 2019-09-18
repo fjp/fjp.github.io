@@ -9,7 +9,7 @@ header:
 #  caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
 #  show_overlay_excerpt: true
 sidebar:
-  nav: "fpv_quad"
+  nav: "fpv"
 ---
 
 ## Race Quad
