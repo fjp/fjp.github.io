@@ -36,7 +36,7 @@ redirect_from:
 ### Motors and ESC
 
 - GetFPV: [DYS ARIA BLHELI_32BIT 35A ESC](https://www.getfpv.com/dys-aria-blheli-32bit-35a-esc.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
-- GetFPV: [https://www.getfpv.com/emax-rs2205-2300kv-racespec-motor-cw.html](https://www.getfpv.com/emax-rs2205-2300kv-racespec-motor-cw.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
+- GetFPV: [EMAX RS2205/ 2300Kv RaceSpec Motor (CW)](https://www.getfpv.com/emax-rs2205-2300kv-racespec-motor-cw.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
 
 ### Props
 
