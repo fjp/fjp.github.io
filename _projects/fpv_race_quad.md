@@ -20,6 +20,6 @@ sidebar:
 In this project we will build a race quad. For the parts that will be used to build this quad check out the [part list](/projects/fpv-quad/components).
 
 
-If you are new to this hobby follow this project. All the required theory will be outlined and common terms are explained in the [glossar](/projects/fpv-quad/fpv-glossar).
+If you are new to this hobby follow this project. You find the index on the left. All the required theory will be outlined first, followed by build instructions. Common terms are explained in the [glossar](/projects/fpv-quad/fpv-glossar) and linked throuhout the single pages.
 
 Under construction
