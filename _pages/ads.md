@@ -5,6 +5,10 @@ permalink: /ads/
 author_profile: false
 ---
 
+Please turn your AdBlocker off to see the adds.
+
+## AfB
+
 <!-- START ADVERTISER: AfB DE from awin.com -->
 
 <a href="https://www.awin1.com/cread.php?s=2494205&v=18272&q=374654&r=642237">
