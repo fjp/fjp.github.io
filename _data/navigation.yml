@@ -16,6 +16,8 @@ main:
     url: /math/
   - title: "About"
     url: /about/
+  - title: "Ads"
+    url: /ads/
   - title: "Privacy"
     url: /privacy/
   - title: "Sitemap"
