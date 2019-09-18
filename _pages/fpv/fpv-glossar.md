@@ -13,3 +13,22 @@ sidebar:
   nav: "fpv"
 author_profile: false
 ---
+
+
+
+## FrSky
+
+Company that produces radio controlled [transmitters](/projects/fpv-quad/fpv-glossar/#transmitter) and [receivers](/projects/fpv-quad/fpv-glossar/#receivers), which are most common in the FPV scene.
+
+## Transmitter
+
+Also known as radio is the radio controlled (rc) part that communicates with a [receiver](/projects/fpv-quad/fpv-glossar/#receiver). The term `Tx` is commonly referred to transmitting unit.
+
+The most common manufacturar for FPV quad transmitters is [FrSky](/projects/fpv-quad/fpv-glossar/#frsky)
+
+
+## Receiver
+
+The receiver is installed in the quad or radio controlled (rc) vehicle and communicates with the [transmitter](/projects/fpv-quad/fpv-glossar/#transmitter)
+
+
