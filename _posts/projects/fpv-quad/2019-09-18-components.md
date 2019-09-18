@@ -5,7 +5,7 @@ permalink: /projects/fpv-quad/components
 excerpt: "Components of the fpv race quad."
 date:   2019-09-18 20:41:35 +0200
 categories: [fpv, quad]
-tags: [fpv, quad, race, drone, camera, props, motors, esc, brushless, goggles]
+tags: [getfpv, fpv, quad, race, drone, camera, props, motors, esc, brushless, goggles]
 comments: true
 use_math: true
 toc: true
