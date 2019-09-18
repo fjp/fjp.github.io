@@ -11,7 +11,7 @@ main:
   - title: "C++"
     url: /cpp/
   - title: "FPV"
-    url: /fpv/
+    url: /projects/fpv-race-quad/
   - title: "Math"
     url: /math/
   - title: "About"
