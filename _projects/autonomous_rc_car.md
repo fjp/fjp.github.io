@@ -2,7 +2,7 @@
 layout: single #collection
 title: Autonomous RC Car
 permalink: /projects/autonomous-rc-car/
-excerpt: "Equipped with ROS and Arduino"
+excerpt: "Autonomous RC Car equipped with a Raspberry Pi running ROS and Arduino to control its servos."
 header:
   overlay_image: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
@@ -13,10 +13,10 @@ sidebar:
 ---
 
 ## Introduction
-This project aims to build a self driving rc car equipped with a Raspberry Pi 3 B+ running ROS and an Arduino MKR1000 to control the motor and the servo for steering. To find its way around it uses a camera. The project is split into four parts, to adress the following main components of the robot.
+This project aims to build a self driving rc car equipped with a Raspberry Pi 3 B+ (use a Raspberry Pi 4 B for increased performance) running ROS and an Arduino MKR1000 to control the motor and the servo for steering. To find its way around it uses a camera. The project is split into four parts, to adress the following main components of the robot.
 
 - Arduino MKR1000 responsible for the low level control.
-- Raspbery Pi 3 B+ running ROS to perceive the environment and act accordingly.
+- [Raspberry Pi 3 B+](https://de.aliexpress.com/item/32858825148.html?spm=a2g0o.productlist.0.0.5d232e8bvlKM7l&algo_pvid=2c45d347-5783-49a6-a0a8-f104d0b78232&algo_expid=2c45d347-5783-49a6-a0a8-f104d0b78232-0&btsid=0100feb4-37d7-453a-8ff8-47a0e2fbdef7&ws_ab_test=searchweb0_0,searchweb201602_9,searchweb201603_52) or even better a [Rapberry 4 B](https://de.aliexpress.com/item/4000054868537.html?spm=a2g0o.productlist.0.0.2ade7babA4VMjD&algo_pvid=883b9cf1-2bc7-49e3-8407-e71950629c5e&algo_expid=883b9cf1-2bc7-49e3-8407-e71950629c5e-0&btsid=af279edc-561a-4435-a3de-704beddbdadf&ws_ab_test=searchweb0_0,searchweb201602_9,searchweb201603_52) running ROS to perceive the environment and act accordingly.
 - The rc vehicle and its parts
 - System integration: combining the components.
 
