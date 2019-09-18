@@ -25,3 +25,8 @@ redirect_from:
 
 - GetFPV: [EV-Peak CQ3 Multi Charger 4x 100W NiMH / LiPO with Built-in Balance](https://www.getfpv.com/ev-peak-cq3-multi-charger-4x-100w-nimh-lipo-with-built-in-balance.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
 
+
+### Goggles FPV-System
+
+- GetFPV: [Ultimate FPV Bundle - Fat Shark HDO, rapidFIRE, + Lumenier AXII 2 Diversity Antenna Bundle](https://www.getfpv.com/ultimate-fpv-bundle.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
+
