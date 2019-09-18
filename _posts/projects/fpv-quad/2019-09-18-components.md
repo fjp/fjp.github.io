@@ -24,9 +24,21 @@ redirect_from:
 ### Battiers/Charger
 
 - GetFPV: [EV-Peak CQ3 Multi Charger 4x 100W NiMH / LiPO with Built-in Balance](https://www.getfpv.com/ev-peak-cq3-multi-charger-4x-100w-nimh-lipo-with-built-in-balance.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
+- GetFPV: [EV-PEAK CELLMETER-7 BATTERY CAPACITY CHECKER](https://www.getfpv.com/ev-peak-cellmeter-7-battery-capacity-checker.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
+- GetFPV: [LUMENIER 1300MAH 3S 60C LIPO BATTERY (XT60)](https://www.getfpv.com/lumenier-1300mah-3s-60c-lipo-battery-xt60.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
 
 
-### Goggles FPV-System
+### FPV-System (Goggles, Camera)
 
 - GetFPV: [Ultimate FPV Bundle - Fat Shark HDO, rapidFIRE, + Lumenier AXII 2 Diversity Antenna Bundle](https://www.getfpv.com/ultimate-fpv-bundle.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
+- GetFPV: [RUNCAM SWIFT 2 (2.5MM LENS) - ORANGE](https://www.getfpv.com/runcam-swift-2-2-5mm-lens-orange.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
+
+### Motors and ESC
+
+- GetFPV: [DYS ARIA BLHELI_32BIT 35A ESC](https://www.getfpv.com/dys-aria-blheli-32bit-35a-esc.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
+- GetFPV: [https://www.getfpv.com/emax-rs2205-2300kv-racespec-motor-cw.html](https://www.getfpv.com/emax-rs2205-2300kv-racespec-motor-cw.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
+
+### Props
+
+- GetFPV: [MASTER AIRSCREW BN SERIES - 5X4.5 PROP SET X4 - BLACK](https://www.getfpv.com/master-airscrew-bn-series-5x4-5-prop-set-x4-black.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
 
