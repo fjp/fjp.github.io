@@ -1,7 +1,7 @@
 ---
 layout: single #collection
 title: FPV Race Quad Build
-permalink: /projects/fpv-race-quad/
+permalink: /projects/fpv-quad/
 excerpt: "Build instructions for an FPV race quad."
 header:
 #  overlay_image: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
