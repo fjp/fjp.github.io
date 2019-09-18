@@ -1,5 +1,9 @@
-# Advertisment
-
+---
+layout: single
+title: "Advertisment"
+permalink: /ads/
+author_profile: false
+---
 
 <!-- START ADVERTISER: AfB DE from awin.com -->
 
