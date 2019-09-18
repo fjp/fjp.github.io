@@ -11,6 +11,7 @@ header:
   #show_overlay_excerpt: true
 sidebar:
   nav: "fpv"
+comments: true
 author_profile: false
 ---
 
