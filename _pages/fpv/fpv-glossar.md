@@ -18,7 +18,7 @@ author_profile: false
 
 ## FrSky
 
-Company that produces radio controlled [transmitters](/projects/fpv-quad/fpv-glossar/#transmitter) and [receivers](/projects/fpv-quad/fpv-glossar/#receivers), which are most common in the FPV scene.
+Company that produces radio controlled [transmitters](/projects/fpv-quad/fpv-glossar/#transmitter) and [receivers](/projects/fpv-quad/fpv-glossar/#receivers), which are most common in the FPV scene. At their hompage [https://www.frsky-rc.com/](https://www.frsky-rc.com/) you can see all the products and download manuals and firmware updates. 
 
 ## Transmitter
 
