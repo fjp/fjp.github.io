@@ -312,7 +312,7 @@ collections:
   design-patterns:
     output: true
     permalink: /:collection/:path/
-  books:
+  cpp:
     output: true
     permalink: /:collection/:path/
 
