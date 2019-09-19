@@ -516,14 +516,73 @@ $$
 A vector with coordinates can have different directions depending on the used coordinate system, which is defined by a set of basis vectors.
 It is possible to translate from one coordinate system to another and is called change of basis.
 
-The matrix whos columsn represent a basis $B$ with coordinates described in another basis $B'$ can be used to transform
+The matrix whos columsn represent a basis $\mathbf{B}$ with coordinates described in another basis $\mathbf{B'}$ can be used to transform
 vectors with coordinates in $B$ to the same vector with coordinates in $B'$. The inverse matrix does the opposite.
 
-An expression like $AMA^{-1}$ is a transformation $M$ of some kind but viewed in another coordinate system.
-The middle matrix $M$ represents the transformation in $B$ and the outer matrices represent an empathy, the shift in perspective.  
+An expression like $\mathbf{AMA}^{-1}$ is a transformation $\mathbf{M}$ of some kind but viewed in another coordinate system.
+The middle matrix $\mathbf{M}$ represents the transformation in $B$ and the outer matrices represent an empathy, the shift in perspective.  
 
 <iframe width="936" height="527" src="https://www.youtube.com/embed/P2LTAUO1TdA?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Eigenvectors and Eigenvalues
 
+[Linear Transformations](#matrices-as-linear-transformations) $\mathbf{A}\vec{v}=\vec{w}$ transform vectors.
+If a vector remains on its own [span](span,-bases-and-linear-combinations) $\lambda \vec{v}$
+after applying the transformation, $\vec{v}$ is called an Eigenvector of the matrix $\mathbf{A}$.
+This means that the matrix acts like a scalar $\lambda$, which stretches or squishes the corresponding Eigenvectors.
+Each Eigenvector has a scalar $\lambda$ associated with it, that specifies the stretching factor during the transformation.
+All other vectors also get rotated, meaning that they do not remain on their span.
+
+In three dimensions, an Eigenvector with Eigenvalue of $\lambda = 1$ can be used to simplify the representation of a rotation.
+The rotation axis is defined by the Eigenvector and an angle by which it is rotating. This requires only four values, instead of
+a full $3\times3$ rotation matrix. Because rotation matrices have an Eigenvalue of one, the vector keeps the same length during the transformation.
+- [Determinants](#the-determinant)
+- [Change of Basis](#change-of-basis)
+
+To find the Eigenvalues and Eigenvectors of a $n\times n$ transformation matrix $\mathbf{A}$ the following expression needs to be solved.
+
+<div>
+$$
+\mathbf{A}\vec{v} = \lambda \vec{v}
+$$
+Let $(\lambda, \vec{v})$ be an <b>Eigenpair</b> of $\mathbf{A}$, then
+<ul>
+    <li>$\lambda$ is an <b>Eigenvalue</b> of $\mathbf{A}$ and</li>
+    <li>$\vec{v}\neq \vec{0}$ a corresponding <b>Eigenvector</b> of $\mathbf{A}$.</li>
+</ul>
+
+$L_\lambda = \{\vec{v}|\mathbf{A}\vec{v}=\lambda\vec{v}\}$ corresponds to $\lambda$ and is called the <b>Eigenspace</b> of $\mathbf{A}$.<br>
+$g_\lambda=\text{dim}L_\lambda$ is known as <b>geometric multiplicity</b> of $\lambda$.<br>
+The multiplicity of $\lambda$ as root of the characteristic polynomial of $\mathbf{A}$ is called <b>algebraic multiplicity</b> $k_\lambda$.
+Then $1\leq g_\lambda \leq k_\lambda \leq n$<br>
+
+$$
+\bbox[5px,border:2px solid black]{\lambda \text{ Eigenvalue of }\mathbf{A}} \Leftrightarrow
+\bbox[5px,border:2px solid black]{\text{det}(\lambda\mathbf{I}-\mathbf{A})=0} \textbf{ characteristic equation } \text{of } \mathbf{A}
+$$
+
+\mathbf{A}\vec{v}= \lambda \vec{v}
+\text{det}\left(
+\begin{bmatrix}
+
+\end{bmatrix}\right)
+\vec{v} \cdot (\vec{v} \times \vec{w}) = 0
+$$
+$$
+\vec{w} \cdot (\vec{v} \times \vec{w}) = 0
+$$
+$$
+\cos{\theta} = \frac{\vec{v}\cdot\vec{w}}{\Vert \vec{v} \Vert \cdot \Vert \vec{w} \Vert}
+$$
+$$
+\Vert (\vec{v}\cdot\vec{w}) \Vert = (\Vert \vec{v} \Vert)(\Vert \vec{w} \Vert) \sin{\theta}
+$$
+</div>
+{: .notice}
+
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/PFDu9oVAE-g?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
+## Abstract Vector Spaces
+
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/TgKwz5Ikpc8?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
