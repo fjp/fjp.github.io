@@ -296,9 +296,23 @@ compress_html:
     envs: development
 
 
+collections_dir: collections
+
 # Collections
 collections:
   projects:
+    output: true
+    permalink: /:collection/:path/
+  autonomous-rc-car:
+    output: true
+    permalink: /:collection/:path/
+  fpv-quad:
+    output: true
+    permalink: /projects/:path/
+  design-patterns:
+    output: true
+    permalink: /:collection/:path/
+  books:
     output: true
     permalink: /:collection/:path/
 
