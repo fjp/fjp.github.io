@@ -32,7 +32,7 @@ redirect_from:
 <figure class="half">
     <a href="/assets/collections/fpv-quad/mateksys-F722-STD.jpg"><img src="/assets/collections/fpv-quad/mateksys-F722-STD.jpg"></a>
     <a href="/assets/collections/fpv-quad/mateksys-fchub-6s.jpg"><img src="/assets/collections/fpv-quad/mateksys-fchub-6s.jpg"></a>
-    <figcaption>FPV system: FatShark HDO and RunCam Swift 2.</figcaption>
+    <figcaption>Flight Controller MATEKSYS-F722 STD and Power Distribution Board MATEKSYS FCHUB-6S</figcaption>
 </figure>
 
 | Component         | Description                            | Shops                 | OEM Link            | Comment |
