@@ -27,11 +27,19 @@ redirect_from:
 - GetFPV: [EV-PEAK CELLMETER-7 BATTERY CAPACITY CHECKER](https://www.getfpv.com/ev-peak-cellmeter-7-battery-capacity-checker.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
 - GetFPV: [LUMENIER 1300MAH 3S 60C LIPO BATTERY (XT60)](https://www.getfpv.com/lumenier-1300mah-3s-60c-lipo-battery-xt60.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
 
-### Flight Controller (FC)
+### Flight Controller (FC) and Power Distribution Board (PDB)
 
-https://www.getfpv.com/matek-systems-f722-std-flight-controller-w-f7-32k-gyro-bfosd-barometer.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89
+<figure class="half">
+    <a href="/assets/collections/fpv-quad/ultimate-fatshark-hdo-antenna-bundlemateksys-F722-STD.jpg"><img src="/assets/collections/fpv-quad/mateksys-F722-STD.jpg"></a>
+    <a href="/assets/collections/fpv-quad/mateksys-fchub-6s.jpg"><img src="/assets/collections/fpv-quad/mateksys-fchub-6s.jpg"></a>
+    <figcaption>FPV system: FatShark HDO and RunCam Swift 2.</figcaption>
+</figure>
 
-- Banggood: [Matek-Systems-F722-STD-STM32F722-Flight-Controller-Built-in-OSD-BMP280-Barometer-Blackbox-for-RC-Drone](https://www.banggood.com/Matek-Systems-F722-STD-STM32F722-Flight-Controller-Built-in-OSD-BMP280-Barometer-Blackbox-for-RC-Drone-p-1225166.html?rmmds=myorder&cur_warehouse=UK&p=GQ230138854743201909&custlinkid=604567)
+| Component         | Description                            | Shops                 | OEM Link            | Comment |
+|:-----------------:|:--------------------------------------:|:---------------------:|:-------------------:|         |
+| Flight Controller | MATEKSYS F722 STD STM32 Built in OSD BMP280 Barometer Blackbox | [getfpv](https://www.getfpv.com/matek-systems-f722-std-flight-controller-w-f7-32k-gyro-bfosd-barometer.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89), [Banggood](https://www.banggood.com/Matek-Systems-F722-STD-STM32F722-Flight-Controller-Built-in-OSD-BMP280-Barometer-Blackbox-for-RC-Drone-p-1225166.html?rmmds=myorder&cur_warehouse=UK&p=GQ230138854743201909&custlinkid=604567)  | [MATEKSYS](http://www.mateksys.com/?portfolio=f722-std) | See OEM link for the datasheet | 
+| PDB       | MATEKSYS FCHUB-6S W/ CURRENT SENSOR 184A, BEC 5V & 10V | [getfpv](https://www.getfpv.com/matek-fchub-6s-pdb.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89), [Banggood](https://www.banggood.com/Matek-FCHUB-6S-Hub-Power-Distribution-Board-5V-10V-BEC-Built-in-184A-Current-Sensor-p-1147591.html?rmmds=myorder&cur_warehouse=CN&p=GQ230138854743201909&custlinkid=604638) | [MATEKSYS](http://www.mateksys.com/?portfolio=fchub-6s#tab-id-1) |  |
+
 
 ### FPV-System (Goggles, Camera)
 
