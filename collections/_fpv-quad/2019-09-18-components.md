@@ -30,13 +30,30 @@ redirect_from:
 
 ### FPV-System (Goggles, Camera)
 
+<figure class="half">
+    <a href="/assets/collections/fpv-quad/ultimate-fatshark-hdo-antenna-bundle.jpg"><img src="/assets/collections/fpv-quad/ultimate-fatshark-hdo-antenna-bundle.jpg"></a>
+    <a href="/assets/collections/fpv-quad/.jpg"><img src="/assets/collections/fpv-quad/.jpg"></a>
+    <figcaption>FPV system: FatShark HDO and RunCam Swift 2.</figcaption>
+</figure>
+
+
+
 - GetFPV: [Ultimate FPV Bundle - Fat Shark HDO, rapidFIRE, + Lumenier AXII 2 Diversity Antenna Bundle](https://www.getfpv.com/ultimate-fpv-bundle.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
 - GetFPV: [RUNCAM SWIFT 2 (2.5MM LENS) - ORANGE](https://www.getfpv.com/runcam-swift-2-2-5mm-lens-orange.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
 
 ### Motors and ESC
 
-- GetFPV: [DYS ARIA BLHELI_32BIT 35A ESC](https://www.getfpv.com/dys-aria-blheli-32bit-35a-esc.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
-- GetFPV: [EMAX RS2205/ 2300Kv RaceSpec Motor (CW)](https://www.getfpv.com/emax-rs2205-2300kv-racespec-motor-cw.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
+<figure class="half">
+    <a href="/assets/collections/fpv-quad/emax-rs2205.jpg"><img src="/assets/collections/fpv-quad/emax-rs2205.jpg"></a>
+    <a href="/assets/collections/fpv-quad/dys-aria-35a-esc.jpg"><img src="/assets/collections/fpv-quad/dys-aria-35a-esc.jpg"></a>
+    <figcaption>EMAX RS2205/2300Kv Motors and DYS ARIA BLHELI 35A ESCs.</figcaption>
+</figure>
+
+| Component | Description                            | Shops                 | OEM Link            | Comment |
+|:---------:|:--------------------------------------:|:---------------------:|:-------------------:|         |
+| Motor     | EMAX RS2205/2300Kv RaceSpec Motor (CW) | [getfpv](https://www.getfpv.com/emax-rs2205-2300kv-racespec-motor-cw.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89), [Banggood](https://www.banggood.com/4X-Emax-RS2205-2300-Racing-Edition-CWCCW-Motor-For-FPV-Multicopter-p-1032857.html?rmmds=myorder&cur_warehouse=CN&p=GQ230138854743201909&custlinkid=604589) | [EMAX](https://emaxmodel.com/emax-rs2205-racespec-motor.html)  | See OEM Link for the Datasheet | 
+| ESC       | DYS ARIA BLHELI_32BIT 35A ESC          | [getfpv](https://www.getfpv.com/dys-aria-blheli-32bit-35a-esc.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89), [Banggood](https://www.banggood.com/4X-DYS-Aria-BLHeli_32bit-35A-35amp-Brushless-ESC-3-6S-Dshot1200-Ready-Built-in-Current-Meter-Sensor-p-1187402.html?rmmds=myorder&cur_warehouse=CN&p=GQ230138854743201909&custlinkid=604595) | [dys](http://www.dys.hk/product/ARIA%2035A.html) | 
+
 
 ### Props
 
