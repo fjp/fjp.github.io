@@ -29,7 +29,7 @@ redirect_from:
 
 ### Flight Controller (FC)
 
-
+https://www.getfpv.com/matek-systems-f722-std-flight-controller-w-f7-32k-gyro-bfosd-barometer.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89
 
 - Banggood: [Matek-Systems-F722-STD-STM32F722-Flight-Controller-Built-in-OSD-BMP280-Barometer-Blackbox-for-RC-Drone](https://www.banggood.com/Matek-Systems-F722-STD-STM32F722-Flight-Controller-Built-in-OSD-BMP280-Barometer-Blackbox-for-RC-Drone-p-1225166.html?rmmds=myorder&cur_warehouse=UK&p=GQ230138854743201909&custlinkid=604567)
 
@@ -37,14 +37,14 @@ redirect_from:
 
 <figure class="half">
     <a href="/assets/collections/fpv-quad/ultimate-fatshark-hdo-antenna-bundle.jpg"><img src="/assets/collections/fpv-quad/ultimate-fatshark-hdo-antenna-bundle.jpg"></a>
-    <a href="/assets/collections/fpv-quad/.jpg"><img src="/assets/collections/fpv-quad/.jpg"></a>
+    <a href="/assets/collections/fpv-quad/runcam-swift-2.jpg"><img src="/assets/collections/fpv-quad/runcam-swift-2.jpg"></a>
     <figcaption>FPV system: FatShark HDO and RunCam Swift 2.</figcaption>
 </figure>
 
-
-
-- GetFPV: [Ultimate FPV Bundle - Fat Shark HDO, rapidFIRE, + Lumenier AXII 2 Diversity Antenna Bundle](https://www.getfpv.com/ultimate-fpv-bundle.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
-- GetFPV: [RUNCAM SWIFT 2 (2.5MM LENS) - ORANGE](https://www.getfpv.com/runcam-swift-2-2-5mm-lens-orange.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
+| Component  | Description                            | Shops                 | OEM Link            | Comment |
+|:----------:|:--------------------------------------:|:---------------------:|:-------------------:|         |
+| FPV Bundle | Ultimate FPV Bundle - Fat Shark HDO, rapidFIRE, + Lumenier AXII 2 Diversity Antenna Bundle | [getfpv](https://www.getfpv.com/ultimate-fpv-bundle.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89),  | [FatShark](https://www.fatshark.com/product/hdo-fpv-goggles/), [immersionRC](https://www.immersionrc.com/fpv-products/rapidfire/), [Lumenier](https://www.lumenier.com/products/antennas)  | See OEM links for the datasheets | 
+| Camera       | RunCam Swift 2 (2.5mm Lens)          | [getfpv](https://www.getfpv.com/runcam-swift-2-2-5mm-lens-orange.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89), [Banggood](https://www.banggood.com/RunCam-Swift-2-13-CCD-PAL-Micro-Camera-FOV-130150165-Degree-2_5mm2_3mm2_1mm-Integrated-OSD-MIC-p-1118948.html?rmmds=myorder&ID=226517043&cur_warehouse=UK&p=GQ230138854743201909&custlinkid=604623) | [RunCam](https://shop.runcam.com/runcam-swift-2/) | 
 
 ### Motors and ESC
 
