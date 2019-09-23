@@ -30,7 +30,7 @@ redirect_from:
 ### Flight Controller (FC) and Power Distribution Board (PDB)
 
 <figure class="half">
-    <a href="/assets/collections/fpv-quad/ultimate-fatshark-hdo-antenna-bundlemateksys-F722-STD.jpg"><img src="/assets/collections/fpv-quad/mateksys-F722-STD.jpg"></a>
+    <a href="/assets/collections/fpv-quad/mateksys-F722-STD.jpg"><img src="/assets/collections/fpv-quad/mateksys-F722-STD.jpg"></a>
     <a href="/assets/collections/fpv-quad/mateksys-fchub-6s.jpg"><img src="/assets/collections/fpv-quad/mateksys-fchub-6s.jpg"></a>
     <figcaption>FPV system: FatShark HDO and RunCam Swift 2.</figcaption>
 </figure>
