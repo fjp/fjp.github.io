@@ -44,7 +44,7 @@ https://www.getfpv.com/matek-systems-f722-std-flight-controller-w-f7-32k-gyro-bf
 | Component  | Description                            | Shops                 | OEM Link            | Comment |
 |:----------:|:--------------------------------------:|:---------------------:|:-------------------:|         |
 | FPV Bundle | Ultimate FPV Bundle - Fat Shark HDO, rapidFIRE, + Lumenier AXII 2 Diversity Antenna Bundle | [getfpv](https://www.getfpv.com/ultimate-fpv-bundle.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89),  | [FatShark](https://www.fatshark.com/product/hdo-fpv-goggles/), [immersionRC](https://www.immersionrc.com/fpv-products/rapidfire/), [Lumenier](https://www.lumenier.com/products/antennas)  | See OEM links for the datasheets | 
-| Camera       | RunCam Swift 2 (2.5mm Lens)          | [getfpv](https://www.getfpv.com/runcam-swift-2-2-5mm-lens-orange.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89), [Banggood](https://www.banggood.com/RunCam-Swift-2-13-CCD-PAL-Micro-Camera-FOV-130150165-Degree-2_5mm2_3mm2_1mm-Integrated-OSD-MIC-p-1118948.html?rmmds=myorder&ID=226517043&cur_warehouse=UK&p=GQ230138854743201909&custlinkid=604623) | [RunCam](https://shop.runcam.com/runcam-swift-2/) | 
+| Camera       | RunCam Swift 2 (2.5mm Lens)          | [getfpv](https://www.getfpv.com/runcam-swift-2-2-5mm-lens-orange.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89), [Banggood](https://www.banggood.com/RunCam-Swift-2-13-CCD-PAL-Micro-Camera-FOV-130150165-Degree-2_5mm2_3mm2_1mm-Integrated-OSD-MIC-p-1118948.html?rmmds=myorder&ID=226517043&cur_warehouse=UK&p=GQ230138854743201909&custlinkid=604623) | [RunCam](https://shop.runcam.com/runcam-swift-2/) |  |
 
 ### Motors and ESC
 
@@ -57,7 +57,7 @@ https://www.getfpv.com/matek-systems-f722-std-flight-controller-w-f7-32k-gyro-bf
 | Component | Description                            | Shops                 | OEM Link            | Comment |
 |:---------:|:--------------------------------------:|:---------------------:|:-------------------:|         |
 | Motor     | EMAX RS2205/2300Kv RaceSpec Motor (CW) | [getfpv](https://www.getfpv.com/emax-rs2205-2300kv-racespec-motor-cw.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89), [Banggood](https://www.banggood.com/4X-Emax-RS2205-2300-Racing-Edition-CWCCW-Motor-For-FPV-Multicopter-p-1032857.html?rmmds=myorder&cur_warehouse=CN&p=GQ230138854743201909&custlinkid=604589) | [EMAX](https://emaxmodel.com/emax-rs2205-racespec-motor.html)  | See OEM Link for the Datasheet | 
-| ESC       | DYS ARIA BLHELI_32BIT 35A ESC          | [getfpv](https://www.getfpv.com/dys-aria-blheli-32bit-35a-esc.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89), [Banggood](https://www.banggood.com/4X-DYS-Aria-BLHeli_32bit-35A-35amp-Brushless-ESC-3-6S-Dshot1200-Ready-Built-in-Current-Meter-Sensor-p-1187402.html?rmmds=myorder&cur_warehouse=CN&p=GQ230138854743201909&custlinkid=604595) | [dys](http://www.dys.hk/product/ARIA%2035A.html) | 
+| ESC       | DYS ARIA BLHELI_32BIT 35A ESC          | [getfpv](https://www.getfpv.com/dys-aria-blheli-32bit-35a-esc.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89), [Banggood](https://www.banggood.com/4X-DYS-Aria-BLHeli_32bit-35A-35amp-Brushless-ESC-3-6S-Dshot1200-Ready-Built-in-Current-Meter-Sensor-p-1187402.html?rmmds=myorder&cur_warehouse=CN&p=GQ230138854743201909&custlinkid=604595) | [dys](http://www.dys.hk/product/ARIA%2035A.html) |  |
 
 
 ### Props
