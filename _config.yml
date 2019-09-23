@@ -111,7 +111,7 @@ author:
   avatar           : "/assets/images/bio-photo.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Software developer at EFS."
   location         : "Ingolstadt Germany"
-  email            : "fp@fjp.at"
+  #email            : "fp@fjp.at"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
