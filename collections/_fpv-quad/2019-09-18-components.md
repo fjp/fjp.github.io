@@ -21,7 +21,7 @@ redirect_from:
 ## Components
 
 
-### Battiers/Charger
+### Batteries/Charger
 
 - GetFPV: [EV-Peak CQ3 Multi Charger 4x 100W NiMH / LiPO with Built-in Balance](https://www.getfpv.com/ev-peak-cq3-multi-charger-4x-100w-nimh-lipo-with-built-in-balance.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
 - GetFPV: [EV-PEAK CELLMETER-7 BATTERY CAPACITY CHECKER](https://www.getfpv.com/ev-peak-cellmeter-7-battery-capacity-checker.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
