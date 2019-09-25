@@ -162,6 +162,8 @@ design-patterns:
         url: /design-patterns/strategy
       - title: "Observer"
         url: /design-patterns/observer
+      - title: "Command"
+        url: /design-patterns/command
   - title: "Functional"
     url: /design-patterns/
     children:
