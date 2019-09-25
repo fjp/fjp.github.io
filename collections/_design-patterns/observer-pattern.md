@@ -3,7 +3,7 @@ layout: single #collection
 title: The Observer Pattern
 permalink: /design-patterns/observer
 excerpt: "The strategy design pattern summarized."
-date: 2018-09-20 15:41:35 +0200
+date: 2018-09-21 15:41:35 +0200
 categories: [programming, design patterns]
 tags: [programming, design patterns, observer, pattern, behavioral]
 comments: true
