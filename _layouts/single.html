@@ -2,23 +2,9 @@
 layout: default
 ---
 
-<style>
-.actions {
-  float:right;
-}
-</style>
-
 {% if page.use_math %}
   {% include mathjax_support %}
 {% endif %}
-
-<div class="actions">
-  <a href="https://github.com/fjp/fjp.github.io/blob/master/{{ site.collections_dir }}/{{ page.relative_path }}">Edit</a>
-</div>
-
-
-
-
 
 {% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
   {% include page__hero.html %}
