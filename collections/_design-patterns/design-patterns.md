@@ -3,6 +3,10 @@ layout: single #collection
 title: Design Patterns
 permalink: /design-patterns/
 excerpt: "Awesome list of Design Patterns"
+date: 2018-08-20 15:41:35 +0200
+categories: [programming, design patterns]
+tags: [programming, design patterns, factory, pattern, creational]
+comments: true
 classes: wide
 header:
   #overlay_image: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
