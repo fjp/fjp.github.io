@@ -44,7 +44,7 @@ On its own, the decorator pattern adds a lot of small classes to a design which 
 hard to understand. It also has typing problems which arise when code is dependent on a specific type,
 which is destroyed when using decorators. Decorators are typically transparent to the client of the
 component. That is, unless the client is relying on the component's concrete type. To avoid this
-drawback other design patterns such as the [factory pattern] are helpful. 
+drawback other design patterns such as the [factory pattern](/design-patterns/factory) are helpful. 
 
 
 <figure>
