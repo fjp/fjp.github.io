@@ -32,8 +32,9 @@ instance, and provides a global point of access to it.
 {: .notice}
 
 The Singleton pattern ensures you have at most one instance of a class in your application.
-It provides a global access point to that instance. It is implemented with a private constructor, 
-a static method to create one instance of your Singleton class and a static variable to check its existence.
+It provides a global access point to that instance by managing itself.  
+It is implemented with a private constructor, a static method to create a new instance of your Singleton class 
+in case none exists, or return the instance that already exists using a static member variable of the Singleton class type.
 
 The singleton pattern is taking on two responsibilities: 
 It is not only responsible for managing its one instance (and providing global access), 
