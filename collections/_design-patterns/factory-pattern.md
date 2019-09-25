@@ -3,7 +3,7 @@ layout: single #collection
 title: The Factory Pattern
 permalink: /design-patterns/factory
 excerpt: "The factory design pattern summarized."
-date: 2018-09-20 15:41:35 +0200
+date: 2018-09-22 15:41:35 +0200
 categories: [programming, design patterns]
 tags: [programming, design patterns, factory, pattern, creational]
 comments: true
