@@ -1,9 +1,9 @@
 ---
 layout: single
 title:  "MinIMU-9 v5 and RTIMULib2"
-permalink: /projects/autonomous-rc-car/minimu9v5/
+permalink: /projects/autonomous-rc-car/pololu-minimu9v5/
 excerpt: "Use the Pololu MinIMU 9 v5 with the RTIMULib2."
-date:   2019-06-19 20:55:36 +0200
+date:   2018-06-19 20:55:36 +0200
 categories: [rc-car, autonomous, sensors]
 tags: [imu, gyroscope, gyro, accelerometer, accel, magnetometer, mag, compass, interal measurement unit]
 comments: true
