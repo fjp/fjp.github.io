@@ -45,6 +45,7 @@ carefully choosing an appropriate Singleton implementation.
 Beware of the double-checked locking implementation which can be not thread-safe.
 
 The singleton is similar to global variables but without the downside of getting created at program start like global variables. Instead, the singleton can be created only when it is needed, which can avoid time consuming instantiation.
+This is called **lazy instantiation**.
 
 Examples where singletons are useful are:
 
