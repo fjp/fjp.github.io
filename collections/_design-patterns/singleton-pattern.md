@@ -70,6 +70,11 @@ object in an application is making use of the same global resource.
 
 The simplest form of the Singleton Pattern is the following.
 
+<p>
+Note that this simple implementation is not thread safe.
+</p>
+{: .notice}
+
 {% highlight java %}
 public class Singleton {
 	private static Singleton uniqueInstance;
@@ -90,7 +95,20 @@ public class Singleton {
 }
 {% endhighlight %}
 
-The concrete components implement this interface.
+The class contains a static variable `uniqueInstance` of its own class type `Singleton` to hold one instance. 
+The constructor is decleared private, which allows only `Singleton` to instantiate this class.
+The static `getInstance()` method enables us to instantiate the class and also to return an instance of it.
+Of course the `Singleton` class can have other useful member variables and methods.
+
+The static method `getInstance()` works as follows:
+If `uniqueInstance` is `null`, then no instance was created yet. In this case, `Singleton` is instantiated through
+its private constructor and assigned to to `uniqueInstance`. If `uniqueInstance` wasn't `null`, 
+then it was previously created and is therefore returned.
+
+<p>
+Note that if we never need the instance, it never gets created. This is lazy instantiation.
+</p>
+{: .notice}
 
 {% highlight java %}
 
