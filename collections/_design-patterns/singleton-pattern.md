@@ -31,7 +31,7 @@ instance, and provides a global point of access to it.
 </p>
 {: .notice}
 
-The Singleton pattern ensures you have t most one instance of a class in your application.
+The Singleton pattern ensures you have at most one instance of a class in your application.
 It provides a global access point to that instance. It is implemented with a private constructor, 
 a static method to create one instance of your Singleton class and a static variable to check its existence.
 
@@ -40,8 +40,22 @@ It is not only responsible for managing its one instance (and providing global a
 it is also responsible for whatever its main role is intended.
 A singleton should not be inherited from because its constructor should remain private.
 
-When designing multithreaded applications we need to examine the performance and resource constraints while carefully choosing 
-an appropriate Singleton implementation. Beware of the double-checked locking implementation which can be not thread-safe.
+When designing multithreaded applications we need to examine the performance and resource constraints while 
+carefully choosing an appropriate Singleton implementation. 
+Beware of the double-checked locking implementation which can be not thread-safe.
+
+Examples where singletons are useful are:
+
+- thread pools
+- caches
+- dialog boxes
+- objects that handle preferences and registry settings
+- objects used for logging
+- objects that act as device drivers to devices like printers and graphics cards. 
+
+In fact, for many of these types of objects, if we were to
+instantiate more than one we'd run into all sorts of problems like incorrect
+program behavior, overuse of resources, or inconsistent results.
 
 
 <figure>
