@@ -58,7 +58,8 @@ Examples where singletons are useful are:
 
 In fact, for many of these types of objects, if we were to
 instantiate more than one we'd run into all sorts of problems like incorrect
-program behavior, overuse of resources, or inconsistent results.
+program behavior, overuse of resources, or inconsistent results. By making use of the Singleton one can assure that every
+object in an application is making use of the same global resource.
 
 
 <figure>
