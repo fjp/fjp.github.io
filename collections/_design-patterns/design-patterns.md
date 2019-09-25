@@ -5,7 +5,7 @@ permalink: /design-patterns/
 excerpt: "Awesome list of Design Patterns"
 date: 2018-08-20 15:41:35 +0200
 categories: [programming, design patterns]
-tags: [programming, design patterns, factory, pattern, creational]
+tags: [programming, design patterns, solid, books]
 comments: true
 classes: wide
 header:
