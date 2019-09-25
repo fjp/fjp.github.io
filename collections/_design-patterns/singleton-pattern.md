@@ -68,10 +68,26 @@ object in an application is making use of the same global resource.
     <figcaption>Singleton gives another method of creating unique objects with global access.</figcaption>
 </figure>
 
-In the following example is under construction.
+The simplest form of the Singleton Pattern is the following.
 
 {% highlight java %}
-
+public class Singleton {
+	private static Singleton uniqueInstance;
+ 
+	private Singleton() {}
+ 
+	public static Singleton getInstance() {
+		if (uniqueInstance == null) {
+			uniqueInstance = new Singleton();
+		}
+		return uniqueInstance;
+	}
+ 
+	// other useful methods here
+	public String getDescription() {
+		return "I'm a classic Singleton!";
+	}
+}
 {% endhighlight %}
 
 The concrete components implement this interface.
