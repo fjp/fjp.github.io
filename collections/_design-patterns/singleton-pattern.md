@@ -3,7 +3,7 @@ layout: single #collection
 title: The Singleton Pattern
 permalink: /design-patterns/singleton
 excerpt: "The singleton design pattern summarized."
-date: 2018-09-20 15:41:35 +0200
+date: 2018-09-24 15:41:35 +0200
 categories: [programming, design patterns]
 tags: [programming, design patterns, singleton, pattern, creational]
 comments: true
