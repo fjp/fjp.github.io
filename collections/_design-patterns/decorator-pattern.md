@@ -3,7 +3,7 @@ layout: single #collection
 title: The Decorator Pattern
 permalink: /design-patterns/decorator
 excerpt: "The decorator design pattern summarized."
-date: 2018-09-20 15:41:35 +0200
+date: 2018-09-23 15:41:35 +0200
 categories: [programming, design patterns]
 tags: [programming, design patterns, decorator, pattern, structural]
 comments: true
