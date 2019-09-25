@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "MinIMU 9 v5 and RTIMULib2"
+title:  "MinIMU-9 v5 and RTIMULib2"
 permalink: /projects/autonomous-rc-car/minimu9v5/
 excerpt: "Use the Pololu MinIMU 9 v5 with the RTIMULib2."
 date:   2018-06-19 20:55:36 +0200
