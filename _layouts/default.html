@@ -13,6 +13,12 @@
     {% include head.html %}
     {% include head/custom.html %}
   </head>
+  
+  <style>
+    .actions {
+      float:right;
+    }
+  </style>
 
   <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
     {% include_cached skip-links.html %}
@@ -20,6 +26,9 @@
     {% include_cached masthead.html %}
 
     <div class="initial-content">
+      <div class="actions">
+        <a href="https://github.com/fjp/fjp.github.io/blob/master/{{ site.collections_dir }}/{{ page.relative_path }}">Edit</a>
+      </div>
       {{ content }}
     </div>
 
