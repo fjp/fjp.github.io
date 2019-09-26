@@ -23,7 +23,7 @@ redirect_from:
 
 ### Batteries/Charger
 
-<figure class="half">
+<figure class="third">
     <a href="/assets/collections/fpv-quad/ev-peak-cq3-4x-100w-lead_2.jpg"><img src="/assets/collections/fpv-quad/ev-peak-cq3-4x-100w-lead_2.jpg" width="600"></a>
     <a href="/assets/collections/fpv-quad/ev-peak-cellmeter-7-battery-capacity-checker.jpg"><img src="/assets/collections/fpv-quad/ev-peak-cellmeter-7-battery-capacity-checker.jpg" width="600"></a>
     <figcaption>EV-Peak CQ3 Multi Charger 4x 100W NiMH / LiPO with Built-in Balance and EV-Peak Cellmeter-7 Battery Capacity Checker</figcaption>
