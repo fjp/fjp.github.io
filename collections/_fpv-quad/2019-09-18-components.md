@@ -23,9 +23,18 @@ redirect_from:
 
 ### Batteries/Charger
 
-- GetFPV: [EV-Peak CQ3 Multi Charger 4x 100W NiMH / LiPO with Built-in Balance](https://www.getfpv.com/ev-peak-cq3-multi-charger-4x-100w-nimh-lipo-with-built-in-balance.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
-- GetFPV: [EV-PEAK CELLMETER-7 BATTERY CAPACITY CHECKER](https://www.getfpv.com/ev-peak-cellmeter-7-battery-capacity-checker.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
-- GetFPV: [LUMENIER 1300MAH 3S 60C LIPO BATTERY (XT60)](https://www.getfpv.com/lumenier-1300mah-3s-60c-lipo-battery-xt60.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
+<figure class="four">
+    <a href="/assets/collections/fpv-quad/ev-peak-cq3-4x-100w-lead_2"><img src="/assets/collections/fpv-quad/ev-peak-cq3-4x-100w-lead_2"></a>
+    <a href="/assets/collections/fpv-quad/ev-peak-cellmeter-7-battery-capacity-checker.jpg"><img src="/assets/collections/fpv-quad/ev-peak-cellmeter-7-battery-capacity-checker.jpg"></a>
+    <figcaption>EV-Peak CQ3 Multi Charger 4x 100W NiMH / LiPO with Built-in Balance and EV-Peak Cellmeter-7 Battery Capacity Checker</figcaption>
+</figure>
+
+| Component         | Description                            | Shops                 | OEM Link            | Comment |
+|:-----------------:|:--------------------------------------:|:---------------------:|:-------------------:|         |
+| Charger           | EV-Peak CQ3 Multi Charger 4x 100W NiMH / LiPO with Built-in Balance | [getfpv](https://www.getfpv.com/ev-peak-cq3-multi-charger-4x-100w-nimh-lipo-with-built-in-balance.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)  | [EV-Peak](https://www.ev-peak.com/prodcuts-item/ev-peak-cq3/) | See OEM link for the manual | 
+| Battery Checker   | EV-Peak Cellmeter-7 Battery Capacity Checker | [getfpv](https://www.getfpv.com/ev-peak-cellmeter-7-battery-capacity-checker.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89), [Banggood](https://www.banggood.com/CellMeter-7-Battery-Capacity-Checker-Tester-LiPo-LiFe-Li-ion-NiMH-NiCd-p-85223.html?rmmds=search&cur_warehouse=CN&p=GQ230138854743201909&custlinkid=609282) | [EV-Peak](http://www.ev-peak.com.hk/page179?product_id=2404) |  |
+| Battery        | Lumenier 1300mah 3S 60C Lipo Battery (XT60) | [getfpv](https://www.getfpv.com/lumenier-1300mah-3s-60c-lipo-battery-xt60.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89) | OEM Link |    |
+
 
 ### Flight Controller (FC) and Power Distribution Board (PDB)
 
