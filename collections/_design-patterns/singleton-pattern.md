@@ -103,7 +103,9 @@ Of course the `Singleton` class can have other useful member variables and metho
 The static method `getInstance()` works as follows:
 If `uniqueInstance` is `null`, then no instance was created yet. In this case, `Singleton` is instantiated through
 its private constructor and assigned to to `uniqueInstance`. If `uniqueInstance` wasn't `null`, 
-then it was previously created and is therefore returned.
+then it was previously created and is therefore returned. Because the `getInstance()` is a static method,
+it allows access from anywhere in the code using `Singleton::getInstance()`. 
+This is just as easy as accessing a global variable but with the advantage of lazy instantiaion.
 
 <p>
 Note that if we never need the instance, it never gets created. This is lazy instantiation.
