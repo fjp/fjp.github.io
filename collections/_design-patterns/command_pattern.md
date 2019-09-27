@@ -40,10 +40,12 @@ queue or log requests, and support undoable operations.
     <figcaption>Encapsulate methods into Command objects with the command pattern: store them, pass them around, and invoke them when needed.</figcaption>
 </figure>
 
-In the following example is under construction.
+The `Command` interface has one `execute()` method:
 
 {% highlight java %}
-
+public interface Command {
+	public void execute();
+}
 {% endhighlight %}
 
 
