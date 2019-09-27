@@ -206,5 +206,6 @@ public class SingletonClient {
 The output of the thread safe implementation would be:
 
 {% highlight bash %}
+$ java SingletonClient
 I'm a thread safe Singleton!
 {% endhighlight %}
