@@ -194,11 +194,17 @@ public class Singleton {
 
 A main program that uses the `Singleton` class can look like this:
 
-{% highlight bash %}
+{% highlight java %}
 public class SingletonClient {
 	public static void main(String[] args) {
 		Singleton singleton = Singleton.getInstance();
 		System.out.println(singleton.getDescription());
 	}
 }
+{% endhighlight %}
+
+The output of the thread safe implementation would be:
+
+{% highlight bash %}
+I'm a thread safe Singleton!
 {% endhighlight %}
