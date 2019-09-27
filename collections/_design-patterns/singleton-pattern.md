@@ -198,6 +198,7 @@ A main program that uses the `Singleton` class can look like this:
 public class SingletonClient {
 	public static void main(String[] args) {
 		Singleton singleton = Singleton.getInstance();
+		System.out.println(singleton.getDescription());
 	}
 }
 {% endhighlight %}
