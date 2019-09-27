@@ -40,6 +40,10 @@ queue or log requests, and support undoable operations.
     <figcaption>Encapsulate methods into Command objects with the command pattern: store them, pass them around, and invoke them when needed.</figcaption>
 </figure>
 
+
+The following example is a remote control with multiple slots, where each slot has a corresponding on/off button. 
+Each button will have its own command object assigned. The command object know which actions to call on the receiver.
+
 The `Command` interface has one `execute()` method:
 
 {% highlight java %}
@@ -67,7 +71,6 @@ public class LightOnCommand implements Command {
 
 And the off command:
 
-
 {% highlight java %}
 public class LightOffCommand implements Command {
 	Light light;
@@ -82,6 +85,62 @@ public class LightOffCommand implements Command {
 }
 {% endhighlight %}
 
+To use these command objects an invoker, in this example the remote control, needs to be configured to hold these commands:
+
+{% highlight java %}
+public class RemoteControl {
+	Command[] onCommands;
+	Command[] offCommands;
+ 
+	public RemoteControl() {
+		onCommands = new Command[7];
+		offCommands = new Command[7];
+ 
+		Command noCommand = new NoCommand();
+		for (int i = 0; i < 7; i++) {
+			onCommands[i] = noCommand;
+			offCommands[i] = noCommand;
+		}
+	}
+  
+	public void setCommand(int slot, Command onCommand, Command offCommand) {
+		onCommands[slot] = onCommand;
+		offCommands[slot] = offCommand;
+	}
+ 
+	public void onButtonWasPushed(int slot) {
+		onCommands[slot].execute();
+	}
+ 
+	public void offButtonWasPushed(int slot) {
+		offCommands[slot].execute();
+	}
+  
+	public String toString() {
+		StringBuffer stringBuff = new StringBuffer();
+		stringBuff.append("\n------ Remote Control -------\n");
+		for (int i = 0; i < onCommands.length; i++) {
+			stringBuff.append("[slot " + i + "] " + onCommands[i].getClass().getName()
+				+ "    " + offCommands[i].getClass().getName() + "\n");
+		}
+		return stringBuff.toString();
+	}
+}
+{% endhighlight %}
+
+Note that the constructor of this `RemoteControl` class assigns `NoCommand` objects to the slots.
+The `NoCommand` object implements the `Command` interface but its `execute()` method does not do or return anything.
+
+{% highlight java %}
+public class NoCommand implements Command {
+	public void execute() { }
+}
+{% endhighlight %}
+
+<p>
+Note that the <code>NoCommand</code> object is also sometimes considered a design pattern which is known as <b>Null</b>.
+</p>
+{: .notice}
 
 the following main class can be executed.
 
