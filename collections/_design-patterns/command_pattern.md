@@ -85,6 +85,26 @@ public class LightOffCommand implements Command {
 }
 {% endhighlight %}
 
+Here the `Light` class is a receiver which can look like this:
+
+{% highlight java %}
+public class Light {
+	String location = "";
+
+	public Light(String location) {
+		this.location = location;
+	}
+
+	public void on() {
+		System.out.println(location + " light is on");
+	}
+
+	public void off() {
+		System.out.println(location + " light is off");
+	}
+}
+{% endhighlight %}
+
 A command with multiple actions looks like this:
 
 {% highlight java %}
