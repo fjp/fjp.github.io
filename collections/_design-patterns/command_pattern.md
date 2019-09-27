@@ -42,7 +42,8 @@ queue or log requests, and support undoable operations.
 
 
 The following example is a remote control with multiple slots, where each slot has a corresponding on/off button. 
-Each button will have its own command object assigned. The command object know which actions to call on the receiver.
+Each button will have its own command object assigned. The command object knows which actions to call on its receiver.
+Additionally, there is an undo button on the remote which can also be implemented as `Command` as we will see later.
 
 The `Command` interface has one `execute()` method:
 
@@ -139,22 +140,26 @@ public class StereoOffCommand implements Command {
 }
 {% endhighlight %}
 
-To use these command objects an invoker, in this example the remote control, needs to be configured to hold these commands:
+To use these command objects an invoker, in this example the remote control, needs to be configured to hold these commands in its slots,
+which is implemented with two arrays of `Command` type, one for `onCommands` and one for `offCommands`. The last button press is stored
+in the `undoCommand` member:
 
 {% highlight java %}
-public class RemoteControl {
+public class RemoteControlWithUndo {
 	Command[] onCommands;
 	Command[] offCommands;
+	Command undoCommand;
  
-	public RemoteControl() {
+	public RemoteControlWithUndo() {
 		onCommands = new Command[7];
 		offCommands = new Command[7];
  
 		Command noCommand = new NoCommand();
-		for (int i = 0; i < 7; i++) {
+		for(int i=0;i<7;i++) {
 			onCommands[i] = noCommand;
 			offCommands[i] = noCommand;
 		}
+		undoCommand = noCommand;
 	}
   
 	public void setCommand(int slot, Command onCommand, Command offCommand) {
@@ -164,10 +169,16 @@ public class RemoteControl {
  
 	public void onButtonWasPushed(int slot) {
 		onCommands[slot].execute();
+		undoCommand = onCommands[slot];
 	}
  
 	public void offButtonWasPushed(int slot) {
 		offCommands[slot].execute();
+		undoCommand = offCommands[slot];
+	}
+ 
+	public void undoButtonWasPushed() {
+		undoCommand.undo();
 	}
   
 	public String toString() {
@@ -177,17 +188,19 @@ public class RemoteControl {
 			stringBuff.append("[slot " + i + "] " + onCommands[i].getClass().getName()
 				+ "    " + offCommands[i].getClass().getName() + "\n");
 		}
+		stringBuff.append("[undo] " + undoCommand.getClass().getName() + "\n");
 		return stringBuff.toString();
 	}
 }
 {% endhighlight %}
 
 Note that the constructor of this `RemoteControl` class assigns `NoCommand` objects to the slots.
-The `NoCommand` object implements the `Command` interface but its `execute()` method does not do or return anything.
+The `NoCommand` object implements the `Command` interface but its `execute()` and `undo()` methods do nothing and do not return anything.
 
 {% highlight java %}
 public class NoCommand implements Command {
 	public void execute() { }
+	public void undo() { }
 }
 {% endhighlight %}
 
@@ -204,7 +217,7 @@ After having an option to assign commands to the invoker (remote), a client can 
 public class RemoteLoader {
  
 	public static void main(String[] args) {
-		RemoteControl remoteControl = new RemoteControl();
+		RemoteControlWithUndo remoteControl = new RemoteControlWithUndo();
  
 		Light livingRoomLight = new Light("Living Room");
 		Light kitchenLight = new Light("Kitchen");
@@ -267,6 +280,7 @@ $java RemoteLoader
 [slot 4] NoCommand			NoCommand
 [slot 5] NoCommand			NoCommand
 [slot 6] NoCommand			NoCommand
+[undo] NoCommand
 
 Living Room light is on
 Living Room light is off
@@ -278,4 +292,89 @@ Living Room sterio is on
 Living Room sterio is set for CD input
 Living Room sterio volume set to 11
 Living Room light is off
+{% endhighlight %}
+
+
+Another example using the undo button is the following:
+
+{% highlight java %}
+public class RemoteLoader {
+ 
+	public static void main(String[] args) {
+		RemoteControlWithUndo remoteControl = new RemoteControlWithUndo();
+ 
+		Light livingRoomLight = new Light("Living Room");
+ 
+		LightOnCommand livingRoomLightOn = 
+				new LightOnCommand(livingRoomLight);
+		LightOffCommand livingRoomLightOff = 
+				new LightOffCommand(livingRoomLight);
+ 
+		remoteControl.setCommand(0, livingRoomLightOn, livingRoomLightOff);
+ 
+		remoteControl.onButtonWasPushed(0);
+		remoteControl.offButtonWasPushed(0);
+		System.out.println(remoteControl);
+		remoteControl.undoButtonWasPushed();
+		remoteControl.offButtonWasPushed(0);
+		remoteControl.onButtonWasPushed(0);
+		System.out.println(remoteControl);
+		remoteControl.undoButtonWasPushed();
+
+		CeilingFan ceilingFan = new CeilingFan("Living Room");
+   
+		CeilingFanMediumCommand ceilingFanMedium = 
+				new CeilingFanMediumCommand(ceilingFan);
+		CeilingFanHighCommand ceilingFanHigh = 
+				new CeilingFanHighCommand(ceilingFan);
+		CeilingFanOffCommand ceilingFanOff = 
+				new CeilingFanOffCommand(ceilingFan);
+  
+		remoteControl.setCommand(0, ceilingFanMedium, ceilingFanOff);
+		remoteControl.setCommand(1, ceilingFanHigh, ceilingFanOff);
+   
+		remoteControl.onButtonWasPushed(0);
+		remoteControl.offButtonWasPushed(0);
+		System.out.println(remoteControl);
+		remoteControl.undoButtonWasPushed();
+  
+		remoteControl.onButtonWasPushed(1);
+		System.out.println(remoteControl);
+		remoteControl.undoButtonWasPushed();
+	}
+}
+{% endhighlight %}
+
+
+And its output:
+
+{% highlight bash %}
+$java RemoteLoader
+Light is on
+Light is off
+
+------ Remote control ------
+[slot 0] LightOnCommand			LightOffCommand
+[slot 1] NoCommand			NoCommand
+[slot 2] NoCommand			NoCommand
+[slot 3] NoCommand			NoCommand
+[slot 4] NoCommand			NoCommand
+[slot 5] NoCommand			NoCommand
+[slot 6] NoCommand			NoCommand
+[undo] LightOffCommand
+
+Light is on
+
+Ligt is off
+Ligth is on
+
+------ Remote control ------
+[slot 0] LightOnCommand			LightOffCommand
+[slot 1] NoCommand			NoCommand
+[slot 2] NoCommand			NoCommand
+[slot 3] NoCommand			NoCommand
+[slot 4] NoCommand			NoCommand
+[slot 5] NoCommand			NoCommand
+[slot 6] NoCommand			NoCommand
+[undo] LightOnCommand
 {% endhighlight %}
