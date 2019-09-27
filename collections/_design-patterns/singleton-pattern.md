@@ -168,14 +168,36 @@ public class Singleton {
 
 Here an instance of `Singleton` is created static, which makes this code guaranteed to be thread safe.
 
-the following main class can be executed.
+Another method is to use **double-checked locking** to reduce the use of synchronization in `getInstance()`.
+
+With double-checked locking, we first check to see if an instance is created, and if not, 
+THEN we synchronize. This way, we only synchronize the first time through, just what we want.
 
 {% highlight java %}
-
+public class Singleton {
+	private volatile static Singleton uniqueInstance;
+ 
+	private Singleton() {}
+ 
+	public static Singleton getInstance() {
+		if (uniqueInstance == null) {
+			synchronized (Singleton.class) {
+				if (uniqueInstance == null) {
+					uniqueInstance = new Singleton();
+				}
+			}
+		}
+		return uniqueInstance;
+	}
+}
 {% endhighlight %}
 
-Starting this application results in the following output.
+A main program that uses the `Singleton` class can look like this:
 
 {% highlight bash %}
-
+public class SingletonClient {
+	public static void main(String[] args) {
+		Singleton singleton = Singleton.getInstance();
+	}
+}
 {% endhighlight %}
