@@ -172,7 +172,9 @@ public class NoCommand implements Command {
 {% endhighlight %}
 
 <p>
-Note that the <code>NoCommand</code> object is also sometimes considered a design pattern which is known as <b>Null</b>.
+The <code>NoCommand</code> object is an example of a <b>null object</b>. 
+A null object is useful when you don't have a meaningful object to return, 
+and yet you want to remove the responsibility for handling null from the client.
 </p>
 {: .notice}
 
