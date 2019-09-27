@@ -409,3 +409,14 @@ public class MacroCommand implements Command {
 	}
 }
 {% endhighlight %}
+
+To create a macro the following steps need to be done:
+
+1. Create the set of commands for the macro
+2. Create two arrays, one for the On commands and one for the Off commands
+3. Create new `MacroCommand` objects for the On and Off macros
+4. Asign the `MacroCommand`s to a button using the `RemoteControl.setCommand()` method.
+5. Pushing a button that has a `MacroCommand` assigned will invoke the specified actions. 
+
+For the undo functionality of a `MacroCommand` all the commands that were invoked in the macro must undo their previous actions.
+As shown in the previous code snippet, the commands need to be done backwards, to ensure proper undo functionality.
