@@ -112,17 +112,61 @@ Note that if we never need the instance, it never gets created. This is lazy ins
 </p>
 {: .notice}
 
-{% highlight java %}
 
+To deal with multithreading one way is to make `getInstance()` synchronized (Java keyword), 
+which forces every thread to wait its turn before it can enter the method.
+This way, no two threads may enter the method at the same time.
+
+{% highlight java %}
+public class Singleton {
+	private static Singleton uniqueInstance;
+ 
+	// other useful instance variables here
+ 
+	private Singleton() {}
+ 
+	public static synchronized Singleton getInstance() {
+		if (uniqueInstance == null) {
+			uniqueInstance = new Singleton();
+		}
+		return uniqueInstance;
+	}
+ 
+	// other useful methods here
+	public String getDescription() {
+		return "I'm a thread safe Singleton!";
+	}
+}
 {% endhighlight %}
 
-Another concrete component.
+<p>
+Note that this method, using synchronize, is expensive and the synchronization is only relevant the first time when there was no instance created yet. Once we've set the `uniqueInstance` variable to an intace of `Singleton`, we have no further need to synchronize this method.
+</p>
+{: .notice}
+
+If the performance of `getInstance()` is not critical to your application and therefore not causing any substantial overhead then `synchronize` is ok to use.
+
+If your application always creates and uses an instance of `Singleton` or the overhead of creation and runtime aspects of the `Singleton`
+are not onerous, you may want to create your `Singleton` eagerly, like this:
 
 {% highlight java %}
-
+public class Singleton {
+	private static Singleton uniqueInstance = new Singleton();
+ 
+	private Singleton() {}
+ 
+	public static Singleton getInstance() {
+		return uniqueInstance;
+	}
+	
+	// other useful methods here
+	public String getDescription() {
+		return "I'm a statically initialized Singleton!";
+	}
+}
 {% endhighlight %}
 
-
+Here an instance of `Singleton` is created static, which makes this code guaranteed to be thread safe.
 
 the following main class can be executed.
 
