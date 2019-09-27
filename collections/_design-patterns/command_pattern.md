@@ -380,7 +380,7 @@ Ligth is on
 {% endhighlight %}
 
 
-### Macro Command
+## Macro Command
 
 It is also possible to combine multiple commands into one:
 
@@ -424,3 +424,8 @@ As shown in the previous code snippet, the commands need to be done backwards, t
 
 To implement a history of undo commands, in order to press the undo button multiple times, a stack of previous commands instead of just a reference to the last command is need. Then, whenever undo is pressed, 
 the invoker pops the first item (command) off the stack and calls its `undo()` method.
+
+
+## Lambda Implementation
+
+To avoid having multiple small command classes that only have one or two methods (`execute()` and `undo()`) we can use lambda functions instead.
