@@ -420,3 +420,7 @@ To create a macro the following steps need to be done:
 
 For the undo functionality of a `MacroCommand` all the commands that were invoked in the macro must undo their previous actions.
 As shown in the previous code snippet, the commands need to be done backwards, to ensure proper undo functionality.
+
+
+To implement a history of undo commands, in order to press the undo button multiple times, a stack of previous commands instead of just a reference to the last command is need. Then, whenever undo is pressed, 
+the invoker pops the first item (command) off the stack and calls its `undo()` method.
