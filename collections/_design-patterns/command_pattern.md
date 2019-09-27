@@ -48,12 +48,39 @@ public interface Command {
 }
 {% endhighlight %}
 
+Concrete implementations of this interface for a light on/off command look like this:
+For the on command:
+
+{% highlight java %}
+public class LightOnCommand implements Command {
+	Light light;
+
+	public LightOnCommand(Light light) {
+		this.light = light;
+	}
+
+	public void execute() {
+		light.on();
+	}
+}
+{% endhighlight %}
+
+And the off command:
 
 
 {% highlight java %}
-
+public class LightOffCommand implements Command {
+	Light light;
+ 
+	public LightOffCommand(Light light) {
+		this.light = light;
+	}
+ 
+	public void execute() {
+		light.off();
+	}
+}
 {% endhighlight %}
-
 
 
 the following main class can be executed.
