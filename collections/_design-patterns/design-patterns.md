@@ -29,7 +29,8 @@ The following list shows some important design patterns, which are design princi
 - [Factory](/design-patterns/factory)
 - [Singleton](/design-patterns/singleton)
 - [Command](/design-patterns/command)
-
+- [Adapter](/design-patterns/adapter)
+- [Facade](/design-patterns/facade)
 
 ## SOLID Design Principles
 
@@ -97,13 +98,13 @@ what stays the same.
 {: .notice}
 
 <p>
-<b>Program to an interface, not an implementation. </b>
+<b>Favor composition over inheritance.</b>
+With composition it is possible to delegate behaviors instead of inheriting them.
 </p>
 {: .notice}
 
 <p>
-<b>Favor composition over inheritance. </b>
-With composition it is possible to delegate behaviors instead of inheriting it.
+<b>Program to an interface, not an implementation. </b>
 </p>
 {: .notice}
 
@@ -112,6 +113,18 @@ With composition it is possible to delegate behaviors instead of inheriting it.
   Loosely coupled designs allow us to build flexible object oriented
 systems that can handle change because they minimize
 the interdependency between objects. This principle can be seen in the <a href="/observer/">observer pattern</a>.
+</p>
+{: .notice}
+
+<p>
+<b>Classes should be open for extension but closed for modification.</b>
+Instead of modifying a class by adding new methods and members use inheritance or even better composition. 
+Extend the class by adding a new interface class member. This makes it possible to change the behavior even at runtime.
+</p>
+{: .notice}
+
+<p>
+<b>Depend on abstractions. Do not depend on concrete classes.</b>
 </p>
 {: .notice}
 
