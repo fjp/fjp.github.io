@@ -463,13 +463,15 @@ public void setCommand(int slot, Command onCommand, Command offCommand) {
 
 3. Push the remote control buttons
 
-When we call the remote's `onButtonWasPushed(0)` method, the command that's in slot 0 is a function object (created by the lambda expression). Because the lambda expression has the same signature as the `execute()` method of the `Command` interface, the compiler is able to match this method with the lambda expression. Both have no arguments and no return types.
+When we call the remote's `onButtonWasPushed(0)` method, the command that's in slot 0 is a function object (created by the lambda expression). 
+Because the lambda expression has the same signature as the `execute()` method of the `Command` interface, the compiler is able to match this method with the lambda expression. 
+Both have no arguments and no return types.
 Therefore, calling `onButtonWasPushed(0)` invokes `onCommands[0].execute()` which the lambda expressions stands in for and its statements are executed.
 
 Instead of using lambda expressions which call only one method, for example `livingRoomLight.on();`, it is possible to simplify the code using *method references*.
 
 {% highlight java %}
-remoteControl.setCommand(0, livingRoomLight::on, livingRoomLight::off);
+remoteControl.setCommand(0, livingRoomLight.on, livingRoomLight.off);
 {% endhighlight %}
 
 In case we need to call more than one method we need to create a lambda expression either in line,
@@ -494,6 +496,7 @@ Command stereoOnWithCD = () -> {
 
 This can then be passed using its name:
 
-{% endhighlight %}
-remoteControl.setCommand(3, stereoOnWithCD, stereo::off);
+
 {% highlight java %}
+remoteControl.setCommand(3, stereoOnWithCD, stereo::off);
+{% endhighlight %}
