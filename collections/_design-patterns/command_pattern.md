@@ -32,7 +32,18 @@ queue or log requests, and support undoable operations.
 </p>
 {: .notice}
 
+- The Command Pattern decouples an object making a request, `invoker`, from the one that knows how to perform it, `receiver`.
+- A `Command` object implements the `Command` interface and is at the center of this decoupling. A concrete `Command` object encapsulates a `receiver` with an action (or set of actions).
+- An `invoker` makes a request of a `Command` object by calling its `execute()` method, which invokes those actions on the receiver.
+- `invoker`s can be parameterized with `Commands`, even dynamically at runtime.
+- `Commands` may support undo by implementing an `undo()` method that restores the object to its previous state before the `execute()` method was last called.
+- `MacroCommands` are a simple extension of `Command` that allow multiple commands to be invoked. 
+Likewise, `MacroCommand`s can easily support `undo()`.
+- In practice, it is not uncommon for "smart" Command objects to implement the request themselves rather than delegating to a `receiver`.
 
+Examples where the Command Pattern is useful are:
+
+- Commands may also be used to implement logging and transactional systems
 
 
 <figure>
