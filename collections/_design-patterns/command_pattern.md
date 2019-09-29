@@ -426,6 +426,66 @@ To implement a history of undo commands, in order to press the undo button multi
 the invoker pops the first item (command) off the stack and calls its `undo()` method.
 
 
-## Lambda Implementation
+## Lambda Expressions Implementation
 
-To avoid having multiple small command classes that only have one or two methods (`execute()` and `undo()`) we can use lambda functions instead.
+To avoid having multiple small command classes that only have one or two methods (`execute()` and `undo()`), 
+which provide a common interface to the behavior of many different receivers, we can use lambda expressions/functions instead.
+
+To achieve this we create a lambda expression, also called anonymous function, that is a function (or a subroutine) defined, and possibly called, without being bound to an identifier. In the example above, the lambda expression should call the 
+`execute()` method. To use lambda expressions the following steps are required:
+
+1. Create the Receiver, which is the same as before
+
+{% highlight java %}
+Light livingRoomLight = new Light("Living Room");
+{% endhighlight %}
+
+2. Set the remote control's commands using lambda expressions
+
+Instead of creating `LightOnCommand` and `LightOffCommand` objects to pass to the `remoteControl.setCommand()`, we simply pass a lambda expression in place of each object, with the code from their respective `execute()` method:
+
+{% highlight java %}
+remoteControl.setCommand(0, () -> { livingRooomLight.on() }, () -> { livingRoomLight.off() }; } );
+
+public void setCommand(int slot, Command onCommand, Command offCommand) {
+	onCommands[slot] = onCommand;
+	offCommands[slot] = offCommand;
+}
+{% endhighlight %}
+
+3. Push the remote control buttons
+
+When we call the remote's `onButtonWasPushed(0)` method, the command that's in slot 0 is a function object (created by the lambda expression). Because the lambda expression has the same signature as the `execute()` method of the `Command` interface, the compiler is able to match this method with the lambda expression. Both have no arguments and no return types.
+Therefore, calling `onButtonWasPushed(0)` invokes `onCommands[0].execute()` which the lambda expressions stands in for and its statements are executed.
+
+Instead of using lambda expressions which call only one method, for example `livingRoomLight.on();`, it is possible to simplify the code using *method references*.
+
+{% highlight java %}
+remoteControl.setCommand(0, livingRoomLight::on, livingRoomLight::off);
+{% endhighlight %}
+
+In case we need to call more than one method we need to create a lambda expression either in line,
+or we can cwrite it separately, give it a name, and then pass this to the `remoteControl`'s `setCommand()` method. 
+For example with the `sereoOnWithCDCommand` that does three things:
+
+{% highlight java %}
+stereo.on();
+stereo.setCD();
+stereo.setVolume(11);
+{% endhighlight %}
+
+a named lambda expressions, that has type `Command` to match the `Command` interface's `execute()` method, would look like this:
+
+{% highlight java %}
+Command stereoOnWithCD = () -> {
+	stereo.on();
+	stereo.setCD();
+	stereo.setVolume(11);
+}
+{% endhighlight %}
+
+This can then be passed using its name:
+
+{% endhighlight %}
+remoteControl.setCommand(3, stereoOnWithCD, stereo::off);
+{% highlight java %}
