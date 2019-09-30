@@ -42,8 +42,6 @@ Likewise, `MacroCommand`s can easily support `undo()`.
 - In practice, it is not uncommon for "smart" Command objects to implement the request themselves rather than delegating to a `receiver`.
 
 
-Examples where the Command Pattern is useful are:
-
 Commands combine a receiver and its actions, which allows us to pass these packaged computations around and invoke them
 at any time after creating the Command object. Clients that invoke such an object can be for example
 scedulers, thread pools and job queus. 
@@ -53,7 +51,7 @@ After the call finished the command object is discarded and a new one is process
 This decouples the job queue classes from the objects that are doing teh computation. 
 Such an application is useful for web servers that handle requests from multiple users.
 
-- Commands may also be used to implement logging and transactional systems
+`Command`s may also be used to implement logging and transactional systems. Executed commands are stored in a history on disk. When a crash occurs, the command objects are reloaded and invoked calling their `execute()` methods in batch and in order. To achieve this, the `Command` interface requires `store()` and `load()` methods.
 
 
 <figure>
