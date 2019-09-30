@@ -8,8 +8,8 @@ categories: [programming, design patterns]
 tags: [programming, design patterns, command, pattern, behavioral]
 comments: true
 use_math: true
-toc: false
-# toc_label: "Unscented Kalman Filter"
+toc: true
+toc_label: "Command Pattern"
 classes: wide
 header:
   #overlay_image: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
@@ -546,4 +546,24 @@ Living Room stereo iso n
 Living Room stero is set for CD input
 Living Room stereo volume set to 11
 Living Room stereo is off
+{% endhighlight %}
+
+The constructor of the `RemoteControl` can also be adapted to use lambda expressions instead of `NoCommand` objects to reduce the number of classes required.
+
+{% highlight java %}
+public class RemoteControl {
+	Command[] onCommands;
+	Command[] offCommands;
+	
+	public RemoteControl() {
+		onCommands = new Command[7];
+		offCommands = new Command[7];
+		
+		for (int i = 0; i < 7; i++) {
+			onCommands[i] = () -> { };
+			offCommands[i] = () -> { };
+		}
+	}
+	// rest of the code here
+}
 {% endhighlight %}
