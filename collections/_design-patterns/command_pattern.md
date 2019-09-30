@@ -436,8 +436,16 @@ the invoker pops the first item (command) off the stack and calls its `undo()` m
 
 ## Lambda Expressions Implementation
 
-To avoid having multiple small command classes that only have one or two methods (`execute()` and `undo()`), 
+To avoid having multiple small command classes that only have one method (`execute()`), 
 which provide a common interface to the behavior of many different receivers, we can use lambda expressions/functions instead.
+
+<p>
+Note that a lambda expression can only be used if its arguments and return type matches exactly one and only one method
+in an interface. Lambda expressions are designed specifically to replace the methods inthese functional interfaces,
+partly as a way to reduce the code that is required when you have a lot of these small classes with functional interfaces.
+If the interface has two methods, it's not a functional interfae and it won't be possible to replace it with lambda expressions.
+</p>
+{: .notice}
 
 To achieve this we create a lambda expression, also called anonymous function, that is a function (or a subroutine) defined, and possibly called, without being bound to an identifier. In the example above, the lambda expression should call the 
 `execute()` method. To use lambda expressions the following steps are required:
