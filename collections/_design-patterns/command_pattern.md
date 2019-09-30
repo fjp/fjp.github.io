@@ -51,7 +51,8 @@ After the call finished the command object is discarded and a new one is process
 This decouples the job queue classes from the objects that are doing teh computation. 
 Such an application is useful for web servers that handle requests from multiple users.
 
-`Command`s may also be used to implement logging and transactional systems. Executed commands are stored in a history on disk. When a crash occurs, the command objects are reloaded and invoked calling their `execute()` methods in batch and in order. To achieve this, the `Command` interface requires `store()` and `load()` methods.
+`Command`s may also be used to implement logging and transactional systems. Executed commands are stored in a history on disk. When a crash occurs, the command objects are reloaded and invoked calling their `execute()` methods in batch and in order. To achieve this, the `Command` interface requires `store()` and `load()` methods. 
+Such logging of command checkpoints is useful when working with large data, which would require time and space to store entire snapshots of the history, for example large text/spreadsheet documents or snapshots of virtual machines.
 
 
 <figure>
