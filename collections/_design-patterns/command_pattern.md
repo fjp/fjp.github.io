@@ -500,3 +500,50 @@ This can then be passed using its name:
 {% highlight java %}
 remoteControl.setCommand(3, stereoOnWithCD, stereo::off);
 {% endhighlight %}
+
+Testing the remote control with lambda expressions with the following main program:
+
+{% highlight java %}
+public class RemoteControlTest {
+	public static void main(String[] args) {
+		RemoteControl remote = new RemoteControl();
+		
+		Light light = new Light();
+		GarageDoor garageDoor = new GarageDoor();
+		Stereo steero = new Stereo("Living Room");
+		
+		Command stereoOnWithCD = () -> {
+			stereo.on();
+			stereo.setCD();
+			stereo.setVolume(11);
+		}
+		
+		remote.setCommand(0, light::on, light::off);
+		remote.setCommand(1, garageDoor::up, garageDoor::down);
+		remote.setCommand(2, stereoOnWithCD, stereo::off);
+		
+		
+		remote.onButtonWasPushed(0);
+		remote.offButtonWasPushed(0);
+		remote.onButtonWasPushed(1);
+		remote.offButtonWasPushed(1);
+		remote.onButtonWasPushed(2);
+		remote.offButtonWasPushed(2);
+    }
+
+}
+{% endhighlight %}
+
+
+{% highlight bash %}
+$java RemoteLoader
+
+Living Room light is on
+Living Room light is off
+Garage Door is up
+Garage Door is down
+Living Room stereo iso n
+Living Room stero is set for CD input
+Living Room stereo volume set to 11
+Living Room stereo is off
+{% endhighlight %}
