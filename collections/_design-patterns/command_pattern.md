@@ -41,7 +41,17 @@ queue or log requests, and support undoable operations.
 Likewise, `MacroCommand`s can easily support `undo()`.
 - In practice, it is not uncommon for "smart" Command objects to implement the request themselves rather than delegating to a `receiver`.
 
+
 Examples where the Command Pattern is useful are:
+
+Commands combine a receiver and its actions, which allows us to pass these packaged computations around and invoke them
+at any time after creating the Command object. Clients that invoke such an object can be for example
+scedulers, thread pools and job queus. 
+
+In a job queue commands are queued and then dequeud by threads which call the `execute()` method of the `Command`.
+After the call finished the command object is discarded and a new one is processed. 
+This decouples the job queue classes from the objects that are doing teh computation. 
+Such an application is useful for web servers that handle requests from multiple users.
 
 - Commands may also be used to implement logging and transactional systems
 
