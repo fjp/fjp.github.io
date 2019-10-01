@@ -32,11 +32,11 @@ together that couldn't otherwise because of incompatible interfaces.
 </p>
 {: .notice}
 
-The Adapter Pattern is used when an existing class is needed and its interface is not the one oyou need.
-For this, the pattern changes an intefcace into one a client expects. To achieve this, there are two forms
-of the Adapter Pattern: object and class adapters. Class adapters require multiple inheritance. They inherit
-from the adaptee and the target interface, which is expected by the client. With the object adapter, the adaptee
-implements the target interface and wraps the adaptee using it as a member variable. 
+The Adapter Pattern is used when an existing adaptee class is needed and its interface is not the one a client needs.
+For this, the pattern changes an intefcace into one a client expects using a adapter class. 
+To achieve this, there are two forms of the Adapter Pattern: object and class adapters. 
+Class adapters require multiple inheritance. They inherit from the adaptee and the target interface, 
+which is expected by the client. With the object adapter, the adaptee implements the target interface and wraps the adaptee using it as a member variable. 
 
 <figure>
     <a href="/assets/pages/design-patterns/adapter-pattern.png"><img src="/assets/pages/design-patterns/adapter-pattern.png"></a>
