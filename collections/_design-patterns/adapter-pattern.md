@@ -36,7 +36,13 @@ The Adapter Pattern is used when an existing adaptee class is needed and its int
 For this, the pattern changes an intefcace into one a client expects using a adapter class. 
 To achieve this, there are two forms of the Adapter Pattern: object and class adapters. 
 Class adapters require multiple inheritance. They inherit from the adaptee and the target interface, 
-which is expected by the client. With the object adapter, the adaptee implements the target interface and wraps the adaptee using it as a member variable. 
+which is expected by the client. With the object adapter, the adapter implements the target interface and wraps the adaptee by holding an instance of it.
+
+The client is implemented against the target interface and uses the adapter in the following way:
+
+1. The client makes a request to the adapter by calling a method on it using the target interface.
+2. The adapter translates the request into one or more calls on the adaptee using the adaptee interface
+3. The client receives the results of the call and never knows there is an adapter doing the translation.
 
 <figure>
     <a href="/assets/pages/design-patterns/adapter-pattern.png"><img src="/assets/pages/design-patterns/adapter-pattern.png"></a>
