@@ -45,8 +45,8 @@ The client is implemented against the target interface and uses the adapter in t
 3. The client receives the results of the call and never knows there is an adapter doing the translation.
 
 <figure>
-    <a href="/assets/pages/design-patterns/adapter-pattern.png"><img src="/assets/pages/design-patterns/adapter-pattern.png"></a>
-    <figcaption>Adapter.</figcaption>
+    <a href="/assets/pages/design-patterns/adapter-object-pattern.png"><img src="/assets/pages/design-patterns/adapter-object-pattern.png"></a>
+    <figcaption>Object Adapter Pattern.</figcaption>
 </figure>
 
 Adapters are similar to the [Facade Pattern](/design-patterns/facade) and the Decorator Pattern](/design-patterns/decorator). An adapter wraps an object to change its interface, 
