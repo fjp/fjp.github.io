@@ -49,7 +49,7 @@ The client is implemented against the target interface and uses the adapter in t
     <figcaption>Object Adapter Pattern.</figcaption>
 </figure>
 
-Adapters are similar to the [Facade Pattern](/design-patterns/facade) and the Decorator Pattern](/design-patterns/decorator). An adapter wraps an object to change its interface, 
+Adapters are similar to the [Facade Pattern](/design-patterns/facade) and the [Decorator Pattern](/design-patterns/decorator). An adapter wraps an object to change its interface, 
 a decorator wraps an object to add new behaviors and responsibilities, 
 and a facade "wraps" a set of objects to simplify.
 
