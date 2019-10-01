@@ -128,6 +128,12 @@ Extend the class by adding a new interface class member. This makes it possible 
 </p>
 {: .notice}
 
+<p>
+<b>Talk only to your friends.</b>
+This principle is important for maintining a low level of coupling between multiple classes.
+</p>
+{: .notice}
+
 ## Links
 
 - [Boost Dependency Injection DI](https://boost-experimental.github.io/di/)
