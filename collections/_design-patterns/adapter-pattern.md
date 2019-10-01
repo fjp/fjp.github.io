@@ -46,8 +46,16 @@ The client is implemented against the target interface and uses the adapter in t
 
 <figure>
     <a href="/assets/pages/design-patterns/adapter-object-pattern.png"><img src="/assets/pages/design-patterns/adapter-object-pattern.png"></a>
-    <figcaption>Object Adapter Pattern.</figcaption>
+    <figcaption>Object Adapter Pattern implements the Adaptee and uses composition for the target interface.</figcaption>
 </figure>
+
+Another way to implement an adapter in programming languages that support multiple inheritance like C++ is to let the adapter class inherit both the target interface and the adaptee. This is known as Class Adapter. An Object Adapter uses composition to pass requests to an Adaptee.
+
+<figure>
+    <a href="/assets/pages/design-patterns/adapter-class-pattern.png"><img src="/assets/pages/design-patterns/adapter-class-pattern.png"></a>
+    <figcaption>Class Adapter Pattern subclasses the Target and the Adaptee.</figcaption>
+</figure>
+
 
 Adapters are similar to the [Facade Pattern](/design-patterns/facade) and the [Decorator Pattern](/design-patterns/decorator). An adapter wraps an object to change its interface, 
 a decorator wraps an object to add new behaviors and responsibilities, 
@@ -179,3 +187,5 @@ I'm flying a short distance
 I'm flying a short distance
 I'm flying a short distance
 {% endhighlight %}
+
+Another real-life example is to use an adapter between Java iterators and enumerators.
