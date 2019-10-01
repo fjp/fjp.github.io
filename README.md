@@ -1,6 +1,6 @@
 # Blog Repository
 
-This repository holds the data for my blog. It is based on the theme [minimal mistakes]() which is defined in the 
+This repository holds the data for my blog. It is based on the theme [minimal mistakes](https://mmistakes.github.io/minimal-mistakes/) which is defined in the 
 It is automatically transformed by [Jekyll](http://github.com/mojombo/jekyll) into a static site whenever I push this repository to GitHub.
 You can see the result at [fjp.github.io](fjp.github.io) or [fjp.at](https://fjp.at).
 
@@ -44,10 +44,31 @@ For more details go to https://jekyllrb.com/docs/structure/
 Add the changes to github by adding, committing and pushing the new post file.
 
 
+# [Minimal Mistakes Jekyll theme](https://mmistakes.github.io/minimal-mistakes/)
 
+[![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/mmistakes/minimal-mistakes/master/LICENSE)
+[![Jekyll](https://img.shields.io/badge/jekyll-%3E%3D%203.6-blue.svg)](https://jekyllrb.com/)
+[![Ruby gem](https://img.shields.io/gem/v/minimal-mistakes-jekyll.svg)](https://rubygems.org/gems/minimal-mistakes-jekyll)
+[![Tip Me via PayPal](https://img.shields.io/badge/PayPal-tip%20me-green.svg?logo=paypal)](https://www.paypal.me/mmistakes)
 
+Minimal Mistakes is a flexible two-column Jekyll theme, perfect for building personal sites, blogs, and portfolios. As the name implies, styling is purposely minimalistic to be enhanced and customized by you :smile:.
 
-## Notable Features
+:sparkles: See what's new in the [CHANGELOG](CHANGELOG.md).
+
+**If you enjoy this theme, please consider [supporting me](https://www.paypal.me/mmistakes) to continue developing and maintaining it.**
+
+[![Support via PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://www.paypal.me/mmistakes)
+
+**Note:** The theme uses the [jekyll-include-cache](https://github.com/benbalter/jekyll-include-cache) plugin which will need to be installed in your `Gemfile` and added to the `plugins` array of `_config.yml`. Otherwise you'll throw `Unknown tag 'include_cached'` errors at build.
+
+[![Minimal Mistakes live preview][2]][1]
+
+[1]: https://mmistakes.github.io/minimal-mistakes/
+[2]: screenshot.png (live preview)
+
+![layout examples](screenshot-layouts.png)
+
+## Notable features
 
 - Bundled as a "theme gem" for easier installation/upgrading.
 - Compatible with GitHub Pages.
