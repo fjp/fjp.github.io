@@ -155,6 +155,8 @@ design-patterns:
         url: /design-patterns/bridge
       - title: "Decorator"
         url: /design-patterns/decorator
+      - title: "Facade"
+        url: /design-patterns/facade
   - title: "Behavioral"
     url: /design-patterns/
     children:
