@@ -211,3 +211,48 @@ public interface Iterator<E>
 	public void remove(); // Removes from the underlying collection the last element returned by this iterator
 }
 {% endhighlight %}
+	
+To deal with legacy code, that exposes the `Enumeration` interface, yet we'd like for our new code to use only `Iterator`s.
+
+An adapter to deal with this situation would need to implement the `Iterator` as its target interface and be composed with
+`Enumeration` as its adaptee:
+
+{% highlight java %}
+public class EnumerationIterator implements Iterator<Object> {
+	Enumeration<?> enumeration;
+ 
+	public EnumerationIterator(Enumeration<?> enumeration) {
+		this.enumeration = enumeration;
+	}
+ 
+	public boolean hasNext() {
+		return enumeration.hasMoreElements();
+	}
+ 
+	public Object next() {
+		return enumeration.nextElement();
+	}
+ 
+	public void remove() {
+		throw new UnsupportedOperationException();
+	}
+}
+{% endhighlight %}
+
+The `hasNext()` and `next()` methods are straightforward to map from target to adaptee: we just pass them right through. The best we can do for `remove()` is to throw a runtime exception because `Enumeration` does not support removing.
+
+The following code test the above `EnumerationIterator` adapter:
+
+{% highlight java %}
+public class EnumerationIteratorTestDrive {
+	public static void main (String args[]) {
+		Vector<String> v = new Vector<String>(Arrays.asList(args));
+		// Pass old style Enumeration to the adapter
+		Iterator<?> iterator = new EnumerationIterator(v.elements());
+		// Now we can use the new style  Iterator methods
+		while (iterator.hasNext()) {
+			System.out.println(iterator.next());
+		}
+	}
+}
+{% endhighlight %}
