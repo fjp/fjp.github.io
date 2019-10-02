@@ -35,12 +35,19 @@ The Facade Pattern is used when you need to simplify and unify a large interface
 It alters an interface to simplify it and thereby hides all teh complexity of one or more classes behind a clean facade, 
 hence its name. A facade decouples a client from a complex subsystem and to implement it we compose the facade with its 
 subsystem and use delegation to perform the work of the facade. 
-For a complex subsystem it can be helpful to implement more than one facade.
+For a complex subsystem it can be helpful to implement more than one facade. 
+Thereby we try to keep sybsystems adhering to the [Principle of Least Knowledge](/design-patterns/) as well. 
+If this gets too complex and too many friends are intermingling, we can introduce additional facades to form layers of subsystems. 
 
 <figure>
     <a href="/assets/pages/design-patterns/facade-pattern.png"><img src="/assets/pages/design-patterns/facade-pattern.png"></a>
-    <figcaption>Facade Pattern implements the Adaptee and uses composition for the target interface.</figcaption>
+    <figcaption>Facade Pattern manages all the subsystem components for the client. It keeps the client simple and flexible.</figcaption>
 </figure>
+
+The components of the complex subsystem can be upgraded/changed without affecting the client. 
+The client usually has only one friend: the `Facade` class, 
+which follows the [Principle of Least Knowledge](/design-patterns/): 
+In OO programming, having only one friend is a good thing.
 
 This pattern is similar to the [Adapter Pattern](/design-patterns/adapter) and the [Decorator Pattern](/design-patterns/decorator).
 An adapter wraps an object to change its interface, a decorator wraps an object to add new behaviors and responsibilities, 
