@@ -166,6 +166,8 @@ design-patterns:
         url: /design-patterns/observer
       - title: "Command"
         url: /design-patterns/command
+      - title: "Template Method"
+        url: /design-patterns/template-method
   - title: "Functional"
     url: /design-patterns/
     children:
