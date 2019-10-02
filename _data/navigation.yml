@@ -167,7 +167,7 @@ design-patterns:
       - title: "Command"
         url: /design-patterns/command
       - title: "Template Method"
-        url: /design-patterns/template-method
+        url: /design-patterns/template-method/
   - title: "Functional"
     url: /design-patterns/
     children:
