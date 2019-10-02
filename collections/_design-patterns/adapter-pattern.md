@@ -189,3 +189,25 @@ I'm flying a short distance
 {% endhighlight %}
 
 Another real-life example is to use an adapter between Java iterators and enumerators.
+In Java, early collection types (Vector, Stack, Hashtable, and a few others) implement a method, `elements()`, 
+which returns an `Enumeration`. The `Enumeration` interface allows you to step through the elements of a collection 
+without knowing the specifics of how they are managed in the collection.
+
+{% highlight java %}
+public interface Enumeration<E>
+{
+	public bool hasMoreElements(); // Tells if there are any more elements in the collection
+	public E nextElement(); // Returns the next element in the collection/enumeration
+}
+{% endhighlight %}
+
+In later versions of Java this was replaced with `Iterators` which has also a `remove()` method: 
+
+{% highlight java %}
+public interface Iterator<E>
+{
+	public bool hasNext(); // Tells if there are any more elements in the collection
+	public E next(); // Returns the next element in the collection/iteration.
+	public void remove(); // Removes from the underlying collection the last element returned by this iterator
+}
+{% endhighlight %}
