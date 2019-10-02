@@ -3,7 +3,7 @@ layout: single #collection
 title: The Facade Pattern
 permalink: /design-patterns/facade
 excerpt: "The facade design pattern summarized."
-date: 2019-09-30 15:41:35 +0200
+date: 2019-10-01 15:41:35 +0200
 categories: [programming, design patterns]
 tags: [programming, design patterns, facade, pattern, structural]
 comments: true
