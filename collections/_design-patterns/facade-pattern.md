@@ -384,7 +384,8 @@ public class PopcornPopper {
 It is possible to interact with those subsystems directly without using a Facade. 
 This means that we get low-level access to the complex subsystem. 
 However, for tasks such as watching a movie or listening to the readio, 
-the Facade Pattern provides a unified and simple interface with the following `HomeTheaterFacade`:
+the Facade Pattern provides a unified and simple interface with the following `HomeTheaterFacade` class, 
+that allows watching a movie with a single method `watchMovie(String movie)` and shut everything down afterwards in the correct order with `endMovie()`:
 
 {% highlight java %}
 public class HomeTheaterFacade {
@@ -551,5 +552,27 @@ public class HomeTheaterTestDrive {
 The output of the program is:
 
 {% highlight bash %}
-$ java 
+$ java HomeTheaterTestDrive
+Get ready to watch a movie...
+Popcorn Popper on
+Popcorn Popper popping popcorn!
+Theater Ceiling Lights dimming to 10%
+Theater Screen going down
+Top-O-Line Projector on
+Top-O-Line Projector in widescreen mode (16x9 aspect ratio)
+Top-O-Line Amplifier on
+Top-O-Line Amplifier setting DVD palyer to Top-O-Line DVD Player
+Top-O-Line Amplifier surround sound on (5 speakers, 1 subwoofer)
+Top-O-Line Amplifier setting volume to 5
+Top-O-Line DVD Player on
+Top-O-Line DVD Player playing "Raiders of the Lost Ark"
+Shutting movie theater down...
+Popcorn Popper off
+Threater Ceiling Lights on
+Theater Screen going up
+Top-O-Line Projector off
+Top-O-Line Amplifier off
+Top-O-Line DVD Player stopped "Raiders of the Lost Ark"
+Top-O-Line DVD Player eject
+Top-O-Line DVD Player off
 {% endhighlight %}
