@@ -22,6 +22,13 @@ author_profile: false
 
 ## Analog
 
+## BetaFlight
+
+The Betaflight Open Source Flight Controller Firmware Project (found on [GitHub](https://github.com/betaflight)) provides
+[frimwares](/projects/fpv-quad/fpv-glossar/#firmware) for [Flight Controllers](/projects/fpv-quad/fpv-glossar/#flight-controller). To configure and [flash](/projects/fpv-quad/fpv-glossar/#flash) a firmware onto a Flight Controller we use 
+the Beta Flight Configurator, which is a cross platform (runs on most operating systems, Windows, Linux, MacOS) configuration tool for the Betaflight firmware.
+
+
 ## FPV
 
 Abbreviation for first person view, where the [analog](/projects/fpv-quad/fpv-glossar/#analog) live image from the flying quad is view through a video receiving system. This can be either a [fpv goggle](/projects/fpv-quad/fpv-glossar/#goggle) or monitor.
