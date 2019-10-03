@@ -24,14 +24,18 @@ author_profile: false
 
 ## BetaFlight
 
-The Betaflight Open Source Flight Controller Firmware Project (found on [GitHub](https://github.com/betaflight)) provides
+The BetaFlight Open Source Flight Controller Firmware Project (found on [GitHub](https://github.com/betaflight)) provides
 [frimwares](/projects/fpv-quad/fpv-glossar/#firmware) for [Flight Controllers](/projects/fpv-quad/fpv-glossar/#flight-controller). To configure and [flash](/projects/fpv-quad/fpv-glossar/#flash) a firmware onto a Flight Controller we use 
 the Beta Flight Configurator, which is a cross platform (runs on most operating systems, Windows, Linux, MacOS) configuration tool for the Betaflight firmware.
 
+BetaFlight is a fork of the [CleanFlight](/projects/fpv-quad/fpv-glossar/#clean-flight) project, which is considered less experimental. However, modern Flight Controllers are supported mostly by BetaFlight. 
+
+
+## CleanFlight
 
 ## FPV
 
-Abbreviation for first person view, where the [analog](/projects/fpv-quad/fpv-glossar/#analog) live image from the flying quad is view through a video receiving system. This can be either a [fpv goggle](/projects/fpv-quad/fpv-glossar/#goggle) or monitor.
+Abbreviation for first person view, where the live image from a flying quad is view through an [analog](/projects/fpv-quad/fpv-glossar/#analog) video receiving system. This can be either a [fpv goggle](/projects/fpv-quad/fpv-glossar/#goggle) or monitor.
 
 ## FrSky
 
