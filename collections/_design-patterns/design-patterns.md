@@ -157,13 +157,17 @@ public float getTemp() {
 To avoid violating the principle and keeping the dependencies low, it is possible to delegate the request to the object 
 directly without the need to call methods on a returned object:
 
-{% highlight: java %}
+{% highlight java %}
 public float getTemp() {
     return station.getTemperature();
 }
 {% endhighlight %}
 
 This however, implies that the object provides this method for us.
+
+While the principle reduces dependencies between objects and maintenance, 
+one disadvantage of this principle is that more "wrapper" classes are written to handle method calls to other components. 
+This can result in increased complexity and development time as well as decreased runtime performance.
 
 ## Links
 
