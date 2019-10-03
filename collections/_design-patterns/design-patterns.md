@@ -147,7 +147,7 @@ To follow this principle the following guidlines should be met: regarding any me
 
 Calling methods on objects that were returned from calling other methods would violate this principle as the following example shows:
 
-{% highlight: java %}
+{% highlight java %}
 public float getTemp() {
     Thermometer thremometer = station.getThermometer();
     return thermometer.getTemperature();
