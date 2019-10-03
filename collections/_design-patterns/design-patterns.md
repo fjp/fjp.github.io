@@ -132,8 +132,38 @@ Extend the class by adding a new interface class member. This makes it possible 
 <p>
 <b>Talk only to your friends.</b>
 This principle is important for maintining a low level of coupling between multiple classes.
+It prevents us from creating designs that have a larage number of classes coupled together so 
+that changes in one part of the system cascade to other parts.
+Having dependencies between many classes, results in a fragile system that will be costly to maintain and complex for others to understand.
 </p>
 {: .notice}
+
+To follow this principle the following guidlines should be met: regarding any method of an object, the method should only invoke methods that belong to:
+
+- The object itself
+- Objects passed in as a parameter to the method
+- Any object the method creates or instantiates
+- Any components of the object
+
+Calling methods on objects that were returned from calling other methods would violate this principle as the following example shows:
+
+{% highlight: java %}
+public float getTemp() {
+    Thermometer thremometer = station.getThermometer();
+    return thermometer.getTemperature();
+}
+{% endhighlight %}
+
+To avoid violating the principle and keeping the dependencies low, it is possible to delegate the request to the object 
+directly without the need to call methods on a returned object:
+
+{% highlight: java %}
+public float getTemp() {
+    return station.getTemperature();
+}
+{% endhighlight %}
+
+This however, implies that the object provides this method for us.
 
 ## Links
 
