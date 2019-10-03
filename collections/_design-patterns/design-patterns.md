@@ -31,6 +31,7 @@ The following list shows some important design patterns, which are design princi
 - [Command](/design-patterns/command)
 - [Adapter](/design-patterns/adapter)
 - [Facade](/design-patterns/facade)
+- [Template Method](/design-patterns/template-method)
 
 ## SOLID Design Principles
 
