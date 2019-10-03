@@ -24,12 +24,16 @@ author_profile: false
 
 ## BetaFlight
 
-The BetaFlight Open Source Flight Controller Firmware Project (found on [GitHub](https://github.com/betaflight)) provides
+The BetaFlight open source [Flight Controller](/projects/fpv-quad/fpv-glossar/#flight-controller) [frimware](/projects/fpv-quad/fpv-glossar/#firmware) project (found on [GitHub](https://github.com/betaflight)) provides
 [frimwares](/projects/fpv-quad/fpv-glossar/#firmware) for [Flight Controllers](/projects/fpv-quad/fpv-glossar/#flight-controller). To configure and [flash](/projects/fpv-quad/fpv-glossar/#flash) a firmware onto a Flight Controller we use 
-the Beta Flight Configurator, which is a cross platform (runs on most operating systems, Windows, Linux, MacOS) configuration tool for the Betaflight firmware.
+the [BetaFlight Configurator](/projects/fpv-quad/fpv-glossar/#betaflight-configurator).
 
 BetaFlight is a fork of the [CleanFlight](/projects/fpv-quad/fpv-glossar/#clean-flight) project, which is considered less experimental. However, modern Flight Controllers are supported mostly by BetaFlight. 
 
+## BetaFlight Configurator
+
+Part of the [BetaFlight](/projects/fpv-quad/fpv-glossar/#betaflight) open source [Flight Controllers](/projects/fpv-quad/fpv-glossar/#flight-controller) [frimware](/projects/fpv-quad/fpv-glossar/#firmware) project.
+It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) configuration tool for the BetaFlight [frimware](/projects/fpv-quad/fpv-glossar/#firmware).
 
 ## CleanFlight
 
