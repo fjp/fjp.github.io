@@ -37,13 +37,18 @@ It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) c
 
 ## CleanFlight
 
+## FlightController
+
+[MicroController]() board that contains input and output (I/O) pins and a processing unit (microchrip), which runs a Flight Controller
+[frimware](/projects/fpv-quad/fpv-glossar/#firmware). that computes output signals for external or internal [ESCs]() by processing the input signals. Input signals are the [receiver](/projects/fpv-quad/fpv-glossar/#receiver) and 
+
 ## FPV
 
 Abbreviation for first person view, where the live image from a flying quad is view through an [analog](/projects/fpv-quad/fpv-glossar/#analog) video receiving system. This can be either a [fpv goggle](/projects/fpv-quad/fpv-glossar/#goggle) or monitor.
 
 ## FrSky
 
-Company that produces radio controlled [transmitters](/projects/fpv-quad/fpv-glossar/#transmitter) and [receivers](/projects/fpv-quad/fpv-glossar/#receivers), which are most common in the FPV scene. At their hompage [https://www.frsky-rc.com/](https://www.frsky-rc.com/) you can see all the products and download manuals and firmware updates. 
+Company that produces radio controlled [transmitters](/projects/fpv-quad/fpv-glossar/#transmitter) and [receivers](/projects/fpv-quad/fpv-glossar/#receiver), which are most common in the FPV scene. At their hompage [https://www.frsky-rc.com/](https://www.frsky-rc.com/) you can see all the products and download manuals and firmware updates. 
 
 ## Goggle
 
