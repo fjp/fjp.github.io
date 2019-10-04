@@ -168,6 +168,8 @@ design-patterns:
         url: /design-patterns/command
       - title: "Template Method"
         url: /design-patterns/template-method
+      - title: "Iterator"
+        url: /design-patterns/iterator
   - title: "Functional"
     url: /design-patterns/
     children:
