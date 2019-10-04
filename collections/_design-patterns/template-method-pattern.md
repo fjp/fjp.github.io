@@ -45,14 +45,17 @@ Notice, that hooks make it possible to alter the behavior of the algorithm in th
     <figcaption>Template Method Pattern defines the steps of an algorithm and allows subclasses to provide the implementation for one or more steps.</figcaption>
 </figure>
 
-The Template Method Pattern follows the Hollywood Principled, which guides us to put decision making in high-level modules
-that can decided how and when to call low-level modules: "don't call us, we call you".
+The Template Method Pattern follows the [Hollywood Principle](/desing-patterns/), 
+which guides us to put decision making in high-level modules
+that can decided how and when to call low-level modules: "don't call us, we'll call you".
 
 The Template Method Pattern is not always designed by inheritance, as shown in the following example.
 Instead many algorithms in Java and C++, for example `sort()` which implements the basic sorting algorithm for elements in a collection (List, Vector, HashMap, ...). For user defined types this method requires that the type implements the intferface `Comparable`, which declares a single method: `compareTo()`. This method is used by the algorithm in `sort()` to get the elements in the desired order.
 
 The Pattern is a great design tool for creating frameworks, where the framework controls how something gets done, 
 but lets the user specify some details of the framework's algorithm behavior. For example the `paint()` method of Swing's  (Java GUI Toolkit) `JFrame` container needs to be implemented by a user-defined `Frame` class.
+
+Related patterns are the [Strategy Pattern](/desing-patterns/factory) and the [Factory Method Pattern](/desing-patterns/factory). The Template Method Pattern ecnapsulates algorithms by inheritance, whereas the [Strategy Pattern](/desing-patterns/factory) does this by composition. The [Factory Method Pattern](/desing-patterns/factory) is a specialization of the Template Method pattern. It has a (template) method to create an object.
 
 The following example shows one possible implementation of the Template Method pattern.
 It is about producing coffee and tea. The steps for each beverage are similar:
