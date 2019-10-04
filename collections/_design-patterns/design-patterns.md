@@ -176,10 +176,12 @@ Don't call us, we'll call you.
 </p>
 {: .notice}
 
-This principle gives a way to prevent "dependency rot", which happens when using interweaving dependencies between high- and low-level components. With the Hollywood Principle, we allow low-level components to hook themselves into a system, but the high-level components determine when they are needed, and how. The low-level never call a high-level component directly.
-Patterns that make use of the Hollywood Principle are: [Factory Method](/design-patterns/factory), [Observer](/design-patterns/observer) and [Template Method](/design-patterns/template-method).
+This principle gives a way to prevent "dependency rot", which happens when using interweaving dependencies between high- and low-level components. The principle guides us to put decision making in high-level modules that can decide how and when to call low-level modules. With the Hollywood Principle, we allow low-level components to hook themselves into a system, but the high-level components determine when they are needed, and how. The low-level never call a high-level component directly.
+It gives a technique for creating designs that allow low-level structures to interoperate while preventing other classes from becoming too dependent on them. A low-level component is allowd to call a method of a high-level component, for example when using an inherited method up in the hierarchy. The goal is to avoid creating explicit circular dependencies between the low-lefvel and the high-level components.
 
-Like the Dependency Inversion Principle, the Hollywood Principle has the goal of decoupling. It provides a technique for building frameworks or components so that lower-level components can be hooked into the computation, but without creating dependencies between the lower-level coponentnts and the hight-level layers.
+Like the Dependency Inversion Principle, the Hollywood Principle has the goal of decoupling. It provides a technique for building frameworks or components so that lower-level components can be hooked into the computation, but without creating dependencies between the lower-level coponentnts and the hight-level layers. 
+
+Patterns that make use of the Hollywood Principle are: [Factory Method](/design-patterns/factory), [Observer](/design-patterns/observer) and [Template Method](/design-patterns/template-method).
 
 ## Links
 
