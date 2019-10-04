@@ -39,6 +39,7 @@ The Template Method Pattern
     <figcaption>Template Method Pattern.</figcaption>
 </figure>
 
+The Template Method defines the steps of an algorithm and allows subclasses to provide the implementation for one or more steps.
 
 The following example shows one possible implementation of the Template Method pattern.
 It is about producing coffee and tea. The steps for each beverage are similar:
@@ -52,31 +53,171 @@ It is about producing coffee and tea. The steps for each beverage are similar:
     - Coffee: Add sugar and milk
     - Add lemon
 
+The two recipes are essentialy the same except for brewing and adding condiments. 
+The common steps are implemented in an abstract base class called `CaffeineBeverageWithHook` because both beverages 
+contain caffeine. This class contains the template method `prepareRecipe()`, 
+which serves as template for an algorithm, in this case, for making caffeinated beverages, and it is declared `final`.
+Using this keyword, avoids overriding the actual algorithm in subclasses.
+The intention of subclasses is to implement the `abstract` methods of the algorithm. 
+In this example these are `brew()` and `addCondiments()`.
+Additionaly subclasses can override the orther methods but don't have to,
+because the default behavior is provided by the base class. The method `customerWantsCondiments()` is the hook,
+that implements default behavior in the base class but is intended to be overriden in the subclasses.
 
 {% highlight java %}
-
+public abstract class CaffeineBeverageWithHook {
+ 
+	final void prepareRecipe() {
+		boilWater();
+		brew();
+		pourInCup();
+		if (customerWantsCondiments()) {
+			addCondiments();
+		}
+	}
+ 
+	abstract void brew();
+ 
+	abstract void addCondiments();
+ 
+	void boilWater() {
+		System.out.println("Boiling water");
+	}
+ 
+	void pourInCup() {
+		System.out.println("Pouring into cup");
+	}
+ 
+	boolean customerWantsCondiments() {
+		return true;
+	}
+}
 {% endhighlight %}
 
-Each of 
+The subclasses `CoffeeWithHook` and `TeaWithHook` are implementing the abstract `CaffeineBeverage` interface. 
+Specifically, the abstract methods need to be implemented and the hook method is optional.
+In this example, both subclasses implement the same hook method which could be moved to the base class.
+Here, the hook methods ask the user for input on adding condiments:
 
 {% highlight java %}
+public class CoffeeWithHook extends CaffeineBeverageWithHook {
+ 
+	public void brew() {
+		System.out.println("Dripping Coffee through filter");
+	}
+ 
+	public void addCondiments() {
+		System.out.println("Adding Sugar and Milk");
+	}
+ 
+	public boolean customerWantsCondiments() {
 
+		String answer = getUserInput();
+
+		if (answer.toLowerCase().startsWith("y")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+ 
+	private String getUserInput() {
+		String answer = null;
+
+		System.out.print("Would you like milk and sugar with your coffee (y/n)? ");
+
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		try {
+			answer = in.readLine();
+		} catch (IOException ioe) {
+			System.err.println("IO error trying to read your answer");
+		}
+		if (answer == null) {
+			return "no";
+		}
+		return answer;
+	}
+}
 {% endhighlight %}
+
+The `TeaWithHook` implements the `CaffeineBeverageWithHook` interface and implements the `brew()` and `addCondiments()` methods suitable for its receipe (algorithm). The hook method `customerWantsCondiments()` is also adapted to ask for the condiments that can be added to the tea beverage, a lemon:
+
+{% highlight java %}
+public class TeaWithHook extends CaffeineBeverageWithHook {
+ 
+	public void brew() {
+		System.out.println("Steeping the tea");
+	}
+ 
+	public void addCondiments() {
+		System.out.println("Adding Lemon");
+	}
+ 
+	public boolean customerWantsCondiments() {
+
+		String answer = getUserInput();
+
+		if (answer.toLowerCase().startsWith("y")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+ 
+	private String getUserInput() {
+		// get the user's response
+		String answer = null;
+
+		System.out.print("Would you like lemon with your tea (y/n)? ");
+
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		try {
+			answer = in.readLine();
+		} catch (IOException ioe) {
+			System.err.println("IO error trying to read your answer");
+		}
+		if (answer == null) {
+			return "no";
+		}
+		return answer;
+	}
+}
+{% endhighlight %}
+
+The 
 
 
 {% highlight java %}
-
+public class BeverageTestDrive {
+	public static void main(String[] args) {
+ 
+		TeaWithHook teaHook = new TeaWithHook();
+		CoffeeWithHook coffeeHook = new CoffeeWithHook();
+ 
+		System.out.println("\nMaking tea...");
+		teaHook.prepareRecipe();
+ 
+		System.out.println("\nMaking coffee...");
+		coffeeHook.prepareRecipe();
+	}
+}
 {% endhighlight %}
 
 
-
-{% highlight java %}
-
-{% endhighlight %}
-
-
-The output of the program is:
+The output of the program is the following when we answer `y` for a lemon in our tea and `no` for not adding milk and sugar to our coffee:
 
 {% highlight bash %}
-$ java 
+$ java BeverageTestDrive
+Making tea...
+Boiling water
+Steeping the tea
+Pouring into cup
+Would you like lemon with your tea (y/n)? y
+Adding Lemon
+
+Making coffee...
+Boiling water
+Dripping Coffee through filter
+Pouring into cup
+Would you like milk and sugar with your coffee (y/n)? n
 {% endhighlight %}
