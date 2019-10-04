@@ -1,8 +1,8 @@
 ---
 layout: single #collection
-title: The Facade Pattern
+title: The Template Method Pattern
 permalink: /design-patterns/template-method
-excerpt: "The facade design pattern summarized."
+excerpt: "The template method design pattern summarized."
 date: 2019-10-01 15:41:35 +0200
 categories: [programming, design patterns]
 tags: [programming, design patterns, template, method, pattern, behavioral]
