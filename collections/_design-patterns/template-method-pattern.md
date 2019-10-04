@@ -32,14 +32,24 @@ Template Method lets subclasses redefine certain steps of an algorithm without c
 </p>
 {: .notice}
 
-The Template Method Pattern 
+The Template Method Pattern gives an important technique for code reuse. 
+The template method's abstract class may define concrete methods, abstract methods, and hooks.
+Abstract methods are implemented by subclasses and thereby alter the algorithm to their needs.
+Hooks are methods that do nothing or default behavior in the abstract class, 
+but may be overriden in the subclass to actually use it to manipulate the algorithm.
+To prevent subclasses from chaning the algorithm in the template method, it is declared `final`.
+Notice, that hooks make it possible to alter the behavior of the algorithm in the template method even if it is declared `final`.
 
 <figure>
     <a href="/assets/pages/design-patterns/template-method-pattern.png"><img src="/assets/pages/design-patterns/template-method-pattern.png"></a>
-    <figcaption>Template Method Pattern.</figcaption>
+    <figcaption>Template Method Pattern defines the steps of an algorithm and allows subclasses to provide the implementation for one or more steps.</figcaption>
 </figure>
 
-The Template Method defines the steps of an algorithm and allows subclasses to provide the implementation for one or more steps.
+The Template Method Pattern follows the Hollywood Principled, which guides us to put decision making in high-level modules
+that can decided how and when to call low-level modules: "don't call us, we call you".
+
+The Template Method Pattern is not always designed by inheritance, as shown in the following example.
+Instead many algorithms in Java and C++, for example `sort()` which implements the basic sorting algorithm for elements in a collection (List, Vector, HashMap, ...). For user defined types this method requires that the type implements the intferface `Comparable`, which declares a single method: `compareTo()`. This method is used by the algorithm in `sort()` to get the elements in the desired order.
 
 The following example shows one possible implementation of the Template Method pattern.
 It is about producing coffee and tea. The steps for each beverage are similar:
