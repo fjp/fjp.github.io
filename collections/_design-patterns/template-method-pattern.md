@@ -51,6 +51,9 @@ that can decided how and when to call low-level modules: "don't call us, we call
 The Template Method Pattern is not always designed by inheritance, as shown in the following example.
 Instead many algorithms in Java and C++, for example `sort()` which implements the basic sorting algorithm for elements in a collection (List, Vector, HashMap, ...). For user defined types this method requires that the type implements the intferface `Comparable`, which declares a single method: `compareTo()`. This method is used by the algorithm in `sort()` to get the elements in the desired order.
 
+The Pattern is a great design tool for creating frameworks, where the framework controls how something gets done, 
+but lets the user specify some details of the framework's algorithm behavior. For example the `paint()` method of Swing's  (Java GUI Toolkit) `JFrame` container needs to be implemented by a user-defined `Frame` class.
+
 The following example shows one possible implementation of the Template Method pattern.
 It is about producing coffee and tea. The steps for each beverage are similar:
 
