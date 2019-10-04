@@ -40,7 +40,17 @@ The Template Method Pattern
 </figure>
 
 
-The following example shows a:
+The following example shows one possible implementation of the Template Method pattern.
+It is about producing coffee and tea. The steps for each beverage are similar:
+
+- Boil some water
+- Brew
+    - Coffee: Brew the coffee grinds
+    - Tea: Steep the tea bag in the water
+- Pour beverage in a cup
+- Add condiment
+    - Coffee: Add sugar and milk
+    - Add lemon
 
 
 {% highlight java %}
@@ -57,6 +67,7 @@ Each of
 {% highlight java %}
 
 {% endhighlight %}
+
 
 
 {% highlight java %}
