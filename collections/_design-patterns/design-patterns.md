@@ -169,6 +169,18 @@ While the principle reduces dependencies between objects and maintenance,
 one disadvantage of this principle is that more "wrapper" classes are written to handle method calls to other components. 
 This can result in increased complexity and development time as well as decreased runtime performance.
 
+
+<p>
+<b>The Hollywood Principle.</b>
+Don't call us, we'll call you.
+</p>
+{: .notice}
+
+This principle gives a way to prevent "dependency rot", which happens when using interweaving dependencies between high- and low-level components. With the Hollywood Principle, we allow low-level components to hook themselves into a system, but the high-level components determine when they are needed, and how. The low-level never call a high-level component directly.
+Patterns that make use of the Hollywood Principle are: [Factory Method](/design-patterns/factory), [Observer](/design-patterns/observer) and [Template Method](/design-patterns/template-method).
+
+Like the Dependency Inversion Principle, the Hollywood Principle has the goal of decoupling. It provides a technique for building frameworks or components so that lower-level components can be hooked into the computation, but without creating dependencies between the lower-level coponentnts and the hight-level layers.
+
 ## Links
 
 - [Boost Dependency Injection DI](https://boost-experimental.github.io/di/)
