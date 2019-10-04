@@ -200,8 +200,9 @@ public class TeaWithHook extends CaffeineBeverageWithHook {
 }
 {% endhighlight %}
 
-The 
-
+The following code shows a test of the two subclasses `TeaWithHook` and `CoffeeWithHook` with their specific receip 
+(algorithm) implementations that is invoked when calling the `prepareReceipe()` method of the base class 
+`CaffeineBeverageWithHook`:
 
 {% highlight java %}
 public class BeverageTestDrive {
