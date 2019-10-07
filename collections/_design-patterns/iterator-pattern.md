@@ -60,6 +60,11 @@ import java.util.Iterator;
 
 public interface Menu {
 	public Iterator<?> createIterator();
+	
+	String name;
+	public String getName() {
+		return name;
+	}
 }
 {% endhighlight %}
 
@@ -109,6 +114,7 @@ public class PancakeHouseMenu implements Menu {
 	ArrayList<MenuItem> menuItems;
  
 	public PancakeHouseMenu() {
+		name = "BREAKFAST";
 		menuItems = new ArrayList<MenuItem>();
     
 		addItem("K&B's Pancake Breakfast", 
@@ -164,6 +170,7 @@ public class DinerMenu implements Menu {
 	MenuItem[] menuItems;
   
 	public DinerMenu() {
+		name = "LUNCH";
 		menuItems = new MenuItem[MAX_ITEMS];
  
 		addItem("Vegetarian BLT",
@@ -202,6 +209,8 @@ public class DinerMenu implements Menu {
 		return new DinerMenuIterator(menuItems);
 		//return new AlternatingDinerMenuIterator(menuItems);
 	}
+ 
+ 	public 
  
 	// other menu methods here
 }
@@ -264,8 +273,11 @@ public class Waitress {
    
 	public void printMenu() {
 		Iterator<?> menuIterator = menus.iterator();
+		
+		System.out.print(MENU\n----\n);
 		while(menuIterator.hasNext()) {
 			Menu menu = (Menu)menuIterator.next();
+			System.out.print("\n" + menu.getName() + "\n");
 			printMenu(menu.createIterator());
 		}
 	}
@@ -302,5 +314,22 @@ public class MenuTestDrive {
 The output printing the menus is:
 
 {% highlight bash %}
-$ java 
+$ java MenuTestDrive
+MENU
+----
+BREAKFAST
+K&B's Pancake Breakfast, 2.99 -- Pancakes with scrambled eggs, and toast
+Regular Pancake Breakfast, 2.99 -- Pancakes with fried eggs, sausage
+Blueberry Pancakes, 3.49 -- Pancakes made with fresh blueberries, and blueberry syrup
+Waffles, 3.59 -- Waffles, with your choice of blueberries or strawberries
+
+LUNCH
+Vegetarian BLT, 2.99 -- (Fakin') Bacon with lettuce & tomato on whole wheat
+BLT, 2.99 -- Bacon with lettuce & tomato on whole wheat
+Soup of the day, 3.29 -- Soup of the day, with a side of potato salad
+Hotdog, 3.05 -- A hot dog, with saurkraut, relish, onions, topped with cheese
+Steamed Veggies and Brown Rice, 3.99 -- Steamed vegetables over brown rice
+Pasta, 3.89 -- Spaghetti with Marinara Sauce, and a slice of sourdough bread
 {% endhighlight %}
+
+This example will be improved in the next pattern: [The Composite Pattern](/design-patterns/composite).
