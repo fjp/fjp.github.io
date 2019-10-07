@@ -32,12 +32,20 @@ without exposing its underlying respresentation.
 </p>
 {: .notice}
 
+An Iterator allows access to an aggregate's (a collection) elements without exposing its internal structure.
+Iterating over an aggreagate using an iterator encapsulates this task in another object other than the aggregate itself.
+Thereby we relieve the aggregate of the responsibility of supporting operations for traversing its data.
+The iterator provides a common interface for traversing the items of an aggregate, allowing you to use polymporphism when writing code that makes use of the items of the aggregate. In other words, when we write methods that take iterators as parameters, we are using polymorphic iteration. That means we asre creating cdode that can iterate over any collection as long as it supports the `Iterator` interface. The implementation of the underlying collection doesn't matter, we can still write code to iterate over it.
+
 
 <figure>
     <a href="/assets/pages/design-patterns/iterator-pattern.png"><img src="/assets/pages/design-patterns/iterator-pattern.png"></a>
-    <figcaption>Iterator Pattern.</figcaption>
+    <figcaption>Iterator Pattern uses a Factory Method `createIterator()` to create an iterator for an Aggregate.</figcaption>
 </figure>
 
+We distinguish between "internal" and "external" iterators.
+Using an external iterator, the client controls the iteration by calling `next()` to get the next element. An internal iterator is controlled by the iterator iself. This way, the iterator is stepping through the elements and thereby controls 
+the iteration itself. To get apply operations on the elements we have to pass the internal iterator a method. With internal iterators the client doesn't have control of the iteration, which might not be required if a single operation should be applied to all elements.
 
 
 {% highlight java %}
