@@ -184,7 +184,8 @@ Like the Dependency Inversion Principle, the Hollywood Principle has the goal of
 Patterns that make use of the Hollywood Principle are: [Factory Method](/design-patterns/factory), [Observer](/design-patterns/observer) and [Template Method](/design-patterns/template-method).
 
 <p>
-<b>A class should have only one reason to change.</b>
+<b>Single Responsibility</b> 
+A class should have only one reason to change.
 </p>
 {: .notice}
 
