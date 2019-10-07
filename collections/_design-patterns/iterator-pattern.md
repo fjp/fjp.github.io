@@ -37,6 +37,8 @@ Iterating over an aggreagate using an iterator encapsulates this task in another
 Thereby we relieve the aggregate of the responsibility of supporting operations for traversing its data.
 The iterator provides a common interface for traversing the items of an aggregate, allowing you to use polymporphism when writing code that makes use of the items of the aggregate. In other words, when we write methods that take iterators as parameters, we are using polymorphic iteration. That means we asre creating cdode that can iterate over any collection as long as it supports the `Iterator` interface. The implementation of the underlying collection doesn't matter, we can still write code to iterate over it.
 
+The Iterator Pattern is commonly used with the [Composite Pattern](/design-patterns/composite) to iterate over its components.
+
 
 <figure>
     <a href="/assets/pages/design-patterns/iterator-pattern.png"><img src="/assets/pages/design-patterns/iterator-pattern.png"></a>
