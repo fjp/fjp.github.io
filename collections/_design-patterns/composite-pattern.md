@@ -26,13 +26,17 @@ author_profile: false
 ---
 
 <p>
-<b>The Composite Pattern</b> allows you to compose object into tree structures to represent 
+<b>The Composite Pattern</b> allows you to compose objects into tree structures to represent 
 part-whole hirarchies. Composite lets clients treat individual objects and compositions of objects uniformly.
 </p>
 {: .notice}
 
+The Composite Pattern allows us to build structures of objects in the form of trees that contain both compositions of objects and individual objects as nodes. A composite contains components. Components come in two flavors: 
+composites and leafe elements. This recursive structure contains composites that hold a set of children.
+Those children may be other composites or leaf elements.
 
-
+Using a composite structure, we can apply the same operations over both composites and individual objects. 
+In other words, in most cases we can ignore the differences between compositions of objects and individual objects.
 
 The [Iterator Pattern](/design-patterns/iterator) is commonly used with the Composite Pattern to iterate over its components.
 
@@ -41,39 +45,64 @@ The [Iterator Pattern](/design-patterns/iterator) is commonly used with the Comp
     <figcaption>The Composite Pattern.</figcaption>
 </figure>
 
+A `Component` can implement default behavior for its `Leaf` and `Composite` subclasses. 
+If a base class method is different in the subclasses a valid default implementation is to throw an exception.
 
-The following example extends the previous example from the [Iterator Pattern](/design-patterns/iterator), which shows two restraunt menus, where both implement the same aggregate interface `Menu`. Each menu has menu items stored in different types of collections. With the Iterator Pattern it is possible to iterate over these items without 
-knowing the underlying type of the aggregate.
+The following example extends the previous example from the [Iterator Pattern](/design-patterns/iterator), which shows two restraunt menus, where both implement the same aggregate interface `Menu`. Each menu has menu items stored in different types of collections (aggregates such as `ArrayList`, standard array or `HashMap`). 
+With the Iterator Pattern it is possible to iterate over these items without knowing the underlying type of the aggregate.
 
-Each aggregate implements the `createIterator()` method which is declared in the `Menu` interface:
+
+Let's start with the  `MenuComponent` class, which is the base class of `Leaf`, which describes the `MenuItem`, and `Composite`, which is a complete `Menu` in this example.
 
 {% highlight java %}
-import java.util.Iterator;
-
-public interface Menu {
-	public Iterator<?> createIterator();
-	
-	String name;
+public abstract class MenuComponent {
+   
+	public void add(MenuComponent menuComponent) {
+		throw new UnsupportedOperationException();
+	}
+	public void remove(MenuComponent menuComponent) {
+		throw new UnsupportedOperationException();
+	}
+	public MenuComponent getChild(int i) {
+		throw new UnsupportedOperationException();
+	}
+  
 	public String getName() {
-		return name;
+		throw new UnsupportedOperationException();
+	}
+	public String getDescription() {
+		throw new UnsupportedOperationException();
+	}
+	public double getPrice() {
+		throw new UnsupportedOperationException();
+	}
+	public boolean isVegetarian() {
+		throw new UnsupportedOperationException();
+	}
+
+	public abstract Iterator<MenuComponent> createIterator();
+ 
+	public void print() {
+		throw new UnsupportedOperationException();
 	}
 }
 {% endhighlight %}
 
-Each menu will have a menu item that implements the following interface:
+Each menu will have one or more menu items that implement the `MenuComponent` interface and play the role of Leafs in the composite:
 
 {% highlight java %}
-public class MenuItem {
+public class MenuItem extends MenuComponent {
+ 
 	String name;
 	String description;
 	boolean vegetarian;
 	double price;
- 
+    
 	public MenuItem(String name, 
 	                String description, 
 	                boolean vegetarian, 
 	                double price) 
-	{
+	{ 
 		this.name = name;
 		this.description = description;
 		this.vegetarian = vegetarian;
@@ -95,233 +124,298 @@ public class MenuItem {
 	public boolean isVegetarian() {
 		return vegetarian;
 	}
+
+	public Iterator<MenuComponent> createIterator() {
+		return new NullIterator();
+	}
+ 
+	public void print() {
+		System.out.print("  " + getName());
+		if (isVegetarian()) {
+			System.out.print("(v)");
+		}
+		System.out.println(", " + getPrice());
+		System.out.println("     -- " + getDescription());
+	}
+
 }
 {% endhighlight %}
 
 
-Next we define the two menu classes (aggregates). `PancakeHouseMenu` uses an `ArrayList<MenuItem>` for its items.
-
-{% highlight java %}
-public class PancakeHouseMenu implements Menu {
-	ArrayList<MenuItem> menuItems;
- 
-	public PancakeHouseMenu() {
-		name = "BREAKFAST";
-		menuItems = new ArrayList<MenuItem>();
-    
-		addItem("K&B's Pancake Breakfast", 
-			"Pancakes with scrambled eggs, and toast", 
-			true,
-			2.99);
- 
-		addItem("Regular Pancake Breakfast", 
-			"Pancakes with fried eggs, sausage", 
-			false,
-			2.99);
- 
-		addItem("Blueberry Pancakes",
-			"Pancakes made with fresh blueberries, and blueberry syrup",
-			true,
-			3.49);
- 
-		addItem("Waffles",
-			"Waffles, with your choice of blueberries or strawberries",
-			true,
-			3.59);
-	}
-
-	public void addItem(String name, String description,
-	                    boolean vegetarian, double price)
-	{
-		MenuItem menuItem = new MenuItem(name, description, vegetarian, price);
-		menuItems.add(menuItem);
-	}
- 
-	public ArrayList<MenuItem> getMenuItems() {
-		return menuItems;
-	}
-  
-	public Iterator<MenuItem> createIterator() {
-		return menuItems.iterator();
-	}
-  
-	// other menu methods here
-}
-{% endhighlight %}
-
-The member `menuItems` is an `ArrayList` which implements the `Iterator` interface and therefore provides the `iterator` method that returns an iterator to the elements of the `ArrayList`. 
-
-The next concrete aggregate that implements the `Menu` interface is the `DinerMenu` class. Because it uses a standard array we will need a `DinerMenuIterator` defined afterwards:
+As in the previous example, each aggregate implements the `createIterator()` method which is declared in the `Menu` interface. This time, the interface is a subclass of `MenuComponent` and acts as a Composite:
 
 {% highlight java %}
 import java.util.Iterator;
+import java.util.ArrayList;
 
-public class DinerMenu implements Menu {
-	static final int MAX_ITEMS = 6;
-	int numberOfItems = 0;
-	MenuItem[] menuItems;
+public class Menu extends MenuComponent {
+	Iterator<MenuComponent> iterator = null;
+	ArrayList<MenuComponent> menuComponents = new ArrayList<MenuComponent>();
+	String name;
+	String description;
   
-	public DinerMenu() {
-		name = "LUNCH";
-		menuItems = new MenuItem[MAX_ITEMS];
- 
-		addItem("Vegetarian BLT",
-			"(Fakin') Bacon with lettuce & tomato on whole wheat", true, 2.99);
-		addItem("BLT",
-			"Bacon with lettuce & tomato on whole wheat", false, 2.99);
-		addItem("Soup of the day",
-			"Soup of the day, with a side of potato salad", false, 3.29);
-		addItem("Hotdog",
-			"A hot dog, with saurkraut, relish, onions, topped with cheese",
-			false, 3.05);
-		addItem("Steamed Veggies and Brown Rice",
-			"Steamed vegetables over brown rice", true, 3.99);
-		addItem("Pasta",
-			"Spaghetti with Marinara Sauce, and a slice of sourdough bread",
-			true, 3.89);
-	}
-  
-	public void addItem(String name, String description, 
-	                     boolean vegetarian, double price) 
-	{
-		MenuItem menuItem = new MenuItem(name, description, vegetarian, price);
-		if (numberOfItems >= MAX_ITEMS) {
-			System.err.println("Sorry, menu is full!  Can't add item to menu");
-		} else {
-			menuItems[numberOfItems] = menuItem;
-			numberOfItems = numberOfItems + 1;
-		}
+	public Menu(String name, String description) {
+		this.name = name;
+		this.description = description;
 	}
  
-	public MenuItem[] getMenuItems() {
-		return menuItems;
-	}
-  
-	public Iterator<MenuItem> createIterator() {
-		return new DinerMenuIterator(menuItems);
-		//return new AlternatingDinerMenuIterator(menuItems);
+	public void add(MenuComponent menuComponent) {
+		menuComponents.add(menuComponent);
 	}
  
- 	public 
+	public void remove(MenuComponent menuComponent) {
+		menuComponents.remove(menuComponent);
+	}
  
-	// other menu methods here
-}
-{% endhighlight %}
+	public MenuComponent getChild(int i) {
+		return menuComponents.get(i);
+	}
+ 
+	public String getName() {
+		return name;
+	}
+ 
+	public String getDescription() {
+		return description;
+	}
 
-Also `DinerMenu` returns its concrete implementation of the `Iterator<MenuItem>` interface, `DinerMenuIterator`:
-
-{% highlight java %}
-import java.util.Iterator;
   
-public class DinerMenuIterator implements Iterator<MenuItem> {
-	MenuItem[] list;
-	int position = 0;
- 
-	public DinerMenuIterator(MenuItem[] list) {
-		this.list = list;
-	}
- 
-	public MenuItem next() {
-		MenuItem menuItem = list[position];
-		position = position + 1;
-		return menuItem;
-	}
- 
-	public boolean hasNext() {
-		if (position >= list.length || list[position] == null) {
-			return false;
-		} else {
-			return true;
+	public Iterator<MenuComponent> createIterator() {
+		if (iterator == null) {
+			iterator = new CompositeIterator(menuComponents.iterator());
 		}
+		return iterator;
 	}
  
-	public void remove() {
-		if (position <= 0) {
-			throw new IllegalStateException
-				("You can't remove an item until you've done at least one next()");
-		}
-		if (list[position-1] != null) {
-			for (int i = position-1; i < (list.length-1); i++) {
-				list[i] = list[i+1];
-			}
-			list[list.length-1] = null;
+ 
+	public void print() {
+		System.out.print("\n" + getName());
+		System.out.println(", " + getDescription());
+		System.out.println("---------------------");
+  
+		Iterator<MenuComponent> iterator = menuComponents.iterator();
+		while (iterator.hasNext()) {
+			MenuComponent menuComponent = iterator.next();
+			menuComponent.print();
 		}
 	}
 }
 {% endhighlight %}
 
-
-
-The client in this example is the `Waitress` which stores the `menus` in an `ArrayList<Menu>` and uses iterator from `java.util`. Using the `printMenu()` method we iterate over the `menus` aggregate and call `printMenu(Iterator<?>)` on the items:
+All the client, in this example the `Waitress`, needs is the top-level menu component, that contains all the other menus, called `allmenus`: 
 
 {% highlight java %}
 public class Waitress {
-	ArrayList<Menu> menus;
-     
-  
-	public Waitress(ArrayList<Menu> menus) {
-		this.menus = menus;
+	MenuComponent allMenus;
+ 
+	public Waitress(MenuComponent allMenus) {
+		this.allMenus = allMenus;
 	}
-   
+ 
 	public void printMenu() {
-		Iterator<?> menuIterator = menus.iterator();
-		
-		System.out.print(MENU\n----\n);
-		while(menuIterator.hasNext()) {
-			Menu menu = (Menu)menuIterator.next();
-			System.out.print("\n" + menu.getName() + "\n");
-			printMenu(menu.createIterator());
-		}
+		allMenus.print();
 	}
-   
-	void printMenu(Iterator<?> iterator) {
-		while (iterator.hasNext()) {
-			MenuItem menuItem = (MenuItem)iterator.next();
-			System.out.print(menuItem.getName() + ", ");
-			System.out.print(menuItem.getPrice() + " -- ");
-			System.out.println(menuItem.getDescription());
-		}
-	}
-}  
+}
 {% endhighlight %}
 
-To test this program we use the following snippet:
+To print the entire menu hierarchy, all the menus and all the menu items, we need to call `printMenu()` on the `Waitress`.
+
+
+To define our menu we create the tree structure in the test program `MenuTestDrive`,
+instead of having two menus that implement `Menu`. Here we first create all the menu objects including a top-level menu, 
+named `allMenus`. The tree structure is created with the `Composite.add()` method. With this method it is also possible to add a menu to a menu because menus and menu items use the same `MenuComponent` interface.
 
 {% highlight java %}
 public class MenuTestDrive {
 	public static void main(String args[]) {
-		PancakeHouseMenu pancakeHouseMenu = new PancakeHouseMenu();
-		DinerMenu dinerMenu = new DinerMenu();
-		ArrayList<Menu> menus = new ArrayList<Menu>();
-		menus.add(pancakeHouseMenu);
-		menus.add(dinerMenu);
-		Waitress waitress = new Waitress(menus);
-		waitress.printMenu();
+		MenuComponent pancakeHouseMenu = 
+			new Menu("PANCAKE HOUSE MENU", "Breakfast");
+		MenuComponent dinerMenu = 
+			new Menu("DINER MENU", "Lunch");
+		MenuComponent cafeMenu = 
+			new Menu("CAFE MENU", "Dinner");
+		MenuComponent dessertMenu = 
+			new Menu("DESSERT MENU", "Dessert of course!");
+		MenuComponent coffeeMenu = new Menu("COFFEE MENU", "Stuff to go with your afternoon coffee");
+  
+		MenuComponent allMenus = new Menu("ALL MENUS", "All menus combined");
+  
+		allMenus.add(pancakeHouseMenu);
+		allMenus.add(dinerMenu);
+		allMenus.add(cafeMenu);
+  
+		pancakeHouseMenu.add(new MenuItem(
+			"K&B's Pancake Breakfast", 
+			"Pancakes with scrambled eggs, and toast", 
+			true,
+			2.99));
+		pancakeHouseMenu.add(new MenuItem(
+			"Regular Pancake Breakfast", 
+			"Pancakes with fried eggs, sausage", 
+			false,
+			2.99));
+		pancakeHouseMenu.add(new MenuItem(
+			"Blueberry Pancakes",
+			"Pancakes made with fresh blueberries, and blueberry syrup",
+			true,
+			3.49));
+		pancakeHouseMenu.add(new MenuItem(
+			"Waffles",
+			"Waffles, with your choice of blueberries or strawberries",
+			true,
+			3.59));
 
+		dinerMenu.add(new MenuItem(
+			"Vegetarian BLT",
+			"(Fakin') Bacon with lettuce & tomato on whole wheat", 
+			true, 
+			2.99));
+		dinerMenu.add(new MenuItem(
+			"BLT",
+			"Bacon with lettuce & tomato on whole wheat", 
+			false, 
+			2.99));
+		dinerMenu.add(new MenuItem(
+			"Soup of the day",
+			"A bowl of the soup of the day, with a side of potato salad", 
+			false, 
+			3.29));
+		dinerMenu.add(new MenuItem(
+			"Hotdog",
+			"A hot dog, with saurkraut, relish, onions, topped with cheese",
+			false, 
+			3.05));
+		dinerMenu.add(new MenuItem(
+			"Steamed Veggies and Brown Rice",
+			"Steamed vegetables over brown rice", 
+			true, 
+			3.99));
+ 
+		dinerMenu.add(new MenuItem(
+			"Pasta",
+			"Spaghetti with Marinara Sauce, and a slice of sourdough bread",
+			true, 
+			3.89));
+   
+		dinerMenu.add(dessertMenu);
+  
+		dessertMenu.add(new MenuItem(
+			"Apple Pie",
+			"Apple pie with a flakey crust, topped with vanilla icecream",
+			true,
+			1.59));
+  
+		dessertMenu.add(new MenuItem(
+			"Cheesecake",
+			"Creamy New York cheesecake, with a chocolate graham crust",
+			true,
+			1.99));
+		dessertMenu.add(new MenuItem(
+			"Sorbet",
+			"A scoop of raspberry and a scoop of lime",
+			true,
+			1.89));
+
+		cafeMenu.add(new MenuItem(
+			"Veggie Burger and Air Fries",
+			"Veggie burger on a whole wheat bun, lettuce, tomato, and fries",
+			true, 
+			3.99));
+		cafeMenu.add(new MenuItem(
+			"Soup of the day",
+			"A cup of the soup of the day, with a side salad",
+			false, 
+			3.69));
+		cafeMenu.add(new MenuItem(
+			"Burrito",
+			"A large burrito, with whole pinto beans, salsa, guacamole",
+			true, 
+			4.29));
+
+		cafeMenu.add(coffeeMenu);
+
+		coffeeMenu.add(new MenuItem(
+			"Coffee Cake",
+			"Crumbly cake topped with cinnamon and walnuts",
+			true,
+			1.59));
+		coffeeMenu.add(new MenuItem(
+			"Bagel",
+			"Flavors include sesame, poppyseed, cinnamon raisin, pumpkin",
+			false,
+			0.69));
+		coffeeMenu.add(new MenuItem(
+			"Biscotti",
+			"Three almond or hazelnut biscotti cookies",
+			true,
+			0.89));
+ 
+		Waitress waitress = new Waitress(allMenus);
+   
+		waitress.printMenu();
 	}
 }
 {% endhighlight %}
 
+At the end of this test program, the complete tree structure is handed to the `Waitress` which calls `printMenu()` that produces the following result:
 
-The output printing the menus is:
 
 {% highlight bash %}
 $ java MenuTestDrive
-MENU
-----
-BREAKFAST
-K&B's Pancake Breakfast, 2.99 -- Pancakes with scrambled eggs, and toast
-Regular Pancake Breakfast, 2.99 -- Pancakes with fried eggs, sausage
-Blueberry Pancakes, 3.49 -- Pancakes made with fresh blueberries, and blueberry syrup
-Waffles, 3.59 -- Waffles, with your choice of blueberries or strawberries
 
-LUNCH
-Vegetarian BLT, 2.99 -- (Fakin') Bacon with lettuce & tomato on whole wheat
-BLT, 2.99 -- Bacon with lettuce & tomato on whole wheat
-Soup of the day, 3.29 -- Soup of the day, with a side of potato salad
-Hotdog, 3.05 -- A hot dog, with saurkraut, relish, onions, topped with cheese
-Steamed Veggies and Brown Rice, 3.99 -- Steamed vegetables over brown rice
-Pasta, 3.89 -- Spaghetti with Marinara Sauce, and a slice of sourdough bread
+ALL MENUS, All menus combined
+---------------------
+
+PANCAKE HOUSE MENU, Breakfast
+---------------------
+  K&B's Pancake Breakfast(v), 2.99
+     -- Pancakes with scrambled eggs, and toast
+  Regular Pancake Breakfast, 2.99
+     -- Pancakes with fried eggs, sausage
+  Blueberry Pancakes(v), 3.49
+     -- Pancakes made with fresh blueberries, and blueberry syrup
+  Waffles(v), 3.59
+     -- Waffles, with your choice of blueberries or strawberries
+
+DINER MENU, Lunch
+---------------------
+  Vegetarian BLT(v), 2.99
+     -- (Fakin') Bacon with lettuce & tomato on whole wheat
+  BLT, 2.99
+     -- Bacon with lettuce & tomato on whole wheat
+  Soup of the day, 3.29
+     -- A bowl of the soup of the day, with a side of potato salad
+  Hotdog, 3.05
+     -- A hot dog, with saurkraut, relish, onions, topped with cheese
+  Steamed Veggies and Brown Rice(v), 3.99
+     -- Steamed vegetables over brown rice
+  Pasta(v), 3.89
+     -- Spaghetti with Marinara Sauce, and a slice of sourdough bread
+
+DESSERT MENU, Dessert of course!
+---------------------
+  Apple Pie(v), 1.59
+     -- Apple pie with a flakey crust, topped with vanilla icecream
+  Cheesecake(v), 1.99
+     -- Creamy New York cheesecake, with a chocolate graham crust
+  Sorbet(v), 1.89
+     -- A scoop of raspberry and a scoop of lime
+
+CAFE MENU, Dinner
+---------------------
+  Veggie Burger and Air Fries(v), 3.99
+     -- Veggie burger on a whole wheat bun, lettuce, tomato, and fries
+  Soup of the day, 3.69
+     -- A cup of the soup of the day, with a side salad
+  Burrito(v), 4.29
+     -- A large burrito, with whole pinto beans, salsa, guacamole
+
+COFFEE MENU, Stuff to go with your afternoon coffee
+---------------------
+  Coffee Cake(v), 1.59
+     -- Crumbly cake topped with cinnamon and walnuts
+  Bagel, 0.69
+     -- Flavors include sesame, poppyseed, cinnamon raisin, pumpkin
+  Biscotti(v), 0.89
+     -- Three almond or hazelnut biscotti cookies
 {% endhighlight %}
-
-This example will be improved in the next pattern: [The Composite Pattern](/design-patterns/composite).
