@@ -1,11 +1,11 @@
 ---
 layout: single #collection
-title: The Iterator Pattern
-permalink: /design-patterns/iterator
-excerpt: "The iterator design pattern summarized."
-date: 2019-10-03 15:41:35 +0200
+title: The Composite Pattern
+permalink: /design-patterns/composite
+excerpt: "The composite design pattern summarized."
+date: 2019-10-08 15:41:35 +0200
 categories: [programming, design patterns]
-tags: [programming, design patterns, iterator, pattern, behavioral]
+tags: [programming, design patterns, composite, pattern, structural]
 comments: true
 use_math: true
 toc: false
@@ -26,31 +26,23 @@ author_profile: false
 ---
 
 <p>
-<b>The Iterator Pattern</b> provides a way to 
-access the elements of an aggreagate object sequentially 
-without exposing its underlying respresentation.
+<b>The Composite Pattern</b> allows you to compose object into tree structures to represent 
+part-whole hirarchies. Composite lets clients treat individual objects and compositions of objects uniformly.
 </p>
 {: .notice}
 
-An Iterator allows access to an aggregate's (a collection) elements without exposing its internal structure.
-Iterating over an aggreagate using an iterator encapsulates this task in another object other than the aggregate itself.
-Thereby we relieve the aggregate of the responsibility of supporting operations for traversing its data.
-The iterator provides a common interface for traversing the items of an aggregate, allowing you to use polymporphism when writing code that makes use of the items of the aggregate. In other words, when we write methods that take iterators as parameters, we are using polymorphic iteration. That means we are creating code that can iterate over any collection as long as it supports the `Iterator` interface. The implementation of the underlying collection doesn't matter, we can still write code to iterate over it.
 
-The Iterator Pattern is commonly used with the [Composite Pattern](/design-patterns/composite) to iterate over its components.
 
+
+The [Iterator Pattern](/design-patterns/iterator) is commonly used with the Composite Pattern to iterate over its components.
 
 <figure>
-    <a href="/assets/pages/design-patterns/iterator-pattern.png"><img src="/assets/pages/design-patterns/iterator-pattern.png"></a>
-    <figcaption>Iterator Pattern uses a Factory Method `createIterator()` to create an iterator for an Aggregate.</figcaption>
+    <a href="/assets/pages/design-patterns/composite-pattern.png"><img src="/assets/pages/design-patterns/composite-pattern.png"></a>
+    <figcaption>The Composite Pattern.</figcaption>
 </figure>
 
-We distinguish between "internal" and "external" iterators.
-Using an external iterator, the client controls the iteration by calling `next()` to get the next element. An internal iterator is controlled by the iterator iself. This way, the iterator is stepping through the elements and thereby controls 
-the iteration itself. To get apply operations on the elements we have to pass the internal iterator a method. With internal iterators the client doesn't have control of the iteration, which might not be required if a single operation should be applied to all elements.
 
-
-The following example shows two restraunt menus, where both implement the same aggregate interface `Menu`. Each menu has menu items stored in different types of collections. With the Iterator Pattern it is possible to iterate over these items without 
+The following example extends the previous example from the [Iterator Pattern](/design-patterns/iterator), which shows two restraunt menus, where both implement the same aggregate interface `Menu`. Each menu has menu items stored in different types of collections. With the Iterator Pattern it is possible to iterate over these items without 
 knowing the underlying type of the aggregate.
 
 Each aggregate implements the `createIterator()` method which is declared in the `Menu` interface:

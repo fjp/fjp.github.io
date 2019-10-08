@@ -157,6 +157,8 @@ design-patterns:
         url: /design-patterns/decorator
       - title: "Facade"
         url: /design-patterns/facade
+      - title: "Composite"
+        url: /design-patterns/composite
   - title: "Behavioral"
     url: /design-patterns/
     children:
