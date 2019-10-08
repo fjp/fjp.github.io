@@ -202,6 +202,10 @@ public class Menu extends MenuComponent {
 }
 {% endhighlight %}
 
+
+Inside the `print()` method, an Iterator is used to iterate through all the `Menu`'s components - other `Menu`s or `MenuItem`s. If another `Menu` object appears during this iteration, its `print()` method will start another iteration, 
+that will print the whole tree structure. 
+
 All the client, in this example the `Waitress`, needs is the top-level menu component, that contains all the other menus, called `allmenus`: 
 
 {% highlight java %}
@@ -418,4 +422,271 @@ COFFEE MENU, Stuff to go with your afternoon coffee
      -- Flavors include sesame, poppyseed, cinnamon raisin, pumpkin
   Biscotti(v), 0.89
      -- Three almond or hazelnut biscotti cookies
+{% endhighlight %}
+
+This implementation uses an internal [Iterator](/design-patterns/iterator) in the `Menu` class for the member `menuComponents`, which is of type `ArrayList<MenuComponent>`. 
+
+
+## External Iterator over Composite
+
+To allow the client, the `Waitress`, more control to iterate over components, we can use an external iterator.
+This will make it possible to go through the entire menu and pull out vegetarian items.
+
+To achieve this, we have to add the method `createIterator()` to the `MenuComponent`, which means that each `Menu` and `MenuItem` will need to implement this method. Calling  this method on a composite should apply to all children of the composite.
+
+{% highlight bash %}
+import java.util.Iterator;
+import java.util.ArrayList;
+
+public class Menu extends MenuComponent {
+	Iterator<MenuComponent> iterator = null;
+	ArrayList<MenuComponent> menuComponents = new ArrayList<MenuComponent>();
+	String name;
+	String description;
+  
+	public Menu(String name, String description) {
+		this.name = name;
+		this.description = description;
+	}
+ 
+	public void add(MenuComponent menuComponent) {
+		menuComponents.add(menuComponent);
+	}
+ 
+	public void remove(MenuComponent menuComponent) {
+		menuComponents.remove(menuComponent);
+	}
+ 
+	public MenuComponent getChild(int i) {
+		return menuComponents.get(i);
+	}
+ 
+	public String getName() {
+		return name;
+	}
+ 
+	public String getDescription() {
+		return description;
+	}
+
+  
+	public Iterator<MenuComponent> createIterator() {
+		if (iterator == null) {
+			iterator = new CompositeIterator(menuComponents.iterator());
+		}
+		return iterator;
+	}
+ 
+ 
+	public void print() {
+		System.out.print("\n" + getName());
+		System.out.println(", " + getDescription());
+		System.out.println("---------------------");
+  
+		Iterator<MenuComponent> iterator = menuComponents.iterator();
+		while (iterator.hasNext()) {
+			MenuComponent menuComponent = iterator.next();
+			menuComponent.print();
+		}
+	}
+}
+{% endhighlight %}
+
+`MenuItem` also implements the new method `createIterator()`:
+
+
+{% highlight bash %}
+import java.util.Iterator;
+
+public class MenuItem extends MenuComponent {
+ 
+	String name;
+	String description;
+	boolean vegetarian;
+	double price;
+    
+	public MenuItem(String name, 
+	                String description, 
+	                boolean vegetarian, 
+	                double price) 
+	{ 
+		this.name = name;
+		this.description = description;
+		this.vegetarian = vegetarian;
+		this.price = price;
+	}
+  
+	public String getName() {
+		return name;
+	}
+  
+	public String getDescription() {
+		return description;
+	}
+  
+	public double getPrice() {
+		return price;
+	}
+  
+	public boolean isVegetarian() {
+		return vegetarian;
+	}
+
+	public Iterator<MenuComponent> createIterator() {
+		return new NullIterator();
+	}
+ 
+	public void print() {
+		System.out.print("  " + getName());
+		if (isVegetarian()) {
+			System.out.print("(v)");
+		}
+		System.out.println(", " + getPrice());
+		System.out.println("     -- " + getDescription());
+	}
+
+}
+{% endhighlight %}
+
+Here we return a `NullIterator` because there is nothing to iterate over in a Leaf node.
+The implementation of the `NullIterator` which is a [Null Object](/design-patterns/null-object) design pattern.
+
+{% highlight bash %}
+import java.util.Iterator;
+  
+public class NullIterator implements Iterator<MenuComponent> {
+   
+	public MenuComponent next() {
+		return null;
+	}
+  
+	public boolean hasNext() {
+		return false;
+	}
+   
+	/*
+	 * No longer needed as of Java 8
+	 * 
+	 * (non-Javadoc)
+	 * @see java.util.Iterator#remove()
+	 * 
+	public void remove() {
+		throw new UnsupportedOperationException();
+	}
+	*/
+}
+{% endhighlight %}
+
+
+Now the following implementation of `CompositeIterator` makes it possible to iterate over the tree structure.
+
+{% highlight bash %}
+import java.util.*;
+  
+public class CompositeIterator implements Iterator<MenuComponent> {
+	Stack<Iterator<MenuComponent>> stack = new Stack<Iterator<MenuComponent>>();
+   
+	public CompositeIterator(Iterator<MenuComponent> iterator) {
+		stack.push(iterator);
+	}
+   
+	public MenuComponent next() {
+		if (hasNext()) {
+			Iterator<MenuComponent> iterator = stack.peek();
+			MenuComponent component = iterator.next();
+			stack.push(component.createIterator());
+			return component;
+		} else {
+			return null;
+		}
+	}
+  
+	public boolean hasNext() {
+		if (stack.empty()) {
+			return false;
+		} else {
+			Iterator<MenuComponent> iterator = stack.peek();
+			if (!iterator.hasNext()) {
+				stack.pop();
+				return hasNext();
+			} else {
+				return true;
+			}
+		}
+	}
+	
+	/*
+	 * No longer needed as of Java 8
+	 * 
+	 * (non-Javadoc)
+	 * @see java.util.Iterator#remove()
+	 *
+	public void remove() {
+		throw new UnsupportedOperationException();
+	}
+	*/
+}
+{% endhighlight %}
+
+To get the vegetarian menu the `Waitress` implements a new `printVegetarianMenu()` method:
+
+{% highlight java %}
+import java.util.Iterator;
+  
+public class Waitress {
+	MenuComponent allMenus;
+ 
+	public Waitress(MenuComponent allMenus) {
+		this.allMenus = allMenus;
+	}
+ 
+	public void printMenu() {
+		allMenus.print();
+	}
+  
+	public void printVegetarianMenu() {
+		Iterator<MenuComponent> iterator = allMenus.createIterator();
+
+		System.out.println("\nVEGETARIAN MENU\n----");
+		while (iterator.hasNext()) {
+			MenuComponent menuComponent = iterator.next();
+			try {
+				if (menuComponent.isVegetarian()) {
+					menuComponent.print();
+				}
+			} catch (UnsupportedOperationException e) {}
+		}
+	}
+}
+{% endhighlight %}
+
+Executing this method in a test program results in the following output:
+
+{% highlight bash %}
+$java MenuTestDrive
+
+VEGETARIAN MENU
+----
+  K&B's Pancake Breakfast(v), 2.99
+     -- Pancakes with scrambled eggs, and toast
+  Blueberry Pancakes(v), 3.49
+     -- Pancakes made with fresh blueberries, and blueberry syrup
+  Waffles(v), 3.59
+     -- Waffles, with your choice of blueberries or strawberries
+  Vegetarian BLT(v), 2.99
+     -- (Fakin') Bacon with lettuce & tomato on whole wheat
+  Steamed Veggies and Brown Rice(v), 3.99
+     -- A medly of steamed vegetables over brown rice
+  Pasta(v), 3.89
+     -- Spaghetti with Marinara Sauce, and a slice of sourdough bread
+  Apple Pie(v), 1.59
+     -- Apple pie with a flakey crust, topped with vanilla icecream
+  Cheesecake(v), 1.99
+     -- Creamy New York cheesecake, with a chocolate graham crust
+  Sorbet(v), 1.89
+     -- A scoop of raspberry and a scoop of lime
+  Veggie Burger and Air Fries(v), 3.99
+     -- Veggie burger on a whole wheat bun, lettuce, tomato, and fries
+  Burrito(v), 4.29
+     -- A large burrito, with whole pinto beans, salsa, guacamole
 {% endhighlight %}
