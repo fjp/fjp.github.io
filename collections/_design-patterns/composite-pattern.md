@@ -3,7 +3,7 @@ layout: single #collection
 title: The Composite Pattern
 permalink: /design-patterns/composite
 excerpt: "The composite design pattern summarized."
-date: 2019-10-03 15:41:35 +0200
+date: 2019-10-08 15:41:35 +0200
 categories: [programming, design patterns]
 tags: [programming, design patterns, composite, pattern, structural]
 comments: true
