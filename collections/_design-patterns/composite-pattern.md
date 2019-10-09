@@ -568,7 +568,7 @@ public class MenuItem extends MenuComponent {
 
 Here we return a `NullIterator` because there is nothing to iterate over in a `Leaf` node.
 The implementation of the `NullIterator` which is a [Null Object](/design-patterns/null-object) design pattern, 
-follows in the next code snippet:
+follows in the next code snippet. This special iterator always returns `false` when `hasNext()` is called:
 
 {% highlight bash %}
 import java.util.Iterator;
