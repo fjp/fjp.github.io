@@ -48,6 +48,16 @@ The [Iterator Pattern](/design-patterns/iterator) is commonly used with the Comp
 A `Component` can implement default behavior for its `Leaf` and `Composite` subclasses. 
 If a base class method is different in the subclasses a valid default implementation is to throw an exception.
 
+
+Note that depending on the perspective, not all methods make sense for both subclasses of the `Component` interface. 
+For example, the child node management methods `add()`, `remove()` and `getChild()` seem incorret when applied on a `Leaf` node. However, a leaf node can be seen as a node with zero children.
+The Composite Pattern takes the [Single Responsibility Principle](/design-patterns/) and trades it for *transparency*. 
+By allowing the `Component` interface to contain the child management operations and the leaf operations, 
+a client can treat both composites and leaf nodes uniformly. 
+So whether an element is a composite or leaf node becomes transparent to the client.
+
+If a safer design is required, we could take separate out the responsibilities into separate interfaces, instead of an common `Component` interface. This way, any inappropriate calls would be caught at compile time or runtime, but transparency would be lost and the code would have to use conditionals and the `instanceof` operator.
+
 The following example extends the previous example from the [Iterator Pattern](/design-patterns/iterator), which shows two restraunt menus, where both implement the same aggregate interface `Menu`. Each menu has menu items stored in different types of collections (aggregates such as `ArrayList`, standard array or `HashMap`). 
 With the Iterator Pattern it is possible to iterate over these items without knowing the underlying type of the aggregate.
 
@@ -424,7 +434,9 @@ COFFEE MENU, Stuff to go with your afternoon coffee
      -- Three almond or hazelnut biscotti cookies
 {% endhighlight %}
 
-This implementation uses an internal [Iterator](/design-patterns/iterator) in the `Menu` class for the member `menuComponents`, which is of type `ArrayList<MenuComponent>`. 
+This implementation uses an internal [Iterator](/design-patterns/iterator) in the `Menu` class, which is
+created from the member `menuComponents` that is of type `ArrayList<MenuComponent>`. 
+This way we, applying `print()` we get a printout of the whole composite.
 
 
 ## External Iterator over Composite
