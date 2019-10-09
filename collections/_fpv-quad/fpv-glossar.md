@@ -37,10 +37,15 @@ It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) c
 
 ## CleanFlight
 
-## FlightController
+## Flight Controller
 
-[MicroController]() board that contains input and output (I/O) pins and a processing unit (microchrip), which runs a Flight Controller
-[frimware](/projects/fpv-quad/fpv-glossar/#firmware). that computes output signals for external or internal [ESCs]() by processing the input signals. Input signals are the [receiver](/projects/fpv-quad/fpv-glossar/#receiver) and 
+[Micro Controller]() board that contains input and output (I/O) pins and a processing unit (microchrip), which runs a Flight Controller
+[frimware](/projects/fpv-quad/fpv-glossar/#firmware), that computes output signals for external or internal [ESCs]() by processing the input signals. Input signals are the [receiver](/projects/fpv-quad/fpv-glossar/#receiver) and other external sensors. A Flight Controller usually
+contains multiple internal [sensors](/projects/fpv-quad/fpv-glossar/#sensor) such as [IMUs](/projects/fpv-quad/fpv-glossar/#imu).
+
+## Firmware
+
+In the context of [FPV](/projects/fpv-quad/fpv-glossar/#fpv) a firmware is the software that runs on the [Flight Controller](/projects/fpv-quad/fpv-glossar/#flight-controller)
 
 ## FPV
 
@@ -52,6 +57,7 @@ Company that produces radio controlled [transmitters](/projects/fpv-quad/fpv-glo
 
 ## Goggle
 
+Used to view the [analog](/projects/fpv-quad/fpv-glossar/#analog) live image captured by the camera on the quad, which is transmitted with the video transmitter that sits also on the quad.
 
 ## Receiver
 
