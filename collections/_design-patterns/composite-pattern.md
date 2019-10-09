@@ -438,13 +438,19 @@ This implementation uses an internal [Iterator](/design-patterns/iterator) in th
 created from the member `menuComponents` that is of type `ArrayList<MenuComponent>`. 
 This way we, applying `print()` we get a printout of the whole composite.
 
+This iterator steps through each item in the component, and if an item is a `Menu` rather than a `MenuItem`,
+then `print()` gets called recursively to handle printing. 
+This way, the `MenuComponent` interface handles the iteration itself *internally*. 
+
 
 ## External Iterator over Composite
 
-To allow the client, the `Waitress`, more control to iterate over components, we can use an external iterator.
+To allow the client, the `Waitress`, more control to iterate over components, we can use an *external iterator*.
 This will make it possible to go through the entire menu and pull out vegetarian items.
 
-To achieve this, we have to add the method `createIterator()` to the `MenuComponent`, which means that each `Menu` and `MenuItem` will need to implement this method. Calling  this method on a composite should apply to all children of the composite.
+An external iterator must maintain its position in the iteration so that an outside client can drive the iteration by calling `hasNext()` and `next()`. In this case the external iterator implementation needs to maintain the position over the composite, recursive structure. The following example shows how to achieve this using stacks to maintain the position as we move up and down the composite hierarchy.
+
+To achieve this, we have to add the method `createIterator()` to the `MenuComponent`, which means that each `Menu` and `MenuItem` will need to implement this method. Calling this method on a composite should apply to all children of the composite.
 
 {% highlight bash %}
 import java.util.Iterator;
@@ -560,8 +566,9 @@ public class MenuItem extends MenuComponent {
 }
 {% endhighlight %}
 
-Here we return a `NullIterator` because there is nothing to iterate over in a Leaf node.
-The implementation of the `NullIterator` which is a [Null Object](/design-patterns/null-object) design pattern.
+Here we return a `NullIterator` because there is nothing to iterate over in a `Leaf` node.
+The implementation of the `NullIterator` which is a [Null Object](/design-patterns/null-object) design pattern, 
+follows in the next code snippet:
 
 {% highlight bash %}
 import java.util.Iterator;
