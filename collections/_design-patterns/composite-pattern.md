@@ -58,6 +58,18 @@ So whether an element is a composite or leaf node becomes transparent to the cli
 
 If a safer design is required, we could take separate out the responsibilities into separate interfaces, instead of an common `Component` interface. This way, any inappropriate calls would be caught at compile time or runtime, but transparency would be lost and the code would have to use conditionals and the `instanceof` operator.
 
+## Order
+
+Another issue that is ordering of children. In case the children of a composite need to be in a specific order, 
+we require a more sophisticated management scheme for adding and removing children, and how to traverse the hierarchy.
+
+## Caching
+
+If the composite structure is complex or expensive to traverse, it's helpful to implement caching of the composite nodes.
+For instance, if you are constantly traversing a composite and all its children to compute some result, you could implement a cache that stores the result temporarily to save traversals.
+
+## Composite Example
+
 The following example extends the previous example from the [Iterator Pattern](/design-patterns/iterator), which shows two restraunt menus, where both implement the same aggregate interface `Menu`. Each menu has menu items stored in different types of collections (aggregates such as `ArrayList`, standard array or `HashMap`). 
 With the Iterator Pattern it is possible to iterate over these items without knowing the underlying type of the aggregate.
 
