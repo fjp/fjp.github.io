@@ -31,12 +31,13 @@ part-whole hirarchies. Composite lets clients treat individual objects and compo
 </p>
 {: .notice}
 
-The Composite Pattern allows us to build structures of objects in the form of trees that contain both compositions of objects and individual objects as nodes. A composite contains components. Components come in two flavors: 
+The Composite Pattern allows us to build structures of objects in the form of trees that contain both compositions of objects and individual objects as nodes. A composite contains components (so a component is any object in a composite structure), which come in two flavors: 
 composites and leafe elements. This recursive structure contains composites that hold a set of children.
 Those children may be other composites or leaf elements.
 
 Using a composite structure, we can apply the same operations over both composites and individual objects. 
 In other words, in most cases we can ignore the differences between compositions of objects and individual objects.
+This allows clients to treat composites and individual objects uniformly.
 
 The [Iterator Pattern](/design-patterns/iterator) is commonly used with the Composite Pattern to iterate over its components.
 
@@ -48,7 +49,7 @@ The [Iterator Pattern](/design-patterns/iterator) is commonly used with the Comp
 A `Component` can implement default behavior for its `Leaf` and `Composite` subclasses. 
 If a base class method is different in the subclasses a valid default implementation is to throw an exception.
 
-
+There are many design tradeoffs in implementing Composite. You need to balance transparency and safety with your needs.
 Note that depending on the perspective, not all methods make sense for both subclasses of the `Component` interface. 
 For example, the child node management methods `add()`, `remove()` and `getChild()` seem incorret when applied on a `Leaf` node. However, a leaf node can be seen as a node with zero children.
 The Composite Pattern takes the [Single Responsibility Principle](/design-patterns/) and trades it for *transparency*. 
