@@ -22,6 +22,21 @@ author_profile: false
 
 ## Analog
 
+## Battery
+
+Batteries in a [FPV](/projects/fpv-quad/fpv-glossar/#fpv) drone are connected to the [PDB](/projects/fpv-quad/fpv-glossar/#pdb) to power the components. For drones [LiPo](/projects/fpv-quad/fpv-glossar/#lipo) batteries are used 
+because of their high energy density, which makes them weigh less and therefore improve the flight time.
+
+A battery has two important measures. Its capacity and cell count that specify their voltage level.
+
+Different LiPos are made up of individual cells where the cell count can varay. Typical cell counts are defined as:
+
+| Cell count | Voltage |
+|:----------:|:-------:|
+| 2S         |  7.4 V  |
+| 3S         |  11.1 V |
+| 4S         |  14.8 V |
+
 ## BetaFlight
 
 The BetaFlight open source [Flight Controller](/projects/fpv-quad/fpv-glossar/#flight-controller) [frimware](/projects/fpv-quad/fpv-glossar/#firmware) project (found on [GitHub](https://github.com/betaflight)) provides
