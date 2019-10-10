@@ -63,6 +63,11 @@ Company that produces radio controlled [transmitters](/projects/fpv-quad/fpv-glo
 
 Used to view the [analog](/projects/fpv-quad/fpv-glossar/#analog) live image captured by the camera on the quad, which is transmitted with the video transmitter that sits also on the quad.
 
+## PDB
+
+The Power Distribution Board (PDB) acts as the heart of an [FPV](/projects/fpv-quad/fpv-glossar/#fpv) quad. 
+It is connected to the [Battery](/projects/fpv-quad/fpv-glossar/#battery) and distributes its power to other components of the quad. 
+
 ## Receiver
 
 The receiver (also refered to as `Rx`) is installed in the quad or radio controlled (rc) vehicle and communicates with the [transmitter](/projects/fpv-quad/fpv-glossar/#transmitter)
