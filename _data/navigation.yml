@@ -172,6 +172,8 @@ design-patterns:
         url: /design-patterns/template-method
       - title: "Iterator"
         url: /design-patterns/iterator
+      - title: "State"
+        url: /design-patterns/state
   - title: "Functional"
     url: /design-patterns/
     children:
