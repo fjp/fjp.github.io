@@ -37,6 +37,10 @@ It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) c
 
 ## CleanFlight
 
+## ESC
+
+The Electronic Speed Controller (ESC) is conected to the [PDB](/projects/fpv-quad/fpv-glossar/#pdb) and controls the speed of a motor by adjusting its rpms (rotation per minutes). A quad copter uses four ESCs which can be part of the [Flight Controller](/projects/fpv-quad/fpv-glossar/#flight-controller).
+
 ## Flight Controller
 
 [Micro Controller]() board that contains input and output (I/O) pins and a processing unit (microchrip), which runs a Flight Controller
