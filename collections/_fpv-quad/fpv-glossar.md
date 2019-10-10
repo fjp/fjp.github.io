@@ -66,7 +66,9 @@ Used to view the [analog](/projects/fpv-quad/fpv-glossar/#analog) live image cap
 ## PDB
 
 The Power Distribution Board (PDB) acts as the heart of an [FPV](/projects/fpv-quad/fpv-glossar/#fpv) quad. 
-It is connected to the [Battery](/projects/fpv-quad/fpv-glossar/#battery) and distributes its power to other components of the quad. 
+It is connected to the [Battery](/projects/fpv-quad/fpv-glossar/#battery) and distributes its power to other components of the quad. The main components its is connected to are the [ESCs](/projects/fpv-quad/fpv-glossar/#esc) to power the 
+[motors](/projects/fpv-quad/fpv-glossar/#motor). A PDB usually has additional voltage outputs such as 5V and 12V to power 
+[sensors](/projects/fpv-quad/fpv-glossar/#sensor) or [LEDs](/projects/fpv-quad/fpv-glossar/#led).
 
 ## Receiver
 
