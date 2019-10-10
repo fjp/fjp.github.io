@@ -45,6 +45,7 @@ The Electronic Speed Controller (ESC) is conected to the [PDB](/projects/fpv-qua
 
 [Micro Controller]() board that contains input and output (I/O) pins and a processing unit (microchrip), 
 which runs a Flight Controller [frimware](/projects/fpv-quad/fpv-glossar/#firmware). 
+The Flight Controller acts as the brain of a drone.
 By processing [sensor](/projects/fpv-quad/fpv-glossar/#sensor) input signals the Flight Controller is used to compute output signals for external or internal [ESCs](/projects/fpv-quad/fpv-glossar/#esc) to keep level flight. Other input signals are used to adjust the [pose](/projects/fpv-quad/fpv-glossar/#pose) of the quad in the air such as the [receiver](/projects/fpv-quad/fpv-glossar/#receiver) and other internal or external sensors. A Flight Controller usually
 contains multiple internal [sensors](/projects/fpv-quad/fpv-glossar/#sensor) such as [IMUs](/projects/fpv-quad/fpv-glossar/#imu).
 
