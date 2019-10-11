@@ -359,7 +359,34 @@ public class SoldOutState implements State {
 
 In this state the machine changes its behavior only if it gets refilled.
 
+How to use the `GumballMachine` is shown in the following test program: 
 
+{% highlight java %}
+public class GumballMachineTestDrive {
+
+	public static void main(String[] args) {
+		GumballMachine gumballMachine = new GumballMachine(2);
+
+		System.out.println(gumballMachine);
+
+		gumballMachine.insertQuarter();
+		gumballMachine.turnCrank();
+
+		System.out.println(gumballMachine);
+
+		gumballMachine.insertQuarter();
+		gumballMachine.turnCrank();
+		gumballMachine.insertQuarter();
+		gumballMachine.turnCrank();
+		
+		gumballMachine.refill(5);
+		gumballMachine.insertQuarter();
+		gumballMachine.turnCrank();
+
+		System.out.println(gumballMachine);
+	}
+}
+{% endhighlight %}
 
 result:
 
@@ -370,4 +397,6 @@ $ java MenuTestDrive
 
 ## State Extension
 
-It is easy to extend the Gumball machine with a winner state that will release two gumballs 1 out of 10 times when the crank is turned.
+It is easy to extend the Gumball machine with a winner state that will release two gumballs 1 out of 10 times when the crank is turned. 
+
+To do this the `GumballMachine` class needs a new state member `winner` and implement its getters and setters.
