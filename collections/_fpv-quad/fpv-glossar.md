@@ -29,7 +29,7 @@ because of their high energy density, which makes them weigh less and therefore 
 
 A battery has two important measures. Its capacity and cell count that specify their voltage level.
 
-Different LiPos are made up of individual cells where the cell count can varay. Typical cell counts are defined as:
+Different LiPo battery packs are made up of individual cells with one cell having 3.7V. Typical cell counts are defined as:
 
 | Cell count | Voltage |
 |:----------:|:-------:|
