@@ -229,8 +229,23 @@ public class GumballMachine {
 }
 {% endhighlight %}
 
+The `GumballMachine` class instantiates all concrete states and provides all possible action methods to the user.
 The action methods of this `Context` class delegate the work to the currently set state, which is stored in the `state` 
 member. 
+
+The rest of the states are implemented next. 
+
+{% highlight java %}
+
+{% endhighlight %}
+
+
+
+{% highlight java %}
+
+{% endhighlight %}
+
+
 
 {% highlight java %}
 
