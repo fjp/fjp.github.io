@@ -317,6 +317,9 @@ public class SoldState implements State {
 }
 {% endhighlight %}
 
+Most of the actions are inapropriate in this state except for the internal `dispense()` action.
+In this method the machine releases a gumball and transitions to `NoQuarterState` or `SoldOutState` depending
+on the gumball count of the machine.
 
 
 {% highlight java %}
