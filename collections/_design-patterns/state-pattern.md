@@ -235,10 +235,41 @@ member. Note that `dispense()` requires no action method because it is an intern
 A user can't ask the machine to dispense directly. Instead, `dispense()` is called on the `state` object inside the
 `turnCrank()` action method.
 
-The rest of the states are implemented next. 
+The rest of the states are implemented next. Each state has a reference to the `GumballMachine` to transition it to
+a different state. The following is the `HasQuarterState`:
 
 {% highlight java %}
+public class HasQuarterState implements State {
+	GumballMachine gumballMachine;
+ 
+	public HasQuarterState(GumballMachine gumballMachine) {
+		this.gumballMachine = gumballMachine;
+	}
+  
+	public void insertQuarter() {
+		System.out.println("You can't insert another quarter");
+	}
+ 
+	public void ejectQuarter() {
+		System.out.println("Quarter returned");
+		gumballMachine.setState(gumballMachine.getNoQuarterState());
+	}
+ 
+	public void turnCrank() {
+		System.out.println("You turned...");
+		gumballMachine.setState(gumballMachine.getSoldState());
+	}
 
+    public void dispense() {
+        System.out.println("No gumball dispensed");
+    }
+    
+    public void refill() { }
+ 
+	public String toString() {
+		return "waiting for turn of crank";
+	}
+}
 {% endhighlight %}
 
 
