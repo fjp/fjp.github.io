@@ -132,8 +132,9 @@ public class NoQuarterState implements State {
 {% endhighlight %}
 
 Like all states will, this state has a reference to the `GumballMachine`, the `Context`, 
-which is used to get and set new states. For example, the `insertQuarter()` method uses the getter and setter of
-the `GumballMachine` class that is defined next:
+which is used to get and set new states. For example, to transition from this state `NoQuarterState` to `HasQuarterState` 
+when the user inserts a coin, the `insertQuarter()` method uses the getter and setter of the `GumballMachine` class 
+that is defined next:
 
 {% highlight java %}
 public class GumballMachine {
@@ -230,6 +231,10 @@ public class GumballMachine {
 
 The action methods of this `Context` class delegate the work to the currently set state, which is stored in the `state` 
 member. 
+
+{% highlight java %}
+
+{% endhighlight %}
 
 result:
 
