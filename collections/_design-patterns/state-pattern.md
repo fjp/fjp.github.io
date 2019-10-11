@@ -76,7 +76,7 @@ The following example shows a Gumball machine with the following states that wil
 - NoQuarterState - The start state where the user hasn't inserted a quarter.
 - HasQuarter - After inserting a quarter, we transition to this state.
 - SoldState - This state is reached ff a the user inserted a quarter and truns the crank.
-- SoldOut - If all gumballs are sold or the machine hasn't been filled, the machine transitions to this state
+- SoldOut - If all gumballs are sold or the machine hasn't been filled, the machine transitions to this state.
 
 First, we’re going to define a `State` interface that contains a method for every action in the Gumball Machine.
 
@@ -359,9 +359,15 @@ public class SoldOutState implements State {
 
 In this state the machine changes its behavior only if it gets refilled.
 
+
+
 result:
 
 {% highlight bash %}
 $ java MenuTestDrive
 
 {% endhighlight %}
+
+## State Extension
+
+It is easy to extend the Gumball machine with a winner state that will release two gumballs 1 out of 10 times when the crank is turned.
