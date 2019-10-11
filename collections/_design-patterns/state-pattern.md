@@ -66,7 +66,7 @@ State classes may be shared among Context instances.
 If we require common methods, that are shared across states,
 we use an abstract state class. Otherwise it is possible to use an interface. 
 Using an abstract class has the benefit of allowing you to add methods to the abstract class later, 
-without breaking the concrete state implementations.
+without breaking the concrete state implementations. 
 
 
 ## State Pattern Example
@@ -94,7 +94,7 @@ public interface State {
 
 Now we are going to implement a `State` class for every state of the machine. 
 These classes will be responsible for the behavior of the machine (`Context`) when it is in the corresponding state.
-This way we delegate the work to the individual state classes.
+This way we delegate the work to the individual state classes. 
 
 The first state that will implement the `State` interface is `NoQuarterState`:
 
@@ -130,6 +130,10 @@ public class NoQuarterState implements State {
 	}
 }
 {% endhighlight %}
+
+Note that not all actions are apropriate for each state. For example, 
+`turnCrank()` or `ejectQuarter()` make no sense in the `NoQuarterState`. 
+Therefore the user will be only informed to insert a quarter and no transition takes place.
 
 Like all states will, this state has a reference to the `GumballMachine`, the `Context`, 
 which is used to get and set new states. For example, to transition from this state `NoQuarterState` to `HasQuarterState` 
@@ -272,10 +276,45 @@ public class HasQuarterState implements State {
 }
 {% endhighlight %}
 
-
+The `SoldState` looks like this:
 
 {% highlight java %}
-
+public class SoldState implements State {
+ 
+    GumballMachine gumballMachine;
+ 
+    public SoldState(GumballMachine gumballMachine) {
+        this.gumballMachine = gumballMachine;
+    }
+       
+	public void insertQuarter() {
+		System.out.println("Please wait, we're already giving you a gumball");
+	}
+ 
+	public void ejectQuarter() {
+		System.out.println("Sorry, you already turned the crank");
+	}
+ 
+	public void turnCrank() {
+		System.out.println("Turning twice doesn't get you another gumball!");
+	}
+ 
+	public void dispense() {
+		gumballMachine.releaseBall();
+		if (gumballMachine.getCount() > 0) {
+			gumballMachine.setState(gumballMachine.getNoQuarterState());
+		} else {
+			System.out.println("Oops, out of gumballs!");
+			gumballMachine.setState(gumballMachine.getSoldOutState());
+		}
+	}
+	
+	public void refill() { }
+ 
+	public String toString() {
+		return "dispensing a gumball";
+	}
+}
 {% endhighlight %}
 
 
