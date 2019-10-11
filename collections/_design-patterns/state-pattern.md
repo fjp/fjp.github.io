@@ -231,7 +231,9 @@ public class GumballMachine {
 
 The `GumballMachine` class instantiates all concrete states and provides all possible action methods to the user.
 The action methods of this `Context` class delegate the work to the currently set state, which is stored in the `state` 
-member. 
+member. Note that `dispense()` requires no action method because it is an internal action of the Gumball machine. 
+A user can't ask the machine to dispense directly. Instead, `dispense()` is called on the `state` object inside the
+`turnCrank()` action method.
 
 The rest of the states are implemented next. 
 
