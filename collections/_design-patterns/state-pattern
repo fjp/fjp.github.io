@@ -47,7 +47,9 @@ The following class diagram shows an example, where the concrete state classes i
 
 
 The `Context` gets its behavior by delegating applied actions to the current state object it is composed with.
-By encapsulating each state into a class, we localize any changes that will need to be made.
+By encapsulating each state into a class, we localize any changes that will need to be made. 
+This way we follow the principle: Encapsulate what varies (the state).
+The principle: Open for extension but closed for modification is also coverd by the State Pattern.
 Each state is closed for modification, and yet the `Context` is open for extension by adding new state classes.
 
 The State and [Strategy Patterns](/design-patterns/strategy) have the same class diagram, but they differ in
@@ -69,12 +71,30 @@ without breaking the concrete state implementations.
 
 ## State Pattern Example
 
+The following example shows a Gumball machine with the following states that will be represented by individual classes:
+
+- NoQuarterState - The start state where the user hasn't inserted a quarter.
+- HasQuarter - After inserting a quarter, we transition to this state.
+- SoldState - This state is reached ff a the user inserted a quarter and truns the crank.
+- SoldOut - If all gumballs are sold or the machine hasn't been filled, the machine transitions to this state
+
+First, we’re going to define a `State` interface that contains a method for every action in the Gumball Machine.
 
 {% highlight java %}
-
+public interface State {
+ 
+	public void insertQuarter();
+	public void ejectQuarter();
+	public void turnCrank();
+	public void dispense();
+	
+	public void refill();
+}
 {% endhighlight %}
 
-E
+Now we are going to implement a `State` class for every state of the machine. 
+These classes will be responsible for the behavior of the machine (`Context`) when it is in the corresponding state.
+This way we delegate the work to the individual state classes.
 
 {% highlight java %}
 
