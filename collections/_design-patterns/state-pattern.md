@@ -53,13 +53,13 @@ The principle: Open for extension but closed for modification is also coverd by 
 Each state is closed for modification, and yet the `Context` is open for extension by adding new state classes.
 
 The State and [Strategy Patterns](/design-patterns/strategy) have the same class diagram, but they differ in
-intent. The Strategy Pattern typically configures Context classes with a behavior or algorithm.
+intent. The Strategy Pattern typically configures Context classes with a behavior or algorithm, 
+which can be done through composition during runtime.
 State Pattern allows a Context to change its behavior as the state of the Context
 changes.
 
-State transitions can be controlled by the State classes or by the Context classes.
-
-State classes may be shared among Context instances. 
+`State` transitions can be controlled by the `State` classes or by the `Context` classes. 
+It is also possible for `State` classes to be shared among `Context` instances. 
 
 
 
