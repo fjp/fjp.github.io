@@ -33,7 +33,7 @@ The object will appear to change its class.
 
 The State Pattern allows an object to have many different behaviors that are based on its internal state. 
 Unlike a procedural state machine, the State Pattern represents its states as individual classes, 
-each inheriting from a common interface or abstract class. 
+each inheriting from a common interface or abstract class.
 This will typically result in a greater number of classes in your design. Beside this disadvantage,
 using explicit classes for each state the code becomes easier to understand, maintain and it is more flexible.
 
@@ -48,6 +48,7 @@ The following class diagram shows an example, where the concrete state classes i
 
 The `Context` gets its behavior by delegating applied actions to the current state object it is composed with.
 By encapsulating each state into a class, we localize any changes that will need to be made.
+Each state is closed for modification, and yet the `Context` is open for extension by adding new state classes.
 
 The State and [Strategy Patterns](/design-patterns/strategy) have the same class diagram, but they differ in
 intent. The Strategy Pattern typically configures Context classes with a behavior or algorithm.
@@ -56,7 +57,14 @@ changes.
 
 State transitions can be controlled by the State classes or by the Context classes.
 
-State classes may be shared among Context instances.
+State classes may be shared among Context instances. 
+
+
+
+If we require common methods, that are shared across states,
+we use an abstract state class. Otherwise it is possible to use an interface. 
+Using an abstract class has the benefit of allowing you to add methods to the abstract class later, 
+without breaking the concrete state implementations.
 
 
 ## State Pattern Example
