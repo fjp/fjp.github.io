@@ -159,6 +159,8 @@ design-patterns:
         url: /design-patterns/facade
       - title: "Composite"
         url: /design-patterns/composite
+      - title: "Proxy"
+        url: /design-patterns/proxy
   - title: "Behavioral"
     url: /design-patterns/
     children:
