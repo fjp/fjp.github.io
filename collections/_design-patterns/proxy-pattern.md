@@ -3,7 +3,7 @@ layout: single #collection
 title: The Proxy Pattern
 permalink: /design-patterns/proxy
 excerpt: "The proxy design pattern summarized."
-date: 2019-10-09 15:41:35 +0200
+date: 2019-10-11 15:41:35 +0200
 categories: [programming, design patterns]
 tags: [programming, design patterns, proxy, pattern, structural]
 comments: true
