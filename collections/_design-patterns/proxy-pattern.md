@@ -37,6 +37,15 @@ There are a number of ways it can manage that access.
 - **Virtual Proxy:** controls access to an object that is expensive to instantiate.
 - **Protection Proxy:** controls access to the methods of an object based on the caller.
 
+Other variants of the Proxy Pattern are the following:
+
+- **Firewall Proxy:** controls access to a set of network resources, protecting the subject from malicious clients. This is used in corporate firewall systems.
+- **Smart Reference Proxy:** provides additional actions whenever a subject is referenced, such as counting the number of references to an object. In C++ this is a [shared smart pointer](https://en.cppreference.com/book/intro/smart_pointers#shared_ptr).
+- **Caching Proxy:** provides t3emporary storage for results of operations that are expensive. It can also allow multiple clients to share the results to reduce computation or network latency. This is often seen in web server proxies as well as content management and publishing systems.
+- **Synchronization Proxy:** provides safe access to a subject from multiple threas. This proxy is used in JavaSpaces, where it controls synchronized access to an underlying set of objects in a distributed environment. 
+- **Complexity Hiding Proxy:** hides the complexity of and controls access to a complex set of classes. This is sometimes called the Facade Proxy. The Complexity Hiding Proxy differs from the [Facade Pattern](/design-patterns/facade) in that the proxy controls access, while the Facade Pattern just provides an alternative interface.
+- **Copy-On-Write Proxy:** controls the opying of an object by deferring the copying of an object until it is required by a client. This is a variant of the Virtual Proxy.
+
 <figure>
     <a href="/assets/pages/design-patterns/proxy-pattern.png"><img src="/assets/pages/design-patterns/proxy-pattern.png"></a>
     <figcaption>The Proxy Pattern.</figcaption>
