@@ -30,6 +30,12 @@ author_profile: false
 </p>
 {: .notice}
 
+The Proxy Pattern provides a representative for another object in order to control the client's access to it.
+There are a number of ways it can manage that access.
+
+- **Remote Proxy:** manages interaction between a client and a remote object.
+- **Virtual Proxy:** controls access to an object that is expensive to instantiate.
+- **Protection Proxy:** controls access to the methods of an object based on the caller.
 
 <figure>
     <a href="/assets/pages/design-patterns/proxy-pattern.png"><img src="/assets/pages/design-patterns/proxy-pattern.png"></a>
