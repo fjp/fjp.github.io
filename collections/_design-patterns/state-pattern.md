@@ -73,10 +73,10 @@ without breaking the concrete state implementations.
 
 The following example shows a Gumball machine with the following states that will be represented by individual classes:
 
-- NoQuarterState - The start state where the user hasn't inserted a quarter.
-- HasQuarter - After inserting a quarter, we transition to this state.
-- SoldState - This state is reached ff a the user inserted a quarter and truns the crank.
-- SoldOut - If all gumballs are sold or the machine hasn't been filled, the machine transitions to this state.
+- `NoQuarterState` - The start state where the user hasn't inserted a quarter.
+- `HasQuarterState` - After inserting a quarter, we transition to this state.
+- `SoldState` - This state is reached ff a the user inserted a quarter and truns the crank.
+- `SoldOutState` - If all gumballs are sold or the machine hasn't been filled, the machine transitions to this state.
 
 First, we’re going to define a `State` interface that contains a method for every action in the Gumball Machine.
 
