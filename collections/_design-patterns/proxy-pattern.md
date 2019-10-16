@@ -52,9 +52,10 @@ Other variants of the Proxy Pattern are the following:
 </figure>
 
 
-## Proxy Pattern Example
+## Remote Proxy Pattern Example
 
-
+The following example shows a company that has `GumballMachine`s which they want to monitor remotely.
+To do this, we use a `GumballMonitor` that will talk to a proxy, which knows how to talk to the remote `GumballMachines` and how to return a report from the state of the `GumballMachine`.
 
 {% highlight java %}
 
