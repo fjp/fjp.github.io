@@ -57,15 +57,36 @@ Other variants of the Proxy Pattern are the following:
 The following example shows a company that has `GumballMachine`s which they want to monitor remotely.
 To do this, we use a `GumballMonitor` that will talk to a proxy, which knows how to talk to the remote `GumballMachines` and how to return a report from the state of the `GumballMachine`.
 
-{% highlight java %}
+The first step is to turn the `GumballMachine` into a service that can handle remote requests from clients. 
+To do that, we need to:
+1. Create a remote interface for the `GumballMachine`. This will provide a set of methods that can be called remotely.
+2. Make sure all the return types in the interface are serializable.
+3. Implement the interface in a concrete class.
 
+Let's start with the remote interface:
+
+{% highlight java %}
+import java.rmi.*;
+ 
+public interface GumballMachineRemote extends Remote {
+	public int getCount() throws RemoteException;
+	public String getLocation() throws RemoteException;
+	public State getState() throws RemoteException;
+}
 {% endhighlight %}
 
 
-The first :
+The `State` class is not yet serializable. To fix this we use the following implementation:
 
 {% highlight java %}
-
+import java.io.*;
+  
+public interface State extends Serializable {
+	public void insertQuarter();
+	public void ejectQuarter();
+	public void turnCrank();
+	public void dispense();
+}
 {% endhighlight %}
 
 Note that not all actions are apropriate for each state. For example, 
