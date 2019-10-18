@@ -271,6 +271,31 @@ The constructor of the `GumballMachine` can throw exceptions because it extends 
 Therefore the creation of `GumballMachine` needs to be placed inside a `try` and `catch` statement.
 The call to `Naming.rebind` publishes the `GumballMachine` stub under the name `gumballmachine`.
 
+For the `GumballMonitor` to work over the network, we have to rely on the remote interface `GumballMachineRemote`.
+This class will also catch any exceptions that might happen when requests over the network happen.
+
+{% highlight java %}
+import java.rmi.*;
+ 
+public class GumballMonitor {
+	GumballMachineRemote machine;
+ 
+	public GumballMonitor(GumballMachineRemote machine) {
+		this.machine = machine;
+	}
+ 
+	public void report() {
+		try {
+			System.out.println("Gumball Machine: " + machine.getLocation());
+			System.out.println("Current inventory: " + machine.getCount() + " gumballs");
+			System.out.println("Current state: " + machine.getState());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+}
+{% endhighlight %}
+
 {% highlight java %}
 import java.rmi.*;
  
