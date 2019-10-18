@@ -238,7 +238,76 @@ public class GumballMachine
 {% endhighlight %}
 
 To let the `GumballMachine` serve requests, we need to make sure we register it with the
-RMI registry, which is Java's [Remote Method Invocation](https://en.wikipedia.org/wiki/Java_remote_method_invocation) registry. This allows clients to locate this service.
+RMI registry, which is Java's [Remote Method Invocation](https://en.wikipedia.org/wiki/Java_remote_method_invocation) registry. This allows clients to locate this service. The following test code takes care of the registration:
+
+{% highlight java %}
+import java.rmi.*;
+
+public class GumballMachineTestDrive {
+ 
+	public static void main(String[] args) {
+		GumballMachineRemote gumballMachine = null;
+		int count;
+
+		if (args.length < 2) {
+			System.out.println("GumballMachine <name> <inventory>");
+ 			System.exit(1);
+		}
+
+		try {
+			count = Integer.parseInt(args[1]);
+
+			gumballMachine = 
+				new GumballMachine(args[0], count);
+			Naming.rebind("//" + args[0] + "/gumballmachine", gumballMachine);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+{% endhighlight %}
+
+The constructor of the `GumballMachine` can throw exceptions because it extends the Java `UnicastRemoteObject` class.
+Therefore the creation of `GumballMachine` needs to be placed inside a `try` and `catch` statement.
+The call to `Naming.rebind` publishes the `GumballMachine` stub under the name `gumballmachine`.
+
+{% highlight java %}
+import java.rmi.*;
+ 
+public class GumballMonitorTestDrive {
+ 
+	public static void main(String[] args) {
+		String[] location = {"rmi://santafe.mightygumball.com/gumballmachine",
+		                     "rmi://boulder.mightygumball.com/gumballmachine",
+		                     "rmi://seattle.mightygumball.com/gumballmachine"}; 
+		
+		if (args.length >= 0)
+        {
+            location = new String[1];
+            location[0] = "rmi://" + args[0] + "/gumballmachine";
+        }
+		
+		GumballMonitor[] monitor = new GumballMonitor[location.length];
+		
+		
+		
+		for (int i=0;i < location.length; i++) {
+			try {
+           		GumballMachineRemote machine = 
+						(GumballMachineRemote) Naming.lookup(location[i]);
+           		monitor[i] = new GumballMonitor(machine);
+				System.out.println(monitor[i]);
+        	} catch (Exception e) {
+            	e.printStackTrace();
+        	}
+		}
+ 
+		for(int i=0; i < monitor.length; i++) {
+			monitor[i].report();
+		}
+	}
+}
+{% endhighlight %}
 
 
 {% highlight bash %}
