@@ -341,7 +341,19 @@ It uses the locations to monitor to create an array of `GumballMonitor`s.
 Then it uses a `GumballMachineRemote` proxy to iterate through the state of each `GumballMachine`.
 
 
-{% highlight bash %}
-$ java TestDrive
+Here is the output after running the two test programs:
 
+{% highlight bash %}
+$ java GumballMonitorTestDrive
+Gumball Machine: santafe.mightygumball.com
+Current inventory: 99 gumballs
+Current state: waiting for quarter
+
+Gumball Machine: boulder.mightygumball.com
+Current inventory: 44 gumballs
+Current state: waiting for turn of crank
+
+Gumball Machine: seattle.mightygumball.com
+Current inventory: 187 gumballs
+Current state: waiting for quarter
 {% endhighlight %}
