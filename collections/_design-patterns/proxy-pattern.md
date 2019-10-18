@@ -296,6 +296,9 @@ public class GumballMonitor {
 }
 {% endhighlight %}
 
+
+To monitor a bunch of remote `GumballMachines` we can use the following test program:
+
 {% highlight java %}
 import java.rmi.*;
  
@@ -333,6 +336,9 @@ public class GumballMonitorTestDrive {
 	}
 }
 {% endhighlight %}
+
+It uses the locations to monitor to create an array of `GumballMonitor`s.
+Then it uses a `GumballMachineRemote` proxy to iterate through the state of each `GumballMachine`.
 
 
 {% highlight bash %}
