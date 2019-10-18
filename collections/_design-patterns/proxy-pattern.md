@@ -237,7 +237,8 @@ public class GumballMachine
 }
 {% endhighlight %}
 
-The `SoldState` looks like this:
+To let the `GumballMachine` serve requests, we need to make sure we register it with the
+RMI registry, which is Java's [Remote Method Invocation](https://en.wikipedia.org/wiki/Java_remote_method_invocation) registry. This allows clients to locate this service.
 
 
 {% highlight bash %}
