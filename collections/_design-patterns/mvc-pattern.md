@@ -39,9 +39,32 @@ author_profile: false
 
 ## Example
 
+The following example shows a music player that uses a `BeatModel` that contains the data, a controller to start and 
+stop the sound playing and set the beats per minute. Two views are used, one to control the model and one to view
+its state.
+
+Let's start with the `BeatModelInterface`:
 
 {% highlight java %}
-
+public interface BeatModelInterface {
+	void initialize();
+  
+	void on();
+  
+	void off();
+  
+    void setBPM(int bpm);
+  
+	int getBPM();
+  
+	void registerObserver(BeatObserver o);
+  
+	void removeObserver(BeatObserver o);
+  
+	void registerObserver(BPMObserver o);
+  
+	void removeObserver(BPMObserver o);
+}
 {% endhighlight %}
 
 
