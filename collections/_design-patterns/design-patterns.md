@@ -191,6 +191,12 @@ A class should have only one reason to change.
 
 Every responsibility of a class is an area of potential change. More than one responsibility means more than one area of change. This principle guides us to keep each class to a single responsibility. **Cohesion** is a term used to as a measure of how closely a class or a module supports a single purpose or responsibility. Cohesion is a more general concept than the Single Responsibility Principle, but the two are closely related. Classes that adhere to the principle tend to have high cohesion and are more maintainable than classes that take on multiple responsibilities and have low cohesion.
 
+## Patterns Catalog
+
+A patterns catalog takes a set of patterns and describes each in detail along with its relationship to the other patterns.
+The first and most definitive patterns catalog is Design Patterns: Elements of Reusable Object-Oriented Software, by Gamma, Helm, 
+Johnson & Vlissides (Addison Wesley). This catalog lays out 23 fundamental patterns.
+
 ## Links
 
 - [Boost Dependency Injection DI](https://boost-experimental.github.io/di/)
