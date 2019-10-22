@@ -24,8 +24,7 @@ author_profile: false
 The following list shows some important design patterns, which are design principles to achieve great program architectures.
 
 <p>
-<b>A Pattern</b> <br>
-is a solution to a problem in a context.
+<b>A Pattern</b> is a solution to a problem in a context.
 </p>
 {: .notice}
 
