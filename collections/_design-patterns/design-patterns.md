@@ -198,6 +198,17 @@ A patterns catalog takes a set of patterns and describes each in detail along wi
 The first and most definitive patterns catalog is Design Patterns: Elements of Reusable Object-Oriented Software, by Gamma, Helm, 
 Johnson & Vlissides (Addison Wesley). This catalog lays out 23 fundamental patterns.
 
+Every pattern follows a template. For each pattern a patterns catalog defines the name of the pattern and has a few sections that 
+tell us more about the pattern. For instance, there is an **Intent** section that describes what the pattern is, kind of like a definition. Then there are **Motivation** and **Applicability** sections that describe when and where the pattern might be used.
+
+To use the patterns catalog, get familiar with all the patterns and their relationships first. This way, you already have an idea
+which pattern could provide a suitable solution for a specific problem in a context. 
+Look at the **Motivation** and **Applicability** sections to make sure You've got it right. 
+There is also another really important section: **Consequences** to make sure there won't be some unintended effect on the intended design.
+
+Once we know that a pattern is suitable it needs to be integrated into our currrent design, which requires implementing it correctly.
+That's where the class diagram comes in. First read over the **Structure** section to review the diagram and then over the **Participants** section to make sure you understand each class's role. From there, work it into your design, making any alterations you need to make it fit. Then review the **Implementation and Sample Code** sections to make sure you know about any good implementation techniques or gotchas you might encounter.
+
 ## Links
 
 - [Boost Dependency Injection DI](https://boost-experimental.github.io/di/)
