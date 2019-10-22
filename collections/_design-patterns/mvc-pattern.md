@@ -30,6 +30,8 @@ author_profile: false
 </p>
 {: .notice}
 
+The Model View Controller Pattern (MVC) is a compound pattern consisting of the [Observer](/design-patterns/observer), 
+[Strategy](/design-patterns/strategy) and [Composite](/design-patterns/composite) patterns.
 
 <figure>
     <a href="/assets/pages/design-patterns/mvc-pattern.png"><img src="/assets/pages/design-patterns/mvc-pattern.png"></a>
