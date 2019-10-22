@@ -176,6 +176,11 @@ design-patterns:
         url: /design-patterns/iterator
       - title: "State"
         url: /design-patterns/state
+  - title: "Architectural"
+    url: /design-patterns/
+    children:
+      - title: "Model View Controller Pattern"
+        url: /design-patterns/mvc
   - title: "Functional"
     url: /design-patterns/
     children:
