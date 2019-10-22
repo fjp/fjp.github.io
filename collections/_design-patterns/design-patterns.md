@@ -36,6 +36,7 @@ The following list shows some important design patterns, which are design princi
 
 ## SOLID Design Principles
 
+### Single Responsibility Principle (SRP)
 
 <p>
 <b>Single Responsibility Principle (SRP)</b> <br>
@@ -44,6 +45,8 @@ A class should only have a single responsibility.
 {: .notice}
 
 Example: Seperate `Journal` class and `PersistanceManager` class for saving the journal entries instead of putting the saving functionality into the `Journal` class itself.
+
+### Open-Closed Principle (OCP)
 
 <p>
 <b>Open-Closed Principle (OCP)</b> <br>
@@ -54,6 +57,8 @@ multiple inheritance) rather than modifying a class that has already been tested
 
 Example: `Product` class with different traits (color, size) and `ProductFilter` class that has methods to filter for items in a vector that contains pointers to products (`ProductFilter::by_size`, `ProductFilter::by_color`, `ProductFilter::by_color_and_size`). Adding more methods shows that the ProductFilter class would be modified, which should be avoided following the OCP. Instead, make a robust class, where the behavior can be changed dynamically. To solve this problem use for example the Specification Pattern (which is no GOF pattern). Create a specification interface `ISpecification` that has a single pure virtual function `bool is_satisfied(T item)` to check if an item satisfies a specification. Use anotehr interface for the Filter `IFilter` with a single pure virtual funciton `vector<T*> filter(vector<T*> items, ISpecification<T>& spec)`. A concrete class that implements the IFilter interface will loop through the items and use the passed specification to return only the items that satisfy the specification. The only thing that is missing, is to implement concrete specification classes that inherit from the ISpecification interface. For example color, size and composite types that have a constructor which initializes their members (color, size, or both) and implement `is_satisfied` by comparing the passed element with the member variable. Do not modify the original classes that are probably already tested, instead extend them using inheritance.
 
+### Liskov Substitution Principle (LSP)
+
 <p>
 <b>Liskov Substitution Principle (LSP)</b> <br>
 Objects should be replaceable with instances of their subtypes without altering the correctness of the program. To follow this principle use the <a href="/factory/">factory pattern</a> (factory method or abstract factory).
@@ -62,6 +67,8 @@ Objects should be replaceable with instances of their subtypes without altering 
 
 Example: The classical rectangles and squares example shows how this principle is violated. Assume a `process(Rectangles& rect)` function which can output wrong results when called with a `Square` class that inherits from, or is a base class of `Rectangle`. To solve this use a factory `RectangleFactory` class that has methods to generate Rectangles (`Rectangle CreateRectangel(int width, int height)`, `Rectangle CreateSquare(int size)`).
 
+### Interface Segregation Principle (ISP)
+
 <p>
 <b>Interface Segregation Principle (ISP)</b> <br>
 Many client-specific interfaces are better than one general purpose interface. No client (somebody how uses your code) should be forced to depend on methods that it does not use. Patterns that use this principle are the <a href="/decorator/">decorator pattern</a>.
@@ -69,6 +76,8 @@ Many client-specific interfaces are better than one general purpose interface. N
 {: .notice}
 
 Example: Break up an interface into multiple other interfaces. Assume a multi-function device that is able to print, scan and fax some `Documents`.  A violation would be to use a single interface `IMachine` which has pure virtual methods (`print(vector<Documents*> docs)`, `scan(vector<Documents*> docs)`, `fax(vector<Documents*> docs)`). A client that only wants to use some functionalities of this interface has to make an implementation `MFP` (Multi Functional Peripheral). This is a bad idea for two main reasons: everytime only parts of the functionality changes, all the other methods need to be recompiled too. Anotehr reason is that the client probably does not need all of the functionality but has to implement it using the `IMachine` interface. ISP is about breaking up the monolithic interface and create piece-wise abstractions. Therefore, create a spearate interface for the printing `IPrinter`, scanning `IScanner` and faxing `IFax` functionality. These interfaces implement only the functionality that is related to them. If a client requires a printer `Printer`, it has to implement the `IPrinter` interface and its method `print(vector<Documents*> docs)`. If a client needs the whole machine, you can use multiple inheritance `struct IMachine : IPrinter, IScanner`. An actual implementation would then result in the [decorator pattern](/design-patterns/decorator), which is an aggregate of the functionalities that it inherits: `Machine : IMachine` would have member variable references or shared pointers of type `IPrinter` and `IScanner` and a constructor that initializes these members (this is also an example of Dependency Injection). The actual implementations of `print` and `scan` methods would then proxy it over to the variable members and use their methods `IPrinter::print` and `IScanner::scan`. With this design it is possible to use different implementations of functionality that implment an interface (for example a color printer that implements `IPrinter`) and pass it to the constructor of the `Machine` struct, which would be an inversion of control container that is then reconfigured. Summary: Break up interfaces into small interfaces and to use a big interface that contains all parts use multiple inheritance. The concrete realisation would be a [decorator pattern](/design-patterns/decorator).
+
+### Dependency Inversion Principle (DIP)
 
 <p>
 <b>Dependency Inversion Principle (DIP)</b> <br>
