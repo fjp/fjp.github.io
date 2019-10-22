@@ -164,7 +164,7 @@ design-patterns:
   - title: "Behavioral"
     url: /design-patterns/
     children:
-      - title: "Strategy Pattern"
+      - title: "Strategy"
         url: /design-patterns/strategy
       - title: "Observer"
         url: /design-patterns/observer
@@ -179,7 +179,7 @@ design-patterns:
   - title: "Architectural"
     url: /design-patterns/
     children:
-      - title: "Model View Controller Pattern"
+      - title: "Model View Controller"
         url: /design-patterns/mvc
   - title: "Functional"
     url: /design-patterns/
