@@ -77,6 +77,8 @@ Relationships in object patterns are typically created at runtime and are more d
 
 Class patterns are for example: Template Method, Factory Method, Adapter and Interpreter. Most of the other patterns are Object patterns.
 
+Categories give us a way to think about the way groups of patterns relate and how patterns within a group relate to one another. They also give us a way to extrapolate to new patterns.
+
 ## SOLID Design Principles
 
 ### Single Responsibility Principle (SRP)
