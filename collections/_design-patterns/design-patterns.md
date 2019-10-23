@@ -263,6 +263,11 @@ There is also another really important section: **Consequences** to make sure th
 Once we know that a pattern is suitable it needs to be integrated into our currrent design, which requires implementing it correctly.
 That's where the class diagram comes in. First read over the **Structure** section to review the diagram and then over the **Participants** section to make sure you understand each class's role. From there, work it into your design, making any alterations you need to make it fit. Then review the **Implementation and Sample Code** sections to make sure you know about any good implementation techniques or gotchas you might encounter.
 
+## When Patterns are Useful
+
+Patterns are a tool, and a tool that should only be used when neeed. Always start from the design principles mentioned above and create the simplest code you can that does the job. However, if you see the need for a pattern emerge, then use it.
+Patterns can introduce complexity, and we never want complexity where it is not needed. But patterns are powerful when used where they are needed. Patterns are a proven design experience that can be used to avoid common  mistakes. They are also a shared vocabulary for communicating our design to others. Introduce a pattern when you are sure it's necessary to solve a problem in your design, or when you are quite sure that it is needed to deal with a future change in the requirements of your application.
+
 ## Links
 
 - [Boost Dependency Injection DI](https://boost-experimental.github.io/di/)
