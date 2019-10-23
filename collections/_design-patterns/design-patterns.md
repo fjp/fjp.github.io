@@ -21,14 +21,14 @@ author_profile: false
 
 ## Introduction
 
-The following list shows some important design patterns, which are design principles to achieve great program architectures.
+
 
 <p>
 <b>A Pattern</b> is a solution to a problem in a context.
 </p>
 {: .notice}
 
-
+The following list shows some important design patterns, which are design principles to achieve great program architectures.
 
 - [Strategy](/design-patterns/strategy)
 - [Observer](/design-patterns/observer)
@@ -39,6 +39,12 @@ The following list shows some important design patterns, which are design princi
 - [Adapter](/design-patterns/adapter)
 - [Facade](/design-patterns/facade)
 - [Template Method](/design-patterns/template-method)
+
+## Classification of Design Patterns
+
+Design patterns are partitioned into different classes. This helps to oragnize them, narrow our searches to a subset of all Design Patterns,
+and make comparisons within a group of patterns. The most well-known scheme was used by the first [patterns catalog](/design-patterns/#patterns-catalog) and partitions patterns into three distinct categories based on their purposes: Creational, Behavioral, and Structural.
+On the left you see the patterns partitioned into the classic scheme.
 
 ## SOLID Design Principles
 
