@@ -61,6 +61,22 @@ Any pattern that is a <b>Behavioral Patterns</b> is concerned with how classes a
 </p>
 {: .notice}
 
+Patterns are often classified by a second attribute: whether or not the pattern deals with classes or objects:
+
+<p>
+<b>Class Patterns</b> describe how relationshiops between classes are defined via inheritance. 
+Relationships in class patterns are established at compile time.
+</p>
+{: .notice}
+
+<p>
+<b>Object Patterns</b> describe relationships between objects and are primarily defined by composition. 
+Relationships in object patterns are typically created at runtime and are more dynamic and flexible.
+</p>
+{: .notice}
+
+Class patterns are for example: Template Method, Factory Method, Adapter and Interpreter. Most of the other patterns are Object patterns.
+
 ## SOLID Design Principles
 
 ### Single Responsibility Principle (SRP)
