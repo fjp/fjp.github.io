@@ -46,6 +46,21 @@ Design patterns are partitioned into different classes. This helps to oragnize t
 and make comparisons within a group of patterns. The most well-known scheme was used by the first [patterns catalog](/design-patterns/#patterns-catalog) and partitions patterns into three distinct categories based on their purposes: Creational, Behavioral, and Structural.
 On the left you see the patterns partitioned into the classic scheme.
 
+<p>
+<b>Creational Patterns</b> involve object instantiation and all provide a way to decouple a client from the objects it needs to instantiate.
+</p>
+{: .notice}
+
+<p>
+<b>Structural Patterns</b> let you compose classes or objects into larger structures.
+</p>
+{: .notice}
+
+<p>
+Any pattern that is a <b>Behavioral Patterns</b> is concerned with how classes and objects interact and distribute responsibility.
+</p>
+{: .notice}
+
 ## SOLID Design Principles
 
 ### Single Responsibility Principle (SRP)
