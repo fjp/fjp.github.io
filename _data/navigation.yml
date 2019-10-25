@@ -67,25 +67,25 @@ fpv:
     url: /projects/fpv-quad/components
     children:
       - title: "Frame"
-        url: /projects/fpv-quad/components/#frame
+        url: /projects/fpv-quad/frame
       - title: "Brushless Motors"
-        url: /projects/fpv-quad/components/#motors
+        url: /projects/fpv-quad/motor
       - title: "Brushless ESC"
-        url: /projects/fpv-quad/components/#esc
+        url: /projects/fpv-quad/esc
       - title: "Propellers"
-        url: /projects/fpv-quad/components/#props
+        url: /projects/fpv-quad/prop
       - title: "Batteries"
-        url: /projects/fpv-quad/components/#batteries
+        url: /projects/fpv-quad/battery
       - title: "Charger"
-        url: /projects/fpv-quad/components/#charger
+        url: /projects/fpv-quad/charger
       - title: "Flightcontroller"
-        url: /projects/fpv-quad/components/#flightcontroller
+        url: /projects/fpv-quad/flightcontroller
       - title: "Flightcontroller Software"
-        url: /projects/fpv-quad/components/#software
+        url: /projects/fpv-quad/software
       - title: "RC Transmitter"
-        url: /projects/fpv-quad/components/#transmitter
+        url: /projects/fpv-quad/transmitter
       - title: "RC Receiver"
-        url: /projects/fpv-quad/components/#receiver
+        url: /projects/fpv-quad/receiver
   - title: "FPV System"
     url: /projects/fpv-quad/fpv-system/#introduction
     children:
