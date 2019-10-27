@@ -11,7 +11,7 @@ main:
   - title: "C++"
     url: /cpp/
   - title: "FPV"
-    url: /projects/fpv-quad/
+    url: /projects/fpv/
   - title: "Math"
     url: /math/
   - title: "About"
@@ -62,75 +62,75 @@ math:
         
 fpv:
   - title: "Introduction"
-    url: /projects/fpv-quad/#introduction
+    url: /projects/fpv/#introduction
   - title: "Race Quad Components"
-    url: /projects/fpv-quad/components
+    url: /projects/fpv/components
     children:
       - title: "Frame"
-        url: /projects/fpv-quad/frame
+        url: /projects/fpv/frame
       - title: "Brushless Motors"
-        url: /projects/fpv-quad/motor
+        url: /projects/fpv/motor
       - title: "Brushless ESC"
-        url: /projects/fpv-quad/esc
+        url: /projects/fpv/esc
       - title: "Propellers"
-        url: /projects/fpv-quad/prop
+        url: /projects/fpv/prop
       - title: "Batteries"
-        url: /projects/fpv-quad/battery
+        url: /projects/fpv/battery
       - title: "Charger"
-        url: /projects/fpv-quad/charger
+        url: /projects/fpv/charger
       - title: "Flightcontroller"
-        url: /projects/fpv-quad/flightcontroller
+        url: /projects/fpv/flightcontroller
       - title: "Flightcontroller Software"
-        url: /projects/fpv-quad/software
+        url: /projects/fpv/software
       - title: "RC Transmitter"
-        url: /projects/fpv-quad/transmitter
+        url: /projects/fpv/transmitter
       - title: "RC Receiver"
-        url: /projects/fpv-quad/receiver
+        url: /projects/fpv/receiver
   - title: "FPV System"
-    url: /projects/fpv-quad/fpv-system/#introduction
+    url: /projects/fpv/fpv-system/#introduction
     children:
       - title: "FPV Components"
-        url: /projects/fpv-quad/fpv-system/#components
+        url: /projects/fpv/fpv-system/#components
       - title: "Antennas"
-        url: /projects/fpv-quad/fpv-system/#antennas
+        url: /projects/fpv/fpv-system/#antennas
   - title: "PID Values"
-    url: /projects/fpv-quad/pid/#introduction
+    url: /projects/fpv/pid/#introduction
     children:
       - title: "PID Basics"
-        url: /projects/fpv-quad/pid/#theory
+        url: /projects/fpv/pid/#theory
       - title: "PID Tuning"
-        url: /projects/fpv-quad/pid/#tuning
+        url: /projects/fpv/pid/#tuning
   - title: "Thrust and Flight Time"
-    url: /projects/fpv-quad/calculations/#introduction
+    url: /projects/fpv/calculations/#introduction
     children:
       - title: "Basic Calculations"
-        url: /projects/fpv-quad/calculations/#calculations
+        url: /projects/fpv/calculations/#calculations
       - title: "Weight"
-        url: /projects/fpv-quad/calculations/#weight
+        url: /projects/fpv/calculations/#weight
       - title: "Thrust"
-        url: /projects/fpv-quad/calculations/#thrust
+        url: /projects/fpv/calculations/#thrust
       - title: "Finding matching Motors"
-        url: /projects/fpv-quad/calculations/#motors
+        url: /projects/fpv/calculations/#motors
       - title: "Finding matching ESCs"
-        url: /projects/fpv-quad/calculations/#esc
+        url: /projects/fpv/calculations/#esc
       - title: "Flight Time Calculation"
-        url: /projects/fpv-quad/calculations/#flight-time
+        url: /projects/fpv/calculations/#flight-time
   - title: "Rights"
-    url: /projects/fpv-quad/rights/#introduction
+    url: /projects/fpv/rights/#introduction
     children:
       - title: "Law and Insurance regulations"
-        url: /projects/fpv-quad/rights/#law-insurance
+        url: /projects/fpv/rights/#law-insurance
       - title: "Drones"
-        url: /projects/fpv-quad/rights/#drones
+        url: /projects/fpv/rights/#drones
   - title: "Build"
-    url: /projects/fpv-quad/build/#introduction
+    url: /projects/fpv/build/#introduction
     children:
       - title: "Law and Insurance regulations"
-        url: /projects/fpv-quad/build/#part-selection
+        url: /projects/fpv/build/#part-selection
       - title: "Drones"
-        url: /projects/fpv-quad/build/#overview
+        url: /projects/fpv/build/#overview
       - title: "Assembly"
-        url: /projects/fpv-quad/build/#assembly
+        url: /projects/fpv/build/#assembly
         
 
 
