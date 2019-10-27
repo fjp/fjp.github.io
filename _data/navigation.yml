@@ -64,7 +64,7 @@ fpv:
   - title: "Introduction"
     url: /projects/fpv/#introduction
   - title: "Race Quad Components"
-    url: /projects/fpv/components
+    url: /projects/fpv/components/
     children:
       - title: "Frame"
         url: /projects/fpv/frame

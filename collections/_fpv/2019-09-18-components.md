@@ -1,7 +1,7 @@
 ---
 layout: single
 title:  "FPV Race Quad Build"
-permalink: /projects/fpv/components
+permalink: /projects/fpv/components/
 excerpt: "Components of the fpv race quad."
 date:   2019-09-18 20:41:35 +0200
 categories: [fpv, quad]
