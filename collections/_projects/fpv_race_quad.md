@@ -1,7 +1,7 @@
 ---
 layout: single #collection
 title: FPV Race Quad Build
-permalink: /projects/fpv-quad/
+permalink: /projects/fpv/
 excerpt: "Build instructions for an FPV race quad."
 categories: [fpv, rc, quad]
 tags: [fpv, rc, quad, getfpv, motors, brushless, esc, props, flightcontroller, antennas, camera, goggles, frsky, fatshark]
@@ -17,7 +17,7 @@ sidebar:
 
 ## Race Quad
 
-In this project we will build a race quad. For the parts that will be used to build this quad check out the [part list](/projects/fpv-quad/components).
+In this project we will build a race quad. For the parts that will be used to build this quad check out the [part list](/projects/fpv/components).
 
 
 If you are new to this hobby follow this project. You find the index on the left. All the required theory will be outlined first, followed by build instructions. Common terms are explained in the [glossar](/projects/fpv-quad/fpv-glossar) and linked throuhout the single pages.
