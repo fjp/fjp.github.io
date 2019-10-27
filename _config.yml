@@ -306,7 +306,7 @@ collections:
   autonomous-rc-car:
     output: true
     permalink: /:collection/:path/
-  fpv-quad:
+  fpv:
     output: true
     permalink: /projects/:path/
   design-patterns:
