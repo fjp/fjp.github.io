@@ -15,8 +15,6 @@ sidebar:
   nav: "fpv"
 ---
 
-## Race Quad
-
 In this project we will build a race quad. For the parts that will be used to build this quad check out the [part list](/projects/fpv/components).
 
 
