@@ -15,7 +15,7 @@ header:
 #  teaser: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3_thumb.png
 #  overlay_image: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
 redirect_from:
-  - /projects/fpv-quad/
+  - /projects/fpv/
 ---
 
 ## Components
@@ -24,8 +24,8 @@ redirect_from:
 ### Batteries/Charger
 
 <figure class="third">
-    <a href="/assets/collections/fpv-quad/ev-peak-cq3-4x-100w-lead_2.jpg"><img src="/assets/collections/fpv-quad/ev-peak-cq3-4x-100w-lead_2.jpg" width="600"></a>
-    <a href="/assets/collections/fpv-quad/ev-peak-cellmeter-7-battery-capacity-checker.jpg"><img src="/assets/collections/fpv-quad/ev-peak-cellmeter-7-battery-capacity-checker.jpg" width="600"></a>
+    <a href="/assets/collections/fpv/ev-peak-cq3-4x-100w-lead_2.jpg"><img src="/assets/collections/fpv/ev-peak-cq3-4x-100w-lead_2.jpg" width="600"></a>
+    <a href="/assets/collections/fpv/ev-peak-cellmeter-7-battery-capacity-checker.jpg"><img src="/assets/collections/fpv/ev-peak-cellmeter-7-battery-capacity-checker.jpg" width="600"></a>
     <figcaption>EV-Peak CQ3 Multi Charger 4x 100W NiMH / LiPO with Built-in Balance and EV-Peak Cellmeter-7 Battery Capacity Checker</figcaption>
 </figure>
 
@@ -39,8 +39,8 @@ redirect_from:
 ### Flight Controller (FC) and Power Distribution Board (PDB)
 
 <figure class="half">
-    <a href="/assets/collections/fpv-quad/mateksys-F722-STD.jpg"><img src="/assets/collections/fpv-quad/mateksys-F722-STD.jpg"></a>
-    <a href="/assets/collections/fpv-quad/mateksys-fchub-6s.jpg"><img src="/assets/collections/fpv-quad/mateksys-fchub-6s.jpg"></a>
+    <a href="/assets/collections/fpv/mateksys-F722-STD.jpg"><img src="/assets/collections/fpv/mateksys-F722-STD.jpg"></a>
+    <a href="/assets/collections/fpv/mateksys-fchub-6s.jpg"><img src="/assets/collections/fpv/mateksys-fchub-6s.jpg"></a>
     <figcaption>Flight Controller MATEKSYS-F722 STD and Power Distribution Board MATEKSYS FCHUB-6S</figcaption>
 </figure>
 
@@ -53,8 +53,8 @@ redirect_from:
 ### FPV-System (Goggles, Camera)
 
 <figure class="half">
-    <a href="/assets/collections/fpv-quad/ultimate-fatshark-hdo-antenna-bundle.jpg"><img src="/assets/collections/fpv-quad/ultimate-fatshark-hdo-antenna-bundle.jpg"></a>
-    <a href="/assets/collections/fpv-quad/runcam-swift-2.jpg"><img src="/assets/collections/fpv-quad/runcam-swift-2.jpg"></a>
+    <a href="/assets/collections/fpv/ultimate-fatshark-hdo-antenna-bundle.jpg"><img src="/assets/collections/quad/ultimate-fatshark-hdo-antenna-bundle.jpg"></a>
+    <a href="/assets/collections/fpv/runcam-swift-2.jpg"><img src="/assets/collections/fpv/runcam-swift-2.jpg"></a>
     <figcaption>FPV system: FatShark HDO and RunCam Swift 2.</figcaption>
 </figure>
 
@@ -66,8 +66,8 @@ redirect_from:
 ### Motors and ESC
 
 <figure class="half">
-    <a href="/assets/collections/fpv-quad/emax-rs2205.jpg"><img src="/assets/collections/fpv-quad/emax-rs2205.jpg"></a>
-    <a href="/assets/collections/fpv-quad/dys-aria-35a-esc.jpg"><img src="/assets/collections/fpv-quad/dys-aria-35a-esc.jpg"></a>
+    <a href="/assets/collections/fpv/emax-rs2205.jpg"><img src="/assets/collections/fpv/emax-rs2205.jpg"></a>
+    <a href="/assets/collections/fpv/dys-aria-35a-esc.jpg"><img src="/assets/collections/fpv/dys-aria-35a-esc.jpg"></a>
     <figcaption>EMAX RS2205/2300Kv Motors and DYS ARIA BLHELI 35A ESCs.</figcaption>
 </figure>
 
@@ -83,6 +83,6 @@ redirect_from:
 
 ### Receiver
 
-The following receiver from [FrSky](/projects/fpv-quad/fpv-glossar/#frsky) will be installed in the quad and should be used together with a FrSky [transmitter](/projects/fpv-quad/fpv-glossar/#transmitter).
+The following receiver from [FrSky](/projects/fpv/fpv-glossar/#frsky) will be installed in the quad and should be used together with a FrSky [transmitter](/projects/fpv/fpv-glossar/#transmitter).
 - GetFPV: [FRSKY R-XSR 2.4GHZ 16CH ACCST MICRO RECEIVER W/ S-BUS & CPPM](https://www.getfpv.com/frsky-r-xsr-2-4ghz-16ch-accst-micro-receiver-w-s-bus-cppm.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
 
