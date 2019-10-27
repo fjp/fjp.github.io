@@ -16,6 +16,8 @@ header:
 #  overlay_image: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
 redirect_from:
   - /projects/fpv/
+sidebar:
+  nav: "fpv"
 ---
 
 The following sections outline the main components that are required to start with [FPV](/projects/fpv/glossar/#fpv) 
