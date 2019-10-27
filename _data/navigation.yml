@@ -123,7 +123,7 @@ fpv:
       - title: "Drones"
         url: /projects/fpv/rights/#drones
   - title: "Build"
-    url: /projects/fpv/build/#introduction
+    url: /projects/fpv/build
     children:
       - title: "Law and Insurance regulations"
         url: /projects/fpv/build/#part-selection
