@@ -228,6 +228,9 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 }
 {% endhighlight %}
 
+{% highlight java %}
+
+{% endhighlight %}
 
 Here is the output after running the two test programs:
 
