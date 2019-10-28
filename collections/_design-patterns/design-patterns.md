@@ -79,6 +79,15 @@ Class patterns are for example: Template Method, Factory Method, Adapter and Int
 
 Categories give us a way to think about the way groups of patterns relate and how patterns within a group relate to one another. They also give us a way to extrapolate to new patterns.
 
+## Warning on Design Patterns
+
+Design Patterns often introduce additional classes and objects, and so they can increase the complexity of your designs. 
+Design Patterns can also add more layers to your design, which adds not only complexity, but also inefficiency.
+Also, using a Design Pattern can sometimes be outright overkill. 
+Many times you can fall back on your design principles and find a much simpler solution to solve the same problem. 
+If that happens, don't fight it. Use the simpler solution.
+However, when a Design Pattern is the right tool for the job, the advantages are many. Follow the SOLID Design Principles.
+
 ## SOLID Design Principles
 
 ### Single Responsibility Principle (SRP)
