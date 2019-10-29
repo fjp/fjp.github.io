@@ -228,6 +228,8 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 }
 {% endhighlight %}
 
+The following `DJView` class contains two views, one to view the model state and one to control it through a user interface.
+
 {% highlight java %}
 import java.awt.*;
 import java.awt.event.*;
