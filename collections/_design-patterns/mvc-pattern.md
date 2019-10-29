@@ -400,6 +400,10 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
 }
 {% endhighlight %}
 
+The `createView` method creates the view of the model, which displays the current BPM and the beat bar. 
+The user interface contorls are created with `createControls` method, which displays the BPM text entry field, 
+and the buttons.
+
 Here is the output after running the two test programs:
 
 {% highlight bash %}
