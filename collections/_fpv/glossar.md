@@ -40,7 +40,7 @@ Different LiPo battery packs are made up of individual cells with one cell havin
 ## BetaFlight
 
 The BetaFlight open source [Flight Controller](/projects/fpv/glossar/#flight-controller) [frimware](/projects/fpv/glossar/#firmware) project (found on [GitHub](https://github.com/betaflight)) provides
-[frimwares](/projects/fpv/glossar/#firmware) for [Flight Controllers](/projects/fpv/glossar/#flight-controller). To configure and [flash](/projects/fpv/glossar/#flash) a firmware onto a Flight Controller we use 
+[frimwares](/projects/fpv/glossar/#firmware) for [FCs](/projects/fpv/glossar/#flight-controller). To configure and [flash](/projects/fpv/glossar/#flash) a firmware onto a Flight Controller we use 
 the [BetaFlight Configurator](/projects/fpv/glossar/#betaflight-configurator).
 
 BetaFlight is a fork of the [CleanFlight](/projects/fpv/glossar/#clean-flight) project, which is considered less experimental. However, modern Flight Controllers are supported mostly by BetaFlight. 
@@ -51,6 +51,13 @@ Part of the [BetaFlight](/projects/fpv/glossar/#betaflight) open source [Flight 
 It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) configuration tool for the BetaFlight [frimware](/projects/fpv/glossar/#firmware).
 
 ## CleanFlight
+
+## DFU
+
+DFU stands for "Device Firmware Update" which is a mode of a [Flight Controller](/projects/fpv/glossar/#flight-controller) 
+device that is required to [flash](/projects/fpv/glossar/#flash) a new [Firmware](/project/fpv/glossar/#firmware) onto a [FC](/projects/fpv/glossar/#flight-controller). It depends on the FC board how to get the device into the DFU mode. 
+Either you need to short the BL or BOOT pads (or press and hold the BOOT tactile button if your FC board has one) while 
+plugging the USB into the Flight Controller board.
 
 ## ESC
 
