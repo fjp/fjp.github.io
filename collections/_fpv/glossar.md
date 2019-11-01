@@ -59,9 +59,19 @@ device that is required to [flash](/projects/fpv/glossar/#flash) a new [Firmware
 Either you need to short the BL or BOOT pads (or press and hold the BOOT tactile button if your FC board has one) while 
 plugging the USB into the Flight Controller board.
 
+## Flash
+
+[Flashing](https://en.wikipedia.org/wiki/Firmware#Flashing) means to update a Software, 
+also refered to as [Firmware](/projects/fpv/glossar/#firmware), that runs on a device,
+such as a [Flight Controller](/projects/fpv/glossar/#flight-controller) board. The term "to flash" comes from the 
+Flash storage component of a device where the Firmware is stored.
+
 ## ESC
 
-The Electronic Speed Controller (ESC) is conected to the [PDB](/projects/fpv/glossar/#pdb) and controls the speed of a motor by adjusting its rpms (rotation per minutes). A quad copter uses four ESCs which can be part of the [Flight Controller](/projects/fpv/glossar/#flight-controller). The input signal to the ESC comes from the Flight Controller, which tells the ESC at which speed a motor should run.
+The Electronic Speed Controller (ESC) is conected to the [PDB](/projects/fpv/glossar/#pdb) and 
+controls the speed of a motor by adjusting its rpms (rotation per minutes). 
+A quadcopter uses four ESCs which can be part of the [Flight Controller](/projects/fpv/glossar/#flight-controller). 
+The input signal to an ESC comes from the Flight Controller, which tells the ESC at which speed a motor should run.
 
 ## Flight Controller
 
