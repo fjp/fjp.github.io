@@ -73,7 +73,7 @@ contains multiple internal [sensors](/projects/fpv/glossar/#sensor) such as [IMU
 
 ## Firmware
 
-In the context of [FPV](/projects/fpv/glossar/#fpv) a firmware is the software that runs on the [Flight Controller](/projects/fpv/glossar/#flight-controller)
+In the context of [FPV](/projects/fpv/glossar/#fpv) a [firmware](https://en.wikipedia.org/wiki/Firmware) is the software that runs on the [Flight Controller](/projects/fpv/glossar/#flight-controller)
 
 ## FPV
 
