@@ -123,6 +123,11 @@ Next, connect the Taranis with the computer via the provided USB cable. Back in 
 
 After the flashing procedure, your Taranis is updated to the latest version of OpenTX (currently 2.3.1).
 
+<figure>
+    <a href="/assets/collections/fpv/opentx/05-flashing-done.png"><img src="/assets/collections/fpv/opentx/05-flashing-done.png"></a>
+    <figcaption>Flashing procedure of OpenTX.</figcaption>
+</figure>
+
 ### SD Card Content
 
 Now write the previously downloaded [sd card content](https://downloads.open-tx.org/2.3/release/sdcard/) from the OpenTX website on a seperate sd card that you plug in your computer. Once downloaded, place the content of the zip file on
