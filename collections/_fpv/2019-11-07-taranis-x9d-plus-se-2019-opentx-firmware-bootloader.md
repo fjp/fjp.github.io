@@ -20,6 +20,12 @@ sidebar:
   nav: "fpv"
 ---
 
+This post covers how to flash the latest version of [OpenTX](/projects/fpv/glossar/#opentx) (currently 2.3.0), which
+is the open source operating system on [Taranis](/projects/fpv/glossar/#taranis) [transmitters](/projects/fpv/glossar/#transmitter).
+The post shows to to [flash](/projects/fpv/glossar/#flash) the [firmware](/projects/fpv/glossar/#firmware) of the internal [transmitter](/projects/fpv/glossar/#transmitter) module of the Taranis into
+the [EU-LBT](/projects/fpv/glossar/#eu-lbt) mode and how to [register](/projects/fpv/glossar/#register) and [bind](/projects/fpv/glossar/#bind) an [ACCESS](/projects/fpv/glossar/#access) [receiver](/projects/fpv/glossar/#receiver).
+
+
 
 <figure>
     <a href="/assets/collections/fpv/taranis.jpg"><img src="/assets/collections/fpv/taranis.jpg"></a>
@@ -28,7 +34,7 @@ sidebar:
 
 <figure class="half">
     <a href="/assets/collections/fpv/opentx.jpg"><img src="/assets/collections/fpv/opentx.jpg"></a>
-    <a href="/assets/collections/fpv/emax-motors-top-raster.jpg"><img src="/assets/collections/fpv/emax-motors-top-raster.jpg"></a>
+    <a href="/assets/collections/fpv/opentx.jpg"><img src="/assets/collections/fpv/opentx.jpg"></a>
     <figcaption>OpenTX Companion.</figcaption>
 </figure>
 
