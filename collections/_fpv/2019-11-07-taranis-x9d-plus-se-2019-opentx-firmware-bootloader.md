@@ -46,7 +46,7 @@ and the firmware (OpenTX) and the firmware of the internal transmitter module.
 
 <figure class="half">
     <a href="/assets/collections/fpv/opentx.jpg"><img src="/assets/collections/fpv/opentx.jpg"></a>
-    <a href="/assets/collections/fpv/opentx.jpg"><img src="/assets/collections/fpv/companion/opentx-companion-settings.png"></a>
+    <a href="/assets/collections/fpv/opentx.jpg"><img src="/assets/collections/fpv/opentx/opentx-companion-settings.png"></a>
     <figcaption>OpenTX Companion.</figcaption>
 </figure>
 
