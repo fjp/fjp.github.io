@@ -47,7 +47,7 @@ With the OpenTX Companion software it is possible to backup your radio using the
 a `*.bin` file on your computer:
 
 <figure>
-    <a href="/assets/collections/fpv/opentx/backup.jpg"><img src="/assets/collections/fpv/opentx/backup/taranis.jpg"></a>
+    <a href="/assets/collections/fpv/opentx/radio-backup.jpg"><img src="/assets/collections/fpv/opentx/radio-backup.jpg"></a>
     <figcaption>Backup the Settings and Models on your Taranis before you proceed.</figcaption>
 </figure>
 
