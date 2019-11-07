@@ -76,19 +76,19 @@ fpv:
         url: /projects/fpv/prop
       - title: "Batteries"
         url: /projects/fpv/battery
-      - title: "Charger"
-        url: /projects/fpv/charger
       - title: "Flightcontroller"
         url: /projects/fpv/flightcontroller
       - title: "Flightcontroller Software"
         url: /projects/fpv/software
-      - title: "RC Transmitter"
-        url: /projects/fpv/transmitter
-        children:
-          - title: Taranis X9D Plus SE 2019
-            url: /projects/fpv/taranis
-      - title: "RC Receiver"
-        url: /projects/fpv/receiver
+  - title: "RC Transmitter"
+    url: /projects/fpv/transmitter
+    children:
+      - title: Taranis X9D Plus SE 2019
+        url: /projects/fpv/taranis
+  - title: "RC Receiver"
+    url: /projects/fpv/receiver
+  - title: "Charger and Testers"
+    url: /projects/fpv/charger
   - title: "FPV System"
     url: /projects/fpv/fpv-system/#introduction
     children:
