@@ -1,7 +1,7 @@
 ---
 layout: single
 title:  "Taranis X9D Plus SE 2019 - OpenTX and EU-LBT/FCC Firmware"
-permalink: /projects/fpv/motor
+permalink: /projects/fpv/taranis
 excerpt: "All about the bootloader, OpenTX and firmware of the Taranis X9D Plus SE 2019."
 date: 2019-10-30 09:00:35 +0100
 categories: [fpv, quad]
