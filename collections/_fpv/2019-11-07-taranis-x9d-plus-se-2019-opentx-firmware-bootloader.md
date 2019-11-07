@@ -43,6 +43,17 @@ Note that the Taranis X9D Plus SE 2019 doesn't ship with an sd card. However, it
 and the firmware (OpenTX) and the firmware of the internal transmitter module.
 {: .notice}
 
+With the OpenTX Companion software it is possible to backup your radio using the following button, which lets you store
+a `*.bin` file on your computer:
+
+<figure>
+    <a href="/assets/collections/fpv/opentx/backup.jpg"><img src="/assets/collections/fpv/opentx/backup/taranis.jpg"></a>
+    <figcaption>Backup the Settings and Models on your Taranis before you proceed.</figcaption>
+</figure>
+
+It is advised that you backup your radio settings and models before you proceed with the next steps.
+This way you can restore your backup using the `Write Backup to Radio` button, right above the `Backup Radio to File` button. 
+
 ### OpenTX Settings
 
 After downloading OpenTX Companion and installing on your operating system, execute the application and open the settings,
@@ -87,6 +98,9 @@ Note: Don't press the power button for to long in order to enter the bootloader 
     <a href="/assets/collections/fpv/taranis/bootloader.jpg"><img src="/assets/collections/fpv/taranis/bootloader.jpg"></a>
     <figcaption>OpenTX Companion.</figcaption>
 </figure>
+
+Next, connect the Taranis with the computer via the provided USB cable. Back in the OpenTX Companion application click
+`Download` and `Check for Updates`. 
 
 
 
