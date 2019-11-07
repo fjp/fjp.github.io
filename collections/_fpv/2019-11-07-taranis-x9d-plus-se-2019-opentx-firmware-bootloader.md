@@ -43,6 +43,18 @@ Note that the Taranis X9D Plus SE 2019 doesn't ship with an sd card. However, it
 and the firmware (OpenTX) and the firmware of the internal transmitter module.
 {: .notice}
 
+After downloading OpenTX Companion and installing on your operating system, execute the application and open the settings,
+shown in the following screenshots. Here you can see the settings in the `Radio Profile` tab. 
+As `Radio Type` choose the `FrSky Taranis X9D+ 2019` and the following `Build Options`:
+
+- `lua` enables lua custom script screen
+- `noheli` which disables the Heli menu page on the Taranis in the case you are not flying a helicopter.
+- `flexr9m` or `eu` which can be both used to flash the internal transmitter module from the FCC to the EU-LBT firmware.
+
+Use `flexr9m` if you have an external transmitter module such as the FrSky R9M and want to flash its firmware.
+In case you ordered from a vendor that shiped the Taranis X9D with the FCC firmware on the internal transmitter module and you don't have an external module choose either `flexr9m` or `eu`. `flexr9m` lets you also flash the EU-LBT firmware. 
+Note that you cannot check both, so you have to choose between `flexr9m` or `eu`.
+{: .note}
 
 <figure class="half">
     <a href="/assets/collections/fpv/opentx.jpg"><img src="/assets/collections/fpv/opentx.jpg"></a>
