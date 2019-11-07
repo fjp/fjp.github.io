@@ -62,4 +62,13 @@ Note that you cannot check both, so you have to choose between `flexr9m` or `eu`
     <figcaption>OpenTX Companion.</figcaption>
 </figure>
 
+Also choose an `SD Structure path` on your Mac or PC that will mirror the internal storage of the Taranis to your local machine. 
+This is the path where we will place the previously downloaded sd card content that will be uploaded to the Taranis radio.
+
+If you want you can change the `Default Stick Mode` or the `Default Channel Order`. For convenience, select the two options:
+
+- `Append version number to FW file name`
+- `Offer to write FW to Tx after download`
+
+
 
