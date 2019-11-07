@@ -126,7 +126,16 @@ After the flashing procedure, your Taranis is updated to the latest version of O
 ### SD Card Content
 
 Now write the previously downloaded [sd card content](https://downloads.open-tx.org/2.3/release/sdcard/) from the OpenTX website on a seperate sd card that you plug in your computer. Once downloaded, place the content of the zip file on
-the empty sd card and put it in the back of your Taranis.
+the empty sd card and open the `SCRIPTS/TOOLS` folder and copy the lua script for changing the internal module into
+the FCC or EU-LBT mode.
+
+The mentioned lua script to switch the internal module into the FCC or EU-LBT mode can be obtained from the FrSky support.
+Because it is not allowed to share this script, just write a mail to the [FrSky support](mailto:frsky@frsky-rc.com) asking for the lua script. It is named `isrm_mode_1.lua`. Using this script you must choose the correct firmware that is allowed in your area.
+{: .warning}
+
+
+
+put it in the back of your Taranis.
 
 
 
