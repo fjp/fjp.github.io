@@ -105,8 +105,15 @@ Note: Don't press the power button for to long in order to enter the bootloader 
 
 ### Flash OpenTX
 
-Next, connect the Taranis with the computer via the provided USB cable. Back in the OpenTX Companion application click
-`Download` button, then do the following steps in the new Dialog that pops up:
+Once in the bootloader menu, connect the Taranis with the computer via the provided USB cable, which will change the 
+screen to the following mask:
+
+<figure>
+    <a href="/assets/collections/fpv/taranis/bootloader-usb.jpg"><img src="/assets/collections/fpv/taranis/bootloader-usb.jpg"></a>
+    <figcaption>Bootloader with connected USB cable.</figcaption>
+</figure>
+
+Back in the OpenTX Companion application click the `Download` button, then do the following steps in the new Dialog that pops up:
 
 ![image-right]({{ site.url }}{{ site.baseurl }}/assets/collections/fpv/opentx/01-firmware-download.png){: .align-right}
 
@@ -123,23 +130,33 @@ Next, connect the Taranis with the computer via the provided USB cable. Back in 
 
 After the flashing procedure, your Taranis is updated to the latest version of OpenTX (currently 2.3.1).
 
-<figure>
+<figure class="half">
     <a href="/assets/collections/fpv/opentx/05-flashing-done.png"><img src="/assets/collections/fpv/opentx/05-flashing-done.png"></a>
+  <a href="/assets/collections/fpv/taranis/updated-firmware.jpg"><img src="/assets/collections/fpv/taranis/updated-firmware.jpg"></a>
     <figcaption>Flashing procedure of OpenTX.</figcaption>
 </figure>
 
+Exit the bootloader, which will restart your Taranis. Power it off for the next step.
+
 ### SD Card Content
 
-Now write the previously downloaded [sd card content](https://downloads.open-tx.org/2.3/release/sdcard/) from the OpenTX website on a seperate sd card that you plug in back tray of your Taranis. 
+Now write the previously downloaded [sd card content](https://downloads.open-tx.org/2.3/release/sdcard/) from the OpenTX website on a seperate sd card that you plug in the back tray of your Taranis. 
 
 <figure>
-    <a href="/assets/collections/fpv/taranis/sdcard.png"><img src="/assets/collections/fpv/taranis/sdcard.png"></a>
+    <a href="/assets/collections/fpv/taranis/sdcard.jpg"><img src="/assets/collections/fpv/taranis/sdcard.jpg"></a>
     <figcaption>Insert an empty sd card in your Taranis.</figcaption>
 </figure>
 
-Once downloaded, place the content of the zip file on
-the empty sd card and open the `SCRIPTS/TOOLS` folder and copy the lua script for changing the internal module into
-the FCC or EU-LBT mode.
+When you inserted the sd card, power on the Taranis and connect it with the USB cable to your computer. 
+A message will pop up on your Taranis, where you should select `USB Storage (SD)`, as shown in the next figure. 
+
+<figure>
+    <a href="/assets/collections/fpv/taranis/usb-storage.jpg"><img src="/assets/collections/fpv/taranis/usb-storage.jpg"></a>
+    <figcaption>Select `USB Storage (SD)` after you plugged in your USB cable.</figcaption>
+</figure>
+
+Next, place the content of the downloaded sd card zip file on the empty sd card and open the `SCRIPTS/TOOLS` folder 
+where you copy the lua script for changing the internal module into the FCC or EU-LBT mode.
 
 <figure class="half">
     <a href="/assets/collections/fpv/taranis/copy-sd-content.png"><img src="/assets/collections/fpv/taranis/0copy-sd-content.png"></a>
