@@ -99,8 +99,21 @@ Note: Don't press the power button for to long in order to enter the bootloader 
     <figcaption>OpenTX Companion.</figcaption>
 </figure>
 
+### Flash OpenTX
+
 Next, connect the Taranis with the computer via the provided USB cable. Back in the OpenTX Companion application click
-`Download` and `Check for Updates`. 
+`Download` button the do the following steps in the new Dialog that pops up:
+
+- `Check for Updates`
+- `Download firmware` which downloads the OpenTX firmware (this will be a `*.bin` file) with the settings you selected previously.
+- Write the downloaded and stored firmware to the Taranis
+
+After the flashing procedure, your Taranis is updated to the latest version of OpenTX (currently 2.3.1).
+
+### SD Card Content
+
+Now write the previously downloaded [sd card content](https://downloads.open-tx.org/2.3/release/sdcard/) from the OpenTX website on a seperate sd card that you plug in your computer.
+
 
 
 
