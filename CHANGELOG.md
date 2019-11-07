@@ -1,12 +1,37 @@
-## Unreleased
+## [4.17.2](https://github.com/mmistakes/minimal-mistakes/releases/tag/4.17.2)
 
 ### Enhancements
 
+- Add collection step to documentation about creating a portfolio page. [#2294](https://github.com/mmistakes/minimal-mistakes/pull/2294)
+- Replace sticky footer JavaScript with flexbox styles. [#2289](https://github.com/mmistakes/minimal-mistakes/pull/2289)
+
+### Bug Fixes
+
+- Fix sticky footer when using MozBar extension. [#2281](https://github.com/mmistakes/minimal-mistakes/issues/2281)
+
+## [4.17.1](https://github.com/mmistakes/minimal-mistakes/releases/tag/4.17.1)
+
+### Enhancements
+
+- Update Chinese (Simplified) localized UI text strings. [#2286](https://github.com/mmistakes/minimal-mistakes/pull/2286)
+- Update list of 3rd party JavaScript used and licenses. [#2276](https://github.com/mmistakes/minimal-mistakes/pull/2276)
+
+### Bug Fixes
+
+- Fix indention of nested GFM task lists. [#2283](https://github.com/mmistakes/minimal-mistakes/issues/2283)
+
+## [4.17.0](https://github.com/mmistakes/minimal-mistakes/releases/tag/4.17.0)
+
+### Enhancements
+
+- Show a permalink anchor when hovering over headings in main content area. [#2251](https://github.com/mmistakes/minimal-mistakes/pull/2251)
+- Allow per-page override of `words_per_minute`. [#2250](https://github.com/mmistakes/minimal-mistakes/pull/2250)
 - Update [onchange](https://www.npmjs.com/package/onchange) development dependency in `package.json`. [#2241](https://github.com/mmistakes/minimal-mistakes/issues/2241)
 - Add Catalan localized UI text strings. [#2237](https://github.com/mmistakes/minimal-mistakes/pull/2237)
 
 ### Bug Fixes
 
+- Remove extraneous space from Internet Explorer conditional statement. [#2273](https://github.com/mmistakes/minimal-mistakes/pull/2273)
 - Fix typo in `_config.yml`. [#2243](https://github.com/mmistakes/minimal-mistakes/pull/2243)
 - Replace `http` URLs with `https` where applicable in `_config.yml`. [#2244](https://github.com/mmistakes/minimal-mistakes/pull/2244)
 
