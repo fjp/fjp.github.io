@@ -58,7 +58,7 @@ Note that you cannot check both, so you have to choose between `flexr9m` or `eu`
 
 <figure class="half">
     <a href="/assets/collections/fpv/opentx.jpg"><img src="/assets/collections/fpv/opentx.jpg"></a>
-    <a href="/assets/collections/fpv/opentx.jpg"><img src="/assets/collections/fpv/opentx/opentx-companion-settings.png"></a>
+    <a href="/assets/collections/fpv/opentx/opentx-companion-settings.png"><img src="/assets/collections/fpv/opentx/opentx-companion-settings.png"></a>
     <figcaption>OpenTX Companion.</figcaption>
 </figure>
 
