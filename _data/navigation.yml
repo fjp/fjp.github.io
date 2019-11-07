@@ -84,6 +84,9 @@ fpv:
         url: /projects/fpv/software
       - title: "RC Transmitter"
         url: /projects/fpv/transmitter
+        children:
+          - title: Taranis X9D Plus SE 2019
+            url: /projects/fpv/taranis
       - title: "RC Receiver"
         url: /projects/fpv/receiver
   - title: "FPV System"
