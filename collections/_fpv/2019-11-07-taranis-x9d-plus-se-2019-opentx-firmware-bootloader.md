@@ -82,7 +82,11 @@ To do that, press both horizontal trim switches to the middle while powering the
 Note: Don't press the power button for to long in order to enter the bootloader and not booting into the currently installed firmware.
 {: .note}
 
-
+<figure class="half">
+    <a href="/assets/collections/fpv/taranis/enter-bootloader.jpg"><img src="/assets/collections/fpv/taranis/enter-bootloader.jpg"></a>
+    <a href="/assets/collections/fpv/taranis/bootloader.jpg"><img src="/assets/collections/fpv/taranis/bootloader.jpg"></a>
+    <figcaption>OpenTX Companion.</figcaption>
+</figure>
 
 
 
