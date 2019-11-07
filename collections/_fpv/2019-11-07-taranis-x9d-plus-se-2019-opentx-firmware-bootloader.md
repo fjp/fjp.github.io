@@ -57,7 +57,15 @@ This way you can restore your backup using the `Write Backup to Radio` button, r
 ### OpenTX Settings
 
 After downloading OpenTX Companion and installing on your operating system, execute the application and open the settings,
-shown in the following screenshots. Here you can see the settings in the `Radio Profile` tab. 
+shown in the following screenshots. 
+
+<figure class="half">
+    <a href="/assets/collections/fpv/opentx/opentx.jpg"><img src="/assets/collections/fpv/opentx/opentx.jpg"></a>
+    <a href="/assets/collections/fpv/opentx/opentx-companion-settings.png"><img src="/assets/collections/fpv/opentx/opentx-companion-settings.png"></a>
+    <figcaption>OpenTX Companion.</figcaption>
+</figure>
+
+Here you can see the settings in the `Radio Profile` tab. 
 As `Radio Type` choose the `FrSky Taranis X9D+ 2019` and the following `Build Options`:
 
 - `lua` enables lua custom script screen
@@ -69,11 +77,7 @@ In case you ordered from a vendor that shiped the Taranis X9D with the FCC firmw
 Note that you cannot check both, so you have to choose between `flexr9m` or `eu`.
 {: .note}
 
-<figure class="half">
-    <a href="/assets/collections/fpv/opentx/opentx.jpg"><img src="/assets/collections/fpv/opentx/opentx.jpg"></a>
-    <a href="/assets/collections/fpv/opentx/opentx-companion-settings.png"><img src="/assets/collections/fpv/opentx/opentx-companion-settings.png"></a>
-    <figcaption>OpenTX Companion.</figcaption>
-</figure>
+
 
 Also choose an `SD Structure path` on your Mac or PC that will mirror the internal storage of the Taranis to your local machine. 
 This is the path where we will place the previously downloaded sd card content that will be uploaded to the Taranis radio.
@@ -102,17 +106,27 @@ Note: Don't press the power button for to long in order to enter the bootloader 
 ### Flash OpenTX
 
 Next, connect the Taranis with the computer via the provided USB cable. Back in the OpenTX Companion application click
-`Download` button the do the following steps in the new Dialog that pops up:
+`Download` button, then do the following steps in the new Dialog that pops up:
+
+![image-right]({{ site.url }}{{ site.baseurl }}/assets/collections/fpv/opentx/01-firmware-download.png){: .align-right}
 
 - `Check for Updates`
 - `Download firmware` which downloads the OpenTX firmware (this will be a `*.bin` file) with the settings you selected previously.
 - Write the downloaded and stored firmware to the Taranis
 
+<figure class="third">
+    <a href="/assets/collections/fpv/opentx/02-firmware-download.png"><img src="/assets/collections/fpv/opentx/02-firmware-download.png"></a>
+    <a href="/assets/collections/fpv/opentx/03-write-firmware.png"><img src="/assets/collections/fpv/opentx/03-write-firmware.png"></a>
+    <a href="/assets/collections/fpv/opentx/04-final-write-settings.png"><img src="/assets/collections/fpv/opentx/04-final-write-settings.png"></a>
+    <figcaption>Flashing procedure of OpenTX.</figcaption>
+</figure>
+
 After the flashing procedure, your Taranis is updated to the latest version of OpenTX (currently 2.3.1).
 
 ### SD Card Content
 
-Now write the previously downloaded [sd card content](https://downloads.open-tx.org/2.3/release/sdcard/) from the OpenTX website on a seperate sd card that you plug in your computer.
+Now write the previously downloaded [sd card content](https://downloads.open-tx.org/2.3/release/sdcard/) from the OpenTX website on a seperate sd card that you plug in your computer. Once downloaded, place the content of the zip file on
+the empty sd card and put it in the back of your Taranis.
 
 
 
