@@ -159,7 +159,7 @@ Next, place the content of the downloaded sd card zip file on the empty sd card 
 where you copy the lua script for changing the internal module into the FCC or EU-LBT mode.
 
 <figure class="half">
-    <a href="/assets/collections/fpv/taranis/copy-sd-content.png"><img src="/assets/collections/fpv/taranis/0copy-sd-content.png"></a>
+    <a href="/assets/collections/fpv/taranis/copy-sd-content.png"><img src="/assets/collections/fpv/taranis/copy-sd-content.png"></a>
     <a href="/assets/collections/fpv/taranis/copy-lua-script.png"><img src="/assets/collections/fpv/taranis/copy-lua-script.png"></a>
     <figcaption>Copy the sd card content and the lua script on the external Taranis sd card.</figcaption>
 </figure>
