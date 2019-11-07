@@ -168,9 +168,18 @@ The mentioned lua script to switch the internal module into the FCC or EU-LBT mo
 Because it is not allowed to share this script, just write a mail to the [FrSky support](mailto:frsky@frsky-rc.com) asking for the lua script. It is named `isrm_mode_1.lua`. Using this script you must choose the correct firmware that is allowed in your area.
 {: .warning}
 
+### Switching Internal Module to EU-LBT Mode
+
+After preparing the external sd card of the Taranis unplug the USB cable (after ejecting both storage locations `TARANIS` and `EXTTARANIS` from your computer). Then power on your Taranis and enter the `RADIO SETUP` menu by long pressing the 
+`MENU` button of your Taranis. Press `PAGE` repeatedly until you get to the `TOOL` menu, where you select `Change ISRM mode`
+to change the internal transmitter module into the EU-LBT mode using the lua script.
 
 
-put it in the back of your Taranis.
+<figure class="half">
+    <a href="/assets/collections/fpv/taranis/change-isrm-mode.jpg"><img src="/assets/collections/fpv/taranis/change-isrm-mode.jpg"></a>
+    <a href="/assets/collections/fpv/taranis/eu-lbt-mode.jpg"><img src="/assets/collections/fpv/taranis/eu-lbt-mode.jpg"></a>
+    <figcaption>Change the internal transmitter module to EU-LBT mode inside the TOOS menu.</figcaption>
+</figure>
 
 
 
