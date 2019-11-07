@@ -185,10 +185,18 @@ On the `VERSION` page we can see firmware version of OpenTX, the options we set 
 
 <figure class="half">
     <a href="/assets/collections/fpv/taranis/version.jpg"><img src="/assets/collections/fpv/taranis/version.jpg"></a>
-    <a href="/assets/collections/fpv/taranis/module-version.jpg"><img src="/assets/collections/fpv/taranis/module-version.jpg"></a>
-    <figcaption>Firmware and transmitter module versions.</figcaption>
+    <a href="/assets/collections/fpv/taranis/firmware-settings.jpg"><img src="/assets/collections/fpv/taranis/firmware-settings.jpg"></a>
+    <figcaption>OpenTX firmware version and its previously selected settings.</figcaption>
 </figure>
 
+The following two images show the different modes of the internal module. Once again, select the one appropriate for your region.
+
+
+<figure class="half">
+    <a href="/assets/collections/fpv/taranis/module-version-eu-lbt.jpg"><img src="/assets/collections/fpv/taranis/module-version-eu-lbt.jpg"></a>
+    <a href="/assets/collections/fpv/taranis/module-version-fcc.jpg"><img src="/assets/collections/fpv/taranis/module-version-fcc.jpg"></a>
+    <figcaption>Internal transmitter module versions. EU-LBT and FCC.</figcaption>
+</figure>
 
 
 
