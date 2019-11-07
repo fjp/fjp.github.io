@@ -43,6 +43,8 @@ Note that the Taranis X9D Plus SE 2019 doesn't ship with an sd card. However, it
 and the firmware (OpenTX) and the firmware of the internal transmitter module.
 {: .notice}
 
+### OpenTX Settings
+
 After downloading OpenTX Companion and installing on your operating system, execute the application and open the settings,
 shown in the following screenshots. Here you can see the settings in the `Radio Profile` tab. 
 As `Radio Type` choose the `FrSky Taranis X9D+ 2019` and the following `Build Options`:
@@ -57,7 +59,7 @@ Note that you cannot check both, so you have to choose between `flexr9m` or `eu`
 {: .note}
 
 <figure class="half">
-    <a href="/assets/collections/fpv/opentx.jpg"><img src="/assets/collections/fpv/opentx.jpg"></a>
+    <a href="/assets/collections/fpv/opentx/opentx.jpg"><img src="/assets/collections/fpv/opentx/opentx.jpg"></a>
     <a href="/assets/collections/fpv/opentx/opentx-companion-settings.png"><img src="/assets/collections/fpv/opentx/opentx-companion-settings.png"></a>
     <figcaption>OpenTX Companion.</figcaption>
 </figure>
@@ -69,6 +71,22 @@ If you want you can change the `Default Stick Mode` or the `Default Channel Orde
 
 - `Append version number to FW file name`
 - `Offer to write FW to Tx after download`
+
+Save the radio profile using a `Profile Name` and press `Ok`.
+
+### Taranis X9D Bootloader
+
+Now that we are done with the settings of the firmware that will be flashed on the radio we need to enter the bootloader.
+To do that, press both horizontal trim switches to the middle while powering the transmitter. 
+
+Note: Don't press the power button for to long in order to enter the bootloader and not booting into the currently installed firmware.
+{: .note}
+
+
+
+
+
+
 
 
 
