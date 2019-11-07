@@ -181,6 +181,14 @@ to change the internal transmitter module into the EU-LBT mode using the lua scr
     <figcaption>Change the internal transmitter module to EU-LBT mode inside the TOOS menu.</figcaption>
 </figure>
 
+On the `VERSION` page we can see firmware version of OpenTX, the options we set inside the Settings of the OpenTX Companion application and that internal module is now in EU-LBT mode.
+
+<figure class="half">
+    <a href="/assets/collections/fpv/taranis/version.jpg"><img src="/assets/collections/fpv/taranis/version.jpg"></a>
+    <a href="/assets/collections/fpv/taranis/module-version.jpg"><img src="/assets/collections/fpv/taranis/module-version.jpg"></a>
+    <figcaption>Firmware and transmitter module versions.</figcaption>
+</figure>
+
 
 
 
