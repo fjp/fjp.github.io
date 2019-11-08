@@ -165,8 +165,7 @@ where you copy the lua script for changing the internal module into the FCC or E
 </figure>
 
 The mentioned lua script to switch the internal module into the FCC or EU-LBT mode can be obtained from the FrSky support.
-Because it is not allowed to share this script, just write a mail to the [FrSky support](mailto:frsky@frsky-rc.com) asking for the lua script. It is named `isrm_mode_1.lua`. Using this script you must choose the correct firmware that is allowed in your area.
-{: .warning}
+Because it is not allowed to share this script, just write a mail to the [FrSky support](mailto:frsky@frsky-rc.com) asking for the lua script. It is named `isrm_mode_1.lua`. Using this script you must choose the correct firmware that is allowed in your area.{: .notice--warning}
 
 ### Switching Internal Module to EU-LBT Mode
 
