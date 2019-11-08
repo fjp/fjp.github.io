@@ -29,7 +29,7 @@ the [EU-LBT](/projects/fpv/glossar/#eu-lbt) mode and how to [register](/projects
 
 
 <figure>
-    <a href="/assets/collections/fpv/taranis.jpg"><img src="/assets/collections/fpv/taranis.jpg"></a>
+    <a href="/assets/collections/fpv/taranis/taranis.jpg"><img src="/assets/collections/fpv/taranis/taranis.jpg"></a>
     <figcaption>Taranis X9D Plus SE 2019 Carbon.</figcaption>
 </figure>
 
