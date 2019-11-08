@@ -54,7 +54,7 @@ a `*.bin` file on your computer:
 It is advised that you backup your radio settings and models before you proceed with the next steps.
 This way you can restore your backup using the `Write Backup to Radio` button, right above the `Backup Radio to File` button. 
 
-### OpenTX Settings
+## OpenTX Settings
 
 After downloading OpenTX Companion and installing on your operating system, execute the application and open the settings,
 shown in the following screenshots. 
@@ -89,7 +89,7 @@ If you want you can change the `Default Stick Mode` or the `Default Channel Orde
 
 Save the radio profile using a `Profile Name` and press `Ok`.
 
-### Taranis X9D Bootloader
+## Taranis X9D Bootloader
 
 Now that we are done with the settings of the firmware that will be flashed on the radio we need to enter the bootloader.
 To do that, press both horizontal trim switches to the middle while powering the transmitter. 
@@ -103,7 +103,7 @@ Note: Don't press the power button for to long in order to enter the bootloader 
     <figcaption>OpenTX Companion.</figcaption>
 </figure>
 
-### Flash OpenTX
+## Flash OpenTX
 
 Once in the bootloader menu, connect the Taranis with the computer via the provided USB cable, which will change the 
 screen to the following mask:
@@ -138,7 +138,7 @@ After the flashing procedure, your Taranis is updated to the latest version of O
 
 Exit the bootloader, which will restart your Taranis. Power it off for the next step.
 
-### SD Card Content
+## SD Card Content
 
 Now write the previously downloaded [sd card content](https://downloads.open-tx.org/2.3/release/sdcard/) from the OpenTX website on a seperate sd card that you plug in the back tray of your Taranis. 
 
@@ -168,7 +168,7 @@ The mentioned lua script to switch the internal module into the FCC or EU-LBT mo
 Because it is not allowed to share this script, just write a mail to the [FrSky support](mailto:frsky@frsky-rc.com) asking for the lua script. It is named `isrm_mode_1.lua`. Using this script you must choose the correct firmware that is allowed in your area.
 {: .notice--warning}
 
-### Switching Internal Module to EU-LBT Mode
+## Switching Internal Module to EU-LBT Mode
 
 After preparing the external sd card of the Taranis unplug the USB cable (after ejecting both storage locations `TARANIS` and `EXTTARANIS` from your computer). Then power on your Taranis and enter the `RADIO SETUP` menu by long pressing the 
 `MENU` button of your Taranis. Press `PAGE` repeatedly until you get to the `TOOL` menu, where you select `Change ISRM mode`
