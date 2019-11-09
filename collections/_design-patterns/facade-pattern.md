@@ -32,7 +32,7 @@ Facade defines a higher-level interface that makes the subsystem easier to use.
 {: .notice}
 
 The Facade Pattern is used when you need to simplify and unify a large interface or complex set of interfaces. 
-It alters an interface to simplify it and thereby hides all teh complexity of one or more classes behind a clean facade, 
+It alters an interface to simplify it and thereby hides all the complexity of one or more classes behind a clean facade, 
 hence its name. A facade decouples a client from a complex subsystem and to implement it we compose the facade with its 
 subsystem and use delegation to perform the work of the facade. 
 For a complex subsystem it can be helpful to implement more than one facade. 
