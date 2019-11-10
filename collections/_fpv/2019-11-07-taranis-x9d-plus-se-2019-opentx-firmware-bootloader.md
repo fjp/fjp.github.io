@@ -60,7 +60,7 @@ After downloading OpenTX Companion and installing on your operating system, exec
 shown in the following screenshots. 
 
 <figure class="half">
-    <a href="/assets/collections/fpv/opentx/opentx-companion-open-settings.jpg"><img src="/assets/collections/fpv/opentx/opentx-companion-open-settings.jpg"></a>
+    <a href="/assets/collections/fpv/opentx/opentx-companion-open-settings.png"><img src="/assets/collections/fpv/opentx/opentx-companion-open-settings.png"></a>
     <a href="/assets/collections/fpv/opentx/opentx-companion-settings.png"><img src="/assets/collections/fpv/opentx/opentx-companion-settings.png"></a>
     <figcaption>OpenTX Companion.</figcaption>
 </figure>
