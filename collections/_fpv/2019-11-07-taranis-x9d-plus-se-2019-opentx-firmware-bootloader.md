@@ -9,7 +9,7 @@ tags: [fpv, quad, race, drone, frame]
 comments: true
 use_math: true
 toc: true
-# classes: wide
+classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
   teaser: /assets/collections/fpv/taranis/taranis.jpg
