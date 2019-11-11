@@ -22,7 +22,7 @@ sidebar:
 ---
 
 This post covers how to flash the latest version of [OpenTX](/projects/fpv/glossar/#opentx) (currently 2.3.1), which
-is a hightly configurable open source firmware for [radios](/projects/fpv/glossar/#radio) that acts as the operating
+is a highly configurable open source firmware for [radios](/projects/fpv/glossar/#radio) that acts as the operating
 system on [Taranis](/projects/fpv/glossar/#taranis) [transmitters](/projects/fpv/glossar/#transmitter).
 The post shows to to [flash](/projects/fpv/glossar/#flash) the [firmware](/projects/fpv/glossar/#firmware) of the internal [transmitter](/projects/fpv/glossar/#transmitter) module of the Taranis into
 the [EU-LBT](/projects/fpv/glossar/#eu-lbt) mode and how to [register](/projects/fpv/glossar/#register) and [bind](/projects/fpv/glossar/#bind) an [ACCESS](/projects/fpv/glossar/#access) [receiver](/projects/fpv/glossar/#receiver).
@@ -179,11 +179,49 @@ If you would like to use the latest bootloader that comes with the OpenTX firmwa
 
 Follow the [steps](/projects/fpv/taranis/#update-bootloader-(optional)) at the end of this post to update the bootloader.
 
+## Update Internal Module Firmware (Optional)
+
+In case you want to update the firmware of the internal transmitter module also refered to as [ISRM](/projects/fpv/glossar#isrm), 
+download the latest firmware from the [FrSky website](https://www.frsky-rc.com/taranis-x9d-plus-se-2019/). 
+Once downloaded, unzip the firmware file, for example `ISRM_S_X9_190812.frk` and place it in the `FIRMWARE` folder of
+the external sd card of your Taranis.
+
+![image-right]({{ site.url }}{{ site.baseurl }}/assets/collections/fpv/taranis/copy-isrm-firmware.png){: .align-right}
+
+After ejecting the `Taranis` and `EXTTARANIS` from you computer, unplug the usb cable. 
+Then, long press the `MENU` button and press `PAGE` to switch to the `SD-HC CARD` page. Here, enter the `[FIRMWARE]` folder.
+
+<figure class="half">
+    <a href="/assets/collections/fpv/taranis/sd-card-content-firmware.jpg"><img src="/assets/collections/fpv/taranis/sd-card-content-firmware.jpg"></a>
+    <a href="/assets/collections/fpv/taranis/eu-lbt-mode.jpg"><img src="/assets/collections/fpv/taranis/eu-lbt-mode.jpg"></a>
+    <figcaption>SD card content of the EEPROM folder.</figcaption>
+</figure>
+
+Long press the `*.frk` firmware file, for example `ISRM_S_X9_190812.frk`, to get the following pop up screen, 
+where you select `Flash internal module`:
+
+<figure class="third">
+    <a href="/assets/collections/fpv/taranis/flash-isrm.jpg"><img src="/assets/collections/fpv/taranis/flash-isrm.jpg"></a>
+    <a href="/assets/collections/fpv/taranis/flashing-isrm.jpg"><img src="/assets/collections/fpv/taranis/flashing-isrm.jpg"></a>
+  <a href="/assets/collections/fpv/taranis/flashing-isrm-success.jpg"><img src="/assets/collections/fpv/taranis/flashing-isrm-success.jpg"></a>
+    <figcaption>Flash the internal transmitter module (ISRM).</figcaption>
+</figure>
+
+After writing the new firmware, you can verify the version in the `VERSION` page, which you can get to by long pressing the `MENU` button followed by repeatedly pressing `PAGE` until you get there. Selecting `[Modules / RX version]`
+will show you the isrm version and its currently set mode.
+
+<figure class="half">
+    <a href="/assets/collections/fpv/taranis/version-modules.jpg"><img src="/assets/collections/fpv/taranis/version-modules.jpg"></a>
+    <a href="/assets/collections/fpv/taranis/eu-lbt-mode.jpg"><img src="/assets/collections/fpv/taranis/eu-lbt-mode.jpg"></a>
+    <figcaption>Change the internal transmitter module to EU-LBT mode inside the TOOS menu.</figcaption>
+</figure>
+
+
 ## Switching Internal Module between EU-LBT Mode and FCC Firmware
 
 After preparing the external sd card of the Taranis unplug the USB cable (after ejecting both storage locations `TARANIS` and `EXTTARANIS` from your computer). Then power on your Taranis and enter the `RADIO SETUP` menu by long pressing the 
 `MENU` button of your Taranis. Press `PAGE` repeatedly until you get to the `TOOL` menu, where you select `Change ISRM mode`
-to change the internal transmitter module into the EU-LBT mode using the lua script.
+to change the internal transmitter module into the EU-LBT mode using the lua script. 
 
 
 <figure class="half">
