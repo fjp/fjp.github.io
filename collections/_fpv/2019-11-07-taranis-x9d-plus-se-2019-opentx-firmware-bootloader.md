@@ -212,7 +212,7 @@ will show you the isrm version and its currently set mode.
 
 <figure class="half">
     <a href="/assets/collections/fpv/taranis/version-modules.jpg"><img src="/assets/collections/fpv/taranis/version-modules.jpg"></a>
-    <a href="/assets/collections/fpv/taranis/eu-lbt-mode.jpg"><img src="/assets/collections/fpv/taranis/eu-lbt-mode.jpg"></a>
+    <a href="/assets/collections/fpv/taranis/module-version-eu-lbt.jpg"><img src="/assets/collections/fpv/taranis/module-version-eu-lbt.jpg"></a>
     <figcaption>Change the internal transmitter module to EU-LBT mode inside the TOOS menu.</figcaption>
 </figure>
 
