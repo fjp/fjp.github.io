@@ -213,21 +213,21 @@ will show you the isrm version and its currently set mode.
 <figure class="half">
     <a href="/assets/collections/fpv/taranis/version-modules.jpg"><img src="/assets/collections/fpv/taranis/version-modules.jpg"></a>
     <a href="/assets/collections/fpv/taranis/module-version-eu-lbt.jpg"><img src="/assets/collections/fpv/taranis/module-version-eu-lbt.jpg"></a>
-    <figcaption>Change the internal transmitter module to EU-LBT mode inside the TOOS menu.</figcaption>
+    <figcaption>Updated internal transmitter module to latest firmware.</figcaption>
 </figure>
 
 
 ## Switching Internal Module between EU-LBT Mode and FCC Firmware
 
 After preparing the external sd card of the Taranis unplug the USB cable (after ejecting both storage locations `TARANIS` and `EXTTARANIS` from your computer). Then power on your Taranis and enter the `RADIO SETUP` menu by long pressing the 
-`MENU` button of your Taranis. Press `PAGE` repeatedly until you get to the `TOOL` menu, where you select `Change ISRM mode`
+`MENU` button of your Taranis. Press `PAGE` repeatedly until you get to the `TOOLS` menu, where you select `Change ISRM mode`
 to change the internal transmitter module into the EU-LBT mode using the lua script. 
 
 
 <figure class="half">
     <a href="/assets/collections/fpv/taranis/change-isrm-mode.jpg"><img src="/assets/collections/fpv/taranis/change-isrm-mode.jpg"></a>
     <a href="/assets/collections/fpv/taranis/eu-lbt-mode.jpg"><img src="/assets/collections/fpv/taranis/eu-lbt-mode.jpg"></a>
-    <figcaption>Change the internal transmitter module to EU-LBT mode inside the TOOS menu.</figcaption>
+    <figcaption>Change the internal transmitter module to EU-LBT mode inside the TOOLS menu.</figcaption>
 </figure>
 
 On the `VERSION` page we can see firmware version of OpenTX, the options we set inside the Settings of the OpenTX Companion application and that internal module is now in EU-LBT mode.
