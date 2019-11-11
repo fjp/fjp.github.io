@@ -118,6 +118,13 @@ fpv:
         url: /projects/fpv/calculations/#esc
       - title: "Flight Time Calculation"
         url: /projects/fpv/calculations/#flight-time
+  - title: "Build"
+    url: /projects/fpv/build
+    children:
+      - title: "Calculations and Part Selection"
+        url: /projects/fpv/build/#part-selection
+      - title: "Assembly"
+        url: /projects/fpv/assembly
   - title: "Rights"
     url: /projects/fpv/rights/#introduction
     children:
@@ -125,15 +132,7 @@ fpv:
         url: /projects/fpv/rights/#law-insurance
       - title: "Drones"
         url: /projects/fpv/rights/#drones
-  - title: "Build"
-    url: /projects/fpv/build
-    children:
-      - title: "Law and Insurance regulations"
-        url: /projects/fpv/build/#part-selection
-      - title: "Drones"
-        url: /projects/fpv/build/#overview
-      - title: "Assembly"
-        url: /projects/fpv/build/#assembly
+  
         
 
 
