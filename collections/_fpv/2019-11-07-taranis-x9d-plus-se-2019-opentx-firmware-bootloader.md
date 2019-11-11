@@ -57,8 +57,8 @@ This way you can restore your backup using the `Write Backup to Radio` button, r
 
 ## OpenTX Settings
 
-After downloading OpenTX Companion and installing on your operating system, execute the application and open the settings,
-shown in the following screenshots. 
+After downloading OpenTX Companion and installing it on your operating system, 
+execute the application and open the settings, shown in the following screenshots. 
 
 <figure class="half">
     <a href="/assets/collections/fpv/opentx/opentx-companion-open-settings.png"><img src="/assets/collections/fpv/opentx/opentx-companion-open-settings.png"></a>
@@ -70,7 +70,7 @@ Here you can see the settings in the `Radio Profile` tab.
 As `Radio Type` choose the `FrSky Taranis X9D+ 2019` and the following `Build Options`:
 
 - `lua` enables lua custom script screen
-- `noheli` which disables the Heli menu page on the Taranis in the case you are not flying a helicopter.
+- `noheli` to disable the Helicoper menu page on the Taranis in the case you are not flying a helicopter.
 - `flexr9m` or `eu` which can be both used to flash the internal transmitter module from the FCC to the EU-LBT firmware.
 
 Use `flexr9m` if you have an external transmitter module such as the FrSky R9M and want to flash its firmware.
@@ -80,8 +80,7 @@ Note that you cannot check both, so you have to choose between `flexr9m` or `eu`
 
 
 
-Also choose an `SD Structure path` on your Mac or PC that will mirror the internal storage of the Taranis to your local machine. 
-This is the path where we will place the previously downloaded sd card content that will be uploaded to the Taranis radio.
+Also choose an `SD Structure path` on your Mac or PC that will mirror the internal storage of the Taranis to your local machine. Note that this is NOT the path where we will place the previously downloaded sd card content.
 
 If you want you can change the `Default Stick Mode` or the `Default Channel Order`. For convenience, select the two options:
 
@@ -90,7 +89,7 @@ If you want you can change the `Default Stick Mode` or the `Default Channel Orde
 
 Save the radio profile using a `Profile Name` and press `Ok`.
 
-## Taranis X9D Bootloader
+## Enter the Bootloader of Taranis X9D Plus
 
 Now that we are done with the settings of the firmware that will be flashed on the radio we need to enter the bootloader.
 To do that, press both horizontal trim switches to the middle while powering the transmitter. 
@@ -103,6 +102,8 @@ Note: Don't press the power button for to long in order to enter the bootloader 
     <a href="/assets/collections/fpv/taranis/bootloader.jpg"><img src="/assets/collections/fpv/taranis/bootloader.jpg"></a>
     <figcaption>OpenTX Companion.</figcaption>
 </figure>
+
+On the bootloader screen above you can also check the bootloader version which is important if you want to update the bootloader. The optional update procedure is explained at the end of this post [Update Bootloader (Optional)](/projects/fpv/taranis/#update-bootloader-(optional)).
 
 ## Flash OpenTX
 
@@ -141,20 +142,23 @@ Exit the bootloader, which will restart your Taranis. Power it off for the next 
 
 ## SD Card Content
 
-Now write the previously downloaded [sd card content](https://downloads.open-tx.org/2.3/release/sdcard/) from the OpenTX website on a seperate sd card that you plug in the back tray of your Taranis. 
+It is required to prepare an external sd card with the content downloaded from the [OpenTX website](https://downloads.open-tx.org/2.3/release/sdcard/). For the preperation put an empty sd card in the back tray of your Taranis. 
+In this post it is called `EXTTARANIS`.
 
 <figure>
     <a href="/assets/collections/fpv/taranis/sdcard.jpg"><img src="/assets/collections/fpv/taranis/sdcard.jpg"></a>
     <figcaption>Insert an empty sd card in your Taranis.</figcaption>
 </figure>
 
-When you inserted the sd card, power on the Taranis and connect it with the USB cable to your computer. 
-A message will pop up on your Taranis, where you should select `USB Storage (SD)`, as shown in the next figure. 
+When you've inserted the sd card, power on the Taranis and connect it with the USB cable to your computer. 
+A message will pop up on your Taranis, where you should select `USB Storage (SD)`, as shown in the following image: 
 
 <figure>
     <a href="/assets/collections/fpv/taranis/usb-storage.jpg"><img src="/assets/collections/fpv/taranis/usb-storage.jpg"></a>
     <figcaption>Select `USB Storage (SD)` after you plugged in your USB cable.</figcaption>
 </figure>
+
+### Scripts Folder for ISRM lua Script
 
 Next, place the content of the downloaded sd card zip file on the empty sd card and open the `SCRIPTS/TOOLS` folder 
 where you copy the lua script for changing the internal module into the FCC or EU-LBT mode.
@@ -168,6 +172,12 @@ where you copy the lua script for changing the internal module into the FCC or E
 The mentioned lua script to switch the internal module into the FCC or EU-LBT mode can be obtained from the FrSky support.
 Because it is not allowed to share this script, just write a mail to the [FrSky support](mailto:frsky@frsky-rc.com) asking for the lua script. It is named `isrm_mode_1.lua`. Using this script you must choose the correct firmware that is allowed in your area.
 {: .notice--warning}
+
+### EEPROM Folder for Bootloader
+
+If you would like to use the latest bootloader that comes with the OpenTX firmware then copy the `*.bin` file to the `EEPROM` folder of your external `EXTARANIS` sd card and rename it to something short `opentx-2.3.1.bin`. Remember that the `*.bin` firmware file was downloaded via OpenTX Companion.
+
+Follow the [steps](/projects/fpv/taranis/#update-bootloader-(optional)) at the end of this post to update the bootloader.
 
 ## Switching Internal Module between EU-LBT Mode and FCC Firmware
 
@@ -197,6 +207,37 @@ The following two images show the different modes of the internal module. Once a
     <a href="/assets/collections/fpv/taranis/module-version-eu-lbt.jpg"><img src="/assets/collections/fpv/taranis/module-version-eu-lbt.jpg"></a>
     <a href="/assets/collections/fpv/taranis/module-version-fcc.jpg"><img src="/assets/collections/fpv/taranis/module-version-fcc.jpg"></a>
     <figcaption>Internal transmitter module versions. EU-LBT and FCC.</figcaption>
+</figure>
+
+
+## Update Bootloader (Optional)
+
+If you have a new Taranis, you probably won't need to update its bootloader in order to flash a new version of OpenTX. However, make sure that the version of OpenTX matches the bootloader by comparing the bootloader version with the 
+version of OpenTX you want to flash. The bootloader version is apparent on top of the bootloader menu.
+
+As mentioned perviously copy and renamed the OpenTX firmware 
+(downloaded via OpenTX Companion) to the `EEPROM` folder of your external sd card `EXTTARANIS` and rename it to something short, for example `opentx-2.3.1.bin`. Unplug the Taranis and enter the `RADIO SETUP` menu by long pressing the `MENU` button on your Taranis. Press `PAGE` to get to the `SD-HC CARD` page and enter the `[EEPROM]` folder. 
+
+<figure class="half">
+    <a href="/assets/collections/fpv/taranis/bl-sdcard-content.jpg"><img src="/assets/collections/fpv/taranis/bl-sdcard-content.jpg"></a>
+    <a href="/assets/collections/fpv/taranis/bl-sdcard-eeprom.jpg"><img src="/assets/collections/fpv/taranis/bl-sdcard-eeprom.jpg"></a>
+    <figcaption>EEPROM folder on SD card.</figcaption>
+</figure>
+
+Inside the `EEPROM` folder you should see the `opentx-2.3.1.bin` firmware, which can be used to update the bootloader by long pressing the scroll button.
+
+<figure>
+    <a href="/assets/collections/fpv/taranis/flash-bootloader.jpg"><img src="/assets/collections/fpv/taranis/flash-bootloader.jpg"></a>
+    <figcaption>Flash bootloader.</figcaption>
+</figure>
+
+
+Select `Flash bootloader` in the menu that pops up and after the update finished, 
+boot into the bootloader to verify that the update succeeded. 
+
+<figure>
+    <a href="/assets/collections/fpv/taranis/flash-bootloader.jpg"><img src="/assets/collections/fpv/taranis/bootloader-updated.jpg"></a>
+    <figcaption>Check updated bootloader version.</figcaption>
 </figure>
 
 
