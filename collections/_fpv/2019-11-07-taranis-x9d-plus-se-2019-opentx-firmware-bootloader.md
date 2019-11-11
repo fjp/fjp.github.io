@@ -193,7 +193,7 @@ Then, long press the `MENU` button and press `PAGE` to switch to the `SD-HC CARD
 
 <figure class="half">
     <a href="/assets/collections/fpv/taranis/sd-card-content-firmware.jpg"><img src="/assets/collections/fpv/taranis/sd-card-content-firmware.jpg"></a>
-    <a href="/assets/collections/fpv/taranis/eu-lbt-mode.jpg"><img src="/assets/collections/fpv/taranis/eu-lbt-mode.jpg"></a>
+    <a href="/assets/collections/fpv/taranis/sd-card-isrm.jpg"><img src="/assets/collections/fpv/taranis/sd-card-isrm.jpg"></a>
     <figcaption>SD card content of the EEPROM folder.</figcaption>
 </figure>
 
