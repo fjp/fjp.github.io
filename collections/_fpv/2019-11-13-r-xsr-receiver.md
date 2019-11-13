@@ -35,3 +35,8 @@ sidebar:
 ## How to use the Taranis X9D Plus Transmitter to Flash the Receiver Firmware
 
 https://www.frsky-rc.com/how-to-use-the-transmitter-to-flash-the-firmware-of-the-x8r-receiver/
+
+
+## References
+
+https://blog.seidel-philipp.de/how-to-flash-a-frsky-smartport-receiver-with-taranis-9xd-or-qx7s/
