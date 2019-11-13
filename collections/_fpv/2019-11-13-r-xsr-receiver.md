@@ -30,3 +30,8 @@ sidebar:
     <a href="/assets/collections/fpv/receiver/r-xsr.jpg"><img src="/assets/collections/fpv/receiver/r-xsr.jpg"></a>
     <figcaption>FrSky R-XSR Receiver.</figcaption>
 </figure>
+
+
+## How to use the Taranis X9D Plus Transmitter to Flash the Receiver Firmware
+
+https://www.frsky-rc.com/how-to-use-the-transmitter-to-flash-the-firmware-of-the-x8r-receiver/
