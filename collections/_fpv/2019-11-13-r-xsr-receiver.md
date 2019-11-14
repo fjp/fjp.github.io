@@ -2,7 +2,7 @@
 layout: single
 title:  "FrSky R-XSR Receiver"
 permalink: /projects/fpv/r-xsr
-excerpt: "All about the R-XSR Receiver from FrSky."
+excerpt: "All about the R-XSR SmartPort Receiver from FrSky."
 date: 2019-10-30 09:00:35 +0100
 categories: [fpv, quad]
 tags: [fpv, quad, race, drone, r-xsr, receiver]
@@ -21,7 +21,7 @@ sidebar:
   nav: "fpv"
 ---
 
-[FrSky R-XSR Receiver](https://www.frsky-rc.com/product/r-xsr/). 
+[FrSky R-XSR SmartPort Receiver](https://www.frsky-rc.com/product/r-xsr/). 
 
 
 
@@ -30,6 +30,14 @@ sidebar:
     <a href="/assets/collections/fpv/receiver/r-xsr.jpg"><img src="/assets/collections/fpv/receiver/r-xsr.jpg"></a>
     <figcaption>FrSky R-XSR Receiver.</figcaption>
 </figure>
+
+## Firmware Update
+
+Download the latest [ACCESS](/projects/fpv/glossar/#access) [firmware](/projects/fpv/glossar/#firmware) from the 
+[product page](https://www.frsky-rc.com/r-xsr/). For example, `FW-RXSR-ACCESS_v1.1.4.zip` and unpack the zip file.
+Copy the content to the external sd card of your Taranis and place it in the `FIRMWARES` folder.
+
+
 
 
 ## How to use the Taranis X9D Plus Transmitter to Flash the Receiver Firmware
