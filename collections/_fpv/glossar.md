@@ -52,6 +52,8 @@ It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) c
 
 ## CleanFlight
 
+
+
 ## DFU
 
 DFU stands for "Device Firmware Update" which is a mode of a [Flight Controller](/projects/fpv/glossar/#flight-controller) 
@@ -103,6 +105,10 @@ The Power Distribution Board (PDB) acts as the heart of an [FPV](/projects/fpv/g
 It is connected to the [Battery](/projects/fpv/glossar/#battery) and distributes its power to other components of the quad. The main components its is connected to are the [ESCs](/projects/fpv/glossar/#esc) to power the 
 [motors](/projects/fpv-quad/fpv-glossar/#motor). A PDB usually has additional voltage outputs such as 5V and 12V to power 
 [sensors](/projects/fpv/glossar/#sensor) or [LEDs](/projects/fpv/glossar/#led).
+
+## Radio
+
+See [Transmitter](/projects/fpv/glossar/#transmitter).
 
 ## Receiver
 
