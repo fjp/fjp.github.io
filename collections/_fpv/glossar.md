@@ -99,6 +99,15 @@ Company that produces radio controlled [transmitters](/projects/fpv/glossar/#tra
 
 Used to view the [analog](/projects/fpv/glossar/#analog) live image captured by the camera on the quad, which is transmitted with the video transmitter that sits also on the quad.
 
+## LBT
+
+LBT stands for Listen Before Talk or Listen Before Transmit and describes the version of a 
+[firmware](/projects/fpv/glossar/#firmware) for [transmitters](/projects/fpv/glossar/#transmitter) and 
+[receivers](/projects/fpv/glossar/#transmitter). The LBT version also refered to as EU LBT is the allowed version 
+in the European Union. Most of the [FrSky](/projects/fpv/glossar/#frsky) 
+receivers and transmitters are sometimes referenced as EU or non EU or [EU LBT](/projects/fpv/glossar/#eu-lbt) 
+and [FCC](/projects/fpv/glossar/#fcc).
+
 ## PDB
 
 The Power Distribution Board (PDB) acts as the heart of an [FPV](/projects/fpv/glossar/#fpv) quad. 
