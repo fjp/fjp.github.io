@@ -61,6 +61,16 @@ device that is required to [flash](/projects/fpv/glossar/#flash) a new [Firmware
 Either you need to short the BL or BOOT pads (or press and hold the BOOT tactile button if your FC board has one) while 
 plugging the USB into the Flight Controller board.
 
+## EU LBT
+
+EU [LBT](/projects/fpv/glossar/#lbt) stands for European Union Listen Before Talk (or Transmit) and is a [firmware](/projects/fpv/glossar/#firmware) version for [receivers](/projects/fpv/glossar/#receiver) and [transmitter](/projects/fpv/glossar/#transmitter) modules, which is allowed in the geographical region of the EU. Another firmware version is the [FCC](/projects/fpv/glossar/#fcc) version which can be used outside the EU.
+Reference: [Brushless Whoop](https://brushlesswhoop.com/frsky-eu-lbt-vs-fcc/).
+
+## FCC
+
+Stands for Federal Communications Commission which regulates use of radio frequencies within the United States.
+Reference: [Brushless Whoop](https://brushlesswhoop.com/frsky-eu-lbt-vs-fcc/).
+
 ## Flash
 
 [Flashing](https://en.wikipedia.org/wiki/Firmware#Flashing) means to update a Software, 
@@ -107,6 +117,8 @@ LBT stands for Listen Before Talk or Listen Before Transmit and describes the ve
 in the European Union. Most of the [FrSky](/projects/fpv/glossar/#frsky) 
 receivers and transmitters are sometimes referenced as EU or non EU or [EU LBT](/projects/fpv/glossar/#eu-lbt) 
 and [FCC](/projects/fpv/glossar/#fcc).
+
+Reference: [Brushless Whoop](https://brushlesswhoop.com/frsky-eu-lbt-vs-fcc/).
 
 ## PDB
 
