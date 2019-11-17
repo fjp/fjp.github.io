@@ -303,6 +303,9 @@ collections:
   projects:
     output: true
     permalink: /:collection/:path/
+  2wd-robot:
+    output: true
+    permalink: /:collection/:path/
   autonomous-rc-car:
     output: true
     permalink: /:collection/:path/
