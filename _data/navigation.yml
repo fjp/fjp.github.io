@@ -48,6 +48,18 @@ autonomous_rc_car:
   - title: "Prerequisites"
     url: /projects/autonomous-rc-car/#prerequisites
 
+2wd-robot:
+  - title: "2WD Robot"
+    url: /projects/2wd-robot/
+    children:
+      - title: "Components"
+        url: /projects/2wd-robot/parts/
+      - title: "Raspbery Pi 4 B, Ubuntu Bionic (18.04) and ROS Melodic Setup"
+        url: /projects/2wd-robot/rpi-setup/
+      - title: "ROS Nodes"
+        url: /projects/2wd-robot/ros-nodes/
+      - title: "System integration"
+        url: /projects/2wd-robot/system-integration/
 
 math:
   - title: "Introduction"
