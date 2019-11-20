@@ -99,6 +99,8 @@ fpv:
     children:
       - title: Taranis X9D Plus SE 2019
         url: /projects/fpv/taranis
+      - title: Receiver Binding R-XSR
+        url: /projects/fpv/r-xsr
   - title: "Charger and Testers"
     url: /projects/fpv/charger
   - title: "FPV System"
