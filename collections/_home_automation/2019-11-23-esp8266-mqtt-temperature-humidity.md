@@ -17,7 +17,7 @@ header:
   caption: Robot Car Kit 05
   show_overlay_excerpt: true
 sidebar:
-  nav: "2wd-robot"
+  nav: "home-automation"
 ---
 
 
