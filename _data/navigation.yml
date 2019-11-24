@@ -202,6 +202,20 @@ design-patterns:
     children:
       - title: "Monad"
         url: /design-patterns/monad
+        
+        
+home-automation:
+  - title: "Home Automation"
+    url: /home-automation/
+  - title: "Raspberry Pi OpenHabian Setup"
+    url: /home-automation/openhabian
+    children:
+      - title: "Temperature and Humidity"
+        url: /home-automation/esp8266-dht
+      - title: "Shelly Light Control"
+        url: /home-automation/shelly-light
+      - title: "Shelly Rolling Shutter Control"
+        url: /home-automation/shelly-blinds
 
 # Cpp books
 pppucpp:
