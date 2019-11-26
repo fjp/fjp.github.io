@@ -88,6 +88,8 @@ fpv:
         url: /projects/fpv/prop
       - title: "Batteries"
         url: /projects/fpv/battery
+      - title: "Power Distribution Board"
+        url: /projects/fpv/pdb
       - title: "Flightcontroller"
         url: /projects/fpv/flightcontroller
       - title: "Flightcontroller Software"
