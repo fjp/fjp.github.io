@@ -103,15 +103,18 @@ fpv:
         url: /projects/fpv/taranis
       - title: Receiver Binding R-XSR
         url: /projects/fpv/r-xsr
+  - title: "FPV System"
+    url: /projects/fpv/fpv-system/
+    children:
+      - title: "FPV Camera"
+        url: /projects/fpv/fpv-system/camera
+      - title: "FPV Transmitter and Receiver"
+        url: /projects/fpv/fpv-system/vtx
+      - title: "Antennas"
+        url: /projects/fpv/fpv-system/antennas
   - title: "Charger and Testers"
     url: /projects/fpv/charger
-  - title: "FPV System"
-    url: /projects/fpv/fpv-system/#introduction
-    children:
-      - title: "FPV Components"
-        url: /projects/fpv/fpv-system/#components
-      - title: "Antennas"
-        url: /projects/fpv/fpv-system/#antennas
+  
   - title: "PID Values"
     url: /projects/fpv/pid/#introduction
     children:
