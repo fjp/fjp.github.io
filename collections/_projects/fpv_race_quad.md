@@ -21,6 +21,7 @@ where you feel the thrill and try not to crash your drone into the next tree. Ev
 
 ## FPV Race Quad Build
 
-In this project we will build a race quad. For the parts that will be used to build this quad check out the [part list](/projects/fpv/components).
+In this project we will [build](/projects/fpv/assembly) a race quad. For the parts that will be used to build this quad check out the [part list](/projects/fpv/components).
 
-If you are new to this hobby follow this project. You find the index on the left. All the required theory will be outlined first, followed by build instructions. Common terms are explained in the [glossar](/projects/fpv/glossar) and linked throuhout the single pages.
+If you are new to this hobby follow this project. You find the index on the left. All the required theory will be outlined first, followed by [build instructions](/projects/fpv/assembly). 
+Common terms are explained in the [glossar](/projects/fpv/glossar) and linked throuhout the single pages.
