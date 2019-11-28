@@ -14,6 +14,7 @@ classes: wide
 header-includes:
   - \usepackage{algorithm2e}
 header:
+  image: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step0.png
   teaser: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step0.png
   overlay_image: /assets/posts/2019-04-17-monte-carlo-localization/particle_filters.gif #keep it square 200x200 px is good
 gallery_iterations:
