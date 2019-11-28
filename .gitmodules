@@ -1,3 +1,6 @@
 [submodule "_includes/repos/pppucpp"]
 	path = _includes/repos/pppucpp
 	url = https://github.com/fjp/ppp.git
+[submodule "collections/_2wd-robot/2wd-robot"]
+	path = collections/_2wd-robot/2wd-robot
+	url = https://github.com/fjp/2wd-robot.git
