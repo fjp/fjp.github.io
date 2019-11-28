@@ -5,6 +5,12 @@ permalink: /projects-archive/
 author_profile: false
 ---
 
+{% if post.header.teaser %}
+  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+{% else %}
+  {% assign teaser = site.teaser %}
+{% endif %}
+
 {% capture written_label %}'None'{% endcapture %}
 
 {% for collection in site.collections %}
