@@ -241,6 +241,7 @@ plugins:
 #  - jekyll-tagging-related_posts
   - jekyll-jupyter-notebook
   - jekyll-include-cache
+  - jekyll_github_sample
 
 # mimic GitHub Pages with --safe
 whitelist:
