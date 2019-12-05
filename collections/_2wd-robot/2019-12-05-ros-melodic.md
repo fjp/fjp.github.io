@@ -12,10 +12,10 @@ toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: /assets/collections/2wd-robot/car-kit05.jpg
-  overlay_image: /assets/collections/2wd-robot/car-kit05.jpg
+  teaser: /assets/images/melodic.jpg
+  overlay_image: /assets/images/melodic.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
-  # caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
+  caption: "Source: [**ROS Melodic**](http://wiki.ros.org/melodic)"
   show_overlay_excerpt: true
 sidebar:
   nav: "2wd-robot"
