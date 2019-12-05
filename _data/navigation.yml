@@ -44,9 +44,18 @@ autonomous_rc_car:
     url: /projects/2wd-robot/
   - title: "Components"
     url: /projects/2wd-robot/parts/
-  - title: "Raspberry Pi 4B Ubuntu Bionic"
+    children:
+      - title: "Robot Base"
+        url: /projects/2wd-robot/parts/#robot-base
+      - title: "Sensors"
+        url: /projects/2wd-robot/parts/#sensors
+      - title: "Actuators"
+        url: /projects/2wd-robot/parts/#actuators
+  - title: "Raspberry Pi 4B"
     url: /projects/2wd-robot/rpi-setup/
     children:
+      - title: "Ubuntu Bionic 18.04"
+        url: /projects/2wd-robot/rpi-setup/#obtain-ubuntu-1804-arm-image
       - title: "Rasberry Pi Hardware Interfaces"
         url: /projects/2wd-robot/hardware-interfaces/
       - title: "ROS Melodic Setup"
