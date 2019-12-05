@@ -23,15 +23,6 @@ main:
   - title: "Sitemap"
     url: /sitemap/
 
-  # - title: "Quick-Start Guide"
-  #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
-  # - title: "Sample Posts"
-  #   url: /year-archive/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
-  # - title: "Sitemap"
-  #   url: /sitemap/
-
 # main links
 autonomous_rc_car:
   - title: "Introduction"
@@ -51,15 +42,28 @@ autonomous_rc_car:
 2wd-robot:
   - title: "2WD Robot"
     url: /projects/2wd-robot/
+  - title: "Components"
+    url: /projects/2wd-robot/parts/
+  - title: "Raspberry Pi 4B Ubuntu Bionic"
+    url: /projects/2wd-robot/rpi-setup/
     children:
-      - title: "Components"
-        url: /projects/2wd-robot/parts/
-      - title: "Raspbery Pi 4 B, Ubuntu Bionic (18.04) and ROS Melodic Setup"
-        url: /projects/2wd-robot/rpi-setup/
-      - title: "ROS Nodes"
-        url: /projects/2wd-robot/ros-nodes/
-      - title: "System integration"
-        url: /projects/2wd-robot/system-integration/
+      - title: "Rasberry Pi Hardware Interfaces"
+        url: /projects/2wd-robot/hardware-interfaces/
+      - title: "ROS Melodic Setup"
+        url: /projects/2wd-robot/ros-melodic/
+  - title: "ROS Packages and Nodes"
+    url: /projects/2wd-robot/ros-packages/
+    children:
+      - title: "Perception"
+        url: /projects/2wd-robot/ros-packages/perception/
+      - title: "Control"
+        url: /projects/2wd-robot/ros-packages/control/
+      - title: "Planner"
+        url: /projects/2wd-robot/ros-packages/planner/
+      - title: "Human Machine Interface"
+        url: /projects/2wd-robot/ros-packages/hmi/
+  - title: "System integration"
+    url: /projects/2wd-robot/system-integration/
 
 math:
   - title: "Introduction"
@@ -152,9 +156,7 @@ fpv:
       - title: "Drones"
         url: /projects/fpv/rights/#drones
   
-        
-
-
+  
 design-patterns:
   - title: "Design Patterns"
     url: /design-patterns/
