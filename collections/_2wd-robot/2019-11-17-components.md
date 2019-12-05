@@ -82,6 +82,19 @@ Alternative: https://www.seeedstudio.com/blog/2019/11/04/hc-sr04-features-arduin
 
 
 
+
+
+
+## Actuators
+
+- [Grove - I2C Motor Driver V1.3](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/)
+
+### Control
+
+To drive the two motors of the car kit we use the 
+[Grove - I2C Motor Driver V1.3](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/) from Seeed Studio.
+
+
 ## Human Machine Interface (HMI)
 
 ### OLED Display
@@ -91,13 +104,3 @@ http://wiki.seeedstudio.com/Grove-OLED_Display_0.96inch/
 Connected to the RPi via i2c on the physical pins 27 (scl) and 28 (sda), refere to the [pinout](https://pinout.xyz/pinout/i2c).
 
 [Library](https://github.com/DexterInd/GrovePi/blob/master/Software/Python/grove_i2c_oled_128_64/grove_128_64_oled.py)
-
-
-## Actor
-
-- [Grove - I2C Motor Driver V1.3](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/)
-
-### Control
-
-To drive the two motors of the car kit we use the 
-[Grove - I2C Motor Driver V1.3](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/) from Seeed Studio.
