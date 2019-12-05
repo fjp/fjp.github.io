@@ -1,7 +1,7 @@
 ---
 layout: single #collection
 title: Autonomous 2WD Robot - Components
-permalink: /projects/2wd-robot/parts/
+permalink: /projects/2wd-robot/components/
 excerpt: "Components of an autonomous 2WD Robot equipped with a Raspberry Pi 4 B running ROS melodic to sense and act in an environment."
 date: 2019-11-17 09:00:35 +0100
 categories: [robotics]
@@ -14,7 +14,7 @@ toc: true
 header:
   overlay_image: /assets/collections/2wd-robot/car-kit05.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
-  caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
+  # caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
   show_overlay_excerpt: true
 sidebar:
   nav: "2wd-robot"
@@ -53,28 +53,46 @@ the mounting plate where the RPi will be attached will not fit to the pre drille
 As mentioned the robot will be equipped with a USB-C powerbank to supply the RPi 4 B with 5 V. 
 To power the motors the provided battery compartment will be used, which holds four AA batteries $4 \cdot 1.5\text{V} = 6\text{V}$.
 
+## Sensors
 
-## Perception
+### Perception
 
 - Ultrasonic Ranger
 - Camera
 
-### Ultrasonic Ranger
+#### Ultrasonic Ranger
 
 To avoid obstacles the robot will carry a [Grove - Ultrasonic Ranger](http://wiki.seeedstudio.com/Grove-Ultrasonic_Ranger/)
 at the front. This sensor can be interfaced via a single [GPIO](https://www.raspberrypi.org/documentation/usage/gpio/). For example [physical pin 11](https://pinout.xyz/pinout/pin11_gpio17) of the Raspberry Pi connected to the `SIG` pin on the sensor could provide the PWM communication.
 
 The code that will be used to wrap this sensor as a ROS node can be found in the [Grove Raspberry Pi](https://github.com/Seeed-Studio/Grove-RaspberryPi/blob/master/Grove%20-%20Ultrasonic%20Ranger/ultrasonic.py) repository on GitHub.
 
-### Camera
+Alternative: https://www.seeedstudio.com/blog/2019/11/04/hc-sr04-features-arduino-raspberrypi-guide/
+
+#### Camera
 
 
-## Localization
+### Localization
 
-### Odometry
+#### Odometry
 
-### Inertial Measurement Unit
+[Joy-IT Speed Sensor](https://joy-it.net/en/products/SEN-Speed) using LM393
 
+#### Inertial Measurement Unit
+
+
+
+
+
+
+## Actuators
+
+- [Grove - I2C Motor Driver V1.3](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/)
+
+### Control
+
+To drive the two motors of the car kit we use the 
+[Grove - I2C Motor Driver V1.3](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/) from Seeed Studio.
 
 
 ## Human Machine Interface (HMI)
@@ -86,5 +104,3 @@ http://wiki.seeedstudio.com/Grove-OLED_Display_0.96inch/
 Connected to the RPi via i2c on the physical pins 27 (scl) and 28 (sda), refere to the [pinout](https://pinout.xyz/pinout/i2c).
 
 [Library](https://github.com/DexterInd/GrovePi/blob/master/Software/Python/grove_i2c_oled_128_64/grove_128_64_oled.py)
-
-
