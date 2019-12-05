@@ -51,6 +51,8 @@ autonomous_rc_car:
         url: /projects/2wd-robot/components/#sensors
       - title: "Actuators"
         url: /projects/2wd-robot/components/#actuators
+      - title: "Human Machine Interface"
+        url: /projects/2wd-robot/components/#human-machine-interface-hmi
   - title: "Raspberry Pi 4B"
     url: /projects/2wd-robot/rpi-setup/
     children:
