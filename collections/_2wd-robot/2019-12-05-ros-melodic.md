@@ -1,9 +1,9 @@
 ---
 layout: single #collection
-title: Autonomous 2WD Robot - RPi 4 Ubuntu Bionic
-permalink: /projects/2wd-robot/rpi-setup/
-excerpt: "Ubuntu 18.04 Bionic Setup on Raspberry Pi 4 for an autonomous 2WD Robot running ROS melodic to sense and act in an environment."
-date: 2019-11-28 09:00:35 +0100
+title: Autonomous 2WD Robot - ROS Melodic
+permalink: /projects/2wd-robot/ros-melodic/
+excerpt: "ROS Melodic Setup on Raspberry Pi 4 for an autonomous 2WD Robot running ROS melodic to sense and act in an environment."
+date: 2019-12-05 09:00:35 +0100
 categories: [robotics]
 tags: [2wd, robot, ros, melodic, raspberry, pi, autonomous, ubuntu, bionic]
 comments: true
@@ -31,8 +31,3 @@ Just follow these instructions and choose this configuration: `Desktop-Full Inst
 Although it is overkill, it will provide all examples that you might want to try.
 
 {% include_relative 2wd-robot/docs/ros-setup.md %}
-
-
-## Hardware Preperation
-
-{% include_relative 2wd-robot/docs/hardware-setup.md %}
