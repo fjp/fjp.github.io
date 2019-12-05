@@ -43,14 +43,14 @@ autonomous_rc_car:
   - title: "2WD Robot"
     url: /projects/2wd-robot/
   - title: "Components"
-    url: /projects/2wd-robot/parts/
+    url: /projects/2wd-robot/components/
     children:
       - title: "Robot Base"
-        url: /projects/2wd-robot/parts/#robot-base
+        url: /projects/2wd-robot/components/#robot-base
       - title: "Sensors"
-        url: /projects/2wd-robot/parts/#sensors
+        url: /projects/2wd-robot/components/#sensors
       - title: "Actuators"
-        url: /projects/2wd-robot/parts/#actuators
+        url: /projects/2wd-robot/components/#actuators
   - title: "Raspberry Pi 4B"
     url: /projects/2wd-robot/rpi-setup/
     children:
