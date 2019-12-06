@@ -39,4 +39,14 @@ which will make things easier to debug.
 
 In ROS there are two ways to work with sensor data. 
 One way is that the sensor publishes topics which other nodes can subscribe to.
-Another way is that the sensor node provides a service which other nodes can use and thereby act as clients.
+Another way is that the sensor node provides measurments only when asked for using either 
+a service or action call which other nodes can use and thereby act as clients.
+This decision depends on how we are going to use the sensor.
+
+Another decision to make is how we’re going to access data from the sensor, 
+which depends on the sensor.
+
+Finally we need to decide what type of ROS message our wrapper will produce.
+Whenever possible we should use existing ROS message types because it allows us
+to reuse the wrapped sensor with other nodes that use the same interface types.
+
