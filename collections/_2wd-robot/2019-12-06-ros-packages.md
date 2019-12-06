@@ -1,7 +1,7 @@
 ---
 layout: single #collection
 title: Autonomous 2WD Robot - ROS Packages and Nodes
-permalink: /projects/2wd-robot/ros-packages/control/
+permalink: /projects/2wd-robot/ros-packages/
 excerpt: "ROS Packages and Nodes for ROS Melodic running on a Raspberry Pi 4 for an autonomous 2WD Robot to act in an environment according to sensor information."
 date: 2019-12-06 15:00:35 +0100
 categories: [robotics]
