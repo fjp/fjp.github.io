@@ -35,3 +35,8 @@ If a sensor already has a Python API it is relatively straightforward to use sen
 First you should always verify that things are working as expected before you start to wrap up a sensor in ROS. 
 If you know that the sensor is working, then anything that goes wrong will be a problem with the ROS wrapper, 
 which will make things easier to debug.
+
+
+In ROS there are two ways to work with sensor data. 
+One way is that the sensor publishes topics which other nodes can subscribe to.
+Another way is that the sensor node provides a service which other nodes can use and thereby act as clients.
