@@ -28,3 +28,10 @@ to act in an environment according to sensor information.
 
 To integrate new sensors and actuators into the ROS ecosystem 
 involves writing ROS wrappers around the APIs that we're already using to access these devices.
+
+## Adding Sensors
+
+If a sensor already has a Python API it is relatively straightforward to use sensors in ROS.
+First you should always verify that things are working as expected before you start to wrap up a sensor in ROS. 
+If you know that the sensor is working, then anything that goes wrong will be a problem with the ROS wrapper, 
+which will make things easier to debug.
