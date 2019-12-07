@@ -63,9 +63,24 @@ To power the motors the provided battery compartment will be used, which holds f
 #### Ultrasonic Ranger
 
 To avoid obstacles the robot will carry a [Grove - Ultrasonic Ranger](http://wiki.seeedstudio.com/Grove-Ultrasonic_Ranger/)
-at the front. This sensor can be interfaced via a single [GPIO](https://www.raspberrypi.org/documentation/usage/gpio/). For example [physical pin 11](https://pinout.xyz/pinout/pin11_gpio17) of the Raspberry Pi connected to the `SIG` pin on the sensor could provide the PWM communication.
+at the front. It is a non-contact distance measurement module which works at 40KHz and can be interfaced via a single [GPIO](https://www.raspberrypi.org/documentation/usage/gpio/). For example [physical pin 11](https://pinout.xyz/pinout/pin11_gpio17) of the Raspberry Pi connected to the `SIG` pin on the sensor can provide the PWM communication.
 
-The code that will be used to wrap this sensor as a ROS node can be found in the [Grove Raspberry Pi](https://github.com/Seeed-Studio/Grove-RaspberryPi/blob/master/Grove%20-%20Ultrasonic%20Ranger/ultrasonic.py) repository on GitHub.
+|Parameter|	Value/Range|
+|:------|:------------------|
+|Operating voltage|	3.2~5.2V|
+|Operating current|	8mA|
+|Ultrasonic frequency|	40kHz|
+|Measuring range|	2-350cm|
+|Resolution|	1cm|
+|Output|PWM|
+|Size|50mm X 25mm X 16mm|
+|Weight|13g|
+|Measurement angle|15 degree|
+|Working temperature|-10~60 degree C|
+|Trigger signal|10uS TTL|
+|Echo signal|TTL|
+
+The code that will be used to wrap this sensor as a ROS node can be found in the [Grove Raspberry Pi](https://github.com/Seeed-Studio/Grove-RaspberryPi/blob/master/Grove%20-%20Ultrasonic%20Ranger/ultrasonic.py) repository on GitHub. The code 
 
 Alternative: https://www.seeedstudio.com/blog/2019/11/04/hc-sr04-features-arduino-raspberrypi-guide/
 
