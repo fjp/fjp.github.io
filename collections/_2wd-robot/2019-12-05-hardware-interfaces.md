@@ -27,4 +27,4 @@ the main processing unit, the Raspberry Pi 4 B.
 
 ## Hardware Preperation
 
-{% include_relative 2wd-robot/docs/hardware-setup.md %}
+{% include_relative 2wd-robot/docs/hardware-interfaces.md %}
