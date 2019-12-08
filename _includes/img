@@ -1,7 +1,7 @@
 <figure class="{% if include.src[2] %}third{% elsif include.src[1] %}half{% endif %}">
     {% if include.src[2] %}
-        // var is not a string
-        // include first image
+        {% comment %} src is not a string {% endcomment %}
+        {% comment %} include first image {% endcomment %}
         <a href=
         {% if include.src[0] contains "://" %}
             "{{ include.src[0] }}"
@@ -15,7 +15,7 @@
           "/assets/collections/{{ page.collection }}{{ include.src[0] | relative_url }}"
         {% endif %}
         alt="{% if include.alt %}{{ include.alt }}{% endif %}"></a>
-        // include second image
+        {% comment %} include second image {% endcomment %}
         <a href=
         {% if include.src[1] contains "://" %}
             "{{ include.src[1] }}"
@@ -29,7 +29,7 @@
           "/assets/collections/{{ page.collection }}{{ include.src[1] | relative_url }}"
         {% endif %}
         alt="{% if include.alt %}{{ include.alt }}{% endif %}"></a>
-        // include third image
+        {% comment %} include third image {% endcomment %}
         <a href=
         {% if include.src[2] contains "://" %}
             "{{ include.src[2] }}"
@@ -44,8 +44,8 @@
         {% endif %}
         alt="{% if include.alt %}{{ include.alt }}{% endif %}"></a>
     {% elsif include.src[1] %}
-        // var is not a string
-        // include first image
+        {% comment %} src is not a string {% endcomment %}
+        {% comment %} include first image {% endcomment %}
         <a href=
         {% if include.src[0] contains "://" %}
             "{{ include.src[0] }}"
@@ -59,7 +59,7 @@
           "/assets/collections/{{ page.collection }}{{ include.src[0] | relative_url }}"
         {% endif %}
         alt="{% if include.alt %}{{ include.alt }}{% endif %}"></a>
-        // include second image
+        {% comment %} include second image {% endcomment %}
         <a href=
         {% if include.src[1] contains "://" %}
             "{{ include.src[1] }}"
@@ -74,7 +74,7 @@
         {% endif %}
         alt="{% if include.alt %}{{ include.alt }}{% endif %}"></a>
     {% else %}
-        // src is a string and therefore just a single image
+        {% comment %} src is a string and therefore just a single image {% endcomment %}
         <a href=
         {% if include.src contains "://" %}
             "{{ include.src }}"
