@@ -21,10 +21,4 @@ sidebar:
   nav: "2wd-robot"
 ---
 
-The hardware interfaces provide an interface between the components (sensors and actuators) of the 2WD robot and
-the main processing unit, the Raspberry Pi 4 B.
-
-
-## Hardware Preperation
-
 {% include_relative 2wd-robot/docs/hardware-interfaces.md %}
