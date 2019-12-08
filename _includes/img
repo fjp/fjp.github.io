@@ -1,6 +1,6 @@
 <figure>
   <a href=
-    {% if include.srch contains "://" %}
+    {% if include.src contains "://" %}
       "{{ include.src }}"
     {% else %}
       "/assets/collections/{{ page.collection }}{{ include.src | relative_url }}"
