@@ -60,7 +60,7 @@ autonomous_rc_car:
     children:
       - title: "Ubuntu Bionic 18.04"
         url: /projects/2wd-robot/rpi-setup/#obtain-ubuntu-1804-arm-image
-      - title: "Rasberry Pi Hardware Interfaces"
+      - title: "Hardware Interfaces"
         url: /projects/2wd-robot/hardware-interfaces/
       - title: "ROS Melodic Setup"
         url: /projects/2wd-robot/ros-melodic/
