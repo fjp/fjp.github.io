@@ -23,9 +23,9 @@ sidebar:
 
 This post covers how to flash the latest version of [OpenTX](/projects/fpv/glossar/#opentx) (currently 2.3.1), which
 is a highly configurable open source firmware for [radios](/projects/fpv/glossar/#radio) that acts as the operating
-system on [Taranis](/projects/fpv/glossar/#taranis) [transmitters](/projects/fpv/glossar/#transmitter).
-The post shows to to [flash](/projects/fpv/glossar/#flash) the [firmware](/projects/fpv/glossar/#firmware) of the internal [transmitter](/projects/fpv/glossar/#transmitter) module of the Taranis into
-the [EU-LBT](/projects/fpv/glossar/#eu-lbt) mode and how to [register](/projects/fpv/glossar/#register) and [bind](/projects/fpv/glossar/#bind) an [ACCESS](/projects/fpv/glossar/#access) [receiver](/projects/fpv/glossar/#receiver).
+system on [Taranis](/projects/fpv/glossar#taranis) [transmitters](/projects/fpv/glossar#transmitter).
+The post shows to to [flash](/projects/fpv/glossar#flash) the [firmware](/projects/fpv/glossar#firmware) of the internal [transmitter](/projects/fpv/glossar#transmitter) module of the Taranis into
+the [EU-LBT](/projects/fpv/glossar#eu-lbt) mode and how to [register](/projects/fpv/glossar/#register) and [bind](/projects/fpv/glossar#bind) an [ACCESS](/projects/fpv/glossar#access) [receiver](/projects/fpv/glossar#receiver).
 
 
 
