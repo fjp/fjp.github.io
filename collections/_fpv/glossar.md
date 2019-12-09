@@ -143,6 +143,11 @@ See [Transmitter](/projects/fpv/glossar#transmitter).
 
 The receiver (also refered to as `Rx`) is installed in the quad or radio controlled (rc) vehicle and communicates with the [transmitter](/projects/fpv/glossar/#transmitter)
 
+## Redundancy
+
+Describes a type of [receiver](/projects/fpv/glossar/#receiver) which can be used in combination with other receivers 
+of the same type to provide redundancy in case of a receiver failure.
+
 ## R-XSR
 
 [Redundancy](/projects/fpv/glossar/#redundancy) [receiver](/projects/fpv/glossar/#receiver) produced by [FrSky](/projects/fpv/glossar/#frsky).
