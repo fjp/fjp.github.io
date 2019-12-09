@@ -84,7 +84,7 @@ Flash storage component of a device where the Firmware is stored.
 
 ## FrSky
 
-Company that manufactures [transmitters](/projects/fpv/glossar/#transmitter) and [receivers](/projects/fpv/glossar/#receiver)
+[FrSky](https://www.frsky-rc.com/) is a chinese company that manufactures modules for [rc](/projects/fpv/glossar#rc) toys such as [transmitters](/projects/fpv/glossar/#transmitter), [receivers](/projects/fpv/glossar#receiver) or [Flight Controllers](/projects/fpv/glossar#flight-controller). 
 
 ## ESC
 
@@ -128,6 +128,10 @@ and [FCC](/projects/fpv/glossar/#fcc).
 
 Reference: [Brushless Whoop](https://brushlesswhoop.com/frsky-eu-lbt-vs-fcc/).
 
+## LED
+
+[Light Emitting Diodes](https://en.wikipedia.org/wiki/Light-emitting_diode) are used as visual guidance for a quad copter.
+
 ## PDB
 
 The Power Distribution Board (PDB) acts as the heart of an [FPV](/projects/fpv/glossar#fpv) quad. 
@@ -137,26 +141,32 @@ It is connected to the [Battery](/projects/fpv/glossar#battery) and distributes 
 
 ## Radio
 
-See [Transmitter](/projects/fpv/glossar#transmitter).
+The term radio is used for the [transmitter](/projects/fpv/glossar#transmitter) device.
+It comes from the fact that [radio frequency](https://en.wikipedia.org/wiki/Radio_frequency) is used as a communication medium between the transmitter and receiver of [rc](/projects/fpv/glossar#rc)
+
+## RC
+
+Short for [radio](/projects/fpv/glossar#radio) controlled.
 
 ## Receiver
 
-The receiver (also refered to as `Rx`) is installed in the quad or radio controlled (rc) vehicle and communicates with the [transmitter](/projects/fpv/glossar/#transmitter)
+The receiver (also refered to as `Rx`) is installed in the quad or radio controlled (rc) vehicle and communicates with the [transmitter](/projects/fpv/glossar#transmitter)
 
 ## Redundancy
 
-Describes a type of [receiver](/projects/fpv/glossar/#receiver) which can be used in combination with other receivers 
+Describes a type of [receiver](/projects/fpv/glossar#receiver) which can be used in combination with other receivers 
 of the same type to provide redundancy in case of a receiver failure.
 
 ## R-XSR
 
-[Redundancy](/projects/fpv/glossar/#redundancy) [receiver](/projects/fpv/glossar/#receiver) produced by [FrSky](/projects/fpv/glossar/#frsky).
+[Redundancy](/projects/fpv/glossar#redundancy) [receiver](/projects/fpv/glossar/#receiver) produced by [FrSky](/projects/fpv/glossar#frsky).
 
 
 ## Sensor
 
 ## Transmitter
 
-Also known as radio is the radio controlled (rc) part that communicates with a [receiver](/projects/fpv/glossar/#receiver). The term `Tx` is commonly referred to transmitting unit.
+Also known as [radio](/projects/fpv/glossar#radio) is the radio controlled ([rc](/projects/fpv/glossar#rc)) part that communicates with a [receiver](/projects/fpv/glossar/#receiver). The term `Tx` is commonly referred to transmitting units.
+Such units can be external or internal in transmitter devices. External devices can be swapped. 
 
-The most common manufacturar for FPV quad transmitters is [FrSky](/projects/fpv/glossar/#frsky)
+One of the most common manufacturers for [FPV](/projects/fpv/glossar#fpv) quad transmitters is [FrSky](/projects/fpv/glossar#frsky)
