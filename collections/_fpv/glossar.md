@@ -39,16 +39,20 @@ Different LiPo battery packs are made up of individual cells with one cell havin
 
 ## BetaFlight
 
-The BetaFlight open source [Flight Controller](/projects/fpv/glossar/#flight-controller) [frimware](/projects/fpv/glossar/#firmware) project (found on [GitHub](https://github.com/betaflight)) provides
-[frimwares](/projects/fpv/glossar/#firmware) for [FCs](/projects/fpv/glossar/#flight-controller). To configure and [flash](/projects/fpv/glossar/#flash) a firmware onto a Flight Controller we use 
-the [BetaFlight Configurator](/projects/fpv/glossar/#betaflight-configurator).
+The BetaFlight open source [Flight Controller](/projects/fpv/glossar#flight-controller) [frimware](/projects/fpv/glossar#firmware) project (found on [GitHub](https://github.com/betaflight)) provides
+[frimwares](/projects/fpv/glossar#firmware) for [FCs](/projects/fpv/glossar#flight-controller). To configure and [flash](/projects/fpv/glossar#flash) a firmware onto a Flight Controller we use 
+the [BetaFlight Configurator](/projects/fpv/glossar#betaflight-configurator).
 
 BetaFlight is a fork of the [CleanFlight](/projects/fpv/glossar/#clean-flight) project, which is considered less experimental. However, modern Flight Controllers are supported mostly by BetaFlight. 
 
 ## BetaFlight Configurator
 
-Part of the [BetaFlight](/projects/fpv/glossar/#betaflight) open source [Flight Controllers](/projects/fpv/glossar/#flight-controller) [frimware](/projects/fpv/glossar/#firmware) project.
-It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) configuration tool for the BetaFlight [frimware](/projects/fpv/glossar/#firmware).
+Part of the [BetaFlight](/projects/fpv/glossar#betaflight) open source [Flight Controllers](/projects/fpv/glossar#flight-controller) [frimware](/projects/fpv/glossar#firmware) project.
+It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) configuration tool for the BetaFlight [frimware](/projects/fpv/glossar#firmware).
+
+## Bind
+
+Bind is referred to binding a [receiver](/projects/fpv/glossar#receiver) with a [transmitter](/projects/fpv/glossar#transmitter).
 
 ## CleanFlight
 
@@ -56,14 +60,14 @@ It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) c
 
 ## DFU
 
-DFU stands for "Device Firmware Update" which is a mode of a [Flight Controller](/projects/fpv/glossar/#flight-controller) 
-device that is required to [flash](/projects/fpv/glossar/#flash) a new [Firmware](/project/fpv/glossar/#firmware) onto a [FC](/projects/fpv/glossar/#flight-controller). It depends on the FC board how to get the device into the DFU mode. 
+DFU stands for "Device Firmware Update" which is a mode of a [Flight Controller](/projects/fpv/glossar#flight-controller) 
+device that is required to [flash](/projects/fpv/glossar#flash) a new [Firmware](/project/fpv/glossar#firmware) onto a [FC](/projects/fpv/glossar#flight-controller). It depends on the FC board how to get the device into the DFU mode. 
 Either you need to short the BL or BOOT pads (or press and hold the BOOT tactile button if your FC board has one) while 
 plugging the USB into the Flight Controller board.
 
 ## EU LBT
 
-EU [LBT](/projects/fpv/glossar/#lbt) stands for European Union Listen Before Talk (or Transmit) and is a [firmware](/projects/fpv/glossar/#firmware) version for [receivers](/projects/fpv/glossar/#receiver) and [transmitter](/projects/fpv/glossar/#transmitter) modules, which is allowed in the geographical region of the EU. Another firmware version is the [FCC](/projects/fpv/glossar/#fcc) version which can be used outside the EU.
+EU [LBT](/projects/fpv/glossar#lbt) stands for European Union Listen Before Talk (or Transmit) and is a [firmware](/projects/fpv/glossar#firmware) version for [receivers](/projects/fpv/glossar/#receiver) and [transmitter](/projects/fpv/glossar#transmitter) modules, which is allowed in the geographical region of the EU. Another firmware version is the [FCC](/projects/fpv/glossar#fcc) version which can be used outside the EU.
 Reference: [Brushless Whoop](https://brushlesswhoop.com/frsky-eu-lbt-vs-fcc/).
 
 ## FCC
@@ -74,13 +78,17 @@ Reference: [Brushless Whoop](https://brushlesswhoop.com/frsky-eu-lbt-vs-fcc/).
 ## Flash
 
 [Flashing](https://en.wikipedia.org/wiki/Firmware#Flashing) means to update a Software, 
-also refered to as [Firmware](/projects/fpv/glossar/#firmware), that runs on a device,
-such as a [Flight Controller](/projects/fpv/glossar/#flight-controller) board. The term "to flash" comes from the 
+also refered to as [Firmware](/projects/fpv/glossar#firmware), that runs on a device,
+such as a [Flight Controller](/projects/fpv/glossar#flight-controller) board. The term "to flash" comes from the 
 Flash storage component of a device where the Firmware is stored.
+
+## FrSky
+
+Company that manufactures [transmitters](/projects/fpv/glossar/#transmitter) and [receivers](/projects/fpv/glossar/#receiver)
 
 ## ESC
 
-The Electronic Speed Controller (ESC) is conected to the [PDB](/projects/fpv/glossar/#pdb) and 
+The Electronic Speed Controller (ESC) is conected to the [PDB](/projects/fpv/glossar#pdb) and 
 controls the speed of a motor by adjusting its rpms (rotation per minutes). 
 A quadcopter uses four ESCs which can be part of the [Flight Controller](/projects/fpv/glossar/#flight-controller). 
 The input signal to an ESC comes from the Flight Controller, which tells the ESC at which speed a motor should run.
@@ -88,10 +96,10 @@ The input signal to an ESC comes from the Flight Controller, which tells the ESC
 ## Flight Controller
 
 [Micro Controller]() board that contains input and output (I/O) pins and a processing unit (microchrip), 
-which runs a Flight Controller [frimware](/projects/fpv/glossar/#firmware). 
+which runs a Flight Controller [frimware](/projects/fpv/glossar#firmware). 
 The Flight Controller acts as the brain of a drone.
-By processing [sensor](/projects/fpv/glossar/#sensor) input signals the Flight Controller is used to compute output signals for external or internal [ESCs](/projects/fpv/glossar/#esc) to keep level flight. Other input signals are used to adjust the [pose](/projects/fpv/glossar/#pose) of the quad in the air such as the [receiver](/projects/fpv/glossar/#receiver) and other internal or external sensors. A Flight Controller usually
-contains multiple internal [sensors](/projects/fpv/glossar/#sensor) such as [IMUs](/projects/fpv/glossar/#imu).
+By processing [sensor](/projects/fpv/glossar#sensor) input signals the Flight Controller is used to compute output signals for external or internal [ESCs](/projects/fpv/glossar/#esc) to keep level flight. Other input signals are used to adjust the [pose](/projects/fpv/glossar/#pose) of the quad in the air such as the [receiver](/projects/fpv/glossar/#receiver) and other internal or external sensors. A Flight Controller usually
+contains multiple internal [sensors](/projects/fpv/glossar/#sensor) such as [IMUs](/projects/fpv/glossar#imu).
 
 ## Firmware
 
@@ -114,7 +122,7 @@ Used to view the [analog](/projects/fpv/glossar/#analog) live image captured by 
 LBT stands for Listen Before Talk or Listen Before Transmit and describes the version of a 
 [firmware](/projects/fpv/glossar/#firmware) for [transmitters](/projects/fpv/glossar/#transmitter) and 
 [receivers](/projects/fpv/glossar/#transmitter). The LBT version also refered to as EU LBT is the allowed version 
-in the European Union. Most of the [FrSky](/projects/fpv/glossar/#frsky) 
+in the European Union. Most of the [FrSky](/projects/fpv/glossar#frsky) 
 receivers and transmitters are sometimes referenced as EU or non EU or [EU LBT](/projects/fpv/glossar/#eu-lbt) 
 and [FCC](/projects/fpv/glossar/#fcc).
 
@@ -122,19 +130,25 @@ Reference: [Brushless Whoop](https://brushlesswhoop.com/frsky-eu-lbt-vs-fcc/).
 
 ## PDB
 
-The Power Distribution Board (PDB) acts as the heart of an [FPV](/projects/fpv/glossar/#fpv) quad. 
-It is connected to the [Battery](/projects/fpv/glossar/#battery) and distributes its power to other components of the quad. The main components its is connected to are the [ESCs](/projects/fpv/glossar/#esc) to power the 
-[motors](/projects/fpv-quad/fpv-glossar/#motor). A PDB usually has additional voltage outputs such as 5V and 12V to power 
-[sensors](/projects/fpv/glossar/#sensor) or [LEDs](/projects/fpv/glossar/#led).
+The Power Distribution Board (PDB) acts as the heart of an [FPV](/projects/fpv/glossar#fpv) quad. 
+It is connected to the [Battery](/projects/fpv/glossar#battery) and distributes its power to other components of the quad. The main components its is connected to are the [ESCs](/projects/fpv/glossar/#esc) to power the 
+[motors](/projects/fpv-quad/fpv-glossar#motor). A PDB usually has additional voltage outputs such as 5V and 12V to power 
+[sensors](/projects/fpv/glossar/#sensor) or [LEDs](/projects/fpv/glossar#led).
 
 ## Radio
 
-See [Transmitter](/projects/fpv/glossar/#transmitter).
+See [Transmitter](/projects/fpv/glossar#transmitter).
 
 ## Receiver
 
 The receiver (also refered to as `Rx`) is installed in the quad or radio controlled (rc) vehicle and communicates with the [transmitter](/projects/fpv/glossar/#transmitter)
 
+## R-XSR
+
+[Redundancy](/projects/fpv/glossar/#redundancy) [receiver](/projects/fpv/glossar/#receiver) produced by [FrSky](/projects/fpv/glossar/#frsky).
+
+
+## Sensor
 
 ## Transmitter
 
