@@ -22,6 +22,12 @@ sidebar:
 
 Part list and assembly of the robot platform and the components.
 
+| Category     | Hardware          | Part Number                                       | Data Sheet & Info       |
+|:============:|:=================:|:=================================================:|:=======================:|
+| Accessories  | Robot Car Kit 2WD | [robot05](https://joy-it.net/en/products/robot05) | [Instructions manual](https://joy-it.net/files/files/Produkte/robot05/Robot05-Anleitung.pdf) |
+| Board        | Raspberry Pi 4 B  | Raspberry Pi 4 B - 4 GB                           | [OEM Website](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) |
+
+
 ## Robot Base
 
 The [Robot Car Kit 2WD](https://joy-it.net/en/products/robot05) from Joy-IT (article no.: robot05) is used as the base for the autonomous mobile robot. 
