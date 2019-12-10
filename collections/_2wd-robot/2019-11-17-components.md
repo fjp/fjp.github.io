@@ -24,26 +24,27 @@ Part list and assembly of the robot platform and the components.
 
 | Category     | Hardware          | Part Number                                       | Data Sheet & Info       |
 |:------------:|:-----------------:|:-------------------------------------------------:|:-----------------------:|
-| Accessories  | Micro SD Card     | SanDisk 64GB Class 10                             | [SanDisk](), Ubuntu 18.04 Image |
+| Accessories                                 |
+|              | Micro SD Card     | SanDisk 64GB Class 10                             | [SanDisk](), Ubuntu 18.04 Image |
 |              | Robot Car Kit 2WD | [robot05](https://joy-it.net/en/products/robot05) | [Instructions manual](https://joy-it.net/files/files/Produkte/robot05/Robot05-Anleitung.pdf) |
 |              | Power bank        | Intenso Powerbank S10000                          | [Intenso](https://www.intenso.de/en/products/powerbanks/powerbank-s10000) |
-|                                                                                    |
-| Actuator     | Gearbox motor     | DC Gearbox motor - "TT Motor" - 200RPM - 3 to 6VDC | [Adafruit](https://www.adafruit.com/product/3777) |
+| Actuator                                                                                  |
+|              | Gearbox motor     | DC Gearbox motor - "TT Motor" - 200RPM - 3 to 6VDC | [Adafruit](https://www.adafruit.com/product/3777) |
 |                                                                                    |
 | Board        | Raspberry Pi 4 B  | Raspberry Pi 4 B - 4 GB                           | [OEM Website](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) |
-|                                                                                    |
-| Cables       | Jumper - Female to Female |                                           |                         |
+| Cables                                                                                   |
+|             | Jumper - Female to Female |                                           |                         |
 |              | Jumper - Male to Male     |                                           |                         |
 |              | Micro USB - USB Cable     |                                           |                         |
 |              | Camera extension cable    |                                           |                         |
 |              | I2C 4 pin cable           |                                           |                         |
-|                                                                                    |
-| Electronics  | I2C motor driver          | Grove - I2C Motor Driver                  | [Seeed Studio](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/) |
+| Electronics                                                                                    |
+|              | I2C motor driver          | Grove - I2C Motor Driver                  | [Seeed Studio](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/) |
 |              | I2C Hub                   | Grove - I2C Hub                           | [Seeed Studio](http://wiki.seeedstudio.com/Grove-I2C_Hub/) |
 | Human Machine Interface | OLED Display   | Grove OLED Display 0.96"                  | [Seeed Studio](http://wiki.seeedstudio.com/Grove-OLED_Display_0.96inch/) |
 |              | LED Ring                  | NeoPixel Ring 12x5050 RGB LED             |  [Adafruit](https://www.adafruit.com/product/1643) |
-|                                                                                    |
-| Sensors      | Camera module             | Raspberry Pi - camera module v2.1         | [Raspberry Pi](https://www.raspberrypi.org/documentation/usage/camera/) |
+| Sensors                                                                                   |
+|              | Camera module             | Raspberry Pi - camera module v2.1         | [Raspberry Pi](https://www.raspberrypi.org/documentation/usage/camera/) |
 |              | Ultrasonic ranger         | Grove - Ultrasonic Ranger                 | [Seeed Studio](http://wiki.seeedstudio.com/Grove-Ultrasonic_Ranger/) | 
 |              | IMU                       | Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055 | [Adafruit](https://www.adafruit.com/product/2472) |
 |              | Odometry                  | Joy-IT - LM393 Speed Sensor with H206 slot-type opto interrupter | [Joy-IT](https://joy-it.net/en/products/SEN-Speed) |
