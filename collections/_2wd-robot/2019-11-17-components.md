@@ -25,7 +25,17 @@ Part list and assembly of the robot platform and the components.
 | Category     | Hardware          | Part Number                                       | Data Sheet & Info       |
 |:------------:|:-----------------:|:-------------------------------------------------:|:-----------------------:|
 | Accessories  | Robot Car Kit 2WD | [robot05](https://joy-it.net/en/products/robot05) | [Instructions manual](https://joy-it.net/files/files/Produkte/robot05/Robot05-Anleitung.pdf) |
+| Actuator     | Gearbox motor     | DC Gearbox motor - "TT Motor" - 200RPM - 3 to 6VDC | [Adafruit](https://www.adafruit.com/product/3777) |
 | Board        | Raspberry Pi 4 B  | Raspberry Pi 4 B - 4 GB                           | [OEM Website](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) |
+| Cables       | Jumper - Female to Female |                                           |                         |
+|              | Jumper - Male to Male     |                                           |                         |
+|              | Micro USB - USB Cable     |                                           |                         |
+|              | Camera extension cable    |                                           |                         |
+|              | I2C 4 pin cable           |                                           |                         |
+| Human Machine Interface | OLED Display   | Grove OLED Display 0.96"                  | [Seeed Studio](http://wiki.seeedstudio.com/Grove-OLED_Display_0.96inch/) |
+|              | LED Ring                  | NeoPixel Ring 12x5050 RGB LED             |  [Adafruit](https://www.adafruit.com/product/1643) |
+| Electronics  | I2C motor driver          | Grove - I2C Motor Driver                  | [Seeed Studio](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/) |
+|              | I2C Hub                   | Grove - I2C Hub                           | [Seeed Studio](http://wiki.seeedstudio.com/Grove-I2C_Hub/) |
 
 
 ## Robot Base
