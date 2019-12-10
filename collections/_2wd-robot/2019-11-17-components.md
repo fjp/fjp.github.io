@@ -91,7 +91,13 @@ Alternative: https://www.seeedstudio.com/blog/2019/11/04/hc-sr04-features-arduin
 
 #### Odometry
 
-[Joy-IT Speed Sensor](https://joy-it.net/en/products/SEN-Speed) using LM393
+To estimate the change in position over time ([odometry](https://en.wikipedia.org/wiki/Odometry)) the robot will
+utilize an [optical speed sensor](https://en.wikipedia.org/wiki/Wheel_speed_sensor#Optical_sensor). 
+Specifically the LM393 ([datasheet](http://www.ti.com/lit/ds/symlink/lm2903-n.pdf)) [comperator](https://en.wikipedia.org/wiki/Comparator) combined with a H206 slot-type opto interrupter. [Joy-IT Speed Sensor](https://joy-it.net/en/products/SEN-Speed).
+
+References:
+https://dronebotworkshop.com/robot-car-with-speed-sensors/
+
 
 #### Inertial Measurement Unit
 
