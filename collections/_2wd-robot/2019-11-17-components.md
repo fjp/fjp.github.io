@@ -22,7 +22,39 @@ sidebar:
 
 Part list and assembly of the robot platform and the components.
 
-## Robot Base
+| Category     | Hardware          | Part Number                                       | Data Sheet & Info       |
+|:------------:|:-----------------:|:-------------------------------------------------:|:-----------------------:|
+| Accessories                                 |
+|              | Micro SD Card     | SanDisk 64GB Class 10                             | [SanDisk](), Ubuntu 18.04 Image |
+|              | Robot Car Kit 2WD | [robot05](https://joy-it.net/en/products/robot05) | [Instructions manual](https://joy-it.net/files/files/Produkte/robot05/Robot05-Anleitung.pdf) |
+|              | Power bank        | Intenso Powerbank S10000                          | [Intenso](https://www.intenso.de/en/products/powerbanks/powerbank-s10000) |
+| Actuator                                                                                  |
+|              | Gearbox motor     | DC Gearbox motor - "TT Motor" - 200RPM - 3 to 9VDC | [Adafruit](https://www.adafruit.com/product/3777) |
+| Board                                                                                    |
+|              | Raspberry Pi 4 B  | Raspberry Pi 4 B - 4 GB                           | [OEM Website](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) |
+| Cables                                                                                   |
+|             | Jumper - Female to Female |                                           |                         |
+|              | Jumper - Male to Male     |                                           |                         |
+|              | Micro USB - USB Cable     |                                           |                         |
+|              | Camera extension cable    |                                           |                         |
+|              | I2C 4 pin cable           |                                           |                         |
+| Electronics                                                                                    |
+|              | I2C motor driver          | Grove - I2C Motor Driver                  | [Seeed Studio](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/) |
+|              | I2C Hub                   | Grove - I2C Hub                           | [Seeed Studio](http://wiki.seeedstudio.com/Grove-I2C_Hub/) |
+| Human Machine Interface                   |
+|              | OLED Display   | Grove OLED Display 0.96"                  | [Seeed Studio](http://wiki.seeedstudio.com/Grove-OLED_Display_0.96inch/) |
+|              | LED Ring                  | NeoPixel Ring 12x5050 RGB LED             |  [Adafruit](https://www.adafruit.com/product/1643) |
+| Sensors                                                                                   |
+|              | Camera module             | Raspberry Pi - camera module v2.1         | [Raspberry Pi](https://www.raspberrypi.org/documentation/usage/camera/) |
+|              | Ultrasonic ranger         | Grove - Ultrasonic Ranger                 | [Seeed Studio](http://wiki.seeedstudio.com/Grove-Ultrasonic_Ranger/) | 
+|              | IMU                       | Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055 | [Adafruit](https://www.adafruit.com/product/2472) |
+|              | Odometry                  | Joy-IT - LM393 Speed Sensor with H206 slot-type opto interrupter | [Joy-IT](https://joy-it.net/en/products/SEN-Speed) |
+
+
+
+## Accessories and Electronics
+
+### Robot Base
 
 The [Robot Car Kit 2WD](https://joy-it.net/en/products/robot05) from Joy-IT (article no.: robot05) is used as the base for the autonomous mobile robot. 
 
@@ -55,10 +87,13 @@ To power the motors the provided battery compartment will be used, which holds f
 
 ## Sensors
 
+Sensors are used to sense the environment and to collect information of the current state.
+For this 2WD robot the sensors are categorized into perception and localization which are explained in the following two sections.
+
 ### Perception
 
-- Ultrasonic Ranger
-- Camera
+Perception sensors of the 2WD robot will be used to avoid collisions using ultrasonic rangers.
+Another use case is to detect and follow objects using a camera.
 
 #### Ultrasonic Ranger
 
@@ -82,7 +117,7 @@ at the front. It is a non-contact distance measurement module which works at 40K
 
 The code that will be used to wrap this sensor as a ROS node can be found in the [Grove Raspberry Pi](https://github.com/Seeed-Studio/Grove-RaspberryPi/blob/master/Grove%20-%20Ultrasonic%20Ranger/ultrasonic.py) repository on GitHub. The code 
 
-Alternative: https://www.seeedstudio.com/blog/2019/11/04/hc-sr04-features-arduino-raspberrypi-guide/
+As an alternative we could use the [HC SR04](https://www.seeedstudio.com/blog/2019/11/04/hc-sr04-features-arduino-raspberrypi-guide/).
 
 #### Camera
 
@@ -91,14 +126,19 @@ Alternative: https://www.seeedstudio.com/blog/2019/11/04/hc-sr04-features-arduin
 
 #### Odometry
 
-[Joy-IT Speed Sensor](https://joy-it.net/en/products/SEN-Speed) using LM393
+To estimate the change in position over time ([odometry](https://en.wikipedia.org/wiki/Odometry)) the robot will
+utilize an [optical speed sensor](https://en.wikipedia.org/wiki/Wheel_speed_sensor#Optical_sensor). 
+Specifically the LM393 ([datasheet](http://www.ti.com/lit/ds/symlink/lm2903-n.pdf)) [comperator](https://en.wikipedia.org/wiki/Comparator) combined with a H206 slot-type opto interrupter. [Joy-IT Speed Sensor](https://joy-it.net/en/products/SEN-Speed).
+
+References:
+https://dronebotworkshop.com/robot-car-with-speed-sensors/
+
 
 #### Inertial Measurement Unit
 
-
-
-
-
+An intertial measurement unit (IMU) measures the acceleration and orientation through gyroscopes directly.
+Other states such as the velocity can then be calculated.
+For this the [Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055]((https://www.adafruit.com/product/2472)) is used. 
 
 ## Actuators
 
