@@ -55,10 +55,13 @@ To power the motors the provided battery compartment will be used, which holds f
 
 ## Sensors
 
+Sensors are used to sense the environment and to collect information of the current state.
+For this 2WD robot the sensors are categorized into perception and localization which are explained in the following two sections.
+
 ### Perception
 
-- Ultrasonic Ranger
-- Camera
+Perception sensors of the 2WD robot will be used to avoid collisions using ultrasonic rangers.
+Another use case is to detect and follow objects using a camera.
 
 #### Ultrasonic Ranger
 
