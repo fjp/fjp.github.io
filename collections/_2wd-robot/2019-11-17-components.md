@@ -166,6 +166,12 @@ For this the [Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055](
 To drive the two motors of the car kit we use the 
 [Grove - I2C Motor Driver V1.3](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/) from Seeed Studio.
 
+### Brushed Gearbox Motor
+
+<figure>
+    <a href="/assets/collections/2wd-robot/components/gearbox-motor-close.jpg"><img src="/assets/collections/2wd-robot/components/gearbox-motor-close.jpg"></a>
+    <figcaption>DC Gearbox motor - "TT Motor" - 200RPM - 3 to 9VDC.</figcaption>
+</figure>
 
 ## Human Machine Interface (HMI)
 
