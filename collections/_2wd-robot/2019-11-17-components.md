@@ -12,7 +12,8 @@ toc: true
 # classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  overlay_image: /assets/collections/2wd-robot/car-kit05.jpg
+  teaser: /assets/collections/2wd-robot/components/components.jpg
+  overlay_image: /assets/collections/2wd-robot/components/components.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   # caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
   show_overlay_excerpt: true
@@ -121,6 +122,11 @@ As an alternative we could use the [HC SR04](https://www.seeedstudio.com/blog/20
 
 #### Camera
 
+<figure>
+    <a href="/assets/collections/2wd-robot/components/rpi-camera.jpg"><img src="/assets/collections/2wd-robot/components/rpi-camera.jpg"></a>
+    <figcaption>RPi Camera v2.</figcaption>
+</figure>
+
 
 ### Localization
 
@@ -129,6 +135,12 @@ As an alternative we could use the [HC SR04](https://www.seeedstudio.com/blog/20
 To estimate the change in position over time ([odometry](https://en.wikipedia.org/wiki/Odometry)) the robot will
 utilize an [optical speed sensor](https://en.wikipedia.org/wiki/Wheel_speed_sensor#Optical_sensor). 
 Specifically the LM393 ([datasheet](http://www.ti.com/lit/ds/symlink/lm2903-n.pdf)) [comperator](https://en.wikipedia.org/wiki/Comparator) combined with a H206 slot-type opto interrupter. [Joy-IT Speed Sensor](https://joy-it.net/en/products/SEN-Speed).
+
+<figure>
+    <a href="/assets/collections/2wd-robot/components/speed-sensor-front.jpg"><img src="/assets/collections/2wd-robot/components/speed-sensor-front.jpg"></a>
+    <a href="/assets/collections/2wd-robot/components/speed-sensor-back.jpg"><img src="/assets/collections/2wd-robot/components/speed-sensor-back.jpg"></a>
+    <figcaption>LM393 Speed Sensor from Joy-IT.</figcaption>
+</figure>
 
 References:
 https://dronebotworkshop.com/robot-car-with-speed-sensors/
