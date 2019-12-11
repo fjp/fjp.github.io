@@ -52,6 +52,16 @@ Part list and assembly of the robot platform and the components.
 |              | Odometry                  | Joy-IT - LM393 Speed Sensor with H206 slot-type opto interrupter | [Joy-IT](https://joy-it.net/en/products/SEN-Speed) |
 
 
+## Board - Raspberry Pi 4 B
+
+The main processing unit of the robot is a [Raspberry Pi 4 B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) 
+with 4 GB of RAM. 
+
+<figure class="half">
+    <a href="/assets/collections/2wd-robot/components/raspberry-pi-4.jpg"><img src="/assets/collections/2wd-robot/components/raspberry-pi-4.jpg"></a>
+    <a href="/assets/collections/2wd-robot/components/raspberry-pi-4-ports.jpg"><img src="/assets/collections/2wd-robot/components/raspberry-pi-4-ports.jpg"></a>
+    <figcaption>Raspberry Pi 4 B - 4 GB RAM variant.</figcaption>
+</figure>
 
 ## Accessories and Electronics
 
