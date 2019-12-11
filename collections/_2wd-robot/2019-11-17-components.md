@@ -91,6 +91,16 @@ To power the motors a battery compartment is available together with a switch to
 As mentioned the robot will be equipped with a USB-C powerbank to supply the RPi 4 B with 5 V. 
 To power the motors the provided battery compartment will be used, which holds four AA batteries $4 \cdot 1.5\text{V} = 6\text{V}$.
 
+### I2C Hub
+
+The Raspberry Pi provides just two I2C ports, which is why we will use a I2C hub. With the four port I2C hub from Grove it is possible to connect three I2C devices to a single I2C port of the Raspberry Pi
+
+<figure class="half">
+    <a href="/assets/collections/2wd-robot/components/i2c-hub-front.jpg"><img src="/assets/collections/2wd-robot/components/i2c-hub-front.jpg"></a>
+    <a href="/assets/collections/2wd-robot/components/i2c-hub-back.jpg"><img src="/assets/collections/2wd-robot/components/i2c-hub-back.jpg"></a>
+    <figcaption>Grove I2C Hub.</figcaption>
+</figure>
+
 ## Sensors
 
 Sensors are used to sense the environment and to collect information of the current state.
