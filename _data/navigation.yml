@@ -92,6 +92,9 @@ math:
 fpv:
   - title: "Introduction"
     url: /projects/fpv/
+    children:
+      - title: "Glossar"
+        url: /projects/fpv/glossar
   - title: "Race Quad Components"
     url: /projects/fpv/components
     children:

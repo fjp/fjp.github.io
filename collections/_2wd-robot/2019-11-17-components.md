@@ -12,7 +12,8 @@ toc: true
 # classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  overlay_image: /assets/collections/2wd-robot/car-kit05.jpg
+  teaser: /assets/collections/2wd-robot/components/components.jpg
+  overlay_image: /assets/collections/2wd-robot/components/components.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   # caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
   show_overlay_excerpt: true
@@ -51,8 +52,33 @@ Part list and assembly of the robot platform and the components.
 |              | Odometry                  | Joy-IT - LM393 Speed Sensor with H206 slot-type opto interrupter | [Joy-IT](https://joy-it.net/en/products/SEN-Speed) |
 
 
+## Board - Raspberry Pi 4 B
+
+The main processing unit of the robot is a [Raspberry Pi 4 B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) 
+with 4 GB of RAM. 
+
+<figure class="half">
+    <a href="/assets/collections/2wd-robot/components/raspberry-pi-4.jpg"><img src="/assets/collections/2wd-robot/components/raspberry-pi-4.jpg"></a>
+    <a href="/assets/collections/2wd-robot/components/raspberry-pi-4-ports.jpg"><img src="/assets/collections/2wd-robot/components/raspberry-pi-4-ports.jpg"></a>
+    <figcaption>Raspberry Pi 4 B - 4 GB RAM variant.</figcaption>
+</figure>
 
 ## Accessories and Electronics
+
+
+### SD Card
+
+The Raspberry Pi requires a medium to boot from. 
+For this we will use a micro sd card because it is lightweight and easy to flash new operating systems. 
+
+<figure>
+    <a href="/assets/collections/2wd-robot/components/sdcard.jpg"><img src="/assets/collections/2wd-robot/components/sdcard.jpg"></a>
+    <figcaption>SanDisk Micro SD Card Class 10.</figcaption>
+</figure>
+
+Although a micro sd card won't last that long compared to an hard disk drive (HDD) or solid state disk (SSD) it is well suited for testing. Because sd cards are slower when reading and writing data you should make sure to choose a micro sd card with high 
+performance ratings. For the Raspberry Pi a Class 10 micro sd card is recommended. 
+Regarding speed, the Pi has a limited bus speed of approximately 20 MB/s ([source](https://raspberrypi.stackexchange.com/questions/43618/raspberry-pi-3-micro-sd-card-speed))
 
 ### Robot Base
 
@@ -70,20 +96,20 @@ The motors operate in a range between 3 to 9 Volts DC and make it possible to mo
 With that punched disk and additional speed sensors it is possible to implement odometry in ROS. 
 To power the motors a battery compartment is available together with a switch to turn the robot on or off.
 
-
-The following image shows how I mounted the robot car kit. Notice that I placed the battery compartment on the bottom of 
-the acrylic chassis instead of on top of it as suggested in the [instructions manual](https://joy-it.net/files/files/Produkte/robot05/Robot05-Anleitung.pdf) (seems to be only available in german). 
-The reason is that I will use an additional USB-C powerbank to power the Raspberry Pi 4 B.
-
-TODO figure
-
-To assemble the robot car kit it is important to mount the motors on the correct side of the acrylic plate becasue otherwise
-the mounting plate where the RPi will be attached will not fit to the pre drilled holes.
-
 ### Power Supplies
 
 As mentioned the robot will be equipped with a USB-C powerbank to supply the RPi 4 B with 5 V. 
 To power the motors the provided battery compartment will be used, which holds four AA batteries $4 \cdot 1.5\text{V} = 6\text{V}$.
+
+### I2C Hub
+
+The Raspberry Pi provides just two I2C ports, which is why we will use a I2C hub. With the four port I2C hub from Grove it is possible to connect three I2C devices to a single I2C port of the Raspberry Pi
+
+<figure class="half">
+    <a href="/assets/collections/2wd-robot/components/i2c-hub-front.jpg"><img src="/assets/collections/2wd-robot/components/i2c-hub-front.jpg"></a>
+    <a href="/assets/collections/2wd-robot/components/i2c-hub-back.jpg"><img src="/assets/collections/2wd-robot/components/i2c-hub-back.jpg"></a>
+    <figcaption>Grove I2C Hub.</figcaption>
+</figure>
 
 ## Sensors
 
@@ -121,6 +147,11 @@ As an alternative we could use the [HC SR04](https://www.seeedstudio.com/blog/20
 
 #### Camera
 
+<figure>
+    <a href="/assets/collections/2wd-robot/components/rpi-camera.jpg"><img src="/assets/collections/2wd-robot/components/rpi-camera.jpg"></a>
+    <figcaption>RPi Camera v2.</figcaption>
+</figure>
+
 
 ### Localization
 
@@ -130,6 +161,12 @@ To estimate the change in position over time ([odometry](https://en.wikipedia.or
 utilize an [optical speed sensor](https://en.wikipedia.org/wiki/Wheel_speed_sensor#Optical_sensor). 
 Specifically the LM393 ([datasheet](http://www.ti.com/lit/ds/symlink/lm2903-n.pdf)) [comperator](https://en.wikipedia.org/wiki/Comparator) combined with a H206 slot-type opto interrupter. [Joy-IT Speed Sensor](https://joy-it.net/en/products/SEN-Speed).
 
+<figure class="half">
+    <a href="/assets/collections/2wd-robot/components/speed-sensor-front.jpg"><img src="/assets/collections/2wd-robot/components/speed-sensor-front.jpg"></a>
+    <a href="/assets/collections/2wd-robot/components/speed-sensor-back.jpg"><img src="/assets/collections/2wd-robot/components/speed-sensor-back.jpg"></a>
+    <figcaption>LM393 Speed Sensor from Joy-IT.</figcaption>
+</figure>
+
 References:
 https://dronebotworkshop.com/robot-car-with-speed-sensors/
 
@@ -138,7 +175,12 @@ https://dronebotworkshop.com/robot-car-with-speed-sensors/
 
 An intertial measurement unit (IMU) measures the acceleration and orientation through gyroscopes directly.
 Other states such as the velocity can then be calculated.
-For this the [Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055]((https://www.adafruit.com/product/2472)) is used. 
+For this the [Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055]((https://www.adafruit.com/product/2472)) is used.
+
+<figure>
+    <a href="/assets/collections/2wd-robot/components/bno055.jpg"><img src="/assets/collections/2wd-robot/components/bno055.jpg"></a>
+    <figcaption>9-DOF Absolute Orientation IMU Fusion Breakout - BNO055 from Adafruit.</figcaption>
+</figure>
 
 ## Actuators
 
@@ -149,13 +191,36 @@ For this the [Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055](
 To drive the two motors of the car kit we use the 
 [Grove - I2C Motor Driver V1.3](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/) from Seeed Studio.
 
+<figure>
+    <a href="/assets/collections/2wd-robot/components/motor-driver.jpg"><img src="/assets/collections/2wd-robot/components/motor-driver.jpg"></a>
+    <figcaption>Grove - I2C Motor Driver.</figcaption>
+</figure>
+
+
+### Brushed Gearbox Motor
+
+<figure>
+    <a href="/assets/collections/2wd-robot/components/gearbox-motor-close.jpg"><img src="/assets/collections/2wd-robot/components/gearbox-motor-close.jpg"></a>
+    <figcaption>DC Gearbox motor - "TT Motor" - 200RPM - 3 to 9VDC.</figcaption>
+</figure>
 
 ## Human Machine Interface (HMI)
 
+The human machine interface is the layer between the user and the robot. 
+
 ### OLED Display
 
-http://wiki.seeedstudio.com/Grove-OLED_Display_0.96inch/
+To update the user with status messages the robot has a 0.96 inch oled (organic ligth emitting diode) display.
+The oled display used is the [Grove I2C 0.96 inch OLED display](http://wiki.seeedstudio.com/Grove-OLED_Display_0.96inch/) 
+from Seeed Studio.
 
-Connected to the RPi via i2c on the physical pins 27 (scl) and 28 (sda), refere to the [pinout](https://pinout.xyz/pinout/i2c).
+<figure class="third">
+    <a href="/assets/collections/2wd-robot/components/oled-01.jpg"><img src="/assets/collections/2wd-robot/components/oled-01.jpg"></a>
+    <a href="/assets/collections/2wd-robot/components/oled-02.jpg"><img src="/assets/collections/2wd-robot/components/oled-02.jpg"></a>
+    <a href="/assets/collections/2wd-robot/components/oled-03.jpg"><img src="/assets/collections/2wd-robot/components/oled-03.jpg"></a>
+    <figcaption>Grove - I2C 0.96 inch OLED Display.</figcaption>
+</figure>
+
+The display is connected to the RPi via I2C on the physical pins 27 (scl) and 28 (sda), refere to the [pinout](https://pinout.xyz/pinout/i2c).
 
 [Library](https://github.com/DexterInd/GrovePi/blob/master/Software/Python/grove_i2c_oled_128_64/grove_128_64_oled.py)
