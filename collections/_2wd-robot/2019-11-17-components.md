@@ -196,10 +196,21 @@ To drive the two motors of the car kit we use the
 
 ## Human Machine Interface (HMI)
 
+The human machine interface is the layer between the user and the robot. 
+
 ### OLED Display
 
-http://wiki.seeedstudio.com/Grove-OLED_Display_0.96inch/
+To update the user with status messages the robot has a 0.96 inch oled (organic ligth emitting diode) display.
+The oled display used is the [Grove I2C 0.96 inch OLED display](http://wiki.seeedstudio.com/Grove-OLED_Display_0.96inch/) 
+from Seeed Studio.
 
-Connected to the RPi via i2c on the physical pins 27 (scl) and 28 (sda), refere to the [pinout](https://pinout.xyz/pinout/i2c).
+<figure class="third">
+    <a href="/assets/collections/2wd-robot/components/oled-01.jpg"><img src="/assets/collections/2wd-robot/components/oled-01.jpg"></a>
+    <a href="/assets/collections/2wd-robot/components/oled-02.jpg"><img src="/assets/collections/2wd-robot/components/oled-02.jpg"></a>
+    <a href="/assets/collections/2wd-robot/components/oled-03.jpg"><img src="/assets/collections/2wd-robot/components/oled-03.jpg"></a>
+    <figcaption>Grove - I2C 0.96 inch OLED Display.</figcaption>
+</figure>
+
+The display is connected to the RPi via I2C on the physical pins 27 (scl) and 28 (sda), refere to the [pinout](https://pinout.xyz/pinout/i2c).
 
 [Library](https://github.com/DexterInd/GrovePi/blob/master/Software/Python/grove_i2c_oled_128_64/grove_128_64_oled.py)
