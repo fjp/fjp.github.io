@@ -111,6 +111,15 @@ The Raspberry Pi provides just two I2C ports, which is why we will use a I2C hub
     <figcaption>Grove I2C Hub.</figcaption>
 </figure>
 
+### Breadboard and GPIO Extension Cable
+
+Optional but helpful for testing is a breadboard and a GPIO extension cable suitable for the Raspberry Pi 4 B.
+
+<figure>
+    <a href="/assets/collections/2wd-robot/components/i2c-hub-front.jpg"><img src="/assets/collections/2wd-robot/components/bread-board-gpio-extension.jpg"></a>
+    <figcaption>Breadboard with GPIO extension cable.</figcaption>
+</figure>
+
 ## Sensors
 
 Sensors are used to sense the environment and to collect information of the current state.
