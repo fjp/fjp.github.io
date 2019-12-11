@@ -136,7 +136,7 @@ To estimate the change in position over time ([odometry](https://en.wikipedia.or
 utilize an [optical speed sensor](https://en.wikipedia.org/wiki/Wheel_speed_sensor#Optical_sensor). 
 Specifically the LM393 ([datasheet](http://www.ti.com/lit/ds/symlink/lm2903-n.pdf)) [comperator](https://en.wikipedia.org/wiki/Comparator) combined with a H206 slot-type opto interrupter. [Joy-IT Speed Sensor](https://joy-it.net/en/products/SEN-Speed).
 
-<figure>
+<figure class="half">
     <a href="/assets/collections/2wd-robot/components/speed-sensor-front.jpg"><img src="/assets/collections/2wd-robot/components/speed-sensor-front.jpg"></a>
     <a href="/assets/collections/2wd-robot/components/speed-sensor-back.jpg"><img src="/assets/collections/2wd-robot/components/speed-sensor-back.jpg"></a>
     <figcaption>LM393 Speed Sensor from Joy-IT.</figcaption>
@@ -150,7 +150,12 @@ https://dronebotworkshop.com/robot-car-with-speed-sensors/
 
 An intertial measurement unit (IMU) measures the acceleration and orientation through gyroscopes directly.
 Other states such as the velocity can then be calculated.
-For this the [Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055]((https://www.adafruit.com/product/2472)) is used. 
+For this the [Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055]((https://www.adafruit.com/product/2472)) is used.
+
+<figure>
+    <a href="/assets/collections/2wd-robot/components/bno055.jpg"><img src="/assets/collections/2wd-robot/components/bno055.jpg"></a>
+    <figcaption>9-DOF Absolute Orientation IMU Fusion Breakout - BNO055 from Adafruit.</figcaption>
+</figure>
 
 ## Actuators
 
