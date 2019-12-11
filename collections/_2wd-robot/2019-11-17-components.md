@@ -71,16 +71,6 @@ The motors operate in a range between 3 to 9 Volts DC and make it possible to mo
 With that punched disk and additional speed sensors it is possible to implement odometry in ROS. 
 To power the motors a battery compartment is available together with a switch to turn the robot on or off.
 
-
-The following image shows how I mounted the robot car kit. Notice that I placed the battery compartment on the bottom of 
-the acrylic chassis instead of on top of it as suggested in the [instructions manual](https://joy-it.net/files/files/Produkte/robot05/Robot05-Anleitung.pdf) (seems to be only available in german). 
-The reason is that I will use an additional USB-C powerbank to power the Raspberry Pi 4 B.
-
-TODO figure
-
-To assemble the robot car kit it is important to mount the motors on the correct side of the acrylic plate becasue otherwise
-the mounting plate where the RPi will be attached will not fit to the pre drilled holes.
-
 ### Power Supplies
 
 As mentioned the robot will be equipped with a USB-C powerbank to supply the RPi 4 B with 5 V. 
