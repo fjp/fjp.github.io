@@ -124,7 +124,15 @@ Another use case is to detect and follow objects using a camera.
 #### Ultrasonic Ranger
 
 To avoid obstacles the robot will carry a [Grove - Ultrasonic Ranger](http://wiki.seeedstudio.com/Grove-Ultrasonic_Ranger/)
-at the front. It is a non-contact distance measurement module which works at 40KHz and can be interfaced via a single [GPIO](https://www.raspberrypi.org/documentation/usage/gpio/). For example [physical pin 11](https://pinout.xyz/pinout/pin11_gpio17) of the Raspberry Pi connected to the `SIG` pin on the sensor can provide the PWM communication.
+at the front. 
+
+<figure class="half">
+    <a href="/assets/collections/2wd-robot/components/ultrasonic-side.jpg"><img src="/assets/collections/2wd-robot/components/ultrasonic-side.jpg"></a>
+    <a href="/assets/collections/2wd-robot/components/ultrasonic-front.jpg"><img src="/assets/collections/2wd-robot/components/ultrasonic-front.jpg"></a>
+    <figcaption>Grove Ultrasonic Ranger for obstacle avoidance.</figcaption>
+</figure>
+
+It is a non-contact distance measurement module which works at 40KHz and can be interfaced via a single [GPIO](https://www.raspberrypi.org/documentation/usage/gpio/). For example [physical pin 11](https://pinout.xyz/pinout/pin11_gpio17) of the Raspberry Pi connected to the `SIG` pin on the sensor can provide the PWM communication.
 
 |Parameter|	Value/Range|
 |:------|:------------------|
