@@ -30,7 +30,7 @@ Part list and assembly of the robot platform and the components.
 |              | Robot Car Kit 2WD | [robot05](https://joy-it.net/en/products/robot05) | [Instructions manual](https://joy-it.net/files/files/Produkte/robot05/Robot05-Anleitung.pdf) |
 |              | Power bank        | Intenso Powerbank S10000                          | [Intenso](https://www.intenso.de/en/products/powerbanks/powerbank-s10000) |
 | Actuator                                                                                  |
-|              | Gearbox motor     | DC Gearbox motor - "TT Motor" - 200RPM - 3 to 9VDC | [Adafruit](https://www.adafruit.com/product/3777) |
+|              | Gearbox motor     | DC Gearbox motor - "TT Motor" - 200RPM - 3 to 6VDC | [Adafruit](https://www.adafruit.com/product/3777) |
 | Board                                                                                    |
 |              | Raspberry Pi 4 B  | Raspberry Pi 4 B - 4 GB                           | [OEM Website](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) |
 | Cables                                                                                   |
@@ -92,7 +92,7 @@ The [Robot Car Kit 2WD](https://joy-it.net/en/products/robot05) from Joy-IT (art
 The acrylic chassis has many holes which allow to mount a mounting plate that can hold different development boards.
 It allows also to mount a Raspberry Pi 4 B, which will be used in this project. Two wheels, hence 2WD, are included in the kit which can be attached to the motors that are provided too. A third caster wheel is provided which allows the robot to spin on the spot. This means the robot can be described by a holonomic model. 
 
-The motors operate in a range between 3 to 9 Volts DC and make it possible to mount a punched disk for speed measurements. 
+The motors operate in a range between 3 to 6 Volts DC and make it possible to mount a punched disk for speed measurements. 
 With that punched disk and additional speed sensors it is possible to implement odometry in ROS. 
 To power the motors a battery compartment is available together with a switch to turn the robot on or off.
 
@@ -218,7 +218,7 @@ To drive the two motors of the car kit we use the
 
 <figure>
     <a href="/assets/collections/2wd-robot/components/gearbox-motor-close.jpg"><img src="/assets/collections/2wd-robot/components/gearbox-motor-close.jpg"></a>
-    <figcaption>DC Gearbox motor - "TT Motor" - 200RPM - 3 to 9VDC.</figcaption>
+    <figcaption>DC Gearbox motor - "TT Motor" - 200RPM - 3 to 6VDC.</figcaption>
 </figure>
 
 ## Human Machine Interface (HMI)
