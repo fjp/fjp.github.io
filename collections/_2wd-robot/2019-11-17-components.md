@@ -55,6 +55,21 @@ Part list and assembly of the robot platform and the components.
 
 ## Accessories and Electronics
 
+
+### SD Card
+
+The Raspberry Pi requires a medium to boot from. 
+For this we will use a micro sd card because it is lightweight and easy to flash new operating systems. 
+
+<figure>
+    <a href="/assets/collections/2wd-robot/components/sdcard.jpg"><img src="/assets/collections/2wd-robot/components/sdcard.jpg"></a>
+    <figcaption>SanDisk Micro SD Card Class 10.</figcaption>
+</figure>
+
+Although a micro sd card won't last that long compared to an hard disk drive (HDD) or solid state disk (SSD) it is well suited for testing. Because sd cards are slower when reading and writing data you should make sure to choose a micro sd card with high 
+performance ratings. For the Raspberry Pi a Class 10 micro sd card is recommended. 
+Regarding speed, the Pi has a limited bus speed of approximately 20 MB/s ([source](https://raspberrypi.stackexchange.com/questions/43618/raspberry-pi-3-micro-sd-card-speed))
+
 ### Robot Base
 
 The [Robot Car Kit 2WD](https://joy-it.net/en/products/robot05) from Joy-IT (article no.: robot05) is used as the base for the autonomous mobile robot. 
