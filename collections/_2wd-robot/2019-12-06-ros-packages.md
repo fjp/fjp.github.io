@@ -50,3 +50,21 @@ Finally we need to decide what type of ROS message our wrapper will produce.
 Whenever possible we should use existing ROS message types because it allows us
 to reuse the wrapped sensor with other nodes that use the same interface types.
 
+
+
+## Create a new Catkin package
+
+To create a new Catkin package when in your workspace use the following command:
+
+```bash
+$ catkin create pkg PKG_NAME
+```
+For example the `control` package is created with the following command:
+
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros/src$ catkin create pkg control
+Creating package "control" in "/home/fjp/git/2wd-robot/ros/src"...
+Created file control/package.xml
+Created file control/CMakeLists.txt
+Successfully created package files in /home/fjp/git/2wd-robot/ros/src/control.
+```
