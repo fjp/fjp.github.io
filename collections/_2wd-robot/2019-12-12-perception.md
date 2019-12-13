@@ -1,7 +1,7 @@
 ---
 layout: single #collection
 title: Autonomous 2WD Robot - Perception Package
-permalink: /projects/2wd-robot/ros-packages/control/
+permalink: /projects/2wd-robot/ros-packages/perception/
 excerpt: "ROS Perception Package for ROS Melodic running on a Raspberry Pi 4 for an autonomous 2WD Robot to act in an environment according to sensor information."
 date: 2019-12-12 08:00:35 +0100
 categories: [robotics]
