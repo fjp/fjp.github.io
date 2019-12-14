@@ -41,6 +41,7 @@ Part list and assembly of the robot platform and the components.
 |              | Camera extension cable    |                                           |                         |
 |              | I2C 4 pin cable           |                                           |                         |
 | Electronics                                                                                    |
+|              | Fan                       | Fan 30x30x7mm 5V DC with Dupont connector | [BerryBase](https://www.berrybase.de/en/raspberry-pi-co/raspberry-pi/components/fan-30x30x7mm-5v-dc-with-dupont-connector) | 
 |              | I2C motor driver          | Grove - I2C Motor Driver                  | [Seeed Studio](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/) |
 |              | I2C Hub                   | Grove - I2C Hub                           | [Seeed Studio](http://wiki.seeedstudio.com/Grove-I2C_Hub/) |
 | Human Machine Interface                   |
