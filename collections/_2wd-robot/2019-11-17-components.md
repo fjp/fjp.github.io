@@ -26,6 +26,7 @@ Part list and assembly of the robot platform and the components.
 | Category     | Hardware          | Part Number                                       | Data Sheet & Info       |
 |:------------:|:-----------------:|:-------------------------------------------------:|:-----------------------:|
 | Accessories                                 |
+|              | Case for Raspberry Pi 4 B | Slim acrylic case for Raspberry Pi 4, stackable, rainbow/transparent                          | [BerryBase](https://www.berrybase.de/en/new/slim-acrylic-case-for-raspberry-pi-4-stackable-rainbow) |
 |              | Micro SD Card     | SanDisk 64GB Class 10                             | [SanDisk](), Ubuntu 18.04 Image |
 |              | Robot Car Kit 2WD | [robot05](https://joy-it.net/en/products/robot05) | [Instructions manual](https://joy-it.net/files/files/Produkte/robot05/Robot05-Anleitung.pdf) |
 |              | Power bank        | Intenso Powerbank S10000                          | [Intenso](https://www.intenso.de/en/products/powerbanks/powerbank-s10000) |
