@@ -21,8 +21,9 @@ sidebar:
   nav: "2wd-robot"
 ---
 
-ROS Packages and Nodes for ROS Melodic running on a Raspberry Pi 4 for an autonomous 2WD Robot 
-to act in an environment according to sensor information.
+ROS [Packages](http://wiki.ros.org/Packages) and the belonging ROS [nodes](http://wiki.ros.org/Nodes) are 
+software components to extend a robots functionality and part of every ROS distribution such as ROS Melodic. 
+For this autonomous 2WD robot project the nodes run on a Raspberry Pi 4 to act in an environment according to sensor information.
 
 ## Using Sensors and Actuators in ROS
 
@@ -54,7 +55,7 @@ to reuse the wrapped sensor with other nodes that use the same interface types.
 
 ## Create a new Catkin package
 
-To create a new Catkin package when in your workspace use the following command:
+To create a new Catkin package when in your [ROS workspace](http://wiki.ros.org/catkin/workspaces) use the following command:
 
 ```bash
 $ catkin create pkg PKG_NAME
