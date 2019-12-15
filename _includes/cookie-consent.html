@@ -34,7 +34,6 @@
     if(readCookie('cookie-notice-dismissed')=='true') {
         {% include footer/custom.html %}
         {% include_cached footer.html %}
-        {% include scripts.html %}
     } else {
         document.getElementById('cookie-notice').style.display = 'block';
     }
