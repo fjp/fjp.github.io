@@ -12,12 +12,11 @@ toc: false
 # toc_label: "Unscented Kalman Filter"
 classes: wide
 header:
-  #overlay_image: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
+  teaser: /assets/pages/design-patterns/facade-pattern.png
+  overlay_image: /assets/pages/design-patterns/facade-pattern.png
   #overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   #caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
   #show_overlay_excerpt: true
-  #teaser: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3_thumb.png
-  #overlay_image: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
 redirect_from:
     - /design-patterns/
 sidebar:
