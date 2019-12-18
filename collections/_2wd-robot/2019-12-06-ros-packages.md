@@ -24,18 +24,30 @@ sidebar:
 On the [file system level](https://wiki.ros.org/ROS/Concepts#ROS_Filesystem_Level) of ROS, ROS uses [Packages](http://wiki.ros.org/Packages) which are part of every ROS distribution such as ROS Melodic and defined as follows:
 
 Packages are the main unit for organizing software in ROS. A package may contain ROS runtime processes ([nodes](http://wiki.ros.org/Nodes)), a ROS-dependent library, datasets, configuration files, or anything else that is usefully organized together. Packages are the most atomic build item and release item in ROS. Meaning that the most granular thing you can build and release is a package.
-{: .notice}
+{: .notice }
 
 
 For this autonomous 2WD robot project the nodes run on a Raspberry Pi 4 to act in an environment according to sensor information.
 
 ## Naming Conventions
 
-ROS provides [naming conventions](http://wiki.ros.org/ROS/Patterns/Conventions) for packages and nodes which we will 
+ROS provides [naming conventions](http://wiki.ros.org/ROS/Patterns/Conventions) for 
+packages ([REP-144](https://www.ros.org/reps/rep-0144.html)) and 
+[nodes](http://wiki.ros.org/action/fullsearch/ROS/Patterns/Conventions#Nodes) which we will 
 use as guidance to name the packages and nodes for the 2WD robot.
 
-This means that each sensor will get its own package with one or more nodes to be executed. Following this scheme
-it will be possible to use the sensors in other projects and work with existing packages such as packages from the [navigation stack](http://wiki.ros.org/navigation).
+When possible, the default name of a node should follow from the name of the executable used to launch the node. 
+This default name can be remapped at startup to something unique.
+{: .notice }
+
+Following [REP-144](https://www.ros.org/reps/rep-0144.html this means that each sensor will get its own package with one 
+or more nodes to be executed. Following this scheme it will be possible to use the sensors in other projects and work 
+with existing packages such as packages from the [navigation stack](http://wiki.ros.org/navigation).
+
+## Packages and Nodes
+
+| Category          | Package                 | Nodes |
+| sensor/perception | grove_ultrasonic_driver | 
 
 
 ## Using Sensors and Actuators in ROS
