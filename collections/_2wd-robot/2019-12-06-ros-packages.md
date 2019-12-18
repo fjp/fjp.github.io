@@ -47,6 +47,7 @@ with existing packages such as packages from the [navigation stack](http://wiki.
 ## Packages and Nodes
 
 | Category          | Package                 | Nodes  |
+|:=================:|:=======================:|:======:|
 | sensor/perception | grove_ultrasonic_driver | ranger |
 | sensor/perception | rpi_camera_driver       | camera |
 
