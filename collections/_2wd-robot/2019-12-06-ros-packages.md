@@ -21,9 +21,22 @@ sidebar:
   nav: "2wd-robot"
 ---
 
-ROS [Packages](http://wiki.ros.org/Packages) and the belonging ROS [nodes](http://wiki.ros.org/Nodes) are 
-software components to extend a robots functionality and part of every ROS distribution such as ROS Melodic. 
+On the [file system level](https://wiki.ros.org/ROS/Concepts#ROS_Filesystem_Level) of ROS, ROS uses [Packages](http://wiki.ros.org/Packages) which are part of every ROS distribution such as ROS Melodic and defined as follows:
+
+Packages are the main unit for organizing software in ROS. A package may contain ROS runtime processes ([nodes](http://wiki.ros.org/Nodes)), a ROS-dependent library, datasets, configuration files, or anything else that is usefully organized together. Packages are the most atomic build item and release item in ROS. Meaning that the most granular thing you can build and release is a package.
+{: .notice}
+
+
 For this autonomous 2WD robot project the nodes run on a Raspberry Pi 4 to act in an environment according to sensor information.
+
+## Naming Conventions
+
+ROS provides [naming conventions](http://wiki.ros.org/ROS/Patterns/Conventions) for packages and nodes which we will 
+use as guidance to name the packages and nodes for the 2WD robot.
+
+This means that each sensor will get its own package with one or more nodes to be executed. Following this scheme
+it will be possible to use the sensors in other projects and work with existing packages such as packages from the [navigation stack](http://wiki.ros.org/navigation).
+
 
 ## Using Sensors and Actuators in ROS
 
