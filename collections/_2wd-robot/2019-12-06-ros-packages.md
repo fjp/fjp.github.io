@@ -40,7 +40,7 @@ When possible, the default name of a node should follow from the name of the exe
 This default name can be remapped at startup to something unique.
 {: .notice }
 
-Following [REP-144](https://www.ros.org/reps/rep-0144.html this means that each sensor will get its own package with one 
+Following [REP-144](https://www.ros.org/reps/rep-0144.html) this means that each sensor will get its own package with one 
 or more nodes to be executed. Following this scheme it will be possible to use the sensors in other projects and work 
 with existing packages such as packages from the [navigation stack](http://wiki.ros.org/navigation).
 
