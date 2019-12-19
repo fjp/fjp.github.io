@@ -21,7 +21,7 @@ sidebar:
   nav: "2wd-robot"
 ---
 
-ROS Perception Package for ROS Melodic running on a Raspberry Pi 4 for an autonomous 2WD Robot to sense in the environment.
+ROS Perception packages for ROS Melodic running on a Raspberry Pi 4 for an autonomous 2WD Robot to sense in the environment.
 
 
-{% include_relative 2wd-robot/docs/perception.md %}
+{% include_relative 2wd-robot/docs/grove_ultrasonic_ranger.md %}
