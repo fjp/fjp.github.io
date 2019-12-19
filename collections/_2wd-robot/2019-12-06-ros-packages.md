@@ -82,17 +82,18 @@ to reuse the wrapped sensor with other nodes that use the same interface types.
 
 ## Create a new Catkin package
 
-To create a new Catkin package when in your [ROS workspace](http://wiki.ros.org/catkin/workspaces) use the following command:
+To create a new Catkin package when in the `src` folder of your [ROS workspace](http://wiki.ros.org/catkin/workspaces) use the [`catkin create pkg`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html#catkin-create-pkg) command:
 
 ```bash
-$ catkin create pkg PKG_NAME
+$ catkin create pkg PKG_NAME [--catkin-deps [DEP [DEP ...]]]
 ```
-For example the `control` package is created with the following command:
+For example the `grove_ultrasonic_ranger` package is created with the following command:
 
 ```bash
-fjp@ubuntu:~/git/2wd-robot/ros/src$ catkin create pkg control
-Creating package "control" in "/home/fjp/git/2wd-robot/ros/src"...
-Created file control/package.xml
-Created file control/CMakeLists.txt
-Successfully created package files in /home/fjp/git/2wd-robot/ros/src/control.
+fjp@ubuntu:~/git/2wd-robot/ros/src$ catkin create pkg grove_ultrasonic_ranger --catkin-deps rospy roscpp sensor_msgs
+Creating package "grove_ultrasonic_ranger" in "/home/fjp/git/2wd-robot/ros/src"...
+Created file grove_ultrasonic_ranger/CMakeLists.txt
+Created file grove_ultrasonic_ranger/package.xml
+Created folder grove_ultrasonic_ranger/include/grove_ultrasonic_ranger
+Created folder grove_ultrasonic_ranger/src
 ```
