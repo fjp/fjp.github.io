@@ -31,3 +31,9 @@ Just follow these instructions and choose this configuration: `Desktop-Full Inst
 Although it is overkill, it will provide all examples that you might want to try.
 
 {% include_relative 2wd-robot/docs/ros-setup.md %}
+
+
+## ROS Style Guide
+
+The project follows the [style guide](http://wiki.ros.org/PyStyleGuide) in writing Python code from ROS. 
+
