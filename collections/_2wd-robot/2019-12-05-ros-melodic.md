@@ -35,5 +35,5 @@ Although it is overkill, it will provide all examples that you might want to try
 
 ## ROS Style Guide
 
-The project follows the [style guide](http://wiki.ros.org/PyStyleGuide) in writing Python code from ROS. 
+The project follows [ROS conventions](http://wiki.ros.org/ROS/Patterns/Conventions) and the [style guide](http://wiki.ros.org/PyStyleGuide) from ROS in writing Python code.
 
