@@ -21,7 +21,7 @@ sidebar:
   nav: "2wd-robot"
 ---
 
-On the [file system level](https://wiki.ros.org/ROS/Concepts#ROS_Filesystem_Level) of ROS, ROS uses [Packages](http://wiki.ros.org/Packages) which are part of every ROS distribution such as ROS Melodic and defined as follows:
+On the [file system level](https://wiki.ros.org/ROS/Concepts#ROS_Filesystem_Level), ROS uses [Packages](http://wiki.ros.org/Packages) which are part of every ROS distribution such as ROS Melodic and defined as follows:
 
 Packages are the main unit for organizing software in ROS. A package may contain ROS runtime processes ([nodes](http://wiki.ros.org/Nodes)), a ROS-dependent library, datasets, configuration files, or anything else that is usefully organized together. Packages are the most atomic build item and release item in ROS. Meaning that the most granular thing you can build and release is a package.
 {: .notice }
@@ -43,6 +43,20 @@ This default name can be remapped at startup to something unique.
 Following [REP-144](https://www.ros.org/reps/rep-0144.html) this means that each sensor will get its own package with one 
 or more nodes to be executed. Following this scheme it will be possible to use the sensors in other projects and work 
 with existing packages such as packages from the [navigation stack](http://wiki.ros.org/navigation).
+
+## Steps to using ROS to Control a Robot
+
+The steps to using ROS to control a new robot are[ref](http://shop.oreilly.com/product/0636920024736.do): 
+
+1. Decide on the ROS message interface. 
+2. Write drivers for the robot's motors. 
+3. Write a model of the robot's physical structure. 
+4. Extend the model with physical properties for use in simulation with Gazebo. 
+5. Publish coordinate transform data via tf and visualize it with rviz. 
+6. Add sensors, with driver and simulation support. 
+7. Apply standard algorithms, such as navigation.
+
+
 
 ## Packages and Nodes
 
@@ -97,3 +111,8 @@ Created file grove_ultrasonic_ranger/package.xml
 Created folder grove_ultrasonic_ranger/include/grove_ultrasonic_ranger
 Created folder grove_ultrasonic_ranger/src
 ```
+
+
+## References
+
+[**Programming Robots with ROS** A Practical Introduction to the Robot Operating System](http://shop.oreilly.com/product/0636920024736.do)
