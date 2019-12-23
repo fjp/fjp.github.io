@@ -17,7 +17,7 @@ header:
 ---
 
 
-{% include repos/frenet/README.md $}
+{% include repos/frenet/README.md %}
 
 ## Python Code in Jupyter Notebook
 
