@@ -67,10 +67,10 @@ autonomous_rc_car:
   - title: "ROS Packages and Nodes"
     url: /projects/2wd-robot/ros-packages/
     children:
-      - title: "Perception"
-        url: /projects/2wd-robot/ros-packages/perception/
       - title: "Control"
         url: /projects/2wd-robot/ros-packages/control/
+      - title: "Perception"
+        url: /projects/2wd-robot/ros-packages/perception/
       - title: "Planner"
         url: /projects/2wd-robot/ros-packages/planner/
       - title: "Human Machine Interface"
