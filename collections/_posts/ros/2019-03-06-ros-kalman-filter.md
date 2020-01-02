@@ -83,8 +83,7 @@ gallery_multiplot_traj:
 
 The [previous post](/posts/state-estimation/extended-kalman-filter) described the extended [Kalman filter](https://de.wikipedia.org/wiki/Kalman-Filter).
 This post explains how to create a ROS package that implements an extended Kalman filter, which can be used for sensor fusion.
-The sensor data that will be fused together comes from a robots [inertial measurement unit](/projects/autonomous-rc-car/minimu9v5/
-/) (imu), rotary encoders (wheel odometry) and vision sensors (camera). The ekf package that is developed in this post will be used to compare the sensor data and
+The sensor data that will be fused together comes from a robots [inertial measurement unit](/projects/autonomous-rc-car/minimu9v5/) (imu), rotary encoders (wheel odometry) and vision sensors (camera). The ekf package that is developed in this post will be used to compare the sensor data and
 apply sensor fusion to estimate the pose of the robot as it moves around. 
 To achieve this, the following packages are used.
 
