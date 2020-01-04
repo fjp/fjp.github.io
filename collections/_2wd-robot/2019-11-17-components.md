@@ -67,6 +67,20 @@ with 4 GB of RAM.
 
 ## Accessories and Electronics
 
+### Case and Cooling
+
+Regarding the protection of the Rasbperry Pi 4 B we choose a case that which provides access to all its ports.
+The following images show a stackable acrylic case in rainbow colors.
+
+<figure class="half">
+    <a href="/assets/collections/2wd-robot/components/case_side_raspberry4_rainbow.jpg"><img src="/assets/collections/2wd-robot/components/case_side_raspberry4_rainbow.jpg"></a>
+    <a href="/assets/collections/2wd-robot/components/case_bottom_raspberry4_rainbow.jpg"><img src="/assets/collections/2wd-robot/components/case_bottom_raspberry4_rainbow.jpg"></a>
+    <figcaption>Stackable Rainbow Case for Raspberry Pi 4 B.</figcaption>
+</figure>
+
+With this case it is possible to install four heatsinks and apply a fan for cooling the electronics of the Raspberry Pi 4 B such as its ARM processor.
+
+
 
 ### SD Card
 
