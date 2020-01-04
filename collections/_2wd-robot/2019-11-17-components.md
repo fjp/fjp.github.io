@@ -100,7 +100,14 @@ To power the motors a battery compartment is available together with a switch to
 
 ### Power Supplies
 
-As mentioned the robot will be equipped with a USB-C powerbank to supply the RPi 4 B with 5 V. 
+As mentioned the robot will be equipped with a 5V/2.1A USB-C powerbank to supply the Raspberry Pi 4 B with 5 V.
+
+<figure class="half">
+    <a href="/assets/collections/2wd-robot/components/powerbank_top.jpg"><img src="/assets/collections/2wd-robot/components/powerbank_top.jpg"></a>
+    <a href="/assets/collections/2wd-robot/components/powerbank_bottom.jpg"><img src="/assets/collections/2wd-robot/components/powerbank_bottom.jpg"></a>
+    <figcaption>Power bank with 10.000 mAh from Intenso.</figcaption>
+</figure>
+
 To power the motors the provided battery compartment will be used, which holds four AA batteries $4 \cdot 1.5\text{V} = 6\text{V}$.
 
 ### I2C Hub
