@@ -330,7 +330,9 @@ cv2.imshow('image',img)
 
 However, it is common to display images using matplotlib especially in jupyter notebooks. Plotting images loaded with opencv using matplotlib is also mentioned in the [opencv image tutorial](https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_gui/py_image_display/py_image_display.html#using-matplotlib).
 
+
 **_Warning_ Color image loaded by OpenCV is in BGR mode. But Matplotlib displays in RGB mode. So color images will not be displayed correctly in Matplotlib if image is read with OpenCV.**
+{: .notice--danger}
 
 
 ```python
