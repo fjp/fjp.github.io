@@ -49,7 +49,7 @@ feature_row4:
     alt: "ukf prediction"
     title: "UKF Prediction"
     excerpt: 'The famous **Unscented Kalman Filter** explained.'
-    url: "/blog/"
+    url: "/blog/ukf"
     btn_label: "Read More"
     btn_class: "btn--primary"
 ---
