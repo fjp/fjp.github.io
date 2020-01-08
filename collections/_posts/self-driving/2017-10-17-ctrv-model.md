@@ -11,6 +11,7 @@ toc: true
 header:
   teaser: /assets/posts/2017-10-17-ctrv-model/ctrv-model.png
   overlay_image: /assets/posts/2017-10-17-ctrv-model/ctrv-model.png
+  caption: "Source: [Udacity self driving car ND](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/daf3dee8-7117-48e8-a27a-fc4769d2b954/concepts/ec188154-36ef-4f3c-bdd4-6eccf48181bf)"
 ---
 
 ## Introduction
