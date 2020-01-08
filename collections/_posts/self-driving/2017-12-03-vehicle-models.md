@@ -4,6 +4,7 @@ title: Vehicle Models
 date:   2017-12-03 17:19:31 +0100
 categories: [control, model, dynamic]
 tags: [udacity, model, dynamic, mpc]
+permalink: /posts/vehicle-models/
 use_math: true
 toc: true
 # toc_label: "Unscented Kalman Filter"
