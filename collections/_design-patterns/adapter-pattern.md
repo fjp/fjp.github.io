@@ -46,7 +46,7 @@ The client is implemented against the target interface and uses the adapter in t
 
 <figure>
     <a href="/assets/pages/design-patterns/adapter-object-pattern.png"><img src="/assets/pages/design-patterns/adapter-object-pattern.png"></a>
-    <figcaption>Object Adapter Pattern implements the Adaptee and uses composition for the target interface.</figcaption>
+    <figcaption>Object Adapter Pattern implements the Adaptee and uses composition for the target interface (Source: [Head First Design Patterns]({{ page.url }}/#reference).</figcaption>
 </figure>
 
 Another way to implement an adapter in programming languages that support multiple inheritance like C++ is to let the adapter class inherit both the target interface and the adaptee. This is known as Class Adapter. An Object Adapter uses composition to pass requests to an Adaptee.
