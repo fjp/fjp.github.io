@@ -11,14 +11,17 @@ toc: true
 header:
   teaser: /assets/posts/2017-12-07-model-predictive-control/mpc-constraints.png
   overlay_image: /assets/posts/2017-12-07-model-predictive-control/mpc-constraints.png
+  caption: "Source: [Udacity self driving car ND](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/af4fcd4f-eb1f-43d8-82b3-17bb1e71695f/concepts/e0c4c6fd-18e6-45b4-bdb8-867909908119))"
 ---
 
 
-Path planning generates vehicle trajectories using fused sensor data to understand the environment around the vehicle
-and localization data to determine where car is located in that environment. The path planning block uses
-this data to decide where to drive next by generating a trajectory. This trajectory is passed to the controller to steer the vehicle.
+Path planning generates vehicle trajectories using fused sensor data to understand the environment around the vehicle,
+and localization data to determine where car is located in that environment. 
 
-In the following sections summarize the foundations to
+The path planning unit uses this data to decide where to drive next by generating a trajectory. 
+This trajectory is passed to the controller to steer the vehicle.
+
+The following sections summarize the foundations of
 - Search algorithms used in discrete path planning
 - Prediction which uses the data from sensor fusion to predict where surrounding objects are likely to do.
 - Behavior planning where a decision for the vehicle in the next 10 seconds is made.
