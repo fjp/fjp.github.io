@@ -256,3 +256,6 @@ public class EnumerationIteratorTestDrive {
 	}
 }
 {% endhighlight %}
+
+
+{% include footer/head-first-design-patterns.md %}
