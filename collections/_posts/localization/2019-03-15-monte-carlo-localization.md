@@ -11,8 +11,6 @@ use_math: true
 toc: true
 classes: wide
 # toc_label: "Kalman filter"
-header-includes:
-  - \usepackage{algorithm2e}
 header:
   teaser: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step0.png
   overlay_image: /assets/posts/2019-04-17-monte-carlo-localization/particle_filters.gif #keep it square 200x200 px is good
@@ -179,7 +177,7 @@ gallery_iterations:
     title: "Iteration 39"
 ---
 
-This post is a summary of the Udacity Lab on localization using [Monte Carlo Localization](https://en.wikipedia.org/wiki/Monte_Carlo_localization) (MCL).
+This post is a summary of the [Udacity Robotics Nanodegree Lab](https://eu.udacity.com/course/robotics-software-engineer--nd209) on localization using [Monte Carlo Localization](https://en.wikipedia.org/wiki/Monte_Carlo_localization) (MCL).
 The Udacity repo can be found [here](https://github.com/udacity/RoboND-MCL-Lab)
 
 To follow this tutorial, clone the repo to a folder of your choice.
@@ -663,4 +661,4 @@ Further details about MCL are found in the [paper](http://robots.stanford.edu/pa
 
 ## Reference
 
-This post is a summary of the MCLLab from the Robotics Nanodegree of Udacity found [here](https://eu.udacity.com/course/robotics-software-engineer--nd209)
+This post is a summary of the MCLLab from the [Robotics Nanodegree of Udacity](https://eu.udacity.com/course/robotics-software-engineer--nd209)
