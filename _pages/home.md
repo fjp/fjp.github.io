@@ -22,7 +22,7 @@ feature_row:
     alt: "Localization"
     title: "Localization"
     excerpt: "Localization is the key for a robot to navigate in a world. Learn here some localization techniques."
-    url: "/blog/"
+    url: "/posts/optimal-frenet/"
     btn_label: "Read More"
     btn_class: "btn--primary"
   - image_path: /assets/posts/2017-12-07-model-predictive-control/timesteps-horizonlength.png
@@ -33,7 +33,7 @@ feature_row2:
     alt: "Path Planning"
     title: "Path Planning"
     excerpt: 'What is your overall goal? Not only you should ask yourself this question sometimes. A robot requires an answer to this important question too, in order to know where it is going. To help him, read about **Path Planning** first.'
-    url: "/blog/"
+    url: "/posts/path-planning/"
     btn_label: "Read More"
     btn_class: "btn--primary"
 feature_row3:
