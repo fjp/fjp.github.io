@@ -12,6 +12,7 @@ toc: true
 header:
   teaser: /assets/posts/2017-10-15-unscented-kalman-filter/ukf-prediction.png
   overlay_image: /assets/posts/2017-10-15-unscented-kalman-filter/ukf-prediction.png
+  caption: "Source: [Udacity self driving car ND](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/daf3dee8-7117-48e8-a27a-fc4769d2b954/concepts/3f67dc00-84f0-442b-88bc-1edf7b69caa7)"
 ---
 
 
@@ -277,3 +278,7 @@ Cross-correlation
 $$
 T_{k+1|k} = \sum_{i=0}^{2n_{aug}} \omega_i (\mathcal{X}_{k+1|k,i} - x_{k+1|k}) (\mathcal{Z}_{k+1|k,i} - z_{k+1|k})^{T}
 $$
+
+## References
+
+A useful resource to learn more about state estimation is the [Udacity self driving car Nanodegree](https://www.udacity.com/course/self-driving-car-engineer-nanodegree--nd013)
