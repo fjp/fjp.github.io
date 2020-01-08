@@ -11,6 +11,7 @@ toc: true
 header:
   teaser: https://upload.wikimedia.org/wikipedia/commons/4/43/PID_en.svg
   overlay_image: https://upload.wikimedia.org/wikipedia/commons/4/43/PID_en.svg #keep it square 200x200 px is good
+  caption: "Source: [Wikimedia](https://upload.wikimedia.org/wikipedia/commons/4/43/PID_en.svg)"
 ---
 
 ## Introduction
