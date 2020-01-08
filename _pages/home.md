@@ -12,7 +12,7 @@ header:
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 excerpt: "The wheel was man’s greatest invention – until he got behind it. (Bill Ireland)"
 intro:
-  - excerpt: "Explore the technology of self-driving vehicles, robotic projects, linux, ... and more."
+  - excerpt: "Explore the technology of self-driving vehicles, robotics, linux, ... and more."
 feature_row:
   - image_path: /assets/posts/2017-12-03-trajectory-following/trajectory-following-overview.png
     alt: "Trajectory Following"
@@ -41,7 +41,7 @@ feature_row3:
     alt: "CTRV Model"
     title: "CTRV Model"
     excerpt: 'The Constant Turn Rate and Constant Velocity model. One of the kinematic vehicle models.'
-    url: "/blog/"
+    url: "/posts/vehicle-models/"
     btn_label: "Read More"
     btn_class: "btn--primary"
 feature_row4:
