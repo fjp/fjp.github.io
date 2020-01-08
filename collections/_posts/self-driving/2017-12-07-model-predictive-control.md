@@ -7,9 +7,11 @@ tags: [udacity, mpc, control]
 use_math: true
 toc: true
 # toc_label: "Unscented Kalman Filter"
+excerpt: "Trajectory Optimization using Model Predictive Control (MPC) techniques."
 header:
   teaser: /assets/posts/2017-12-07-model-predictive-control/mpc-constraints.png
   overlay_image: /assets/posts/2017-12-07-model-predictive-control/mpc-constraints.png
+  caption: "Source: [Udacity self driving car ND](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/338b458f-7ebf-449c-9ad1-611eb933b076/concepts/5df9cd1c-b111-48e5-857c-7547f82dac0c)"
 ---
 
 
