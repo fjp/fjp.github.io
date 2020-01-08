@@ -10,6 +10,7 @@ toc: true
 header:
   teaser: /assets/posts/2017-10-30-localization/localization.png
   overlay_image: /assets/posts/2017-10-30-localization/localization.png
+  caption: "Source: [Udacity self driving car ND](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/2c318113-724b-4f9f-860c-cb334e6e4ad7/lessons/3b114d0b-36bd-4006-b48a-dcc6b1fb7d5d/concepts/0884e9b2-8b20-4b91-aa66-d7dbb665666d)"
 ---
 
 Localization answers the following question:
