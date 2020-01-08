@@ -5,15 +5,19 @@ date:   2019-04-17 19:00:42 +0200
 excerpt: "Monte Carlo Localization can be used to localize a robot in a world with its position and orientation. This post shows the basic algorithm and a c++ implementation."
 permalink: /posts/localization/mcl/
 categories: [robotics, localization, monte carlo localization]
-tags: [robotics, localization, monte carlo, mcl]
+tags: [robotics, localization, monte carlo, mcl, cpp, c++, implementation]
 comments: true
 use_math: true
 toc: true
 classes: wide
 # toc_label: "Kalman filter"
+excerpt: Monte Carlo Localization Algorithm and C++ Implementation
 header:
   teaser: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step0.png
   overlay_image: /assets/posts/2019-04-17-monte-carlo-localization/particle_filters.gif #keep it square 200x200 px is good
+  overlay_color: "#000"
+  overlay_filter: "0.5"
+  caption: "Source: [Udacity self driving car ND](https://commons.wikimedia.org/wiki/File:Particle_filters.gif)"
 gallery_iterations:
   - url: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step0.png
     image_path: /assets/posts/2019-04-17-monte-carlo-localization/Images/Step0.png
