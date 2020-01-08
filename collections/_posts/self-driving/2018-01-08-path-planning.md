@@ -4,6 +4,7 @@ title:  Path Planning
 date:   2018-01-08 20:10:31 +0100
 categories: [path planning, search]
 tags: [udacity, path planning]
+permalink: /posts/path-planning/
 use_math: true
 toc: true
 # toc_label: "Unscented Kalman Filter"
