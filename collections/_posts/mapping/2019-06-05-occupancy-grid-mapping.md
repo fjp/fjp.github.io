@@ -45,7 +45,7 @@ A map on the other hand lies in a continuous space.
 This can lead to infinitely many variables used to describe the map. Additional uncertainty is present through sensor data perception. 
 Other challenges are the space and its geometries that should be mapped. For example repetitive environments such as walkways with no doors or similar looking ones.  
 To map an environment, the robot pose is assumed to be known and the occupancy grid mapping algorithm can be used to solve the problem.
-However, the hypotesis space is hughe. This is the space of all possible maps that can be formed during mapping. The space is highly dimensional because maps are defined over a continuous space.
+However, the hypotesis space is huge. This is the space of all possible maps that can be formed during mapping. The space is highly dimensional because maps are defined over a continuous space.
 To overcome these challenges, the occupancy grid map algorithm presents a discrete approximation of the map. But even with these approximations the space of all possible maps will still be high.
 Therefore, the challenge is to estimate the full posterior map for maps with high dimensional spaces. 
 
@@ -83,4 +83,4 @@ The gmapping algorithm can be found [here](https://openslam-org.github.io/gmappi
 
 ## Reference
 
-This post is a summary of the lesson on Occupancy Grid Mapping from the Robotics Nanodegree of Udacity found [here](https://eu.udacity.com/course/robotics-software-engineer--nd209).
+This post is a summary of the lesson on Occupancy Grid Mapping from the [Robotics Nanodegree of Udacity](https://eu.udacity.com/course/robotics-software-engineer--nd209).
