@@ -15,7 +15,7 @@ header:
   teaser: /assets/pages/design-patterns/adapter-object-pattern.png
   overlay_image: /assets/pages/design-patterns/adapter-object-pattern.png
   #overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
-  #caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
+  caption: "Source: [**Head First Design Patterns**]({{ page.url }}/#reference)"
   #show_overlay_excerpt: true
   #overlay_image: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
 redirect_from:
