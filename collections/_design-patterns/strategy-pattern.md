@@ -15,7 +15,7 @@ header:
   teaser: /assets/pages/design-patterns/strategy-pattern.png
   overlay_image: /assets/pages/design-patterns/strategy-pattern.png
   #overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
-  #caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
+  caption: "Source: [**Head First Design Patterns**]({{ page.url }}/#reference)"
   #show_overlay_excerpt: true
 redirect_from:
     - /design-patterns/
