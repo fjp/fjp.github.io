@@ -40,13 +40,13 @@ When possible, the default name of a node should follow from the name of the exe
 This default name can be remapped at startup to something unique.
 {: .notice }
 
-Following [REP-144](https://www.ros.org/reps/rep-0144.html) this means that each sensor will get its own package with one 
+To follow [REP-144](https://www.ros.org/reps/rep-0144.html), each sensor will get its own package with one 
 or more nodes to be executed. Following this scheme it will be possible to use the sensors in other projects and work 
 with existing packages such as packages from the [navigation stack](http://wiki.ros.org/navigation).
 
-## Steps to using ROS to Control a Robot
+## Steps to Control a Robot using ROS
 
-The steps to using ROS to control a new robot are[ref](http://shop.oreilly.com/product/0636920024736.do): 
+The steps to control a new robot using ROS are[ref](http://shop.oreilly.com/product/0636920024736.do): 
 
 1. Decide on the ROS message interface. 
 2. Write drivers for the robot's motors. 
