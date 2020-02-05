@@ -1,6 +1,6 @@
 ---
 layout: single #collection
-title: Autonomous 2WD Robot - Perception Package
+title: Autonomous 2WD Robot - Localization Packages
 permalink: /projects/2wd-robot/ros-packages/localization/
 excerpt: "ROS Localization Packages for ROS Melodic running on a Raspberry Pi 4 for an autonomous 2WD Robot to localize itself."
 date: 2019-12-07 08:00:35 +0100
