@@ -60,10 +60,12 @@ The steps to control a new robot using ROS are[ref](http://shop.oreilly.com/prod
 
 ## Packages and Nodes
 
-| Category          | Package                 | Nodes  |
-|:-----------------:|:-----------------------:|:------:|
-| sensor/perception | grove_ultrasonic_driver | ranger |
-| sensor/perception | rpi_camera_driver       | camera |
+| Category            | Package                 | Nodes         | topic                  |
+|:-------------------:|:-----------------------:|:-------------:|:----------------------:|
+| actuator/control    | grove_motor_driver      | motor_driver  | /cmd                   |
+| sensor/localization | grove_motor_driver      | speedsensor   | /odom                  |
+| sensor/perception   | grove_ultrasonic_driver | ranger        | /distance              | 
+| sensor/perception   | rpi_camera_driver       | camera        | /2wdrobotcam/image_raw |
 
 
 ## Using Sensors and Actuators in ROS
