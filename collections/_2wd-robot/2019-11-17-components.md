@@ -204,13 +204,20 @@ As an alternative we could use the [HC SR04](https://www.seeedstudio.com/blog/20
 
 To estimate the change in position over time ([odometry](https://en.wikipedia.org/wiki/Odometry)) the robot will
 utilize an [optical speed sensor](https://en.wikipedia.org/wiki/Wheel_speed_sensor#Optical_sensor). 
-Specifically the LM393 ([datasheet](http://www.ti.com/lit/ds/symlink/lm2903-n.pdf)) [comperator](https://en.wikipedia.org/wiki/Comparator) combined with a H206 slot-type opto interrupter. [Joy-IT Speed Sensor](https://joy-it.net/en/products/SEN-Speed).
+Specifically the [Joy-IT Speed Sensor](https://joy-it.net/en/products/SEN-Speed) which combines a LM393 ([datasheet](http://www.ti.com/lit/ds/symlink/lm2903-n.pdf)) [comperator](https://en.wikipedia.org/wiki/Comparator) and a H206 slot-type opto interrupter.
 
 <figure class="half">
     <a href="/assets/collections/2wd-robot/components/speed-sensor-front.jpg"><img src="/assets/collections/2wd-robot/components/speed-sensor-front.jpg"></a>
     <a href="/assets/collections/2wd-robot/components/speed-sensor-back.jpg"><img src="/assets/collections/2wd-robot/components/speed-sensor-back.jpg"></a>
     <figcaption>LM393 Speed Sensor from Joy-IT.</figcaption>
 </figure>
+
+Technical Specifications:
+
+- Dimensions: 32 x 14 x 7mm 
+- Operating voltage: 3.3V to 5V (we will use 3.3V)
+- Two outputs: Digital (D0) and Analog (A0)
+
 
 References:
 https://dronebotworkshop.com/robot-car-with-speed-sensors/
