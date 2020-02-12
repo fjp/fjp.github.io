@@ -70,7 +70,7 @@ autonomous_rc_car:
       - title: "Control"
         url: /projects/2wd-robot/ros-packages/control/
       - title: "Localization"
-        url: /projects/2wd-robot/ros-packages/localization/
+        url: /projects/2wd-robot/ros-packages/odometry/
       - title: "Perception"
         url: /projects/2wd-robot/ros-packages/perception/
       - title: "Planner"
