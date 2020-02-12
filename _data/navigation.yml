@@ -69,7 +69,7 @@ autonomous_rc_car:
     children:
       - title: "Control"
         url: /projects/2wd-robot/ros-packages/control/
-      - title: "Localization"
+      - title: "Odometry"
         url: /projects/2wd-robot/ros-packages/odometry/
       - title: "Perception"
         url: /projects/2wd-robot/ros-packages/perception/
