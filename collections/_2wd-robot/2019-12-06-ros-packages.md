@@ -44,6 +44,10 @@ To follow [REP-144](https://www.ros.org/reps/rep-0144.html), each sensor will ge
 or more nodes to be executed. Following this scheme it will be possible to use the sensors in other projects and work 
 with existing packages such as packages from the [navigation stack](http://wiki.ros.org/navigation).
 
+## Standard Units of Measure and Coordinate Conventions
+
+Please see [REP 103](http://www.ros.org/reps/rep-0103.html) for documentation on the standard units of measure and coordinate conventions followed here.
+
 ## Steps to Control a Robot using ROS
 
 The steps to control a new robot using ROS are[ref](http://shop.oreilly.com/product/0636920024736.do): 
@@ -52,28 +56,93 @@ The steps to control a new robot using ROS are[ref](http://shop.oreilly.com/prod
 2. Write drivers for the robot's motors. 
 3. Write a model of the robot's physical structure. 
 4. Extend the model with physical properties for use in simulation with Gazebo. 
-5. Publish coordinate transform data via tf and visualize it with rviz. 
+5. Publish coordinate transform data via `tf` and visualize it with `rviz`. 
 6. Add sensors, with driver and simulation support. 
 7. Apply standard algorithms, such as navigation.
 
 
 
-## Packages and Nodes
+## ROS Message Interface
 
-| Category            | Package                 | Nodes         | topic                  |
-|:-------------------:|:-----------------------:|:-------------:|:----------------------:|
-| actuator/control    | grove_motor_driver      | motor_driver  | /cmd                   |
-| sensor/localization | grove_motor_driver      | speedsensor   | /odom                  |
-| sensor/perception   | grove_ultrasonic_driver | ranger        | /distance              | 
-| sensor/perception   | rpi_camera_driver       | camera        | /2wdrobotcam/image_raw |
+First we need to get control of the mobile base using a ROS node that communicates with the hardware
+and then presents a standard ROS interface to the rest of the system. 
+Doing so follows a common and core concept of ROS: abstraction. Similar acting robots can reuse standard interfaces
+and thus take advantage of the large ROS ecosystem consisting of tools and libraries. 
+
+The defining characteristics of the 2WD robot are that it is mobile and driving on the ground. 
+Its kinematic configuration is similar to a tricycle:
+
+- translate forward and backward (along its x-axis)
+- yaw (rotate about its z-axis)
+- combinations of the two. 
+
+Because the robot is moving only in 2 dimensions, it cannot translate side to side (y-axis) or up and down (z-axis). 
+Neither can it roll or pitch its body (rotation about its x- or y-axes, respectively).
+
+To control it, we can make use of the [`geometry_msgs/Twist`](http://docs.ros.org/api/geometry_msgs/html/msg/Twist.html) 
+(cmd_vel topic) message type interface. With this, the desired linear velocity vx along the x-axis (by convention,
+positive is forward) and the rotational velocity vyaw about the z-axis (by convention, positive is counter-clockwise) 
+is sent as a command to the robot.
+
+Using the `rosmsg show` command we can see what's in the `geometry_msgs/Twist` message type:
+
+```bash
+
+```
+
+Some of the fields (specifically, linear/y, linear/z, angular/x, or angular/y) are not required for the 2WD robot and
+will therefore not be used.
+
+To know how far the robot traveled, we expect to report its position and orientation in the plane as (x, y, yaw). 
+The ROS community uses the [`nav_msgs/Odometry`](http://docs.ros.org/api/nav_msgs/html/msg/Odometry.html) (odom topic) 
+ROS message interface to receive the position and orientation as data from the robot. 
+
+```bash
+
+```
+
+To report the robot's position and orientation, we only really need to fill out the `pose/pose/ position` and 
+`pose/pose/orientation` fields, ignoring the covariance fields 
+(which are only needed for downstream components that reason about uncertainty). 
+Within `pose/pose/position`, we only need to fill out `x` and `y`. 
+Working with `pose/pose/ orientation` requires to construct a valid quaternion that represents a 3D orientation. 
 
 
-## Using Sensors and Actuators in ROS
+<p>
+The field called header, of type std_msgs/Header, is contained in many ROS messages and contains important information
+for the correct interpretation of many types of data in a robot system:
+<ul>
+  <li> at what time the data was produced </li>
+  <li> in what coordinate frame it is represented </li>
+</ul>
+The tf library uses this information to transform between different coordinate frames.
+</p>
+{: .notice }
 
-To integrate new sensors and actuators into the ROS ecosystem 
-involves writing ROS wrappers around the APIs that we're already using to access these devices.
+We use these generic interfaces from ROS, 
+as it allows us to used existing libraries and tools that can operate on these message types.
 
-## Adding Sensors
+
+## Hardware Driver
+
+
+## Modeling the Robot: URDF
+
+
+## Simulation in Gazebo
+
+
+## Verifying Transforms
+
+Publish coordinate transform data via `tf` and visualize it with `rviz`. 
+
+
+## Adding Sensors and Actuators in ROS
+
+To integrate new sensors and actuators into the ROS ecosystem with driver and simulation support,
+involves writing ROS wrappers around the APIs used to access these devices.
+
+### Adding Sensors
 
 If a sensor already has a Python API it is relatively straightforward to use sensors in ROS.
 First you should always verify that things are working as expected before you start to wrap up a sensor in ROS. 
@@ -93,6 +162,34 @@ which depends on the sensor.
 Finally we need to decide what type of ROS message our wrapper will produce.
 Whenever possible we should use existing ROS message types because it allows us
 to reuse the wrapped sensor with other nodes that use the same interface types.
+
+### Adding Actuators
+
+
+## Utilizing and Configuring Existing ROS Packages
+
+Apply standard algorithms, such as control and navigation.
+
+### ROS Control
+
+
+### ROS Navigation
+
+
+### Using `rviz` to Localize and Command a Navigating Robot
+
+
+## Packages and Nodes
+
+| Category            | Package                 | Nodes         | topic                  |
+|:-------------------:|:-----------------------:|:-------------:|:----------------------:|
+| actuator/control    | grove_motor_driver      | motor_driver  | /cmd                   |
+| sensor/localization | grove_motor_driver      | speedsensor   | /odom                  |
+| sensor/perception   | grove_ultrasonic_driver | ranger        | /distance              | 
+| sensor/perception   | rpi_camera_driver       | camera        | /2wdrobotcam/image_raw |
+
+
+
 
 
 
