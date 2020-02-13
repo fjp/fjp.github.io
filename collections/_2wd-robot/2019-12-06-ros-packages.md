@@ -58,7 +58,7 @@ The steps to control a new robot using ROS are[ref](http://shop.oreilly.com/prod
 4. Extend the model with physical properties for use in simulation with Gazebo. 
 5. Publish coordinate transform data via `tf` and visualize it with `rviz`. 
 6. Add sensors, with driver and simulation support. 
-7. Apply standard algorithms, such as navigation.
+7. Apply standard algorithms, such as control and navigation.
 
 
 
