@@ -133,6 +133,11 @@ We will use these interfaces to connect the robots hardware components to the Ra
 These interfaces operate on communication protocols where we can leverage existing libraries to work with these protocols.
 For example the RPi.GPIO library provides methods to use the I2C protocol and work with hardware interrupts.
 
+Anothe important aspect is to use the hardware interface to convert between the robot's 
+native representation of commands and data and the interfaces that ROS supports. 
+Here we need to consider which existing ROS packages we are going to use and what types of message interfaces they use.
+Then we can apply math to the raw hardware signals to bring it in a form that is suitable for the ROS message types.
+
 
 ## Modeling the Robot: URDF
 
