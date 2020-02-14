@@ -26,8 +26,9 @@ On the [file system level](https://wiki.ros.org/ROS/Concepts#ROS_Filesystem_Leve
 Packages are the main unit for organizing software in ROS. A package may contain ROS runtime processes ([nodes](http://wiki.ros.org/Nodes)), a ROS-dependent library, datasets, configuration files, or anything else that is usefully organized together. Packages are the most atomic build item and release item in ROS. Meaning that the most granular thing you can build and release is a package.
 {: .notice }
 
+## Best Practices
 
-For this autonomous 2WD robot project the nodes run on a Raspberry Pi 4 to act in an environment according to sensor information.
+The project follows [ROS best practices](http://wiki.ros.org/BestPractices)
 
 ## Naming Conventions
 
