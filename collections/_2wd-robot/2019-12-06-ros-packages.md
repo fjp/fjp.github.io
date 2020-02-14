@@ -126,6 +126,13 @@ as it allows us to used existing libraries and tools that can operate on these m
 
 ## Hardware Driver
 
+To control the 2WD robot and get its sensor information we will need interfaces to its hardware.
+In this project the Raspberry Pi 4 B is used as the main processing unit. 
+It provides physical hardware interfaces such as GPIO pins, USB and a camera connector.
+We will use these interfaces to connect the robots hardware components to the Raspberry Pi.
+These interfaces operate on communication protocols where we can leverage existing libraries to work with these protocols.
+For example the RPi.GPIO library provides methods to use the I2C protocol and work with hardware interrupts.
+
 
 ## Modeling the Robot: URDF
 
