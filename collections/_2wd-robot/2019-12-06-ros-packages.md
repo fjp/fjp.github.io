@@ -138,6 +138,11 @@ native representation of commands and data and the interfaces that ROS supports.
 Here we need to consider which existing ROS packages we are going to use and what types of message interfaces they use.
 Then we can apply math to the raw hardware signals to bring it in a form that is suitable for the ROS message types.
 
+In this project the 2WD robot has two motors which operate on a voltage level value applied to them.
+In combination with the wheel encoder ticks, these values need to be brought into a "ROS format". 
+Specifically, ROS uses the notion of joints (revolute, rotational, continuous, ...) with standard units
+for different pysical quantities, such as position (m), velocity (m/s), angle (rad), and angular velocity (rad/s).
+
 
 ## Modeling the Robot: URDF
 
