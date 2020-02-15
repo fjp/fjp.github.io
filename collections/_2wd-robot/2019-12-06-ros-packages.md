@@ -206,6 +206,11 @@ sudo apt-get install ros-melodic-ros-control ros-melodic-ros-controllers
 3. YAML Files
 4. Write a hardware interface: [ROS Tutorial](http://wiki.ros.org/ros_control/Tutorials/Create%20your%20own%20hardware%20interface), [Slaterobots blog post](https://slaterobots.com/blog/5abd8a1ed4442a651de5cb5b/how-to-implement-ros_control-on-a-custom-robot), [ros_control_boilerplate](https://github.com/PickNikRobotics/ros_control_boilerplate) from [Dave Coleman](https://github.com/davetcoleman), [eborghi10/my_ROS_mobile_robot](https://github.com/eborghi10/my_ROS_mobile_robot/blob/e04acfd3e7eb4584ba0aab8a969a74d6c30eed34/my_robot_base/include/my_robot_hw_interface.h#L78-L99) using Joint Command Interface and Joint State Interface as these are required for the `diff_drive_controller`.
 
+<figure>
+    <a href="/assets/collections/2wd-robot/ros/ros_control/gazebo_ros_control.png"><img src="/assets/collections/2wd-robot/ros/ros_control/gazebo_ros_control.png"></a>
+    <figcaption>ros control structure (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
 ### ROS Navigation
 
 
