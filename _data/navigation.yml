@@ -64,6 +64,23 @@ autonomous_rc_car:
         url: /projects/2wd-robot/hardware-interfaces/
       - title: "ROS Melodic Setup"
         url: /projects/2wd-robot/ros-melodic/
+  - title: "Integrating Robot into ROS"
+    url: /projects/2wd-robot/ros-integration/
+    children:
+      - title: "ROS Message Interface"
+        url: /projects/2wd-robot/ros-integration/#ros-message-interface
+      - title: "Hardware Driver"
+        url: /projects/2wd-robot/ros-integration/#hardware-driver
+      - title: "Modeling the Robot: URDF"
+        url: /projects/2wd-robot/ros-integration/#modeling-the-robot-urdf
+      - title: "Simulation in Gazebo"
+        url: /projects/2wd-robot/ros-integration/#simulation-in-gazebo
+      - title: "Verifying Transforms"
+        url: /projects/2wd-robot/ros-integration/#verifying-transforms
+      - title: "Adding Sensors and Actuators in ROS"
+        url: /projects/2wd-robot/ros-integration/#adding-sensors-and-actuators-in-ros
+      - title: "Utilizing and Configuring Existing ROS Packages"
+        url: /projects/2wd-robot/ros-integration/#utilizing-and-configuring-existing-ros-packages
   - title: "ROS Packages and Nodes"
     url: /projects/2wd-robot/ros-packages/
     children:
