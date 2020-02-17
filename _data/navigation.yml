@@ -77,9 +77,9 @@ autonomous_rc_car:
         url: /projects/2wd-robot/ros-integration/#simulation-in-gazebo
       - title: "Verifying Transforms"
         url: /projects/2wd-robot/ros-integration/#verifying-transforms
-      - title: "Adding Sensors and Actuators in ROS"
+      - title: "Adding Sensors and Actuators"
         url: /projects/2wd-robot/ros-integration/#adding-sensors-and-actuators-in-ros
-      - title: "Utilizing and Configuring Existing ROS Packages"
+      - title: "Utilizing existing ROS Packages"
         url: /projects/2wd-robot/ros-integration/#utilizing-and-configuring-existing-ros-packages
   - title: "ROS Packages and Nodes"
     url: /projects/2wd-robot/ros-packages/
