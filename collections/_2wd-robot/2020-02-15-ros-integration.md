@@ -1,19 +1,19 @@
 ---
 layout: single #collection
-title: Autonomous 2WD Robot - Integrating into ROS
+title: Autonomous 2WD Robot - Integrating a Robot into ROS
 permalink: /projects/2wd-robot/ros-integration/
 excerpt: "Integrating an autonomous 2WD robot into ROS."
 date: 2020-02-15 15:00:35 +0100
 categories: [robotics]
-tags: [2wd, robot, ros, melodic, raspberry, pi, autonomous, ubuntu, bionic, package, control]
+tags: [2wd, robot, ros, melodic, raspberry, pi, autonomous, ubuntu, package, integration]
 comments: true
 use_math: true
 toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  # teaser: /assets/collections/2wd-robot/assembly/motor/08-motor-driver-power.jpg
-  # overlay_image: /assets/collections/2wd-robot/assembly/motor/08-motor-driver-power.jpg
+  teaser: /assets/collections/2wd-robot/ros/ros_control/gazebo_ros_control.png
+  overlay_image: /assets/collections/2wd-robot/ros/ros_control/gazebo_ros_control.png
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   # caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
   show_overlay_excerpt: true
