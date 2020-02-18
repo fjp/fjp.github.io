@@ -22,7 +22,7 @@ sidebar:
 ---
 
 
-## Steps to Integrate a Robot using ROS
+## Steps to Integrate a Robot into ROS
 
 The steps to control a new robot using ROS are[ref](http://shop.oreilly.com/product/0636920024736.do): 
 
