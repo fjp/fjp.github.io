@@ -64,7 +64,7 @@ autonomous_rc_car:
         url: /projects/2wd-robot/hardware-interfaces/
       - title: "ROS Melodic Setup"
         url: /projects/2wd-robot/ros-melodic/
-  - title: "Integrating Robot into ROS"
+  - title: "ROS Integration"
     url: /projects/2wd-robot/ros-integration/
     children:
       - title: "ROS Message Interface"
