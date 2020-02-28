@@ -14,6 +14,13 @@ header:
 author_profile: false
 ---
 
+## References
+
+- https://en.cppreference.com
+- http://cslibrary.stanford.edu/101/
+- https://www.learncpp.com/
+- http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines
+
 ## Books
 
 ### Programming Principles and Practice using C++
