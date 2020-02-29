@@ -24,7 +24,7 @@ sidebar:
 
 ## Steps to Integrate a Robot into ROS
 
-The steps to control a new robot using ROS are[ref](http://shop.oreilly.com/product/0636920024736.do): 
+The steps to control a new robot using ROS are [[1](http://shop.oreilly.com/product/0636920024736.do)]: 
 
 1. Decide on the ROS message interface. 
 2. Write drivers for the robot's motors. 
