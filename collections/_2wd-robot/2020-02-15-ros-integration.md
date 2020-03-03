@@ -119,6 +119,10 @@ for different pysical quantities, such as position (m), velocity (m/s), angle (r
 
 ## Modeling the Robot: URDF
 
+To integrate a robot into ROS we have to design a model of it using CAD tools (e.g. AutoCAD, SOLIDWORKS, Blender).
+This step is important for the following reasons. For example, we can use this model to simulate and control the robot, 
+visualize it, or use ROS tools to get information on the robotic structure and its kinematics [[2](https://www.packtpub.com/eu/hardware-and-creative/mastering-ros-robotics-programming-second-edition)].
+
 
 ## Simulation in Gazebo
 
