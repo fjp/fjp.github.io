@@ -147,6 +147,15 @@ The following XML tags are the commonly used [URDF tags](http://wiki.ros.org/urd
 
 - `link`: The `link` element describes a rigid body with a size and shape, visual features (color and 3D meshes), and dynamic features such as an inertial matrix and collision properties.
 
+The syntax of the `link` tag is as follows:
+
+```xml
+<link name="<name of the link>"> 
+  <inertial>...........</inertial> 
+  <visual> ............</visual> 
+  <collision>..........</collision> 
+</link>
+```
 
 
 ## Simulation in Gazebo
