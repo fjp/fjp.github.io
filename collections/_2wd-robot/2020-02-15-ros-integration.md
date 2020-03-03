@@ -138,6 +138,10 @@ you can construct shorter and more readable XML files by using macros that expan
 This makes it easier to maintain robot description files, increase their readability, 
 and to avoid duplication in the robot description files.
 
+A robot is modeled in URDF, where we have to create a file and write the relationship between each link and joint in the robot and save the file with the .urdf extension.
+
+URDF can represent the kinematic and dynamic description of the robot, the visual representation of the robot, and the collision model of the robot.
+
 
 ## Simulation in Gazebo
 
