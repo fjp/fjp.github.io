@@ -143,8 +143,10 @@ A robot is modeled in URDF, where we have to create a file and write the relatio
 
 URDF can represent the kinematic and dynamic description of the robot, the visual representation of the robot, and the collision model of the robot.
 
-The following tags are the commonly used URDF tags to compose a URDF robot model: link:
-http://wiki.ros.org/urdf/XML
+The following XML tags are the commonly used [URDF tags](http://wiki.ros.org/urdf/XML) to compose a URDF robot model: 
+
+- `link`: The `link` element describes a rigid body with a size and shape, visual features (color and 3D meshes), and dynamic features such as an inertial matrix and collision properties.
+
 
 
 ## Simulation in Gazebo
