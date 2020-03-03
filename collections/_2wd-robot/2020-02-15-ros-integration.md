@@ -119,6 +119,44 @@ for different pysical quantities, such as position (m), velocity (m/s), angle (r
 
 ## Modeling the Robot: URDF
 
+To integrate a robot into ROS we have to design a model of it using CAD tools (e.g. AutoCAD, SOLIDWORKS, Blender).
+This step is important for the following reasons. For example, we can use this model to simulate and control the robot, 
+visualize it, or use ROS tools to get information on the robotic structure and its kinematics [[2](https://www.packtpub.com/eu/hardware-and-creative/mastering-ros-robotics-programming-second-edition)].
+
+ROS has a standard meta package for designing and creating robot models called [`robot_model`](http://wiki.ros.org/robot_model), which consists of a set of packages, some of which are called [`urdf`](http://wiki.ros.org/urdf), [`kdl_parser`](wiki.ros.org/kdl_parser), [`robot_state_publisher`](http://wiki.ros.org/robot_state_publisher), and [`collada_urdf`](http://wiki.ros.org/collada_urdf). These packages help us create the 3D robot model description with the exact characteristics of the real hardware.
+
+Note that the package `robot_model` is deprecated in ROS melodic and should not be used directly as dependency. 
+Instead, use the packages contained within the `robot_model` meta package.
+{: .notice }
+
+We can only describe a robot in URDF that has a tree-like structure in its links, that is, the robot will have rigid links and will be connected using joints. Flexible links can't be represented using URDF. The URDF is composed using special XML tags, and we can parse these XML tags using parser programs for further processing. In our example, the chassis is the root, 
+with connections to each of the rear wheels and the front caster, which in turn is connected to the front wheel. In fact,
+
+- [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher): This package contains a node called `joint_state_publisher`, which reads the robot model description, finds all joints, and publishes joint values to all nonfixed joints using GUI sliders. The user can interact with each robot joint using this tool and can visualize using RViz. While designing URDF, the user can verify the rotation and translation of each joint using this tool.
+- [`robot_state_publisher`](http://wiki.ros.org/robot_state_publisher): This package reads the current robot joint states and publishes the 3D poses of each robot link using the kinematics tree built from the URDF. The 3D pose of the robot is published as the tf (transform) ROS. The tf ROS publishes the relationship between the coordinates frames of a robot.
+- [`xacro`](http://wiki.ros.org/xacro): Xacro (XML Macros) is an XML macro language. With `xacro`, 
+you can construct shorter and more readable XML files by using macros that expand to larger XML expressions. 
+This makes it easier to maintain robot description files, increase their readability, 
+and to avoid duplication in the robot description files.
+
+A robot is modeled in URDF, where we have to create a file and write the relationship between each link and joint in the robot and save the file with the .urdf extension.
+
+URDF can represent the kinematic and dynamic description of the robot, the visual representation of the robot, and the collision model of the robot.
+
+The following XML tags are the commonly used [URDF tags](http://wiki.ros.org/urdf/XML) to compose a URDF robot model: 
+
+- `link`: The `link` element describes a rigid body with a size and shape, visual features (color and 3D meshes), and dynamic features such as an inertial matrix and collision properties.
+
+The syntax of the `link` tag is as follows:
+
+```xml
+<link name="<name of the link>"> 
+  <inertial>...........</inertial> 
+  <visual> ............</visual> 
+  <collision>..........</collision> 
+</link>
+```
+
 
 ## Simulation in Gazebo
 
