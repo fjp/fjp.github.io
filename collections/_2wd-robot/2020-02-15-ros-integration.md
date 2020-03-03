@@ -123,11 +123,16 @@ To integrate a robot into ROS we have to design a model of it using CAD tools (e
 This step is important for the following reasons. For example, we can use this model to simulate and control the robot, 
 visualize it, or use ROS tools to get information on the robotic structure and its kinematics [[2](https://www.packtpub.com/eu/hardware-and-creative/mastering-ros-robotics-programming-second-edition)].
 
-ROS has a standard meta package for designing and creating robot models called [`robot_model`](http://wiki.ros.org/robot_model), which consists of a set of packages, some of which are called [`urdf`](http://wiki.ros.org/urdf), [`kdl_parser`](wiki.ros.org/kdl_parser), [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher), and [`collada_urdf`](http://wiki.ros.org/collada_urdf). These packages help us create the 3D robot model description with the exact characteristics of the real hardware.
+ROS has a standard meta package for designing and creating robot models called [`robot_model`](http://wiki.ros.org/robot_model), which consists of a set of packages, some of which are called [`urdf`](http://wiki.ros.org/urdf), [`kdl_parser`](wiki.ros.org/kdl_parser), [`robot_state_publisher`](http://wiki.ros.org/robot_state_publisher), and [`collada_urdf`](http://wiki.ros.org/collada_urdf). These packages help us create the 3D robot model description with the exact characteristics of the real hardware.
 
 Note that the package `robot_model` is deprecated in ROS melodic and should not be used directly as dependency. 
 Instead, use the packages contained within the `robot_model` meta package.
 {: .notice }
+
+We can only describe a robot in URDF that has a tree-like structure in its links, that is, the robot will have rigid links and will be connected using joints. Flexible links can't be represented using URDF. The URDF is composed using special XML tags, and we can parse these XML tags using parser programs for further processing.
+
+- [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher): This package contains a node called `joint_state_publisher`, which reads the robot model description, finds all joints, and publishes joint values to all nonfixed joints using GUI sliders. The user can interact with each robot joint using this tool and can visualize using RViz. While designing URDF, the user can verify the rotation and translation of each joint using this tool.
+- 
 
 
 ## Simulation in Gazebo
