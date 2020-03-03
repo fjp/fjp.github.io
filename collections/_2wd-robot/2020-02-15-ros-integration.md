@@ -123,6 +123,12 @@ To integrate a robot into ROS we have to design a model of it using CAD tools (e
 This step is important for the following reasons. For example, we can use this model to simulate and control the robot, 
 visualize it, or use ROS tools to get information on the robotic structure and its kinematics [[2](https://www.packtpub.com/eu/hardware-and-creative/mastering-ros-robotics-programming-second-edition)].
 
+ROS has a standard meta package for designing and creating robot models called [`robot_model`](http://wiki.ros.org/robot_model), which consists of a set of packages, some of which are called [`urdf`](http://wiki.ros.org/urdf), [`kdl_parser`](wiki.ros.org/kdl_parser), [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher), and [`collada_urdf`](http://wiki.ros.org/collada_urdf). These packages help us create the 3D robot model description with the exact characteristics of the real hardware.
+
+Note that the package `robot_model` is deprecated in ROS melodic and should not be used directly as dependency. 
+Instead, use the packages contained within the `robot_model` meta package.
+{: .notice }
+
 
 ## Simulation in Gazebo
 
