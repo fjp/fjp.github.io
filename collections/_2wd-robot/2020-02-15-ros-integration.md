@@ -132,7 +132,7 @@ Instead, use the packages contained within the `robot_model` meta package.
 We can only describe a robot in URDF that has a tree-like structure in its links, that is, the robot will have rigid links and will be connected using joints. Flexible links can't be represented using URDF. The URDF is composed using special XML tags, and we can parse these XML tags using parser programs for further processing.
 
 - [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher): This package contains a node called `joint_state_publisher`, which reads the robot model description, finds all joints, and publishes joint values to all nonfixed joints using GUI sliders. The user can interact with each robot joint using this tool and can visualize using RViz. While designing URDF, the user can verify the rotation and translation of each joint using this tool.
-- 
+- [`robot_state_publisher`](http://wiki.ros.org/robot_state_publisher): This package reads the current robot joint states and publishes the 3D poses of each robot link using the kinematics tree build from the URDF. The 3D pose of the robot is published as the tf (transform) ROS. The tf ROS publishes the relationship between the coordinates frames of a robot.
 
 
 ## Simulation in Gazebo
