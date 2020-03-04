@@ -158,7 +158,7 @@ The syntax of the `link` tag is as follows:
 ```
 
 <figure>
-    <a href="/assets/collections/2wd-robot/ros/link.png"><img src="/assets/collections/2wd-robot/ros/link.png"></a>
+    <a href="/assets/collections/2wd-robot/ros/urdf/link.png"><img src="/assets/collections/2wd-robot/ros/urdf/link.png"></a>
     <figcaption>Visualization of a URDF link.</figcaption>
 </figure>
 
