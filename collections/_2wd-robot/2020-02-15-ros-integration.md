@@ -159,7 +159,7 @@ The syntax of the `link` tag is as follows:
 
 <figure>
     <a href="/assets/collections/2wd-robot/ros/urdf/link.png"><img src="/assets/collections/2wd-robot/ros/urdf/link.png"></a>
-    <figcaption>Visualization of a URDF link.</figcaption>
+    <figcaption>Visualization of a URDF link (Source: [wiki.ros.org/urdf/XML/link](http://wiki.ros.org/urdf/XML/link)).</figcaption>
 </figure>
 
 
