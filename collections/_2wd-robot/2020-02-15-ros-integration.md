@@ -195,6 +195,10 @@ The syntax is as follows:
 A URDF joint is formed between two links;  The following is an illustration of a joint and its link:
 
 
+
+- `robot`: The root element in a robot description file must be a `robot`. 
+It encapsulated all elements such as `link` and `joint` within it.
+
 ## Simulation in Gazebo
 
 
