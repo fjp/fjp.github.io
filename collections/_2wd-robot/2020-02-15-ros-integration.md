@@ -167,7 +167,30 @@ The **Collision** section encapsulates the real link to detect collision before 
     <figcaption>Visualization of a URDF link (Source:  <a href="http://wiki.ros.org/urdf/XML/link">wiki.ros.org/urdf/XML/link</a>).</figcaption>
 </figure>
 
+- `joint`: A `joint` connects two `links`, defining how they can move with respect to each other.
+Describes the kinematic and dynamic properties of a joint, and set the limits of the joint movement and its velocity. 
+The `joint` tag supports the different types of joints, such as continuous, revolute, prismatic, planar, fixed and floating.
 
+| Name       | Description                                                                             |
+|:==========:|:=======================================================================================:|
+| continuous | A joint that can rotate indefinitely about a single axis                                |
+| revolute   | Like a continuous joint, but with upper and lower angle limits                          |
+| prismatic  | A joint that slides linearly along a single axis, with upper and lower position limits  |
+| planar     | A joint that allows translation and rotation perpendicular to a plane                   |
+| floating   | A joint that allows full six-dimensional translation and rotation                       |
+| fixed      | A special joint type that allows no motion                                              |
+
+The syntax is as follows:
+
+```xml
+<joint name="<name of the joint>"> 
+  <parent link="link1"/> 
+  <child link="link2"/> 
+  <calibration .... />
+  <dynamics damping ..../> 
+  <limit effort .... /> 
+</joint>
+```
 
 
 ## Simulation in Gazebo
