@@ -197,7 +197,7 @@ A URDF joint is formed between two links;  The following is an illustration of a
 
 
 - `robot`: The root element in a robot description file must be a `robot`. 
-It encapsulated all elements such as `link` and `joint` within it.
+It encapsulated the entire robot model that can be represented using URDF and includes all elements such as `link`, `joint`, `gazebo` and `transmission`.
 
 ## Simulation in Gazebo
 
