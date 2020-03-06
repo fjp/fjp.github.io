@@ -167,7 +167,7 @@ The **Collision** section encapsulates the real link to detect collision before 
     <figcaption>Visualization of a URDF link (Source:  <a href="http://wiki.ros.org/urdf/XML/link">wiki.ros.org/urdf/XML/link</a>).</figcaption>
 </figure>
 
-- `joint`: A `joint` connects two `links`, defining how they can move with respect to each other.
+- `joint`: A `joint` connects two `links`, the first is called the **Parent** link, and the second is called the **Child** link. The joint defines how the links can move with respect to each other.
 Describes the kinematic and dynamic properties of a joint, and set the limits of the joint movement and its velocity. 
 The `joint` tag supports the different types of joints, such as continuous, revolute, prismatic, planar, fixed and floating.
 
@@ -191,6 +191,8 @@ The syntax is as follows:
   <limit effort .... /> 
 </joint>
 ```
+
+A URDF joint is formed between two links;  The following is an illustration of a joint and its link:
 
 
 ## Simulation in Gazebo
