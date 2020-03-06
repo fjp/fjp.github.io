@@ -157,6 +157,11 @@ The syntax of the `link` tag is as follows:
 </link>
 ```
 
+The following figure shows a representation of a single link. 
+It consists of a **Visual** section, which represents the real link of the robot and is visible in the simulation. 
+For collision detection the link has a **Collision** section. 
+The **Collision** section encapsulates the real link to detect collision before hitting the real link.
+
 <figure>
     <a href="/assets/collections/2wd-robot/ros/urdf/link.png"><img src="/assets/collections/2wd-robot/ros/urdf/link.png"></a>
     <figcaption>Visualization of a URDF link (Source: [wiki.ros.org/urdf/XML/link](http://wiki.ros.org/urdf/XML/link)).</figcaption>
