@@ -164,8 +164,10 @@ The **Collision** section encapsulates the real link to detect collision before 
 
 <figure>
     <a href="/assets/collections/2wd-robot/ros/urdf/link.png"><img src="/assets/collections/2wd-robot/ros/urdf/link.png"></a>
-    <figcaption>Visualization of a URDF link (Source: [wiki.ros.org/urdf/XML/link](http://wiki.ros.org/urdf/XML/link)).</figcaption>
+    <figcaption>Visualization of a URDF link (Source:  <a href="http://wiki.ros.org/urdf/XML/link">wiki.ros.org/urdf/XML/link</a>).</figcaption>
 </figure>
+
+
 
 
 ## Simulation in Gazebo
