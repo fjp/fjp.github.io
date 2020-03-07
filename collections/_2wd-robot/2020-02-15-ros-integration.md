@@ -172,7 +172,7 @@ Describes the kinematic and dynamic properties of a joint, and set the limits of
 The `joint` tag supports the different types of joints, such as continuous, revolute, prismatic, planar, fixed and floating.
 
 | Name       | Description                                                                             |
-|:----------:|:---------------------------------------------------------------------------------------:|
+|:-----------|:----------------------------------------------------------------------------------------|
 | continuous | A joint that can rotate indefinitely about a single axis                                |
 | revolute   | Like a continuous joint, but with upper and lower angle limits                          |
 | prismatic  | A joint that slides linearly along a single axis, with upper and lower position limits  |
