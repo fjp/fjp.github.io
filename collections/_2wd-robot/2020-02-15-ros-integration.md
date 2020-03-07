@@ -194,7 +194,10 @@ The syntax is as follows:
 
 A URDF joint is formed between two links;  The following is an illustration of a joint and its link:
 
-
+<figure>
+    <a href="/assets/collections/2wd-robot/ros/urdf/joint.png"><img src="/assets/collections/2wd-robot/ros/urdf/joint.png"></a>
+    <figcaption>Visualization of a URDF joint (Source:  <a href="http://wiki.ros.org/urdf/XML/link">wiki.ros.org/urdf/XML/joint</a>).</figcaption>
+</figure>
 
 - `robot`: The root element in a robot description file must be a `robot`. 
 It encapsulated the entire robot model that can be represented using URDF and includes all elements such as `link`, `joint`, `gazebo` and `transmission`.
