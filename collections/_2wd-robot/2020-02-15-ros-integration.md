@@ -196,11 +196,16 @@ A URDF joint is formed between two links;  The following is an illustration of a
 
 <figure>
     <a href="/assets/collections/2wd-robot/ros/urdf/joint.png"><img src="/assets/collections/2wd-robot/ros/urdf/joint.png"></a>
-    <figcaption>Visualization of a URDF joint (Source:  <a href="http://wiki.ros.org/urdf/XML/link">wiki.ros.org/urdf/XML/joint</a>).</figcaption>
+    <figcaption>Visualization of a URDF joint (Source:  <a href="http://wiki.ros.org/urdf/XML/joint">wiki.ros.org/urdf/XML/joint</a>).</figcaption>
 </figure>
 
 - `robot`: The root element in a robot description file must be a `robot`. 
 It encapsulated the entire robot model that can be represented using URDF and includes all elements such as `link`, `joint`, `gazebo` and `transmission`.
+
+<figure>
+    <a href="/assets/collections/2wd-robot/ros/urdf/robot.png"><img src="/assets/collections/2wd-robot/ros/urdf/robot.png"></a>
+    <figcaption>Visualization of a URDF robot/model (Source:  <a href="http://wiki.ros.org/urdf/XML/model">wiki.ros.org/urdf/XML/model</a>).</figcaption>
+</figure>
 
 ## Simulation in Gazebo
 
