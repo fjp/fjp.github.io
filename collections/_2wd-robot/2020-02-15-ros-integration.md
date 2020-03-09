@@ -207,6 +207,17 @@ It encapsulated the entire robot model that can be represented using URDF and in
     <figcaption>Visualization of a URDF robot/model (Source:  <a href="http://wiki.ros.org/urdf/XML/model">wiki.ros.org/urdf/XML/model</a>).</figcaption>
 </figure>
 
+- `gazebo`: The `gazebo` element is an extension to the URDF robot description format, 
+used to include the simulation parameters of the [Gazebo](http://gazebosim.org/) simulator.
+This tag can be used to include for example gazebo plugins and `gazebo` material properties. 
+The following shows an exampleusing `gazebo` tags:
+
+```xml
+<gazebo reference="link_1">    
+  <material>Gazebo/Black</material> 
+</gazebo>
+```
+
 ## Simulation in Gazebo
 
 
