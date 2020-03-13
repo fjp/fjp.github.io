@@ -12,10 +12,10 @@ toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: /assets/collections/2wd-robot/ros/ros_control/gazebo_ros_control.png
-  overlay_image: /assets/collections/2wd-robot/ros/ros_control/gazebo_ros_control.png
+  teaser: /assets/collections/2wd-robot/ros/ros_control/gazebo_ros_transmission.png
+  overlay_image: /assets/collections/2wd-robot/ros/ros_control/gazebo_ros_transmission.png
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
-  # caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
+  caption: "Source: [**Gazebo Tutorial: ROS Control**](http://gazebosim.org/tutorials/?tut=ros_control)"
   show_overlay_excerpt: true
 sidebar:
   nav: "2wd-robot"
