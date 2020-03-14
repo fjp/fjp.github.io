@@ -36,7 +36,7 @@ computer that is running a simulator like Gazebo to simulate your robot. To make
 ROS control helps you writing controllers including real-time constraints, transmissions and joint limits. 
 It provides tools for modeling the robotic in software, represented by the robot hardware interface (`hardware_interface::RobotHW`), and comes 
 with ready to use out of the box controllers for different applications which then talk to third-party tools. 
-The important aspects to highlight is that the hardware access to the robot is de-coupled the so we you don't expose how we talk to our robot.
+The important aspects to highlight is that the hardware access to the robot is de-coupled, so we you don't expose how we talk to our robot. This means that controllers and your robot hardware structure are decoupled so you can develop them independently and in isolation which enables you to share and mix and match controllers.
 
 
 ## Ros Control and Friends
