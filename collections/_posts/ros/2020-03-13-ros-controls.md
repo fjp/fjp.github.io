@@ -108,7 +108,7 @@ At the leftmost part of the image we see that controllers have their interfaces,
 such as topics, services or actions, that are custom so your controller can expose whatever it wants.
 
 
-#### Resource Ownwership
+#### Exclusive Resource Ownwership
 
 You can have multiple controllers accessing the same interface. 
 In the image below you can see that the two arm controllers both use the first arm joint. 
