@@ -20,6 +20,29 @@ header:
 ROS Control combines a set of packages that include controller interfaces, controller managers, transmissions and hardware_interfaces.
 
 
+## Big Picture and Goals
+
+Let's start with a typical scenario: you have a robot, or even more general, a piece of hardware, and you would 
+like to run an application that leverages ROS specific libraries like the Navigation stack or MovieIt!. 
+All these libraries are well tested and you don't want to rewrite them. On the other hand you probably have a 
+computer that is running a simulator like Gazebo to simulate your robot. To make ends meet we can make use of the ROS control project.
+
+<figure>
+    <a href="/assets/collections/ros/ros_control/ros-control-overview.png"><img src="/assets/collections/ros/ros_control/ros-control-overview.png"></a>
+    <figcaption>Overview of ROS control project (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+
+## Ros Control and Friends
+
+
+### Setting up a Robot
+
+### Controllers
+
+### The Control Loop
+
+
 
 
 
