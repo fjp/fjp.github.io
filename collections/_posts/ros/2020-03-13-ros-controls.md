@@ -73,8 +73,10 @@ Without ROS control there would be no end-to-end solution for ROS users. ROS con
 </figure>
 
 
-## Ros Control and Friends
+## Ros Control and its Repositories
 
+The ROS control project consists of a github organization that's called [ros controls](https://github.com/ros-controls).
+There you find things from messages and action definitions to tools that help you writing real-time code ([realtime_tools](https://github.com/ros-controls/realtime_tools)) that is useful in the context of control. The core framework is found in the [`ros_control`](https://github.com/ros-controls/ros_control) package which is compatible with [`ros_controllers`](https://github.com/ros-controls/ros_controllers). This package provides a set of robot agnostic controllers.
 
 ### Setting up a Robot
 
@@ -88,4 +90,4 @@ Without ROS control there would be no end-to-end solution for ROS users. ROS con
 
 ## Reference
 
-- [ROSCon 2014 talk](https://vimeo.com/107507546)
+- [ROSCon 2014 talk](https://vimeo.com/107507546) and the presented [slides](http://roscon.ros.org/2014/wp-content/uploads/2014/07/ros_control_an_overview.pdf)
