@@ -46,8 +46,16 @@ There is already a set of existing controllers that are robot agnostic, which sh
 
 When it comes to third party libraries, there is out of the box compatibility with general purpose robot tools like visualization, `tf` and `rqt` plugins. The project provides also compatibility with the navigation stack for differential drive robots and biped humanoid robots and it also enables motion planning with `MoveIt`. 
 
+The whole idea is that what you can focus on your actual application or research paper and not have to bother writing the boiler plate code to get everything working with your robot hardware. 
 
+Another important aspect is that ROS control is real-time ready in the sense that if your application has (hard) real-time constraints then you can use ROS control with it. However, if your application doesn't have real-time constraints then it is not imposed on you. Also the choice of using a real-time operating system is entirely up to you. 
 
+In a nutshell, the goals of the project are to 
+
+- lower the entry barrier for exposing hardware to ROS. 
+- promote the reuse of control code in the same spirit that ROS has done for non-control code, at least non-real-time control code. 
+- provide a set of ready-to-use tools. 
+- have a real-time ready implementation.
 
 
 ## Ros Control and Friends
