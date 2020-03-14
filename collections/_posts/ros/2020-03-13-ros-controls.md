@@ -90,9 +90,21 @@ On the other hand, we have controllers. They don't talk directly to hardware and
 </figure>
 
 
-#### Hardware Abstraction
+Let's get a more detailed view of the hardware abstraction and the communication with ROS controllers.
 
-So, let's focus first on the hardware abstraction. We zoom in. 
+<figure>
+    <a href="/assets/ros/ros-control/controllers-and-hardware-interfaces.png"><img src="/assets/ros/ros-control/controllers-and-hardware-interfaces.png"></a>
+    <figcaption>Controllers and hardware interfaces (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+In ROS control speak, we have the notion of resources, for example a velocity controlled wheel. Then there are hardware interfaces, where one is just a set of similar resources, and if you pile up a bunch of interfaces you get a robot. 
+There are connectors between the hardware interface and the controllers which are raw control interfaces, 
+not to be confused with typical raw interfaces like topics, actions or services. 
+Instead, we are just passing pointers around which is real-time safe. The interfaces of the robot hardware are
+use by controllers to connect and communicate with the hardware. 
+At the leftmost part of the image we see that controllers have their interfaces, which are typically ROS interfaces,
+such as topics, services or actions, that are custom so your controller can expose whatever it wants.
+
 
 
 #### Controllers
