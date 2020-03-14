@@ -38,6 +38,9 @@ It provides tools for modeling the robotic in software, represented by the robot
 with ready to use out of the box controllers for different applications which then talk to third-party tools. 
 The important aspects to highlight is that the hardware access to the robot is de-coupled, so we you don't expose how we talk to our robot. This means that controllers and your robot hardware structure are decoupled so you can develop them independently and in isolation which enables you to share and mix and match controllers.
 
+When you want to write your robot backend, there's a possibility to leverage an out of the box simulation backend (`gazebo_ros_control` plugin). 
+After you've tested your robot in simulation, and want to work on the real robot hardware, you will want to write your custom hardware backend for your robot. For this, there are also tools that help making this task easier for you.
+
 
 ## Ros Control and Friends
 
