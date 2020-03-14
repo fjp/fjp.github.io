@@ -119,7 +119,19 @@ So by default there's a policy of exclusive resource ownership.
     <figcaption>Exclusive resource ownership (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
 
+In this case, you can either have one or the other but not both controllers running at the same time,
+which is enforced by ROS control. If you want other policies, you can implement them as well.
 
+#### Memory Layout
+
+Now we will learn how the hardware interface actually communicates with the real or simulated hardware using doubles and floats which represent the actual data that you want to pass around.
+
+The following image depicts the memory layout of your raw data.
+
+<figure>
+    <a href="/assets/ros/ros-control/memory-layout.png"><img src="/assets/ros/ros-control/memory-layout.png"></a>
+    <figcaption>Memory layout (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
 
 ### Controllers
 
