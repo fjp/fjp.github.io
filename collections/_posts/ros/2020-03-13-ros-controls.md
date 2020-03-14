@@ -90,7 +90,9 @@ On the other hand, we have controllers. They don't talk directly to hardware and
 </figure>
 
 
-Let's get a more detailed view of the hardware abstraction and the communication with ROS controllers.
+#### Hardware Abstraction and Controllers
+
+Let's get a more detailed view of the hardware abstraction and the communication between and with ROS controllers.
 
 <figure>
     <a href="/assets/ros/ros-control/controllers-and-hardware-interfaces.png"><img src="/assets/ros/ros-control/controllers-and-hardware-interfaces.png"></a>
@@ -106,8 +108,16 @@ At the leftmost part of the image we see that controllers have their interfaces,
 such as topics, services or actions, that are custom so your controller can expose whatever it wants.
 
 
+#### Exclusive Resource Ownwership
 
-#### Controllers
+You can have multiple controllers accessing the same interface. 
+In the image below you can see that the two arm controllers both use the first arm joint. 
+So by default there's a policy of exclusive resource ownership.
+
+<figure>
+    <a href="/assets/ros/ros-control/exclusive-resource-ownership.png"><img src="/assets/ros/ros-control/exclusive-resource-ownership.png"></a>
+    <figcaption>Exclusive resource ownership (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
 
 
 
