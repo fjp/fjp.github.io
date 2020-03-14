@@ -28,7 +28,7 @@ All these libraries are well tested and you don't want to rewrite them. On the o
 computer that is running a simulator like Gazebo to simulate your robot. To make ends meet we can make use of the ROS control project.
 
 <figure>
-    <a href="/assets/collections/ros/ros_control/ros-control-overview.png"><img src="/assets/collections/ros/ros_control/ros-control-overview.png"></a>
+    <a href="/assets/ros/ros_control/ros-control-overview.png"><img src="/assets/ros/ros_control/ros-control-overview.png"></a>
     <figcaption>Overview of ROS control project (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
 
