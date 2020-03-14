@@ -80,6 +80,25 @@ There you find things from messages and action definitions to tools that help yo
 
 ### Setting up a Robot
 
+First ROS control is split into two parts. First there is the robot hardware abstraction, 
+which is used to communicate with the hardware. It provides resources like joints and it also handles resource conflicts. 
+On the other hand, we have controllers. They don't talk directly to hardware and they require resources that are provided by the hardware abstraction. 
+
+<figure>
+    <a href="/assets/ros/ros-control/controllers-vs-hardware-abstraction.png"><img src="/assets/ros/ros-control/controllers-vs-hardware-abstraction.png"></a>
+    <figcaption>Controllers vs Hardware abstraction (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+
+#### Hardware Abstraction
+
+So, let's focus first on the hardware abstraction. We zoom in. 
+
+
+#### Controllers
+
+
+
 ### Controllers
 
 ### The Control Loop
