@@ -102,13 +102,18 @@ Let's get a more detailed view of the hardware abstraction and the communication
     <figcaption>Controllers and hardware interfaces (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
 
-In ROS control speak, we have the notion of resources, for example a velocity controlled wheel. Then there are hardware interfaces, where one is just a set of similar resources, and if you pile up a bunch of interfaces you get a robot. 
-There are connectors between the hardware interface and the controllers which are raw control interfaces, 
-not to be confused with typical raw interfaces like topics, actions or services. 
+
+The hardware interface is a software representation of the robot and its abstract hardware.
+In ROS control speak, we have the notion of resources, which are actuators, joints and sensors.  
+Some resources are are read-only, such as joint states, IMU, force-torque sensors, and so on, and some are read and write compatible, such as position, velocity, and effort joints.
+A bunch of hardware interfaces, where one is just a set of similar resources, represent a robot.
+
+The robot hardware, represented in software, and the controllers are connected via ROS control's interfaces, 
+not to be confused with typical ROS interfaces like topics, actions or services. 
 Instead, we are just passing pointers around which is real-time safe. The interfaces of the robot hardware are
-use by controllers to connect and communicate with the hardware. 
-At the leftmost part of the image we see that controllers have their interfaces, which are typically ROS interfaces,
-such as topics, services or actions, that are custom so your controller can expose whatever it wants.
+used by controllers to connect and communicate with the hardware. 
+At the leftmost part of the image we see that controllers have their interfaces, which are typically ROS interfaces
+(topics, services or actions) that are custom so your controller can expose whatever it wants.
 
 
 #### Exclusive Resource Ownwership
@@ -153,7 +158,7 @@ class MyRobot :
     public hardware_interface::RobotHW
 {
 public:
-    MyRobot(); // Setup robot
+    MyRobot(ros::NodeHandle &, ros::NodeHandle &); // Setup robot
     
     // Talk to HW
     void read();
@@ -164,6 +169,21 @@ public:
     virtual bool checkForConflict(...) const;
 }
 ```
+
+To implement your custom robot hardware interface you inherit from a class called `hardware_interface::RobotHW` that is part of ROS control. In the constructor you set up your robot, either implemented in code (see for example: ) or using a robot description in the form of an urdf model. The latter requires that you pass the urdf model to the constructor or load it from the parameter server. An example using the urdf description can be found in the [ros_control_boilerpalte](https://github.com/PickNikRobotics/ros_control_boilerplate) repository.
+
+After the robot setup we need to implement the `read()` and `write()` methods, which is robot specific and up to you to implement. The `read()` method is used to populate the raw data with your robot's state. `write()` is used to send out 
+raw commands via CAN bus, Ethernet, Ethercat, serial port or whatever protocol your robot hardware uses.
+
+Within the ROS community, there are some projects that can help you out with this. 
+Examples are [ROS-Industrial](https://rosindustrial.org/), [rosserial](http://wiki.ros.org/rosserial), [SR Ronex](http://wiki.ros.org/sr_ronex) and other custom solutions out there that you can leverage. 
+
+In case exclusive resource ownership is not good enough, you can always reimplement the virtual member function [`hardware_interface::RobotHW::checkForConflicts()`](http://docs.ros.org/melodic/api/hardware_interface/html/c++/classhardware__interface_1_1RobotHW.html#ab491cf8d359534fe104f59300c188878) with your custom implementation.
+
+In summary, the package called [hardware_interface](http://wiki.ros.org/hardware_interface) (see also its [C++ API](http://docs.ros.org/melodic/api/hardware_interface/html/c++/annotated.html)) provides all the building blocks for constructing a robot hardware abstraction. It is the software representation of your robot 
+and the idea is to abstract hardware away which is done using resources (actuators, joints and sensors), interfaces, that are sets of similar resources, and make up a robot, which is a set of interfaces. The hardware interface also handles resource conflicts and by default we have exclusive resource ownership. 
+
+Out of the box ROS control provides resources and interfaces to read states such as joint state (position, velocity and effort) IMU and force-torque sensors. If, in addition to reading, you also want to send commands there are interfaces for position control joints, but also velocity and effort control joints. For a list of all available interfaces check out the [Hardware Interfaces](http://wiki.ros.org/ros_control#Hardware_Interfaces) section on the `ros_control` wiki page.
 
 
 ### Controllers
