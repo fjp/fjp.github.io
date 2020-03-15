@@ -146,6 +146,24 @@ These interfaces provide semantic meaning which allow you to read the joint stat
 
 The following is a simple code example. 
 
+```c++
+#include <hardware_interface/robot_hw.h>
+
+class MyRobot :
+    public hardware_interface::RobotHW
+{
+public:
+    MyRobot(); // Setup robot
+    
+    // Talk to HW
+    void read();
+    void write();
+    
+    
+    // Requirement only if needed ...
+    virtual bool checkForConflict(...) const;
+}
+```
 
 
 ### Controllers
