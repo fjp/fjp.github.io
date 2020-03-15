@@ -185,8 +185,31 @@ and the idea is to abstract hardware away which is done using resources (actuato
 
 Out of the box ROS control provides resources and interfaces to read states such as joint state (position, velocity and effort) IMU and force-torque sensors. If, in addition to reading, you also want to send commands there are interfaces for position control joints, but also velocity and effort control joints. For a list of all available interfaces check out the [Hardware Interfaces](http://wiki.ros.org/ros_control#Hardware_Interfaces) section on the `ros_control` wiki page.
 
+Similar interfaces exist for actuators, which will be explained later. 
+
+
+#### Simulation Backend
+
+To simulate your robot there is a package called [`gazebo_ros_control`](http://wiki.ros.org/gazebo_ros_control) which is located outside the ROS control organization repositories in [ros-simulation/gazebo_ros_pkgs](https://github.com/ros-simulation/gazebo_ros_pkgs). It is a [Gazebo](http://gazebosim.org/) plugin for ROS control.
+There exists a default plugin, which populates all the joint interfaces from the URDF by parsing transmission specification and optionally joint limits, which will be describe later in the post. If you use the default plugin and want your
+robot to show up in your Gazebo simulator, the following is all you have to add to your urdf description, apart from the robot's transmissions.
+
+```xml
+<gazebo>
+  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    <robotNamespace>/my_robot</robotNamespace>
+  </plugin>
+</gazebo>
+```
+
+This makes it simple to test ROS control because we don't have to write any robot hardware interface code. 
+Instead, we just need to setup some configuration files. 
+
+There's also a custom plugin where most of the details are up to you. TODO source?
 
 ### Controllers
+
+
 
 ### The Control Loop
 
