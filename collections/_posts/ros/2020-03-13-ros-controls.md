@@ -115,13 +115,13 @@ such as topics, services or actions, that are custom so your controller can expo
 
 You can have multiple controllers accessing the same interface. 
 In the image below you can see that the two arm controllers both use the first arm joint. 
-So by default there's a policy of exclusive resource ownership.
 
 <figure>
     <a href="/assets/ros/ros-control/exclusive-resource-ownership.png"><img src="/assets/ros/ros-control/exclusive-resource-ownership.png"></a>
     <figcaption>Exclusive resource ownership (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
 
+By default there's a policy of exclusive resource ownership. 
 In this case, you can either have one or the other but not both controllers running at the same time,
 which is enforced by ROS control. If you want other policies, you can implement them as well.
 
@@ -129,12 +129,24 @@ which is enforced by ROS control. If you want other policies, you can implement 
 
 Now we will learn how the hardware interface actually communicates with the real or simulated hardware using doubles and floats which represent the actual data that you want to pass around.
 
-The following image depicts the memory layout of your raw data.
+The following image depicts the memory layout of your raw data and you can see the memory regions where you
+actually read and write from and to hardware.
 
-<figure>
-    <a href="/assets/ros/ros-control/memory-layout.png"><img src="/assets/ros/ros-control/memory-layout.png"></a>
-    <figcaption>Memory layout (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+<figure class="half">
+  <a href="/assets/ros/ros-control/memory-layout-read.png"><img src="/assets/ros/ros-control/memory-layout-read.png"></a>
+    <a href="/assets/ros/ros-control/memory-layout-rw.png"><img src="/assets/ros/ros-control/memory-layout-rw.png"></a>
+    <figcaption>Memory layouts for a joint state interface for reading states of a resource and another joint command interface for reading and writing from and to a resource (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
+
+A resource is nothing else than pointers to the raw data that adds some semantics to the data such as describing that it is a position or velocity, the name of the joint and that it belongs for example to a joint state interface. 
+
+As you see in the memory layout image above, joint state interfaces are used for reading joint state.
+If you have a resource that can receive commands and at the same time provide feedback you can use the joint command interface. This interface is the base interface for other joint interfaces for position, velocity and effort (see the [C++ `hardware_interface` API](http://docs.ros.org/melodic/api/hardware_interface/html/c++/classhardware__interface_1_1JointCommandInterface.html)).
+These interfaces provide semantic meaning which allow you to read the joint state and also send semantically meaningful commands.
+
+The following is a simple code example. 
+
+
 
 ### Controllers
 
