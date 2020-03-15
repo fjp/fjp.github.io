@@ -190,6 +190,13 @@ Similar interfaces exist for actuators, which will be explained later.
 
 #### Simulation Backend
 
+
+
+<figure>
+    <a href="/assets/ros/ros-control/simulation-overview.png"><img src="/assets/ros/ros-control/simulation-overview.png"></a>
+    <figcaption>Robot simulation using ROS control and Gazebo (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
 To simulate your robot there is a package called [`gazebo_ros_control`](http://wiki.ros.org/gazebo_ros_control) which is located outside the ROS control organization repositories in [ros-simulation/gazebo_ros_pkgs](https://github.com/ros-simulation/gazebo_ros_pkgs). It is a [Gazebo](http://gazebosim.org/) plugin for ROS control.
 There exists a default plugin, which populates all the joint interfaces from the URDF by parsing transmission specification and optionally joint limits, which will be describe later in the post. If you use the default plugin and want your
 robot to show up in your Gazebo simulator, the following is all you have to add to your urdf description, apart from the robot's transmissions.
