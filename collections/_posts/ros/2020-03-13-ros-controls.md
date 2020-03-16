@@ -232,7 +232,12 @@ and see more of one controllers internals.
     <figcaption>arm controller (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
 
-As mentioned, a controller requires resources in the form of `ros_control` hardware interfaces (located on the right side in the image). On the left hand side we have the controllers ROS API.
+As mentioned, a controller requires resources in the form of `ros_control` hardware interfaces (located on the right side in the image). On the left hand side we have the controller's ROS API.
+
+Controllers use a plugin interface that implements the controller lifecycle. The lifecycle is a simple state machine with transitions between two states which are "stopped" and "running". A controller has two computation units where one is real-time safe and the other is non real-time.
+
+
+
 
 
 
