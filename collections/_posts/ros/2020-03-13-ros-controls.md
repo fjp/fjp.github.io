@@ -217,6 +217,24 @@ There's also a custom plugin where most of the details are up to you. TODO sourc
 
 ### Controllers
 
+In the following images we concentrate on the controllers 
+
+<figure class="half">
+  <a href="/assets/ros/ros-control/controllers01.png"><img src="/assets/ros/ros-control/controllers01.png"></a>
+    <a href="/assets/ros/ros-control/controllers02.png"><img src="/assets/ros/ros-control/controllers02.png"></a>
+    <figcaption>Controllers (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+and see more of one controllers internals.
+
+<figure class="half">
+  <a href="/assets/ros/ros-control/arm-controller.png"><img src="/assets/ros/ros-control/arm-controller.png"></a>
+    <figcaption>arm controller (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+As mentioned, a controller requires resources in the form of `ros_control` hardware interfaces (located on the right side in the image). On the left hand side we have the controllers ROS API.
+
+
 
 
 ### The Control Loop
