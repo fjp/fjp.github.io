@@ -158,7 +158,8 @@ class MyRobot :
     public hardware_interface::RobotHW
 {
 public:
-    MyRobot(ros::NodeHandle &, ros::NodeHandle &); // Setup robot
+    MyRobot(); // Setup robot
+    MyRobot(ros::NodeHandle &nh, urdf::Model *urdf_model = NULL);
     
     // Talk to HW
     void read();
@@ -170,7 +171,7 @@ public:
 }
 ```
 
-To implement your custom robot hardware interface you inherit from a class called `hardware_interface::RobotHW` that is part of ROS control. In the constructor you set up your robot, either implemented in code (see for example: ) or using a robot description in the form of an urdf model. The latter requires that you pass the urdf model to the constructor or load it from the parameter server. An example using the urdf description can be found in the [ros_control_boilerpalte](https://github.com/PickNikRobotics/ros_control_boilerplate) repository.
+To implement your custom robot hardware interface you inherit from a class called `hardware_interface::RobotHW` that is part of ROS control. In the constructor you set up your robot, either implemented in code (see for example: [eborghi10/my_ROS_mobile_robot](https://github.com/eborghi10/my_ROS_mobile_robot/blob/master/my_robot_base/include/my_robot_hw_interface.h)) or using a robot description in the form of an urdf model. The latter requires that you pass the urdf model to the constructor or load it from the parameter server. An example using the urdf description can be found in the [ros_control_boilerpalte](https://github.com/PickNikRobotics/ros_control_boilerplate) repository.
 
 After the robot setup we need to implement the `read()` and `write()` methods, which is robot specific and up to you to implement. The `read()` method is used to populate the raw data with your robot's state. `write()` is used to send out 
 raw commands via CAN bus, Ethernet, Ethercat, serial port or whatever protocol your robot hardware uses.
@@ -189,6 +190,13 @@ Similar interfaces exist for actuators, which will be explained later.
 
 
 #### Simulation Backend
+
+
+
+<figure>
+    <a href="/assets/ros/ros-control/simulation-overview.png"><img src="/assets/ros/ros-control/simulation-overview.png"></a>
+    <figcaption>Robot simulation using ROS control and Gazebo (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
 
 To simulate your robot there is a package called [`gazebo_ros_control`](http://wiki.ros.org/gazebo_ros_control) which is located outside the ROS control organization repositories in [ros-simulation/gazebo_ros_pkgs](https://github.com/ros-simulation/gazebo_ros_pkgs). It is a [Gazebo](http://gazebosim.org/) plugin for ROS control.
 There exists a default plugin, which populates all the joint interfaces from the URDF by parsing transmission specification and optionally joint limits, which will be describe later in the post. If you use the default plugin and want your
