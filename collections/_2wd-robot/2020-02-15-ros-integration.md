@@ -117,7 +117,7 @@ Specifically, ROS uses the notion of joints (revolute, rotational, continuous, .
 for different pysical quantities, such as position (m), velocity (m/s), angle (rad), and angular velocity (rad/s).
 
 
-## Modeling the Robot: URDF
+## Modeling the Robot: URDF and xacro
 
 To integrate a robot into ROS we have to design a model of it using CAD tools (e.g. AutoCAD, SOLIDWORKS, Blender).
 This step is important for the following reasons. For example, we can use this model to simulate and control the robot, 
@@ -217,6 +217,18 @@ The following shows an exampleusing `gazebo` tags:
   <material>Gazebo/Black</material> 
 </gazebo>
 ```
+
+### xacro
+
+
+### Tools for Verification and Visualization
+
+The following two tools can be installed with `sudo apt install liburdfdom-tools`.
+{: .note }
+
+The [`check_urdf`](http://wiki.ros.org/urdf#Verification) command will parse the `urdf` tag and show an error, if there are any. If everything is OK, it will output a success message followed by the robot description. 
+
+To view the structure of the robot links and joints graphically, we can use a command tool called [`urdf_to_graphiz`](http://wiki.ros.org/urdf#Visualization):
 
 ## Simulation in Gazebo
 
