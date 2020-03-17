@@ -221,6 +221,8 @@ The following shows an exampleusing `gazebo` tags:
 ### xacro
 
 
+
+
 ### Tools for Verification and Visualization
 
 The following two tools can be installed with `sudo apt install liburdfdom-tools`.
@@ -228,7 +230,27 @@ The following two tools can be installed with `sudo apt install liburdfdom-tools
 
 The [`check_urdf`](http://wiki.ros.org/urdf#Verification) command will parse the `urdf` tag and show an error, if there are any. If everything is OK, it will output a success message followed by the robot description. 
 
-To view the structure of the robot links and joints graphically, we can use a command tool called [`urdf_to_graphiz`](http://wiki.ros.org/urdf#Visualization):
+To view the structure of the robot links and joints graphically, we can use a command tool called [`urdf_to_graphiz`](http://wiki.ros.org/urdf#Visualization).
+
+The simplest way to visualize and to test manipulate the robot in [RViz](http://wiki.ros.org/rviz) is to create a launch file
+similar to the following, used in the [ROS urdf tutorials](http://wiki.ros.org/urdf/Tutorials):
+
+```xml
+<launch>
+
+  <arg name="model" default="$(find urdf_tutorial)/urdf/01-myfirst.urdf"/>
+  <arg name="gui" default="true" />
+  <arg name="rvizconfig" default="$(find urdf_tutorial)/rviz/urdf.rviz" />
+
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+</launch>
+```
 
 ## Simulation in Gazebo
 
