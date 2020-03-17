@@ -37,14 +37,14 @@ computer that is running a simulator like Gazebo to simulate your robot. To make
 
 
 ROS control helps you writing controllers including real-time constraints, transmissions and joint limits. 
-It provides tools for modeling the robotic in software, represented by the robot hardware interface (`hardware_interface::RobotHW`), and comes 
-with ready to use out of the box controllers for different applications which then talk to third-party tools. 
-The important aspects to highlight is that the hardware access to the robot is de-coupled, so we you don't expose how we talk to our robot. This means that controllers and your robot hardware structure are decoupled so you can develop them independently and in isolation which enables you to share and mix and match controllers.
+It provides tools for modeling the robot in software, represented by the robot hardware interface (`hardware_interface::RobotHW`), and comes 
+with ready to use out of the box controllers, thanks to a common interface ([`controller_interface::ControllerBase`](http://docs.ros.org/melodic/api/controller_interface/html/c++/classcontroller__interface_1_1ControllerBase.html)) for different applications which then talk to third-party tools. 
+The important aspects to highlight is that the hardware access to the robot is de-coupled, so you don't expose how you talk to your robot. This means that controllers and your robot hardware structure are decoupled so you can develop them independently and in isolation which enables you to share and mix and match controllers.
 
 When you want to write your robot backend, there's a possibility to leverage an out of the box simulation backend (`gazebo_ros_control` plugin). 
 After you've tested your robot in simulation, and want to work on the real robot hardware, you will want to write your custom hardware backend for your robot. For this, there are also tools that help making this task easier for you.
 
-There is already a set of existing controllers that are robot agnostic, which should hopefully enable you to leverage some of those. However, if your application requires it, then there are tools (controller interface) that help you also implement custom controllers. ROS control also provides the controller manager for controlling the life cycle of your controllers.
+There is already a set of existing controllers (see the [`ros_controllers`](http://wiki.ros.org/ros_controllers) meta package) that are robot agnostic, which should hopefully enable you to leverage some of those. However, if your application requires it, then there are tools ([`controller_interface`](http://wiki.ros.org/controller_interface?distro=melodic)) that help you also implement custom controllers. ROS control also provides the [controller manager](http://wiki.ros.org/controller_manager?distro=melodic) for controlling the life cycle of your controllers.
 
 
 When it comes to third party libraries, there is out of the box compatibility with general purpose robot tools like visualization, `tf` and `rqt` plugins. The project provides also compatibility with the navigation stack for differential drive robots and biped humanoid robots and it also enables motion planning with `MoveIt`. 
