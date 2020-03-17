@@ -218,6 +218,8 @@ The following shows an exampleusing `gazebo` tags:
 </gazebo>
 ```
 
+It will be important for the simulation with Gazebo that your robot description contains collision and inertia parameters in each link, otherwise Gazebo will not load the robot model properly.
+
 ### xacro
 
 
@@ -251,6 +253,20 @@ similar to the following, used in the [ROS urdf tutorials](http://wiki.ros.org/u
 
 </launch>
 ```
+
+With this launch file you can pass three command line arguments `model`, `gui` and `rvizconfig` to the `roslaunch` command, where each has its default value and can be omitted. The launch files uses [xml parameter tag](https://wiki.ros.org/roslaunch/XML/param) which sets up two parameters on the [parameter server](https://wiki.ros.org/Parameter%20Server):
+
+- `robot_description`: load URDF data from a file to the parameter server. To load the URDF data there are [three different methods](https://answers.ros.org/question/61479/adding-robot_description-to-parameter-server/?answer=61489#post-id-61489):
+  1. Use `<param>` with the `command` attribute, as shown in [this URDF tutorial](http://www.ros.org/wiki/urdf/Tutorials/Using%20urdf%20with%20robot_state_publisher#Launch_File).
+  2. Use `<param>` with the `<textfile>` argument as shown [here](http://www.ros.org/wiki/roslaunch/XML/param) which is commonly used when not working with `xacro`.
+  3. Use `<param>` with the `command` attribute and the `xacro` script, as shown in the very first example on the [Xacro tutorial page](http://wiki.ros.org/urdf/Tutorials/Using%20Xacro%20to%20Clean%20Up%20a%20URDF%20File#Using_Xacro).
+- `use_gui`: bool value used to show the gui that comes with [`joint_state_publisher`]. 
+
+The rest of the launch file loads three nodes:
+
+- `joint_state_publisher` used to manipulate joint states with the optional gui (depending on `use_gui` parameter) and to read current joint states using a `source_list` parameter (not used in this example). 
+- `robot_state_publisher` to publish transformations to `tf` which is required for packages such as visualization
+- `rviz` used to visualize the robot. In the launch file a rviz configuration is loaded, which takes the burden of configuring RViz manually after each startup.
 
 ## Simulation in Gazebo
 
