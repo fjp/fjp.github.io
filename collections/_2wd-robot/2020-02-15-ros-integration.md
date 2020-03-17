@@ -139,7 +139,9 @@ you can construct shorter and more readable XML files by using macros that expan
 This makes it easier to maintain robot description files, increase their readability, 
 and to avoid duplication in the robot description files.
 
-A robot is modeled in URDF, where we have to create a file and write the relationship between each link and joint in the robot and save the file with the .urdf extension.
+### Unified Robot Description Format (URDF)
+
+A robot is modeled in [URDF](http://wiki.ros.org/urdf/), where we have to create a file and write the relationship between each link and joint in the robot and save the file with the `.urdf` extension.
 
 URDF can represent the kinematic and dynamic description of the robot, the visual representation of the robot, and the collision model of the robot.
 
@@ -220,6 +222,8 @@ The following shows an exampleusing `gazebo` tags:
 
 It will be important for the simulation with Gazebo that your robot description contains collision and inertia parameters in each link, otherwise Gazebo will not load the robot model properly (see also the related [urdf tutorial](http://wiki.ros.org/urdf/Tutorials/Adding%20Physical%20and%20Collision%20Properties%20to%20a%20URDF%20Model).
 
+The difference between [base_link and base_footprint](https://answers.ros.org/question/291600/base_link-vs-base_footprint/) is defined in [REP-120](https://www.ros.org/reps/rep-0120.html#base-link).
+
 ### xacro
 
 
@@ -264,9 +268,9 @@ With this launch file you can pass three command line arguments `model`, `gui` a
 
 The rest of the launch file loads three nodes:
 
-- `joint_state_publisher` used to manipulate joint states with the optional gui (depending on `use_gui` parameter) and to read current joint states using a `source_list` parameter (not used in this example). 
-- `robot_state_publisher` to publish transformations to `tf` which is required for packages such as visualization
-- `rviz` used to visualize the robot. In the launch file a rviz configuration is loaded, which takes the burden of configuring RViz manually after each startup.
+- [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher) used to manipulate joint states with the optional gui (depending on `use_gui` parameter) and to read current joint states using a `source_list` parameter (not used in this example). 
+- [`robot_state_publisher`](http://wiki.ros.org/robot_state_publisher) package helps to publish the state of the robot to `tf`. This package subscribes to joint states of the robot and publishes the 3D pose of each link using the kinematic representation from the URDF model. This is required for packages such as visualization.
+- [`rviz`](http://wiki.ros.org/rviz) used to visualize the robot. In the launch file a rviz configuration is loaded, which takes the burden of configuring RViz manually after each startup.
 
 ## Simulation in Gazebo
 
