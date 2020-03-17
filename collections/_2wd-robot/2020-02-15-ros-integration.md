@@ -218,7 +218,7 @@ The following shows an exampleusing `gazebo` tags:
 </gazebo>
 ```
 
-It will be important for the simulation with Gazebo that your robot description contains collision and inertia parameters in each link, otherwise Gazebo will not load the robot model properly.
+It will be important for the simulation with Gazebo that your robot description contains collision and inertia parameters in each link, otherwise Gazebo will not load the robot model properly (see also the related [urdf tutorial](http://wiki.ros.org/urdf/Tutorials/Adding%20Physical%20and%20Collision%20Properties%20to%20a%20URDF%20Model).
 
 ### xacro
 
