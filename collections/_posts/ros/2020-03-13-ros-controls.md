@@ -237,13 +237,33 @@ As mentioned, a controller requires resources in the form of `ros_control` hardw
 Controllers use a plugin interface that implements the controller lifecycle. The lifecycle is a simple state machine with transitions between two states which are "stopped" and "running". A controller has two computation units where one is real-time safe and the other is non real-time.
 
 The state machine uses non real-time operations to load and unload a controller. 
-Loading controller is done by the `controller_manager` which initializes the controller plugin defined in a config yaml file and checks requisites, for example the existence of hardware resources. In the arm controller example, 
+
+<figure>
+  <a href="/assets/ros/ros-control/controller-load-unload.png"><img src="/assets/ros/ros-control/controller-load-unload.png"></a>
+    <figcaption>Plugin interface transitions: load and unload (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+Loading controller is done by the `controller_manager` which initializes the controller plugin defined in a config yaml file and checks requisites, for example the existence of hardware resources 
+(note that this is not the same as hardware resource conflict handling). In the arm controller example, 
 we need two joints named `arm_1_joint` and `arm_2_joint` and they must implement the `PositionJointInterface`.
 In case your robot doesn't have that interface with the resources, the controller you want to use cannot work with that robot. You can also check for things like the robot URDF description configuration or a controller specific configuration like ROS parameters scoped within the controller namespace. Finally in the load method you setup the ROS interfaces which define how your clients will talk to the controller. 
 
-The steps to unload a controller are implemented in its destructor.
+The steps to unload a controller plugin are implemented in the destructor of the controller.
 
 
+ROS control has real-time safe operations, for transitioning between the stopped and running states.
+
+<figure>
+  <a href="/assets/ros/ros-control/controller-start-stop.png"><img src="/assets/ros/ros-control/controller-start-stop.png"></a>
+    <figcaption>Plugin interface transitions: start and stop (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+When you start the controller the following is what gets executed before the first controller update:
+
+- Resource conflict handling (different from resources existence: by this time we know that resources exists but we check if the resource is already in use or available for your controller (in the case of exclusive ownership)
+- The next typical policy is to apply what's called semantic zero. This means, after the controller starts you would for example hold the position, set the velocity to zero, activate gravity compensation or something else that makes sense in your use case.
+
+The stop operation goes from the "running" to the "stop" state. The typical policy for this operation is to cancle goals.
 
 
 ### The Control Loop
