@@ -225,7 +225,7 @@ In the following images we concentrate on the controllers
     <figcaption>Controllers (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
 
-and see more of one controllers internals.
+and see more of the arm controller's internals.
 
 <figure class="half">
   <a href="/assets/ros/ros-control/arm-controller.png"><img src="/assets/ros/ros-control/arm-controller.png"></a>
@@ -236,8 +236,12 @@ As mentioned, a controller requires resources in the form of `ros_control` hardw
 
 Controllers use a plugin interface that implements the controller lifecycle. The lifecycle is a simple state machine with transitions between two states which are "stopped" and "running". A controller has two computation units where one is real-time safe and the other is non real-time.
 
+The state machine uses non real-time operations to load and unload a controller. 
+Loading controller is done by the `controller_manager` which initializes the controller plugin defined in a config yaml file and checks requisites, for example the existence of hardware resources. In the arm controller example, 
+we need two joints named `arm_1_joint` and `arm_2_joint` and they must implement the `PositionJointInterface`.
+In case your robot doesn't have that interface with the resources, the controller you want to use cannot work with that robot. You can also check for things like the robot URDF description configuration or a controller specific configuration like ROS parameters scoped within the controller namespace. Finally in the load method you setup the ROS interfaces which define how your clients will talk to the controller. 
 
-
+The steps to unload a controller are implemented in its destructor.
 
 
 
