@@ -264,7 +264,7 @@ When you start the controller the following is what gets executed before the fir
 - The next typical policy is to apply what's called semantic zero. This means, after the controller starts you would for example hold the position, set the velocity to zero, activate gravity compensation or something else that makes sense in your use case.
 
 The stop operation goes from the "running" to the "stop" state. The typical policy for this operation is to cancle goals.
-
+Cancelling all goals avoids a rapid movement the next time you start your controller because it doesn't try to resume what it was doing the last time around.
 
 ### The Control Loop
 
