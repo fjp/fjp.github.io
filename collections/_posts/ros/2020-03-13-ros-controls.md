@@ -275,6 +275,20 @@ Finally, the last part of computations that exist in controllers are non real-ti
 
 In summary, controllers are dynamically loadable **plugins** that have an interface which defines a very **simple state machine**. This interface clearly separates the operations that are **non real-time safe** from those that are required to be **real-time safe**. Finally, the computation can take place in the **controller update**, which in this case is both periodic and real-time safe, and we have computation in the **ROS API callbacks**, which is asynchronous and non real-time safe.
 
+
+#### `controller_toolbox`
+
+To write your own controllers there is a helpful package `controller_toolbox` which contains tools useful for writing
+**controllers** or **robot abstractions**.
+
+The following is a list of tools you can use:
+
+- **Pid** PID loop
+- **SineSweep** for joint frequency analysis
+- **Dither** white noise generator
+- **LimitedProxy** for convergence without overshoot
+- ...
+
 ### The Control Loop
 
 
