@@ -278,7 +278,7 @@ In summary, controllers are dynamically loadable **plugins** that have an interf
 
 #### `controller_toolbox`
 
-To write your own controllers there is a helpful package `controller_toolbox` which contains tools useful for writing
+To write your own controllers there is a helpful package [`controller_toolbox`](http://wiki.ros.org/control_toolbox) which contains tools useful for writing
 **controllers** or **robot abstractions**.
 
 The following is a list of tools you can use:
@@ -288,6 +288,23 @@ The following is a list of tools you can use:
 - **Dither** white noise generator
 - **LimitedProxy** for convergence without overshoot
 - ...
+
+
+#### `ros_controllers`
+
+Another helpful repository is [`ros_controllers`](http://wiki.ros.org/ros_controllers) which provides ready to use out of the box controllers. 
+If you plan to develop a controller, you should first check in this repository if it already exists.
+
+This repository has three controllers for reporting the joint state from sensors:
+
+- [`joint_state_controller`](http://wiki.ros.org/joint_state_controller) reads joint states and publishes it to the [`sensor_msgs/JointState`]() topic.
+Note: although it contains the word controller in its name, it is not actually controlling anything. However, it should always be used to publish the current joint states for other nodes such as `tf`. It is also worth mentioning that it should not be confused with [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher) (see [this answer](https://answers.ros.org/question/303358/what-is-the-difference-between-joint_state_publisher-and-joint_state_controller/) for a distinction). 
+- [`imu_sensor_controller`](http://wiki.ros.org/imu_sensor_controller) publishes [`sensor_msgs/Imu`](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/Imu.html) topics.
+- [`force_torque_sensor_controller`](http://wiki.ros.org/force_torque_sensor_controller) publishes [`geometry_msgs/Wrench`](http://docs.ros.org/melodic/api/geometry_msgs/html/msg/Wrench.html) topics.
+
+It also provides multiple general purpose controllers:
+
+- 
 
 ### The Control Loop
 
