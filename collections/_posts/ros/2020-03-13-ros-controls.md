@@ -258,13 +258,22 @@ ROS control has real-time safe operations, for transitioning between the stopped
     <figcaption>Plugin interface transitions: start and stop (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
 
-When you start the controller the following is what gets executed before the first controller update:
+When you `start()` the controller the following is what gets executed before the first controller `update()`:
 
 - Resource conflict handling (different from resources existence: by this time we know that resources exists but we check if the resource is already in use or available for your controller (in the case of exclusive ownership)
 - The next typical policy is to apply what's called semantic zero. This means, after the controller starts you would for example hold the position, set the velocity to zero, activate gravity compensation or something else that makes sense in your use case.
 
-The stop operation goes from the "running" to the "stop" state. The typical policy for this operation is to cancle goals.
+The `stop()` operation goes from the "running" to the "stop" state. The typical policy for this operation is to cancle goals.
 Cancelling all goals avoids a rapid movement the next time you start your controller because it doesn't try to resume what it was doing the last time around.
+
+
+The last real-time safe operation is `update()` which is a real-time safe computation, if implemented accordingly. This means you have to take care the implementation of `update()` is actually real-time safe, or if you don't have real-time constrains, that the implementation is deterministic. 
+The `updated()` method is executed periodically in the "running" state.
+
+
+Finally, the last part of computations that exist in controllers are non real-time operations which are executed asynchronously and take place in the callbacks of your controller's ROS interface. 
+
+In summary, controllers are dynamically loadable **plugins** that have an interface which defines a very **simple state machine**. This interface clearly separates the operations that are **non real-time safe** from those that are required to be **real-time safe**. Finally, the computation can take place in the **controller update**, which in this case is both periodic and real-time safe, and we have computation in the **ROS API callbacks**, which is asynchronous and non real-time safe.
 
 ### The Control Loop
 
