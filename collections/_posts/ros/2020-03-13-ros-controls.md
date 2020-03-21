@@ -79,7 +79,17 @@ Without ROS control there would be no end-to-end solution for ROS users. ROS con
 ## Ros Control and its Repositories
 
 The ROS control project consists of a github organization that's called [ros controls](https://github.com/ros-controls).
-There you find things from messages and action definitions to tools that help you writing real-time code ([realtime_tools](https://github.com/ros-controls/realtime_tools)) that is useful in the context of control. The core framework is found in the [`ros_control`](https://github.com/ros-controls/ros_control) package which is compatible with [`ros_controllers`](https://github.com/ros-controls/ros_controllers). This package provides a set of robot agnostic controllers.
+There you find messages and action definitions, tools that help you writing real-time code ([realtime_tools](https://github.com/ros-controls/realtime_tools)) in the context of control, hardware interfaces ([`hardware_interface`](http://wiki.ros.org/hardware_interface) and the [`transmission_interface`](http://wiki.ros.org/transmission_interface) package to describe your robot and the [`controller_manager`](http://wiki.ros.org/controller_manager). The core framework is found in the [`ros_control`](https://github.com/ros-controls/ros_control) package which is compatible with [`ros_controllers`](https://github.com/ros-controls/ros_controllers) that provides a set of robot agnostic controllers.
+
+The [`ros_control`](http://wiki.ros.org/ros_control) meta package is composed of the following individual packages:
+
+- [`control_toolbox`](http://wiki.ros.org/control_toolbox): This package contains common modules (PID and Sine) that can be used by all controllers. 
+- [`controller_interface`](http://wiki.ros.org/controller_interface): This package contains the interface base class for existing controllers and to develop new ones that will work with the ROS control framework. 
+- [`controller_manager`](http://wiki.ros.org/controller_manager): This package provides the infrastructure to load, unload, start, and stop controllers.
+- [`controller_manager_msgs`](http://wiki.ros.org/controller_manager_msgs): This package provides the message and service definitions for the controller manager.
+- [`hardware_interface`](http://wiki.ros.org/hardware_interface): This contains the base class for the hardware interfaces 
+- [`transmission_interface`](http://wiki.ros.org/transmission_interface): This package contains the interface classes to model transmissions ([simple reducers](http://docs.ros.org/melodic/api/transmission_interface/html/c++/classtransmission__interface_1_1SimpleTransmission.html), [differentials](http://docs.ros.org/melodic/api/transmission_interface/html/c++/classtransmission__interface_1_1DifferentialTransmission.html) or [four-bar linkages](http://docs.ros.org/melodic/api/transmission_interface/html/c++/classtransmission__interface_1_1FourBarLinkageTransmission.html))
+
 
 ### Setting up a Robot
 
