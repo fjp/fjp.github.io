@@ -93,9 +93,9 @@ The [`ros_control`](http://wiki.ros.org/ros_control) meta package is composed of
 
 ### Setting up a Robot
 
-First ROS control is split into two parts. First there is the robot hardware abstraction, 
+ROS control is split into two parts. First there is the robot hardware abstraction, 
 which is used to communicate with the hardware. It provides resources like joints and it also handles resource conflicts. 
-On the other hand, we have controllers. They don't talk directly to hardware and they require resources that are provided by the hardware abstraction. 
+On the other hand, we have controllers. They talk to the hardware through the hardware interface and they require resources that are provided by the hardware abstraction. 
 
 <figure>
     <a href="/assets/ros/ros-control/controllers-vs-hardware-abstraction.png"><img src="/assets/ros/ros-control/controllers-vs-hardware-abstraction.png"></a>
@@ -120,7 +120,7 @@ A bunch of hardware interfaces, where one is just a set of similar resources, re
 
 The robot hardware, represented in software, and the controllers are connected via ROS control's interfaces, 
 not to be confused with typical ROS interfaces like topics, actions or services. 
-Instead, we are just passing pointers around which is real-time safe. The interfaces of the robot hardware are
+This means, we are just passing pointers around which is real-time safe. The interfaces of the robot hardware are
 used by controllers to connect and communicate with the hardware. 
 At the leftmost part of the image we see that controllers have their interfaces, which are typically ROS interfaces
 (topics, services or actions) that are custom so your controller can expose whatever it wants.
@@ -307,14 +307,37 @@ If you plan to develop a controller, you should first check in this repository i
 
 This repository has three controllers for reporting the joint state from sensors:
 
-- [`joint_state_controller`](http://wiki.ros.org/joint_state_controller) reads joint states and publishes it to the [`sensor_msgs/JointState`]() topic.
+- [`joint_state_controller`](http://wiki.ros.org/joint_state_controller) reads joint states and publishes it to the `/joint_state` topic of type [`sensor_msgs/JointState`](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/JointState.html).
 Note: although it contains the word controller in its name, it is not actually controlling anything. However, it should always be used to publish the current joint states for other nodes such as `tf`. It is also worth mentioning that it should not be confused with [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher) (see [this answer](https://answers.ros.org/question/303358/what-is-the-difference-between-joint_state_publisher-and-joint_state_controller/) for a distinction). 
 - [`imu_sensor_controller`](http://wiki.ros.org/imu_sensor_controller) publishes [`sensor_msgs/Imu`](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/Imu.html) topics.
 - [`force_torque_sensor_controller`](http://wiki.ros.org/force_torque_sensor_controller) publishes [`geometry_msgs/Wrench`](http://docs.ros.org/melodic/api/geometry_msgs/html/msg/Wrench.html) topics.
 
-It also provides multiple general purpose controllers:
+It also provides multiple general purpose controllers. There are three packages that implement simple single joint controllers that operate in different control spaces (position, velocity and effort). 
+These main ROS controllers are grouped according to the commands that get passed to your hardware/simulator:
 
-- 
+- [`effort_controllers`](http://wiki.ros.org/effort_controllers): used when you want to send commands to an effort interface. This means that the joints you want to control accept an effort command.
+  - `joint_effort_controller` with this subclass the `effort_controllers` plugin accepts effort set values as input.
+  - `joint_position_controller` with this subclass the `effort_controllers` plugin accepts position set values as input.
+  - `joint_velocity_controller` with this subclass the `effort_controllers` plugin accepts velocity set values as input.
+- [`position_controllers`](http://wiki.ros.org/position_controllers): used when you want to send commands to a position interface. This means that the joints you want to control accept a position command.
+  - `joint_position_controller` with this subclass the `position_controllers` plugin accepts only position set values as input. 
+  - `joint_group_position_controller`
+- [`velocity_controllers`](http://wiki.ros.org/velocity_controllers): used when you want to send commands to a position interface. This means that the joints you want to control accept a velocity command.
+  - `joint_velocity_controller` with this subclass the `position_controllers` plugin accepts only velocity set values as input. 
+  - `joint_group_velocity_controller`
+  
+  
+To set an entire trajectory, the following controllers are defined:
+
+- [`joint_trajectory_controllers`](http://wiki.ros.org/joint_trajectory_controller?distro=melodic) is mostly used for manipulation and implements the action interface that is expected by [MoveIt!](https://moveit.ros.org/) in the default ROS bindings. The controller accepts commands as either actions of type [`control_msgs/FollowJointTrajectory`](http://docs.ros.org/api/control_msgs/html/action/FollowJointTrajectory.html) or via the topic [`trajectory_msgs/JointTrajectory`](http://docs.ros.org/melodic/api/trajectory_msgs/html/msg/JointTrajectory.html).
+  - `position_controller`
+  - `velocity_controller`
+  - `effort_controller`
+  - `position_velocity_controller`
+  - `position_velocity_acceleration_controller`
+
+
+For navigation there is the [`diff_drive_controller`](http://wiki.ros.org/diff_drive_controller) which accepts commands in the form of [`geometry_msgs/Twist`](http://docs.ros.org/melodic/api/geometry_msgs/html/msg/Twist.html) topics and publishes odometry to [`tf`](http://wiki.ros.org/tf) and [`nav_msgs/Odometry`](http://docs.ros.org/melodic/api/nav_msgs/html/msg/Odometry.html). It exposes a ROS interface that is compatible with the [ROS navigation stack](http://wiki.ros.org/navigation). 
 
 ### The Control Loop
 
