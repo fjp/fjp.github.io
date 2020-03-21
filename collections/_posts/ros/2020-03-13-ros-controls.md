@@ -344,7 +344,24 @@ It accepts commands as actions of type [`control_msgs/GripperCommandAction`](htt
 
 ### The Control Loop
 
+To bring the robot hardware abstraction and the controllers together ROS control uses the **controller manager** 
+which lives in a package with the same [`controller_manager`](http://wiki.ros.org/controller_manager). 
+The controller manager knows about the robot and the controllers. Its two main purposes are: **robot resource management** and **controller lifecycle management**.
 
+<figure>
+  <a href="/assets/ros/ros-control/robot-resources.png"><img src="/assets/ros/ros-control/robot-resources.png"></a>
+    <figcaption>Robot resource conflict handling (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+The controller manager knows about resources and can therefore enforce the resource conflict policy, for example, exclusive ownership.
+
+
+It also takes care of controller lifecycle management. Because it knows about the controllers this is the guy that transitions the controller state machine and it also updates the controllers
+
+<figure>
+  <a href="/assets/ros/ros-control/controller-lifecycle.png"><img src="/assets/ros/ros-control/controller-lifecycle.png"></a>
+    <figcaption>Controller lifecycle management (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
 
 
 
