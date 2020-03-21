@@ -339,6 +339,9 @@ To set an entire trajectory, the following controllers are defined:
 
 For navigation there is the [`diff_drive_controller`](http://wiki.ros.org/diff_drive_controller) which accepts commands in the form of [`geometry_msgs/Twist`](http://docs.ros.org/melodic/api/geometry_msgs/html/msg/Twist.html) topics and publishes odometry to [`tf`](http://wiki.ros.org/tf) and [`nav_msgs/Odometry`](http://docs.ros.org/melodic/api/nav_msgs/html/msg/Odometry.html). It exposes a ROS interface that is compatible with the [ROS navigation stack](http://wiki.ros.org/navigation). 
 
+For manipulation we can use the [`gripper_action_controller`](http://wiki.ros.org/gripper_action_controller) which implements a single-DOF gripper controller. 
+It accepts commands as actions of type [`control_msgs/GripperCommandAction`](http://docs.ros.org/melodic/api/control_msgs/html/msg/GripperCommand.html) and is compatible with [MoveIt!](https://moveit.ros.org/).
+
 ### The Control Loop
 
 
