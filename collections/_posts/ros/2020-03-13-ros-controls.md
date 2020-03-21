@@ -397,6 +397,44 @@ The following image shows the control loop in its most basic and simplified form
     <figcaption>Basic control loop (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
 
+Typically, you first read the state from the hardware through the hardware interface, then use the controller manager to update the controllers with the current hardware state, and finally you send the commands from the update step back out to the hardware.
+
+
+```cpp
+#include <ros/ros.h>
+#include <my_robot/my_robot.h>
+# include <controller_manager/controller_manager.h>
+
+int main(int argc, char **argv)
+{
+    // Setup
+    ros::init(argc, argv, "my_robot");
+    
+    MyRobot::MyRobot robot;
+    controller_manager::ControllerManager cm(&robot);
+    
+    ros:AsyncSpinner spinner(1);
+    spinner.start();
+    
+    // Control loop
+    ros::Time prev_time = ros::Time::now();
+    ros::Rate rate(10.0); // 10 Hz rate
+    
+    while (ros::ok())
+    {
+        const ros::Time     time   = ros:Time::now();
+        const ros::Duration period = time - prev_time;
+        
+        robot.read();
+        cm.update(time, period);
+        root.write();
+        
+        rate.sleep();
+    }
+    return 0;
+}
+```
+
 
 ## Reference
 
