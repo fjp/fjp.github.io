@@ -248,7 +248,7 @@ Controllers use a plugin interface that implements the controller lifecycle. The
 
 The state machine uses non real-time operations to load and unload a controller. 
 
-<figure>
+<figure class="half">
   <a href="/assets/ros/ros-control/controller-load-unload.png"><img src="/assets/ros/ros-control/controller-load-unload.png"></a>
     <figcaption>Plugin interface transitions: load and unload (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
@@ -263,7 +263,7 @@ The steps to unload a controller plugin are implemented in the destructor of the
 
 ROS control has real-time safe operations, for transitioning between the stopped and running states.
 
-<figure>
+<figure class="half">
   <a href="/assets/ros/ros-control/controller-start-stop.png"><img src="/assets/ros/ros-control/controller-start-stop.png"></a>
     <figcaption>Plugin interface transitions: start and stop (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
@@ -286,7 +286,7 @@ Finally, the last part of computations that exist in controllers are non real-ti
 In summary, controllers are dynamically loadable **plugins** that have an interface which defines a very **simple state machine**. This interface clearly separates the operations that are **non real-time safe** from those that are required to be **real-time safe**. Finally, the computation can take place in the **controller update**, which in this case is both periodic and real-time safe, and we have computation in the **ROS API callbacks**, which is asynchronous and non real-time safe.
 
 
-#### `controller_toolbox`
+#### Controller Toolbox
 
 To write your own controllers there is a helpful package [`controller_toolbox`](http://wiki.ros.org/control_toolbox) which contains tools useful for writing
 **controllers** or **robot abstractions**.
@@ -300,7 +300,7 @@ The following is a list of tools you can use:
 - ...
 
 
-#### `ros_controllers`
+#### ROS Controllers
 
 Another helpful repository is [`ros_controllers`](http://wiki.ros.org/ros_controllers) which provides ready to use out of the box controllers. 
 If you plan to develop a controller, you should first check in this repository if it already exists.
@@ -349,14 +349,14 @@ which lives in a package with the same [`controller_manager`](http://wiki.ros.or
 
 #### Controller Manager
 
-<figure>
+<figure class="half">
   <a href="/assets/ros/ros-control/controller-manager.png"><img src="/assets/ros/ros-control/controller-manager.png"></a>
     <figcaption>Controller lifecycle management (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
 
 The controller manager knows about the robot and the controllers. Its two main purposes are: **robot resource management** and **controller lifecycle management**.
 
-<figure>
+<figure class="half">
   <a href="/assets/ros/ros-control/robot-resources.png"><img src="/assets/ros/ros-control/robot-resources.png"></a>
     <figcaption>Robot resource conflict handling (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
@@ -369,7 +369,7 @@ it handles the transitions of the controller state machine and it also updates t
 It is important to mention that, by design, controller updates are serialized in a single thread and they are periodic.
 
 
-<figure>
+<figure class="half">
   <a href="/assets/ros/ros-control/controller-lifecycle.png"><img src="/assets/ros/ros-control/controller-lifecycle.png"></a>
     <figcaption>Controller lifecycle management (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
@@ -392,7 +392,7 @@ The controller manager has an API which is based on ROS services. This API is us
 
 The following image shows the control loop in its most basic and simplified form:
 
-<figure>
+<figure class="half">
   <a href="/assets/ros/ros-control/control-loop-simple.png"><img src="/assets/ros/ros-control/control-loop-simple.png"></a>
     <figcaption>Basic control loop (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
@@ -491,7 +491,7 @@ rate.sleep();
 
 The `read`, `update` and `write` operations take place in a thread, which is called the control thread:
 
-<figure>
+<figure class="half">
   <a href="/assets/ros/ros-control/control-thread.png"><img src="/assets/ros/ros-control/control-thread.png.png"></a>
     <figcaption>The control loop thread (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
