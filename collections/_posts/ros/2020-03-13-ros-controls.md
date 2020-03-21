@@ -491,6 +491,11 @@ rate.sleep();
 
 The `read`, `update` and `write` operations take place in a thread, which is called the control thread:
 
+<figure>
+  <a href="/assets/ros/ros-control/control-thread.png"><img src="/assets/ros/ros-control/control-thread.png.png"></a>
+    <figcaption>The control loop thread (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
 
 
 
