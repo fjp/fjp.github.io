@@ -356,12 +356,32 @@ The controller manager knows about the robot and the controllers. Its two main p
 The controller manager knows about resources and can therefore enforce the resource conflict policy, for example, exclusive ownership.
 
 
-It also takes care of controller lifecycle management. Because it knows about the controllers this is the guy that transitions the controller state machine and it also updates the controllers
+It also takes care of controller lifecycle management. Because the `controller_manager` knows about the controllers 
+it handles the transitions of the controller state machine and it also updates the running controllers.
+It is important to mention that, by design, controller updates are serialized in a single thread and they are periodic.
+
 
 <figure>
   <a href="/assets/ros/ros-control/controller-lifecycle.png"><img src="/assets/ros/ros-control/controller-lifecycle.png"></a>
     <figcaption>Controller lifecycle management (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
+
+
+The controller manager has an API which is based on ROS services. This API is used for 
+
+- Controller lifecycle managment: to transition between the states of the controller state machine
+  - `load_controller`
+  - `unload_controller`
+  - `switch_controller`: Note that there are no separate start and stop services. Instead, there is a service that is called 
+  switch. With that, it is possible to to stop a set of controllers and then start a set of controllers in the same control cycle. This might be relevant if you have a robot arm that is stopped hanging in mid air and you want to change control strategies. What might happen in this case is that your arm falls down when a few control cycles pass. With the switch service you can guarantee that there is no control cycle without any controller running unless that is what you want.
+- Query services: 
+  - `list_controllers`: list the currently running controllers or which controllers are available for loading.
+  - `list_controller_types`: 
+- Other services useful for debugging
+  - `reload_controller_libraries`
+  
+
+
 
 
 
