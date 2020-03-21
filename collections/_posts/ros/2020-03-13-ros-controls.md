@@ -435,6 +435,64 @@ int main(int argc, char **argv)
 }
 ```
 
+Let's step through the code snippet:
+
+We first initialize our ROS node:
+
+```cpp
+// Setup
+ros::init(argc, argv, "my_robot");
+```
+
+Create an instance of your robot so that this instance knows about all the resources that are available (remember the `hardware_interface`). Next we create an instance of the controller manager and pass it the robot, so that it can handle its resources:
+
+```cpp
+MyRobot::MyRobot robot;
+controller_manager::ControllerManager cm(&robot);
+```
+
+Next, we setup a separate thread that will be used to service ROS callbacks:
+
+```cpp
+ros:AsyncSpinner spinner(1);
+spinner.start();
+```
+
+The following snippes show the actual control loop. 
+First we setup the period of the control loop, which in this case is slow (non real-time) 10 Hz. 
+
+```cpp
+// Control loop
+ros::Time prev_time = ros::Time::now();
+ros::Rate rate(10.0); // 10 Hz rate
+```
+
+Inside the `while` loop we do some basic bookkeeping to get the system time in order to compute the control period:
+
+
+```cpp
+const ros::Time     time   = ros:Time::now();
+const ros::Duration period = time - prev_time;
+```
+And then the actual control loop (read, update, write) begins executing:
+
+```cpp
+robot.read();
+cm.update(time, period);
+root.write();
+```
+
+All these steps keep getting repeated with the specified rate:
+
+```cpp
+rate.sleep();
+```
+
+
+The `read`, `update` and `write` operations take place in a thread, which is called the control thread:
+
+
+
 
 ## Reference
 
