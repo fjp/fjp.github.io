@@ -342,10 +342,18 @@ For navigation there is the [`diff_drive_controller`](http://wiki.ros.org/diff_d
 For manipulation we can use the [`gripper_action_controller`](http://wiki.ros.org/gripper_action_controller) which implements a single-DOF gripper controller. 
 It accepts commands as actions of type [`control_msgs/GripperCommandAction`](http://docs.ros.org/melodic/api/control_msgs/html/msg/GripperCommand.html) and is compatible with [MoveIt!](https://moveit.ros.org/).
 
-### The Control Loop
+### Controller Lifecycle Management
 
 To bring the robot hardware abstraction and the controllers together ROS control uses the **controller manager** 
-which lives in a package with the same [`controller_manager`](http://wiki.ros.org/controller_manager). 
+which lives in a package with the same [`controller_manager`](http://wiki.ros.org/controller_manager) and takes care of the control loop.
+
+#### Controller Manager
+
+<figure>
+  <a href="/assets/ros/ros-control/controller-manager.png"><img src="/assets/ros/ros-control/controller-manager.png"></a>
+    <figcaption>Controller lifecycle management (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
 The controller manager knows about the robot and the controllers. Its two main purposes are: **robot resource management** and **controller lifecycle management**.
 
 <figure>
@@ -380,9 +388,14 @@ The controller manager has an API which is based on ROS services. This API is us
 - Other services useful for debugging
   - `reload_controller_libraries`
   
+#### The Control Loop
 
+The following image shows the control loop in its most basic and simplified form:
 
-
+<figure>
+  <a href="/assets/ros/ros-control/control-loop-simple.png"><img src="/assets/ros/ros-control/control-loop-simple.png"></a>
+    <figcaption>Basic control loop (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
 
 
 ## Reference
