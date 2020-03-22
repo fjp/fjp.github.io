@@ -20,7 +20,7 @@ header:
 ---
 
 
-ROS Control combines a set of packages that include controller interfaces, controller managers, transmissions and hardware_interfaces.
+ROS Control combines a set of packages that include controller interfaces, controller managers, transmissions and hardware_interfaces. The ROS control framework is used to implement and manage robot controllers for real robots and in simulation within gazebo.
 
 
 ## Big Picture and Goals
