@@ -491,7 +491,7 @@ rate.sleep();
 
 The `read`, `update` and `write` operations take place in a thread, which is called the control thread:
 
-<figure class="half">
+<figure class="third">
   <a href="/assets/ros/ros-control/control-thread.png"><img src="/assets/ros/ros-control/control-thread.png"></a>
     <figcaption>The control loop thread (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
@@ -543,7 +543,46 @@ With this extended control loop we can make use of mechanical transmissions, tak
 
 ##### Mechanical Transmissions
 
-If your hardware doesn't take care of mechnaical transmissions by itself than we have to do this in software.
+If your hardware doesn't take care of mechanical transmissions by itself than we have to do this in software.
+For this, there is a package called [`transmission_interface`](http://wiki.ros.org/transmission_interface) which contains data structures for representing mechanical transmissions, and methods for propagating position, velocity and effort variables between **actuator and joint spaces**.
+
+In the same spirit as the `hardware_interface` package, this package wraps existing raw data (eg. current actuator position, reference joint command, etc.) under a consistent interface. By not imposing a specific layout on the raw data, it becomes easier to support arbitrary hardware drivers to software control.
+
+The `transmission_interface` is not used by controllers themselves (it does not implement a HardwareInterface) but instead operates before or after the controllers update, in the `read()` and `write()` methods (or equivalents) of the robot abstraction. 
+
+The following transmissions already exist and are ready to use:
+
+- Simple reducer
+- Four-bar linkage
+- Differential
+
+
+<figure class="third">
+  <a href="/assets/ros/ros-control/simple_transmission.png"><img src="/assets/ros/ros-control/simple_transmission.png"></a>
+  <a href="/assets/ros/ros-control/four_bar_linkage_transmission.png"><img src="/assets/ros/ros-control/four_bar_linkage_transmission.png"></a>
+  <a href="/assets/ros/ros-control/differential_transmission.png"><img src="/assets/ros/ros-control/differential_transmission.png"></a>
+    <figcaption>Transmission types (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+There are plugins that help you in loading transmissions from the URDF and thereby simplifies the process of populating the `hardware_interface::RobotHW` interfaces. 
+Without these plugins it would be very complex to populate your robot hardware interface. 
+
+The following URDF xml snippet shows a configuration for a simple reducer. This is what you have to put in your URDF. 
+
+
+```xml
+<transmission name="arm_1_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <actuator name="arm_1_motor">
+    <mechanicalReduction>42</mechanicalReduction>
+  </actuator>
+  <joint name="arm_1_joint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+  </joint>
+</transmission>
+```
+
+Here you're specifying the type of the transmission the name of the actuator and joint that you were relating to one another and things like the mechanical reduction and the type of hardware interfaces that you'd expect to expose.
 
 ## Reference
 
