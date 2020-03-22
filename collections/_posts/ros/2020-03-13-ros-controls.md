@@ -496,6 +496,42 @@ The `read`, `update` and `write` operations take place in a thread, which is cal
     <figcaption>The control loop thread (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
 
+This thread potentially operates in real-time. If your system has real-time contraints, then it is this part of the code (read, update, write) where you should make sure it has real-time scheduling. 
+
+There is another non real-time thread, called the spinner thread, that is responsible for servicing ROS callbacks.
+
+<figure class="half">
+  <a href="/assets/ros/ros-control/control-spinner-thread.png"><img src="/assets/ros/ros-control/control-spinner-thread.png.png"></a>
+    <figcaption>The control and spinner threads (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+As we see in the image above, the spinner thread
+
+
+There are different kinds of callbacks that are serviced by this thread. First, those from the controller manager API
+and second, there's the ROS API from your controllers which is custom and up to you. 
+And finally there might be other callbacks registered which depends on your setup.
+
+It is important to mention, that we have the computations, which are non real-time in a separate thread.
+Having these non real-time computations separate means that we respect requirements from real-time applications but also deterministic execution. 
+
+In the code example above we don't have real-time constraints because it's a slow robot operating at 10 Hz.
+However, it also makes sense in this example to have the threads separate. For example, imagine a robot with 10,000 joints that has a controller which needs to parse its URDF while loading. In this example, there is no way to guarantee that parsing that URDF will take less than 0.1 seconds.
+
+If we would serialize everything in the same thread then such long lasting operations would not guarantee to respect the rate of the control loop. Therefore, these operations are separated into a spinner thread (even if we're not using a real-time operating system). 
+
+Because we have two threads, they need to talk to each other, as we can see in the image above. 
+We have to handle concurrency with care, especially with respect to the control thread. 
+Because it operates in real-time we have to make sure that we never block it to avoid suffering from [priority inversions](https://en.wikipedia.org/wiki/Priority_inversion) or other bad things that might happen.
+
+To deal with concurrency and other things there's a package that's called [`realtime_tools`](http://wiki.ros.org/realtime_tools) which has tools that are usable from a hard real-time thread. It includes:
+- **RealtimePublisher**: publish to a ROS topic 
+- **RealtimeBuffer**: share resource with non real-time thread. 
+- **RealtimeClock**: query estimates of the system clock. 
+- ...
+
+#### The Control Loop Extended
+
 
 
 
