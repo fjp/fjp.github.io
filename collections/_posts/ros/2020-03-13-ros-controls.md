@@ -584,6 +584,12 @@ The following URDF xml snippet shows a configuration for a simple reducer. This 
 
 Here you're specifying the type of the transmission the name of the actuator and joint that you were relating to one another and things like the mechanical reduction and the type of hardware interfaces that you'd expect to expose.
 
+
+##### Safety Issues
+
+You might be interested in enforcing joint limits before you send the commands to the robot hardware.
+For this, there is a package called `joint_limits_interface`.
+
 ## Reference
 
 - [ROSCon 2014 talk](https://vimeo.com/107507546) and the presented [slides](http://roscon.ros.org/2014/wp-content/uploads/2014/07/ros_control_an_overview.pdf)
