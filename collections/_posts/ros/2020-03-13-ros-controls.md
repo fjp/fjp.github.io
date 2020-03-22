@@ -588,7 +588,23 @@ Here you're specifying the type of the transmission the name of the actuator and
 ##### Safety Issues
 
 You might be interested in enforcing joint limits before you send the commands to the robot hardware.
-For this, there is a package called `joint_limits_interface`.
+For this, there is a package called `joint_limits_interface`. It is the last line of defense before commanding hardware
+- don't trust controllers.
+It is implemented using simple and fast low-level stragegies.
+
+Inside the package you find 
+
+- data structures for **representing** joint limits.
+- Convenience methods for **populating** these data structrues from:
+  - URDF
+  - yaml (similar to MoveIt! + jerk)
+- Methods for **enforcing** joint limits
+  - soft-limits (PR2 like) and clamping strategies
+  - work for different hardware interfaces
+  
+The following examples explains the joint limits implementation:
+
+
 
 ## Reference
 
