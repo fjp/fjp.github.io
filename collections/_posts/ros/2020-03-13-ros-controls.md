@@ -532,7 +532,10 @@ To deal with concurrency and other things there's a package that's called [`real
 
 #### The Control Loop Extended
 
-
+<figure class="half">
+  <a href="/assets/ros/ros-control/control-loop-extended.png"><img src="/assets/ros/ros-control/control-loop-extended.png.png"></a>
+    <figcaption>The extended control loop (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
 
 
 ## Reference
