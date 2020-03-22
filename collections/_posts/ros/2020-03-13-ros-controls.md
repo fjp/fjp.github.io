@@ -532,11 +532,18 @@ To deal with concurrency and other things there's a package that's called [`real
 
 #### The Control Loop Extended
 
+Let's now look at the complete control loop used in ROS control's framework:
+
 <figure class="half">
   <a href="/assets/ros/ros-control/control-loop-extended.png"><img src="/assets/ros/ros-control/control-loop-extended.png.png"></a>
     <figcaption>The extended control loop (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
 
+With this extended control loop we can make use of mechanical transmissions, take care of joint limits and provide emergency stops. 
+
+##### Mechanical Transmissions
+
+If your hardware doesn't take care of mechnaical transmissions by itself than we have to do this in software.
 
 ## Reference
 
