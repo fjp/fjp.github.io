@@ -492,7 +492,7 @@ rate.sleep();
 The `read`, `update` and `write` operations take place in a thread, which is called the control thread:
 
 <figure class="half">
-  <a href="/assets/ros/ros-control/control-thread.png"><img src="/assets/ros/ros-control/control-thread.png.png"></a>
+  <a href="/assets/ros/ros-control/control-thread.png"><img src="/assets/ros/ros-control/control-thread.png"></a>
     <figcaption>The control loop thread (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
 
@@ -501,7 +501,7 @@ This thread potentially operates in real-time. If your system has real-time cont
 There is another non real-time thread, called the spinner thread, that is responsible for servicing ROS callbacks.
 
 <figure class="half">
-  <a href="/assets/ros/ros-control/control-spinner-thread.png"><img src="/assets/ros/ros-control/control-spinner-thread.png.png"></a>
+  <a href="/assets/ros/ros-control/control-spinner-thread.png"><img src="/assets/ros/ros-control/control-spinner-thread.png"></a>
     <figcaption>The control and spinner threads (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
 
