@@ -604,6 +604,11 @@ Inside the package you find
   
 The following examples explains the joint limits implementation:
 
+<figure>
+  <a href="/assets/ros/ros-control/joint_limits.png"><img src="/assets/ros/ros-control/joint_limits.png"></a>
+    <figcaption>Joint limits (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
 
 
 ## Reference
