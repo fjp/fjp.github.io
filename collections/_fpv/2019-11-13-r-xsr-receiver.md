@@ -27,7 +27,7 @@ sidebar:
 
 
 <figure>
-    <a href="/assets/collections/fpv/receiver/r-xsr.jpg"><img src="/assets/collections/fpv/receiver/r-xsr.jpg"></a>
+    <a href="/assets/collections/fpv/receiver/r-xsr-top.jpg"><img src="/assets/collections/fpv/receiver/r-xsr-top.jpg"></a>
     <figcaption>FrSky R-XSR Receiver.</figcaption>
 </figure>
 
