@@ -21,13 +21,12 @@ sidebar:
   nav: "fpv"
 ---
 
-[FrSky R-XSR SmartPort FPort Receiver](https://www.frsky-rc.com/product/r-xsr/). 
+This post is abou the [FrSky R-XSR SmartPort Receiver](https://www.frsky-rc.com/product/r-xsr/) which is also capabale of the new [F.Port](/projects/fpv/glossar/#fport) protocol that requires only a single connection to the [Flight Controller](/projects/fpv/glossar/#flight-controller) for communication. 
 
 
-
-
-<figure>
+<figure class="half">
     <a href="/assets/collections/fpv/receiver/r-xsr-top.jpg"><img src="/assets/collections/fpv/receiver/r-xsr-top.jpg"></a>
+    <a href="/assets/collections/fpv/receiver/r-xsr-manual.jpg"><img src="/assets/collections/fpv/receiver/r-xsr-manual.jpg"></a>
     <figcaption>FrSky R-XSR Receiver.</figcaption>
 </figure>
 
@@ -38,7 +37,7 @@ This section explains how to [flash](/projects/fpv/glossar/#flash) the latest [r
 Download the latest [ACCESS](/projects/fpv/glossar/#access) firmware from the 
 [product page](https://www.frsky-rc.com/r-xsr/). Here you can decide between [S.Port](/projects/fpv/glossar/#smartport) and [F.Port](/projects/fpv/glossar/#fport) variants. 
 If you don't know what to choose, it is recommended to select the newer F.Port firmware, as it allows you to 
-connect your receiver with just a single wire to your [flight controller](/projects/fpv/glossar/#flight-controller).
+connect your receiver with just a single wire to your [Flight Controller](/projects/fpv/glossar/#flight-controller).
 
 Choose for example, `FW-RXSR-ACCESS_v1.1.4.zip`, which is, at the time of writing, the latest firmware and includes the F.Port firmware. Especially the file `RXSR-FPORT_ACCESS_191107.frsk` will be relevant for flashing. Unpack the zip file and copy the content to the `FIRMWARES` folder (create it, if it doesn't exist) on the external sd card of your Taranis.
 
@@ -55,9 +54,36 @@ After you have connected the receiver to the S.Port, located in the battery comp
 This will flash the latest F.Port firmware onto the R-XSR receiver.
 
 
-## How to use the Taranis X9D Plus Transmitter to Flash the Receiver Firmware
+For other helpful resources on how to flash the receiver, look at the official FrSky [support page](https://www.frsky-rc.com/how-to-use-the-transmitter-to-flash-the-firmware-of-the-x8r-receiver/) and the [R-XSR manual](https://www.frsky-rc.com/wp-content/uploads/Downloads/Manual/X9DP2019/X9D%20Plus%202019%20X9D%20Plus%20SE%202019-Manual.pdf). 
 
-https://www.frsky-rc.com/how-to-use-the-transmitter-to-flash-the-firmware-of-the-x8r-receiver/
+
+## Register and Bind R-XSR to Taranis X9D Plus 2019
+
+First register the receiver with its unique name to the your transmitter
+
+<figure class="third">
+    <a href="/assets/collections/fpv/receiver/bind/01-model-setup.jpg"><img src="/assets/collections/fpv/receiver/bind/01-model-setup.jpg"></a>
+    <a href="/assets/collections/fpv/receiver/02-register.jpg"><img src="/assets/collections/fpv/receiver/02-register.jpg"></a>
+    <a href="/assets/collections/fpv/receiver/03-register-ok.jpg"><img src="/assets/collections/fpv/receiver/03-register-ok.jpg"></a>
+    <figcaption>Register R-XSR receiver with Taranis X9D Plus 2019.</figcaption>
+</figure>
+
+
+After registration you can start the binding process:
+
+<figure class="third">
+    <a href="/assets/collections/fpv/receiver/bind/04-bind.jpg"><img src="/assets/collections/fpv/receiver/bind/04-bind.jpg"></a>
+    <a href="/assets/collections/fpv/receiver/05-select-rx.jpg"><img src="/assets/collections/fpv/receiver/05-select-rx.jpg"></a>
+    <a href="/assets/collections/fpv/receiver/06-bind-ok.jpg"><img src="/assets/collections/fpv/receiver/06-bind-ok.jpg"></a>
+    <figcaption>Bind R-XSR receiver with Taranis X9D Plus 2019.</figcaption>
+</figure>
+
+The final result will look like this:
+
+<figure>
+    <a href="/assets/collections/fpv/receiver/bind/07-result.jpg"><img src="/assets/collections/fpv/receiver/bind/07-result.jpg"></a>
+    <figcaption>Successful binding of R-XSR receiver with Taranis X9D Plus 2019.</figcaption>
+</figure>
 
 
 ## References
