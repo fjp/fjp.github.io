@@ -40,9 +40,8 @@ Download the latest [ACCESS](/projects/fpv/glossar/#access) firmware from the
 If you don't know what to choose, it is recommended to select the newer F.Port firmware, as it allows you to 
 connect your receiver with just a single wire to your [flight controller](/projects/fpv/glossar/#flight-controller).
 
-Choose for example, `FW-RXSR-ACCESS_v1.1.4.zip` and unpack the zip file.
-Copy the content to the external sd card of your Taranis and place it in the `FIRMWARES` folder.
-Especially the file `RXSR-FPORT_ACCESS_191107.frsk` will be relevant. 
+Choose for example, `FW-RXSR-ACCESS_v1.1.4.zip`, which is, at the time of writing, the latest firmware and includes the F.Port firmware. Especially the file `RXSR-FPORT_ACCESS_191107.frsk` will be relevant for flashing. Unpack the zip file and copy the content to the `FIRMWARES` folder (create it, if it doesn't exist) on the external sd card of your Taranis.
+
 
 With your Taranis powerd off, connect the R-XSR receiver to the SmartPort (S.Port) of the Taranis X9D Plus 2019. 
 You find this port in the battery box of the X9DP 2019 radio. 
@@ -53,7 +52,7 @@ Note that you don't connect the receiver to the pins that are located in the bac
 After you have connected the receiver to the S.Port, located in the battery compartment, navigate to the `FIRMWARES` folder located on your Taranis, long press the dowloaded firmware `RXSR-FPORT_ACCESS_191107.frsk` file and select "Flash S.Port device".
 
 
-This will flash the firmware of the R-XSR receiver.
+This will flash the latest F.Port firmware onto the R-XSR receiver.
 
 
 ## How to use the Taranis X9D Plus Transmitter to Flash the Receiver Firmware
