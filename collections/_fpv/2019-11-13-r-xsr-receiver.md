@@ -2,10 +2,10 @@
 layout: single
 title:  "FrSky R-XSR Receiver"
 permalink: /projects/fpv/r-xsr
-excerpt: "All about the R-XSR SmartPort Receiver from FrSky."
+excerpt: "All about the R-XSR SmartPort and FPort Receiver from FrSky."
 date: 2019-10-30 09:00:35 +0100
 categories: [fpv, quad]
-tags: [fpv, quad, race, drone, r-xsr, receiver]
+tags: [fpv, quad, race, drone, r-xsr, receiver, smartport, fport]
 comments: true
 use_math: true
 toc: true
@@ -21,7 +21,7 @@ sidebar:
   nav: "fpv"
 ---
 
-[FrSky R-XSR SmartPort Receiver](https://www.frsky-rc.com/product/r-xsr/). 
+[FrSky R-XSR SmartPort FPort Receiver](https://www.frsky-rc.com/product/r-xsr/). 
 
 
 
