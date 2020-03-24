@@ -63,8 +63,8 @@ First register the receiver with its unique name to the your transmitter
 
 <figure class="third">
     <a href="/assets/collections/fpv/receiver/bind/01-model-setup.jpg"><img src="/assets/collections/fpv/receiver/bind/01-model-setup.jpg"></a>
-    <a href="/assets/collections/fpv/receiver/02-register.jpg"><img src="/assets/collections/fpv/receiver/02-register.jpg"></a>
-    <a href="/assets/collections/fpv/receiver/03-register-ok.jpg"><img src="/assets/collections/fpv/receiver/03-register-ok.jpg"></a>
+    <a href="/assets/collections/fpv/receiver/bind/02-register.jpg"><img src="/assets/collections/fpv/receiver/bind/02-register.jpg"></a>
+    <a href="/assets/collections/fpv/receiver/bind/03-register-ok.jpg"><img src="/assets/collections/fpv/receiver/bind/03-register-ok.jpg"></a>
     <figcaption>Register R-XSR receiver with Taranis X9D Plus 2019.</figcaption>
 </figure>
 
@@ -73,8 +73,8 @@ After registration you can start the binding process:
 
 <figure class="third">
     <a href="/assets/collections/fpv/receiver/bind/04-bind.jpg"><img src="/assets/collections/fpv/receiver/bind/04-bind.jpg"></a>
-    <a href="/assets/collections/fpv/receiver/05-select-rx.jpg"><img src="/assets/collections/fpv/receiver/05-select-rx.jpg"></a>
-    <a href="/assets/collections/fpv/receiver/06-bind-ok.jpg"><img src="/assets/collections/fpv/receiver/06-bind-ok.jpg"></a>
+    <a href="/assets/collections/fpv/receiver/bind/05-select-rx.jpg"><img src="/assets/collections/fpv/receiver/bind/05-select-rx.jpg"></a>
+    <a href="/assets/collections/fpv/receiver/bind/06-bind-ok.jpg"><img src="/assets/collections/fpv/receiver/bind/06-bind-ok.jpg"></a>
     <figcaption>Bind R-XSR receiver with Taranis X9D Plus 2019.</figcaption>
 </figure>
 
