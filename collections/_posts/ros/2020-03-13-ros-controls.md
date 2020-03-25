@@ -602,14 +602,42 @@ Inside the package you find
   - soft-limits (PR2 like) and clamping strategies
   - work for different hardware interfaces
   
-The following examples explains the joint limits implementation:
+The following example curves, generated from real data, explains the joint limits implementation:
 
 <figure>
   <a href="/assets/ros/ros-control/joint_limits.png"><img src="/assets/ros/ros-control/joint_limits.png"></a>
     <figcaption>Joint limits (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
 
+The blue curve shows the command of a controller that we don't trust. The red line shows the result after enforcing
+the joint limits. At the bottom we see, that the velocity limit is enforced and at the top the position is enforced too.
+However, it is a smooth stop and we see that it is not a hard clamping at the top, because we used a soft limit specification.
 
+
+The last issue that is also concerned with safety is the emergency stop (E-stop). 
+The E-stop is typically robot specific which means you have to take care of its implementation.
+There's also the distinction between an **emergency stop**, 
+which is usually much harder where you for example remove energy sources, and there's also the notion of a **protective stop** which is meant to reduce risks and control hazards. 
+
+Relevant standards:
+- ISO 10218-1:2011 Robots and robotic devices - Safety requirements for industrial robots
+- ISO 13482:2014 Robots and robotic devices - Safety requirements for personal care robots
+
+The issue that remains, whatever you do in case of an emergency stop, 
+is that you have to recover from it. The question that remins is: What is the sane thing to do when you release the stop?
+There are potentially many controllers running that do different things. This means that there is no one size fits all solution on what you should do. 
+
+One interesting solution to this is that you should let controllers decide what to do in case of an emergency stop. 
+The controller manager has this feature that it can be updated with an optional prior that says controllers reset. 
+This means that in a single control cycle you stop all running controllers, followed by starting them and finally you update them. If we adhere to the typical policy that, explained before, is to stop and thereby cancel all goals and then start, 
+which enters semantic zero mode, that when you update, you have the same behavior. 
+
+<figure>
+  <a href="/assets/ros/ros-control/e-stop-handling.png"><img src="/assets/ros/ros-control/e-stop-handling.png"></a>
+    <figcaption>E-stop handling. (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+This concludes the part of the control loop.
 
 ## Reference
 
