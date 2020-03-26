@@ -276,8 +276,8 @@ The [`check_urdf`](http://wiki.ros.org/urdf#Verification) command will parse the
 
 To view the structure of the robot links and joints graphically, we can use a command tool called [`urdf_to_graphiz`](http://wiki.ros.org/urdf#Visualization).
 
-The simplest way to visualize and to test manipulate the robot in [RViz](http://wiki.ros.org/rviz) is to create a launch file
-similar to the following, used in the [ROS urdf tutorials](http://wiki.ros.org/urdf/Tutorials):
+The simplest way to visualize and to test manipulate the robot in [RViz](http://wiki.ros.org/rviz) is to 
+create a launch file similar to the following, used in the [ROS urdf tutorials](http://wiki.ros.org/urdf/Tutorials):
 
 ```xml
 <launch>
@@ -309,6 +309,14 @@ The rest of the launch file loads three nodes:
 - [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher) used to manipulate joint states with the optional gui (depending on `use_gui` parameter) and to read current joint states using a `source_list` parameter (not used in this example). 
 - [`robot_state_publisher`](http://wiki.ros.org/robot_state_publisher) package helps to publish the state of the robot to `tf`. This package subscribes to joint states of the robot and publishes the 3D pose of each link using the kinematic representation from the URDF model. This is required for packages such as visualization.
 - [`rviz`](http://wiki.ros.org/rviz) used to visualize the robot. In the launch file a rviz configuration is loaded, which takes the burden of configuring RViz manually after each startup.
+
+TODO robot image
+<figure>
+    <a href="/assets/collections/2wd-robot/ros/urdf/rviz.png"><img src="/assets/collections/2wd-robot/ros/urdf/rviz.png"></a>
+    <figcaption>Visualizing the robot with its URDF and the transfroms from tf in RViz.</figcaption>
+</figure>
+
+As you move the sliders around in the GUI, the model moves in Rviz. How is this done? First the GUI parses the URDF and finds all the non-fixed joints and their limits. Then, it uses the values of the sliders to publish sensor_msgs/JointState messages. Those are then used by robot_state_publisher to calculate all of transforms between the different parts. The resulting transform tree is then used to display all of the shapes in Rviz.
 
 ## Simulation in Gazebo
 
