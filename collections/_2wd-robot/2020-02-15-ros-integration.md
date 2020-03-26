@@ -264,10 +264,15 @@ The difference between [base_link and base_footprint](https://answers.ros.org/qu
 
 ### xacro
 
-The [`xacro`](http://wiki.ros.org/xacro) package helps to reduce the overall size of a URDF file which makes it easier to read and maintain the robot description. For this, `xacro` provides the following:
+The [`xacro`](http://wiki.ros.org/xacro) package helps to reduce the overall size of a robot description which makes it easier to read and maintain the robot description. For this, `xacro` provides the following:
 
-- **Simplify URDF:** xacro is the cleaned-up version of URDF. It creates macros inside the robot description and reuses the macros which can reduce the description length. Also, it can include macros from other files and make the code simpler, more readable, and more modular.
+- **Simplify URDF:** xacro is the cleaned-up version of URDF. With it you can create [macros](http://wiki.ros.org/urdf/Tutorials/Using%20Xacro%20to%20Clean%20Up%20a%20URDF%20File#Macros) inside the robot description and reuses them which reduces the xacro description length of your robot. Also, it can include macros from other files and make the code simpler, more readable, and more modular.
 - **Programmability:** The xacro language supports simple programming statements in its description. There are variables, constants, mathematical expressions, conditional statements, which make the description more intelligent and efficient.
+
+In the end, most ROS packages still require a URDF description, which can be generated from the compact xacro description in the following ways. Either you use the command `xacro --inorder model.xacro > model.urdf` or create a launch file with the following content:
+
+```xml
+<param name="robot_description" command="xacro --inorder '$(find pr2_description)/robots/pr2.urdf.xacro'" />
 
 
 ### Tools for Verification and Visualization
