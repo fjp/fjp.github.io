@@ -61,6 +61,15 @@ is sent as a command to the robot.
 Using the `rosmsg show` command we can see what's in the `geometry_msgs/Twist` message type:
 
 ```bash
+fjp@ubuntu:~/git/ros_ws/src$ rosmsg show geometry_msgs/Twist
+geometry_msgs/Vector3 linear
+  float64 x
+  float64 y
+  float64 z
+geometry_msgs/Vector3 angular
+  float64 x
+  float64 y
+  float64 z
 
 ```
 
@@ -72,6 +81,35 @@ The ROS community uses the [`nav_msgs/Odometry`](http://docs.ros.org/api/nav_msg
 ROS message interface to receive the position and orientation as data from the robot. 
 
 ```bash
+fjp@ubuntu:~/git/ros_ws/src$ rosmsg show nav_msgs/Odometry 
+std_msgs/Header header
+  uint32 seq
+  time stamp
+  string frame_id
+string child_frame_id
+geometry_msgs/PoseWithCovariance pose
+  geometry_msgs/Pose pose
+    geometry_msgs/Point position
+      float64 x
+      float64 y
+      float64 z
+    geometry_msgs/Quaternion orientation
+      float64 x
+      float64 y
+      float64 z
+      float64 w
+  float64[36] covariance
+geometry_msgs/TwistWithCovariance twist
+  geometry_msgs/Twist twist
+    geometry_msgs/Vector3 linear
+      float64 x
+      float64 y
+      float64 z
+    geometry_msgs/Vector3 angular
+      float64 x
+      float64 y
+      float64 z
+  float64[36] covariance
 
 ```
 
