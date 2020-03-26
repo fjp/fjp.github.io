@@ -273,7 +273,7 @@ In the end, most ROS packages still require a URDF description, which can be gen
 
 ```xml
 <param name="robot_description" command="xacro --inorder '$(find pr2_description)/robots/pr2.urdf.xacro'" />
-
+```
 
 ### Tools for Verification and Visualization
 
@@ -324,7 +324,9 @@ TODO robot image
     <figcaption>Visualizing the robot with its URDF and the transfroms from tf in RViz.</figcaption>
 </figure>
 
-As you move the sliders around in the GUI, the model moves in Rviz. How is this done? First the GUI parses the URDF and finds all the non-fixed joints and their limits. Then, it uses the values of the sliders to publish `sensor_msgs/JointState` messages. Those are then used by `robot_state_publisher` to calculate all of transforms between the different parts. The resulting transform tree is then used to display all of the shapes in Rviz.
+As you move the sliders around in the GUI of [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher), 
+the joints and links of the model move in Rviz. How is this done? First the GUI parses the URDF and finds all the non-fixed joints and their limits. Then, it uses the values of the sliders to publish [`sensor_msgs/JointState`](http://docs.ros.org/api/sensor_msgs/html/msg/JointState.html) messages. 
+Those are then used by [`robot_state_publisher`](http://wiki.ros.org/robot_state_publisher) to calculate all of transforms between the different parts. The resulting transform tree is then used to display all of the shapes in Rviz.
 
 
 
