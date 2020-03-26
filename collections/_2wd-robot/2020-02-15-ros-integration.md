@@ -264,7 +264,12 @@ The difference between [base_link and base_footprint](https://answers.ros.org/qu
 
 ### xacro
 
+The [`xacro`]() package helps to reduce the overall size of a URDF file which makes it easier to read and maintain the 
+robot description. For this, it provides the following:
 
+- Define and use constants
+- Allows simple mathematical operations
+- Define and use macros
 
 
 ### Tools for Verification and Visualization
@@ -316,7 +321,9 @@ TODO robot image
     <figcaption>Visualizing the robot with its URDF and the transfroms from tf in RViz.</figcaption>
 </figure>
 
-As you move the sliders around in the GUI, the model moves in Rviz. How is this done? First the GUI parses the URDF and finds all the non-fixed joints and their limits. Then, it uses the values of the sliders to publish sensor_msgs/JointState messages. Those are then used by robot_state_publisher to calculate all of transforms between the different parts. The resulting transform tree is then used to display all of the shapes in Rviz.
+As you move the sliders around in the GUI, the model moves in Rviz. How is this done? First the GUI parses the URDF and finds all the non-fixed joints and their limits. Then, it uses the values of the sliders to publish `sensor_msgs/JointState` messages. Those are then used by `robot_state_publisher` to calculate all of transforms between the different parts. The resulting transform tree is then used to display all of the shapes in Rviz.
+
+
 
 ## Simulation in Gazebo
 
