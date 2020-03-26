@@ -40,7 +40,7 @@ autonomous_rc_car:
     url: /projects/autonomous-rc-car/#prerequisites
 
 2wd-robot:
-  - title: "2WD Robot"
+  - title: "DiffBot"
     url: /projects/2wd-robot/
   - title: "Components"
     url: /projects/2wd-robot/components/
@@ -84,6 +84,8 @@ autonomous_rc_car:
   - title: "ROS Packages and Nodes"
     url: /projects/2wd-robot/ros-packages/
     children:
+      - title: "Robot Description"
+        url: /projects/2wd-robot/ros-packages/robot-description/
       - title: "Control"
         url: /projects/2wd-robot/ros-packages/control/
       - title: "Odometry"
