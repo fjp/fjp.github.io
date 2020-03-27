@@ -2,7 +2,9 @@
 layout: single
 title:  "Arduino MKR1000 and Virtualbox on Mac Host"
 permalink: /projects/autonomous-rc-car/arduino-mkr1000/
-excerpt: "This project aims to build a self driving rc car equipped with a Raspberry Pi 3 B+ running ROS and an Arduino MKR1000 to control the motor and the servo for steering."
+excerpt: "This project aims to build a self driving rc car equipped with a Raspberry Pi 3 B+ running ROS and an Arduino 
+date: 2018-04-25
+MKR1000 to control the motor and the servo for steering."
 date:   2018-04-25 17:31:41 +0200
 categories: [arduino, virtualbox]
 tags: [arduino, mkr1000, virtualbox macOS]
