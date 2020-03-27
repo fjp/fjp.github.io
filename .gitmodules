@@ -1,9 +1,9 @@
 [submodule "_includes/repos/pppucpp"]
 	path = _includes/repos/pppucpp
 	url = https://github.com/fjp/ppp.git
-[submodule "collections/_2wd-robot/DiffBot"]
+[submodule "collections/_2wd-robot/diffbot"]
 	path = collections/_diffbot/diffbot
-	url = https://github.com/fjp/2wd-robot.git
+	url = https://github.com/fjp/diffbot.git
 [submodule "_includes/repos/frenet"]
 	path = _includes/repos/frenet
 	url = https://github.com/fjp/frenet.git
