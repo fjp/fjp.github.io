@@ -2,7 +2,7 @@
 	path = _includes/repos/pppucpp
 	url = https://github.com/fjp/ppp.git
 [submodule "collections/_2wd-robot/2wd-robot"]
-	path = collections/_2wd-robot/2wd-robot
+	path = collections/_2wd-robot/DiffBot
 	url = https://github.com/fjp/2wd-robot.git
 [submodule "_includes/repos/frenet"]
 	path = _includes/repos/frenet
