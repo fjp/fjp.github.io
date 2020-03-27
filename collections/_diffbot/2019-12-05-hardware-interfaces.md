@@ -1,7 +1,7 @@
 ---
 layout: single #collection
 title: Autonomous 2WD Robot - Hardware Interfaces
-permalink: /projects/2wd-robot/hardware-interfaces/
+permalink: /projects/diffbot/hardware-interfaces/
 excerpt: "Hardware Interfaces on Raspberry Pi 4 for an autonomous 2WD Robot running ROS melodic to sense and act in an environment."
 date: 2019-12-05 08:00:35 +0100
 categories: [robotics]
