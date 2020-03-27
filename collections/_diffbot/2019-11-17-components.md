@@ -1,24 +1,24 @@
 ---
 layout: single #collection
 title: Autonomous 2WD Robot - Components
-permalink: /projects/2wd-robot/components/
+permalink: /projects/diffbot/components/
 excerpt: "Components of an autonomous 2WD Robot equipped with a Raspberry Pi 4 B running ROS melodic to sense and act in an environment."
 date: 2019-11-17 09:00:35 +0100
 categories: [robotics]
-tags: [2wd, robot, ros, melodic, raspberry, pi, autonomous, sensors]
+tags: [2wd, differential drive, robot, ros, melodic, raspberry, pi, autonomous, sensors]
 comments: true
 use_math: true
 toc: true
 # classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: /assets/collections/2wd-robot/components/components.jpg
-  overlay_image: /assets/collections/2wd-robot/components/components.jpg
+  teaser: /assets/collections/diffbot/components/components.jpg
+  overlay_image: /assets/collections/diffbot/components/components.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   # caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
   show_overlay_excerpt: true
 sidebar:
-  nav: "2wd-robot"
+  nav: "diffbot"
 ---
 
 Part list and assembly of the robot platform and the components.
@@ -73,16 +73,16 @@ To protect the Rasbperry Pi 4 B we choose a case that provides access to all its
 The following images show a stackable acrylic case in rainbow colors.
 
 <figure class="half">
-    <a href="/assets/collections/2wd-robot/components/case_side_raspberry4_rainbow.jpg"><img src="/assets/collections/2wd-robot/components/case_side_raspberry4_rainbow.jpg"></a>
-    <a href="/assets/collections/2wd-robot/components/case_bottom_raspberry4_rainbow.jpg"><img src="/assets/collections/2wd-robot/components/case_bottom_raspberry4_rainbow.jpg"></a>
+    <a href="/assets/collections/{{ label }}/components/case_side_raspberry4_rainbow.jpg"><img src="/assets/collections/{{ label }}/components/case_side_raspberry4_rainbow.jpg"></a>
+    <a href="/assets/collections/{{ label }}/components/case_bottom_raspberry4_rainbow.jpg"><img src="/assets/collections/{{ label }}/components/case_bottom_raspberry4_rainbow.jpg"></a>
     <figcaption>Stackable Rainbow Case for Raspberry Pi 4 B.</figcaption>
 </figure>
 
 With this case it is possible to install four heatsinks and apply a fan as cooling equipment for the electronics of the Raspberry Pi 4 B such as its ARM processor.
 
 <figure class="half">
-    <a href="/assets/collections/2wd-robot/components/heatsink.jpg"><img src="/assets/collections/2wd-robot/components/heatsink.jpg"></a>
-    <a href="/assets/collections/2wd-robot/components/case_fan_side_raspberry4_rainbow.jpg"><img src="/assets/collections/2wd-robot/components/case_fan_side_raspberry4_rainbow.jpg"></a>
+    <a href="/assets/collections/{{ label }}/components/heatsink.jpg"><img src="/assets/collections/{{ label }}/components/heatsink.jpg"></a>
+    <a href="/assets/collections/{{ label }}/components/case_fan_side_raspberry4_rainbow.jpg"><img src="/assets/collections/{{ label }}/components/case_fan_side_raspberry4_rainbow.jpg"></a>
     <figcaption>Heatsinks and cooling fan for Raspberry Pi 4 B.</figcaption>
 </figure>
 
