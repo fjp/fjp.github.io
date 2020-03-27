@@ -39,7 +39,7 @@ autonomous_rc_car:
   - title: "Prerequisites"
     url: /projects/autonomous-rc-car/#prerequisites
 
-DiffBot:
+diffbot:
   - title: "DiffBot"
     url: /projects/diffbot/
   - title: "Components"
