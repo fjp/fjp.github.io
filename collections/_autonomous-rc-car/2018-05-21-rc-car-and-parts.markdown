@@ -3,7 +3,7 @@ layout: single
 title:  "Autonomous RC Car Parts"
 permalink: /projects/autonomous-rc-car/rc-car-parts/
 excerpt: "This project aims to build a self driving rc car equipped with a Raspberry Pi 3 B+ running ROS and an Arduino MKR1000 to control the motor and the servo for steering."
-date:   2018-05-21 22:41:35 +0200
+date: 2018-05-21 22:41:35 +0200
 categories: [rc-car, autonomous]
 tags: [rc-car, hpi, hpiracing, battery pack, camera]
 comments: true
