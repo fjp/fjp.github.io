@@ -1,6 +1,7 @@
 ---
 layout: single #collection
 title: Autonomous RC Car
+date: 2018-05-05
 permalink: /projects/autonomous-rc-car/
 excerpt: "Autonomous RC Car equipped with a Raspberry Pi running ROS and Arduino to control its servos."
 header:
