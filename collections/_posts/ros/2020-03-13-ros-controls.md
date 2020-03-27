@@ -12,8 +12,8 @@ toc: true
 classes: wide
 # toc_label: "Kalman filter"
 header:
-  teaser: /assets/collections/2wd-robot/ros/ros_control/gazebo_ros_control.png
-  overlay_image: /assets/collections/2wd-robot/ros/ros_control/gazebo_ros_control.png #keep it square 200x200 px is good
+  teaser: /assets/collections/diffbot/ros/ros_control/gazebo_ros_control.png
+  overlay_image: /assets/collections/diffbot/ros/ros_control/gazebo_ros_control.png #keep it square 200x200 px is good
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   caption: "Source: [**ROS Control Wiki**](http://wiki.ros.org/ros_control)"
   show_overlay_excerpt: true
