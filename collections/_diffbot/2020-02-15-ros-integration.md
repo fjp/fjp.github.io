@@ -1,24 +1,24 @@
 ---
 layout: single #collection
 title: Autonomous 2WD Robot - Integrating a Robot into ROS
-permalink: /projects/2wd-robot/ros-integration/
+permalink: /projects/diffbot/ros-integration/
 excerpt: "Integrating an autonomous 2WD robot into ROS."
 date: 2020-02-15 15:00:35 +0100
 categories: [robotics]
-tags: [2wd, robot, ros, melodic, raspberry, pi, autonomous, ubuntu, package, integration]
+tags: [2wd, differential drive, robot, ros, melodic, raspberry, pi, autonomous, ubuntu, package, integration]
 comments: true
 use_math: true
 toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: /assets/collections/2wd-robot/ros/ros_control/gazebo_ros_control.png
-  overlay_image: /assets/collections/2wd-robot/ros/ros_control/gazebo_ros_transmission.png
+  teaser: /assets/collections/{{ label }}/ros/ros_control/gazebo_ros_control.png
+  overlay_image: /assets/collections/{{ label }}/ros/ros_control/gazebo_ros_transmission.png
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   caption: "Source: [**ROS Control Wiki**](http://wiki.ros.org/ros_control)"
   show_overlay_excerpt: true
 sidebar:
-  nav: "2wd-robot"
+  nav: "diffbot"
 ---
 
 
