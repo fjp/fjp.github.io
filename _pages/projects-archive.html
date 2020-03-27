@@ -14,8 +14,8 @@ author_profile: false
 {% capture written_label %}'None'{% endcapture %}
 
 
-{% assign items = site.collection | sort: 'date' %}
-{% for item in items %}
+{% assign items = site.collections | sort: 'date' | reverse %}
+{% for collection in items %}
   {% unless collection.output == false or collection.label == "posts" %}
     {% capture label %}{{ collection.label }}{% endcapture %}
     {% if label != written_label %}
