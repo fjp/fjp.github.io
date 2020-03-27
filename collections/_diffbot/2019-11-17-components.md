@@ -1,7 +1,7 @@
 ---
 layout: single #collection
 title: Autonomous 2WD Robot - Components
-permalink: /projects/{{ page.collection }}/components/
+permalink: /projects/diffbot/components/
 excerpt: "Components of an autonomous 2WD Robot equipped with a Raspberry Pi 4 B running ROS melodic to sense and act in an environment."
 date: 2019-11-17 09:00:35 +0100
 categories: [robotics]
@@ -12,13 +12,13 @@ toc: true
 # classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: /assets/collections/{{ page.collection }}/components/components.jpg
-  overlay_image: /assets/collections/{{ page.collection }}/components/components.jpg
+  teaser: /assets/collections/diffbot/components/components.jpg
+  overlay_image: /assets/collections/diffbot/components/components.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   # caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
   show_overlay_excerpt: true
 sidebar:
-  nav: "{{ page.collection }}"
+  nav: diffbot
 ---
 
 Part list and assembly of the robot platform and the components.
@@ -60,8 +60,8 @@ The main processing unit of the robot is a [Raspberry Pi 4 B](https://www.raspbe
 with 4 GB of RAM. 
 
 <figure class="half">
-    <a href="/assets/collections/{{ page.collection }}/components/raspberry-pi-4.jpg"><img src="/assets/collections/{{ page.collection }}/components/raspberry-pi-4.jpg"></a>
-    <a href="/assets/collections/{{ page.collection }}/components/raspberry-pi-4-ports.jpg"><img src="/assets/collections/{{ page.collection }}/components/raspberry-pi-4-ports.jpg"></a>
+    <a href="/assets/collections/diffbot/components/raspberry-pi-4.jpg"><img src="/assets/collections/diffbot/components/raspberry-pi-4.jpg"></a>
+    <a href="/assets/collections/diffbot/components/raspberry-pi-4-ports.jpg"><img src="/assets/collections/diffbot/components/raspberry-pi-4-ports.jpg"></a>
     <figcaption>Raspberry Pi 4 B - 4 GB RAM variant.</figcaption>
 </figure>
 
@@ -73,16 +73,16 @@ To protect the Rasbperry Pi 4 B we choose a case that provides access to all its
 The following images show a stackable acrylic case in rainbow colors.
 
 <figure class="half">
-    <a href="/assets/collections/{{ label }}/components/case_side_raspberry4_rainbow.jpg"><img src="/assets/collections/{{ label }}/components/case_side_raspberry4_rainbow.jpg"></a>
-    <a href="/assets/collections/{{ label }}/components/case_bottom_raspberry4_rainbow.jpg"><img src="/assets/collections/{{ label }}/components/case_bottom_raspberry4_rainbow.jpg"></a>
+    <a href="/assets/collections/diffbot/components/case_side_raspberry4_rainbow.jpg"><img src="/assets/collections/diffbot/components/case_side_raspberry4_rainbow.jpg"></a>
+    <a href="/assets/collections/diffbot/components/case_bottom_raspberry4_rainbow.jpg"><img src="/assets/collections/diffbot/components/case_bottom_raspberry4_rainbow.jpg"></a>
     <figcaption>Stackable Rainbow Case for Raspberry Pi 4 B.</figcaption>
 </figure>
 
 With this case it is possible to install four heatsinks and apply a fan as cooling equipment for the electronics of the Raspberry Pi 4 B such as its ARM processor.
 
 <figure class="half">
-    <a href="/assets/collections/{{ label }}/components/heatsink.jpg"><img src="/assets/collections/{{ label }}/components/heatsink.jpg"></a>
-    <a href="/assets/collections/{{ label }}/components/case_fan_side_raspberry4_rainbow.jpg"><img src="/assets/collections/{{ label }}/components/case_fan_side_raspberry4_rainbow.jpg"></a>
+    <a href="/assets/collections/diffbot/components/heatsink.jpg"><img src="/assets/collections/diffbot/components/heatsink.jpg"></a>
+    <a href="/assets/collections/diffbot/components/case_fan_side_raspberry4_rainbow.jpg"><img src="/assets/collections/diffbot/components/case_fan_side_raspberry4_rainbow.jpg"></a>
     <figcaption>Heatsinks and cooling fan for Raspberry Pi 4 B.</figcaption>
 </figure>
 
@@ -93,7 +93,7 @@ The Raspberry Pi requires a medium to boot from.
 For this we will use a micro sd card because it is lightweight and easy to flash new operating systems. 
 
 <figure>
-    <a href="/assets/collections/2wd-robot/components/sdcard.jpg"><img src="/assets/collections/2wd-robot/components/sdcard.jpg"></a>
+    <a href="/assets/collections/diffbot/components/sdcard.jpg"><img src="/assets/collections/diffbot/components/sdcard.jpg"></a>
     <figcaption>SanDisk Micro SD Card Class 10.</figcaption>
 </figure>
 
@@ -106,7 +106,7 @@ Regarding speed, the Pi has a limited bus speed of approximately 20 MB/s ([sourc
 The [Robot Car Kit 2WD](https://joy-it.net/en/products/robot05) from Joy-IT (article no.: robot05) is used as the base for the autonomous mobile robot. 
 
 <figure>
-    <a href="/assets/collections/2wd-robot/car-kit05.jpg"><img src="/assets/collections/2wd-robot/car-kit05.jpg"></a>
+    <a href="/assets/collections/diffbot/car-kit05.jpg"><img src="/assets/collections/diffbot/car-kit05.jpg"></a>
     <figcaption>Parts of the 2WD Robot Car Kit 05 from Joy-IT.</figcaption>
 </figure>
 
@@ -122,8 +122,8 @@ To power the motors a battery compartment is available together with a switch to
 As mentioned the robot will be equipped with a 5V/2.1A USB-C powerbank to supply the Raspberry Pi 4 B with 5 V.
 
 <figure class="half">
-    <a href="/assets/collections/2wd-robot/components/powerbank_top.jpg"><img src="/assets/collections/2wd-robot/components/powerbank_top.jpg"></a>
-    <a href="/assets/collections/2wd-robot/components/powerbank_bottom.jpg"><img src="/assets/collections/2wd-robot/components/powerbank_bottom.jpg"></a>
+    <a href="/assets/collections/diffbot/components/powerbank_top.jpg"><img src="/assets/collections/diffbot/components/powerbank_top.jpg"></a>
+    <a href="/assets/collections/diffbot/components/powerbank_bottom.jpg"><img src="/assets/collections/diffbot/components/powerbank_bottom.jpg"></a>
     <figcaption>Power bank with 10.000 mAh from Intenso.</figcaption>
 </figure>
 
@@ -134,8 +134,8 @@ To power the motors the provided battery compartment will be used, which holds f
 The Raspberry Pi provides just two I2C ports, which is why we will use a I2C hub. With the four port I2C hub from Grove it is possible to connect three I2C devices to a single I2C port of the Raspberry Pi
 
 <figure class="half">
-    <a href="/assets/collections/2wd-robot/components/i2c-hub-front.jpg"><img src="/assets/collections/2wd-robot/components/i2c-hub-front.jpg"></a>
-    <a href="/assets/collections/2wd-robot/components/i2c-hub-back.jpg"><img src="/assets/collections/2wd-robot/components/i2c-hub-back.jpg"></a>
+    <a href="/assets/collections/diffbot/components/i2c-hub-front.jpg"><img src="/assets/collections/diffbot/components/i2c-hub-front.jpg"></a>
+    <a href="/assets/collections/diffbot/components/i2c-hub-back.jpg"><img src="/assets/collections/diffbot/components/i2c-hub-back.jpg"></a>
     <figcaption>Grove I2C Hub.</figcaption>
 </figure>
 
@@ -144,7 +144,7 @@ The Raspberry Pi provides just two I2C ports, which is why we will use a I2C hub
 Optional but helpful for testing is a breadboard and a GPIO extension cable suitable for the Raspberry Pi 4 B.
 
 <figure>
-    <a href="/assets/collections/2wd-robot/components/bread-board-gpio-extension.jpg"><img src="/assets/collections/2wd-robot/components/bread-board-gpio-extension.jpg"></a>
+    <a href="/assets/collections/diffbot/components/bread-board-gpio-extension.jpg"><img src="/assets/collections/diffbot/components/bread-board-gpio-extension.jpg"></a>
     <figcaption>Breadboard with GPIO extension cable.</figcaption>
 </figure>
 
@@ -164,8 +164,8 @@ To avoid obstacles the robot will carry a [Grove - Ultrasonic Ranger](http://wik
 at the front. 
 
 <figure class="half">
-    <a href="/assets/collections/2wd-robot/components/ultrasonic-side.jpg"><img src="/assets/collections/2wd-robot/components/ultrasonic-side.jpg"></a>
-    <a href="/assets/collections/2wd-robot/components/ultrasonic-front.jpg"><img src="/assets/collections/2wd-robot/components/ultrasonic-front.jpg"></a>
+    <a href="/assets/collections/diffbot/components/ultrasonic-side.jpg"><img src="/assets/collections/diffbot/components/ultrasonic-side.jpg"></a>
+    <a href="/assets/collections/diffbot/components/ultrasonic-front.jpg"><img src="/assets/collections/diffbot/components/ultrasonic-front.jpg"></a>
     <figcaption>Grove Ultrasonic Ranger for obstacle avoidance.</figcaption>
 </figure>
 
@@ -193,7 +193,7 @@ As an alternative we could use the [HC SR04](https://www.seeedstudio.com/blog/20
 #### Camera
 
 <figure>
-    <a href="/assets/collections/2wd-robot/components/rpi-camera.jpg"><img src="/assets/collections/2wd-robot/components/rpi-camera.jpg"></a>
+    <a href="/assets/collections/diffbot/components/rpi-camera.jpg"><img src="/assets/collections/diffbot/components/rpi-camera.jpg"></a>
     <figcaption>RPi Camera v2.</figcaption>
 </figure>
 
@@ -207,8 +207,8 @@ utilize an [optical speed sensor](https://en.wikipedia.org/wiki/Wheel_speed_sens
 Specifically the [Joy-IT Speed Sensor](https://joy-it.net/en/products/SEN-Speed) which combines a LM393 ([datasheet](http://www.ti.com/lit/ds/symlink/lm2903-n.pdf)) [comperator](https://en.wikipedia.org/wiki/Comparator) and a H206 slot-type opto interrupter.
 
 <figure class="half">
-    <a href="/assets/collections/2wd-robot/components/speed-sensor-front.jpg"><img src="/assets/collections/2wd-robot/components/speed-sensor-front.jpg"></a>
-    <a href="/assets/collections/2wd-robot/components/speed-sensor-back.jpg"><img src="/assets/collections/2wd-robot/components/speed-sensor-back.jpg"></a>
+    <a href="/assets/collections/diffbot/components/speed-sensor-front.jpg"><img src="/assets/collections/diffbot/components/speed-sensor-front.jpg"></a>
+    <a href="/assets/collections/diffbot/components/speed-sensor-back.jpg"><img src="/assets/collections/diffbot/components/speed-sensor-back.jpg"></a>
     <figcaption>LM393 Speed Sensor from Joy-IT.</figcaption>
 </figure>
 
@@ -230,7 +230,7 @@ Other states such as the velocity can then be calculated.
 For this the [Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055]((https://www.adafruit.com/product/2472)) is used.
 
 <figure>
-    <a href="/assets/collections/2wd-robot/components/bno055.jpg"><img src="/assets/collections/2wd-robot/components/bno055.jpg"></a>
+    <a href="/assets/collections/diffbot/components/bno055.jpg"><img src="/assets/collections/diffbot/components/bno055.jpg"></a>
     <figcaption>9-DOF Absolute Orientation IMU Fusion Breakout - BNO055 from Adafruit.</figcaption>
 </figure>
 
@@ -244,7 +244,7 @@ To drive the two motors of the car kit we use the
 [Grove - I2C Motor Driver V1.3](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/) from Seeed Studio.
 
 <figure>
-    <a href="/assets/collections/2wd-robot/components/motor-driver.jpg"><img src="/assets/collections/2wd-robot/components/motor-driver.jpg"></a>
+    <a href="/assets/collections/diffbot/components/motor-driver.jpg"><img src="/assets/collections/diffbot/components/motor-driver.jpg"></a>
     <figcaption>Grove - I2C Motor Driver.</figcaption>
 </figure>
 
@@ -252,7 +252,7 @@ To drive the two motors of the car kit we use the
 ### Brushed Gearbox Motor
 
 <figure>
-    <a href="/assets/collections/2wd-robot/components/gearbox-motor-close.jpg"><img src="/assets/collections/2wd-robot/components/gearbox-motor-close.jpg"></a>
+    <a href="/assets/collections/diffbot/components/gearbox-motor-close.jpg"><img src="/assets/collections/diffbot/components/gearbox-motor-close.jpg"></a>
     <figcaption>DC Gearbox motor - "TT Motor" - 200RPM - 3 to 6VDC.</figcaption>
 </figure>
 
@@ -267,9 +267,9 @@ The oled display used is the [Grove I2C 0.96 inch OLED display](http://wiki.seee
 from Seeed Studio.
 
 <figure class="third">
-    <a href="/assets/collections/2wd-robot/components/oled-01.jpg"><img src="/assets/collections/2wd-robot/components/oled-01.jpg"></a>
-    <a href="/assets/collections/2wd-robot/components/oled-02.jpg"><img src="/assets/collections/2wd-robot/components/oled-02.jpg"></a>
-    <a href="/assets/collections/2wd-robot/components/oled-03.jpg"><img src="/assets/collections/2wd-robot/components/oled-03.jpg"></a>
+    <a href="/assets/collections/diffbot/components/oled-01.jpg"><img src="/assets/collections/diffbot/components/oled-01.jpg"></a>
+    <a href="/assets/collections/diffbot/components/oled-02.jpg"><img src="/assets/collections/diffbot/components/oled-02.jpg"></a>
+    <a href="/assets/collections/diffbot/components/oled-03.jpg"><img src="/assets/collections/diffbot/components/oled-03.jpg"></a>
     <figcaption>Grove - I2C 0.96 inch OLED Display.</figcaption>
 </figure>
 
