@@ -305,7 +305,7 @@ collections:
   projects:
     output: true
     permalink: /:collection/:path/
-  2wd-robot:
+  diffbot:
     output: true
     permalink: /:collection/:path/
   autonomous-rc-car:
