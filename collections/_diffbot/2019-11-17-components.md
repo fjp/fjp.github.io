@@ -1,7 +1,7 @@
 ---
 layout: single #collection
 title: Autonomous 2WD Robot - Components
-permalink: /projects/diffbot/components/
+permalink: /projects/{{ page.collection }}/components/
 excerpt: "Components of an autonomous 2WD Robot equipped with a Raspberry Pi 4 B running ROS melodic to sense and act in an environment."
 date: 2019-11-17 09:00:35 +0100
 categories: [robotics]
@@ -12,13 +12,13 @@ toc: true
 # classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: /assets/collections/diffbot/components/components.jpg
-  overlay_image: /assets/collections/diffbot/components/components.jpg
+  teaser: /assets/collections/{{ page.collection }}/components/components.jpg
+  overlay_image: /assets/collections/{{ page.collection }}/components/components.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   # caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
   show_overlay_excerpt: true
 sidebar:
-  nav: "diffbot"
+  nav: "{{ page.collection }}"
 ---
 
 Part list and assembly of the robot platform and the components.
@@ -60,8 +60,8 @@ The main processing unit of the robot is a [Raspberry Pi 4 B](https://www.raspbe
 with 4 GB of RAM. 
 
 <figure class="half">
-    <a href="/assets/collections/2wd-robot/components/raspberry-pi-4.jpg"><img src="/assets/collections/2wd-robot/components/raspberry-pi-4.jpg"></a>
-    <a href="/assets/collections/2wd-robot/components/raspberry-pi-4-ports.jpg"><img src="/assets/collections/2wd-robot/components/raspberry-pi-4-ports.jpg"></a>
+    <a href="/assets/collections/{{ page.collection }}/components/raspberry-pi-4.jpg"><img src="/assets/collections/{{ page.collection }}/components/raspberry-pi-4.jpg"></a>
+    <a href="/assets/collections/{{ page.collection }}/components/raspberry-pi-4-ports.jpg"><img src="/assets/collections/{{ page.collection }}/components/raspberry-pi-4-ports.jpg"></a>
     <figcaption>Raspberry Pi 4 B - 4 GB RAM variant.</figcaption>
 </figure>
 
