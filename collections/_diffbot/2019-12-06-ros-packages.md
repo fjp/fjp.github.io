@@ -1,7 +1,7 @@
 ---
 layout: single #collection
 title: Autonomous 2WD Robot - ROS Packages and Nodes
-permalink: /projects/2wd-robot/ros-packages/
+permalink: /projects/diffbot/ros-packages/
 excerpt: "ROS Packages and Nodes for ROS Melodic running on a Raspberry Pi 4 for an autonomous 2WD Robot to act in an environment according to sensor information."
 date: 2019-12-06 15:00:35 +0100
 categories: [robotics]
@@ -12,13 +12,13 @@ toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  # teaser: /assets/collections/2wd-robot/assembly/motor/08-motor-driver-power.jpg
-  # overlay_image: /assets/collections/2wd-robot/assembly/motor/08-motor-driver-power.jpg
+  # teaser: /assets/collections/diffbot/assembly/motor/08-motor-driver-power.jpg
+  # overlay_image: /assets/collections/diffbot/assembly/motor/08-motor-driver-power.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   # caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
   show_overlay_excerpt: true
 sidebar:
-  nav: "2wd-robot"
+  nav: "diffbot"
 ---
 
 On the [file system level](https://wiki.ros.org/ROS/Concepts#ROS_Filesystem_Level), ROS uses [Packages](http://wiki.ros.org/Packages) which are part of every ROS distribution such as ROS Melodic and defined as follows:
@@ -74,8 +74,8 @@ $ catkin create pkg PKG_NAME [--catkin-deps [DEP [DEP ...]]]
 For example the `grove_ultrasonic_ranger` package is created with the following command:
 
 ```bash
-fjp@ubuntu:~/git/2wd-robot/ros/src$ catkin create pkg grove_ultrasonic_ranger --catkin-deps rospy roscpp sensor_msgs
-Creating package "grove_ultrasonic_ranger" in "/home/fjp/git/2wd-robot/ros/src"...
+fjp@ubuntu:~/git/diffbot/ros/src$ catkin create pkg grove_ultrasonic_ranger --catkin-deps rospy roscpp sensor_msgs
+Creating package "grove_ultrasonic_ranger" in "/home/fjp/git/diffbot/ros/src"...
 Created file grove_ultrasonic_ranger/CMakeLists.txt
 Created file grove_ultrasonic_ranger/package.xml
 Created folder grove_ultrasonic_ranger/include/grove_ultrasonic_ranger

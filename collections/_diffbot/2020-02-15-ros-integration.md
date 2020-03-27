@@ -12,13 +12,13 @@ toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: /assets/collections/{{ label }}/ros/ros_control/gazebo_ros_control.png
-  overlay_image: /assets/collections/{{ label }}/ros/ros_control/gazebo_ros_transmission.png
+  teaser: /assets/collections/diffbot/ros/ros_control/gazebo_ros_control.png
+  overlay_image: /assets/collections/diffbot/ros/ros_control/gazebo_ros_transmission.png
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   caption: "Source: [**ROS Control Wiki**](http://wiki.ros.org/ros_control)"
   show_overlay_excerpt: true
 sidebar:
-  nav: "diffbot"
+  nav: diffbot
 ---
 
 
@@ -203,7 +203,7 @@ For collision detection the link has a **Collision** section.
 The **Collision** section encapsulates the real link to detect collision before hitting the real link.
 
 <figure>
-    <a href="/assets/collections/2wd-robot/ros/urdf/link.png"><img src="/assets/collections/2wd-robot/ros/urdf/link.png"></a>
+    <a href="/assets/collections/diffbot/ros/urdf/link.png"><img src="/assets/collections/diffbot/ros/urdf/link.png"></a>
     <figcaption>Visualization of a URDF link (Source:  <a href="http://wiki.ros.org/urdf/XML/link">wiki.ros.org/urdf/XML/link</a>).</figcaption>
 </figure>
 
@@ -235,7 +235,7 @@ The syntax is as follows:
 A URDF joint is formed between two links;  The following is an illustration of a joint and its link:
 
 <figure>
-    <a href="/assets/collections/2wd-robot/ros/urdf/joint.png"><img src="/assets/collections/2wd-robot/ros/urdf/joint.png"></a>
+    <a href="/assets/collections/diffbot/ros/urdf/joint.png"><img src="/assets/collections/diffbot/ros/urdf/joint.png"></a>
     <figcaption>Visualization of a URDF joint (Source:  <a href="http://wiki.ros.org/urdf/XML/joint">wiki.ros.org/urdf/XML/joint</a>).</figcaption>
 </figure>
 
@@ -243,7 +243,7 @@ A URDF joint is formed between two links;  The following is an illustration of a
 It encapsulated the entire robot model that can be represented using URDF and includes all elements such as `link`, `joint`, `gazebo` and `transmission`.
 
 <figure>
-    <a href="/assets/collections/2wd-robot/ros/urdf/robot.png"><img src="/assets/collections/2wd-robot/ros/urdf/robot.png"></a>
+    <a href="/assets/collections/diffbot/ros/urdf/robot.png"><img src="/assets/collections/diffbot/ros/urdf/robot.png"></a>
     <figcaption>Visualization of a URDF robot/model (Source:  <a href="http://wiki.ros.org/urdf/XML/model">wiki.ros.org/urdf/XML/model</a>).</figcaption>
 </figure>
 
@@ -320,7 +320,7 @@ The rest of the launch file loads three nodes:
 
 TODO robot image
 <figure>
-    <a href="/assets/collections/2wd-robot/ros/urdf/rviz.png"><img src="/assets/collections/2wd-robot/ros/urdf/rviz.png"></a>
+    <a href="/assets/collections/diffbot/ros/urdf/rviz.png"><img src="/assets/collections/diffbot/ros/urdf/rviz.png"></a>
     <figcaption>Visualizing the robot with its URDF and the transfroms from tf in RViz.</figcaption>
 </figure>
 
@@ -392,7 +392,7 @@ sudo apt-get install ros-melodic-ros-control ros-melodic-ros-controllers
 The following image from the [`ros_control` wiki](http://wiki.ros.org/ros_control) shows the structure of ROS control. 
 
 <figure>
-    <a href="/assets/collections/2wd-robot/ros/ros_control/gazebo_ros_control.png"><img src="/assets/collections/2wd-robot/ros/ros_control/gazebo_ros_control.png"></a>
+    <a href="/assets/collections/diffbot/ros/ros_control/gazebo_ros_control.png"><img src="/assets/collections/diffbot/ros/ros_control/gazebo_ros_control.png"></a>
     <figcaption>Structure of `ros_control` (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
 </figure>
 

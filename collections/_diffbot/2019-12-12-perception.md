@@ -12,13 +12,13 @@ toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: /assets/collections/2wd-robot/components/rpi-camera.jpg
-  overlay_image: /assets/collections/2wd-robot/components/rpi-camera.jpg
+  teaser: /assets/collections/diffbot/components/rpi-camera.jpg
+  overlay_image: /assets/collections/diffbot/components/rpi-camera.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   # caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
   show_overlay_excerpt: true
 sidebar:
-  nav: "diffbot"
+  nav: diffbot
 ---
 
 ROS packages for ROS Melodic related to perception running on a Raspberry Pi 4 B for an autonomous 2WD Robot to sense in the environment.

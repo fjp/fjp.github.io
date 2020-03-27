@@ -18,7 +18,7 @@ header:
   # caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
   show_overlay_excerpt: true
 sidebar:
-  nav: "diffbot"
+  nav: diffbot
 ---
 
 {% include_relative diffbot/docs/hardware-interfaces.md %}

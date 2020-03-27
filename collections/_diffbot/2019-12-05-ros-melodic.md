@@ -1,7 +1,7 @@
 ---
 layout: single #collection
 title: Autonomous 2WD Robot - ROS Melodic
-permalink: /projects/{{ page.collection }}/ros-melodic/
+permalink: /projects/diffbot/ros-melodic/
 excerpt: "ROS Melodic Setup on Raspberry Pi 4 for an autonomous 2WD Robot running ROS melodic to sense and act in an environment."
 date: 2019-12-05 09:00:35 +0100
 categories: [robotics]
@@ -18,7 +18,7 @@ header:
   caption: "Source: [**ROS Melodic**](http://wiki.ros.org/melodic)"
   show_overlay_excerpt: true
 sidebar:
-  nav: "{{ page.collection }}"
+  nav: diffbot
 ---
 
 The following guide shows how to setup [ROS Melodic](http://wiki.ros.org/melodic) and other important tools specific to ROS. 
