@@ -5,7 +5,7 @@ permalink: /projects/diffbot/ros-packages/
 excerpt: "ROS Packages and Nodes for ROS Melodic running on a Raspberry Pi 4 for an autonomous 2WD Robot to act in an environment according to sensor information."
 date: 2019-12-06 15:00:35 +0100
 categories: [robotics]
-tags: [2wd, robot, ros, melodic, raspberry, pi, autonomous, ubuntu, bionic, package, control]
+tags: [2wd, differential drive, robot, ros, melodic, raspberry, pi, autonomous, ubuntu, bionic, package, control]
 comments: true
 use_math: true
 toc: true
