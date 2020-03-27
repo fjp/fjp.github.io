@@ -30,7 +30,7 @@ Instructions can be found on the offical [ROS documentation](http://wiki.ros.org
 Just follow these instructions and choose this configuration: `Desktop-Full Install: (Recommended)`. 
 Although it is overkill, it will provide all examples that you might want to try.
 
-{% include_relative {{ label }}/docs/ros-setup.md %}
+{% include_relative {{ site.collections.label }}/docs/ros-setup.md %}
 
 
 ## ROS Style Guide
