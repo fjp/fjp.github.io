@@ -1,7 +1,7 @@
 ---
 layout: single #collection
 title: Autonomous 2WD Robot - ROS Melodic
-permalink: /projects/{{ label }}/ros-melodic/
+permalink: /projects/{{ page.collection }}/ros-melodic/
 excerpt: "ROS Melodic Setup on Raspberry Pi 4 for an autonomous 2WD Robot running ROS melodic to sense and act in an environment."
 date: 2019-12-05 09:00:35 +0100
 categories: [robotics]
@@ -18,7 +18,7 @@ header:
   caption: "Source: [**ROS Melodic**](http://wiki.ros.org/melodic)"
   show_overlay_excerpt: true
 sidebar:
-  nav: "{{ label }}"
+  nav: "{{ page.collection }}"
 ---
 
 The following guide shows how to setup [ROS Melodic](http://wiki.ros.org/melodic) and other important tools specific to ROS. 
@@ -30,7 +30,7 @@ Instructions can be found on the offical [ROS documentation](http://wiki.ros.org
 Just follow these instructions and choose this configuration: `Desktop-Full Install: (Recommended)`. 
 Although it is overkill, it will provide all examples that you might want to try.
 
-{% include_relative {{ site.collections.label }}/docs/ros-setup.md %}
+{% include_relative {{ page.collection }}/docs/ros-setup.md %}
 
 
 ## ROS Style Guide
