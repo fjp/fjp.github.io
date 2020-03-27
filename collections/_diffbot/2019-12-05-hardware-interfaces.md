@@ -21,4 +21,4 @@ sidebar:
   nav: "2wd-robot"
 ---
 
-{% include_relative 2wd-robot/docs/hardware-interfaces.md %}
+{% include_relative diffbot/docs/hardware-interfaces.md %}
