@@ -39,65 +39,65 @@ autonomous_rc_car:
   - title: "Prerequisites"
     url: /projects/autonomous-rc-car/#prerequisites
 
-2wd-robot:
+DiffBot:
   - title: "DiffBot"
-    url: /projects/2wd-robot/
+    url: /projects/diffbot/
   - title: "Components"
-    url: /projects/2wd-robot/components/
+    url: /projects/diffbot/components/
     children:
       - title: "Robot Base"
-        url: /projects/2wd-robot/components/#robot-base
+        url: /projects/diffbot/components/#robot-base
       - title: "Sensors"
-        url: /projects/2wd-robot/components/#sensors
+        url: /projects/diffbot/components/#sensors
       - title: "Actuators"
-        url: /projects/2wd-robot/components/#actuators
+        url: /projects/diffbot/components/#actuators
       - title: "Human Machine Interface"
-        url: /projects/2wd-robot/components/#human-machine-interface-hmi
+        url: /projects/diffbot/components/#human-machine-interface-hmi
       - title: "Assembly"
-        url: /projects/2wd-robot/assembly/
+        url: /projects/diffbot/assembly/
   - title: "Raspberry Pi 4B"
-    url: /projects/2wd-robot/rpi-setup/
+    url: /projects/diffbot/rpi-setup/
     children:
       - title: "Ubuntu Bionic 18.04"
-        url: /projects/2wd-robot/rpi-setup/#obtain-ubuntu-1804-arm-image
+        url: /projects/diffbot/rpi-setup/#obtain-ubuntu-1804-arm-image
       - title: "Hardware Interfaces"
-        url: /projects/2wd-robot/hardware-interfaces/
+        url: /projects/diffbot/hardware-interfaces/
       - title: "ROS Melodic Setup"
-        url: /projects/2wd-robot/ros-melodic/
+        url: /projects/diffbot/ros-melodic/
   - title: "ROS Integration"
-    url: /projects/2wd-robot/ros-integration/
+    url: /projects/diffbot/ros-integration/
     children:
       - title: "ROS Message Interface"
-        url: /projects/2wd-robot/ros-integration/#ros-message-interface
+        url: /projects/diffbot/ros-integration/#ros-message-interface
       - title: "Hardware Driver"
-        url: /projects/2wd-robot/ros-integration/#hardware-driver
+        url: /projects/diffbot/ros-integration/#hardware-driver
       - title: "Modeling the Robot: URDF"
-        url: /projects/2wd-robot/ros-integration/#modeling-the-robot-urdf
+        url: /projects/diffbot/ros-integration/#modeling-the-robot-urdf
       - title: "Simulation in Gazebo"
-        url: /projects/2wd-robot/ros-integration/#simulation-in-gazebo
+        url: /projects/diffbot/ros-integration/#simulation-in-gazebo
       - title: "Verifying Transforms"
-        url: /projects/2wd-robot/ros-integration/#verifying-transforms
+        url: /projects/diffbot/ros-integration/#verifying-transforms
       - title: "Adding Sensors and Actuators"
-        url: /projects/2wd-robot/ros-integration/#adding-sensors-and-actuators-in-ros
+        url: /projects/diffbot/ros-integration/#adding-sensors-and-actuators-in-ros
       - title: "Utilizing existing ROS Packages"
-        url: /projects/2wd-robot/ros-integration/#utilizing-and-configuring-existing-ros-packages
+        url: /projects/diffbot/ros-integration/#utilizing-and-configuring-existing-ros-packages
   - title: "ROS Packages and Nodes"
-    url: /projects/2wd-robot/ros-packages/
+    url: /projects/diffbot/ros-packages/
     children:
       - title: "Robot Description"
-        url: /projects/2wd-robot/ros-packages/robot-description/
+        url: /projects/diffbot/ros-packages/robot-description/
       - title: "Control"
-        url: /projects/2wd-robot/ros-packages/control/
+        url: /projects/diffbot/ros-packages/control/
       - title: "Odometry"
-        url: /projects/2wd-robot/ros-packages/odometry/
+        url: /projects/diffbot/ros-packages/odometry/
       - title: "Perception"
-        url: /projects/2wd-robot/ros-packages/perception/
+        url: /projects/diffbot/ros-packages/perception/
       - title: "Planner"
-        url: /projects/2wd-robot/ros-packages/planner/
+        url: /projects/diffbot/ros-packages/planner/
       - title: "Human Machine Interface"
-        url: /projects/2wd-robot/ros-packages/hmi/
+        url: /projects/diffbot/ros-packages/hmi/
   - title: "System integration"
-    url: /projects/2wd-robot/system-integration/
+    url: /projects/diffbot/system-integration/
 
 math:
   - title: "Introduction"
