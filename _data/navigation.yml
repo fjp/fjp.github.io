@@ -5,7 +5,7 @@ main:
   - title: "Blog"
     url: /blog/
   - title: "Projects"
-    url: /projects-archive/
+    url: /projects/
   - title: "Design Patterns"
     url: /design-patterns/
   - title: "C++"
