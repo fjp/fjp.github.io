@@ -70,7 +70,6 @@ geometry_msgs/Vector3 angular
   float64 x
   float64 y
   float64 z
-
 ```
 
 Some of the fields (specifically, linear/y, linear/z, angular/x, or angular/y) are not required for the 2WD robot and
@@ -110,7 +109,6 @@ geometry_msgs/TwistWithCovariance twist
       float64 y
       float64 z
   float64[36] covariance
-
 ```
 
 To report the robot's position and orientation, we only really need to fill out the `pose/pose/ position` and 
@@ -320,8 +318,8 @@ The rest of the launch file loads three nodes:
 
 TODO robot image
 <figure>
-    <a href="/assets/collections/diffbot/ros/urdf/rviz.png"><img src="/assets/collections/diffbot/ros/urdf/rviz.png"></a>
-    <figcaption>Visualizing the robot with its URDF and the transfroms from tf in RViz.</figcaption>
+    <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/images/rviz_diffbot_basic.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/images/rviz_diffbot_basic.png"></a>
+    <figcaption>Visualizing diffbot with its URDF and the transfroms from tf in RViz.</figcaption>
 </figure>
 
 As you move the sliders around in the GUI of [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher), 
