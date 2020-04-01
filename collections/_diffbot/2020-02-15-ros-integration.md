@@ -147,7 +147,7 @@ native representation of commands and data and the interfaces that ROS supports.
 Here we need to consider which existing ROS packages we are going to use and what types of message interfaces they use.
 Then we can apply math to the raw hardware signals to bring it in a form that is suitable for the ROS message types.
 
-In this project the 2WD robot has two motors which operate on a voltage level value applied to them.
+In this project DiffBot has two motors which operate on a voltage level value applied to them.
 In combination with the wheel encoder ticks, these values need to be brought into a "ROS format". 
 Specifically, ROS uses the notion of joints (revolute, rotational, continuous, ...) with standard units
 for different pysical quantities, such as position (m), velocity (m/s), angle (rad), and angular velocity (rad/s).
@@ -283,47 +283,46 @@ The [`check_urdf`](http://wiki.ros.org/urdf#Verification) command will parse the
 To view the structure of the robot links and joints graphically, we can use a command tool called [`urdf_to_graphiz`](http://wiki.ros.org/urdf#Visualization).
 
 The simplest way to visualize and to test manipulate the robot in [RViz](http://wiki.ros.org/rviz) is to 
-create a launch file similar to the following, used in the [ROS urdf tutorials](http://wiki.ros.org/urdf/Tutorials):
+create a launch file similar to the following example. Note that the [ROS urdf tutorials](http://wiki.ros.org/urdf/Tutorials) use the deprecated `use_gui` parameter and the `joint_state_publisher` package instead of the new `joint_state_publisher_gui` package, which includes the slider gui and doesn't require the `use_gui` parameter:
 
 ```xml
 <launch>
-
   <arg name="model" default="$(find urdf_tutorial)/urdf/01-myfirst.urdf"/>
-  <arg name="gui" default="true" />
   <arg name="rvizconfig" default="$(find urdf_tutorial)/rviz/urdf.rviz" />
 
   <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
-  <param name="use_gui" value="$(arg gui)"/>
 
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
-
 </launch>
 ```
 
-With this launch file you can pass three command line arguments `model`, `gui` and `rvizconfig` to the `roslaunch` command, where each has its default value and can be omitted. The launch files uses [xml parameter tag](https://wiki.ros.org/roslaunch/XML/param) which sets up two parameters on the [parameter server](https://wiki.ros.org/Parameter%20Server):
+With this launch file you can pass two command line arguments `model` and `rvizconfig` to the `roslaunch` command, where each has its default value and can be omitted. The launch files uses [xml parameter tag](https://wiki.ros.org/roslaunch/XML/param) which sets up the robot description parameter on the [parameter server](https://wiki.ros.org/Parameter%20Server):
 
-- `robot_description`: load URDF data from a file to the parameter server. To load the URDF data there are [three different methods](https://answers.ros.org/question/61479/adding-robot_description-to-parameter-server/?answer=61489#post-id-61489):
+`robot_description`: load URDF data from a file to the parameter server. To load the URDF data there are [three different methods](https://answers.ros.org/question/61479/adding-robot_description-to-parameter-server/?answer=61489#post-id-61489):
   1. Use `<param>` with the `command` attribute, as shown in [this URDF tutorial](http://www.ros.org/wiki/urdf/Tutorials/Using%20urdf%20with%20robot_state_publisher#Launch_File).
   2. Use `<param>` with the `<textfile>` argument as shown [here](http://www.ros.org/wiki/roslaunch/XML/param) which is commonly used when not working with `xacro`.
   3. Use `<param>` with the `command` attribute and the `xacro` script, as shown in the very first example on the [Xacro tutorial page](http://wiki.ros.org/urdf/Tutorials/Using%20Xacro%20to%20Clean%20Up%20a%20URDF%20File#Using_Xacro).
-- `use_gui`: bool value used to show the gui that comes with [`joint_state_publisher`]. 
+
+Note that you will see some launch files which include a `use_gui` parameter which is deprecated when using the new 
+`joint_state_publisher` in ROS Melodic Morenia. Yo
+
+- `use_gui`: is deprecated in ROS Melodic Morenia. It is used in older ROS distributions and is a bool value used to show the gui that comes with the older version of [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher). 
 
 The rest of the launch file loads three nodes:
 
-- [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher) used to manipulate joint states with the optional gui (depending on `use_gui` parameter) and to read current joint states using a `source_list` parameter (not used in this example). 
+- [`joint_state_publisher_gui`](http://wiki.ros.org/joint_state_publisher) used to manipulate joint states with the optional gui (depending if `joint_state_publisher_gui` or just `joint_state_publisher` is launched) and to read current joint states using a `source_list` parameter (not used in this example). 
 - [`robot_state_publisher`](http://wiki.ros.org/robot_state_publisher) package helps to publish the state of the robot to `tf`. This package subscribes to joint states of the robot and publishes the 3D pose of each link using the kinematic representation from the URDF model. This is required for packages such as visualization.
 - [`rviz`](http://wiki.ros.org/rviz) used to visualize the robot. In the launch file a rviz configuration is loaded, which takes the burden of configuring RViz manually after each startup.
 
-TODO robot image
 <figure>
     <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/images/rviz_diffbot_basic.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/images/rviz_diffbot_basic.png"></a>
     <figcaption>Visualizing diffbot with its URDF and the transfroms from tf in RViz.</figcaption>
 </figure>
 
-As you move the sliders around in the GUI of [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher), 
-the joints and links of the model move in Rviz. How is this done? First the GUI parses the URDF and finds all the non-fixed joints and their limits. Then, it uses the values of the sliders to publish [`sensor_msgs/JointState`](http://docs.ros.org/api/sensor_msgs/html/msg/JointState.html) messages. 
+As you move the sliders around in the GUI of [`joint_state_publisher_gui`](http://wiki.ros.org/joint_state_publisher), 
+the joints and links of the model move in RViz. How is this done? First the GUI parses the URDF and finds all the non-fixed joints and their limits. Then, it uses the values of the sliders to publish [`sensor_msgs/JointState`](http://docs.ros.org/api/sensor_msgs/html/msg/JointState.html) messages. 
 Those are then used by [`robot_state_publisher`](http://wiki.ros.org/robot_state_publisher) to calculate all of transforms between the different parts. The resulting transform tree is then used to display all of the shapes in Rviz.
 
 
