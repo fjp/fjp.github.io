@@ -282,10 +282,7 @@ The [`check_urdf`](http://wiki.ros.org/urdf#Verification) command will parse the
 
 To view the structure of the robot links and joints graphically, we can use a command tool called [`urdf_to_graphiz`](http://wiki.ros.org/urdf#Visualization).
 
-<figure>
-    <a href="https://github.com/fjp/diffbot/raw/master/docs/resources/diffbot.pdf"><img src="https://github.com/fjp/diffbot/raw/master/docs/resources/diffbot.pdf"></a>
-    <figcaption>Graphviz diagram of the DiffBot URDF description.</figcaption>
-</figure>
+<object data="https://github.com/fjp/diffbot/raw/master/docs/resources/diffbot.pdf" width="1000" height="1000" type='application/pdf'></object>
 
 The simplest way to visualize and to test manipulate the robot in [RViz](http://wiki.ros.org/rviz) is to 
 create a launch file similar to the following example. Note that the [ROS urdf tutorials](http://wiki.ros.org/urdf/Tutorials) use the deprecated `use_gui` parameter and the `joint_state_publisher` package instead of the new `joint_state_publisher_gui` package, which includes the slider gui and doesn't require the `use_gui` parameter:
