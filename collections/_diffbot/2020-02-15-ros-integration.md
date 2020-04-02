@@ -283,7 +283,7 @@ The [`check_urdf`](http://wiki.ros.org/urdf#Verification) command will parse the
 To view the structure of the robot links and joints graphically, we can use a command tool called [`urdf_to_graphiz`](http://wiki.ros.org/urdf#Visualization).
 
 <figure>
-    <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/graphviz_diffbot.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/images/graphviz_diffbot.png"></a>
+    <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/graphviz_diffbot.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/graphviz_diffbot.png"></a>
     <figcaption>Graphviz diagram of DiffBot URDF robot description.</figcaption>
 </figure>
 
