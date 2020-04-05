@@ -54,6 +54,11 @@ It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) c
 
 Bind is referred to binding a [receiver](/projects/fpv/glossar#receiver) with a [transmitter](/projects/fpv/glossar#transmitter).
 
+## BLHeli
+
+[Frimware](/projects/fpv/glossar#firmware) for [ESCs](/projects/fpv/glossar#esc) that is used to process the input data from a [Flight Controller](/projects/fpv/glossar/#flight-controller) and translate that into suitable control commands for the motor. Although the firmware was originally developed for helicopters it is also used for multicopters. 
+Another commonly used firmware for ESCs is called [SimonK](/prjects/fpv/glossar#simonk).
+
 ## CleanFlight
 
 
@@ -163,6 +168,14 @@ of the same type to provide redundancy in case of a receiver failure.
 
 
 ## Sensor
+
+## SimonK
+
+[Frimware](/projects/fpv/glossar#firmware) for [ESCs](/projects/fpv/glossar#esc) that is used to process the input 
+data from a [Flight Controller](/projects/fpv/glossar/#flight-controller) and translate that into suitable control 
+commands for the motor. This frimware was developed by Simon Kirby and its intended to be used in multicopters. 
+Its source code can be found on [Simon Kirby's GitHub repository](https://github.com/sim-/tgy).
+Another commonly used firmware for ESCs is [BLHeli](/prjects/fpv/glossar#blheli).
 
 ## Transmitter
 
