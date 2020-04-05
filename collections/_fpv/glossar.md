@@ -37,6 +37,10 @@ Different LiPo battery packs are made up of individual cells with one cell havin
 | 3S         |  11.1 V |
 | 4S         |  14.8 V |
 
+## BEC
+
+Abbreviation for Battery Elimination Circuit which describes [ESCs](/projects/fpv/glossar#esc) that provide a portion of battery power (which the ESC is connected with) over their communication cable (red cable of the [servo](/projects/fpv/glossar#servo) connector) to other devices such as a [receiver](/projects/fpv/glossar#receiver) and servos attached to the receiver. 
+
 ## BetaFlight
 
 The BetaFlight open source [Flight Controller](/projects/fpv/glossar#flight-controller) [frimware](/projects/fpv/glossar#firmware) project (found on [GitHub](https://github.com/betaflight)) provides
