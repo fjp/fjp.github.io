@@ -144,6 +144,10 @@ It is connected to the [Battery](/projects/fpv/glossar#battery) and distributes 
 [motors](/projects/fpv-quad/fpv-glossar#motor). A PDB usually has additional voltage outputs such as 5V and 12V to power 
 [sensors](/projects/fpv/glossar/#sensor) or [LEDs](/projects/fpv/glossar#led).
 
+## PWM
+
+Short for [pulse width modulation](https://en.wikipedia.org/wiki/Pulse-width_modulation).
+
 ## Radio
 
 The term radio is used for the [transmitter](/projects/fpv/glossar#transmitter) device.
