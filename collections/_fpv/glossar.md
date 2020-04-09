@@ -139,6 +139,10 @@ Reference: [Brushless Whoop](https://brushlesswhoop.com/frsky-eu-lbt-vs-fcc/).
 
 ## LED
 
+## LiPo
+
+Refers to a type of [battery](/projects/fpv/glossar#battery) and is the abbreviation for [__li__thium-ion __po__lymere](https://en.wikipedia.org/wiki/Lithium_polymer_battery)
+
 [Light Emitting Diodes](https://en.wikipedia.org/wiki/Light-emitting_diode) are used as visual guidance for a quad copter.
 
 ## PDB
