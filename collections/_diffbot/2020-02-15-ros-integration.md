@@ -322,7 +322,7 @@ The rest of the launch file loads three nodes:
 - [`rviz`](http://wiki.ros.org/rviz) used to visualize the robot. In the launch file a rviz configuration is loaded, which takes the burden of configuring RViz manually after each startup.
 
 <figure>
-    <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/images/rviz_diffbot_basic.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/images/rviz_diffbot_basic.png"></a>
+    <a href="https://github.com/fjp/diffbot/raw/master/docs/resources/rviz_diffbot_basic.png"><img src="https://github.com/fjp/diffbot/raw/master/docs/resources/rviz_diffbot_basic.png"></a>
     <figcaption>Visualizing diffbot with its URDF and the transfroms from tf in RViz.</figcaption>
 </figure>
 
