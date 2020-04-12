@@ -131,10 +131,21 @@ fpv:
         url: /projects/fpv/pdb
       - title: "Flightcontroller"
         url: /projects/fpv/flightcontroller
-      - title: "Flightcontroller Software"
-        url: /projects/fpv/software
       - title: "RC Receiver"
         url: /projects/fpv/receiver
+  - title "Flight Controller Software"
+    url: /projects/fpv/flight-controller-software
+    children:
+      - title: Setup
+        url: /projects/fpv/flight-controller-software#setup
+      - title: Ports
+        url: /projects/fpv/flight-controller-software#ports
+      - title: Configuration
+        url: /projects/fpv/flight-controller-software#configuration
+      - title: Modes
+        url: /projects/fpv/flight-controller-software#modes
+      - title: Motors
+        url: /projects/fpv/flight-controller-software#motors
   - title: "RC Transmitter"
     url: /projects/fpv/transmitter
     children:
