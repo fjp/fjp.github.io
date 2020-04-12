@@ -310,10 +310,9 @@ With this launch file you can pass two command line arguments `model` and `rvizc
   2. Use `<param>` with the `<textfile>` argument as shown [here](http://www.ros.org/wiki/roslaunch/XML/param) which is commonly used when not working with `xacro`.
   3. Use `<param>` with the `command` attribute and the `xacro` script, as shown in the very first example on the [Xacro tutorial page](http://wiki.ros.org/urdf/Tutorials/Using%20Xacro%20to%20Clean%20Up%20a%20URDF%20File#Using_Xacro).
 
-Note that you will see some launch files which include a `use_gui` parameter which is deprecated when using the new 
-`joint_state_publisher` in ROS Melodic Morenia. Yo
-
-- `use_gui`: is deprecated in ROS Melodic Morenia. It is used in older ROS distributions and is a bool value used to show the gui that comes with the older version of [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher). 
+Note that you will see some launch files which include a `use_gui` parameter.
+This is deprecated in ROS Melodic Morenia. It is used in older ROS distributions and is a bool value used 
+to show the gui that comes with the older version of [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher). 
 
 The rest of the launch file loads three nodes:
 
@@ -322,7 +321,7 @@ The rest of the launch file loads three nodes:
 - [`rviz`](http://wiki.ros.org/rviz) used to visualize the robot. In the launch file a rviz configuration is loaded, which takes the burden of configuring RViz manually after each startup.
 
 <figure>
-    <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/images/rviz_diffbot_basic.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/images/rviz_diffbot_basic.png"></a>
+    <a href="https://github.com/fjp/diffbot/raw/master/docs/resources/rviz_diffbot_basic.png"><img src="https://github.com/fjp/diffbot/raw/master/docs/resources/rviz_diffbot_basic.png"></a>
     <figcaption>Visualizing diffbot with its URDF and the transfroms from tf in RViz.</figcaption>
 </figure>
 
@@ -333,6 +332,11 @@ Those are then used by [`robot_state_publisher`](http://wiki.ros.org/robot_state
 
 
 ## Simulation in Gazebo
+
+To visualise a robot in RViz and use the nodes described so far, the URDF should contain the robo's kinematic description.
+This is described by `visual` and `origin` tags of `link` and the `joints` connecting them. 
+To simulate a robot in ROS using Gazebo the URDF requires dynamic information. For this, the URDF specification provides,
+`collision` and `inertia` tags, which should be added to each `link` tag.
 
 
 ## Verifying Transforms

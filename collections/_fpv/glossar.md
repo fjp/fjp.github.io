@@ -37,6 +37,10 @@ Different LiPo battery packs are made up of individual cells with one cell havin
 | 3S         |  11.1 V |
 | 4S         |  14.8 V |
 
+## BEC
+
+Abbreviation for Battery Elimination Circuit which describes [ESCs](/projects/fpv/glossar#esc) that provide a portion of battery power (which the ESC is connected with) over their communication cable (red cable of the [servo](/projects/fpv/glossar#servo) connector) to other devices such as a [receiver](/projects/fpv/glossar#receiver) and servos attached to the receiver. 
+
 ## BetaFlight
 
 The BetaFlight open source [Flight Controller](/projects/fpv/glossar#flight-controller) [frimware](/projects/fpv/glossar#firmware) project (found on [GitHub](https://github.com/betaflight)) provides
@@ -53,6 +57,11 @@ It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) c
 ## Bind
 
 Bind is referred to binding a [receiver](/projects/fpv/glossar#receiver) with a [transmitter](/projects/fpv/glossar#transmitter).
+
+## BLHeli
+
+[Frimware](/projects/fpv/glossar#firmware) for [ESCs](/projects/fpv/glossar#esc) that is used to process the input data from a [Flight Controller](/projects/fpv/glossar/#flight-controller) and translate that into suitable control commands for the motor. Although the firmware was originally developed for helicopters it is also used for multicopters. 
+Another commonly used firmware for ESCs is called [SimonK](/prjects/fpv/glossar#simonk).
 
 ## CleanFlight
 
@@ -85,6 +94,21 @@ Flash storage component of a device where the Firmware is stored.
 ## FrSky
 
 [FrSky](https://www.frsky-rc.com/) is a chinese company that manufactures modules for [rc](/projects/fpv/glossar#rc) toys such as [transmitters](/projects/fpv/glossar/#transmitter), [receivers](/projects/fpv/glossar#receiver) or [Flight Controllers](/projects/fpv/glossar#flight-controller). 
+
+## FPort
+
+Communication protocol from [FrSky](/projects/fpv/glossar#frsky) for its [receivers](/projects/fpv/glossar#receiver).
+
+1. FPort combines [SBUS](/projects/fpv/glossar#sbus) and [Smartport](/projects/fpv/glossar#smartport) [Telemetry](/projects/fpv/glossar#telemetry) into one single wire
+  - Simplify cable management and soldering
+  - Save a UART port because SBUS and Smartport take up two separate UART’s
+- FPort is an uninverted protocol, which should avoid doing “uninversion hacks” on F4 FC in future Frsky receivers
+- FPort is slightly faster than SBUS
+- [RSSI](/projects/fpv/glossar#rssi) works automatically (no need to pass through a channel)
+
+References:
+
+- [Oscar Liang - Setup FrSky FPort](https://oscarliang.com/setup-frsky-fport/)
 
 ## ESC
 
@@ -130,6 +154,10 @@ Reference: [Brushless Whoop](https://brushlesswhoop.com/frsky-eu-lbt-vs-fcc/).
 
 ## LED
 
+## LiPo
+
+Refers to a type of [battery](/projects/fpv/glossar#battery) and is the abbreviation for [__li__thium-ion __po__lymere](https://en.wikipedia.org/wiki/Lithium_polymer_battery)
+
 [Light Emitting Diodes](https://en.wikipedia.org/wiki/Light-emitting_diode) are used as visual guidance for a quad copter.
 
 ## PDB
@@ -138,6 +166,10 @@ The Power Distribution Board (PDB) acts as the heart of an [FPV](/projects/fpv/g
 It is connected to the [Battery](/projects/fpv/glossar#battery) and distributes its power to other components of the quad. The main components its is connected to are the [ESCs](/projects/fpv/glossar/#esc) to power the 
 [motors](/projects/fpv-quad/fpv-glossar#motor). A PDB usually has additional voltage outputs such as 5V and 12V to power 
 [sensors](/projects/fpv/glossar/#sensor) or [LEDs](/projects/fpv/glossar#led).
+
+## PWM
+
+Short for [pulse width modulation](https://en.wikipedia.org/wiki/Pulse-width_modulation).
 
 ## Radio
 
@@ -163,6 +195,14 @@ of the same type to provide redundancy in case of a receiver failure.
 
 
 ## Sensor
+
+## SimonK
+
+[Frimware](/projects/fpv/glossar#firmware) for [ESCs](/projects/fpv/glossar#esc) that is used to process the input 
+data from a [Flight Controller](/projects/fpv/glossar/#flight-controller) and translate that into suitable control 
+commands for the motor. This frimware was developed by Simon Kirby and its intended to be used in multicopters. 
+Its source code can be found on [Simon Kirby's GitHub repository](https://github.com/sim-/tgy).
+Another commonly used firmware for ESCs is [BLHeli](/prjects/fpv/glossar#blheli).
 
 ## Transmitter
 

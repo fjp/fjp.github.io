@@ -403,7 +403,7 @@ Typically, you first read the state from the hardware through the hardware inter
 ```cpp
 #include <ros/ros.h>
 #include <my_robot/my_robot.h>
-# include <controller_manager/controller_manager.h>
+#include <controller_manager/controller_manager.h>
 
 int main(int argc, char **argv)
 {
