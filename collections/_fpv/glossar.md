@@ -95,6 +95,21 @@ Flash storage component of a device where the Firmware is stored.
 
 [FrSky](https://www.frsky-rc.com/) is a chinese company that manufactures modules for [rc](/projects/fpv/glossar#rc) toys such as [transmitters](/projects/fpv/glossar/#transmitter), [receivers](/projects/fpv/glossar#receiver) or [Flight Controllers](/projects/fpv/glossar#flight-controller). 
 
+## FPort
+
+Communication protocol from [FrSky](/projects/fpv/glossar#frsky) for its [receivers](/projects/fpv/glossar#receiver).
+
+1. FPort combines [SBUS](/projects/fpv/glossar#sbus) and [Smartport](/projects/fpv/glossar#smartport) [Telemetry](/projects/fpv/glossar#telemetry) into one single wire
+  - Simplify cable management and soldering
+  - Save a UART port because SBUS and Smartport take up two separate UART’s
+- FPort is an uninverted protocol, which should avoid doing “uninversion hacks” on F4 FC in future Frsky receivers
+- FPort is slightly faster than SBUS
+- [RSSI](/projects/fpv/glossar#rssi) works automatically (no need to pass through a channel)
+
+References:
+
+- [Oscar Liang - Setup FrSky FPort](https://oscarliang.com/setup-frsky-fport/)
+
 ## ESC
 
 The Electronic Speed Controller (ESC) is conected to the [PDB](/projects/fpv/glossar#pdb) and 
