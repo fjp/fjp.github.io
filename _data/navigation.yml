@@ -133,7 +133,7 @@ fpv:
         url: /projects/fpv/flightcontroller
       - title: "RC Receiver"
         url: /projects/fpv/receiver
-  - title "Flight Controller Software"
+  - title: "Flight Controller Software"
     url: /projects/fpv/flight-controller-software
     children:
       - title: Setup
