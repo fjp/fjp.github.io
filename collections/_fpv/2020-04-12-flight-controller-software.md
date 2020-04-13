@@ -15,6 +15,7 @@ header:
   teaser: https://camo.githubusercontent.com/8178215d6cb90842dc95c9d437b1bdf09b2d57a7/687474703a2f2f7374617469632e726367726f7570732e6e65742f666f72756d732f6174746163686d656e74732f362f312f302f332f372f362f61393038383930302d3232382d62665f6c6f676f2e6a7067
   overlay_image: https://camo.githubusercontent.com/8178215d6cb90842dc95c9d437b1bdf09b2d57a7/687474703a2f2f7374617469632e726367726f7570732e6e65742f666f72756d732f6174746163686d656e74732f362f312f302f332f372f362f61393038383930302d3232382d62665f6c6f676f2e6a7067
   overlay_filter: 0.5
+  caption: "Source: [**Betaflight**](https://github.com/betaflight/betaflight)"
 redirect_from:
   - /projects/fpv/
 sidebar:
@@ -22,7 +23,7 @@ sidebar:
 ---
 
 A [flight controller](/projects/fpv/glossar#flight-controller) can be operated with different software 
-([firmware](/projects/fpv/glossar#firmware). Popular software for FPV race copters are 
+([firmware](/projects/fpv/glossar#firmware)). Popular software for FPV race copters are 
 [Cleanflight](http://cleanflight.com/), its successor [Betaflight](https://betaflight.com/)
 and [LibrePilot](https://www.librepilot.org/site/index.html). Another software used specifically for FPV races is
 KISS from [Flyduino](https://kiss.flyduino.net/) with its related flight controller. 
