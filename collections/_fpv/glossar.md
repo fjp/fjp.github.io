@@ -97,7 +97,7 @@ Flash storage component of a device where the Firmware is stored.
 
 ## FPort
 
-Communication protocol from [FrSky](/projects/fpv/glossar#frsky) for its [receivers](/projects/fpv/glossar#receiver).
+[Rx](/projects/fpv/glossar#rx) protocol that acts as a communication interface between [receiver](/projects/fpv/glossar#receiver) and [flight controller](/projects/fpv/glossar#flight-controller). FPort is developed by [Betaflight's](/projects/fpv/glossar#betaflight) developer team and [FrSky](/projects/fpv/glossar#frsky) for its [receivers](/projects/fpv/glossar#receiver). FPort (possibly stands for “Frsky Port”?) is developed by both Betaflight Dev Team and Frsky
 
 1. FPort combines [SBUS](/projects/fpv/glossar#sbus) and [Smartport](/projects/fpv/glossar#smartport) [Telemetry](/projects/fpv/glossar#telemetry) into one single wire
   - Simplify cable management and soldering
