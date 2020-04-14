@@ -333,10 +333,11 @@ Those are then used by [`robot_state_publisher`](http://wiki.ros.org/robot_state
 
 ## Simulation in Gazebo
 
-To visualise a robot in RViz and use the nodes described so far, the URDF should contain the robo's kinematic description.
+To visualise a robot in RViz and use the nodes described so far, the URDF should contain the robot's kinematic description.
 This is described by `visual` and `origin` tags of `link` and the `joints` connecting them. 
-To simulate a robot in ROS using Gazebo the URDF requires dynamic information. For this, the URDF specification provides,
-`collision` and `inertia` tags, which should be added to each `link` tag.
+To simulate a robot in ROS using Gazebo the URDF requires dynamic information. For this, 
+some additional simulation-specific tags must be added to work properly with Gazebo. 
+The URDF specification provides, `collision` and `inertia` tags, which should be added to each `link` tag.
 
 
 ## Verifying Transforms
