@@ -334,10 +334,29 @@ Those are then used by [`robot_state_publisher`](http://wiki.ros.org/robot_state
 ## Simulation in Gazebo
 
 To visualise a robot in RViz and use the nodes described so far, the URDF should contain the robot's kinematic description.
-This is described by `visual` and `origin` tags of `link` and the `joints` connecting them. 
+This is done defining `<visual>` and `<origin>` elements of the `<link>` elements and the `<joints>` connecting them. 
 To simulate a robot in ROS using Gazebo the URDF requires dynamic information. For this, 
-some additional simulation-specific tags must be added to work properly with Gazebo. 
-The URDF specification provides, `collision` and `inertia` tags, which should be added to each `link` tag.
+some additional simulation-specific elements must be added to work properly with Gazebo. 
+A requirement is to properly specify and configure an `<inertia>` element within each `<link>`.
+
+Unlike some ROS applications, Gazebo will not use the `<visual>` elements as collision information. 
+Instead, Gazebo will treat your link as "invisible" to laser scanners and collision checking.
+To properly handle collisions in Gazebo a `<collision>` element must be added to each `<link>` which should resemble the
+`<visual>` element. For performance reasons a simplified model/mesh should be used as collision geometry.
+
+The optional `<gazebo>` element is an extension to the URDF used for specifying additional properties needed for simulation purposes in Gazebo. If no `<gazebo>` element are provided, default values will be automatically included. There are three different types of  `<gazebo>` elements - one for the `<robot>` tag, one for `<link>` tags, and one for `<joint>` tags.
+
+URDF can only specify the kinematic and dynamic properties of a single robot in isolation. URDF can not specify the pose of the robot itself within a world. It is also not a universal description format since it cannot specify joint loops (parallel linkages), and it lacks friction and other properties. Additionally, it cannot specify things that are not robots, such as lights, heightmaps, etc.
+
+To deal with this issue, a new format called the Simulation Description Format (SDF) was created for use in Gazebo to solve the shortcomings of URDF. SDF is a complete description for everything from the world level down to the robot level. It is scalable, and makes it easy to add and modify elements. The SDF format is itself described using XML, which facilitates a simple upgrade tool to migrate old versions to new versions. It is also self-descriptive.
+
+
+
+
+**References**
+
+- [Tutorial: Using a URDF in Gazebo](http://gazebosim.org/tutorials/?tut=ros_urdf)
+- 
 
 
 ## Verifying Transforms
