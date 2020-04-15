@@ -337,7 +337,22 @@ To visualise a robot in RViz and use the nodes described so far, the URDF should
 This is done defining `<visual>` and `<origin>` elements of the `<link>` elements and the `<joints>` connecting them. 
 To simulate a robot in ROS using Gazebo the URDF requires dynamic information. For this, 
 some additional simulation-specific elements must be added to work properly with Gazebo. 
-A requirement is to properly specify and configure an `<inertia>` element within each `<link>`.
+For the Gazebo physics engine to work properly, the `<inertia>` element must be provided within each `<link>` element. 
+Determining the correct inertia values for each link is required to get accurate physics approximations in Gazebo. 
+This can be performed by conducting various measurements of the robots parts, using CAD software like Solidworks that includes features for approximating these values or use precalcuated values from [a list of moments of inertia](https://en.wikipedia.org/wiki/List_of_moments_of_inertia) for simple shapes.
+
+```xml
+<inertial>
+  <origin xyz="0 0 ${height1/2}" rpy="0 0 0"/>
+  <mass value="1"/>
+  <inertia
+      ixx="1.0" ixy="0.0" ixz="0.0"
+      iyy="1.0" iyz="0.0"
+      izz="1.0"/>
+</inertial>
+```
+
+The origin tag represents the center of mass of this link. Within Gazebo it is possible to visually check if the center of mass is correct in a URDF by clicking on the "View" menu of Gazebo and selecting both "Wireframe" and "Center of Mass".
 
 Unlike some ROS applications, Gazebo will not use the `<visual>` elements as collision information. 
 Instead, Gazebo will treat your link as "invisible" to laser scanners and collision checking.
@@ -346,11 +361,11 @@ To properly handle collisions in Gazebo a `<collision>` element must be added to
 
 The optional `<gazebo>` element is an extension to the URDF used for specifying additional properties needed for simulation purposes in Gazebo. If no `<gazebo>` element are provided, default values will be automatically included. There are three different types of  `<gazebo>` elements - one for the `<robot>` tag, one for `<link>` tags, and one for `<joint>` tags.
 
-- Add a `<gazebo>` element for every `<link>`
+- Add a `<gazebo>` element for every [`<link>`](http://gazebosim.org/tutorials/?tut=ros_urdf#Links)
   - Convert visual colors to Gazebo format
   - Convert stl files to dae files for better textures
   - Add sensor plugins
-- Add a `<gazebo>` element for every `<joint>`
+- Add a `<gazebo>` element for every [`<joint>`](http://gazebosim.org/tutorials/?tut=ros_urdf#Joints)
   - Set proper damping dynamics
   - Add actuator control plugins
 - Add a `<gazebo>` element for the `<robot>` element
