@@ -267,7 +267,13 @@ The [`xacro`](http://wiki.ros.org/xacro) package helps to reduce the overall siz
 - **Simplify URDF:** xacro is the cleaned-up version of URDF. With it you can create [macros](http://wiki.ros.org/urdf/Tutorials/Using%20Xacro%20to%20Clean%20Up%20a%20URDF%20File#Macros) inside the robot description and reuses them which reduces the xacro description length of your robot. Also, it can include macros from other files and make the code simpler, more readable, and more modular.
 - **Programmability:** The xacro language supports simple programming statements in its description. There are variables, constants, mathematical expressions, conditional statements, which make the description more intelligent and efficient.
 
-In the end, most ROS packages still require a URDF description, which can be generated from the compact xacro description in the following ways. Either you use the command `xacro --inorder model.xacro > model.urdf` or create a launch file with the following content:
+In the end, most ROS packages still require a URDF description, which can be generated from the compact xacro description in the following ways. Either you use the command 
+
+```bash
+xacro --inorder model.xacro > model.urdf
+``` 
+
+or create a launch file with the following content:
 
 ```xml
 <param name="robot_description" command="xacro --inorder '$(find pr2_description)/robots/pr2.urdf.xacro'" />
@@ -435,6 +441,21 @@ To see all of the available arguments for `spawn_model` including namespaces, tr
 ```bash
 rosrun gazebo_ros spawn_model -h
 ```
+
+To verify that a URDF can be properly converted to SDF use the following procedure.
+First the `.xacro` model of the robot is converted into a `.urdf`, note that `--inorder` is not required when using ROS melodic.
+
+```bash
+xacro --inorder model.xacro > model.urdf
+``` 
+
+With Gazebo installed, an easy tool exists to check if a URDF can be properly converted into a SDF.
+
+```
+gz sdf -p model.urdf
+```
+
+This will print out the SDF that has been generated from the input URDF as well as any warnings about missing information required to generate the SDF.
 
 After resourcing the catkin workspace, the created launch file can be launched with:
 
