@@ -346,6 +346,16 @@ To properly handle collisions in Gazebo a `<collision>` element must be added to
 
 The optional `<gazebo>` element is an extension to the URDF used for specifying additional properties needed for simulation purposes in Gazebo. If no `<gazebo>` element are provided, default values will be automatically included. There are three different types of  `<gazebo>` elements - one for the `<robot>` tag, one for `<link>` tags, and one for `<joint>` tags.
 
+- Add a `<gazebo>` element for every `<link>`
+  - Convert visual colors to Gazebo format
+  - Convert stl files to dae files for better textures
+  - Add sensor plugins
+- Add a `<gazebo>` element for every `<joint>`
+  - Set proper damping dynamics
+  - Add actuator control plugins
+- Add a `<gazebo>` element for the `<robot>` element
+- Add a `<link name="world"/>` link if the robot should be rigidly attached to the world/base_link
+
 URDF can only specify the kinematic and dynamic properties of a single robot in isolation. URDF can not specify the pose of the robot itself within a world. It is also not a universal description format since it cannot specify joint loops (parallel linkages), and it lacks friction and other properties. Additionally, it cannot specify things that are not robots, such as lights, heightmaps, etc.
 
 To deal with this issue, a new format called the Simulation Description Format (SDF) was created for use in Gazebo to solve the shortcomings of URDF. SDF is a complete description for everything from the world level down to the robot level. It is scalable, and makes it easy to add and modify elements. The SDF format is itself described using XML, which facilitates a simple upgrade tool to migrate old versions to new versions. It is also self-descriptive.
