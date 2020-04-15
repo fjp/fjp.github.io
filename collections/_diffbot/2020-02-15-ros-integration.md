@@ -248,7 +248,7 @@ It encapsulated the entire robot model that can be represented using URDF and in
 - `gazebo`: The `gazebo` element is an extension to the URDF robot description format, 
 used to include the simulation parameters of the [Gazebo](http://gazebosim.org/) simulator.
 This tag can be used to include for example gazebo plugins and `gazebo` material properties. 
-The following shows an exampleusing `gazebo` tags:
+The following shows an example using `gazebo` tags:
 
 ```xml
 <gazebo reference="link_1">    
@@ -375,14 +375,66 @@ URDF can only specify the kinematic and dynamic properties of a single robot in 
 
 To deal with this issue, a new format called the [Simulation Description Format](http://sdformat.org/) (SDF) was created for use in Gazebo to solve the shortcomings of URDF. SDF is a complete description for everything from the world level down to the robot level. It is scalable, and makes it easy to add and modify elements. The SDF format is itself described using XML, which facilitates a simple upgrade tool to migrate old versions to new versions. It is also self-descriptive. Under the hood, Gazebo will convert the URDF to SDF automatically.
 
+Many `.world` files are distribute as part of the `gazebo9-common` debian package, which can be found in `/usr/share/gazebo-9/worlds`, including `empty.world` [[ref](https://answers.ros.org/question/349122/where-are-gazebo-world-files/)]. The following shows the `empty.world` world file:
+
+```xml
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+  </world>
+</sdf>
+```
+
+Everything concerning a robot's model and description should be located, as per ROS standards, in a package named `/MYROBOT_description` and all the world files and launch files used with Gazebo is located in a ROS package named `/MYROBOT_gazebo`. In this project `'MYROBOT'` is replaced with the name of this robot (`'diffbot'`) in lower case letters. 
+If no special world is required then the `/MYROBOT_gazebo/world` folder is not required and default worlds can be used.
+
+Example world models can be launched from the command line:
+
+```bash
+roslaunch gazebo_ros empty_world.launch
+```
+
+It is convenient to use a launch file within the `/MYROBOT_gazebo` package which launches 
+[`empty_world.launch`](https://github.com/ros-simulation/gazebo_ros_pkgs/blob/melodic-devel/gazebo_ros/launch/empty_world.launch) and spawns a robot model:
+
+```xml
+<launch>
+  <!-- Use logic from empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!-- arg name="world_name" value="$(find MYROBOT_gazebo)/worlds/MYROBOT.world"/ -->
+    <!-- more default parameters can be changed here -->
+  </include>
+  
+  <!-- Convert an xacro and put it on the parameter server -->
+  <param name="robot_description" command="$(find xacro)/xacro.py $(find MYROBOT_description)/robots/MYROBOT.urdf.xacro" />
+
+  <!-- Spawn a robot into Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model MYROBOT" />
+</launch>
+```
+
+[`empty_world.launch`](https://github.com/ros-simulation/gazebo_ros_pkgs/blob/melodic-devel/gazebo_ros/launch/empty_world.launch) will take care of launching the gazebo server and client with the specified parameters or their defaults.
 
 
+After resourcing the catkin workspace, the created launch file can be launched with:
+
+```bash
+. ~/catkin_ws/devel/setup.bash
+roslaunch MYROBOT_gazebo MYROBOT.launch
+```
 
 **References**
 
+- [Tutorial: Using roslaunch to start Gazebo, world files and URDF models](http://gazebosim.org/tutorials?tut=ros_roslaunch)
 - [Tutorial: Using a URDF in Gazebo](http://gazebosim.org/tutorials/?tut=ros_urdf)
-- 
-
 
 ## Verifying Transforms
 
