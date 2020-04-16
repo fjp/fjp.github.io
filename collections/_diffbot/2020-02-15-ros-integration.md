@@ -248,7 +248,7 @@ It encapsulated the entire robot model that can be represented using URDF and in
 - `gazebo`: The `gazebo` element is an extension to the URDF robot description format, 
 used to include the simulation parameters of the [Gazebo](http://gazebosim.org/) simulator.
 This tag can be used to include for example gazebo plugins and `gazebo` material properties. 
-The following shows an exampleusing `gazebo` tags:
+The following shows an example using `gazebo` tags:
 
 ```xml
 <gazebo reference="link_1">    
@@ -267,7 +267,13 @@ The [`xacro`](http://wiki.ros.org/xacro) package helps to reduce the overall siz
 - **Simplify URDF:** xacro is the cleaned-up version of URDF. With it you can create [macros](http://wiki.ros.org/urdf/Tutorials/Using%20Xacro%20to%20Clean%20Up%20a%20URDF%20File#Macros) inside the robot description and reuses them which reduces the xacro description length of your robot. Also, it can include macros from other files and make the code simpler, more readable, and more modular.
 - **Programmability:** The xacro language supports simple programming statements in its description. There are variables, constants, mathematical expressions, conditional statements, which make the description more intelligent and efficient.
 
-In the end, most ROS packages still require a URDF description, which can be generated from the compact xacro description in the following ways. Either you use the command `xacro --inorder model.xacro > model.urdf` or create a launch file with the following content:
+In the end, most ROS packages still require a URDF description, which can be generated from the compact xacro description in the following ways. Either you use the command 
+
+```bash
+xacro --inorder model.xacro > model.urdf
+``` 
+
+or create a launch file with the following content:
 
 ```xml
 <param name="robot_description" command="xacro --inorder '$(find pr2_description)/robots/pr2.urdf.xacro'" />
@@ -333,11 +339,139 @@ Those are then used by [`robot_state_publisher`](http://wiki.ros.org/robot_state
 
 ## Simulation in Gazebo
 
-To visualise a robot in RViz and use the nodes described so far, the URDF should contain the robo's kinematic description.
-This is described by `visual` and `origin` tags of `link` and the `joints` connecting them. 
-To simulate a robot in ROS using Gazebo the URDF requires dynamic information. For this, the URDF specification provides,
-`collision` and `inertia` tags, which should be added to each `link` tag.
+To visualise a robot in RViz and use the nodes described so far, the URDF should contain the robot's kinematic description.
+This is done defining `<visual>` and `<origin>` elements of the `<link>` elements and the `<joints>` connecting them. 
+To simulate a robot in ROS using Gazebo the URDF requires dynamic information. For this, 
+some additional simulation-specific elements must be added to work properly with Gazebo. 
+For the Gazebo physics engine to work properly, the `<inertia>` element must be provided within each `<link>` element. 
+Determining the correct inertia values for each link is required to get accurate physics approximations in Gazebo. 
+This can be performed by conducting various measurements of the robots parts, using CAD software like Solidworks that includes features for approximating these values or use precalcuated values from [a list of moments of inertia](https://en.wikipedia.org/wiki/List_of_moments_of_inertia) for simple shapes.
 
+```xml
+<inertial>
+  <origin xyz="0 0 ${height1/2}" rpy="0 0 0"/>
+  <mass value="1"/>
+  <inertia
+      ixx="1.0" ixy="0.0" ixz="0.0"
+      iyy="1.0" iyz="0.0"
+      izz="1.0"/>
+</inertial>
+```
+
+The origin tag represents the center of mass of this link. Within Gazebo it is possible to visually check if the center of mass is correct in a URDF by clicking on the "View" menu of Gazebo and selecting both "Wireframe" and "Center of Mass".
+
+Unlike some ROS applications, Gazebo will not use the `<visual>` elements as collision information. 
+Instead, Gazebo will treat your link as "invisible" to laser scanners and collision checking.
+To properly handle collisions in Gazebo a `<collision>` element must be added to each `<link>` which should resemble the
+`<visual>` element. For performance reasons a simplified model/mesh should be used as collision geometry.
+
+The optional `<gazebo>` element is an extension to the URDF used for specifying additional properties needed for simulation purposes in Gazebo. If no `<gazebo>` element are provided, default values will be automatically included. There are three different types of  `<gazebo>` elements - one for the `<robot>` tag, one for `<link>` tags, and one for `<joint>` tags.
+
+- Add a `<gazebo>` element for every [`<link>`](http://gazebosim.org/tutorials/?tut=ros_urdf#Links)
+  - Convert visual colors to Gazebo format
+  - Convert stl files to dae files for better textures
+  - Add sensor plugins
+- Add a `<gazebo>` element for every [`<joint>`](http://gazebosim.org/tutorials/?tut=ros_urdf#Joints)
+  - Set proper damping dynamics
+  - Add actuator control plugins
+- Add a `<gazebo>` element for the `<robot>` element
+- Add a `<link name="world"/>` link if the robot should be rigidly attached to the world/base_link
+
+URDF can only specify the kinematic and dynamic properties of a single robot in isolation. URDF can not specify the pose of the robot itself within a world. It is also not a universal description format since it cannot specify joint loops (parallel linkages), and it lacks friction and other properties. Additionally, it cannot specify things that are not robots, such as lights, heightmaps, etc.
+
+To deal with this issue, a new format called the [Simulation Description Format](http://sdformat.org/) (SDF) was created for use in Gazebo to solve the shortcomings of URDF. SDF is a complete description for everything from the world level down to the robot level. It is scalable, and makes it easy to add and modify elements. The SDF format is itself described using XML, which facilitates a simple upgrade tool to migrate old versions to new versions. It is also self-descriptive. Under the hood, Gazebo will convert the URDF to SDF automatically.
+
+Many `.world` files are distribute as part of the `gazebo9-common` debian package, which can be found in `/usr/share/gazebo-9/worlds`, including `empty.world` (see [this answer](https://answers.ros.org/question/349122/where-are-gazebo-world-files/). The following shows the `empty.world` world file:
+
+```xml
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+  </world>
+</sdf>
+```
+
+Everything concerning a robot's model and description should be located, as per ROS standards, in a package named `/MYROBOT_description` and all the world files and launch files used with Gazebo is located in a ROS package named `/MYROBOT_gazebo`. In this project `'MYROBOT'` is replaced with the name of this robot (`'diffbot'`) in lower case letters. 
+If no special world is required then the `/MYROBOT_gazebo/world` folder is not required and default worlds can be used.
+
+Example world models can be launched from the command line:
+
+```bash
+roslaunch gazebo_ros empty_world.launch
+```
+
+One way to launch a robot inside a world is to use a launch file within the `/MYROBOT_gazebo` package which launches 
+[`empty_world.launch`](https://github.com/ros-simulation/gazebo_ros_pkgs/blob/melodic-devel/gazebo_ros/launch/empty_world.launch) and spawns a robot model using the `spawn_model` python script. 
+This script is located within the [`gazebo_ros`](https://github.com/ros-simulation/gazebo_ros_pkgs/tree/melodic-devel/gazebo_ros) package, to make a service call request to the `gazebo_ros` ROS node (named simply "gazebo" in the rostopic namespace) to add a custom URDF into Gazebo, see [gazebo tutorial](http://gazebosim.org/tutorials?tut=ros_roslaunch#%22ROSServiceCall%22RobotSpawnMethod). 
+
+```xml
+<launch>
+  <!-- Use logic from empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!-- arg name="world_name" value="$(find MYROBOT_gazebo)/worlds/MYROBOT.world"/ -->
+    <!-- more default parameters can be changed here -->
+  </include>
+  
+  <!-- Convert an xacro and put it on the parameter server -->
+  <param name="robot_description" command="$(find xacro)/xacro.py $(find MYROBOT_description)/robots/MYROBOT.urdf.xacro" />
+
+  <!-- Spawn a robot into Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model MYROBOT" />
+</launch>
+```
+
+[`empty_world.launch`](https://github.com/ros-simulation/gazebo_ros_pkgs/blob/melodic-devel/gazebo_ros/launch/empty_world.launch) will take care of launching the gazebo server and client with the specified parameters or their defaults.
+
+The `spawn_model` script is can be used in the following way:
+
+```bash
+rosrun gazebo_ros spawn_model -file `rospack find MYROBOT_description`/urdf/MYROBOT.urdf -urdf -x 0 -y 0 -z 1 -model MYROBOT
+```
+
+To see all of the available arguments for `spawn_model` including namespaces, trimesh properties, joint positions and RPY orientation run:
+
+```bash
+rosrun gazebo_ros spawn_model -h
+```
+
+To verify that a URDF can be properly converted to SDF use the following procedure.
+First the `.xacro` model of the robot is converted into a `.urdf`, note that `--inorder` is not required when using ROS melodic.
+
+```bash
+xacro --inorder model.xacro > model.urdf
+``` 
+
+With Gazebo installed, an easy tool exists to check if a URDF can be properly converted into a SDF.
+
+```
+gz sdf -p model.urdf
+```
+
+This will print out the SDF that has been generated from the input URDF as well as any warnings about missing information required to generate the SDF.
+
+After resourcing the catkin workspace, the created launch file can be launched with:
+
+```bash
+. ~/catkin_ws/devel/setup.bash
+roslaunch MYROBOT_gazebo MYROBOT.launch
+```
+
+This will open Gazebo and spawn the robot model in an empty world.
+
+
+
+**References**
+
+- [Tutorial: Using roslaunch to start Gazebo, world files and URDF models](http://gazebosim.org/tutorials?tut=ros_roslaunch)
+- [Tutorial: Using a URDF in Gazebo](http://gazebosim.org/tutorials/?tut=ros_urdf)
 
 ## Verifying Transforms
 

@@ -28,7 +28,9 @@ Packages are the main unit for organizing software in ROS. A package may contain
 
 ## Best Practices
 
-The project follows [ROS best practices](http://wiki.ros.org/BestPractices)
+The project follows [ROS best practices](http://wiki.ros.org/BestPractices) and uses [`catkin-tools`](https://catkin-tools.readthedocs.io/en/latest/index.html), the successor of [`catkin_make`](http://wiki.ros.org/catkin/commands/catkin_make). See also the [history](https://catkin-tools.readthedocs.io/en/latest/history.html) of ROS build tool catkin and the [workspace mechanics](https://catkin-tools.readthedocs.io/en/latest/mechanics.html). 
+see also [overview of catkin](http://docs.ros.org/melodic/api/catkin/html/howto/format2/catkin_overview.html).
+
 
 ## Naming Conventions
 
@@ -58,9 +60,6 @@ Please see [REP 103](http://www.ros.org/reps/rep-0103.html) for documentation on
 | sensor/localization | grove_motor_driver      | speedsensor   | /odom                  |
 | sensor/perception   | grove_ultrasonic_driver | ranger        | /distance              | 
 | sensor/perception   | rpi_camera_driver       | camera        | /2wdrobotcam/image_raw |
-
-
-
 
 
 
