@@ -29,8 +29,17 @@ and [LibrePilot](https://www.librepilot.org/site/index.html). Another software u
 KISS from [Flyduino](https://kiss.flyduino.net/) with its related flight controller. 
 We will use Betaflight because it supports a wide variety of flight controllers.
 
+- **Cleanflight**: Simple interface which is used via a Chrome browser application window. 
+- **Betaflight**: A software fork of Cleanflight and specifically optimized for race copters.
+- **LibrePilot**: Software with lots of configuration options and a well structured menu to adjust the PID values.
+
+Betaflight is an open source [flight controller](/projects/fpv/glossar#flight-controller) software (firmware)
+which supports a variety of flight controllers, which comes with an easy to use and intuitive graphical user interface (GUI). Although the name implies that it is a beta version, which it get's because it is a fork of the popular Cleanflight software, it is well established and should be seen as a progression to Cleanflight. 
+Betaflight's was intentionally developed for race copters which is why it provides faster communication protocols (loop time) and therefore faster and more percise control of the copter.
+
+
 <figure >
-    <a href="/assets/collections/fpv/esc/dys-aria-escs.jpg"><img src="/assets/collections/fpv/esc/dys-aria-escs.jpg"></a>
-    <figcaption>Four DYS Aria ESCs to control each motor individually.</figcaption>
+    <a href="/assets/collections/fpv/betaflight/betaflight.jpg"><img src="/assets/collections/fpv/betaflight/betaflight.jpg"></a>
+    <figcaption>Betaflight Graphical User Interface (GUI).</figcaption>
 </figure>
 
