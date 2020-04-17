@@ -210,3 +210,7 @@ Also known as [radio](/projects/fpv/glossar#radio) is the radio controlled ([rc]
 Such units can be external or internal in transmitter devices. External devices can be swapped. 
 
 One of the most common manufacturers for [FPV](/projects/fpv/glossar#fpv) quad transmitters is [FrSky](/projects/fpv/glossar#frsky)
+
+## UBEC
+
+If the electronic components in a copter should be powered independently of the ESCs or if only optocoupler ESCs are used, there exist other ways to power the flight controller and other electronic components such as LEDs: It's possible to use an UBEC (Universial Battery Elimination Circuit). This device is connected to the battery and can be used to provide constant output voltage for electronic components.
