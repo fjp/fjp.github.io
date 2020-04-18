@@ -44,7 +44,7 @@ The correct communication protocol needs to be set in the flight controler softw
 on the "Configuration" tab:
 
 <figure>
-    <a href="/assets/collections/fpv/betaflight/betaflight-config-receiver.jpg"><img src="/assets/collections/fpv/betaflight/betaflight-config-receiver.jpg"></a>
+    <a href="/assets/collections/fpv/betaflight/betaflight-config-receiver.png"><img src="/assets/collections/fpv/betaflight/betaflight-config-receiver.png"></a>
     <figcaption>Configure the Flight Controller.</figcaption>
 </figure>
 
