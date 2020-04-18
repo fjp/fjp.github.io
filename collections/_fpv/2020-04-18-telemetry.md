@@ -3,7 +3,7 @@ layout: single
 title:  "Taranis X9D Plus SE 2019 - Telemetry"
 permalink: /projects/fpv/telemetry
 excerpt: "All about telemetry and the steps to set it up on flight controller, receiver and transmitter."
-date: 2019-10-30 09:00:35 +0100
+date: 2020-04-18 09:00:35 +0100
 categories: [fpv, quad]
 tags: [fpv, quad, race, drone, betaflight, radio, transmitter, fport, telemetry, receiver]
 comments: true
