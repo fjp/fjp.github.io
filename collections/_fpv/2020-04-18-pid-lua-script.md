@@ -23,7 +23,7 @@ sidebar:
 
 ## Lua Script
 
-
+https://github.com/betaflight/betaflight-tx-lua-scripts
 
 ## Betaflight Configuration
 
