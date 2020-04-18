@@ -153,6 +153,8 @@ fpv:
         url: /projects/fpv/taranis
       - title: Receiver Binding R-XSR
         url: /projects/fpv/r-xsr
+      - title: Telemetry
+        url: /projects/fpv/telemetry
   - title: "FPV System"
     url: /projects/fpv/fpv-system/
     children:
