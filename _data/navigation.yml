@@ -171,6 +171,8 @@ fpv:
         url: /projects/fpv/pid/#theory
       - title: "PID Tuning"
         url: /projects/fpv/pid/#tuning
+      - title: "PID Lua Script"
+        url: /projects/fpv/pid-lua-script
   - title: "Thrust and Flight Time"
     url: /projects/fpv/calculations/#introduction
     children:
