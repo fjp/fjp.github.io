@@ -71,8 +71,8 @@ The final result should look like the following:
 
 <figure class="third">
     <a href="/assets/collections/fpv/telemetry/04-telemetry-results.jpg"><img src="/assets/collections/fpv/telemetry/04-telemetry-results.jpg"></a>
-    <a href="/assets/collections/fpv/telemetry/05-telemetry-results.jpg"><img src="/assets/collections/fpv/telemetry/04-telemetry-results.jpg"></a>
-    <a href="/assets/collections/fpv/telemetry/06-telemetry-results.jpg"><img src="/assets/collections/fpv/telemetry/04-telemetry-results.jpg"></a>
+    <a href="/assets/collections/fpv/telemetry/05-telemetry-results.jpg"><img src="/assets/collections/fpv/telemetry/05-telemetry-results.jpg"></a>
+    <a href="/assets/collections/fpv/telemetry/06-telemetry-results.jpg"><img src="/assets/collections/fpv/telemetry/06-telemetry-results.jpg"></a>
     <figcaption>Discovered telemetry data.</figcaption>
 </figure>
 
