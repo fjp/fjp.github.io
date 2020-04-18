@@ -33,16 +33,18 @@ The flight controller runs with the [Betaflight](/projects/fpv/glossar#betafligh
 to configure telemetry correctly on the flight controller, so that it can communicate the telemetry with the receiver via FPort.
 As transmitter the Taranis X9D Plus SE 2019 is used which is capable of displaying the telemetry data in different screens.
 
-<figure>
-    <a href="/assets/collections/fpv/taranis/taranis.jpg"><img src="/assets/collections/fpv/taranis/taranis.jpg"></a>
-    <figcaption>Taranis X9D Plus SE 2019 Carbon.</figcaption>
-</figure>
+## Receiver and Flight Controller Connection
 
-## Receiver Setup
+As mentioned the receiver and the flight controller need to be connected
 
 ## Betaflight
 
+## Transmitter Setup
 
+<figure>
+    <a href="/assets/collections/fpv/telemetry/01-telemetry-delete-all.jpg"><img src="/assets/collections/fpv/telemetry/01-telemetry-delete-all.jpg"></a>
+    <figcaption>Delete all telemetry data.</figcaption>
+</figure>
 
 
 
