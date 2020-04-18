@@ -35,16 +35,48 @@ As transmitter the Taranis X9D Plus SE 2019 is used which is capable of displayi
 
 ## Receiver and Flight Controller Connection
 
-As mentioned the receiver and the flight controller need to be connected
+As mentioned the receiver and the flight controller need to be connected via a port that is capable of transmitting 
+telemetry data. In this case it is the FPort protocol. 
 
-## Betaflight
+## Betaflight Configuration
+
+The correct communication protocol needs to be set in the flight controler software. In Betaflight this can be done
+on the "Configuration" tab:
+
+<figure>
+    <a href="/assets/collections/fpv/betaflight/betaflight-config-receiver.jpg"><img src="/assets/collections/fpv/betaflight/betaflight-config-receiver.jpg"></a>
+    <figcaption>Configure the Flight Controller.</figcaption>
+</figure>
+
+Here the protocol is set to FPort and the telemetry switch is enabled.
 
 ## Transmitter Setup
 
-<figure>
+First, delete any telemetry.
+
+<figure class="half">
     <a href="/assets/collections/fpv/telemetry/01-telemetry-delete-all.jpg"><img src="/assets/collections/fpv/telemetry/01-telemetry-delete-all.jpg"></a>
+    <a href="/assets/collections/fpv/telemetry/02-confirm-delete-all.jpg"><img src="/assets/collections/fpv/telemetry/02-confirm-delete-all.jpg"></a>
     <figcaption>Delete all telemetry data.</figcaption>
 </figure>
+
+Deletion is required to discover new telemetry data:
+
+<figure>
+    <a href="/assets/collections/fpv/telemetry/03-discover-new-sensors.jpg"><img src="/assets/collections/fpv/telemetry/03-discover-new-sensors.jpg"></a>
+    <figcaption>Discover telemetry data.</figcaption>
+</figure>
+
+The final result should look like the following:
+
+<figure class="third">
+    <a href="/assets/collections/fpv/telemetry/04-telemetry-results.jpg"><img src="/assets/collections/fpv/telemetry/04-telemetry-results.jpg"></a>
+    <a href="/assets/collections/fpv/telemetry/05-telemetry-results.jpg"><img src="/assets/collections/fpv/telemetry/04-telemetry-results.jpg"></a>
+    <a href="/assets/collections/fpv/telemetry/06-telemetry-results.jpg"><img src="/assets/collections/fpv/telemetry/04-telemetry-results.jpg"></a>
+    <figcaption>Discovered telemetry data.</figcaption>
+</figure>
+
+Afterwards it is possible to stop the discovery and to begin the setup of different telemetry screens.
 
 
 
