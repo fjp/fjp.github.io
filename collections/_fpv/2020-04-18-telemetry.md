@@ -52,7 +52,9 @@ Here the protocol is set to FPort and the telemetry switch is enabled.
 
 ## Transmitter Setup
 
-First, delete any telemetry.
+For this the battery needs to be connected to the copter so that the receiver can send telemetry data from the flight controller to the transmitter.
+
+In the transmitter we first delete any telemetry.
 
 <figure class="half">
     <a href="/assets/collections/fpv/telemetry/01-telemetry-delete-all.jpg"><img src="/assets/collections/fpv/telemetry/01-telemetry-delete-all.jpg"></a>
