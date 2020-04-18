@@ -153,8 +153,6 @@ fpv:
         url: /projects/fpv/taranis
       - title: Receiver Binding R-XSR
         url: /projects/fpv/r-xsr
-      - title: Telemetry
-        url: /projects/fpv/telemetry
   - title: "FPV System"
     url: /projects/fpv/fpv-system/
     children:
@@ -166,7 +164,6 @@ fpv:
         url: /projects/fpv/fpv-system/antennas
   - title: "Charger and Testers"
     url: /projects/fpv/charger
-  
   - title: "PID Values"
     url: /projects/fpv/pid/#introduction
     children:
@@ -189,13 +186,17 @@ fpv:
         url: /projects/fpv/calculations/#esc
       - title: "Flight Time Calculation"
         url: /projects/fpv/calculations/#flight-time
-  - title: "Build"
+  - title: "Build and Setup"
     url: /projects/fpv/build
     children:
       - title: "Calculations and Part Selection"
         url: /projects/fpv/build/#part-selection
       - title: "Assembly"
         url: /projects/fpv/assembly
+      - title: ESC Settings
+        url: /projects/fpv/esc-settings
+      - title: Telemetry
+        url: /projects/fpv/telemetry
   - title: "Rights"
     url: /projects/fpv/rights/#introduction
     children:
