@@ -86,6 +86,12 @@ The final result will look like this:
 </figure>
 
 
+## Failsafe Mode
+
+With an X-Series receiver it is possible to set the Failsafe just in the transmitter. Set it to No pulses.
+
+
 ## References
 
 https://blog.seidel-philipp.de/how-to-flash-a-frsky-smartport-receiver-with-taranis-9xd-or-qx7s/
+[How To Set Up FrSky Taranis and Betaflight / Cleanflight Configuration](https://youtu.be/Z6ZfTTmDTrc?t=325)
