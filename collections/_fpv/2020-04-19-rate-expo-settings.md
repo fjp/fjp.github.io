@@ -29,3 +29,6 @@ sidebar:
 </figure>
 
 
+## References
+
+- [Oscar Liang](https://oscarliang.com/rc-roll-pitch-yaw-rate-cleanflight/)
