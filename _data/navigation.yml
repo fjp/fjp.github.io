@@ -153,6 +153,8 @@ fpv:
         url: /projects/fpv/taranis
       - title: Receiver Binding R-XSR
         url: /projects/fpv/r-xsr
+      - title: RC Rate and EXPO Settings
+        url: /projects/fpv/rate-expo-settings
   - title: "FPV System"
     url: /projects/fpv/fpv-system/
     children:
