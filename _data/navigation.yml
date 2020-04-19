@@ -146,6 +146,10 @@ fpv:
         url: /projects/fpv/flight-controller-software#modes
       - title: Motors
         url: /projects/fpv/flight-controller-software#motors
+      - title: PID Tuning
+        url: /projects/fpv/flight-controller-software#pid
+      - title: RC Rates and Expo Settings
+        url: /projects/fpv/rate-expo-settings
   - title: "RC Transmitter"
     url: /projects/fpv/transmitter
     children:
@@ -154,7 +158,7 @@ fpv:
       - title: Receiver Binding R-XSR
         url: /projects/fpv/r-xsr
       - title: RC Rate and EXPO Settings
-        url: /projects/fpv/rate-expo-settings
+        url: /projects/fpv/throttle-curves
   - title: "FPV System"
     url: /projects/fpv/fpv-system/
     children:
