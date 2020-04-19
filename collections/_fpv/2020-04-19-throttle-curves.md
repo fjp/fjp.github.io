@@ -22,12 +22,14 @@ sidebar:
 ---
 
 
-
+To add new and change existing throttle curves in your Taranis X9D Plus short press the `MENU` button an navigate
+to page 7 with the `PAGE` button. This will show the following dispaly:
 
 <figure>
-    <a href="/assets/collections/fpv/betaflight/betaflight-config-receiver.png"><img src="/assets/collections/fpv/betaflight/betaflight-config-receiver.png"></a>
-    <figcaption>Configure the Flight Controller.</figcaption>
+    <a href="/assets/collections/fpv/throttle-curve/no-curves.jpeg"><img src="/assets/collections/fpv/throttle-curve/no-curves.jpeg"></a>
+    <figcaption>Initial display view without curves</figcaption>
 </figure>
+
 
 
 ## References
