@@ -70,7 +70,7 @@ diffbot:
       - title: "Hardware Driver"
         url: /projects/diffbot/ros-integration/#hardware-driver
       - title: "Modeling the Robot: URDF"
-        url: /projects/diffbot/ros-integration/#modeling-the-robot-urdf
+        url: /projects/diffbot/ros-integration/#modeling-the-robot-urdf-and-xacro
       - title: "Simulation in Gazebo"
         url: /projects/diffbot/ros-integration/#simulation-in-gazebo
       - title: "Verifying Transforms"
