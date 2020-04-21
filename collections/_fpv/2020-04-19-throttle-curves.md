@@ -89,7 +89,7 @@ To verify the setting on your Taranis you can `PAGE` to the channel monitor scre
 to see the individual channels.
 
 <figure>
-    <a href="/assets/collections/fpv/09-throttle-curve/channel-monitor.jpg"><img src="/assets/collections/fpv/09-throttle-curve/channel-monitor.jpg"></a>
+    <a href="/assets/collections/fpv/09-throttle-curve-channel-monitor.jpg"><img src="/assets/collections/fpv/09-throttle-curve-channel-monitor.jpg"></a>
     <figcaption>Verify throttle curve in channel monitor screen.</figcaption>
 </figure>
 
