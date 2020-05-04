@@ -340,10 +340,11 @@ Those are then used by [`robot_state_publisher`](http://wiki.ros.org/robot_state
 ## Simulation in Gazebo
 
 To visualise a robot in RViz and use the nodes described so far, the URDF should contain the robot's kinematic description.
-This is done defining `<visual>` and `<origin>` elements of the `<link>` elements and the `<joints>` connecting them. 
+This is done by defining `<visual>` and `<origin>` tags in the `<link>` elements and connecting the links using `<joint>` tags. 
+
 To simulate a robot in ROS using Gazebo the URDF requires dynamic information. For this, 
-some additional simulation-specific elements must be added to work properly with Gazebo. 
-For the Gazebo physics engine to work properly, the `<inertia>` element must be provided within each `<link>` element. 
+some additional simulation-specific elements must be added to work properly with the Gazebo physics engine. 
+The `<inertia>` element must be provided within each `<link>` element. 
 Determining the correct inertia values for each link is required to get accurate physics approximations in Gazebo. 
 This can be performed by conducting various measurements of the robots parts, using CAD software like Solidworks that includes features for approximating these values or use precalcuated values from [a list of moments of inertia](https://en.wikipedia.org/wiki/List_of_moments_of_inertia) for simple shapes.
 
