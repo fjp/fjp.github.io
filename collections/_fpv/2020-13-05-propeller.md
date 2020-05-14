@@ -3,7 +3,7 @@ layout: single
 title:  "The Propeller"
 permalink: /projects/fpv/propeller
 excerpt: "The Propeller transforms the energy from the battery into velocity."
-date:   2020-13-05 09:00:35 +0100
+date:   2020-05-13 09:00:35 +0100
 categories: [fpv, quad]
 tags: [fpv, quad, race, drone, propeller, props]
 comments: true
