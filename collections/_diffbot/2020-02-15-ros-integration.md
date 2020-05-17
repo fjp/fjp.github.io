@@ -411,7 +411,7 @@ roslaunch gazebo_ros empty_world.launch
 
 One way to launch a robot inside a world is to use a launch file within the `/MYROBOT_gazebo` package which launches 
 [`empty_world.launch`](https://github.com/ros-simulation/gazebo_ros_pkgs/blob/melodic-devel/gazebo_ros/launch/empty_world.launch) and spawns a robot model using the `spawn_model` python script. 
-This script is located within the [`gazebo_ros`](https://github.com/ros-simulation/gazebo_ros_pkgs/tree/melodic-devel/gazebo_ros) package, to make a service call request to the `gazebo_ros` ROS node (named simply "gazebo" in the rostopic namespace) to add a custom URDF into Gazebo, see [gazebo tutorial](http://gazebosim.org/tutorials?tut=ros_roslaunch#%22ROSServiceCall%22RobotSpawnMethod). 
+This script is located within the [`gazebo_ros`](https://github.com/ros-simulation/gazebo_ros_pkgs/tree/melodic-devel/gazebo_ros) package and is used to make a service call request to the `gazebo_ros` ROS node (named simply "gazebo" in the rostopic namespace) to add a custom URDF into Gazebo, see [gazebo tutorial](http://gazebosim.org/tutorials?tut=ros_roslaunch#%22ROSServiceCall%22RobotSpawnMethod). 
 
 ```xml
 <launch>
@@ -431,7 +431,7 @@ This script is located within the [`gazebo_ros`](https://github.com/ros-simulati
 
 [`empty_world.launch`](https://github.com/ros-simulation/gazebo_ros_pkgs/blob/melodic-devel/gazebo_ros/launch/empty_world.launch) will take care of launching the gazebo server and client with the specified parameters or their defaults.
 
-The `spawn_model` script is can be used in the following way:
+The `spawn_model` script can be used in the following way:
 
 ```bash
 rosrun gazebo_ros spawn_model -file `rospack find MYROBOT_description`/urdf/MYROBOT.urdf -urdf -x 0 -y 0 -z 1 -model MYROBOT
