@@ -275,7 +275,7 @@ The [`xacro`](http://wiki.ros.org/xacro) package helps to reduce the overall siz
 
 In the end, most ROS packages still require a URDF description, which can be generated from the compact xacro description in the following ways. Either you use the command 
 
-```bash
+```console
 xacro --inorder model.xacro > model.urdf
 ``` 
 
@@ -411,7 +411,7 @@ If no special world is required then the `/MYROBOT_gazebo/world` folder is not r
 
 Example world models can be launched from the command line:
 
-```bash
+```console
 roslaunch gazebo_ros empty_world.launch
 ```
 
@@ -439,26 +439,26 @@ This script is located within the [`gazebo_ros`](https://github.com/ros-simulati
 
 The `spawn_model` script can be used in the following way:
 
-```bash
+```console
 rosrun gazebo_ros spawn_model -file `rospack find MYROBOT_description`/urdf/MYROBOT.urdf -urdf -x 0 -y 0 -z 1 -model MYROBOT
 ```
 
 To see all of the available arguments for `spawn_model` including namespaces, trimesh properties, joint positions and RPY orientation run:
 
-```bash
+```console
 rosrun gazebo_ros spawn_model -h
 ```
 
 To verify that a URDF can be properly converted to SDF use the following procedure.
 First the `.xacro` model of the robot is converted into a `.urdf`, note that `--inorder` is not required when using ROS melodic.
 
-```bash
+```console
 xacro --inorder model.xacro > model.urdf
 ``` 
 
 With Gazebo installed, an easy tool exists to check if a URDF can be properly converted into a SDF.
 
-```
+```console
 gz sdf -p model.urdf
 ```
 
@@ -466,7 +466,7 @@ This will print out the SDF that has been generated from the input URDF as well 
 
 After resourcing the catkin workspace, the created launch file can be launched with:
 
-```bash
+```console
 . ~/catkin_ws/devel/setup.bash
 roslaunch MYROBOT_gazebo MYROBOT.launch
 ```
