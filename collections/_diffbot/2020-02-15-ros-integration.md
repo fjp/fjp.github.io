@@ -515,8 +515,7 @@ Apply standard algorithms, such as control and navigation.
 ### ROS Control
 
 The `ros_control` repositories provide agnostic controllers of different type, such as the `diff_drive_controller`,
-that allow us to interact over a gerneric hardware interface. For a concise introduciton to `ros_control`, watch 
-this [ROSCon 2014 talk](https://vimeo.com/107507546) from [Adolfo Rodríguez Tsouroukdissian](https://github.com/adolfo-rt).
+that allow us to interact over a gerneric hardware interface. For a concise introduciton to `ros_control`, read this [ROS Control overview post](https://fjp.at/posts/ros/ros-control/), which is a summary of the [ROSCon 2014 talk](https://vimeo.com/107507546) from [Adolfo Rodríguez Tsouroukdissian](https://github.com/adolfo-rt).
 
 The steps to use the [`diff_drive_controller`](http://wiki.ros.org/diff_drive_controller), ([repository on GitHub](https://github.com/ros-controls/ros_controllers/tree/melodic-devel/diff_drive_controller)) are:
 
