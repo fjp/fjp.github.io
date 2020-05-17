@@ -60,7 +60,7 @@ is sent as a command to the robot.
 
 Using the `rosmsg show` command we can see what's in the `geometry_msgs/Twist` message type:
 
-```bash
+```console
 fjp@ubuntu:~/git/ros_ws/src$ rosmsg show geometry_msgs/Twist
 geometry_msgs/Vector3 linear
   float64 x
@@ -79,7 +79,7 @@ To know how far the robot traveled, we expect to report its position and orienta
 The ROS community uses the [`nav_msgs/Odometry`](http://docs.ros.org/api/nav_msgs/html/msg/Odometry.html) (odom topic) 
 ROS message interface to receive the position and orientation as data from the robot. 
 
-```bash
+```console
 fjp@ubuntu:~/git/ros_ws/src$ rosmsg show nav_msgs/Odometry 
 std_msgs/Header header
   uint32 seq
@@ -140,9 +140,15 @@ In this project the Raspberry Pi 4 B is used as the main processing unit.
 It provides physical hardware interfaces such as GPIO pins, USB and a camera connector.
 We will use these interfaces to connect the robots hardware components to the Raspberry Pi.
 These interfaces operate on communication protocols where we can leverage existing libraries to work with these protocols.
-For example the RPi.GPIO library provides methods to use the I2C protocol and work with hardware interrupts.
+For example the [`RPi.GPIO`](https://pypi.org/project/RPi.GPIO/) library provides methods to use the I2C protocol and 
+work with hardware interrupts. A more high level alternative would be the 
+[gpiozero](https://gpiozero.readthedocs.io/en/stable/) library created by [Ben Nuttall](https://github.com/bennuttall) 
+and is officially supported by [Raspberry Pi Foundation](https://www.raspberrypi.org/).
+Internally, this library makes use of `RPi.GPIO` and although it supports Python 2 we will start using 
+`RPi.GPIO` which provides all the required funcionality (e.g. reading from sensors and writing acuator commands)
+in a way that is simple enough.
 
-Anothe important aspect is to use the hardware interface to convert between the robot's 
+Another important aspect is to use the hardware interface to convert between the robot's 
 native representation of commands and data and the interfaces that ROS supports. 
 Here we need to consider which existing ROS packages we are going to use and what types of message interfaces they use.
 Then we can apply math to the raw hardware signals to bring it in a form that is suitable for the ROS message types.
