@@ -60,7 +60,7 @@ is sent as a command to the robot.
 
 Using the `rosmsg show` command we can see what's in the `geometry_msgs/Twist` message type:
 
-```bash
+```console
 fjp@ubuntu:~/git/ros_ws/src$ rosmsg show geometry_msgs/Twist
 geometry_msgs/Vector3 linear
   float64 x
@@ -79,7 +79,7 @@ To know how far the robot traveled, we expect to report its position and orienta
 The ROS community uses the [`nav_msgs/Odometry`](http://docs.ros.org/api/nav_msgs/html/msg/Odometry.html) (odom topic) 
 ROS message interface to receive the position and orientation as data from the robot. 
 
-```bash
+```console
 fjp@ubuntu:~/git/ros_ws/src$ rosmsg show nav_msgs/Odometry 
 std_msgs/Header header
   uint32 seq
@@ -140,9 +140,15 @@ In this project the Raspberry Pi 4 B is used as the main processing unit.
 It provides physical hardware interfaces such as GPIO pins, USB and a camera connector.
 We will use these interfaces to connect the robots hardware components to the Raspberry Pi.
 These interfaces operate on communication protocols where we can leverage existing libraries to work with these protocols.
-For example the RPi.GPIO library provides methods to use the I2C protocol and work with hardware interrupts.
+For example the [`RPi.GPIO`](https://pypi.org/project/RPi.GPIO/) library provides methods to use the I2C protocol and 
+work with hardware interrupts. A more high level alternative would be the 
+[gpiozero](https://gpiozero.readthedocs.io/en/stable/) library created by [Ben Nuttall](https://github.com/bennuttall) 
+and is officially supported by [Raspberry Pi Foundation](https://www.raspberrypi.org/).
+Internally, this library makes use of `RPi.GPIO` and although it supports Python 2 we will start using 
+`RPi.GPIO` which provides all the required funcionality (e.g. reading from sensors and writing acuator commands)
+in a way that is simple enough.
 
-Anothe important aspect is to use the hardware interface to convert between the robot's 
+Another important aspect is to use the hardware interface to convert between the robot's 
 native representation of commands and data and the interfaces that ROS supports. 
 Here we need to consider which existing ROS packages we are going to use and what types of message interfaces they use.
 Then we can apply math to the raw hardware signals to bring it in a form that is suitable for the ROS message types.
@@ -269,7 +275,7 @@ The [`xacro`](http://wiki.ros.org/xacro) package helps to reduce the overall siz
 
 In the end, most ROS packages still require a URDF description, which can be generated from the compact xacro description in the following ways. Either you use the command 
 
-```bash
+```console
 xacro --inorder model.xacro > model.urdf
 ``` 
 
@@ -340,10 +346,11 @@ Those are then used by [`robot_state_publisher`](http://wiki.ros.org/robot_state
 ## Simulation in Gazebo
 
 To visualise a robot in RViz and use the nodes described so far, the URDF should contain the robot's kinematic description.
-This is done defining `<visual>` and `<origin>` elements of the `<link>` elements and the `<joints>` connecting them. 
+This is done by defining `<visual>` and `<origin>` tags in the `<link>` elements and connecting the links using `<joint>` tags. 
+
 To simulate a robot in ROS using Gazebo the URDF requires dynamic information. For this, 
-some additional simulation-specific elements must be added to work properly with Gazebo. 
-For the Gazebo physics engine to work properly, the `<inertia>` element must be provided within each `<link>` element. 
+some additional simulation-specific elements must be added to work properly with the Gazebo physics engine. 
+The `<inertia>` element must be provided within each `<link>` element. 
 Determining the correct inertia values for each link is required to get accurate physics approximations in Gazebo. 
 This can be performed by conducting various measurements of the robots parts, using CAD software like Solidworks that includes features for approximating these values or use precalcuated values from [a list of moments of inertia](https://en.wikipedia.org/wiki/List_of_moments_of_inertia) for simple shapes.
 
@@ -404,13 +411,13 @@ If no special world is required then the `/MYROBOT_gazebo/world` folder is not r
 
 Example world models can be launched from the command line:
 
-```bash
+```console
 roslaunch gazebo_ros empty_world.launch
 ```
 
 One way to launch a robot inside a world is to use a launch file within the `/MYROBOT_gazebo` package which launches 
 [`empty_world.launch`](https://github.com/ros-simulation/gazebo_ros_pkgs/blob/melodic-devel/gazebo_ros/launch/empty_world.launch) and spawns a robot model using the `spawn_model` python script. 
-This script is located within the [`gazebo_ros`](https://github.com/ros-simulation/gazebo_ros_pkgs/tree/melodic-devel/gazebo_ros) package, to make a service call request to the `gazebo_ros` ROS node (named simply "gazebo" in the rostopic namespace) to add a custom URDF into Gazebo, see [gazebo tutorial](http://gazebosim.org/tutorials?tut=ros_roslaunch#%22ROSServiceCall%22RobotSpawnMethod). 
+This script is located within the [`gazebo_ros`](https://github.com/ros-simulation/gazebo_ros_pkgs/tree/melodic-devel/gazebo_ros) package and is used to make a service call request to the `gazebo_ros` ROS node (named simply "gazebo" in the rostopic namespace) to add a custom URDF into Gazebo, see [gazebo tutorial](http://gazebosim.org/tutorials?tut=ros_roslaunch#%22ROSServiceCall%22RobotSpawnMethod). 
 
 ```xml
 <launch>
@@ -430,28 +437,28 @@ This script is located within the [`gazebo_ros`](https://github.com/ros-simulati
 
 [`empty_world.launch`](https://github.com/ros-simulation/gazebo_ros_pkgs/blob/melodic-devel/gazebo_ros/launch/empty_world.launch) will take care of launching the gazebo server and client with the specified parameters or their defaults.
 
-The `spawn_model` script is can be used in the following way:
+The `spawn_model` script can be used in the following way:
 
-```bash
+```console
 rosrun gazebo_ros spawn_model -file `rospack find MYROBOT_description`/urdf/MYROBOT.urdf -urdf -x 0 -y 0 -z 1 -model MYROBOT
 ```
 
 To see all of the available arguments for `spawn_model` including namespaces, trimesh properties, joint positions and RPY orientation run:
 
-```bash
+```console
 rosrun gazebo_ros spawn_model -h
 ```
 
 To verify that a URDF can be properly converted to SDF use the following procedure.
 First the `.xacro` model of the robot is converted into a `.urdf`, note that `--inorder` is not required when using ROS melodic.
 
-```bash
+```console
 xacro --inorder model.xacro > model.urdf
 ``` 
 
 With Gazebo installed, an easy tool exists to check if a URDF can be properly converted into a SDF.
 
-```
+```console
 gz sdf -p model.urdf
 ```
 
@@ -459,7 +466,7 @@ This will print out the SDF that has been generated from the input URDF as well 
 
 After resourcing the catkin workspace, the created launch file can be launched with:
 
-```bash
+```console
 . ~/catkin_ws/devel/setup.bash
 roslaunch MYROBOT_gazebo MYROBOT.launch
 ```
@@ -514,8 +521,7 @@ Apply standard algorithms, such as control and navigation.
 ### ROS Control
 
 The `ros_control` repositories provide agnostic controllers of different type, such as the `diff_drive_controller`,
-that allow us to interact over a gerneric hardware interface. For a concise introduciton to `ros_control`, watch 
-this [ROSCon 2014 talk](https://vimeo.com/107507546) from [Adolfo Rodríguez Tsouroukdissian](https://github.com/adolfo-rt).
+that allow us to interact over a gerneric hardware interface. For a concise introduciton to `ros_control`, read this [ROS Control overview post](https://fjp.at/posts/ros/ros-control/), which is a summary of the [ROSCon 2014 talk](https://vimeo.com/107507546) from [Adolfo Rodríguez Tsouroukdissian](https://github.com/adolfo-rt).
 
 The steps to use the [`diff_drive_controller`](http://wiki.ros.org/diff_drive_controller), ([repository on GitHub](https://github.com/ros-controls/ros_controllers/tree/melodic-devel/diff_drive_controller)) are:
 

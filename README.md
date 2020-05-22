@@ -6,7 +6,7 @@ You can see the result at [fjp.github.io](fjp.github.io) or [fjp.at](https://fjp
 
 [![Tip Me via PayPal](https://img.shields.io/badge/PayPal-tip%20me-green.svg?logo=paypal)](https://www.paypal.me/fpucher)
 
-# Setup on MacOS
+## Setup on MacOS
 
 The basic setup to get a similar site up and running is explained with the following steps.
 For more details checkout https://jekyllrb.com/docs/github-pages/
@@ -37,7 +37,7 @@ git commit -m "adds jekyll blog"
 git remote add origin https://github.com/username/username.github.io.git
 git push -u origin master
 ```
-# Create New Posts
+## Create New Posts
 
 
 New posts are simply created in the _posts folder but the naming convention is important.

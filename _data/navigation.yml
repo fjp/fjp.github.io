@@ -124,7 +124,7 @@ fpv:
       - title: "Brushless ESC"
         url: /projects/fpv/esc
       - title: "Propellers"
-        url: /projects/fpv/prop
+        url: /projects/fpv/propeller
       - title: "Batteries"
         url: /projects/fpv/battery
       - title: "Power Distribution Board"
