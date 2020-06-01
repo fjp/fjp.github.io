@@ -17,7 +17,7 @@ feature_row:
   - image_path: /assets/posts/2017-12-03-trajectory-following/trajectory-following-overview.png
     alt: "Trajectory Following"
     title: "Trajectory Following"
-    excerpt: "Where should your robot move in the next few seconds?. This important question and even more can be solved by **following trajectories**"
+    excerpt: "Where should your robot move in the next few seconds? This important question and even more can be solved by **following trajectories**"
   - image_path: /assets/posts/2017-10-30-localization/localization.png
     alt: "Localization"
     title: "Localization"
