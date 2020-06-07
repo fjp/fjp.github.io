@@ -21,7 +21,7 @@ sidebar:
   nav: "fpv"
 ---
 
-
+A race copter requires propellers to translate the stored energy of the battery into kinematic energy.
 
 <figure >
     <a href="/assets/collections/fpv/props/propellers.jpg"><img src="/assets/collections/fpv/props/propellers.jpg"></a>
