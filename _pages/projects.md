@@ -8,6 +8,9 @@ feature_row:
     alt: "DiffBot"
     title: "Autonomous 2WD Robot"
     excerpt: "Autonomous 2WD Robot equipped with a Raspberry Pi 4 B running ROS melodic to sense and act in an environment."
+    url: "/projects/diffbot/"
+    btn_label: "Read More"
+    btn_class: "btn--primary"
   - image_path: /assets/collections/diffbot/components/components.jpg
     alt: "Components"
     title: "Autonomous 2WD Robot - Components"
@@ -18,6 +21,9 @@ feature_row:
   - image_path: /assets/images/melodic.jpg
     title: "Autonomous 2WD Robot - ROS Melodic"
     excerpt: "ROS Melodic Setup on Raspberry Pi 4 for an autonomous 2WD Robot running ROS melodic to sense and act in an environment."
+    url: "/projects/diffbot/"
+    btn_label: "Read More"
+    btn_class: "btn--primary"
 feature_row2:
   - image_path: /assets/collections/fpv/assembly/part-placement-side.jpg
     alt: "FPV Race Quad"
