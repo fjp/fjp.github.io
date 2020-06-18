@@ -388,7 +388,7 @@ URDF can only specify the kinematic and dynamic properties of a single robot in 
 
 To deal with this issue, a new format called the [Simulation Description Format](http://sdformat.org/) (SDF) was created for use in Gazebo to solve the shortcomings of URDF. SDF is a complete description for everything from the world level down to the robot level. It is scalable, and makes it easy to add and modify elements. The SDF format is itself described using XML, which facilitates a simple upgrade tool to migrate old versions to new versions. It is also self-descriptive. Under the hood, Gazebo will convert the URDF to SDF automatically.
 
-Many `.world` files are distribute as part of the `gazebo9-common` debian package, which can be found in `/usr/share/gazebo-9/worlds`, including `empty.world` (see [this answer](https://answers.ros.org/question/349122/where-are-gazebo-world-files/)). The following shows the `empty.world` world file:
+Many `.world` files are distributed as part of the `gazebo9-common` debian package, which can be found in `/usr/share/gazebo-9/worlds`, including `empty.world` (see [this answer](https://answers.ros.org/question/349122/where-are-gazebo-world-files/)). The following xml snippet shows the content of the `empty.world` world file:
 
 ```xml
 <?xml version="1.0" ?>
