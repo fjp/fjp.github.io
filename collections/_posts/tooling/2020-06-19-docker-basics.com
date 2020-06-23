@@ -15,7 +15,7 @@ header:
   teaser: /assets/images/docker-logo.jpg
   overlay_image: /assets/images/docker.png #keep it square 200x200 px is good
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
-  #caption: "Source: [**ROS Control Wiki**](http://wiki.ros.org/ros_control)"
+  caption: "Source: [**t3n**](https://t3n.de/news/docker-hosting-613802/)"
   show_overlay_excerpt: true
 ---
 
