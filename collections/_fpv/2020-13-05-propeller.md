@@ -30,5 +30,6 @@ and lifts the plane off the ground.
     <figcaption>Propellers.</figcaption>
 </figure>
 
-
+The propeller causes a similar effect with the difference that not the whole plane needs to move forward.
+Instead, the uplift is created through the rotation of the propeller similar to a helicopter.
 
