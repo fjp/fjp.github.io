@@ -33,3 +33,7 @@ and lifts the plane off the ground.
 The propeller causes a similar effect with the difference that not the whole plane needs to move forward.
 Instead, the uplift is created through the rotation of the propeller similar to a helicopter.
 
+## Plastic, Fiberglass or Carbon
+
+Propellers can consisto of different materials.
+
