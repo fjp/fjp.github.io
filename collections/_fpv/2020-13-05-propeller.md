@@ -35,5 +35,10 @@ Instead, the uplift is created through the rotation of the propeller similar to 
 
 ## Plastic, Fiberglass or Carbon
 
-Propellers can consisto of different materials.
+Propellers can consisto of different materials. Small and in general inexpensive propellers are made of conventional plastic (e.g. EPP propellers).
+
+
+References:
+
+- http://wiki.mikrokopter.de/en/Propeller
 
