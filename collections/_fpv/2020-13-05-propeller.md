@@ -36,7 +36,7 @@ Instead, the uplift is created through the rotation of the propeller similar to 
 ## Plastic, Fiberglass or Carbon
 
 Propellers can consisto of different materials. Small and in general inexpensive propellers are made of conventional plastic (e.g. EPP propellers).
-Improve quality of propellers is achieved through addition of carbonfiber or fiberglass.
+Improve quality of propellers is achieved through addition of carbonfiber or fiberglass. Propeller materials mixed of carbon- and fiberglass exist too.
 
 
 References:
