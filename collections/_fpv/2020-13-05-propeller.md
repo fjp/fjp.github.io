@@ -21,10 +21,14 @@ sidebar:
   nav: "fpv"
 ---
 
-A race copter requires propellers to translate the stored energy of the battery into kinematic energy.
+A race quad-copter requires propellers to translate the stored energy of the battery into kinematic energy.
+The structure of propellers are comparable to the wings of an airplane, which provides uplift when moving forward
+and lifts the plane off the ground.
 
 <figure >
     <a href="/assets/collections/fpv/props/propellers.jpg"><img src="/assets/collections/fpv/props/propellers.jpg"></a>
     <figcaption>Propellers.</figcaption>
 </figure>
+
+
 
