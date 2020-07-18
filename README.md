@@ -1,7 +1,7 @@
 # Blog Repository
 
 This repository holds the data for my blog. It is based on the theme [minimal mistakes](https://mmistakes.github.io/minimal-mistakes/) which is defined in the 
-It is automatically transformed by [Jekyll](http://github.com/mojombo/jekyll) into a static site whenever I push this repository to GitHub.
+[`_config.yml`](_config.yml), an important configuration file for sites based on [Jekyll](http://github.com/mojombo/jekyll). Whenever I push commits to this GitHub repository it is automatically transformed by [Jekyll](http://github.com/mojombo/jekyll) into a static site.
 You can see the result at [fjp.github.io](fjp.github.io) or [fjp.at](https://fjp.at).
 
 [![Tip Me via PayPal](https://img.shields.io/badge/PayPal-tip%20me-green.svg?logo=paypal)](https://www.paypal.me/fpucher)
