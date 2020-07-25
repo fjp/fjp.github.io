@@ -40,7 +40,7 @@ git push -u origin master
 ## Create New Posts
 
 
-New posts are simply created in the _posts folder but the naming convention is important.
+New posts are simply created in the `collections/_posts folder but the naming convention is important.
 For more details go to https://jekyllrb.com/docs/structure/
 
 Add the changes to github by adding, committing and pushing the new post file.
