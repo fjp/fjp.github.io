@@ -4,6 +4,10 @@ This repository holds the data for my blog. It is based on the theme [minimal mi
 [`_config.yml`](_config.yml), an important configuration file for sites based on [Jekyll](http://github.com/mojombo/jekyll). Whenever I push commits to this GitHub repository it is automatically transformed by [Jekyll](http://github.com/mojombo/jekyll) into a static site.
 You can see the result at [fjp.github.io](fjp.github.io) or [fjp.at](https://fjp.at).
 
+For this to work you need to enable [GitHub pages](https://docs.github.com/en/github/working-with-github-pages/about-github-pages) in the repository settings.
+The default address of your GitHub page will be in the form of `username.github.io`. If you already own a custom domain it is possible to use it with a 
+`CNAME` file and other requierd settings explained in [Managing a custom domain for your GitHub Pages site](https://docs.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site).
+
 [![Tip Me via PayPal](https://img.shields.io/badge/PayPal-tip%20me-green.svg?logo=paypal)](https://www.paypal.me/fpucher)
 
 ## Setup on MacOS
