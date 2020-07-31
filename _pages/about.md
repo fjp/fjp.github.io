@@ -10,7 +10,8 @@ header:
 ---
 
 Master in Electrical and Computer Engineering from [TU Munich](https://www.ei.tum.de/en/welcome/). 
-Working on trajectory planning for autonomous vehicles. Interested in robotics, software development, control theory and microcontrollers.
+Lead Developer at Oculytics GmbH, brining AI based Computer Vision to the food production and other industires.
+Previously working on trajectory planning for autonomous vehicles. Interested in robotics, software development, control theory and microcontrollers.
 
 If you enjoy my content please consider [supporting me](https://paypal.me/fpucher) for keeping the website updated and creating new projects:
 
