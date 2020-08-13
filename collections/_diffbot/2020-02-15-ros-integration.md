@@ -183,7 +183,8 @@ and to avoid duplication in the robot description files.
 
 ### Unified Robot Description Format (URDF)
 
-A robot is modeled in [URDF](http://wiki.ros.org/urdf/), where we have to create a file and write the relationship between each link and joint in the robot and save the file with the `.urdf` extension.
+A robot is modeled in [URDF](http://wiki.ros.org/urdf/), where we have to create a file and write the relationship between each link and joint in the robot and save the file with the `.urdf` extension. A good introduction to URDF is [this video](https://www.youtube.com/watch?v=g9WHxOpAUns) from David Lu at 
+[ROSCon 2012](https://roscon.ros.org/2012/schedule/).
 
 URDF can represent the kinematic and dynamic description of the robot, the visual representation of the robot, and the collision model of the robot.
 
