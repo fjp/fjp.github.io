@@ -20,8 +20,13 @@ sidebar:
   nav: ros
 ---
 
-The project shows how the rqt_turtle plugin for ROS rqt was created, which can be used to draw with turtlebot in turtlesim.
-Although it is also possible to write rqt plugins using python the package uses C++.
+The project shows how the `rqt_turtle` plugin for ROS' [GUI framework rqt](http://wiki.ros.org/rqt) was created. 
+The plugin can be used to draw inside [turtlesim](http://wiki.ros.org/turtlesim) with turtlebot.
+Although the following description might help you to write your own rqt plugin, also have a look at the official [rqt tutorials](http://wiki.ros.org/rqt/Tutorials). 
+There are tutorials explaining how to write plugins using python or C++. The `rqt_turtle` plugin is written in C++.
+The [source code](https://github.com/fjp/rqt-turtle) is hosted on GitHub.
+
+## Create Empty ROS Package
 
 The first step is to create an empty ROS package and specify the required dependencies. 
 Note, that it is possible to add missing dependencies later on.
