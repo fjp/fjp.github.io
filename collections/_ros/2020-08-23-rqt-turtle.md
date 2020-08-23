@@ -28,5 +28,5 @@ Note, that it is possible to add missing dependencies later on.
 Inside a [ros workspace](http://wiki.ros.org/catkin/workspaces) use the following [catkin-tools](https://catkin-tools.readthedocs.io/en/latest/) command to creat the empty `rqt_turtle` package:
 
 ```console
-catkin create pkg rqt_turtle roscpp rqt_gui rqt_gui_cpp
+catkin create pkg rqt_turtle --catkin-deps roscpp rqt_gui rqt_gui_cpp
 ```
