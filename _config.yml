@@ -291,6 +291,9 @@ collections:
   projects:
     output: true
     permalink: /:collection/:path/
+  ros:
+    output: true
+    permalink: /:collection/:path/
   diffbot:
     output: true
     permalink: /:collection/:path/
