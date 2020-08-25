@@ -30,8 +30,13 @@ The [source code](https://github.com/fjp/rqt-turtle) is hosted on GitHub.
 
 The first step is to create an empty ROS package and specify the required dependencies. 
 Note, that it is possible to add missing dependencies later on.
-Inside a [ros workspace](http://wiki.ros.org/catkin/workspaces) use the following [catkin-tools](https://catkin-tools.readthedocs.io/en/latest/) command to creat the empty `rqt_turtle` package:
+Inside a [ros workspace](http://wiki.ros.org/catkin/workspaces) use the [`catkin create`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html) command from [catkin-tools](https://catkin-tools.readthedocs.io/en/latest/) to creat the empty `rqt_turtle` package:
 
 ```console
-catkin create pkg rqt_turtle --catkin-deps roscpp rqt_gui rqt_gui_cpp
+catkin create pkg rqt_turtle \
+    -a "Franz Pucher" "ros@fjp.at" \
+    -m "Franz Pucher" "ros@fjp.at" \
+    -l "MIT" \
+    -d "rqt plugin for ROS rqt to draw in turtlesim using turtlebot." \
+    --catkin-deps roscpp rqt_gui rqt_gui_cpp
 ```
