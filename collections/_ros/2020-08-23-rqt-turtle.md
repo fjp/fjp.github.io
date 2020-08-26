@@ -77,3 +77,5 @@ Now create the `plugin.xml` with the following content:
   </class>
 </library>
 ```
+
+A description of these attributes is found in the [rqt tutorial](http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin#Attributes_of_library_element_in_plugin.xml).
