@@ -40,3 +40,40 @@ $ catkin create pkg rqt_turtle \
     -d "rqt plugin for ROS rqt to draw in turtlesim using turtlebot." \
     --catkin-deps roscpp rqt_gui rqt_gui_cpp
 ```
+
+## Modify package.xml
+
+To make the rqt plugin discoverable, for catkin, you must declare the plugin in the `package.xml` by referencing a `plugin.xml`.
+
+```xml
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+    <rqt_gui plugin="${prefix}/plugin.xml"/>
+  </export>
+```
+
+Now create the `plugin.xml` with the following content:
+
+```xml
+<library path="src">
+  <class name="Turtle Plugin" type="rqt_turtle::TurtlePlugin" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      Plugin for ROS rqt to draw in turtlesim using turtlebot.
+    </description>
+    <qtgui>
+      <!-- optional grouping...
+      <group>
+        <label>Group</label>
+      </group>
+      <group>
+        <label>Subgroup</label>
+      </group>
+      -->
+      <label>Turtle Plugin</label>
+      <icon type="theme">system-help</icon>
+      <statustip>Plugin for ROS rqt to draw in turtlesim using turtlebot.</statustip>
+    </qtgui>
+  </class>
+</library>
+```
