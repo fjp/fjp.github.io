@@ -84,7 +84,12 @@ A description of these attributes is found in the [rqt tutorial](http://wiki.ros
 ## Write Plugin Code
 
 
-
+```cpp
+// Deprecated
+// See: http://wiki.ros.org/pluginlib#pluginlib.2Fpluginlib_groovy.Simplified_Export_Macro
+//PLUGINLIB_DECLARE_CLASS(rqt_turtle, TurtlePlugin, rqt_turtle::TurtlePlugin, rqt_gui_cpp::Plugin)
+PLUGINLIB_EXPORT_CLASS(rqt_turtle::TurtlePlugin, rqt_gui_cpp::Plugin)
+```
 
 ## Install and Run your Plugin
 
