@@ -79,3 +79,33 @@ Now create the `plugin.xml` with the following content:
 ```
 
 A description of these attributes is found in the [rqt tutorial](http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin#Attributes_of_library_element_in_plugin.xml).
+
+
+## Write Plugin Code
+
+
+
+
+## Install and Run your Plugin
+
+Configure the `CMakeLists.txt` using Qt macros. Note that these are old and there exist new `AUTOMOC` options in modern CMake.
+
+Helpful resources:
+- [SO](https://stackoverflow.com/questions/16245147/unable-to-include-a-ui-form-header-of-qt5-in-cmake)
+- [`qt5_wrap_ui`](https://doc.qt.io/qt-5/qtwidgets-cmake-qt5-wrap-ui.html)
+- [`qt5_wrap_cpp`](https://doc.qt.io/qt-5/qtcore-cmake-qt5-wrap-cpp.html)
+
+Note: `ui_XXXX.h` files are generated in the build directory `${CMAKE_CURRENT_BINARY_DIR}`. This is why we need to use these `set` commands:
+
+```cmake
+# ensure generated header files are being created in the devel space
+set(_cmake_current_binary_dir "${CMAKE_CURRENT_BINARY_DIR}")
+set(CMAKE_CURRENT_BINARY_DIR "${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_INCLUDE_DESTINATION}")
+
+qt5_wrap_ui(rqt_turtle_UIS_H ${rqt_turtle_UIS})
+
+set(CMAKE_CURRENT_BINARY_DIR "${_cmake_current_binary_dir}")
+```
+
+These commands temporarily change the `CMAKE_CURRENT_BINARY_DIR` to `"${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_INCLUDE_DESTINATION}"` which is a
+private include folder inside the devel space. TODO why is it done this way in `image_view` plugin? 
