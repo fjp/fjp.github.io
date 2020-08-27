@@ -56,7 +56,7 @@ To make the rqt plugin discoverable, for catkin, you must declare the plugin in 
 Now create the `plugin.xml` with the following content:
 
 ```xml
-<library path="src">
+<library path="lib/">
   <class name="Turtle Plugin" type="rqt_turtle::TurtlePlugin" base_class_type="rqt_gui_py::Plugin">
     <description>
       Plugin for ROS rqt to draw in turtlesim using turtlebot.
@@ -93,7 +93,7 @@ PLUGINLIB_EXPORT_CLASS(rqt_turtle::TurtlePlugin, rqt_gui_cpp::Plugin)
 
 ## Install and Run your Plugin
 
-Configure the `CMakeLists.txt` using Qt macros. Note that these are old and there exist new `AUTOMOC` options in modern CMake.
+### Configure the `CMakeLists.txt` using Qt macros. Note that these are old and there exist new `AUTOMOC` options in modern CMake.
 
 Helpful resources:
 - [SO](https://stackoverflow.com/questions/16245147/unable-to-include-a-ui-form-header-of-qt5-in-cmake)
@@ -113,4 +113,115 @@ set(CMAKE_CURRENT_BINARY_DIR "${_cmake_current_binary_dir}")
 ```
 
 These commands temporarily change the `CMAKE_CURRENT_BINARY_DIR` to `"${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_INCLUDE_DESTINATION}"` which is a
-private include folder inside the devel space. TODO why is it done this way in `image_view` plugin? 
+private include folder inside the devel space. This is done to save the ui header file, created with the meta objec compiler (moc), into the
+devel space. TODO confirm this?
+
+```
+# TODO use?
+find_package(class_loader)
+class_loader_hide_library_symbols(${PROJECT_NAME})
+```
+
+
+### setup.py
+
+See [this section](http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin#Install_.26_Run_your_plugin):
+
+See the Running rqt section for how to run your plugin.
+
+
+With catkin, no matter which method in the link above you want to run your plugin, you need to install it via CMake which puts the script into a package-specific folder which is not on the PATH.
+
+Add macros to your setup.py (reference). For example, after adding the line the section that contains it might look like :
+
+```python
+from distutils.core import setup
+from catkin_pkg.python_setup import generate_distutils_setup
+  
+d = generate_distutils_setup(
+    packages=['rqt_mypkg'],
+    package_dir={'': 'src'},
+)
+
+setup(**d)
+```
+
+Also make sure in your `CMakeLists.txt`, to uncomment a line:
+
+```cmake
+## Uncomment this if the package has a setup.py. This macro ensures
+## modules and global scripts declared therein get installed
+## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
+catkin_python_setup()
+```
+
+Add install macro that puts the script into a location where it is rosrun-able is declared. For example:
+
+```cmake
+## Mark executable scripts (Python etc.) for installation
+## in contrast to setup.py, you can choose the destination
+# For our (optional) script to be installed to the right location, 
+# if users install your package, this line is required
+catkin_install_python(PROGRAMS
+  scripts/rqt_turtle
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+```
+
+
+TODO install stuff:
+
+
+
+
+```cmake
+#############
+## Install ##
+#############
+
+# TODO????
+# See http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin
+# And https://github.com/ros-visualization/rqt_image_view/blob/master/CMakeLists.txt
+# TODO?????
+#Add the following lines to call the resource and plugin.xml # TODO required?
+#install(DIRECTORY include/${PROJECT_NAME}/
+#  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+#)
+#install(DIRECTORY
+#  resource
+#  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+#)
+#install(FILES
+#  plugin.xml
+#  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+#)
+
+
+## Mark executables for installation
+## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
+# install(TARGETS ${PROJECT_NAME}_node
+#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+# )
+
+## Mark libraries for installation
+## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html
+install(TARGETS ${PROJECT_NAME}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)
+
+## Mark cpp header files for installation
+# install(DIRECTORY include/${PROJECT_NAME}/
+#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+#   FILES_MATCHING PATTERN "*.h"
+#   PATTERN ".svn" EXCLUDE
+# )
+
+## Mark other files for installation (e.g. launch and bag files, etc.)
+# install(FILES
+#   # myfile1
+#   # myfile2
+#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+# )
+```
