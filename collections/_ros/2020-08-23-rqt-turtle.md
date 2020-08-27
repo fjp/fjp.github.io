@@ -125,6 +125,8 @@ class_loader_hide_library_symbols(${PROJECT_NAME})
 
 ### setup.py
 
+See [also this tutorial](https://wiki.ros.org/rospy_tutorials/Tutorials/Makefile#Installing_scripts_and_exporting_modules)
+and this [answer](https://answers.ros.org/question/50661/catkin-setuppy-installation-into-devel-space-not-working/)
 See [this section](http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin#Install_.26_Run_your_plugin):
 
 See the Running rqt section for how to run your plugin.
