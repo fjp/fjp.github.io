@@ -162,7 +162,7 @@ class_loader_hide_library_symbols(${PROJECT_NAME})
 ```
 
 
-To make use of other rqt plugins follow this tutorial and understand [What does `find_package()` do](http://wiki.ros.org/catkin/CMakeLists.txt#Finding_Dependent_CMake_Packages).
+To make use of other rqt plugins follow this tutorial and understand [What does `find_package()` do](http://wiki.ros.org/catkin/CMakeLists.txt#Finding_Dependent_CMake_Packages). Also this [answer](https://answers.ros.org/question/201977/include-header-file-from-another-package-indigo/) might be helpful.
 
 
 The problem with these approaches are that most of the plugins are written in Python.
