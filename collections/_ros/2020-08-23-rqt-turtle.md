@@ -205,6 +205,16 @@ message(${rqt_topic_INCLUDE_DIRS})
 ```
 
 
+Then, for example using the ui file should work like this:
+
+```cmake
+set(rqt_turtle_UIS
+  resources/turtle_plugin.ui
+  ${rqt_topic_INCLUDE_DIRS}/resource/TopicWidget.ui
+)
+```
+
+
 ### setup.py
 
 See [also this tutorial](https://wiki.ros.org/rospy_tutorials/Tutorials/Makefile#Installing_scripts_and_exporting_modules)
