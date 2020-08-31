@@ -95,8 +95,19 @@ To design an ui file open a terminal and enter `designer`
 
 <figure>
     <a href="/assets/ros/qt/designer.png"><img src="/assets/ros/qt/designer.png"></a>
-    <figcaption>Qt designer.</figcaption>
+    <figcaption>Qt designer - New Form.</figcaption>
 </figure>
+
+Select `Widget` from the New Form Wizard Dialog because `rqt` can be composed with plugins that are of type Qt Widgets.
+This means you can turn existing Qt Widgets into `rqt` plugins.
+
+The following image shows the design of the `rqt_turtle` plugin. On the right you can see the components. 
+
+<figure>
+    <a href="/assets/ros/rqt_turtle/turtle_plugin_ui.png"><img src="/assets/ros/rqt_turtle/turtle_plugin_ui.png"></a>
+    <figcaption>Qt Designer - rqt turtle plugin.</figcaption>
+</figure>
+
 
 ## Write the Plugin Code
 
