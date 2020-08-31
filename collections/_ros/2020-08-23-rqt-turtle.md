@@ -20,6 +20,9 @@ sidebar:
   nav: ros
 ---
 
+This project is part of the Robocademy 
+[Robot Operating System Learning Path](https://robocademy.com/2020/06/25/enroll-in-robot-operating-system-learning-path-by-lentin-joseph/) by 
+[Lentin Joseph](https://lentinjoseph.com/). 
 The project shows how the `rqt_turtle` plugin for ROS' [GUI framework rqt](http://wiki.ros.org/rqt) was created. 
 The plugin can be used to draw inside [turtlesim](http://wiki.ros.org/turtlesim) with turtlebot.
 Although the following description might help you to write your own rqt plugin, also have a look at the official [rqt tutorials](http://wiki.ros.org/rqt/Tutorials). 
@@ -56,22 +59,22 @@ To make the rqt plugin discoverable, for catkin, you must declare the plugin in 
 Now create the `plugin.xml` with the following content:
 
 ```xml
-<library path="lib/">
-  <class name="Turtle Plugin" type="rqt_turtle::TurtlePlugin" base_class_type="rqt_gui_py::Plugin">
+<!-- To make the plugin discoverable by rqt the path to the library librqt_turtle.so needs to be specified -->
+<!-- The installed plugin library can be found in the devel/lib/ folder. -->
+<library path="lib/librqt_turtle">
+  <class name="rqt_turtle/TurtlePlugin" type="rqt_turtle::TurtlePlugin" base_class_type="rqt_gui_cpp::Plugin">
     <description>
       Plugin for ROS rqt to draw in turtlesim using turtlebot.
     </description>
     <qtgui>
-      <!-- optional grouping...
+      <!-- group the plugin into the folder Robot Tools... -->
       <group>
-        <label>Group</label>
+        <label>Robot Tools</label>
+        <icon type="theme">folder</icon>
+        <statustip>Plugins related to robot tools.</statustip>
       </group>
-      <group>
-        <label>Subgroup</label>
-      </group>
-      -->
-      <label>Turtle Plugin</label>
-      <icon type="theme">system-help</icon>
+      <label>TurtleSim</label>
+      <icon type="theme">input-tablet</icon>
       <statustip>Plugin for ROS rqt to draw in turtlesim using turtlebot.</statustip>
     </qtgui>
   </class>
@@ -81,7 +84,21 @@ Now create the `plugin.xml` with the following content:
 A description of these attributes is found in the [rqt tutorial](http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin#Attributes_of_library_element_in_plugin.xml).
 
 
-## Write Plugin Code
+## Design the UI
+
+ROS rqt plugins are based on the [Qt framework](https://www.qt.io/product/framework). When [installing Qt](https://wiki.qt.io/Install_Qt_5_on_Ubuntu), 
+using the official Ubuntu package `sudo apt-get install qt5-default` the required tools to develop Qt applications are installed too.
+Qt provides its own Qt Creator IDE and a Designer that lets you create GUIs that work are cross platform, meaning they will work on Linux, macOS and Windows.
+
+
+To design an ui file open a terminal and enter `designer`
+
+<figure>
+    <a href="/assets/ros/qt/designer.png"><img src="/assets/ros/qt/designer.png"></a>
+    <figcaption>Qt designer.</figcaption>
+</figure>
+
+## Write the Plugin Code
 
 
 ```cpp
