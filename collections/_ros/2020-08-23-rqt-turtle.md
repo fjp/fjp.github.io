@@ -29,6 +29,15 @@ Although the following description might help you to write your own rqt plugin, 
 There are tutorials explaining how to write plugins using python or C++. The `rqt_turtle` plugin is written in C++.
 The [source code](https://github.com/fjp/rqt-turtle) is hosted on GitHub.
 
+## C++ vs Python
+
+Note that most rqt plugins are wirtten in Python and it is even recommended to write them in Python. 
+However, because of few documented C++ plugins, this project shows how to write a plugin in C++ and it is similar to the
+[`rqt_image_view` plugin](http://wiki.ros.org/rqt_image_view) that is also programmed in C++. 
+In case you are planning to reuse existing rqt plugins make sure to use the 
+language that they are written in. As you will see later in this writeup, I had to use some compromise to use existing rqt plugins which are were written in Python.
+
+
 ## Create Empty ROS Package
 
 The first step is to create an empty ROS package and specify the required dependencies. 
