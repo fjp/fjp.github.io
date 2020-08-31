@@ -188,7 +188,21 @@ or
 find_package(rqt_topic)
 ```
 
+
+Pro tip: Use `message(${my_package_FOUND})` inside your `CMakeLists.txt` to check if the package was found. If it's found this will output `1` or `True`,
+nothing otherwise.
+{: notice }
+
 to include the resources from other plugins.
+
+This will define some cmake variables (found here) that make it possible to include the exported resources from that packages using
+
+```cmake
+# WIP TODO remove here (only used for rqt_topic)
+include_directories(${catkin_INCLUDE_DIRS})
+message(${catkin_INCLUDE_DIRS})
+message(${rqt_topic_INCLUDE_DIRS})
+```
 
 
 ### setup.py
