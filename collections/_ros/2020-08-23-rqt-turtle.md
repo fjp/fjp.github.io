@@ -130,7 +130,9 @@ PLUGINLIB_EXPORT_CLASS(rqt_turtle::TurtlePlugin, rqt_gui_cpp::Plugin)
 
 ## Install and Run your Plugin
 
-### Configure the `CMakeLists.txt` using Qt macros. Note that these are old and there exist new `AUTOMOC` options in modern CMake.
+### CMakeLists.txt
+
+Configure the `CMakeLists.txt` using Qt macros. Note that these are old and there exist new `AUTOMOC` options in modern CMake.
 
 Helpful resources:
 - [SO](https://stackoverflow.com/questions/16245147/unable-to-include-a-ui-form-header-of-qt5-in-cmake)
@@ -158,6 +160,35 @@ devel space. TODO confirm this?
 find_package(class_loader)
 class_loader_hide_library_symbols(${PROJECT_NAME})
 ```
+
+
+To make use of other rqt plugins follow this tutorial and understand [What does `find_package()` do](http://wiki.ros.org/catkin/CMakeLists.txt#Finding_Dependent_CMake_Packages).
+
+
+The problem with these approaches are that most of the plugins are written in Python.
+The promote widget method will work if your plugins use the same programming language because Python doesn't create a header file.
+
+Another problem was that the other plugins don't generate a Cmake.config file which would allow to export the plugin headers and/or their ui files using the [`catkin_package()`](http://wiki.ros.org/catkin/CMakeLists.txt#catkin_package.28.29) macro. 
+This is why I just copied the ui files from `ServiceCaller.ui` and ... into the resources folder of the `rqt_turtle` plugin.
+
+Otherwise we could have used
+
+```cmake
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rqt_gui
+  rqt_gui_cpp
+  rqt_topic
+)
+```
+
+or
+
+``` cmake
+find_package(rqt_topic)
+```
+
+to include the resources from other plugins.
 
 
 ### setup.py
@@ -264,3 +295,8 @@ install(TARGETS ${PROJECT_NAME}
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
 ```
+
+
+## Launch the plugin
+
+In case it is not working try to use some solutions from [this answer](https://answers.ros.org/question/166851/rqt-reconfigure-no-plugin-found/).
