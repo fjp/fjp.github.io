@@ -41,13 +41,19 @@ export IMAGE_REPO_NAME=my-project-tf2.3-gpu
 export IMAGE_TAG=latest
 export IMAGE_URI=gcr.io/$PROJECT_ID/$IMAGE_REPO_NAME:$IMAGE_TAG
 
-
 # Do other stuff such as building source distributions
-#cd venv/src/classification && sdist
+python venv/src/package setup.py sdist --dist-dir packages
 
 # Build the image using the Dockerfile
 docker build -f Dockerfile --tag $IMAGE_URI ./
 ```
+
+Then source the script to create source distributions from local dependencies in a local folder named `packages` and build the image.
+
+Behind the scenes: sourcing this script will export environment variables such as `$IMAGE_URI`. 
+With this environment variable set the image is built with the command `docker build -f Dockerfile -t $IMAGE_URI ./`. 
+This will send the build context to the docker engine (everything in this repository except what's inside `.dockerignore`) and 
+start building the image using the instructions inside the `Dockerfile`.
 
 
 
