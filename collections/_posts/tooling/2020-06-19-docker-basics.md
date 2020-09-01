@@ -56,6 +56,16 @@ This will send the build context to the docker engine (everything in this reposi
 start building the image using the instructions inside the `Dockerfile`.
 
 
+To run the container's entry point and thereby start executing a main script execute the command with arguments to the dataset directory, whole-model or retraining and which pre-trained model to use:
+
+```console
+docker container run --name mycontainer --rm -it --privileged -p 6006:6006 $IMAGE_URI ARGS
+```
+
+Behind the scenes: This command will remove (`--rm`) a container previously created from the image and 
+run a new one with the name `mycontainer` in interactive terminal mode `-it` and extended priviledges. 
+To view web interfaces (e.g. Tensorboard during a training run) the port 6006 of the container is exposed to the host on the same port.
+
 
 ## Essential Docker commands:
 
