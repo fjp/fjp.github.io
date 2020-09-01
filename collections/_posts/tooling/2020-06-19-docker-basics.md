@@ -67,6 +67,26 @@ run a new one with the name `mycontainer` in interactive terminal mode `-it` and
 To view web interfaces (e.g. Tensorboard during a training run) the port 6006 of the container is exposed to the host on the same port.
 
 
+## Debug the container
+
+To debug the scripts inside the container (especially the main script with different command line arguments) run one of the following:
+
+```console
+docker run -rm --name debugmycontainer -it --entrypoint "bash" $IMAGE_URI
+
+docker run --rm --name debugmycontainer -it \
+   --entrypoint "bash" \
+   -e GOOGLE_APPLICATION_CREDENTIALS=/root/service-account.json \
+   -v $GOOGLE_APPLICATION_CREDENTIALS:/root/service-account.json:ro \
+   $IMAGE_URI
+```
+
+This will overwrite the default `ENTRYPOINT` (which would execute the main script otherwise) to execute a bash shell in a container named `debugmycontainer`.
+
+When running the container, you will find yourself inside the `/app` directory, which is the path to the workspace of this docker container.
+From there it is possible to work like you are in a linux terminal, use `cd` or execute stuff. 
+
+
 ## Essential Docker commands:
 
 ```console
