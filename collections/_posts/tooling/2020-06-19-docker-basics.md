@@ -96,3 +96,12 @@ docker run
 ```
 
 
+## Build in the Cloud
+
+The following command can be used to build the image in the cloud, see the [docs](https://cloud.google.com/sdk/gcloud/reference/builds/submit) for more options.
+
+```
+gcloud builds submit --tag $IMAGE_URI
+```
+
+Make sure to keep a reasonable `.gitignore` because this command will create a `.gcloudignore` with the content of the `.gitignore` if no `.gcloudignore` exists. 
