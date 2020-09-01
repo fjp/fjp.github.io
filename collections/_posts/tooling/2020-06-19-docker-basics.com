@@ -20,6 +20,8 @@ header:
 ---
 
 
+## Docker Basics
+
 Basic Dockerfile:
 
 ```bash
@@ -29,10 +31,32 @@ FROM alpine:latest
 ```
 
 
-Basic Docker commands:
+## Basic Workflow
+
+
+```
+#!/bin/bash
+export PROJECT_ID=$(gcloud config list project --format "value(core.project)")
+export IMAGE_REPO_NAME=my-project-tf2.3-gpu
+export IMAGE_TAG=latest
+export IMAGE_URI=gcr.io/$PROJECT_ID/$IMAGE_REPO_NAME:$IMAGE_TAG
+
+
+# Do other stuff such as building source distributions
+#cd venv/src/classification && sdist
+
+# Build the image using the Dockerfile
+docker build -f Dockerfile --tag $IMAGE_URI ./
+```
+
+
+
+## Essential Docker commands:
 
 ```console
 # run commands
 docker container run
 docker run
 ```
+
+
