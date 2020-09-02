@@ -39,7 +39,7 @@ $ catkin create pkg turtle_pong \
     -a "Franz Pucher" "ros@fjp.at" \
     -m "Franz Pucher" "ros@fjp.at" \
     -l "MIT" \
-    -d "rqt plugin for ROS rqt to draw in turtlesim using turtlebot." \
+    -d "Pong game for ROS turtlesim." \
     --catkin-deps roscpp
 ```
 
