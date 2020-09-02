@@ -35,7 +35,7 @@ Note, that it is possible to add missing dependencies later on.
 Inside a [ros workspace](http://wiki.ros.org/catkin/workspaces) use the [`catkin create`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html) command from [catkin-tools](https://catkin-tools.readthedocs.io/en/latest/) to creat the empty `turtle_pong` package:
 
 ```console
-$ catkin create pkg turtle_pong \
+catkin_ws/src$ catkin create pkg turtle_pong \
     -a "Franz Pucher" "ros@fjp.at" \
     -m "Franz Pucher" "ros@fjp.at" \
     -l "MIT" \
