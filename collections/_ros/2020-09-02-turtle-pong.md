@@ -1,7 +1,7 @@
 ---
 layout: single #collection
 title: ROS Turtle Pong
-permalink: /ros/rqt-turtle/
+permalink: /ros/turtle-pong/
 excerpt: "Pong game for ROS turtlesim."
 date: 2020-09-02 20:00:35 +0200
 categories: [robotics]
