@@ -48,6 +48,7 @@ catkin_ws/src$ catkin create pkg turtle_pong \
     --catkin-deps roscpp
 ```
 
+## Class Architecture
 
 The game is made up of three nodes:
 
