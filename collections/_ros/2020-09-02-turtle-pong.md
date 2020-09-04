@@ -61,10 +61,16 @@ The game is made up of three nodes:
     <figcaption>Representation of a reference path (blue) in Cartesian coordinates (x,d).</figcaption>
 </figure>
 
+
+
 The `ball` class subscribes to three poses, the ball itself and the two players. 
 
 Note: To use class methods as callbacks see the wiki page [Tutorials/UsingClassMethodsAsCallbacks](http://wiki.ros.org/roscpp_tutorials/Tutorials/UsingClassMethodsAsCallbacks).
 
+<figure>
+    <a href="https://raw.githubusercontent.com/fjp/ros-turtle-pong/master/docs/rosgraph.svg?token=AAJ2DWQ6BPTFUPV44S6L6S27LNYM4?sanitize=true"><img src="https://raw.githubusercontent.com/fjp/ros-turtle-pong/master/docs/rosgraph.svg?token=AAJ2DWQ6BPTFUPV44S6L6S27LNYM4?sanitize=true"></a>
+    <figcaption>Representation of a reference path (blue) in Cartesian coordinates (x,d).</figcaption>
+</figure>
 
 ## References
 
