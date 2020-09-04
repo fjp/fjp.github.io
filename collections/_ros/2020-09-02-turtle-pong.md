@@ -53,7 +53,7 @@ The game is made up of three nodes:
 
 - `ball` a turtle that acts as the ball and contains logic to bounce off walls.
 - `key` the turtles representing the paddles which are controlled with the keyboard to move them up and down.
-- `game_logic` node that keeps track of the game state.
+- `pong` node that spawns the three turtles and keeps track of the game state.
 
 The `ball` class subscribes to three poses, the ball itself and the two players. 
 
