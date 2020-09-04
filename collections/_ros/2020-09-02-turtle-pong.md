@@ -56,6 +56,17 @@ The game is made up of three nodes:
 - `key` the turtles representing the paddles which are controlled with the keyboard to move them up and down.
 - `pong` node that spawns the three turtles and keeps track of the game state.
 
+<figure>
+    <a href="https://raw.githubusercontent.com/fjp/ros-turtle-pong/master/docs/rosgraph.svg?sanitize=true"><img src="https://raw.githubusercontent.com/fjp/ros-turtle-pong/master/docs/rosgraph.svg?sanitize=true"></a>
+    <figcaption>Representation of a reference path (blue) in Cartesian coordinates (x,d).</figcaption>
+</figure>
+
 The `ball` class subscribes to three poses, the ball itself and the two players. 
 
 Note: To use class methods as callbacks see the wiki page [Tutorials/UsingClassMethodsAsCallbacks](http://wiki.ros.org/roscpp_tutorials/Tutorials/UsingClassMethodsAsCallbacks).
+
+
+## References
+
+- [http://wiki.ros.org/roscpp/Overview/Publishers and Subscribers](http://wiki.ros.org/roscpp/Overview/Publishers%20and%20Subscribers)
+- [Tutorials/UsingClassMethodsAsCallbacks](http://wiki.ros.org/roscpp_tutorials/Tutorials/UsingClassMethodsAsCallbacks)
