@@ -20,10 +20,15 @@ sidebar:
   nav: ros
 ---
 
+This video shows the first version of the Pong arcade video game for the Robot Operating System (ROS 1 Noetic) using turtlesim.
+The post will explain how the `turtle_pong` package for ROS' [turtlesim](http://wiki.ros.org/turtlesim) was created. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/i83dNyfm_QE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 This project is part of the Robocademy 
 [Robot Operating System Learning Path](https://robocademy.com/2020/06/25/enroll-in-robot-operating-system-learning-path-by-lentin-joseph/) by 
 [Lentin Joseph](https://lentinjoseph.com/). 
-The project shows how the `turtle_pong` package for ROS' [turtlesim](http://wiki.ros.org/turtlesim) was created. 
+
 
 The [source code](https://github.com/fjp/ros-turtle-pong) is hosted on GitHub.
 
