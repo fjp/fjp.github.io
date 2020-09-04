@@ -331,3 +331,4 @@ In case it is not working try to use some solutions from [this answer](https://a
 ## References
 
 - [catkin CMakeLists.txt](http://wiki.ros.org/catkin/CMakeLists.txt)
+- [SO: ros-get-current-available-topic-in-code-not-command](https://stackoverflow.com/questions/26785675/ros-get-current-available-topic-in-code-not-command)
