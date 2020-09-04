@@ -337,3 +337,4 @@ In case it is not working try to use some solutions from [this answer](https://a
 - [`rqt_service_caller`](http://wiki.ros.org/rqt_service_caller)
 - [ROS service list from C++](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/)
 - [ROS Master API](http://wiki.ros.org/ROS/Master_API)
+- [TinyXML Tutorial](http://www.grinninglizard.com/tinyxmldocs/tutorial0.html)
