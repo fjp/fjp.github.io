@@ -335,3 +335,4 @@ In case it is not working try to use some solutions from [this answer](https://a
 - [`rqt_image_view`](https://github.com/ros-visualization/rqt_image_view)
 - [ROS `pluginlib`](http://wiki.ros.org/pluginlib)
 - [`rqt_service_caller`](http://wiki.ros.org/rqt_service_caller)
+- [ROS service list from C++](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/)
