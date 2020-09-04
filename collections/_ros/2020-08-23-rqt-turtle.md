@@ -326,3 +326,8 @@ install(TARGETS ${PROJECT_NAME}
 To launch a rqt plugin make sure to read the [Running rqt User Guide](http://wiki.ros.org/rqt/UserGuide#Running_rqt).
 
 In case it is not working try to use some solutions from [this answer](https://answers.ros.org/question/166851/rqt-reconfigure-no-plugin-found/).
+
+
+## References
+
+- [catkin CMakeLists.txt](http://wiki.ros.org/catkin/CMakeLists.txt)
