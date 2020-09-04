@@ -58,7 +58,7 @@ The game is made up of three nodes:
 
 <figure>
     <a href="https://raw.githubusercontent.com/fjp/ros-turtle-pong/master/docs/rosgraph.svg?sanitize=true"><img src="https://raw.githubusercontent.com/fjp/ros-turtle-pong/master/docs/rosgraph.svg?sanitize=true"></a>
-    <figcaption>Representation of a reference path (blue) in Cartesian coordinates (x,d).</figcaption>
+    <figcaption>ROS Computation Graph.</figcaption>
 </figure>
 
 
@@ -69,7 +69,7 @@ Note: To use class methods as callbacks see the wiki page [Tutorials/UsingClassM
 
 <figure>
     <a href="https://raw.githubusercontent.com/fjp/ros-turtle-pong/master/docs/rosgraph.svg?token=AAJ2DWQ6BPTFUPV44S6L6S27LNYM4?sanitize=true"><img src="https://raw.githubusercontent.com/fjp/ros-turtle-pong/master/docs/rosgraph.svg?token=AAJ2DWQ6BPTFUPV44S6L6S27LNYM4?sanitize=true"></a>
-    <figcaption>Representation of a reference path (blue) in Cartesian coordinates (x,d).</figcaption>
+    <figcaption>ROS Computation Graph.</figcaption>
 </figure>
 
 ## References
