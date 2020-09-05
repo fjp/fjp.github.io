@@ -194,16 +194,7 @@ for(int x=0; x < num_services; x++)
 ```
 
 
-<details markdown="1"><summary>CLICK</summary>
-
-## yes, even hidden code blocks!
-
-```python
-print("hello world!")
-```
-
-</details>
-
+<details markdown="1"><summary>Expand for an alternative solution.</summary>
 
 An alternative to the above snippet would be to use [`TinyXML`](http://www.grinninglizard.com/tinyxmldocs/index.html), a C++ XML parsing library.
 To load the xml from the response string use `TiXmlDocument::Parse()` (see this [SO answer](https://stackoverflow.com/questions/2862892/can-tinyxml-load-xml-from-string-instead-of-file)):
@@ -251,7 +242,7 @@ TiXmlHandle hRoot(0);
 }
 ```
 
-
+</details>
 
 Useful references for working with XMLRPC in the roscpp client library are this [answer](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/?answer=152421#post-id-152421) and the [ROS Master API Wiki page](http://wiki.ros.org/ROS/Master_API).
 
