@@ -175,16 +175,21 @@ The result will be an array that holds the xml tree:
 To access the relevant part, the service list, we can use the following for loop:
 
 ```cpp
-std::string state[response[2][2].size()];
-for(int x=0; x < response[2][2].size(); x++)
+const int num_services = response[2][2].size()
+
+// Create a string array holding the service names
+std::string services[num_services];
+for(int x=0; x < num_services; x++)
 {
-
-    std::string gh = response[2][2][x][0].toXml().c_str();
-
-    gh.erase(gh.begin(), gh.begin()+7);
-    gh.erase(gh.end()-8, gh.end());
-    state[x] = gh;
-    ROS_INFO(gh.c_str());
+    // Get the xml part containing a service value
+    // e.g., <value>/rosout/get_loggers</value>
+    std::string service_name = response[2][2][x][0].toXml().c_str();
+    
+    // remove <value> and </value> from the string
+    service_name.erase(service_name.begin(), service_name.begin()+7);
+    service_name.erase(service_name.end()-8, service_name.end());
+    services[x] = service_name;
+    ROS_INFO(service_name.c_str());
 }
 ```
 
