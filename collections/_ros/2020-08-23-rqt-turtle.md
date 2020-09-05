@@ -128,6 +128,69 @@ The following image shows the design of the `rqt_turtle` plugin. On the right yo
 PLUGINLIB_EXPORT_CLASS(rqt_turtle::TurtlePlugin, rqt_gui_cpp::Plugin)
 ```
 
+### Service Caller
+
+ROS provides the `rosservice` tool which has the `list` subcommand to list all the available services that are 
+currently registered with the ROS master. To get the service list in our C++ code we can make use
+of XMLRPC which ROS uses under the hood for its communication. With that we can query the 
+ROS master through its [ROS Master API](http://wiki.ros.org/ROS/Master_API).
+
+First we need to include the `master.h`:
+
+```cpp
+#include <ros/master.h>
+```
+
+Then we can create `XmlRpc::XmlRpcValue` request, response and payload objects which are required for the call.
+
+```cpp
+// The request value can be set to any value
+XmlRpc::XmlRpcValue request = "/node"; 
+// The response object will receive the server messsage in xml format
+XmlRpc::XmlRpcValue response;
+XmlRpc::XmlRpcValue payload;
+```
+
+Finally, we need to call the `getSystemState` method of the master using the [`ros::master::execute`](http://docs.ros.org/noetic/api/roscpp/html/namespaceros_1_1master.html#a6148ee923ef1602d2093daff82573043) method.
+
+```cpp
+// http://wiki.ros.org/ROS/Master_API
+// The following calls the getSystemState method with the previously defined request
+// and returns the response and the payload.
+ros::master::execute("getSystemState", request, response, payload, true);
+```
+
+To view the xml response we can make use of `XmlRpc::XmlRpcValue::toXml`:
+
+```cpp
+ROS_INFO("%s", response.toXml().c_str());
+```
+
+The result will be an array that holds the xml tree:
+
+```
+<value><array><data><value><i4>1</i4></value><value>current system state</value><value><array><data><value><array><data><value><array><data><value>/rosout_agg</value><value><array><data><value>/rosout</value></data></array></value></data></array></value><value><array><data><value>/rosout</value><value><array><data><value>/rqt_gui_cpp_node_43389</value><value>/rqt_gui_cpp_node_43761</value><value>/rqt_gui_cpp_node_45610</value><value>/rqt_gui_cpp_node_47424</value><value>/rqt_gui_cpp_node_50133</value><value>/rqt_gui_cpp_node_50310</value><value>/rqt_gui_cpp_node_50562</value><value>/rqt_gui_cpp_node_57695</value></data></array></value></data></array></value></data></array></value><value><array><data><value><array><data><value>/rosout</value><value><array><data><value>/rosout</value></data></array></value></data></array></value></data></array></value><value><array><data><value><array><data><value>/rosout/get_loggers</value><value><array><data><value>/rosout</value></data></array></value></data></array></value><value><array><data><value>/rosout/set_logger_level</value><value><array><data><value>/rosout</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_43389/get_loggers</value><value><array><data><value>/rqt_gui_cpp_node_43389</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_43389/set_logger_level</value><value><array><data><value>/rqt_gui_cpp_node_43389</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_43761/get_loggers</value><value><array><data><value>/rqt_gui_cpp_node_43761</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_43761/set_logger_level</value><value><array><data><value>/rqt_gui_cpp_node_43761</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_45610/get_loggers</value><value><array><data><value>/rqt_gui_cpp_node_45610</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_45610/set_logger_level</value><value><array><data><value>/rqt_gui_cpp_node_45610</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_47424/get_loggers</value><value><array><data><value>/rqt_gui_cpp_node_47424</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_47424/set_logger_level</value><value><array><data><value>/rqt_gui_cpp_node_47424</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_50133/get_loggers</value><value><array><data><value>/rqt_gui_cpp_node_50133</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_50133/set_logger_level</value><value><array><data><value>/rqt_gui_cpp_node_50133</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_50310/get_loggers</value><value><array><data><value>/rqt_gui_cpp_node_50310</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_50310/set_logger_level</value><value><array><data><value>/rqt_gui_cpp_node_50310</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_50562/get_loggers</value><value><array><data><value>/rqt_gui_cpp_node_50562</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_50562/set_logger_level</value><value><array><data><value>/rqt_gui_cpp_node_50562</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_57695/get_loggers</value><value><array><data><value>/rqt_gui_cpp_node_57695</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_57695/set_logger_level</value><value><array><data><value>/rqt_gui_cpp_node_57695</value></data></array></value></data></array></value></data></array></value></data></array></value></data></array></value>
+```
+
+To access the relevant part, the service list, we can use the following for loop:
+
+```cpp
+std::string state[response[2][2].size()];
+for(int x=0; x < response[2][2].size(); x++)
+{
+
+    std::string gh = response[2][2][x][0].toXml().c_str();
+
+    gh.erase(gh.begin(), gh.begin()+7);
+    gh.erase(gh.end()-8, gh.end());
+    state[x] = gh;
+    ROS_INFO(gh.c_str());
+}
+```
+
+Useful references for working with XMLRPC in the roscpp client library are this [answer](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/?answer=152421#post-id-152421) and the [ROS Master API Wiki page](http://wiki.ros.org/ROS/Master_API).
+
+
 ## Install and Run your Plugin
 
 ### CMakeLists.txt
