@@ -193,6 +193,20 @@ for(int x=0; x < num_services; x++)
 }
 ```
 
+
+<details><summary>CLICK ME</summary>
+<p>
+
+#### yes, even hidden code blocks!
+
+```python
+print("hello world!")
+```
+
+</p>
+</details>
+
+
 An alternative to the above snippet would be to use [`TinyXML`](http://www.grinninglizard.com/tinyxmldocs/index.html), a C++ XML parsing library.
 To load the xml from the response string use `TiXmlDocument::Parse()` (see this [SO answer](https://stackoverflow.com/questions/2862892/can-tinyxml-load-xml-from-string-instead-of-file)):
 
