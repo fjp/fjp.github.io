@@ -193,7 +193,7 @@ for(int x=0; x < num_services; x++)
 }
 ```
 
-
+{::options parse_block_html="true" /}
 <details><summary markdown='span'>CLICK ME CC</summary>
 
 ## yes, even hidden code blocks!
