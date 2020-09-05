@@ -11,8 +11,8 @@ use_math: true
 toc: true
 # classes: wide
 header:
-  #teaser: /assets/collections/diffbot/assembly/board-plate/03-board-plate-front-left.jpg
-  #overlay_image: /assets/collections/diffbot/assembly/board-plate/03-board-plate-front-left.jpg
+  teaser: /assets/ros/rqt_turtle/turtle_plugin_ui.png"><img src="/assets/ros/rqt_turtle/turtle_plugin_ui.png
+  overlay_image: /assets/ros/rqt_turtle/turtle_plugin_ui.png"><img src="/assets/ros/rqt_turtle/turtle_plugin_ui.png
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   caption: rqt_turtle
   show_overlay_excerpt: true
@@ -210,7 +210,7 @@ To load the xml from the response string use `TiXmlDocument::Parse()` (see this 
 
 ```cpp
 TiXmlDocument doc;
-doc.Parse((const char*)filedata, 0, TIXML_ENCODING_UTF8);
+doc.Parse((const char*)response.toXml().c_str(), 0, TIXML_ENCODING_UTF8);
 ```
 
 Then it should be possible to parse the XML with the steps outlined in the [TinyXML tutorial](http://www.grinninglizard.com/tinyxmldocs/tutorial0.html).
