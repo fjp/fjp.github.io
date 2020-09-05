@@ -193,6 +193,54 @@ for(int x=0; x < num_services; x++)
 }
 ```
 
+An alternative to the above snippet would be to use [`TinyXML`](http://www.grinninglizard.com/tinyxmldocs/index.html), a C++ XML parsing library.
+To load the xml from the response string use `TiXmlDocument::Parse()` (see this [SO answer](https://stackoverflow.com/questions/2862892/can-tinyxml-load-xml-from-string-instead-of-file)):
+
+```cpp
+TiXmlDocument doc;
+doc.Parse((const char*)filedata, 0, TIXML_ENCODING_UTF8);
+```
+
+Then it should be possible to parse the XML with the steps outlined in the [TinyXML tutorial](http://www.grinninglizard.com/tinyxmldocs/tutorial0.html).
+
+```cpp
+std::string message;
+MessageMap messages;
+
+TiXmlHandle hDoc(&doc);
+TiXmlElement* pElem;
+TiXmlHandle hRoot(0);
+
+// block: name
+{
+    pElem=hDoc.FirstChildElement().Element();
+    // should always have a valid root but handle gracefully if it does
+    if (!pElem) return;
+    m_name=pElem->Value();
+
+    // save this for later
+    hRoot=TiXmlHandle(pElem);
+}
+
+// block: string table
+{
+    messages.clear(); // trash existing table
+
+    pElem=hRoot.FirstChild( "Messages" ).FirstChild().Element();
+    for( pElem; pElem; pElem=pElem->NextSiblingElement())
+    {
+        const char *pKey=pElem->Value();
+        const char *pText=pElem->GetText();
+        if (pKey && pText) 
+        {
+            messages[pKey]=pText;
+        }
+    }
+}
+```
+
+
+
 Useful references for working with XMLRPC in the roscpp client library are this [answer](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/?answer=152421#post-id-152421) and the [ROS Master API Wiki page](http://wiki.ros.org/ROS/Master_API).
 
 
