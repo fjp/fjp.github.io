@@ -195,7 +195,6 @@ for(int x=0; x < num_services; x++)
 
 
 <details><summary>CLICK ME</summary>
-<p>
 
 #### yes, even hidden code blocks!
 
@@ -203,7 +202,6 @@ for(int x=0; x < num_services; x++)
 print("hello world!")
 ```
 
-</p>
 </details>
 
 
