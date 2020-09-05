@@ -194,9 +194,9 @@ for(int x=0; x < num_services; x++)
 ```
 
 
-<details><summary>CLICK ME</summary>
+<details><summary markdown='span'>CLICK ME CC</summary>
 
-#### yes, even hidden code blocks!
+## yes, even hidden code blocks!
 
 ```python
 print("hello world!")
