@@ -29,7 +29,7 @@ Although the following description might help you to write your own rqt plugin, 
 There are tutorials explaining how to write plugins using python or C++. The `rqt_turtle` plugin is written in C++.
 The [source code](https://github.com/fjp/rqt-turtle) is hosted on GitHub.
 
-The code tries to follow the [ROS CppStyleGuide](http://wiki.ros.org/CppStyleGuide).
+The code tries to follow the [ROS CppStyleGuide](http://wiki.ros.org/CppStyleGuide) and the code API documentation can be created with [doxygen](http://wiki.ros.org/Doxygen).
 
 ## C++ vs Python
 
