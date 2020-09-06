@@ -35,7 +35,8 @@ Note that most rqt plugins are wirtten in Python and it is even recommended to w
 However, because of few documented C++ plugins, this project shows how to write a plugin in C++ and it is similar to the
 [`rqt_image_view` plugin](http://wiki.ros.org/rqt_image_view) that is also programmed in C++. 
 In case you are planning to reuse existing rqt plugins make sure to use the 
-language that they are written in. As you will see later in this writeup, I had to use some compromise to use existing rqt plugins which are were written in Python.
+language that they are written in. As you will see later in this writeup, I had to use some compromise to use existing rqt plugins which are were written in Python. Another drawback is that the XMLRPC functionality available from the ROS Master API is not well documented. 
+For example using Python to obtain service or topic information such as types or arguments is much easier with Python.
 
 
 ## Create Empty ROS Package
@@ -131,8 +132,51 @@ PLUGINLIB_EXPORT_CLASS(rqt_turtle::TurtlePlugin, rqt_gui_cpp::Plugin)
 ### Service Caller
 
 ROS provides the `rosservice` tool which has the `list` subcommand to list all the available services that are 
-currently registered with the ROS master. To get the service list in our C++ code we can make use
-of XMLRPC which ROS uses under the hood for its communication. With that we can query the 
+currently registered with the ROS master.
+
+
+Note that it would be easier to use rospy to obtain service infos from the master.
+Using roscpp makes it harder to get the required information.
+{: .notice }
+
+
+#### Command Line Interface Approach
+
+This approach, to get for example the service list is kind of a hack and doesn't leverage the XMLRPC backend of ROS.
+However, it is the simpler approach, which is why I used it for the first/current version of this plugin. 
+
+The snippet to get the output of a ros command executed from a roscpp node ([source](https://stackoverflow.com/questions/478898/how-do-i-execute-a-command-and-get-the-output-of-the-command-within-c-using-po)):
+
+```cpp
+#include <cstdio>
+#include <iostream>
+#include <memory>
+#include <stdexcept>
+#include <string>
+#include <array>
+
+std::string exec(const char* cmd) {
+    std::array<char, 128> buffer;
+    std::string result;
+    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
+    if (!pipe) {
+        throw std::runtime_error("popen() failed!");
+    }
+    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+        result += buffer.data();
+    }
+    return result;
+}
+```
+
+
+#### XMLRPC Approach
+
+This approach is currently not implemented. Instead the CLI approach is used to call ros commands within a roscpp node.
+{: .notice }
+
+To get the service list in our C++ code we can make use
+of XMLRPC which ROS uses under the hood for its communication. With it we can query the 
 ROS master through its [ROS Master API](http://wiki.ros.org/ROS/Master_API).
 
 First we need to include the `master.h`:
@@ -172,7 +216,7 @@ The result will be an array that holds the xml tree:
 <value><array><data><value><i4>1</i4></value><value>current system state</value><value><array><data><value><array><data><value><array><data><value>/rosout_agg</value><value><array><data><value>/rosout</value></data></array></value></data></array></value><value><array><data><value>/rosout</value><value><array><data><value>/rqt_gui_cpp_node_43389</value><value>/rqt_gui_cpp_node_43761</value><value>/rqt_gui_cpp_node_45610</value><value>/rqt_gui_cpp_node_47424</value><value>/rqt_gui_cpp_node_50133</value><value>/rqt_gui_cpp_node_50310</value><value>/rqt_gui_cpp_node_50562</value><value>/rqt_gui_cpp_node_57695</value></data></array></value></data></array></value></data></array></value><value><array><data><value><array><data><value>/rosout</value><value><array><data><value>/rosout</value></data></array></value></data></array></value></data></array></value><value><array><data><value><array><data><value>/rosout/get_loggers</value><value><array><data><value>/rosout</value></data></array></value></data></array></value><value><array><data><value>/rosout/set_logger_level</value><value><array><data><value>/rosout</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_43389/get_loggers</value><value><array><data><value>/rqt_gui_cpp_node_43389</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_43389/set_logger_level</value><value><array><data><value>/rqt_gui_cpp_node_43389</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_43761/get_loggers</value><value><array><data><value>/rqt_gui_cpp_node_43761</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_43761/set_logger_level</value><value><array><data><value>/rqt_gui_cpp_node_43761</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_45610/get_loggers</value><value><array><data><value>/rqt_gui_cpp_node_45610</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_45610/set_logger_level</value><value><array><data><value>/rqt_gui_cpp_node_45610</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_47424/get_loggers</value><value><array><data><value>/rqt_gui_cpp_node_47424</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_47424/set_logger_level</value><value><array><data><value>/rqt_gui_cpp_node_47424</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_50133/get_loggers</value><value><array><data><value>/rqt_gui_cpp_node_50133</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_50133/set_logger_level</value><value><array><data><value>/rqt_gui_cpp_node_50133</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_50310/get_loggers</value><value><array><data><value>/rqt_gui_cpp_node_50310</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_50310/set_logger_level</value><value><array><data><value>/rqt_gui_cpp_node_50310</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_50562/get_loggers</value><value><array><data><value>/rqt_gui_cpp_node_50562</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_50562/set_logger_level</value><value><array><data><value>/rqt_gui_cpp_node_50562</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_57695/get_loggers</value><value><array><data><value>/rqt_gui_cpp_node_57695</value></data></array></value></data></array></value><value><array><data><value>/rqt_gui_cpp_node_57695/set_logger_level</value><value><array><data><value>/rqt_gui_cpp_node_57695</value></data></array></value></data></array></value></data></array></value></data></array></value></data></array></value>
 ```
 
-To access the relevant part, the service list, we can use the following for loop:
+To access the relevant part - the service list - we can use the following for loop:
 
 ```cpp
 const int num_services = response[2][2].size()
