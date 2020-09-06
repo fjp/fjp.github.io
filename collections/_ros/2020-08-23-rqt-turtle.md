@@ -29,13 +29,15 @@ Although the following description might help you to write your own rqt plugin, 
 There are tutorials explaining how to write plugins using python or C++. The `rqt_turtle` plugin is written in C++.
 The [source code](https://github.com/fjp/rqt-turtle) is hosted on GitHub.
 
+The code tries to follow the [ROS CppStyleGuide](http://wiki.ros.org/CppStyleGuide).
+
 ## C++ vs Python
 
 Note that most rqt plugins are wirtten in Python and it is even recommended to write them in Python. 
 However, because of few documented C++ plugins, this project shows how to write a plugin in C++ and it is similar to the
 [`rqt_image_view` plugin](http://wiki.ros.org/rqt_image_view) that is also programmed in C++. 
 In case you are planning to reuse existing rqt plugins make sure to use the 
-language that they are written in. As you will see later in this writeup, I had to use some compromise to use existing rqt plugins which are were written in Python. Another drawback is that the XMLRPC functionality available from the ROS Master API is not well documented. 
+language that they are written in. As you will see later in this writeup, I had to use some compromise to use existing rqt plugins which are were written in Python. Another drawback is that the [XML-RPC](https://en.wikipedia.org/wiki/XML-RPC) functionality available from the ROS Master API is not well documented. 
 For example using Python to obtain service or topic information such as types or arguments is much easier with Python.
 
 
@@ -139,10 +141,16 @@ Note that it would be easier to use rospy to obtain service infos from the maste
 Using roscpp makes it harder to get the required information.
 {: .notice }
 
+The following list the three approaches to get information from the ROS master:
+
+- [rosapi](http://wiki.ros.org/rosapi) not covered here because it would require adding it as another dependency (reference [answer](https://answers.ros.org/question/152481/get-service-type-from-c/)).
+- [XML-RPC](https://en.wikipedia.org/wiki/XML-RPC) calls using [ROS Master API]() This would be the way to go if the plugin was written in Python. The ROS Master API seems to be incomplete for C++ (reference [answer](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/)).
+- [Calling terminal commands from C++]() A hacky solution to execute ros commands such as `rosservice list` within C++.
+
 
 #### Command Line Interface Approach
 
-This approach, to get for example the service list is kind of a hack and doesn't leverage the XMLRPC backend of ROS.
+This approach, to get for example the service list is kind of a hack and doesn't leverage the [XML-RPC](https://en.wikipedia.org/wiki/XML-RPC) backend of ROS.
 However, it is the simpler approach, which is why I used it for the first/current version of this plugin. 
 
 The snippet to get the output of a ros command executed from a roscpp node ([source](https://stackoverflow.com/questions/478898/how-do-i-execute-a-command-and-get-the-output-of-the-command-within-c-using-po)):
