@@ -143,9 +143,9 @@ Using roscpp makes it harder to get the required information.
 
 The following list the three approaches to get information from the ROS master:
 
-- [rosapi](http://wiki.ros.org/rosapi) not covered here because it would require adding it as another dependency (reference [answer](https://answers.ros.org/question/152481/get-service-type-from-c/)).
-- [XML-RPC](https://en.wikipedia.org/wiki/XML-RPC) calls using [ROS Master API]() This would be the way to go if the plugin was written in Python. The ROS Master API seems to be incomplete for C++ (reference [answer](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/)).
-- [Calling terminal commands from C++]() A hacky solution to execute ros commands such as `rosservice list` within C++.
+- [rosapi](http://wiki.ros.org/rosapi) not covered here because it would require adding it as another dependency (reference [answer](https://answers.ros.org/question/152481/get-service-type-from-c/), [example](https://answers.ros.org/question/108176/how-to-list-all-topicsservices-that-are-known-by-the-server-with-roscpp/)).
+- [XML-RPC](https://en.wikipedia.org/wiki/XML-RPC) calls using [ROS Master API](http://wiki.ros.org/ROS/Master_API) This would be the way to go if the plugin was written in Python. The ROS Master API seems to be incomplete for C++ (reference [answer](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/)).
+- [Calling terminal commands from C++](https://stackoverflow.com/questions/478898/how-do-i-execute-a-command-and-get-the-output-of-the-command-within-c-using-po) A hacky solution to execute ros commands such as `rosservice list` within C++.
 
 
 #### Command Line Interface Approach
