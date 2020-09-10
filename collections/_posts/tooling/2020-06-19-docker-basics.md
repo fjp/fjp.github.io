@@ -84,8 +84,43 @@ docker run --rm --name debugmycontainer -it \
 This will overwrite the default `ENTRYPOINT` (which would execute the main script otherwise) to execute a bash shell in a container named `debugmycontainer`.
 
 When running the container, you will find yourself inside the `/app` directory, which is the path to the workspace of this docker container.
-From there it is possible to work like you are in a linux terminal, use `cd` or execute stuff. 
+From there it is possible to work like you are in a linux terminal, use `cd` or execute stuff.
 
+
+## Test .dockerignore
+
+To test which files will be used for the build context use the following build command 
+([source](https://stackoverflow.com/questions/38946683/how-to-test-dockerignore-file):
+
+```console
+docker image build -t build-context -f - . <<EOF
+FROM busybox
+COPY . /build-context
+WORKDIR /build-context
+CMD find .
+EOF
+```
+
+This will create an image with the current folder's build context.
+
+Once created, run the container and inspect the contents of the `/build-context` directory which includes everything not excluded by the `.dockerignore` file.
+The following will run the default find command, specified in the image:
+
+```console
+docker container run --rm build-context
+```
+
+Another option is to ionspect it from a shell:
+
+```console
+docker container run --rm -it build-context /bin/sh
+```
+
+You can then cleanup with:
+
+```console
+docker image rm build-context
+```
 
 ## Essential Docker commands:
 
