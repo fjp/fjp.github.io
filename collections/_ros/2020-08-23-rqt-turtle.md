@@ -141,6 +141,18 @@ The following image shows the design of the `rqt_turtle` plugin. On the right yo
 PLUGINLIB_EXPORT_CLASS(rqt_turtle::TurtlePlugin, rqt_gui_cpp::Plugin)
 ```
 
+Most of the buttons in `rqt_turtle` open a new dialog. Currently there are two different dialog implementations:
+
+- `ServiceCaller.ui` for Teleport Abs, Teleport Rel buttons
+- `Draw.ui` for the Draw button
+
+For each ui there exists a class that inherits from [`QDialog`](https://doc.qt.io/qt-5/qdialog.html).
+This allows us to show a modal dialog, blocking until the user closes it with the [`int QDialog::exec()`](https://doc.qt.io/qt-5/qdialog.html#exec) method.
+Depending on what the user pressed in the dialog it's possible to call `void QDialog::accept()` or [`void QDialog::reject()`](https://doc.qt.io/qt-5/qdialog.html#reject) slots which will hide the dialog and set the return value of the `QDialog::exec()` method. 
+Note, that instead of `QDialog::exec()` [`QDialog::open()`](https://doc.qt.io/qt-5/qdialog.html#open) 
+should be used in combination with the [`void QDialog::finished(int result)`](https://doc.qt.io/qt-5/qdialog.html#finished) signal.
+`
+
 ### Service Caller
 
 ROS provides the `rosservice` tool which has the `list` subcommand to list all the available services that are 
@@ -156,6 +168,11 @@ The following list shows three approaches to get information from the ROS master
 - [rosapi](http://wiki.ros.org/rosapi) not covered here because it would require adding it as another dependency (reference [answer](https://answers.ros.org/question/152481/get-service-type-from-c/), [example](https://answers.ros.org/question/108176/how-to-list-all-topicsservices-that-are-known-by-the-server-with-roscpp/)).
 - [XML-RPC](https://en.wikipedia.org/wiki/XML-RPC) calls using [ROS Master API](http://wiki.ros.org/ROS/Master_API) This would be the way to go if the plugin was written in Python. The ROS Master API seems to be incomplete for C++ (reference [answer](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/)).
 - [Calling terminal commands from C++](https://stackoverflow.com/questions/478898/how-do-i-execute-a-command-and-get-the-output-of-the-command-within-c-using-po) A hacky solution to execute ros commands such as `rosservice list` within C++.
+
+
+### Draw Dialog
+
+
 
 
 #### Command Line Interface Approach
