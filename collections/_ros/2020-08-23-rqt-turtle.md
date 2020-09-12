@@ -93,7 +93,13 @@ Now create the `plugin.xml` with the following content:
 </library>
 ```
 
-A description of these attributes is found in the [rqt tutorial](http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin#Attributes_of_library_element_in_plugin.xml).
+A description of these xml attributes is found in the [rqt tutorial](http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin#Attributes_of_library_element_in_plugin.xml).
+
+The first attribute `library path` specifies the path to the library `librqt_turtle.so` which makes the plugin discoverable for rqt.
+In this case the installed plugin library can be found in the ros workspace inside the `devel/lib/` folder.
+
+The `rqt_turtle` plugin will be grouped into the existing Robot Tools menu of `rqt` with the icon type `input-table`. The names
+for other icons can be found in the [Icon Naming Specification](https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html).
 
 
 ## Design the UI
