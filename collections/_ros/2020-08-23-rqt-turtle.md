@@ -56,9 +56,11 @@ $ catkin create pkg rqt_turtle \
     --catkin-deps roscpp rqt_gui rqt_gui_cpp
 ```
 
-## Modify package.xml
+## Modify the package content
 
-To make the rqt plugin discoverable, for catkin, you must declare the plugin in the `package.xml` by referencing a `plugin.xml`.
+### package.xml
+
+To make the rqt plugin discoverable, for catkin, we must declare the plugin in the `package.xml` by referencing a `plugin.xml`.
 
 ```xml
   <!-- The export tag contains other, unspecified, tags -->
@@ -67,6 +69,8 @@ To make the rqt plugin discoverable, for catkin, you must declare the plugin in 
     <rqt_gui plugin="${prefix}/plugin.xml"/>
   </export>
 ```
+
+### plugin.xml
 
 Now create the `plugin.xml` with the following content:
 
@@ -147,7 +151,7 @@ Note that it would be easier to use rospy to obtain service infos from the maste
 Using roscpp makes it harder to get the required information.
 {: .notice }
 
-The following list the three approaches to get information from the ROS master:
+The following list shows three approaches to get information from the ROS master:
 
 - [rosapi](http://wiki.ros.org/rosapi) not covered here because it would require adding it as another dependency (reference [answer](https://answers.ros.org/question/152481/get-service-type-from-c/), [example](https://answers.ros.org/question/108176/how-to-list-all-topicsservices-that-are-known-by-the-server-with-roscpp/)).
 - [XML-RPC](https://en.wikipedia.org/wiki/XML-RPC) calls using [ROS Master API](http://wiki.ros.org/ROS/Master_API) This would be the way to go if the plugin was written in Python. The ROS Master API seems to be incomplete for C++ (reference [answer](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/)).
@@ -157,9 +161,9 @@ The following list the three approaches to get information from the ROS master:
 #### Command Line Interface Approach
 
 This approach, to get for example the service list is kind of a hack and doesn't leverage the [XML-RPC](https://en.wikipedia.org/wiki/XML-RPC) backend of ROS.
-However, it is the simpler approach, which is why I used it for the first/current version of this plugin. 
+However, it is the simpler approach, which is why it's used for the first/current version of this plugin.
 
-The snippet to get the output of a ros command executed from a roscpp node ([source](https://stackoverflow.com/questions/478898/how-do-i-execute-a-command-and-get-the-output-of-the-command-within-c-using-po)):
+The following C++ snippet shows how to get the output of a terminal command ([source](https://stackoverflow.com/questions/478898/how-do-i-execute-a-command-and-get-the-output-of-the-command-within-c-using-po)). In this plugin it's used to get the output of ros commands within a `roscpp` node.
 
 ```cpp
 #include <cstdio>
@@ -184,14 +188,14 @@ std::string exec(const char* cmd) {
 ```
 
 
-#### XMLRPC Approach
+#### XML-RPC Approach
 
-This approach is currently not implemented. Instead the CLI approach is used to call ros commands within a roscpp node.
+This approach is currently not implemented. Instead the CLI approach described above is used to call ros commands within a roscpp node.
 {: .notice }
 
 To get the service list in our C++ code we can make use
-of XMLRPC which ROS uses under the hood for its communication. With it we can query the 
-ROS master through its [ROS Master API](http://wiki.ros.org/ROS/Master_API).
+of XML-RPC which ROS uses under the hood for its communication. With it we can query the 
+ROS master through the [ROS Master API](http://wiki.ros.org/ROS/Master_API).
 
 First we need to include the `master.h`:
 
@@ -251,9 +255,6 @@ for(int x=0; x < num_services; x++)
 }
 ```
 
-
-
-
 <details markdown="1"><summary>Expand for an alternative solution.</summary>
 
 An alternative to the above snippet would be to use [`TinyXML`](http://www.grinninglizard.com/tinyxmldocs/index.html), a C++ XML parsing library.
@@ -301,12 +302,10 @@ TiXmlHandle hRoot(0);
     }
 }
 ```
-
 </details>
 
 
-
-Useful references for working with XMLRPC in the roscpp client library are this [answer](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/?answer=152421#post-id-152421) and the [ROS Master API Wiki page](http://wiki.ros.org/ROS/Master_API).
+Useful references for working with XML-RPC in the roscpp client library are this [answer](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/?answer=152421#post-id-152421) and the [ROS Master API Wiki page](http://wiki.ros.org/ROS/Master_API).
 
 
 ## Install and Run your Plugin
