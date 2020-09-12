@@ -151,7 +151,7 @@ This allows us to show a modal dialog, blocking until the user closes it with th
 Depending on what the user pressed in the dialog it's possible to call `void QDialog::accept()` or [`void QDialog::reject()`](https://doc.qt.io/qt-5/qdialog.html#reject) slots which will hide the dialog and set the return value of the `QDialog::exec()` method. 
 Note, that instead of `QDialog::exec()` [`QDialog::open()`](https://doc.qt.io/qt-5/qdialog.html#open) 
 should be used in combination with the [`void QDialog::finished(int result)`](https://doc.qt.io/qt-5/qdialog.html#finished) signal.
-`
+
 
 ### Service Caller
 
@@ -172,7 +172,9 @@ The following list shows three approaches to get information from the ROS master
 
 ### Draw Dialog
 
-
+The `Draw.ui` specifies a `DrawWidget` that is used as a `QDialog`. 
+It provides two tabs, one to draw a shape using the `turtle_shape` service from the [`turtle_actionlib`](http://wiki.ros.org/turtle_actionlib).
+And the second tab to let one or more turtles draw an image.
 
 
 #### Command Line Interface Approach
