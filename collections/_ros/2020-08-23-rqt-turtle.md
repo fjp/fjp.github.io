@@ -170,13 +170,6 @@ The following list shows three approaches to get information from the ROS master
 - [Calling terminal commands from C++](https://stackoverflow.com/questions/478898/how-do-i-execute-a-command-and-get-the-output-of-the-command-within-c-using-po) A hacky solution to execute ros commands such as `rosservice list` within C++.
 
 
-### Draw Dialog
-
-The `Draw.ui` specifies a `DrawWidget` that is used as a `QDialog`. 
-It provides two tabs, one to draw a shape using the `turtle_shape` service from the [`turtle_actionlib`](http://wiki.ros.org/turtle_actionlib).
-And the second tab to let one or more turtles draw an image.
-
-
 #### Command Line Interface Approach
 
 This approach, to get for example the service list is kind of a hack and doesn't leverage the [XML-RPC](https://en.wikipedia.org/wiki/XML-RPC) backend of ROS.
@@ -325,6 +318,25 @@ TiXmlHandle hRoot(0);
 
 
 Useful references for working with XML-RPC in the roscpp client library are this [answer](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/?answer=152421#post-id-152421) and the [ROS Master API Wiki page](http://wiki.ros.org/ROS/Master_API).
+
+
+### Draw Dialog
+
+The `Draw.ui` specifies a `DrawWidget` that is used as a `QDialog`. 
+It provides two tabs, one to draw a shape using the `turtle_shape` service from the [`turtle_actionlib`](http://wiki.ros.org/turtle_actionlib).
+And the second tab to let one or more turtles draw an image.
+
+<details markdown="1"><summary>Expand for rqt turtle draw shape demo.</summary>
+
+![rqt_turtle-draw-shape](https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/rqt_turtle-draw-shape.gif)
+
+</details>
+
+<details markdown="1"><summary>Expand for rqt turtle draw image animation.</summary>
+
+![rqt_turtle-draw-image](https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/rqt_turtle-draw-image.gif)
+
+</details>
 
 
 ## Install and Run your Plugin
