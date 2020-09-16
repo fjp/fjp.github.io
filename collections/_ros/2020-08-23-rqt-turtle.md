@@ -136,6 +136,7 @@ The following image shows the design of the `rqt_turtle` plugin. On the right yo
 ## Write the Plugin Code
 
 
+### ROS Components
 
 ```cpp
 // Deprecated
@@ -143,6 +144,57 @@ The following image shows the design of the `rqt_turtle` plugin. On the right yo
 //PLUGINLIB_DECLARE_CLASS(rqt_turtle, TurtlePlugin, rqt_turtle::TurtlePlugin, rqt_gui_cpp::Plugin)
 PLUGINLIB_EXPORT_CLASS(rqt_turtle::TurtlePlugin, rqt_gui_cpp::Plugin)
 ```
+
+To obtain a list of existing turtles it would be possible to execute `rostopic list` from the command line and filter for the
+topics that include `/turtle_name/pose` or `/turtle_name/cmd_vel`. The same can be achieved within a [`roscpp`](http://docs.ros.org/noetic/api/roscpp/html/) 
+node using the [`bool ros::master::getTopics(V_TopicInfo& topics)`](http://docs.ros.org/noetic/api/roscpp/html/namespaceros_1_1master.html#aa922f42cf983b06edb4cf3de7d7ce211) method, see also [this example](https://stackoverflow.com/questions/26785675/ros-get-current-available-topic-in-code-not-command):
+
+```
+void TurtlePlugin::updateTurtleTree()
+{
+    // https://stackoverflow.com/questions/26785675/ros-get-current-available-topic-in-code-not-command
+    // Use XML-RPC ROS Master API to get the topic names
+    // Then filter for topics containing pose (which belongs to a turtle)
+    ros::master::V_TopicInfo master_topics;
+    ros::master::getTopics(master_topics);
+
+    ros::NodeHandle nh = getNodeHandle();
+    for (ros::master::V_TopicInfo::iterator it = master_topics.begin(); it != master_topics.end(); it++)
+    {
+        const ros::master::TopicInfo& info = *it;
+        ROS_INFO_STREAM("topic_" << it - master_topics.begin() << ": " << info.name);
+        QString topic_name = QString::fromStdString(info.name);
+        if (topic_name.contains(QString("/pose")))
+        {
+            QStringList topic_name_parts = topic_name.split(QRegExp("\\/"), QString::SkipEmptyParts);
+            std::string turtle_name = topic_name_parts[0].toStdString();
+            ROS_INFO("topic_name_part 0: %s", turtle_name.c_str());
+
+            // Wait for a single pose message to arrive on the turtlesim::Pose topic
+            turtlesim::PoseConstPtr pose = ros::topic::waitForMessage<turtlesim::Pose>(topic_name.toStdString());
+            ROS_INFO("Pose received: x: %f, y: %f, theta: %f", pose->x, pose->y, pose->theta);
+
+            // Create new turtle in turtle vector
+            // Note: assume that the pen is toggled on
+            QSharedPointer<Turtle> turtle = QSharedPointer<Turtle>(new Turtle(turtle_name, *pose));
+            turtles_[QString::fromStdString(turtle_name)] = turtle;
+        }
+    }
+
+    // Insert the turtles into the QTreeWidget
+    for (auto turtle : turtles_)
+    {
+        m_pUi->treeTurtles->insertTopLevelItem(0, turtle->toTreeItem(m_pUi->treeTurtles));
+    }
+}
+```
+
+The `TurtlePlugin::updateTurtleTree()` method can be called to get a list of currently active turtles in turtlesim. 
+This means that turtles can also be added the the `rosservice` command in another terminal and after refreshing the plugin the newly spawned turtles 
+will be listed.
+
+
+### Qt Components
 
 After designing UIs there are (at least) three possible ways to use them inside an application, which are explained in more detail in the [documentation](https://doc.qt.io/qt-5/designer-using-a-ui-file.html):
 
@@ -581,6 +633,11 @@ install(TARGETS ${PROJECT_NAME}
 To launch a rqt plugin make sure to read the [Running rqt User Guide](http://wiki.ros.org/rqt/UserGuide#Running_rqt).
 
 In case it is not working try to use some solutions from [this answer](https://answers.ros.org/question/166851/rqt-reconfigure-no-plugin-found/).
+
+
+## Future Work
+
+- Add tests using [rostest](http://wiki.ros.org/rostest/Writing) and [roslaunch test tag](http://wiki.ros.org/roslaunch/XML/test).
 
 
 ## References
