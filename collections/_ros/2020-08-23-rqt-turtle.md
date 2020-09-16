@@ -41,7 +41,7 @@ language that they are written in. As you will see later in this writeup, I had 
 For example using Python to obtain service or topic information such as types or arguments is much easier with Python.
 
 
-## Create Empty ROS Package
+## Create the Empty ROS Package
 
 The first step is to create an empty ROS package and specify the required dependencies. 
 Note, that it is possible to add missing dependencies later on.
@@ -134,6 +134,7 @@ The following image shows the design of the `rqt_turtle` plugin. On the right yo
 ## Write the Plugin Code
 
 
+
 ```cpp
 // Deprecated
 // See: http://wiki.ros.org/pluginlib#pluginlib.2Fpluginlib_groovy.Simplified_Export_Macro
@@ -141,29 +142,64 @@ The following image shows the design of the `rqt_turtle` plugin. On the right yo
 PLUGINLIB_EXPORT_CLASS(rqt_turtle::TurtlePlugin, rqt_gui_cpp::Plugin)
 ```
 
-Most of the buttons in `rqt_turtle` open a new dialog. Currently there are two different dialog implementations:
+After designing UIs there are (at least) three possible ways to use them inside an application, which are explained in more detail in the [documentation](https://doc.qt.io/qt-5/designer-using-a-ui-file.html):
 
-- `ServiceCaller.ui` for Teleport Abs, Teleport Rel buttons
-- `Draw.ui` for the Draw button
+- [Direct Approach](https://doc.qt.io/qt-5/designer-using-a-ui-file.html#the-direct-approach)
+- [Single Inheritance](https://doc.qt.io/qt-5/designer-using-a-ui-file.html#the-single-inheritance-approach)
+  - [Using a Member Variable](https://doc.qt.io/qt-5/designer-using-a-ui-file.html#using-a-member-variable)
+  - [Using a Pointer Member Variable](https://doc.qt.io/qt-5/designer-using-a-ui-file.html#using-a-pointer-member-variable) **recommended approach***
+- [Multiple Inheritance Approach](https://doc.qt.io/qt-5/designer-using-a-ui-file.html#the-multiple-inheritance-approach)
 
-For each ui there exists a class that inherits from [`QDialog`](https://doc.qt.io/qt-5/qdialog.html).
-This allows us to show a modal dialog, blocking until the user closes it with the [`int QDialog::exec()`](https://doc.qt.io/qt-5/qdialog.html#exec) method.
-Depending on what the user pressed in the dialog it's possible to call `void QDialog::accept()` or [`void QDialog::reject()`](https://doc.qt.io/qt-5/qdialog.html#reject) slots which will hide the dialog and set the return value of the `QDialog::exec()` method. 
+
+All of the approaches would work for `rqt_turtle` except the `Direct Approach` because it doesn't allow us to use custom slots.
+The reason to choose the `Single Inheritance using a Pointer Member Variable` approach is to avoid including the generated `ui_name_of_gui.h` inside the applications header file. Instead a forwrad declaradtion is made which allows to use the ui as pointer member. Then the generated `ui_name_of_gui.h`
+can only be included in the applications source (`cpp`) file. The `Single Inheritance using a Pointer Member Variable` approach is used for all
+ui files that are used in the `rqt_turtle` plugin.
+
+
+The Qt framework uses a [signal and slot mechanism](https://doc.qt.io/qt-5/signalsandslots.html) to allow the communication between objects.
+For the `rqt_turtle` plugin it is used to connect for example the buttons with the plugin's main class, called `TurtlePlugin`, which handles
+the button presses in its custom slots.
+
+The main `rqt_turtle` ui provides the following [QPushButton](https://doc.qt.io/qt-5/qpushbutton.html)s, which have their [`clicked()` signal](https://doc.qt.io/qt-5/qabstractbutton.html#clicked) connected to corresponding slots that do the acutal work:
+
+- Spawn: connected to the `void TurtlePlugin::on_btnSpawn_clicked()` slot to open a new ui `ServiceCaller.ui` dialog.
+- Reset: connected to the `void TurtlePlugin::on_btnReset_clicked()` which calls the [`reset` service](http://wiki.ros.org/turtlesim#Services) 
+of turtlesim to bring it to the start configuration and set the background color to the value of the currently set background parameters.
+- Color: connected to the `on_btnColor_clicked` slot which sets the RGB color values on the [ROS parameter server](http://wiki.ros.org/Parameter%20Server) 
+used by turtlesim as background color, see [turtlesim parameters](http://wiki.ros.org/turtlesim#Parameters). 
+After changing the color, the [`clear` service](http://wiki.ros.org/turtlesim#Services) is called to immediately update the new color.
+
+The Spawn button and the two Teleport Abs and Teleport Rel buttons open a new dialog. Currently there are three different dialog implementations:
+
+- `ServiceCaller.ui` for "Spawn", "Teleport Abs" and "Teleport Rel" buttons.
+- `Draw.ui` for the Draw button.
+- `Task.ui` called within the Draw dialog to show the drawing progress.
+
+For each ui there exists a class that inherits from [`QDialog`](https://doc.qt.io/qt-5/qdialog.html) - 
+following the same `Single Inheritance using a Pointer Member Variable` approach described above.
+This allows us to show a modal dialog with the [`int QDialog::exec()`](https://doc.qt.io/qt-5/qdialog.html#exec) method, 
+that can be blocked until the user closes it. Depending on what the user pressed in the dialog it's possible to call 
+[`void QDialog::accept()`](https://doc.qt.io/qt-5/qdialog.html#accept) or  [`void QDialog::reject()`](https://doc.qt.io/qt-5/qdialog.html#reject) 
+slots which will hide the dialog and set the return value of the `QDialog::exec()` method. 
 Note, that instead of `QDialog::exec()` [`QDialog::open()`](https://doc.qt.io/qt-5/qdialog.html#open) 
-should be used in combination with the [`void QDialog::finished(int result)`](https://doc.qt.io/qt-5/qdialog.html#finished) signal.
+is recommended to be used in combination with the [`void QDialog::finished(int result)`](https://doc.qt.io/qt-5/qdialog.html#finished) signal.
 
+The following two sections will describe `ServiceCaller`, `Draw` and `Task` uis in more detail.
 
 ### Service Caller
+
+The `ServiceCaller` class together with it's ui is used to call the available [services of turtlesim](http://wiki.ros.org/turtlesim#Services).
 
 ROS provides the `rosservice` tool which has the `list` subcommand to list all the available services that are 
 currently registered with the ROS master.
 
 
-Note that it would be easier to use rospy to obtain service infos from the master.
-Using roscpp makes it harder to get the required information.
+Note that it would be easier to use `rospy` to obtain service infos from the master.
+Using `roscpp` makes it harder to get the required information.
 {: .notice }
 
-The following list shows three approaches to get information from the ROS master:
+The following list shows three approaches to get information from the ROS master when using `roscpp`:
 
 - [rosapi](http://wiki.ros.org/rosapi) not covered here because it would require adding it as another dependency (reference [answer](https://answers.ros.org/question/152481/get-service-type-from-c/), [example](https://answers.ros.org/question/108176/how-to-list-all-topicsservices-that-are-known-by-the-server-with-roscpp/)).
 - [XML-RPC](https://en.wikipedia.org/wiki/XML-RPC) calls using [ROS Master API](http://wiki.ros.org/ROS/Master_API) This would be the way to go if the plugin was written in Python. The ROS Master API seems to be incomplete for C++ (reference [answer](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/)).
