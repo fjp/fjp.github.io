@@ -29,7 +29,9 @@ Although the following description might help you to write your own rqt plugin, 
 There are tutorials explaining how to write plugins using python or C++. The `rqt_turtle` plugin is written in C++.
 The [source code](https://github.com/fjp/rqt-turtle) is hosted on GitHub.
 
-The code tries to follow the [ROS CppStyleGuide](http://wiki.ros.org/CppStyleGuide) and the code API documentation can be created with [doxygen](http://wiki.ros.org/Doxygen).
+The code tries to follow the [ROS CppStyleGuide](http://wiki.ros.org/CppStyleGuide) and the code API documentation can be created with [doxygen](http://wiki.ros.org/Doxygen). The code was written with the [vscode ROS plugin](https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros)
+that allows to debug rqt plugins using attach to process method. 
+See the [documentation](https://github.com/ms-iot/vscode-ros/blob/master/doc/debug-support.md) on how to setup debugging and its debugging capabilities.
 
 ## C++ vs Python
 
@@ -170,7 +172,8 @@ of turtlesim to bring it to the start configuration and set the background color
 used by turtlesim as background color, see [turtlesim parameters](http://wiki.ros.org/turtlesim#Parameters). 
 After changing the color, the [`clear` service](http://wiki.ros.org/turtlesim#Services) is called to immediately update the new color.
 
-The Spawn button and the two Teleport Abs and Teleport Rel buttons open a new dialog. Currently there are three different dialog implementations:
+The `Spawn` button and the two `Teleport Abs` and `Teleport Rel` buttons open a new dialog window. 
+Currently there are three different dialog implementations:
 
 - `ServiceCaller.ui` for "Spawn", "Teleport Abs" and "Teleport Rel" buttons.
 - `Draw.ui` for the Draw button.
@@ -186,6 +189,11 @@ Note, that instead of `QDialog::exec()` [`QDialog::open()`](https://doc.qt.io/qt
 is recommended to be used in combination with the [`void QDialog::finished(int result)`](https://doc.qt.io/qt-5/qdialog.html#finished) signal.
 
 The following two sections will describe `ServiceCaller`, `Draw` and `Task` uis in more detail.
+
+One way to get data from a dialog is to implement a member function to obtain it.
+[Example1](https://stackoverflow.com/questions/3585774/how-to-pass-data-from-a-qdialog), [Example2](https://www.qtcentre.org/threads/25690-How-to-pass-data-from-QDialog-to-MainWindow). 
+However, for this plugin this method is not required because no data will be directly returned from a dialog.
+{: .notice }
 
 ### Service Caller
 
