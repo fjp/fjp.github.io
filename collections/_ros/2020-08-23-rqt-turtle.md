@@ -149,7 +149,7 @@ To obtain a list of existing turtles it would be possible to execute `rostopic l
 topics that include `/turtle_name/pose` or `/turtle_name/cmd_vel`. The same can be achieved within a [`roscpp`](http://docs.ros.org/noetic/api/roscpp/html/) 
 node using the [`bool ros::master::getTopics(V_TopicInfo& topics)`](http://docs.ros.org/noetic/api/roscpp/html/namespaceros_1_1master.html#aa922f42cf983b06edb4cf3de7d7ce211) method, see also [this example](https://stackoverflow.com/questions/26785675/ros-get-current-available-topic-in-code-not-command):
 
-```
+```cpp
 void TurtlePlugin::updateTurtleTree()
 {
     // https://stackoverflow.com/questions/26785675/ros-get-current-available-topic-in-code-not-command
@@ -211,9 +211,63 @@ can only be included in the applications source (`cpp`) file. The `Single Inheri
 ui files that are used in the `rqt_turtle` plugin.
 
 
+### Signal and Slots
+
 The Qt framework uses a [signal and slot mechanism](https://doc.qt.io/qt-5/signalsandslots.html) to allow the communication between objects.
 For the `rqt_turtle` plugin it is used to connect for example the buttons with the plugin's main class, called `TurtlePlugin`, which handles
 the button presses in its custom slots.
+
+All the available turtles inside turtlesim are displayd in the `treeTurtle` widget of type [`QTreeWidget`](https://doc.qt.io/qt-5/qtreewidget.html).
+For this the previously mentioned `TurtlePlugin::updateTurtleTree()` is used. One important feature of the `treeTurtle` is to obtain the selected turtles.
+This is done by connecting the `QTreeWidget::itemSelectionChanged()` signal of `treeTurtle`
+
+```cpp
+connect(ui_->treeTurtles, SIGNAL(itemSelectionChanged()), 
+                this, SLOT(on_selection_changed()));
+```
+
+with the custom `TurtlePlugin::on_selection_chagned()` slot:
+
+```cpp
+void TurtlePlugin::on_selection_changed()
+{
+    // Get list of selected turtles
+    auto selected_items = m_pUi->treeTurtles->selectedItems();
+    selected_turtles_.clear();
+    if (selected_items.empty())
+    {
+        return;
+    }
+    QString turtle_name;
+    std::stringstream ss;
+    for (auto item : selected_items)
+    {
+        turtle_name = item->text(0);
+        selected_turtles_.push_back(turtle_name);
+        ss << str(turtle_name) << " ";
+    }
+    ROS_INFO("Selected %s", ss.str().c_str());
+}
+```
+
+This will store the currently selected turtle names as [`QString`](https://doc.qt.io/qt-5/qstring.html)s in the member variable `selected_turtles_` of type `QVector<QString>`.
+If no turtles are selected the vector will be empty.
+
+To store the turtles with their settings the plugin uses [`QMap`](https://doc.qt.io/qt-5/qmap.html)
+
+```cpp
+/// Vector to keep track of all turtles (keep turtles on the heap using vector of shared pointers)
+QMap<QString, QSharedPointer<Turtle> > turtles_;
+```
+
+This maps the `QString` turtle names, for example obtained from `selected_turtles_`, to `Turtle` object pointers of type [`QSharedPointer<Turtle>`](https://doc.qt.io/qt-5/qsharedpointer.html). The `Turtle` class is used to encapsulate a turtle's [`turtlesim::Pose`](http://docs.ros.org/noetic/api/turtlesim/html/msg/Pose.html), [`turtlesim::SetPen`](http://docs.ros.org/noetic/api/turtlesim/html/srv/SetPen.html) and name.
+The `QSharedPointer` take care to delete turtles when no references are pointing to them.
+
+
+There exist also `QTreeView` or `QListView` elements inside Qt but those don't provide as much functionality than their `*Widget` counterparts do.
+If you plan the implement such elements using your own functionality then probably the right choice is to use the rudimentary `*View` elements.
+Otherwise the `*Widget` will be the right choice.
+{: .notice }
 
 The main `rqt_turtle` ui provides the following [QPushButton](https://doc.qt.io/qt-5/qpushbutton.html)s, which have their [`clicked()` signal](https://doc.qt.io/qt-5/qabstractbutton.html#clicked) connected to corresponding slots that do the acutal work:
 
@@ -240,11 +294,10 @@ slots which will hide the dialog and set the return value of the `QDialog::exec(
 Note, that instead of `QDialog::exec()` [`QDialog::open()`](https://doc.qt.io/qt-5/qdialog.html#open) 
 is recommended to be used in combination with the [`void QDialog::finished(int result)`](https://doc.qt.io/qt-5/qdialog.html#finished) signal.
 
-The following two sections will describe `ServiceCaller`, `Draw` and `Task` uis in more detail.
+The following two sections will describe `ServiceCaller`, `Draw` and `Task` uis and their corresponding classes in more detail.
 
 One way to get data from a dialog is to implement a member function to obtain it.
-[Example1](https://stackoverflow.com/questions/3585774/how-to-pass-data-from-a-qdialog), [Example2](https://www.qtcentre.org/threads/25690-How-to-pass-data-from-QDialog-to-MainWindow). 
-However, for this plugin this method is not required because no data will be directly returned from a dialog.
+[Example1](https://stackoverflow.com/questions/3585774/how-to-pass-data-from-a-qdialog), [Example2](https://www.qtcentre.org/threads/25690-How-to-pass-data-from-QDialog-to-MainWindow). For this plugin this method is required to obtain the service message data entered by the user.
 {: .notice }
 
 ### Service Caller
@@ -263,7 +316,88 @@ The following list shows three approaches to get information from the ROS master
 
 - [rosapi](http://wiki.ros.org/rosapi) not covered here because it would require adding it as another dependency (reference [answer](https://answers.ros.org/question/152481/get-service-type-from-c/), [example](https://answers.ros.org/question/108176/how-to-list-all-topicsservices-that-are-known-by-the-server-with-roscpp/)).
 - [XML-RPC](https://en.wikipedia.org/wiki/XML-RPC) calls using [ROS Master API](http://wiki.ros.org/ROS/Master_API) This would be the way to go if the plugin was written in Python. The ROS Master API seems to be incomplete for C++ (reference [answer](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/)).
-- [Calling terminal commands from C++](https://stackoverflow.com/questions/478898/how-do-i-execute-a-command-and-get-the-output-of-the-command-within-c-using-po) A hacky solution to execute ros commands such as `rosservice list` within C++.
+- [Calling terminal commands from C++](https://stackoverflow.com/questions/478898/how-do-i-execute-a-command-and-get-the-output-of-the-command-within-c-using-po) A hacky solution to execute ros commands such as `rosservice list` within C++. The details of this approach are explained in the next section.
+
+Before that, it is worth mentioning how the service calls are implemented:
+
+For example the `Spawn`, `Teleport Abs` and `Teleport Rel` service calls make use of the [`ros::service::calls()`] method.
+After pressing one of the buttons a new `ServiceCaller` class is created with the `TurtlePlugin::widget_` member as parent and the desired service name.
+
+```cpp
+std::string service_name = "/spawn";
+service_caller_dialog_ = new ServiceCaller(widget_, service_name);
+```
+
+The name is used to fill the `ServiceCaller::ui_::request_tree_widget`. For this the mentioned `rosservice args` command is called from within 
+the `ServiceCaller::createTreeItems(std::string service_name)` method:
+
+```cpp
+void ServiceCaller::createTreeItems(std::string service_name)
+{
+    ROS_INFO("Create Tree Items for service %s", service_name.c_str());
+
+    // Get service type and args
+    std::string cmd_type = "rosservice type " + service_name;
+    ROS_INFO("cmd_type: %s", cmd_type.c_str());
+    std::string service_type = exec_cmd(cmd_type);
+    std::string cmd_args = "rosservice args " + service_name;
+    std::string service_args = exec_cmd(cmd_args);
+    QString qstr_service_args_line = QString::fromStdString(service_args);
+    ROS_INFO("Service args: %s", qstr_service_args_line.toStdString().c_str());
+    QStringList qstr_args = qstr_service_args_line.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+
+    // https://doc.qt.io/qt-5/qtreewidget.html#details
+    QList<QTreeWidgetItem *> items;
+    for (int i = 0; i < qstr_args.size(); ++i)
+    {
+        QStringList i_args;
+        i_args.append(qstr_args[i]);
+        // TODO type
+        i_args.append(QString::fromStdString("float32"));
+        // TODO init value depending on type
+        i_args.append(QString::fromStdString("0.0"));
+        QTreeWidgetItem* item = new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr), i_args);
+        item->setFlags(Qt::ItemIsEditable|Qt::ItemIsEnabled);
+        items.append(item);
+    }
+    m_pUi->request_tree_widget->insertTopLevelItems(0, items);
+}
+```
+
+Here, `request_tree_widget` is filled with the service arguments, see the `Spawn` service as an example in the following figure:
+
+TODO figure
+
+In the current implementation the types are not checked, see future work section below.
+{: .notice }
+
+After the user enters the desired pose and name of the turtle (when the `spawn` service was used) the data can be obtained in the `TurtlePlugin` class
+with the `QVariantMap ServiceCaller::getRequest()` method:
+
+```cpp
+QVariantMap ServiceCaller::getRequest()
+{
+    QVariantMap map;
+
+    // https://doc.qt.io/archives/qt-4.8/qtreewidgetitemiterator.html#details
+    QTreeWidgetItemIterator it(m_pUi->request_tree_widget);
+    while (*it)
+    {
+        QString variable = (*it)->text(0);
+        map[variable] = (*it)->text(2);
+        ++it;
+    }
+    return map;
+}
+```
+
+It returns a [`QVariantMap`](https://doc.qt.io/archives/qt-5.5/qvariant.html#QVariantMap-typedef) that is a `QMap<QString, QVariant>`.
+Using [`QVariant`](https://doc.qt.io/archives/qt-5.5/qvariant.html) as value is useful to deal with different types of data, for example `string` and `float`. 
+With this the caller (in this case `TurtlePlugin`) knows what to expect from the `ServiceCaller` class and the `ServiceCaller` can be reused for [services
+provided by turtlesim](http://wiki.ros.org/turtlesim#Services).
+
+The ServiceCaller cannot handle nested service messages. For this use the [rqt service caller](http://wiki.ros.org/rqt_service_caller) plugin.
+{: .notice }
 
 
 #### Command Line Interface Approach
@@ -414,6 +548,9 @@ TiXmlHandle hRoot(0);
 
 
 Useful references for working with XML-RPC in the roscpp client library are this [answer](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/?answer=152421#post-id-152421) and the [ROS Master API Wiki page](http://wiki.ros.org/ROS/Master_API).
+
+
+### 
 
 
 ### Draw Dialog
@@ -638,6 +775,7 @@ In case it is not working try to use some solutions from [this answer](https://a
 ## Future Work
 
 - Add tests using [rostest](http://wiki.ros.org/rostest/Writing) and [roslaunch test tag](http://wiki.ros.org/roslaunch/XML/test).
+- Use `rossrv show` to get the type of a rosservice and use the information for the `request_tree_widget` of the `ServiceCaller.ui`.
 
 
 ## References
