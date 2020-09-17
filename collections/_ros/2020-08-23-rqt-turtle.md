@@ -32,6 +32,10 @@ The final plugin looks like this:
     <figcaption>Loaded rqt turtle plugin.</figcaption>
 </figure>
 
+The video below gives more insights on what is currently implemented:
+
+[![rqt turtle YouTube](http://img.youtube.com/vi/2IQtxEmP2a4/0.jpg)](https://youtu.be/2IQtxEmP2a4)
+
 The plugin can be used to draw inside [turtlesim](http://wiki.ros.org/turtlesim) with turtlebot.
 Although the following description might help you to write your own rqt plugin, also have a look at the official [rqt tutorials](http://wiki.ros.org/rqt/Tutorials). 
 There are tutorials explaining how to write plugins using python or C++. The `rqt_turtle` plugin is written in C++.
@@ -81,6 +85,8 @@ To make the rqt plugin discoverable, for catkin, we must declare the plugin in t
     <rqt_gui plugin="${prefix}/plugin.xml"/>
   </export>
 ```
+
+For more information see the [catkin library dependencies](http://docs.ros.org/indigo/api/catkin/html/howto/format2/catkin_library_dependencies.html).
 
 ### plugin.xml
 
@@ -745,23 +751,32 @@ Other related references to [`actionlib`](http://wiki.ros.org/actionlib?distro=n
 
 #### Draw Image
 
-With the plugin it's also possible to select an image from disk and let multiple turtles draw the contours.
+With the plugin it's also possible to select an image from disk with the [`QFileDialog`](https://doc.qt.io/qt-5/qfiledialog.html) ([set to the home directory](https://stackoverflow.com/questions/14033720/qfiledialog-how-to-specify-home-directory) by default) and let multiple turtles draw the contours.
 
 ![rqt_turtle-draw-image](https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/rqt_turtle-draw-image-multi.gif)
 
 The contours are found with [`Canny()`](https://docs.opencv.org/2.4/modules/imgproc/doc/feature_detection.html?highlight=canny#canny) and 
 [`findContours`](https://docs.opencv.org/2.4/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html?highlight=findcontours#findcontours) from OpenCV. 
 The slider in the gui allows you to set the low threshold of the canny edge detection algorithm which will change the number of detected edges.
+A [helpful resource](https://doc.qt.io/qt-5/qobject.html) to convert a `cv::Mat`, used by OpenCV, to a [`QImage`](https://doc.qt.io/qt-5/qimage.html) is this line of code:
+
+```cpp
+QImage imgIn= QImage((uchar*) img.data, img.cols, img.rows, img.step, QImage::Format_RGB888);
+```
+
+It is used to display the edge image inside the [`Draw.ui`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/resources/Draw.ui) using a QLabel by setting its [`QPixmap`](https://doc.qt.io/qt-5/qpixmap.html).
+See the [image viewer example](https://doc.qt.io/qt-5/qtwidgets-widgets-imageviewer-example.html) for a good reference on what can be done this way.
 
 
 For more information on OpenCV Canny and finding contours, see
 - [Find contours](https://docs.opencv.org/2.4/doc/tutorials/imgproc/shapedescriptors/find_contours/find_contours.html)
 - [tutorial_py_canny](https://docs.opencv.org/trunk/da/d22/tutorial_py_canny.html)
 - [canny detector](https://docs.opencv.org/2.4/doc/tutorials/imgproc/imgtrans/canny_detector/canny_detector.html)
+- [turotial canny detector](https://docs.opencv.org/3.4/da/d5c/tutorial_canny_detector.html)
 
 
 To draw the image faster, using multiple turtles, [`QThreadpool`](https://doc.qt.io/qt-5/qthreadpool.html) together with [`QRunnable`](https://doc.qt.io/qt-5/qrunnable.html) is used.
-For this, the [`ImageWorker`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/image_worker.cpp) class inherits from `QRunnable` and `QObject` to allow the usage of Qt signals. In this case a `progress(QString name, int progress)`
+For this, the [`ImageWorker`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/image_worker.cpp) class inherits from `QRunnable` and [`QObject`](https://doc.qt.io/qt-5/qobject.html) to allow the usage of Qt signals. In this case a `progress(QString name, int progress)`
 and `finished(QString name)` is used to update the progress of multiple workers.
 
 The following class shows the header of the `ImageWorker` class. For the source code, please refer to the [`image_worker.cpp`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/image_worker.cpp).
@@ -806,12 +821,16 @@ public slots:
 
 ### CMakeLists.txt
 
-Configure the `CMakeLists.txt` using Qt macros. Note that these are old and there exist new `AUTOMOC` options in modern CMake.
+Configure the [`CMakeLists.txt`](http://wiki.ros.org/catkin/CMakeLists.txt) using Qt macros, 
+see also [Qt's Build with CMake](https://doc.qt.io/qt-5/cmake-manual.html#qt5widgets-macros).
+The following macros create rules for calling the [Meta-Object compiler (moc)](https://doc.qt.io/qt-5/moc.html) on the given source/ui file.
 
-Helpful resources:
-- [SO](https://stackoverflow.com/questions/16245147/unable-to-include-a-ui-form-header-of-qt5-in-cmake)
-- [`qt5_wrap_ui`](https://doc.qt.io/qt-5/qtwidgets-cmake-qt5-wrap-ui.html)
+- [`qt5_wrap_ui`](https://doc.qt.io/qt-5/qtwidgets-cmake-qt5-wrap-ui.html) the command will configure the project to process `*.ui` 
+files into valid C++ `ui_XXXX.h`, [source](https://stackoverflow.com/questions/16245147/unable-to-include-a-ui-form-header-of-qt5-in-cmake), [source](https://stackoverflow.com/questions/19761767/qt-5-cmake-fails-with-undefined-reference-to-vtable-on-hello-world-with-inc-sr).
 - [`qt5_wrap_cpp`](https://doc.qt.io/qt-5/qtcore-cmake-qt5-wrap-cpp.html)
+
+Note that these are old and there exist new [`AUTOMOC`](https://cmake.org/cmake/help/v3.0/manual/cmake-qt.7.html#automoc) ([source](https://stackoverflow.com/questions/25875255/cmake-qt5-qt5-wrap-ui-not-generating-ui-header-files)) and [`AUTOUIC`](https://cmake.org/cmake/help/v3.0/manual/cmake-qt.7.html#autouic) options in modern CMake.
+{: .notice }
 
 Note: `ui_XXXX.h` files are generated in the build directory `${CMAKE_CURRENT_BINARY_DIR}`. This is why we need to use these `set` commands:
 
@@ -834,16 +853,19 @@ devel space. TODO confirm this?
 find_package(class_loader)
 class_loader_hide_library_symbols(${PROJECT_NAME})
 ```
+### Faced Problems
 
+The original plan was to reuse the service caller and topic caller rqt plugins. However, these plugins are written in Python which
+makes it hard to use the ui files because they reference some Python specific Qt widgets that are not available in C++.
 
 To make use of other rqt plugins follow this tutorial and understand [What does `find_package()` do](http://wiki.ros.org/catkin/CMakeLists.txt#Finding_Dependent_CMake_Packages). Also this [answer](https://answers.ros.org/question/201977/include-header-file-from-another-package-indigo/) might be helpful.
 
 
 The problem with these approaches are that most of the plugins are written in Python.
-The promote widget method will work if your plugins use the same programming language because Python doesn't create a header file.
+The [promote widget method](https://doc.qt.io/archives/qt-4.8/designer-using-custom-widgets.html) will work if your plugins use the same programming language because Python doesn't create a header file.
 
-Another problem was that the other plugins don't generate a Cmake.config file which would allow to export the plugin headers and/or their ui files using the [`catkin_package()`](http://wiki.ros.org/catkin/CMakeLists.txt#catkin_package.28.29) macro. 
-This is why I just copied the ui files from `ServiceCaller.ui` and ... into the resources folder of the `rqt_turtle` plugin.
+Another problem was that the other plugins don't generate a [PackageNameConfig.cmake](https://cmake.org/cmake/help/v3.0/manual/cmake-packages.7.html#config-file-packages) file which would allow to export the plugin headers and/or their ui files using the [`catkin_package()`](http://wiki.ros.org/catkin/CMakeLists.txt#catkin_package.28.29) macro. 
+This is why I just copied the ui files from [`ServiceCaller.ui`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/resources/ServiceCaller.ui) into the resources folder of the `rqt_turtle` plugin and adjusted its elements with the Qt Designer.
 
 Otherwise we could have used
 
@@ -867,9 +889,7 @@ Pro tip: Use `message(${my_package_FOUND})` inside your `CMakeLists.txt` to chec
 nothing otherwise.
 {: notice }
 
-to include the resources from other plugins.
-
-This will define some cmake variables (found here) that make it possible to include the exported resources from that packages using
+This will define some cmake variables (found [here](https://cmake.org/cmake/help/v3.0/command/find_package.html#find-package)) that make it possible to include the exported resources from that packages using
 
 ```cmake
 # WIP TODO remove here (only used for rqt_topic)
@@ -891,7 +911,10 @@ set(rqt_turtle_UIS
 
 ### setup.py
 
-See [also this tutorial](https://wiki.ros.org/rospy_tutorials/Tutorials/Makefile#Installing_scripts_and_exporting_modules)
+The [setup.py](https://docs.ros.org/noetic/api/catkin/html/user_guide/setup_dot_py.html) is used to install a python package and ROS makes use of this too
+if a package contains python scripts.
+See [also this tutorial](https://wiki.ros.org/rospy_tutorials/Tutorials/Makefile#Installing_scripts_and_exporting_modules),
+[building libraries](http://docs.ros.org/noetic/api/catkin/html/howto/format2/building_libraries.html)
 and this [answer](https://answers.ros.org/question/50661/catkin-setuppy-installation-into-devel-space-not-working/)
 See [this section](http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin#Install_.26_Run_your_plugin):
 
@@ -1019,3 +1042,5 @@ In case it is not working try to use some solutions from [this answer](https://a
 - [ROS service list from C++](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/)
 - [ROS Master API](http://wiki.ros.org/ROS/Master_API)
 - [TinyXML Tutorial](http://www.grinninglizard.com/tinyxmldocs/tutorial0.html)
+- [Qt Designer Using Custom Widgets](https://doc.qt.io/archives/qt-4.8/designer-using-custom-widgets.html)
+- [Qt Designer Using a ui file](https://doc.qt.io/qt-5.9/designer-using-a-ui-file.html)
