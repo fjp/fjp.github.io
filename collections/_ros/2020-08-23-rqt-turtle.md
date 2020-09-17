@@ -573,7 +573,7 @@ It provides two tabs, one to draw a shape using the `turtle_shape` service from 
 
 <details markdown="1"><summary>Expand for rqt turtle draw shape demo.</summary>
 
-![rqt_turtle-draw-shape](https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/rqt_turtle-draw-shape.gif)
+![rqt_turtle-draw-shape](https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/rqt_turtle-draw-shape-cancel.gif)
 
 </details>
 
@@ -581,7 +581,7 @@ And the second tab to let one or more turtles draw an image.
 
 <details markdown="1"><summary>Expand for rqt turtle draw image animation.</summary>
 
-![rqt_turtle-draw-image](https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/rqt_turtle-draw-image.gif)
+![rqt_turtle-draw-image](https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/rqt_turtle-draw-image-multi.gif)
 
 </details>
 
@@ -651,9 +651,64 @@ void Draw::on_btnCancelGoal_clicked()
 
 
 
-
 #### Draw Image
 
+With the plugin it's also possible to select an image from disk and let multiple turtles draw the contours.
+
+![rqt_turtle-draw-image](https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/rqt_turtle-draw-image-multi.gif)
+
+The contours are found with [`Canny()`](https://docs.opencv.org/2.4/modules/imgproc/doc/feature_detection.html?highlight=canny#canny) and 
+[`findContours`](https://docs.opencv.org/2.4/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html?highlight=findcontours#findcontours) from OpenCV. 
+The slider in the gui allows you to set the low threshold of the canny edge detection algorithm which will change the number of detected edges.
+
+
+For more information on OpenCV Canny and finding contours, see
+- [Find contours](https://docs.opencv.org/2.4/doc/tutorials/imgproc/shapedescriptors/find_contours/find_contours.html)
+- [tutorial_py_canny](https://docs.opencv.org/trunk/da/d22/tutorial_py_canny.html)
+- [canny detector](https://docs.opencv.org/2.4/doc/tutorials/imgproc/imgtrans/canny_detector/canny_detector.html)
+
+
+To draw the image faster, using multiple turtles, [`QThreadpool`]() together with [`QRunnable`]() is used.
+For this, the `ImageWorker` class inherits from `QRunnable` and `QObject` to allow using Qt signals. In this case a `progress(QString name, int progress)`
+and `finished(QString name)` is used to update the progress of multiple workers.
+
+The following class shows the header of the `ImageWorker` class. For the source code, please refer to the [`image_worker.cpp`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/image_worker.cpp)
+
+```cpp
+class ImageWorkerKilledException{};
+
+
+class ImageWorker : public QObject, public QRunnable
+{
+    Q_OBJECT
+
+    bool is_killed_;
+
+    Turtle turtle_;
+    std::vector<std::vector<cv::Point> > contours_;
+    int num_contours_;
+    int num_points_;
+    int idx_contour_;
+    int idx_point_;
+    int percent_;
+    float turtlesim_size_;
+
+    turtlesim::TeleportAbsolute sTeleportAbs_;
+
+public:
+    ImageWorker(Turtle turtle, std::vector<std::vector<cv::Point> > contours, float turtlesim_size = 500.0);
+
+
+    void run() override;
+
+signals:
+    void progress(QString name, int value);
+    void finished(QString name);
+
+public slots:
+    void kill();
+};
+```
 
 ## Install and Run your Plugin
 
