@@ -859,7 +859,8 @@ class_loader_hide_library_symbols(${PROJECT_NAME})
 ```
 ### Faced Problems
 
-The original plan was to reuse the service caller and topic caller rqt plugins. However, these plugins are written in Python which
+The original plan was to reuse the [service caller](http://wiki.ros.org/rqt_service_caller) and [topic publisher](http://wiki.ros.org/rqt_publisher) rqt plugins.
+However, these plugins are written in Python which
 makes it hard to use the ui files because they reference some Python specific Qt widgets that are not available in C++.
 
 To make use of other rqt plugins follow this tutorial and understand [What does `find_package()` do](http://wiki.ros.org/catkin/CMakeLists.txt#Finding_Dependent_CMake_Packages). Also this [answer](https://answers.ros.org/question/201977/include-header-file-from-another-package-indigo/) might be helpful.
