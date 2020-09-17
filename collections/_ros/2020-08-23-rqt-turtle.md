@@ -550,14 +550,11 @@ TiXmlHandle hRoot(0);
 Useful references for working with XML-RPC in the roscpp client library are this [answer](https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/?answer=152421#post-id-152421) and the [ROS Master API Wiki page](http://wiki.ros.org/ROS/Master_API).
 
 
-### 
-
-
 ### Draw Dialog
 
-The `Draw.ui` specifies a `DrawWidget` that is used as a `QDialog`. 
+The `Draw.ui` declares a `QWidget` named `DrawWidget` that is used as a `QDialog`. 
 It provides two tabs, one to draw a shape using the `turtle_shape` service from the [`turtle_actionlib`](http://wiki.ros.org/turtle_actionlib).
-And the second tab to let one or more turtles draw an image.
+
 
 <details markdown="1"><summary>Expand for rqt turtle draw shape demo.</summary>
 
@@ -565,11 +562,82 @@ And the second tab to let one or more turtles draw an image.
 
 </details>
 
+And the second tab to let one or more turtles draw an image.
+
 <details markdown="1"><summary>Expand for rqt turtle draw image animation.</summary>
 
 ![rqt_turtle-draw-image](https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/rqt_turtle-draw-image.gif)
 
 </details>
+
+#### Draw Shape
+
+The [`turtle_actionlib`](http://wiki.ros.org/turtle_actionlib) provides a `shape_server` that is used to let the turtle named `turtle1` draw
+a shape. For this the `Draw` class defines an action client `actionlib::SimpleActionClient<turtle_actionlib::ShapeAction> ac_;`. 
+The following shows the gui:
+
+TODO shape gui
+
+With the `Shape.action` its possible to specify the number of edges (`int32`) and the radius (`float32`). 
+To send the specified shape (also known as goal) to the action server the client is used:
+
+```cpp
+void Draw::drawShape()
+{
+    ROS_INFO("Waiting for action server to start.");
+
+    if (!ac_.isServerConnected())
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Action server not connected");
+        msgBox.setInformativeText("Please run 'rosrun turtle_actionlib shape_server' and press Ok or cancel \
+                                   to avoid blocking rqt_turtle gui while wating for shape_server.");
+        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        int ret = msgBox.exec();
+        if (ret == QMessageBox::Cancel)
+        {
+            return;
+        }
+    }
+
+    /// Wait for the action server to start
+    ac_.waitForServer(); //will wait for infinite time
+    ROS_INFO("Action server started, sending goal.");
+
+    /// Create ActionWorker which will send a goal to the action server
+    int edges = ui_->lineEditEdges->text().toInt();
+    float radius = ui_->lineEditRadius->text().toFloat();
+    float timeout = ui_->lineEditTimeout->text().toFloat();
+    ActionWorker* action_worker = new ActionWorker(ac_, edges, radius, timeout);
+
+    ui_->btnDraw->setText(QString("Cancel Goal"));
+    disconnect(ui_->btnDraw, SIGNAL(clicked()), this, SLOT(on_btnDraw_clicked()));
+    connect(ui_->btnDraw, SIGNAL(clicked()), action_worker, SLOT(kill()));
+    connect(ui_->btnDraw, SIGNAL(clicked()), this, SLOT(on_btnCancelGoal_clicked()));
+
+    threadpool_.start(action_worker);
+}
+```
+This will create a new class object of type `ActionWorker`.
+
+http://wiki.ros.org/actionlib/DetailedDescription
+
+http://wiki.ros.org/actionlib_tutorials/Tutorials/Writing%20a%20Callback%20Based%20Simple%20Action%20Client
+
+
+```cpp
+void Draw::on_btnCancelGoal_clicked()
+{
+    ui_->btnDraw->setText("Draw");
+    disconnect(ui_->btnDraw, SIGNAL(clicked()), this, SLOT(on_btnCancelGoal_clicked()));
+    connect(ui_->btnDraw, SIGNAL(clicked()), this, SLOT(on_btnDraw_clicked()));
+}
+```
+
+
+
+
+#### Draw Image
 
 
 ## Install and Run your Plugin
@@ -774,6 +842,7 @@ In case it is not working try to use some solutions from [this answer](https://a
 
 ## Future Work
 
+- Add control widgets to publish to the [`/turtleX/cmd_vel`](http://wiki.ros.org/turtlesim#Subscribed_Topics) of type [`geometry_msgs/Twist`](http://docs.ros.org/noetic/api/geometry_msgs/html/msg/Twist.html) topic. 
 - Add tests using [rostest](http://wiki.ros.org/rostest/Writing) and [roslaunch test tag](http://wiki.ros.org/roslaunch/XML/test).
 - Use `rossrv show` to get the type of a rosservice and use the information for the `request_tree_widget` of the `ServiceCaller.ui`.
 
