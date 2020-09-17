@@ -9,7 +9,7 @@ tags: [ros, rqt, noetic, plugin, qt5, qt, turtlesim, turtlebot]
 comments: true
 use_math: true
 toc: true
-# classes: wide
+classes: wide
 header:
   teaser: /assets/ros/rqt_turtle/turtle_plugin_ui.png"><img src="/assets/ros/rqt_turtle/turtle_plugin_ui.png
   overlay_image: /assets/ros/rqt_turtle/turtle_plugin_ui.png"><img src="/assets/ros/rqt_turtle/turtle_plugin_ui.png
@@ -59,6 +59,8 @@ $ catkin create pkg rqt_turtle \
 ```
 
 ## Modify the package content
+
+This section follows the instructions in [wiki.ros.org/rqt/Tutorials/Create your new rqt plugin](http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin).
 
 ### package.xml
 
@@ -366,9 +368,15 @@ void ServiceCaller::createTreeItems(std::string service_name)
 
 Here, `request_tree_widget` is filled with the service arguments, see the `Spawn` service as an example in the following figure:
 
-TODO figure
 
-In the current implementation the types are not checked, see future work section below.
+<figure class="third">
+  <a href="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/service-caller-spawn.png"><img src="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/service-caller-spawn.png"></a>
+  <a href="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/service-caller-teleport-abs.png"><img src="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/service-caller-teleport-abs.png"></a>
+  <a href="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/service-caller-teleport-rel.png"><img src="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/service-caller-teleport-rel.png"></a>
+  <figcaption>ServiceCaller showing fields of the Spawn service.</figcaption>
+</figure>
+
+In the current implementation the types are not checked and displayed correctly, see future work section below.
 {: .notice }
 
 After the user enters the desired pose and name of the turtle (when the `spawn` service was used) the data can be obtained in the `TurtlePlugin` class
@@ -393,10 +401,10 @@ QVariantMap ServiceCaller::getRequest()
 
 It returns a [`QVariantMap`](https://doc.qt.io/archives/qt-5.5/qvariant.html#QVariantMap-typedef) that is a `QMap<QString, QVariant>`.
 Using [`QVariant`](https://doc.qt.io/archives/qt-5.5/qvariant.html) as value is useful to deal with different types of data, for example `string` and `float`. 
-With this the caller (in this case `TurtlePlugin`) knows what to expect from the `ServiceCaller` class and the `ServiceCaller` can be reused for [services
-provided by turtlesim](http://wiki.ros.org/turtlesim#Services).
+With this, the caller (in this case `TurtlePlugin`) knows what to expect from the `ServiceCaller` class and the `ServiceCaller` can be reused 
+for different types of [services provided by turtlesim](http://wiki.ros.org/turtlesim#Services).
 
-The ServiceCaller cannot handle nested service messages. For this use the [rqt service caller](http://wiki.ros.org/rqt_service_caller) plugin.
+The ServiceCaller currently cannot handle nested service messages. For this use the [rqt service caller](http://wiki.ros.org/rqt_service_caller) plugin.
 {: .notice }
 
 
