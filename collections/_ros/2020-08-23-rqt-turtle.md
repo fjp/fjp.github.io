@@ -585,6 +585,10 @@ And the second tab to let one or more turtles draw an image.
 
 </details>
 
+Both of the following guis make use of [`QRunnable`](https://doc.qt.io/qt-5/qrunnable.html) and [`QThreadPool`](https://doc.qt.io/qt-5/qthreadpool.html) to avoid blocking the gui and allow to cancel the ongoing drawing task.
+The implementation of both workers [`ActionWorker`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/action_worker.cpp) 
+and [`ImageWorker`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/image_worker.cpp) uses concepts from the [PyQt5 Book](https://www.learnpyqt.com/pyqt5-book/).
+
 #### Draw Shape
 
 The [`turtle_actionlib`](http://wiki.ros.org/turtle_actionlib) provides a `shape_server` that is used to let the turtle named `turtle1` draw
@@ -643,6 +647,9 @@ void Draw::drawShape()
 First, this code checks wheater the client is connected to the `shape_server` to make sure it is available.
 If this is not the case a [`QMessageBox`](https://doc.qt.io/qt-5/qmessagebox.html) is used to inform the user that the 
 `shape_server` in the `turtle_actionlib` should be started with `rosrun turtle_actionlib shape_server`.
+Also note that the `turtle_actionlib` works with a turtle named `turtle1`. So make sure that a turtle with that name exists.
+To send the goal to another named turtle you can for example run [topic_tools/relay](http://wiki.ros.org/topic_tools/relay).
+
 After the action server is started a new class object of type [`ActionWorker`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/action_worker.cpp) is created on the heap.
 This `ActionWorker` allows us to send the the goal to the shape server without blocking the main gui.
 For this [`QThreadpool`](https://doc.qt.io/qt-5/qthreadpool.html) together with [`QRunnable`](https://doc.qt.io/qt-5/qrunnable.html) is used.
