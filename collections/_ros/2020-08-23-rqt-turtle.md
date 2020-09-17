@@ -598,6 +598,12 @@ and [`ImageWorker`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src
 Other threading resources:
 - [update-qprogressbar-during-qthread-work-via-signal](https://stackoverflow.com/questions/35673201/qt-5-update-qprogressbar-during-qthread-work-via-signal)
 - [QThread example](https://stackoverflow.com/questions/4093159/what-is-the-correct-way-to-implement-a-qthread-example-please)
+- [Qt Threading Basics](https://doc.qt.io/qt-5/thread-basics.html)
+- [Multithreading Technologies in Qt](https://doc.qt.io/qt-5/threads-technologies.html)
+- [Your doing it wrong](https://www.qt.io/blog/2010/06/17/youre-doing-it-wrong)
+- [How to really, truly use QThread](https://mayaposch.wordpress.com/2011/11/01/how-to-really-truly-use-qthreads-the-full-explanation/)
+- [QThread Details](https://doc.qt.io/qt-5/qthread.html#details)
+- [QThreadPool Details](https://doc.qt.io/qt-5/qthreadpool.html#details)
 
 #### Draw Shape
 
