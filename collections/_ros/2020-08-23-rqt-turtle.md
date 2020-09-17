@@ -645,21 +645,80 @@ If this is not the case a [`QMessageBox`](https://doc.qt.io/qt-5/qmessagebox.htm
 `shape_server` in the `turtle_actionlib` should be started with `rosrun turtle_actionlib shape_server`.
 After the action server is started a new class object of type [`ActionWorker`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/action_worker.cpp) is created on the heap.
 This `ActionWorker` allows us to send the the goal to the shape server without blocking the main gui.
-For this [`QThreadpool`]() together with [`QRunnable`]() is used.
+For this [`QThreadpool`](https://doc.qt.io/qt-5/qthreadpool.html) together with [`QRunnable`](https://doc.qt.io/qt-5/qrunnable.html) is used.
 
 
 ```cpp
+class ActionWorkerKilledException{};
 
+class ActionWorker : public QObject, public QRunnable
+{
+    Q_OBJECT
+
+    /// Reference to the action client instanciated in the Draw class.
+    actionlib::SimpleActionClient<turtle_actionlib::ShapeAction>& ac_;
+    /// Number of edges of the regular polygon
+    int edges_;
+    /// Radius of the regular polygon
+    float radius_;
+    /// Duration after which the goal will be canceled and the ActionWorker killed.
+    float timeout_;
+    /// Defaults to false. Set to true when the kill() slot is called.
+    bool is_killed_;
+
+public:
+    /**
+     * @brief Construct a new Action Worker object
+     * 
+     * @param ac Reference to the action client which is instanciated in the Draw class that creates this worker.
+     * @param edges Specifies the number of edges the worker should draw.
+     * @param radius Specifies the shape radius the worker should use while drawing.
+     * @param timeout Specifies the duration after which the goal is canceled.
+     */
+    ActionWorker(actionlib::SimpleActionClient<turtle_actionlib::ShapeAction>& ac, int edges, float radius, float timeout);
+
+    /**
+     * @brief Overriede of QRunnable to run the drawing task in another thread from the QThreadPool.
+     * 
+     */
+    void run() override;
+
+signals:
+    /**
+     * @brief Singals the current progress of the ongoing action. Currently not used
+     * 
+     * @param value could represent the percentage of the progress.
+     */
+    void progress(int value);
+
+public slots:
+    /**
+     * @brief Slot to receive a kill signal when the goal should be canceled.
+     * 
+     */
+    void kill();
+};
 ```
 
 Inside the `ActionWorker::run()` method the current [`actionlib_msgs/GoalStatus`](http://docs.ros.org/noetic/api/actionlib_msgs/html/msg/GoalStatus.html) 
 can be checked with the [`actionlib::SimpleActionClient::getState()`](http://docs.ros.org/noetic/api/actionlib/html/classactionlib_1_1SimpleActionClient.html#ac02703c818902c18e72844e58b4ef285) method.
+This implementation is similar to the one described in [Writing a Callback Based Simple Action Client](
+http://wiki.ros.org/actionlib_tutorials/Tutorials/Writing%20a%20Callback%20Based%20Simple%20Action%20Client).
+It avoids blocking until the goal is complete, which would be possible when using [`waitForResult`](https://docs.ros.org/noetic/api/actionlib/html/classactionlib_1_1SimpleActionClient.html#a94b5a38fae6917f83331560b81eea341) described in the [SimpleActionClient] tutorial.
+
+To cancel the goal after the specified timeout is reached the code makes use of [`ros::Time`](http://wiki.ros.org/roscpp/Overview/Time),
+[`ros::Duration`](http://docs.ros.org/latest/api/rostime/html/classros_1_1DurationBase.html) and the [possible arithmetic](http://wiki.ros.org/roscpp/Overview/Time#Time_and_Duration_Arithmetic).
 
 
+While the goal is pursued the `Draw` button changes its text to `CancelGoal` and the connections are updated, see [`Draw::drawShape`](https://github.com/fjp/rqt-turtle/blob/23d7e9430633df276f21c09f17970aa692bf45d2/rqt_turtle/src/rqt_turtle/draw.cpp#L320):
 
-
-http://wiki.ros.org/actionlib_tutorials/Tutorials/Writing%20a%20Callback%20Based%20Simple%20Action%20Client
-
+```cpp
+ui_->btnDraw->setText(QString("Cancel Goal"));
+disconnect(ui_->btnDraw, SIGNAL(clicked()), this, SLOT(on_btnDraw_clicked()));
+connect(ui_->btnDraw, SIGNAL(clicked()), action_worker, SLOT(kill()));
+connect(ui_->btnDraw, SIGNAL(clicked()), this, SLOT(on_btnCancelGoal_clicked()));
+```
+Pressing the "new" `Cancel Goal` button reverts the button text and the connections to its original state:
 
 ```cpp
 void Draw::on_btnCancelGoal_clicked()
@@ -674,6 +733,7 @@ Other related references to [`actionlib`](http://wiki.ros.org/actionlib?distro=n
 
 - [Calling Action Server without Action Client](http://wiki.ros.org/actionlib_tutorials/Tutorials/Calling%20Action%20Server%20without%20Action%20Client)
 - [`turtle_actionlib/src/shape_client.cpp`](https://github.com/ros/common_tutorials/blob/noetic-devel/turtle_actionlib/src/shape_client.cpp)
+- [Simple ActionClient Threaded](http://wiki.ros.org/actionlib_tutorials/Tutorials/SimpleActionClient%28Threaded%29)
 
 
 #### Draw Image
@@ -693,11 +753,11 @@ For more information on OpenCV Canny and finding contours, see
 - [canny detector](https://docs.opencv.org/2.4/doc/tutorials/imgproc/imgtrans/canny_detector/canny_detector.html)
 
 
-To draw the image faster, using multiple turtles, [`QThreadpool`]() together with [`QRunnable`]() is used.
-For this, the `ImageWorker` class inherits from `QRunnable` and `QObject` to allow using Qt signals. In this case a `progress(QString name, int progress)`
+To draw the image faster, using multiple turtles, [`QThreadpool`](https://doc.qt.io/qt-5/qthreadpool.html) together with [`QRunnable`](https://doc.qt.io/qt-5/qrunnable.html) is used.
+For this, the [`ImageWorker`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/image_worker.cpp) class inherits from `QRunnable` and `QObject` to allow the usage of Qt signals. In this case a `progress(QString name, int progress)`
 and `finished(QString name)` is used to update the progress of multiple workers.
 
-The following class shows the header of the `ImageWorker` class. For the source code, please refer to the [`image_worker.cpp`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/image_worker.cpp)
+The following class shows the header of the `ImageWorker` class. For the source code, please refer to the [`image_worker.cpp`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/image_worker.cpp).
 
 ```cpp
 class ImageWorkerKilledException{};
