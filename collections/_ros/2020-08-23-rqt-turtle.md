@@ -764,7 +764,7 @@ A [helpful resource](https://doc.qt.io/qt-5/qobject.html) to convert a `cv::Mat`
 QImage imgIn= QImage((uchar*) img.data, img.cols, img.rows, img.step, QImage::Format_RGB888);
 ```
 
-It is used to display the edge image inside the [`Draw.ui`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/resources/Draw.ui) using a QLabel by setting its [`QPixmap`](https://doc.qt.io/qt-5/qpixmap.html).
+It is used to display the edge image inside the [`Draw.ui`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/resources/Draw.ui) using a QLabel by setting its [`QPixmap`](https://doc.qt.io/qt-5/qpixmap.html) and [scaling it](https://doc.qt.io/qt-5/qpixmap.html#scaled) to the same [size as turtlesim (500x500 pixel)](https://github.com/ros/ros_tutorials/blob/91d2764ebd2344acf8e6754323f5b937b836d218/turtlesim/src/turtle_frame.cpp#L53).
 See the [image viewer example](https://doc.qt.io/qt-5/qtwidgets-widgets-imageviewer-example.html) for a good reference on what can be done this way.
 
 
