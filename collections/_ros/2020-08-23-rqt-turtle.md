@@ -35,7 +35,7 @@ The final plugin looks like this:
 The plugin can be used to draw inside [turtlesim](http://wiki.ros.org/turtlesim) with turtlebot.
 Although the following description might help you to write your own rqt plugin, also have a look at the official [rqt tutorials](http://wiki.ros.org/rqt/Tutorials). 
 There are tutorials explaining how to write plugins using python or C++. The `rqt_turtle` plugin is written in C++.
-The [source code](https://github.com/fjp/rqt-turtle) is hosted on GitHub.
+Note that the following documentation doesn't list the full source code. For this The [source code](https://github.com/fjp/rqt-turtle) is hosted on GitHub.
 
 The code tries to follow the [ROS CppStyleGuide](http://wiki.ros.org/CppStyleGuide) and the code API documentation can be created with [doxygen](http://wiki.ros.org/Doxygen). The code was written with the [vscode ROS plugin](https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros)
 that allows to debug rqt plugins using attach to process method. 
@@ -373,7 +373,7 @@ void ServiceCaller::createTreeItems(std::string service_name)
 }
 ```
 
-Here, `request_tree_widget` is filled with the service arguments, see the `Spawn` service as an example in the following figure:
+Here, `request_tree_widget` is filled with the service arguments, see the services `Spawn`, `TeleportAbsolute` and `TeleportRelative` as an example in the following figures:
 
 
 <figure class="third">
@@ -383,7 +383,7 @@ Here, `request_tree_widget` is filled with the service arguments, see the `Spawn
   <figcaption>ServiceCaller showing fields of the Spawn service.</figcaption>
 </figure>
 
-In the current implementation the types are not checked and displayed correctly, see future work section below.
+In the current implementation the types are not checked and therefore not displayed correctly, see future work section below.
 {: .notice }
 
 After the user enters the desired pose and name of the turtle (when the `spawn` service was used) the data can be obtained in the `TurtlePlugin` class
@@ -588,13 +588,19 @@ And the second tab to let one or more turtles draw an image.
 #### Draw Shape
 
 The [`turtle_actionlib`](http://wiki.ros.org/turtle_actionlib) provides a `shape_server` that is used to let the turtle named `turtle1` draw
-a shape. For this the `Draw` class defines an action client `actionlib::SimpleActionClient<turtle_actionlib::ShapeAction> ac_;`. 
-The following shows the gui:
+a shape. For this the `Draw` class defines an action client `actionlib::SimpleActionClient<turtle_actionlib::ShapeAction> ac_;`
+which is used to send an action goal containing the number of edges and the radius of the shape to the server. 
+See also the [detailed description](http://wiki.ros.org/actionlib/DetailedDescription) of the [`actionlib`](http://wiki.ros.org/actionlib?distro=noetic) to learn more about how it works.
+The following shows the gui to adjust these two settings including the timeout to automatically cancel the goal:
 
-TODO shape gui
+<figure>
+    <a href="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/draw-shape.png"><img src="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/draw-shape.png"></a>
+    <figcaption>Draw Shape Dialog.</figcaption>
+</figure>
 
-With the `Shape.action` its possible to specify the number of edges (`int32`) and the radius (`float32`). 
-To send the specified shape (also known as goal) to the action server the client is used:
+
+With the [`turtle_actionlib/Shape.action`](http://docs.ros.org/noetic/api/turtle_actionlib/html/action/Shape.html) its possible to specify the number of edges (`int32`) and the radius (`float32`). 
+To send the specified shape (also known as goal) the client is used as follows:
 
 ```cpp
 void Draw::drawShape()
@@ -633,9 +639,24 @@ void Draw::drawShape()
     threadpool_.start(action_worker);
 }
 ```
-This will create a new class object of type `ActionWorker`.
 
-http://wiki.ros.org/actionlib/DetailedDescription
+First, this code checks wheater the client is connected to the `shape_server` to make sure it is available.
+If this is not the case a [`QMessageBox`](https://doc.qt.io/qt-5/qmessagebox.html) is used to inform the user that the 
+`shape_server` in the `turtle_actionlib` should be started with `rosrun turtle_actionlib shape_server`.
+After the action server is started a new class object of type [`ActionWorker`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/action_worker.cpp) is created on the heap.
+This `ActionWorker` allows us to send the the goal to the shape server without blocking the main gui.
+For this [`QThreadpool`]() together with [`QRunnable`]() is used.
+
+
+```cpp
+
+```
+
+Inside the `ActionWorker::run()` method the current [`actionlib_msgs/GoalStatus`](http://docs.ros.org/noetic/api/actionlib_msgs/html/msg/GoalStatus.html) 
+can be checked with the [`actionlib::SimpleActionClient::getState()`](http://docs.ros.org/noetic/api/actionlib/html/classactionlib_1_1SimpleActionClient.html#ac02703c818902c18e72844e58b4ef285) method.
+
+
+
 
 http://wiki.ros.org/actionlib_tutorials/Tutorials/Writing%20a%20Callback%20Based%20Simple%20Action%20Client
 
@@ -649,6 +670,10 @@ void Draw::on_btnCancelGoal_clicked()
 }
 ```
 
+Other related references to [`actionlib`](http://wiki.ros.org/actionlib?distro=noetic):
+
+- [Calling Action Server without Action Client](http://wiki.ros.org/actionlib_tutorials/Tutorials/Calling%20Action%20Server%20without%20Action%20Client)
+- [`turtle_actionlib/src/shape_client.cpp`](https://github.com/ros/common_tutorials/blob/noetic-devel/turtle_actionlib/src/shape_client.cpp)
 
 
 #### Draw Image
