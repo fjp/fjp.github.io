@@ -595,6 +595,10 @@ Both of the following guis make use of [`QRunnable`](https://doc.qt.io/qt-5/qrun
 The implementation of both workers [`ActionWorker`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/action_worker.cpp) 
 and [`ImageWorker`](https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/image_worker.cpp) uses concepts from the [PyQt5 Book](https://www.learnpyqt.com/pyqt5-book/).
 
+Other threading resources:
+- [update-qprogressbar-during-qthread-work-via-signal](https://stackoverflow.com/questions/35673201/qt-5-update-qprogressbar-during-qthread-work-via-signal)
+- [QThread example](https://stackoverflow.com/questions/4093159/what-is-the-correct-way-to-implement-a-qthread-example-please)
+
 #### Draw Shape
 
 The [`turtle_actionlib`](http://wiki.ros.org/turtle_actionlib) provides a `shape_server` that is used to let the turtle named `turtle1` draw
