@@ -11,8 +11,8 @@ use_math: true
 toc: true
 classes: wide
 header:
-  teaser: /assets/ros/rqt_turtle/turtle_plugin_ui.png"><img src="/assets/ros/rqt_turtle/turtle_plugin_ui.png
-  overlay_image: /assets/ros/rqt_turtle/turtle_plugin_ui.png"><img src="/assets/ros/rqt_turtle/turtle_plugin_ui.png
+  teaser: /assets/ros/rqt_turtle/turtle_plugin_ui.png
+  overlay_image: /assets/ros/rqt_turtle/turtle_plugin_ui.png
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   caption: rqt_turtle
   show_overlay_excerpt: true
@@ -23,7 +23,15 @@ sidebar:
 This project is part of the Robocademy 
 [Robot Operating System Learning Path](https://robocademy.com/2020/06/25/enroll-in-robot-operating-system-learning-path-by-lentin-joseph/) by 
 [Lentin Joseph](https://lentinjoseph.com/). 
-The project shows how the `rqt_turtle` plugin for ROS' [GUI framework rqt](http://wiki.ros.org/rqt) was created. 
+The project shows how the `rqt_turtle` plugin for ROS' [GUI framework rqt](http://wiki.ros.org/rqt) was created.
+
+The final plugin looks like this:
+
+<figure>
+    <a href="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/rqt-turtle.png"><img src="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/rqt-turtle.png"></a>
+    <figcaption>Loaded rqt turtle plugin.</figcaption>
+</figure>
+
 The plugin can be used to draw inside [turtlesim](http://wiki.ros.org/turtlesim) with turtlebot.
 Although the following description might help you to write your own rqt plugin, also have a look at the official [rqt tutorials](http://wiki.ros.org/rqt/Tutorials). 
 There are tutorials explaining how to write plugins using python or C++. The `rqt_turtle` plugin is written in C++.
@@ -133,7 +141,6 @@ The following image shows the design of the `rqt_turtle` plugin. On the right yo
     <a href="/assets/ros/rqt_turtle/turtle_plugin_ui.png"><img src="/assets/ros/rqt_turtle/turtle_plugin_ui.png"></a>
     <figcaption>Qt Designer - rqt turtle plugin.</figcaption>
 </figure>
-
 
 ## Write the Plugin Code
 
