@@ -12,7 +12,7 @@ toc: true
 classes: wide
 header:
   teaser: /assets/ros/rqt_turtle/turtle_plugin_ui.png
-  overlay_image: /assets/ros/rqt_turtle/turtle_plugin_ui.png
+  overlay_image: https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/rqt_turtle-draw-shape-cancel.gif
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   caption: rqt_turtle
   show_overlay_excerpt: true
