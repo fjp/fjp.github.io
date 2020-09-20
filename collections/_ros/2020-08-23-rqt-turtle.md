@@ -37,7 +37,7 @@ The video below gives more insights on what is currently implemented:
 [![rqt turtle YouTube](http://img.youtube.com/vi/2IQtxEmP2a4/0.jpg)](https://youtu.be/2IQtxEmP2a4)
 
 The plugin can be used to draw inside [turtlesim](http://wiki.ros.org/turtlesim) with turtlebot.
-Although the following description might help you to write your own rqt plugin, also have a look at the official [rqt tutorials](http://wiki.ros.org/rqt/Tutorials). 
+Although the following description might help you to write your own rqt plugin, also have a look at the official [rqt tutorials](http://wiki.ros.org/rqt/Tutorials), especially the tutorial [Create your new rqt plugin](http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin). 
 There are tutorials explaining how to write plugins using python or C++. The `rqt_turtle` plugin is written in C++.
 Note that the following documentation doesn't list the full source code. For this The [source code](https://github.com/fjp/rqt-turtle) is hosted on GitHub.
 
@@ -150,13 +150,35 @@ The following image shows the design of the `rqt_turtle` plugin. On the right yo
 
 ## Write the Plugin Code
 
+Instructions on how to write a plugin in C++ is found in this [rqt tutorial](http://wiki.ros.org/rqt/Tutorials/Writing%20a%20C%2B%2B%20Plugin).
+Keep in mind the special note from the tutorial about using `roscpp` with rqt:
+
+The plugin should not call [`init_node`](http://wiki.ros.org/roscpp/Overview/Initialization%20and%20Shutdown) as this is performed by [`rqt_gui_cpp`](http://wiki.ros.org/rqt_gui_cpp). 
+The plugin can use any roscpp-specific functionality (like [Publishers and Subscribers](http://wiki.ros.org/roscpp/Overview/Publishers%20and%20Subscribers) or [Parameters](http://wiki.ros.org/roscpp/Overview/Parameter%20Server)). Just make sure to stop timers and publishers, unsubscribe from Topics etc in the `shutdown_plugin` method.
+
+A C++ plugin inherits from [Nodelet](http://wiki.ros.org/nodelet) and therefore gains the same advantages (i.e. enables exchanging boost>::shared_pointer).
+
+Due to restrictions in Qt, you cannot manipulate Qt widgets directly within ROS callbacks, because they are running in a different thread. 
+In the ROS callback you can:
+
+- emit a Qt signal (which will bridge across the threads) and manipulate the widgets in the receiving slot
+
+OR
+
+- only operate on non-widget entities like QAbstractItemModels
 
 ### ROS Components
 
+[ROS rqt](http://wiki.ros.org/rqt) makes use of the ROS `pluginlib` to dynamically load plugins at runtime.
+
+Note that prior to pluginlib 1.9 (Groovy), the macros `PLUGINLIB_REGISTER_CLASS` and `PLUGINLIB_DECLARE_CLASS` were used to register exported classes. 
+These have been deprecated in favor of the new `PLUGINLIB_EXPORT_CLASS`. The new macro is simpler as it only takes two arguments.
+See [Pluginlib Simplified Export Macro](http://wiki.ros.org/pluginlib#pluginlib.2Fpluginlib_groovy.Simplified_Export_Macro).
+
 ```cpp
-// Deprecated
-// See: http://wiki.ros.org/pluginlib#pluginlib.2Fpluginlib_groovy.Simplified_Export_Macro
+/// Deprecated:
 //PLUGINLIB_DECLARE_CLASS(rqt_turtle, TurtlePlugin, rqt_turtle::TurtlePlugin, rqt_gui_cpp::Plugin)
+/// Use the new macro instead:
 PLUGINLIB_EXPORT_CLASS(rqt_turtle::TurtlePlugin, rqt_gui_cpp::Plugin)
 ```
 
@@ -863,6 +885,114 @@ devel space. TODO confirm this?
 find_package(class_loader)
 class_loader_hide_library_symbols(${PROJECT_NAME})
 ```
+
+Also make sure in your `CMakeLists.txt`, to uncomment a line:
+
+```cmake
+## Uncomment this if the package has a setup.py. This macro ensures
+## modules and global scripts declared therein get installed
+## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
+catkin_python_setup()
+```
+
+Add install macro that puts the script into a location where it is rosrun-able is declared. For example:
+
+```cmake
+## Mark executable scripts (Python etc.) for installation
+## in contrast to setup.py, you can choose the destination
+# For our (optional) script to be installed to the right location, 
+# if users install your package, this line is required
+catkin_install_python(PROGRAMS
+  scripts/rqt_turtle
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+```
+
+
+TODO install stuff:
+
+
+```cmake
+#############
+## Install ##
+#############
+
+# TODO????
+# See http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin
+# And https://github.com/ros-visualization/rqt_image_view/blob/master/CMakeLists.txt
+# TODO?????
+#Add the following lines to call the resource and plugin.xml # TODO required?
+#install(DIRECTORY include/${PROJECT_NAME}/
+#  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+#)
+#install(DIRECTORY
+#  resource
+#  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+#)
+#install(FILES
+#  plugin.xml
+#  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+#)
+
+
+## Mark executables for installation
+## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
+# install(TARGETS ${PROJECT_NAME}_node
+#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+# )
+
+## Mark libraries for installation
+## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html
+install(TARGETS ${PROJECT_NAME}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)
+
+## Mark cpp header files for installation
+# install(DIRECTORY include/${PROJECT_NAME}/
+#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+#   FILES_MATCHING PATTERN "*.h"
+#   PATTERN ".svn" EXCLUDE
+# )
+
+## Mark other files for installation (e.g. launch and bag files, etc.)
+# install(FILES
+#   # myfile1
+#   # myfile2
+#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+# )
+```
+
+### setup.py
+
+The [setup.py](https://docs.ros.org/noetic/api/catkin/html/user_guide/setup_dot_py.html) is used to install a python package and ROS makes use of this too
+if a package contains python scripts.
+See [also this tutorial](https://wiki.ros.org/rospy_tutorials/Tutorials/Makefile#Installing_scripts_and_exporting_modules),
+[building libraries](http://docs.ros.org/noetic/api/catkin/html/howto/format2/building_libraries.html)
+and this [answer](https://answers.ros.org/question/50661/catkin-setuppy-installation-into-devel-space-not-working/)
+See [this section](http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin#Install_.26_Run_your_plugin):
+
+See the Running rqt section for how to run your plugin.
+
+
+With catkin, no matter which method in the link above you want to run your plugin, you need to install it via CMake which puts the script into a package-specific folder which is not on the PATH.
+
+Add macros to your setup.py (reference). For example, after adding the line the section that contains it might look like :
+
+```python
+from distutils.core import setup
+from catkin_pkg.python_setup import generate_distutils_setup
+  
+d = generate_distutils_setup(
+    packages=['rqt_mypkg'],
+    package_dir={'': 'src'},
+)
+
+setup(**d)
+```
+
+
 ### Faced Problems
 
 The original plan was to reuse the [service caller](http://wiki.ros.org/rqt_service_caller) and [topic publisher](http://wiki.ros.org/rqt_publisher) rqt plugins.
@@ -920,118 +1050,10 @@ set(rqt_turtle_UIS
 ```
 
 
-### setup.py
-
-The [setup.py](https://docs.ros.org/noetic/api/catkin/html/user_guide/setup_dot_py.html) is used to install a python package and ROS makes use of this too
-if a package contains python scripts.
-See [also this tutorial](https://wiki.ros.org/rospy_tutorials/Tutorials/Makefile#Installing_scripts_and_exporting_modules),
-[building libraries](http://docs.ros.org/noetic/api/catkin/html/howto/format2/building_libraries.html)
-and this [answer](https://answers.ros.org/question/50661/catkin-setuppy-installation-into-devel-space-not-working/)
-See [this section](http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin#Install_.26_Run_your_plugin):
-
-See the Running rqt section for how to run your plugin.
-
-
-With catkin, no matter which method in the link above you want to run your plugin, you need to install it via CMake which puts the script into a package-specific folder which is not on the PATH.
-
-Add macros to your setup.py (reference). For example, after adding the line the section that contains it might look like :
-
-```python
-from distutils.core import setup
-from catkin_pkg.python_setup import generate_distutils_setup
-  
-d = generate_distutils_setup(
-    packages=['rqt_mypkg'],
-    package_dir={'': 'src'},
-)
-
-setup(**d)
-```
-
-Also make sure in your `CMakeLists.txt`, to uncomment a line:
-
-```cmake
-## Uncomment this if the package has a setup.py. This macro ensures
-## modules and global scripts declared therein get installed
-## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
-catkin_python_setup()
-```
-
-Add install macro that puts the script into a location where it is rosrun-able is declared. For example:
-
-```cmake
-## Mark executable scripts (Python etc.) for installation
-## in contrast to setup.py, you can choose the destination
-# For our (optional) script to be installed to the right location, 
-# if users install your package, this line is required
-catkin_install_python(PROGRAMS
-  scripts/rqt_turtle
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-```
-
-
-TODO install stuff:
-
-
-
-
-```cmake
-#############
-## Install ##
-#############
-
-# TODO????
-# See http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin
-# And https://github.com/ros-visualization/rqt_image_view/blob/master/CMakeLists.txt
-# TODO?????
-#Add the following lines to call the resource and plugin.xml # TODO required?
-#install(DIRECTORY include/${PROJECT_NAME}/
-#  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-#)
-#install(DIRECTORY
-#  resource
-#  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-#)
-#install(FILES
-#  plugin.xml
-#  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-#)
-
-
-## Mark executables for installation
-## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
-# install(TARGETS ${PROJECT_NAME}_node
-#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
-
-## Mark libraries for installation
-## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html
-install(TARGETS ${PROJECT_NAME}
-  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
-)
-
-## Mark cpp header files for installation
-# install(DIRECTORY include/${PROJECT_NAME}/
-#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-#   FILES_MATCHING PATTERN "*.h"
-#   PATTERN ".svn" EXCLUDE
-# )
-
-## Mark other files for installation (e.g. launch and bag files, etc.)
-# install(FILES
-#   # myfile1
-#   # myfile2
-#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-# )
-```
-
 
 ## Launch the plugin
 
-To launch a rqt plugin make sure to read the [Running rqt User Guide](http://wiki.ros.org/rqt/UserGuide#Running_rqt).
+To launch a rqt plugin make sure to read the [Install and Run your plugin](http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin#Install_.26_Run_your_plugin) section and the [Running rqt User Guide](http://wiki.ros.org/rqt/UserGuide#Running_rqt).
 
 In case it is not working try to use some solutions from [this answer](https://answers.ros.org/question/166851/rqt-reconfigure-no-plugin-found/).
 
