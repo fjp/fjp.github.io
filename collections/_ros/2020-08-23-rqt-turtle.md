@@ -47,7 +47,7 @@ See the [documentation](https://github.com/ms-iot/vscode-ros/blob/master/doc/deb
 
 ## C++ vs Python
 
-Note that most rqt plugins are wirtten in Python and it is even recommended to write them in Python. 
+Note that most rqt plugins are written in Python and it is even recommended to write them in Python. 
 However, because of few documented C++ plugins, this project shows how to write a plugin in C++ and it is similar to the
 [`rqt_image_view` plugin](http://wiki.ros.org/rqt_image_view) that is also programmed in C++. 
 In case you are planning to reuse existing rqt plugins make sure to use the 
@@ -69,6 +69,8 @@ $ catkin create pkg rqt_turtle \
     -d "rqt plugin for ROS rqt to draw in turtlesim using turtlebot." \
     --catkin-deps roscpp rqt_gui rqt_gui_cpp
 ```
+
+This will add the [`roscpp`](http://docs.ros.org/noetic/api/roscpp/html/index.html) client library and rqt related dependency packages to the plugin.
 
 ## Modify the package content
 
@@ -182,7 +184,9 @@ See [Pluginlib Simplified Export Macro](http://wiki.ros.org/pluginlib#pluginlib.
 PLUGINLIB_EXPORT_CLASS(rqt_turtle::TurtlePlugin, rqt_gui_cpp::Plugin)
 ```
 
-To obtain a list of existing turtles it would be possible to execute `rostopic list` from the command line and filter for the
+The [ROS Master](http://wiki.ros.org/Master) provides naming and registration sservices to the rest of the nodes in ROS. 
+It tracks publishers and subscribers to [topics](http://wiki.ros.org/Topics) as well as [services](http://wiki.ros.org/Services).
+To obtain a list of existing turtles it would be possible to execute [`rostopic list`](http://wiki.ros.org/rostopic) from the command line and filter for the
 topics that include `/turtle_name/pose` or `/turtle_name/cmd_vel`. The same can be achieved within a [`roscpp`](http://docs.ros.org/noetic/api/roscpp/html/) 
 node using the [`bool ros::master::getTopics(V_TopicInfo& topics)`](http://docs.ros.org/noetic/api/roscpp/html/namespaceros_1_1master.html#aa922f42cf983b06edb4cf3de7d7ce211) method, see also [this example](https://stackoverflow.com/questions/26785675/ros-get-current-available-topic-in-code-not-command):
 
@@ -322,7 +326,8 @@ Currently there are three different dialog implementations:
 - `Draw.ui` for the Draw button.
 - `Task.ui` called within the Draw dialog to show the drawing progress.
 
-For each ui there exists a class that inherits from [`QDialog`](https://doc.qt.io/qt-5/qdialog.html) - 
+For each ui there exists a class that inherits from [`QDialog`](https://doc.qt.io/qt-5/qdialog.html) to open a 
+[modeless](https://doc.qt.io/qt-5/qdialog.html) dialog - 
 following the same `Single Inheritance using a Pointer Member Variable` approach described above.
 This allows us to show a modal dialog with the [`int QDialog::exec()`](https://doc.qt.io/qt-5/qdialog.html#exec) method, 
 that can be blocked until the user closes it. Depending on what the user pressed in the dialog it's possible to call 
@@ -801,7 +806,7 @@ See the [image viewer example](https://doc.qt.io/qt-5/qtwidgets-widgets-imagevie
 
 
 For more information on OpenCV Canny and finding contours, see
-- [Find contours](https://docs.opencv.org/2.4/doc/tutorials/imgproc/shapedescriptors/find_contours/find_contours.html)
+- [Find contours](https://docs.opencv.org/2.4/doc/tutorials/imgproc/shapedescriptors/find_contours/find_contours.html), [API documentation](https://docs.opencv.org/3.4/d3/dc0/group__imgproc__shape.html#ga17ed9f5d79ae97bd4c7cf18403e1689a)
 - [tutorial_py_canny](https://docs.opencv.org/trunk/da/d22/tutorial_py_canny.html)
 - [canny detector](https://docs.opencv.org/2.4/doc/tutorials/imgproc/imgtrans/canny_detector/canny_detector.html)
 - [turotial canny detector](https://docs.opencv.org/3.4/da/d5c/tutorial_canny_detector.html)
@@ -1077,3 +1082,5 @@ In case it is not working try to use some solutions from [this answer](https://a
 - [TinyXML Tutorial](http://www.grinninglizard.com/tinyxmldocs/tutorial0.html)
 - [Qt Designer Using Custom Widgets](https://doc.qt.io/archives/qt-4.8/designer-using-custom-widgets.html)
 - [Qt Designer Using a ui file](https://doc.qt.io/qt-5.9/designer-using-a-ui-file.html)
+- [Preferred ROS XML parser/generator](https://answers.ros.org/question/58046/preferred-ros-xml-parsergenerator/)
+
