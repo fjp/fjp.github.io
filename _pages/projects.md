@@ -18,9 +18,9 @@ feature_row:
     url: "/projects/diffbot/"
     btn_label: "Read More"
     btn_class: "btn--primary"
-  - image_path: /assets/images/melodic.jpg
-    title: "Autonomous 2WD Robot - ROS Melodic"
-    excerpt: "ROS Melodic Setup on Raspberry Pi 4 for an autonomous 2WD Robot running ROS melodic to sense and act in an environment."
+  - image_path: /assets/images/noetic.png
+    title: "Autonomous 2WD Robot - ROS Noetic"
+    excerpt: "ROS Noetic Setup on Raspberry Pi 4 for an autonomous 2WD Robot to sense and act in an environment."
     url: "/projects/diffbot/"
     btn_label: "Read More"
     btn_class: "btn--primary"
