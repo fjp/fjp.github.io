@@ -56,12 +56,12 @@ diffbot:
   - title: "Raspberry Pi 4B"
     url: /projects/diffbot/rpi-setup/
     children:
-      - title: "Ubuntu Bionic 18.04"
-        url: /projects/diffbot/rpi-setup/#obtain-ubuntu-1804-arm-image
+      - title: "Ubuntu Mate 20.04"
+        url: /projects/diffbot/rpi-setup/#obtain-ubuntu-mate-2004-arm-image
       - title: "Hardware Interfaces"
         url: /projects/diffbot/hardware-interfaces/
-      - title: "ROS Melodic Setup"
-        url: /projects/diffbot/ros-melodic/
+      - title: "ROS Noetic Setup"
+        url: /projects/diffbot/ros-noetic/
   - title: "ROS Integration"
     url: /projects/diffbot/ros-integration/
     children:
@@ -84,6 +84,8 @@ diffbot:
     children:
       - title: "Robot Description"
         url: /projects/diffbot/ros-packages/robot-description/
+      - title: "Gazebo Simulation"
+        url: /projects/diffbot/ros-packages/gazebo/
       - title: "Control"
         url: /projects/diffbot/ros-packages/control/
       - title: "Odometry"
