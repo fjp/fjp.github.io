@@ -31,7 +31,9 @@ Part list and assembly of the robot platform and the components.
 |              | Robot Car Kit 2WD | [robot05](https://joy-it.net/en/products/robot05) | [Instructions manual](https://joy-it.net/files/files/Produkte/robot05/Robot05-Anleitung.pdf) |
 |              | Power bank        | Intenso Powerbank S10000                          | [Intenso](https://www.intenso.de/en/products/powerbanks/powerbank-s10000) |
 | Actuator                                                                                  |
-|              | Gearbox motor     | DC Gearbox motor - "TT Motor" - 200RPM - 3 to 6VDC | [Adafruit](https://www.adafruit.com/product/3777) |
+|              | (Deprecated) Gearbox motor     | DC Gearbox motor - "TT Motor" - 200RPM - 3 to 6VDC | [Adafruit](https://www.adafruit.com/product/3777) |
+|                                                                                   |
+|              | DG01E-E Motor with encoder | DG01E-E Hobby motor with quadrature encoder | [Sparkfun](https://www.sparkfun.com/products/16413) |
 | Board                                                                                    |
 |              | Raspberry Pi 4 B  | Raspberry Pi 4 B - 4 GB                           | [OEM Website](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) |
 | Cables                                                                                   |
@@ -200,7 +202,22 @@ As an alternative we could use the [HC SR04](https://www.seeedstudio.com/blog/20
 
 ### Localization
 
+#### Inertial Measurement Unit
+
+An intertial measurement unit (IMU) measures the acceleration and orientation through gyroscopes directly.
+Other states such as the velocity can then be calculated.
+For this the [Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055]((https://www.adafruit.com/product/2472)) is used.
+
+<figure>
+    <a href="/assets/collections/diffbot/components/bno055.jpg"><img src="/assets/collections/diffbot/components/bno055.jpg"></a>
+    <figcaption>9-DOF Absolute Orientation IMU Fusion Breakout - BNO055 from Adafruit.</figcaption>
+</figure>
+
 #### Odometry
+
+For the used odometry sensor see the section below [Motor and Wheel Encoder](/projects/diffbot/components/#motor-and-wheel-encoder)
+
+<details><summary>Alternative Optical Sensor</summary>
 
 To estimate the change in position over time ([odometry](https://en.wikipedia.org/wiki/Odometry)) the robot will
 utilize an [optical speed sensor](https://en.wikipedia.org/wiki/Wheel_speed_sensor#Optical_sensor). 
@@ -222,17 +239,7 @@ Technical Specifications:
 References:
 https://dronebotworkshop.com/robot-car-with-speed-sensors/
 
-
-#### Inertial Measurement Unit
-
-An intertial measurement unit (IMU) measures the acceleration and orientation through gyroscopes directly.
-Other states such as the velocity can then be calculated.
-For this the [Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055]((https://www.adafruit.com/product/2472)) is used.
-
-<figure>
-    <a href="/assets/collections/diffbot/components/bno055.jpg"><img src="/assets/collections/diffbot/components/bno055.jpg"></a>
-    <figcaption>9-DOF Absolute Orientation IMU Fusion Breakout - BNO055 from Adafruit.</figcaption>
-</figure>
+</details>
 
 ## Actuators
 
@@ -249,12 +256,28 @@ To drive the two motors of the car kit we use the
 </figure>
 
 
+### Motor and Wheel Encoder
+
+The [DG01E-E Hobby Motor](https://www.sparkfun.com/products/16413) has a quadrature encoder built in, 
+which makes it easy to assemble the robot and saves space because of no additional
+(optical or magnetic) wheel encoders.
+
+<figure class="half">
+    <a href="/assets/collections/diffbot/components/dg01d-e-motor-with-encoder.jpg"><img src="/assets/collections/diffbot/components/dg01d-e-motor-with-encoder.jpg"></a>
+    <a href="/assets/collections/diffbot/components/dg01d-e-motor-with-encoder-pins.png"><img src="/assets/collections/diffbot/components/dg01d-e-motor-with-encoder-pins.png"></a>
+    <figcaption>DG01D-E Motor with wheel encoders.</figcaption>
+</figure>
+
+<details><summary>Alternative Brushed Gear Motor</summary>
+
 ### Brushed Gearbox Motor
 
 <figure>
     <a href="/assets/collections/diffbot/components/gearbox-motor-close.jpg"><img src="/assets/collections/diffbot/components/gearbox-motor-close.jpg"></a>
     <figcaption>DC Gearbox motor - "TT Motor" - 200RPM - 3 to 6VDC.</figcaption>
 </figure>
+
+</details>
 
 ## Human Machine Interface (HMI)
 
