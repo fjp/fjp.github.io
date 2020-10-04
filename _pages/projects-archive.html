@@ -25,7 +25,7 @@ author_profile: false
   {% endunless %}
   {% for post in collection.docs %}
     {% unless collection.output == false or collection.label == "posts" %}
-      {% include archive-single.html type=page.entries_layout %}
+      {% include archive-single.html %}
     {% endunless %}
   {% endfor %}
 {% endfor %}
