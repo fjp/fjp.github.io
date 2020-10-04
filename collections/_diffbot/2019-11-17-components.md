@@ -32,7 +32,6 @@ Part list and assembly of the robot platform and the components.
 |              | Power bank        | Intenso Powerbank S10000                          | [Intenso](https://www.intenso.de/en/products/powerbanks/powerbank-s10000) |
 | Actuator                                                                                  |
 |              | (Deprecated) Gearbox motor     | DC Gearbox motor - "TT Motor" - 200RPM - 3 to 6VDC | [Adafruit](https://www.adafruit.com/product/3777) |
-|                                                                                   |
 |              | DG01E-E Motor with encoder | DG01E-E Hobby motor with quadrature encoder | [Sparkfun](https://www.sparkfun.com/products/16413) |
 | Board                                                                                    |
 |              | Raspberry Pi 4 B  | Raspberry Pi 4 B - 4 GB                           | [OEM Website](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) |
