@@ -21,7 +21,7 @@ sidebar:
 ---
 
 This video shows the first version of the Pong arcade video game for the Robot Operating System (ROS 1 Noetic) using turtlesim.
-The post will explain how the `turtle_pong` package for ROS' [turtlesim](http://wiki.ros.org/turtlesim) was created. 
+The post will explain how the [`turtle_pong`](https://github.com/fjp/ros-turtle-pong) package for ROS' [turtlesim](http://wiki.ros.org/turtlesim) was created. 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/i83dNyfm_QE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -31,6 +31,8 @@ This project is part of the Robocademy
 
 
 The [source code](https://github.com/fjp/ros-turtle-pong) is hosted on GitHub.
+
+The next sections explain how the package was created and how its working.
 
 
 ## Create Empty ROS Package
@@ -48,7 +50,7 @@ catkin_ws/src$ catkin create pkg turtle_pong \
     --catkin-deps roscpp
 ```
 
-## Class Architecture
+## Node and Class Architecture
 
 The game is made up of three nodes:
 
@@ -71,6 +73,38 @@ Note: To use class methods as callbacks see the wiki page [Tutorials/UsingClassM
     <a href="https://raw.githubusercontent.com/fjp/ros-turtle-pong/master/docs/rosgraph.svg?token=AAJ2DWQ6BPTFUPV44S6L6S27LNYM4?sanitize=true"><img src="https://raw.githubusercontent.com/fjp/ros-turtle-pong/master/docs/rosgraph.svg?token=AAJ2DWQ6BPTFUPV44S6L6S27LNYM4?sanitize=true"></a>
     <figcaption>ROS Computation Graph.</figcaption>
 </figure>
+
+## Usage
+
+To use the `turtle_pong` package clone this repository into the `src` folder of your catkin workspace:
+
+```console
+fjp@ubuntu:/home/fjp/catkin_ws/src$ git clone https://github.com/fjp/ros-turtle-pong.git
+```
+
+Then build the workspace with `catking-tools` or `catkin_make` and source the new package:
+
+```console
+# catkin-tools:
+fjp@ubuntu:/home/fjp/catkin_ws$ catkin build
+# or use
+fjp@ubuntu:/home/fjp/catkin_ws$ catkin_make
+# source your workspace using the setup.bash or setup.zsh depening on your shell
+fjp@ubuntu:/home/fjp/catkin_ws$ source devel/setup.bash
+fjp@ubuntu:/home/fjp/catkin_ws$ source devel/setup.zsh
+```
+
+Finally start `roscore`, run `turtlesim` and `pong.launch`:
+
+```console
+roscore
+rosrun turtlesim turtlesim_node
+roslaunch turtle_pong pong.launch
+```
+
+Note that each of the three commands above should be executed from another terminal so that it will run in its own process.
+
+The game can be played with the w/s keys and the up/down arrow keys to control the left and right player (turtle) respectively.
 
 ## References
 
