@@ -62,6 +62,8 @@ diffbot:
         url: /projects/diffbot/hardware-interfaces/
       - title: "ROS Noetic Setup"
         url: /projects/diffbot/ros-noetic/
+      - title: "ROS Network Setup"
+        url: /projects/diffbot/ros-network/
   - title: "ROS Integration"
     url: /projects/diffbot/ros-integration/
     children:
