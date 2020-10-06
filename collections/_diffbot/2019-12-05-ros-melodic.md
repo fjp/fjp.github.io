@@ -12,8 +12,8 @@ toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: /assets/images/noetic.jpg
-  overlay_image: /assets/images/noetic.jpg
+  teaser: /assets/images/noetic.png
+  overlay_image: /assets/images/noetic.png
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
   caption: "Source: [**ROS Noetic**](http://wiki.ros.org/noetic)"
   show_overlay_excerpt: true
@@ -23,10 +23,10 @@ sidebar:
 
 The following guide shows how to setup [ROS Noetic](http://wiki.ros.org/noetic) and other important tools specific to ROS. 
 
-## Setup ROS Melodic
+## Setup ROS Noetic
 
 The ROS distribution Noetic is supported by Ubuntu 20.04 which is why we are going to install it.
-Instructions can be found on the offical [ROS documentation](http://wiki.ros.org/melodic/Installation/Ubuntu).
+Instructions can be found on the offical [ROS documentation](http://wiki.ros.org/noetic/Installation/Ubuntu).
 Just follow these instructions and choose this configuration: `Desktop-Full Install: (Recommended)`. 
 Although it is overkill, it will provide all examples that you might want to try.
 
