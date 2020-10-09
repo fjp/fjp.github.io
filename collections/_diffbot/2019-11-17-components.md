@@ -5,7 +5,7 @@ permalink: /projects/diffbot/components/
 excerpt: "Components of an autonomous 2WD Robot equipped with a Raspberry Pi 4 B running ROS melodic to sense and act in an environment."
 date: 2019-11-17 09:00:35 +0100
 categories: [robotics]
-tags: [2wd, differential drive, robot, ros, melodic, raspberry, pi, autonomous, sensors]
+tags: [2wd, differential drive, robot, ros, noetic, raspberry, pi, autonomous, sensors]
 comments: true
 use_math: true
 toc: true
@@ -54,6 +54,26 @@ Part list and assembly of the robot platform and the components.
 |              | IMU                       | Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055 | [Adafruit](https://www.adafruit.com/product/2472) |
 |              | Odometry                  | Joy-IT - LM393 Speed Sensor with H206 slot-type opto interrupter | [Joy-IT](https://joy-it.net/en/products/SEN-Speed) |
 
+Order list
+
+| Part                    | Store |
+|:------------------------|:---------------------------------------------------------------------------:|
+| Raspberry Pi 4 B (4 Gb) | [Amazon.com](https://amzn.to/3ltuJUo), [Amazon.de](https://amzn.to/2IchIAc) |
+| SanDisk 64 GB SD Card Class 10 | [Amazon.com](https://amzn.to/2GLOyr0), [Amazon.de](https://amzn.to/3dcFmYE) |
+|Robot Smart Chassis Kit  | [Amazon.com](https://amzn.to/34GXNAK), [Amazon.de](https://amzn.to/2Gy3CJ4) |
+| SLAMTEC RPLidar A2M8 (12 m) | [Amazon.com](https://amzn.to/3lthTFz), [Amazon.de](https://amzn.to/30MyImR) |
+| Grove Ultrasonic Ranger | [Amazon.com](https://amzn.to/36M9TLS), [Amazon.de](https://amzn.to/34GZmyC) |
+| Raspi Camera Module V2, 8 MP, 1080p | [Amazon.com](https://amzn.to/2Ib9fgG), [Amazon.de](https://amzn.to/2FdVDQF) |
+| Grove Motor Driver | [seeedstudio.com](https://www.seeedstudio.com/Grove-I2C-Motor-Driver-with-L298.html), [Amazon.de](https://amzn.to/36M8O6M) |
+| I2C Hub | [seeedstudio.com](https://www.seeedstudio.com/Grove-I2C-Hub.html), [Amazon.de](https://amzn.to/34CGEbz) |
+
+
+Additional (Optional) Equipment
+
+| Part                                   | Store |
+|:---------------------------------------|:------------------------------------:|
+| PicoScope 3000 Series Oscilloscope 2CH | [Amazon.de](https://amzn.to/33I5tUb) |
+| VOLTCRAFT PPS-16005                    | [Amazon.de](https://amzn.to/3iKsI4a) |
 
 ## Board - Raspberry Pi 4 B
 
