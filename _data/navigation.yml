@@ -90,6 +90,8 @@ diffbot:
         url: /projects/diffbot/ros-packages/gazebo/
       - title: "Control"
         url: /projects/diffbot/ros-packages/control/
+      - title: "Base Hardware Interface"
+        url: /projects/diffbot/ros-packages/base/
       - title: "Odometry"
         url: /projects/diffbot/ros-packages/odometry/
       - title: "Perception"
