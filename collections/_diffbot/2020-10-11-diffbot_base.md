@@ -5,7 +5,7 @@ permalink: /projects/diffbot/ros-packages/base/
 excerpt: "ROS Base Package for ROS Noetic running on a Raspberry Pi 4 for an autonomous 2WD Robot to act in an environment according to sensor information."
 date: 2020-09-24 08:00:35 +0100
 categories: [robotics]
-tags: [2wd, differential drive, robot, ros, noetic, raspberry, pi, autonomous, ubuntu, focal, package, gazebo, simulation]
+tags: [2wd, differential drive, robot, ros, noetic, raspberry, pi, autonomous, ubuntu, focal, package, gazebo, simulation, hardware_interfacem, hardware, interface, ros-control, control, controllers, diff_drive_controller]
 comments: true
 use_math: true
 toc: true
