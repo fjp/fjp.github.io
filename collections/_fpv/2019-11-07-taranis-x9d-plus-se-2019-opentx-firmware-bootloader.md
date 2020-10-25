@@ -40,9 +40,13 @@ To begin with the update of the OpenTX firmware on the Taranis, download the lat
 [OpenTX Companion](/projects/fpv/glossar/#opentx-companion) software (available for Windows, Mac and Linux) from [open-tx.org](https://www.open-tx.org/2019/10/05/opentx-2.3.1). On this webpage you also find the [sdcard content](https://downloads.open-tx.org/2.3/release/sdcard/) which we will need to put on a seperate sd card that will be inserted in
 the Taranis radio.
 
-Note that the Taranis X9D Plus SE 2019 doesn't ship with an sd card. However, it has an internal storage for the bootloader
+Note that the Taranis X9D Plus SE 2019 doesn't ship with a sd card. However, it has an internal storage for the bootloader
 and the firmware (OpenTX) and the firmware of the internal transmitter module.
 {: .notice}
+
+In case you are using Windows, make sure to install the Zadig utility. For Linux make sure to install `dfu-util`.
+More information can be in the [OpenTX gitbook](https://opentx.gitbooks.io/manual-for-opentx-2-2/content/companion/flashing.html).
+{: .warning}
 
 With the OpenTX Companion software it is possible to backup your radio using the following button, which lets you store
 a `*.bin` file on your computer:
@@ -94,7 +98,7 @@ Save the radio profile using a `Profile Name` and press `Ok`.
 Now that we are done with the settings of the firmware that will be flashed on the radio we need to enter the bootloader.
 To do that, press both horizontal trim switches to the middle while powering the transmitter. 
 
-Note: Don't press the power button for to long in order to enter the bootloader and not booting into the currently installed firmware.
+Note: Don't press the power button for too long in order to enter the bootloader and not booting into the currently installed firmware.
 {: .note}
 
 <figure class="half">
