@@ -548,6 +548,8 @@ The following image from the [`ros_control` wiki](http://wiki.ros.org/ros_contro
 
 ### ROS Navigation
 
+To enable navigating the robot around in an environment a meta package commonly known as [navigation stack](http://wiki.ros.org/navigation) is often used in ROS.
+Follow also [this tutorial](http://wiki.ros.org/navigation/Tutorials/RobotSetup) to setup the navigation stack on a robot.
 
 ### Using `rviz` to Localize and Command a Navigating Robot
 
