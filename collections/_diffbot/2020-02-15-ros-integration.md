@@ -478,6 +478,12 @@ roslaunch MYROBOT_gazebo MYROBOT.launch
 This will open Gazebo and spawn the robot model in an empty world.
 
 
+To control a model in Gazebo using ROS there exist plugins that are declared in the URDF which will then get loaded.
+See the [list of plugins](http://gazebosim.org/tutorials?tut=ros_gzplugins) that are already available. Here you will for example find plugins for sensors.
+
+Especially important is the gazebo_ros_control plugin, for a tutorial to integrate this see [here](http://gazebosim.org/tutorials/?tut=ros_control).
+
+
 
 **References**
 
