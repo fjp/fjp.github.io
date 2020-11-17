@@ -94,10 +94,14 @@ diffbot:
         url: /projects/diffbot/ros-packages/base/
       - title: "Odometry"
         url: /projects/diffbot/ros-packages/odometry/
-      - title: "Perception"
-        url: /projects/diffbot/ros-packages/perception/
+      - title: "Navigation"
+        url: /projects/diffbot/ros-packages/navigation/
       - title: "Planner"
         url: /projects/diffbot/ros-packages/planner/
+      - title: "SLAM"
+        url: /projects/diffbot/ros-packages/slam/
+      - title: "Driver - Perception, Localization"
+        url: /projects/diffbot/ros-packages/driver/
       - title: "Human Machine Interface"
         url: /projects/diffbot/ros-packages/hmi/
   - title: "System integration"
