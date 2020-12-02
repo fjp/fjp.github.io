@@ -4,6 +4,7 @@
 [submodule "collections/_2wd-robot/diffbot"]
 	path = collections/_diffbot/diffbot
 	url = https://github.com/fjp/diffbot.git
+	branch = noetic-devel
 [submodule "_includes/repos/frenet"]
 	path = _includes/repos/frenet
 	url = https://github.com/fjp/frenet.git
