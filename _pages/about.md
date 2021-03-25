@@ -9,9 +9,10 @@ header:
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
 
-Master in Electrical and Computer Engineering from [TU Munich](https://www.ei.tum.de/en/welcome/). 
-Lead Developer at [Oculytics GmbH](https://oculytics.com/), brining AI-based machine vision to the food production and other industires.
-Previously working on trajectory planning for autonomous vehicles. Interested in robotics, software development, control theory and microcontrollers.
+Hi I am Franz! I have a master's degree in Electrical and Computer Engineering from [TU Munich](https://www.ei.tum.de/en/welcome/). 
+I work as a software developer at [Oculytics GmbH](https://oculytics.com/), brining AI-based machine vision to the food production and other industires.
+Previously I worked on trajectory planning for autonomous vehicles. I am interested in robotics, software development, control theory and microcontrollers.
+This is why I work on [mobile robots](https://fjp.at/diffbot/) in my spare time.
 
 If you enjoy my content please consider [supporting me](https://paypal.me/fpucher) for keeping the website updated and creating new projects:
 
