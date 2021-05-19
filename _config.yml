@@ -230,6 +230,7 @@ plugins:
   - jekyll-jupyter-notebook
   - jekyll-include-cache
 #  - jekyll_github_sample
+  - jekyll-redirect-from
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -246,6 +247,7 @@ whitelist:
 #  - jekyll-tagging-related_posts
   - jekyll-jupyter-notebook
   - jekyll-include-cache
+  - jekyll-redirect-from
 
 
 # Archives
