@@ -19,10 +19,10 @@ header:
   show_overlay_excerpt: true
 sidebar:
   nav: diffbot
+redirect_to: https://ros-mobile-robots.com/diffbot_gazebo/
 ---
 
 Gazebo simulation package for ROS Noetic running on a Raspberry Pi 4 for an autonomous 2WD Robot 
 to act in an environment according to sensor information.
 
 
-{% include_relative diffbot/docs/diffbot_gazebo.md %}
