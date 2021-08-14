@@ -19,6 +19,7 @@ header:
   show_overlay_excerpt: true
 sidebar:
   nav: diffbot
+redirect_to: https://ros-mobile-robots.com/components/
 ---
 
 Part list and assembly of the robot platform and the components.
