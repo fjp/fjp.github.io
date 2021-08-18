@@ -1,7 +1,7 @@
 ---
 layout: single
 title:  "Porbabilistic Robotics Overview"
-date:   2021-08-18 19:00:42 +0200
+date:   2021-08-18 15:00:42 +0200
 excerpt: "Overview of algorithms in probabilistic robotics."
 permalink: /posts/probabilistic-robotics/
 categories: [robotics, mapping, localization, slam, ros, probability]
