@@ -31,10 +31,25 @@ Grid-based FastSLAM is combination of a particle filter such as Adaptive [Monte 
 
 #### Robot Environment Interaction
 
-- State
-- Environment Interaction
-- Probabilistic Generative Laws
-- Belief Distributions
+##### State
+
+Environments are characterized by state. State that change over time is called dynamic state, e.g., moving people or other vehicles.
+Static state is non-changing state, such as the location of walls in (most) buildings. The state also includes variables regarding the robot itself, such as its pose, velocity, whether or not its sensors are functioning correctly and so on. State is denoted by $x$ and the state at time $t$ by $x_t$. Typical state variables include:
+
+- Robot **pose**
+- In robot manipulation, the pose includes variables for the **configuration of robot's actuators** e.g., joint angles. Degrees of freedom is related to the **kinematic state** of a robot.
+-  Robot **velocity** and **velocities of its joints** are commonly referred to as **dynamic state**.
+-  **Locations and features of surrounding objects** in the environment are also state variables e.g., trees, walls. In some problems, objects will assume the form of **landmarks**, which are distinct, staationary features of the environment that can be recognized reliably.
+-  **Location and velocity of moving objects** and people are also potential state variables.
+-  Broken sensors or level of battery can be state variables.
+-  
+
+##### Environment Interaction
+
+
+##### Probabilistic Generative Laws
+
+##### Belief Distributions
 
 #### Bayes Filter
 
