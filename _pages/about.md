@@ -12,8 +12,12 @@ header:
 Hi I am Franz! I have a master's degree in Electrical and Computer Engineering from [TU Munich](https://www.ei.tum.de/en/welcome/). 
 I work as a software developer at [Oculytics GmbH](https://oculytics.com/), brining AI-based machine vision to the food production and other industires.
 Previously I worked on trajectory planning for autonomous vehicles. I am interested in robotics, software development, control theory and microcontrollers.
-This is why I work on [mobile robots](https://fjp.at/diffbot/) in my spare time.
+This is why I work on [mobile robots](https://fjp.at/projects/diffbot/) in my spare time.
+
+[![remo fusion animation](https://raw.githubusercontent.com/ros-mobile-robots/ros-mobile-robots.github.io/main/docs/resources/remo/remo_fusion_animation.gif)](https://youtu.be/6aAEbtfVbAk)
 
 If you enjoy my content please consider [supporting me](https://paypal.me/fpucher) for keeping the website updated and creating new projects:
+
+[:octocat: Github Sponsorship :heart: ](https://github.com/sponsors/fjp)
 
 [![Support via PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://paypal.me/fpucher)
