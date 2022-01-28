@@ -95,7 +95,7 @@ analytics:
 author:
   name             : "Franz Pucher"
   avatar           : "/assets/images/bio-photo.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Lead Software Developer at Oculytics GmbH."
+  bio              : "Software Developer at Leica Geosystems part of Hexagon."
   location         : "Feldkirch Austria"
   #email            : "fp@fjp.at"
   links:
