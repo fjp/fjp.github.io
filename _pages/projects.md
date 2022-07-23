@@ -33,6 +33,14 @@ feature_row2:
     btn_label: "Read More"
     btn_class: "btn--primary"
 feature_row3:
+  - image_path: /assets/collections/home-automation/argon-one-m-2.jpg
+    alt: "Home Automation"
+    title: "Home Automation"
+    excerpt: 'Home Automation Setup based on KNX and Home Assistant'
+    url: "/projects/home-automation/"
+    btn_label: "Read More"
+    btn_class: "btn--primary"
+feature_row4:
   - image_path: /assets/pages/design-patterns/factory-method-pattern.png
     alt: "Design Patterns"
     title: "Design Patterns"
@@ -40,7 +48,7 @@ feature_row3:
     url: "/design-patterns/"
     btn_label: "Read More"
     btn_class: "btn--primary"
-feature_row4:
+feature_row5:
   - image_path: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
     alt: "Autonomous RC Car"
     title: "Autonomous RC Car"
@@ -57,3 +65,5 @@ feature_row4:
 {% include feature_row id="feature_row3" type="left" %}
 
 {% include feature_row id="feature_row4" type="left" %}
+
+{% include feature_row id="feature_row5" type="left" %}
