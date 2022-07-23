@@ -30,3 +30,6 @@ The features that this project includes are:
 - Automatic blind control for shading
 - Lightning control based on [DALI](https://en.wikipedia.org/wiki/Digital_Addressable_Lighting_Interface)
 - Multi-room audio based on Sonos
+
+
+For testing purposes a Raspberry Pi 4B 8GB running Home Assistant is used. For more details see the [setup instructions](/projects/home-automation/setup) including booting from an SSD.
