@@ -1,9 +1,9 @@
 ---
 layout: single
 title:  "Home Automation - Raspberry Pi Setup"
-permalink: /projects/homeautomation/setup
+permalink: /projects/home-automation/setup
 excerpt: "Setup Home Assistant on an Raspberry Pi with Raspberry Pi OS running on an SSD."
-date:   2020-05-13 09:00:35 +0100
+date:   2022-07-23 10:00:35 +0100
 categories: [home automation, raspberry pi, home assistant]
 tags: [home, home automation, home assistant, home, assistant, raspberry pi, os, raspberry, ssd, setup, argon, one, m.2, case]
 comments: true
@@ -12,11 +12,11 @@ toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: /assets/collections/home-automation/components/propellers.jpg
-  overlay_image: /assets/collections/home-automation/propellers.jpg
+  teaser: /assets/collections/home-automation/components/argon-m-2.jpg
+  overlay_image: /assets/collections/home-automation/components/argon-m-2.jpg
   overlay_filter: 0.5
 redirect_from:
-  - /projects/homeassistant/
+  - /projects/home-automation/
 sidebar:
   nav: "home-automation"
 ---
