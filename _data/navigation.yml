@@ -280,10 +280,12 @@ design-patterns:
         
 home-automation:
   - title: "Home Automation"
-    url: /home-automation/
-  - title: "Raspberry Pi OpenHabian Setup"
-    url: /home-automation/openhabian
+    url: /projects/home-automation/
+  - title: "Home Automation"
+    url: /projects/home-automation/
     children:
+      - title: "Raspberry Pi Home Assistant Setup"
+        url: /projects/home-automation/setup
       - title: "Temperature and Humidity"
         url: /home-automation/esp8266-dht
       - title: "Shelly Light Control"
