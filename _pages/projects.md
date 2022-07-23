@@ -33,7 +33,7 @@ feature_row2:
     btn_label: "Read More"
     btn_class: "btn--primary"
 feature_row3:
-  - image_path: /assets/collections/home-automation/argon-one-m-2.jpg
+  - image_path: /assets/collections/home-automation/components/argon-one-m-2.jpg
     alt: "Home Automation"
     title: "Home Automation"
     excerpt: 'Home Automation Setup based on KNX and Home Assistant'
