@@ -306,6 +306,9 @@ collections:
   fpv:
     output: true
     permalink: /projects/:path/
+  home-automation:
+    output: true
+    permalink: /:collection/:path/
   design-patterns:
     output: true
     permalink: /:collection/:path/
