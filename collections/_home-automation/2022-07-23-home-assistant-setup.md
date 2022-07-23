@@ -1,7 +1,7 @@
 ---
 layout: single
 title:  "Home Automation - Raspberry Pi Setup"
-permalink: /projects/home-automation/setup
+permalink: /projects/home-automation/setup/
 excerpt: "Setup Home Assistant on an Raspberry Pi with Raspberry Pi OS running on an SSD."
 date:   2022-07-23 10:00:35 +0100
 categories: [home automation, raspberry pi, home assistant]
