@@ -185,6 +185,67 @@ These instructions will set the Raspberry Pi 4 / 400 to look for a USB boot devi
     </figure>
 
 
+## Home Assistant Installation
+
+The latest Home Assistant 64 bit can also be installed with Raspberry Pi Imager:
+
+1. Connect the bottom of the Argon One m.2 case that contains the m.2 connector board to a PC that has Raspberry Pi Imager installed
+2. Inside Raspberry Pi Imager choose OS
+3. Navigate to "Other specific-purpose OS"
+4. Select "Home assistans and home automation"
+5. Home Assistant
+6. Home Assistant OS 8.2 (RPi 4/400)
+
+    <figure >
+        <a href="/assets/collections/home-automation/home-assistant/rpi-imager-home-assistant.gif"><img src="/assets/collections/home-automation/home-assistant/rpi-imager-home-assistant.gif"></a>
+        <figcaption>Write Home Assistant to the SSD</figcaption>
+    </figure>
+    
+7. Click write and confirm that the data on the SSD will be erased
+
+    <figure >
+        <a href="/assets/collections/home-automation/home-assistant/01-home-assistant-write-erase.png"><img src="/assets/collections/home-automation/home-assistant/01-home-assistant-write-erase.png"></a>
+        <figcaption>Write Home Assistant to the SSD</figcaption>
+    </figure>
+    
+8. This will prepare the data, write and verify the flashing process
+
+    <figure >
+        <a href="/assets/collections/home-automation/home-assistant/02-home-assistant-writing-prep.png"><img src="/assets/collections/home-automation/home-assistant/02-home-assistant-writing-prep.png"></a>
+        <figcaption>Write Home Assistant to the SSD</figcaption>
+    </figure>
+    
+    <figure >
+        <a href="/assets/collections/home-automation/home-assistant/03-home-assistant-writing-6.png"><img src="/assets/collections/home-automation/home-assistant/03-home-assistant-writing-6.png"></a>
+        <figcaption>Write Home Assistant to the SSD</figcaption>
+    </figure>
+    
+    <figure >
+        <a href="/assets/collections/home-automation/home-assistant/03-home-assistant-writing-91.png"><img src="/assets/collections/home-automation/home-assistant/03-home-assistant-writing-91.png"></a>
+        <figcaption>Write Home Assistant to the SSD</figcaption>
+    </figure>
+    
+    <figure >
+        <a href="/assets/collections/home-automation/home-assistant/04-home-assistant-write-verifying.png"><img src="/assets/collections/home-automation/home-assistant/04-home-assistant-write-verifying.png"></a>
+        <figcaption>Write Home Assistant to the SSD</figcaption>
+    </figure>
+
+7. Cli for the writing process to complete
+
+    <figure >
+        <a href="/assets/collections/home-automation/home-assistant/05-home-assistant-write-complete.png"><img src="/assets/collections/home-automation/home-assistant/05-home-assistant-write-complete.png"></a>
+        <figcaption>Home Assistant write complete</figcaption>
+    </figure>
+    
+8. Connect the Argon One m.2 bottom again with the Raspberry Pi and boot it up.
+9. Wait until the Home Assistant boot screen appears
+10. Access Home Assistant with the browser on you development PC
+
+    <figure >
+        <a href="/assets/collections/home-automation/home-assistant/06-home-assistant-browser-setup.png"><img src="/assets/collections/home-automation/home-assistant/06-home-assistant-browser-setup.png"></a>
+        <figcaption>Write Home Assistant to the SSD</figcaption>
+    </figure>
+
 ## References
 
 - https://www.tomshardware.com/how-to/boot-raspberry-pi-4-usb
