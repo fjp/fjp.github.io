@@ -255,13 +255,13 @@ The update step closes the processing chain and in the following the steps to up
 Updated state mean
 
 $$
-x_{k+1|k+1} = x_{k+1|k} K_{k+1|k}(z_{k+1} - z_{k+1|k})
+x_{k+1|k+1} = x_{k+1|k} + K_{k+1|k}(z_{k+1} - z_{k+1|k})
 $$
 
 Covariance matrix update
 
 $$
-P_{k+1|k+1} = P_{k+1|k} K_{k+1|k}S_{k+1|k}K_{k+1|k}^{T}
+P_{k+1|k+1} = P_{k+1|k} - K_{k+1|k}S_{k+1|k}K_{k+1|k}^{T}
 $$
 
 These two steps are exactly the same for the extended Kalman filter. The only difference is how the
