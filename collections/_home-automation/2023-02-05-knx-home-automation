@@ -1,0 +1,39 @@
+---
+layout: single
+title:  "Home Automation - KNX"
+permalink: /projects/home-automation/knx/
+excerpt: "Overview of home automation with the KNX Bus."
+date:   2023-02-05 10:00:35 +0200
+categories: [home automation, knx, standard]
+tags: [home, home automation, knx, home, berker, busch, jaeger, jäger, taster, switch, light, blinds, heating, control, weather, station, monitor, bus, system]
+comments: true
+use_math: true
+toc: true
+classes: wide
+# toc_label: "KNX"
+header:
+  teaser: /assets/collections/home-automation/knx/knx.jpg
+  overlay_image: /assets/collections/home-automation/knx/knx.jpg
+  overlay_filter: 0.5
+redirect_from:
+  - /projects/home-automation/
+sidebar:
+  nav: "home-automation"
+---
+
+This page gives an overview over KNX.
+
+<figure >
+    <a href="/assets/collections/home-automation/knx/knx.jpg"><img src="/assets/collections/home-automation/knx/knx.jpg"></a>
+    <figcaption>Argon One m.2 case</figcaption>
+</figure>
+
+
+## KNX Overview 
+
+
+
+## References
+
+- https://www.tomshardware.com/how-to/boot-raspberry-pi-4-usb
+- https://www.waveshare.com/wiki/PI4-CASE-ARGON-ONE-M.2
