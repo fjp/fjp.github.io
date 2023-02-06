@@ -2,8 +2,9 @@
 layout: single
 title:  "Ubuntu 16.04 LTS Virtualbox on macOS 10.13.2 Host"
 date:   2018-04-22 19:30:00 +0200
+excerpt: "Using Ubuntu 16.04 in a virtualbox on macOS."
 categories: [operating systems, virtualbox, ubuntu, macOS]
-tags: [macOS, ubuntu, 16.04, LTS, virtualbox]
+tags: [macOS, ubuntu, LTS, virtualbox]
 comments: true
 toc: true
 header:

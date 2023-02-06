@@ -3,6 +3,7 @@ layout: single
 title:  Path Planning
 date:   2018-01-08 20:10:31 +0100
 categories: [path planning, search]
+excerpt: "Virtualbox on macOS"
 tags: [udacity, path planning]
 permalink: /posts/path-planning/
 use_math: true
