@@ -5,15 +5,15 @@ permalink: /projects/home-automation/voltus/
 excerpt: "Intelligent Home with Voltus - An Effortless Journey to Home Automation"
 date:   2023-02-05 10:00:35 +0200
 categories: [home automation, knx, standard]
-tags: [home, home automation, knx, home, berker, busch, jaeger, jäger, taster, switch, light, blinds, heating, control, weather, station, monitor, bus, system]
+tags: [bauenmitvoltus, home, home automation, knx, home, berker, busch, jaeger, jäger, taster, switch, light, blinds, heating, control, weather, station, monitor, bus, system]
 comments: true
 use_math: true
 toc: true
 classes: wide
 # toc_label: "KNX"
 header:
-  teaser: /assets/collections/home-automation/knx/knx.jpg
-  overlay_image: /assets/collections/home-automation/knx/knx.jpg
+  teaser: /assets/collections/home-automation/voltus/voltus.svg
+  overlay_image: /assets/collections/home-automation/voltus/voltus.svg
   overlay_filter: 0.5
 redirect_from:
   - /projects/home-automation/
@@ -28,7 +28,7 @@ The company's goal is to offer the right solution for each customer, from simple
 With the help of their team, partners, and suppliers, Voltus aims to provide the right solution for every customer, from simple switches to complex lighting and building control systems using KNX or DALI technology.
 
 <figure >
-    <a href="/assets/collections/home-automation/voltus/voltus.svg"><img src="/assets/collections/home-automation/voltus/voltus.svg"></a>
+    <a href="/assets/collections/home-automation/voltus/voltus-1.jpg"><img src="/assets/collections/home-automation/voltus/voltus-1.jpg"></a>
     <figcaption>Voltus</figcaption>
 </figure>
 
@@ -39,17 +39,64 @@ and KNX servers for control and visualization of certain states. With these comp
 such as open windows, temperature, shading, automatically close roof windows during rain.
 Additionally, you can secure your home with the latest in locking systems and door bells from ekey and Doorbird, two leading manufacturers in the industry.
 
+<figure >
+    <a href="/assets/collections/home-automation/voltus/voltus-buttons.gif"><img src="/assets/collections/home-automation/voltus/voltus-buttons.gif"></a>
+    <figcaption>Voltus button selection from Berker</figcaption>
+</figure>
+
 But that's not all! The Bauprogramm offers many great benefits to make your building experience even better.
 As part of the Bauprogramm, Voltus provides several benefits.
 You will receive 300 EUR worth of free shipping during the building phase and a 3% cashback on the total value of your purchases.
 Plus, you will get one hour of "Rent-a-Techy" for free and a special price for the distribution planning.
 And to give you peace of mind, Voltus offers a 5-year warranty on all their products.
 
-## Planned Automations
+## Planned Automations - Revolutionizing the Way We Live
 
-With the presence detectors, we can control the lighting in our home automatically, providing human-centric lighting that simulates the human biorhythm, with warm light in the morning and evening and cool light during the day if needed. We can also set light scenes with the push of a button or through our smartphones. The home automation options are endless and can be programmed to suit the individual needs of the home owners through KNX ETS software, which can be obtained for a reduced price through collective ordering in the KNX user forum.
+With the advancement in technology, controlling your home has become easier than ever before.
+An intelligent home automation system offers a range of options to make your home comfortable, secure and energy-efficient.
 
-In addition to lighting, we can also enjoy multi-room audio, making our home a truly intelligent and connected living space.
+<figure >
+    <a href="/assets/collections/home-automation/voltus/voltus-3.jpg"><img src="/assets/collections/home-automation/voltus/voltus-3.jpg"></a>
+    <figcaption>Voltus - Bauprogarmm, Bauenmitvoltus</figcaption>
+</figure>
+
+<figure >
+    <a href="/assets/collections/home-automation/voltus/voltus-5.jpg"><img src="/assets/collections/home-automation/voltus/voltus-5.jpg"></a>
+    <figcaption>Voltus - Bauprogarmm, Bauenmitvoltus</figcaption>
+</figure>
+
+Our home will be equipped with a variety of automations. Here are some of the highlights:
+
+The Berker knx buttons will allow us to control lights, light scenes, blinds, and even room-by-room temperature control.
+
+In addition, we'll have presence detectors from Berker that will automatically switch lights on and off in certain rooms like the entrance rooms,
+hallways, guest bathroom, and even outside and inside for security purposes. This will provide a warm welcome every time we enter our home.
+The DALI technology for light control with a DALI gateway from ABB will allow us to have dimmable and human-centric lighting
+(that simulates the human biorhythm, with warm light in the morning and evening and cool light during the day if needed.),
+such as LED stripes, spots, and traditional designer lamps.
+
+Magnet reed sensor contacts, installed in our windows, keep us informed about open or tilted windows and doors.
+These sensors will help keep our home secure beside other security features.
+
+Furthermore, we'll have a multi-room audio system powered mainly by Sonos and Sonance with its in ceiling speakers,
+which will allow us to enjoy music in the living areas of our home.
+
+The network infrastructure will be top-notch, with seamless wifi coverage through multiple access points by Ubiquity and network plugs in most rooms.
+
+We will have access control through new fingerprint sensors by ekey, doorbird, to securly control the motor locks for the door.
+The weather station from JUNG will control blinds and roof top windows from VELUX and its KLF 200 through the VELUX API.
+We will also have visualization options with Gira X1, knXpresso, or a Timerwolf server.
+
+And these are just the highlights! There's so much more to look forward to in terms of home automation.
+These features will not only make our daily lives easier, but also provide a level of customization and comfort that is tailored to our
+lifestyle and offers an effortless, convenient and comfortable living experience.
+
+The home automation options are endless and can be programmed to suit the individual needs of the home owners through KNX ETS software,
+which we obtained for a reduced price through collective ordering in the KNX user forum.
+
+With such a intelligent home automation system, we have the power to control our home with just a push of a button from our smartphones,
+voice or traditional wall buttons ;-)
+Welcome to the future of living.
 
 
 ## Conclusion
@@ -58,7 +105,10 @@ Overall, we are grateful to be part of the Bauprogramm and excited to see the en
 With the company's expertise and the benefits of the program, you can have confidence that your home will be both functional and secure for years to come.
 So why wait? Start building your dream home with Voltus today!
 
-
+<figure >
+    <a href="/assets/collections/home-automation/voltus/voltus.svg"><img src="/assets/collections/home-automation/voltus/voltus.svg"></a>
+    <figcaption>Voltus</figcaption>
+</figure>
 
 ## References
 
