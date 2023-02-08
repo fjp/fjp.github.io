@@ -289,6 +289,8 @@ home-automation:
   - title: "Raspberry Pi Home Assistant Setup"
     url: /projects/home-automation/setup
     children:
+      - title: "KNX Home Automation"
+        url: /home-automation/knx
       - title: "Temperature and Humidity"
         url: /home-automation/esp8266-dht
       - title: "Shelly Light Control"
