@@ -1,0 +1,66 @@
+---
+layout: single
+title:  "Home Automation - KNX"
+permalink: /projects/home-automation/voltus/
+excerpt: "Intelligent Home with Voltus - An Effortless Journey to Home Automation"
+date:   2023-02-05 10:00:35 +0200
+categories: [home automation, knx, standard]
+tags: [home, home automation, knx, home, berker, busch, jaeger, jäger, taster, switch, light, blinds, heating, control, weather, station, monitor, bus, system]
+comments: true
+use_math: true
+toc: true
+classes: wide
+# toc_label: "KNX"
+header:
+  teaser: /assets/collections/home-automation/knx/knx.jpg
+  overlay_image: /assets/collections/home-automation/knx/knx.jpg
+  overlay_filter: 0.5
+redirect_from:
+  - /projects/home-automation/
+sidebar:
+  nav: "home-automation"
+---
+
+Planning and building your dream home can be an exciting but challenging experience.
+With Voltus, a leading omnichannel smarttech distributor, and its Bauprogramm, you have a trusted partner to help you bring your vision to life. 
+Voltus is more than just an online shop, as they have made it their mission to digitalize the expertise and product distribution of brick-and-mortar electrical stores.
+The company's goal is to offer the right solution for each customer, from simple switches to complex lighting and building control systems with KNX or DALI technology.
+With the help of their team, partners, and suppliers, Voltus aims to provide the right solution for every customer, from simple switches to complex lighting and building control systems using KNX or DALI technology.
+
+<figure >
+    <a href="/assets/collections/home-automation/voltus/voltus.svg"><img src="/assets/collections/home-automation/voltus/voltus.svg"></a>
+    <figcaption>Voltus</figcaption>
+</figure>
+
+## Voltus and the Bauprogramm
+
+Voltus offers a range of electrical components for our project, including KNX buttons, presence detectors, REG KNX devices, DALI Gateway for light control,
+and KNX servers for control and visualization of certain states. With these components, we can monitor and control various aspects of our home,
+such as open windows, temperature, shading, automatically close roof windows during rain.
+Additionally, you can secure your home with the latest in locking systems and door bells from ekey and Doorbird, two leading manufacturers in the industry.
+
+But that's not all! The Bauprogramm offers many great benefits to make your building experience even better.
+As part of the Bauprogramm, Voltus provides several benefits.
+You will receive 300 EUR worth of free shipping during the building phase and a 3% cashback on the total value of your purchases.
+Plus, you will get one hour of "Rent-a-Techy" for free and a special price for the distribution planning.
+And to give you peace of mind, Voltus offers a 5-year warranty on all their products.
+
+## Planned Automations
+
+With the presence detectors, we can control the lighting in our home automatically, providing human-centric lighting that simulates the human biorhythm, with warm light in the morning and evening and cool light during the day if needed. We can also set light scenes with the push of a button or through our smartphones. The home automation options are endless and can be programmed to suit the individual needs of the home owners through KNX ETS software, which can be obtained for a reduced price through collective ordering in the KNX user forum.
+
+In addition to lighting, we can also enjoy multi-room audio, making our home a truly intelligent and connected living space.
+
+
+## Conclusion
+
+Overall, we are grateful to be part of the Bauprogramm and excited to see the endless possibilities of home automation with Voltus.
+With the company's expertise and the benefits of the program, you can have confidence that your home will be both functional and secure for years to come.
+So why wait? Start building your dream home with Voltus today!
+
+
+
+## References
+
+- https://wir-sind-voltus.de/
+- https://www.waveshare.com/wiki/PI4-CASE-ARGON-ONE-M.2
