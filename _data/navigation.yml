@@ -281,6 +281,11 @@ design-patterns:
 home-automation:
   - title: "Home Automation"
     url: /projects/home-automation/
+    children:
+      - title: "Voltus - Bauprogramm"
+        url: /home-automation/voltus
+      - title: "KNX Overview"
+        url: /home-automation/knx
   - title: "Raspberry Pi Home Assistant Setup"
     url: /projects/home-automation/setup
     children:
