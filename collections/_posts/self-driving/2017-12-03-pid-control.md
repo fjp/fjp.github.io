@@ -4,6 +4,7 @@ title:  "PID Control"
 date:   2017-12-03 14:24:31 +0100
 excerpt: "Summary of the PID controller."
 categories: [control, pid]
+excerpt: "Virtualbox on macOS"
 tags: [udacity, pid, control]
 use_math: true
 toc: true

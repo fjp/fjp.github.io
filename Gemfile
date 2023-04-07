@@ -9,3 +9,5 @@ gem 'jekyll-include-cache'
 gem 'jekyll_github_sample'
 
 gem 'jekyll-redirect-from'
+
+gem "webrick", "~> 1.8"

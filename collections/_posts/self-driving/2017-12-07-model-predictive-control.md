@@ -3,6 +3,7 @@ layout: single
 title:  Model Predictive Control
 date:   2017-12-07 20:55:31 +0100
 categories: [control, model, predictive]
+excerpt: "Virtualbox on macOS"
 tags: [udacity, mpc, control]
 use_math: true
 toc: true
