@@ -12,8 +12,8 @@ toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: /assets/collections/home-automation/components/knx.jpg
-  overlay_image: /assets/collections/home-automation/knx.jpg
+  teaser: /assets/collections/home-automation/knx-wago.jpg
+  overlay_image: /assets/collections/home-automation/knx-wago.jpg
   overlay_filter: 0.5
 redirect_from:
   - /projects/home-automation/
