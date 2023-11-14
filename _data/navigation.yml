@@ -286,6 +286,8 @@ home-automation:
         url: /projects/home-automation/voltus
       - title: "KNX Overview"
         url: /projects/home-automation/knx
+      - title: "KNX Button Selection"
+        url: /projects/home-automation/knx-button-selection
   - title: "Raspberry Pi Home Assistant Setup"
     url: /projects/home-automation/setup
     children:
