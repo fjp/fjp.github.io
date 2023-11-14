@@ -1,7 +1,7 @@
 ---
 layout: single
 title:  "KNX Light Switches and Presence Detectors"
-permalink: /projects/home-automation/voltus/
+permalink: /projects/home-automation/knx-button-selection/
 excerpt: "The Perfect Blend of Elegance and Technology: Berker and Busch Jäger Light Switches and Presence Detectors"
 date:   2023-11-11 10:00:35 +0200
 categories: [home automation, knx, standard]
@@ -32,8 +32,8 @@ Berker has a long-standing reputation for crafting switches and buttons that sea
 The Berker Q.3 series offers a wide array of options, allowing you to customize your buttons to fit your specific needs. Whether you're looking for simple light switches or more advanced controls for smart home devices, Berker's selection is sure to impress. The elegant design of the Q.3 series blends effortlessly with different interior styles, making it an ideal choice for those who appreciate both form and function.
 
 <figure >
-    <a href="/assets/collections/home-automation/berker/Berker-Q1-Q3.jpg"><img src="/assets/collections/home-automation/berker/Berker-Q1-Q3.jpg"></a>
-    <a href="/assets/collections/home-automation/berker/Berker-Q1-Q3-ang-view.jpg"><img src="/assets/collections/home-automation/berker/Berker-Q1-Q3-ang-view.jpg"></a>
+    <a href="/assets/collections/home-automation/buttons/berker/Berker-Q1-Q3.jpg"><img src="/assets/collections/home-automation/buttons/berker/Berker-Q1-Q3.jpg"></a>
+    <a href="/assets/collections/home-automation/buttons/buttons/berker/Berker-Q1-Q3-ang-view.jpg"><img src="/assets/collections/home-automation/buttons/berker/Berker-Q1-Q3-ang-view.jpg"></a>
     <figcaption>Top row shows the Q.1 covers from Berker, while the bottom row shows the Q.3 series.</figcaption>
 </figure>
 
@@ -44,10 +44,16 @@ Busch Jäger, on the other hand, is known for its innovative and luxurious solut
 The Tenton series from Busch Jäger combines the latest technology with sophisticated design. The controls offer an intuitive and futuristic experience. From dimming lights to controlling blinds, heating and cooling systems, these buttons seamlessly integrate with your home automation setup.
 
 <figure >
-    <a href="/assets/collections/home-automation/bj/Tenton-black.jpg"><img src="/assets/collections/home-automation/bj/Tenton-black.jpg"></a>
-    <a href="/assets/collections/home-automation/bj/Tenton-white.jpg"><img src="/assets/collections/home-automation/bj/Tenton-white.jpg"></a>
+    <a href="/assets/collections/home-automation/buttons/bj/Tenton-black.jpg"><img src="/assets/collections/home-automation/buttons/bj/Tenton-black.jpg"></a>
+    <a href="/assets/collections/home-automation/buttons/bj/Tenton-white.jpg"><img src="/assets/collections/home-automation/buttons/bj/Tenton-white.jpg"></a>
     <figcaption>Busch Jäger Tenton KNX buttons.</figcaption>
 </figure>
+
+## KNX Application for Buttons: Tailoring Technology to Your Needs
+
+One crucial aspect that played a significant role in our decision-making process was the KNX application for buttons provided by OEMs such as Berker and Busch Jäger. It's essential to select buttons according to the specific application offered by the OEMs, ensuring optimal functionality and integration within your smart home system.
+
+Exploring the software, which is often free and easily accessible through tools like the ETS (Engineering Tool Software), allows homeowners to configure and customize the behavior of their buttons or presence detectors (sensors). Before settling on a particular model or brand, take advantage of this software to test different scenarios and functionalities. This ensures that the chosen buttons not only meet your aesthetic preferences but also align seamlessly with the practical requirements of your home automation system.
 
 ## Voltus: Simplifying Our Decision-Making Process
 
@@ -57,10 +63,20 @@ However, our decision-making process was greatly simplified, thanks to Voltus. V
 
 Voltus not only provides a platform for purchasing these products but also offers valuable insights and information about each product. The comprehensive product descriptions, user reviews, and expert recommendations helped us make informed choices, ensuring that the selected buttons and presence detectors seamlessly integrated into our smart home ecosystem without compromising the aesthetics of our living spaces.
 
+<figure>
+    <a href="/assets/collections/home-automation/buttons/button-selection-voltus.jpg"><img src="/assets/collections/home-automation/buttons/button-selection-voltus.jpg"></a>
+    <a href="/assets/collections/home-automation/buttons/button-selection-voltus-2.jpg"><img src="/assets/collections/home-automation/buttons/button-selection-voltus-2.jpg"></a>
+    <figcaption>Voltus button selection.</figcaption>
+</figure>
+
 In conclusion, the journey to modernize and enhance the functionality of our home has been made possible with the Berker Q.3 series and the Tenton series from Busch Jäger. These products not only bring convenience and technology to our fingertips but also elevate the aesthetics of our living spaces. Thanks to Voltus and their focus on KNX compatibility, we could navigate the vast selection of electronic devices with ease, ultimately leading us to the perfect solutions for our home.
 
-<figure >
-    <a href="/assets/collections/home-automation/Berker-Tenton-mix.jpg"><img src="/assets/collections/home-automation/Berker-Tenton-mix.jpg"></a>
-    <a href="/assets/collections/home-automation/Berker-Tenton-mix.jpg"><img src="/assets/collections/home-automation/Berker-Tenton-mix.jpg"></a>
+<figure>
+    <a href="/assets/collections/home-automation/buttons/Berker-Tenton-mix.jpg"><img src="/assets/collections/home-automation/buttons/Berker-Tenton-mix.jpg"></a>
     <figcaption>Busch Jäger Tenton and Berker KNX buttons.</figcaption>
 </figure>
+
+## References
+
+- [Voltus Berker KNX](https://www.voltus.de/index.php?cl=alist&searchparam=&cnid=10131322)
+- [Busch Jäger Tenton](https://www.voltus.de/hausautomation/busch-free-home/busch-tenton/)
