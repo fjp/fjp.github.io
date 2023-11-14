@@ -10,6 +10,62 @@ The default address of your GitHub page will be in the form of `username.github.
 
 [![Tip Me via PayPal](https://img.shields.io/badge/PayPal-tip%20me-green.svg?logo=paypal)](https://www.paypal.me/fpucher)
 
+## Setup on Ubuntu 22.04
+
+Install gpg2 which is required for `rvm`:
+
+```
+sudo apt install gpg2
+```
+
+Follow the instructions at to install rvm:
+
+```
+gpg2 --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+```
+
+```
+\curl -sSL https://get.rvm.io | bash -s stable
+```
+
+Get the latest stable rvm version
+
+```
+rvm get stable
+```
+
+Install ruby using `rvm`:
+
+```
+rvm install ruby-3.2.2
+```
+
+To add `rvm` to your path run the following commands:
+
+```
+echo "source $HOME/.rvm/scripts/rvm" >> ~/.bashrc
+. ~/.bashrc
+```
+
+Install Jekyll and Bundler gems trhough RubyGems:
+
+```
+gem install jekyll bundler
+```
+
+Install additional gems defined in the Gemfile:
+
+```
+bundle install
+```
+
+Serve the static web site:
+
+```
+bundle exec jekyll serve
+```
+
+
 ## Setup on MacOS
 
 The basic setup to get a similar site up and running is explained with the following steps.
