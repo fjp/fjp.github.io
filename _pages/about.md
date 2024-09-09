@@ -9,10 +9,9 @@ header:
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
 
-Hi I am Franz! I have a master's degree in Electrical and Computer Engineering from [TU Munich](https://www.ei.tum.de/en/welcome/). 
-I work as a software developer at [Oculytics GmbH](https://oculytics.com/), brining AI-based machine vision to the food production and other industires.
-Previously I worked on trajectory planning for autonomous vehicles. I am interested in robotics, software development, control theory and microcontrollers.
-This is why I work on [mobile robots](https://fjp.at/projects/diffbot/) in my spare time.
+Hi, I'm Franz! I hold a master's degree in Electrical and Computer Engineering from TU Munich. Currently, I work as a software engineer at Leica Geosystems, where I develop advanced software features for high-end 3D laser scanners, focusing on scanning and imaging technologies used in the surveying industry. Previously, I worked at Oculytics GmbH, implementing AI-based machine vision solutions for industries like food production and beyond.
+
+I’ve also had experience working on trajectory planning for autonomous vehicles. My passions include robotics, software development, control theory, and microcontrollers. In my spare time, I enjoy working on [mobile robots](https://fjp.at/projects/diffbot/) to combine and expand my expertise in these areas.
 
 [![remo fusion animation](https://raw.githubusercontent.com/ros-mobile-robots/ros-mobile-robots.github.io/main/docs/resources/remo/remo_fusion_animation.gif)](https://youtu.be/6aAEbtfVbAk)
 
