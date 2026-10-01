@@ -15,8 +15,6 @@ header:
   teaser: /assets/collections/fpv/taranis/taranis.jpg
   overlay_image: /assets/collections/fpv/taranis/bootloader.jpg
   overlay_filter: 0.5
-redirect_from:
-  - /projects/fpv/
 sidebar:
   nav: "fpv"
 ---
@@ -52,7 +50,7 @@ With the OpenTX Companion software it is possible to backup your radio using the
 a `*.bin` file on your computer:
 
 <figure>
-    <a href="/assets/collections/fpv/opentx/radio-backup.jpg"><img src="/assets/collections/fpv/opentx/radio-backup.png"></a>
+    <a href="/assets/collections/fpv/opentx/radio-backup.png"><img src="/assets/collections/fpv/opentx/radio-backup.png"></a>
     <figcaption>Backup the Settings and Models on your Taranis before you proceed.</figcaption>
 </figure>
 
@@ -107,7 +105,7 @@ Note: Don't press the power button for too long in order to enter the bootloader
     <figcaption>OpenTX Companion.</figcaption>
 </figure>
 
-On the bootloader screen above you can also check the bootloader version which is important if you want to update the bootloader. The optional update procedure is explained at the end of this post [Update Bootloader (Optional)](/projects/fpv/taranis/#update-bootloader-(optional)).
+On the bootloader screen above you can also check the bootloader version which is important if you want to update the bootloader. The optional update procedure is explained at the end of this post [Update Bootloader (Optional)](/projects/fpv/taranis/#update-bootloader-optional).
 
 ## Flash OpenTX
 
@@ -181,7 +179,7 @@ Because it is not allowed to share this script, just write a mail to the [FrSky 
 
 If you would like to use the latest bootloader that comes with the OpenTX firmware then copy the `*.bin` file to the `EEPROM` folder of your external `EXTARANIS` sd card and rename it to something short `opentx-2.3.1.bin`. Remember that the `*.bin` firmware file was downloaded via OpenTX Companion.
 
-Follow the [steps](/projects/fpv/taranis/#update-bootloader-(optional)) at the end of this post to update the bootloader.
+Follow the [steps](/projects/fpv/taranis/#update-bootloader-optional) at the end of this post to update the bootloader.
 
 ## Update Internal Module Firmware (Optional)
 

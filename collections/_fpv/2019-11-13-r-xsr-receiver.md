@@ -12,11 +12,9 @@ toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: /assets/collections/fpv/receiver/r-xsr.jpg
-  overlay_image: /assets/collections/fpv/receiver/r-xsr.jpg
+  teaser: /assets/collections/fpv/receiver/r-xsr-top.jpg
+  overlay_image: /assets/collections/fpv/receiver/r-xsr-top.jpg
   overlay_filter: 0.5
-redirect_from:
-  - /projects/fpv/
 sidebar:
   nav: "fpv"
 ---

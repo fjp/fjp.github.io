@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "Taranis X9D Plus SE 2019 - Telemetry"
+title:  "RC Rate and Expo Settings"
 permalink: /projects/fpv/rate-expo-settings
 excerpt: "All about RC Rate and EXPO for the RC transmitter."
 date: 2020-04-19 09:00:35 +0100
@@ -15,8 +15,6 @@ header:
   teaser: /assets/collections/fpv/taranis/taranis.jpg
   overlay_image: /assets/collections/fpv/taranis/bootloader.jpg
   overlay_filter: 0.5
-redirect_from:
-  - /projects/fpv/
 sidebar:
   nav: "fpv"
 ---
