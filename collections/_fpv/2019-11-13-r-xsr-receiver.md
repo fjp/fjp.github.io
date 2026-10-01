@@ -30,7 +30,7 @@ This post is abou the [FrSky R-XSR SmartPort Receiver](https://www.frsky-rc.com/
 
 ## Receiver Firmware Update
 
-This section explains how to [flash](/projects/fpv/glossar/#flash) the latest [receiver](/projects/fpv/glossar/#receiver) [firmware](/projects/fpv/glossar/#firmware) for an R-XSR receiver and how to [bind](/projects/fpv/glossar/#receiver) it to the [Taranis](/projects/fpv/glossar/#taranis) X9D Plus 2019 [transmitter](/projects/fpv/glossar/#receiver).
+This section explains how to [flash](/projects/fpv/glossar/#flash) the latest [receiver](/projects/fpv/glossar/#receiver) [firmware](/projects/fpv/glossar/#firmware) for an R-XSR receiver and how to [bind](/projects/fpv/glossar/#bind) it to the [Taranis](/projects/fpv/glossar/#taranis) X9D Plus 2019 [transmitter](/projects/fpv/glossar/#transmitter).
 
 Download the latest [ACCESS](/projects/fpv/glossar/#access) firmware from the 
 [product page](https://www.frsky-rc.com/r-xsr/). Here you can decide between [S.Port](/projects/fpv/glossar/#smartport) and [F.Port](/projects/fpv/glossar/#fport) variants. 
