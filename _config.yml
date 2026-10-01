@@ -148,6 +148,11 @@ exclude:
   - CHANGELOG
   - LICENSE
   - README
+  # Jekyll's default excludes no longer apply once this list is set
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
 
 
 # Markdown Processing
