@@ -189,7 +189,6 @@ plugins:
 #  - jekyll-algolia
 #  - jekyll/tagging
 #  - jekyll-tagging-related_posts
-  - jekyll-jupyter-notebook
   - jekyll-include-cache
 #  - jekyll_github_sample
   - jekyll-redirect-from
@@ -207,7 +206,6 @@ whitelist:
 #  - jekyll-algolia
 #  - jekyll/tagging
 #  - jekyll-tagging-related_posts
-  - jekyll-jupyter-notebook
   - jekyll-include-cache
   - jekyll-redirect-from
 

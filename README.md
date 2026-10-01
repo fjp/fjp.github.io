@@ -37,7 +37,7 @@ rvm get stable
 Install ruby using `rvm`:
 
 ```
-rvm install ruby-3.2.2
+rvm install ruby-3.3.4
 ```
 
 To add `rvm` to your path run the following commands:
