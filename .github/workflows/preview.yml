@@ -50,6 +50,8 @@ jobs:
           # point them into the preview so that it can be browsed on its own
           find _site -name '*.html' -print0 | xargs -0 perl -pi -e \
             's{\b((?:href|src)=["\x27])/(?!/|\Q$ENV{PREVIEW_PATH}\E/)}{$1/$ENV{PREVIEW_PATH}/}g'
+          # Lets the deployment step check that this exact commit is live
+          echo "$HEAD_SHA" > _site/preview-sha.txt
 
       - name: Publish preview
         id: preview
@@ -59,7 +61,9 @@ jobs:
           preview-branch: gh-pages
           umbrella-dir: pr-preview
           pages-base-url: fjp.at
-          wait-for-pages-deployment: true
+          # Waiting for the Pages build of the exact preview commit fails when
+          # another push to gh-pages supersedes that build, see Record deployment
+          wait-for-pages-deployment: false
           qr-code: false
 
       - name: Record deployment
@@ -68,6 +72,19 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PREVIEW_URL: ${{ steps.preview.outputs.preview-url }}
         run: |
+          # Any later Pages build also contains this preview, so wait until
+          # the preview serves this commit instead of waiting for one build
+          live=""
+          for i in $(seq 1 60); do
+            served=$(curl -fsS "https://fjp.at/$PREVIEW_PATH/preview-sha.txt?run=$GITHUB_RUN_ID-$i" || true)
+            if [ "$served" = "$HEAD_SHA" ]; then live=1; break; fi
+            sleep 15
+          done
+          if [ -z "$live" ]; then
+            echo "::error::Preview for $HEAD_SHA did not go live within 15 minutes"
+            exit 1
+          fi
+
           id=$(jq -n --arg ref "$HEAD_REF" '{
               ref: $ref,
               environment: "pr-preview",
