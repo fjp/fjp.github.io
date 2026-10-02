@@ -1,0 +1,1633 @@
+
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js" dir="ltr">
+  <head>
+    
+<meta charset="utf-8">
+
+
+<!-- begin _includes/seo.html --><title>ROS rqt plugin for turtlesim - fjp.github.io</title>
+<meta name="description" content="Plugin for ROS rqt to draw in turtlesim using turtlebot.">
+
+
+  <meta name="author" content="Franz Pucher">
+  
+  <meta property="article:author" content="Franz Pucher">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="fjp.github.io">
+<meta property="og:title" content="ROS rqt plugin for turtlesim">
+<meta property="og:url" content="https://fjp.at/pr-preview/pr-15/ros/rqt-turtle/">
+
+
+  <meta property="og:description" content="Plugin for ROS rqt to draw in turtlesim using turtlebot.">
+
+
+
+  <meta property="og:image" content="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/rqt_turtle-draw-image.gif">
+  
+
+
+
+  <meta name="twitter:site" content="@franzpucher">
+  <meta name="twitter:title" content="ROS rqt plugin for turtlesim">
+  <meta name="twitter:description" content="Plugin for ROS rqt to draw in turtlesim using turtlebot.">
+  <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-15/ros/rqt-turtle/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/rqt_turtle-draw-image.gif">
+    
+  
+
+  
+
+
+
+
+
+  <meta property="article:published_time" content="2020-08-23T18:00:35+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fjp.at/pr-preview/pr-15/ros/rqt-turtle/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/pr-preview/pr-15/feed.xml" type="application/atom+xml" rel="alternate" title="fjp.github.io Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pr-preview/pr-15/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-2214309606626131",
+          enable_page_level_ads: true
+     });
+</script>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+<!--KaTeX-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+<!-- Pseudocode.js -->
+<!-- https://github.com/SaswatPadhi/pseudocode.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"
+        integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous">
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
+<script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js">
+</script>
+
+<!-- Mailinglist -->
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '1518166');
+</script>
+<!-- End MailerLite Universal -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+        
+        <a class="site-title" href="/pr-preview/pr-15/">
+          fjp.github.io
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/"
+                
+                
+              >Home</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/blog/"
+                
+                
+              >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/design-patterns/"
+                
+                
+              >Design Patterns</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/cpp/"
+                
+                
+              >C++</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/projects/fpv/"
+                
+                
+              >FPV</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/about/"
+                
+                
+              >About</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/ads/"
+                
+                
+              >Ads</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/privacy/"
+                
+                
+              >Privacy</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/sitemap/"
+                
+                
+              >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/rqt_turtle-draw-image.gif');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          ROS rqt plugin for turtlesim
+
+        
+      </h1>
+      
+        <p class="page__lead">Plugin for ROS rqt to draw in turtlesim using turtlebot.
+</p>
+      
+      
+
+
+
+      
+    </div>
+  
+  
+    <span class="page__hero-caption">rqt_turtle
+</span>
+  
+</div>
+
+
+
+
+
+
+  
+    
+
+
+
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-15/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-15/ros" itemprop="item"><span itemprop="name">Ros</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">ROS rqt plugin for turtlesim</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="ROS rqt plugin for turtlesim">
+    <meta itemprop="description" content="Plugin for ROS rqt to draw in turtlesim using turtlebot.">
+    <meta itemprop="datePublished" content="2020-08-23T18:00:35+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc" aria-label="Table of contents">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#c-vs-python">C++ vs Python</a></li><li><a href="#create-the-empty-ros-package">Create the Empty ROS Package</a></li><li><a href="#modify-the-package-content">Modify the package content</a><ul><li><a href="#packagexml">package.xml</a></li><li><a href="#pluginxml">plugin.xml</a></li></ul></li><li><a href="#design-the-ui">Design the UI</a></li><li><a href="#write-the-plugin-code">Write the Plugin Code</a><ul><li><a href="#ros-components">ROS Components</a></li><li><a href="#qt-components">Qt Components</a></li><li><a href="#signal-and-slots">Signal and Slots</a></li><li><a href="#service-caller">Service Caller</a><ul><li><a href="#command-line-interface-approach">Command Line Interface Approach</a></li><li><a href="#xml-rpc-approach">XML-RPC Approach</a></li></ul></li><li><a href="#draw-dialog">Draw Dialog</a><ul><li><a href="#draw-shape">Draw Shape</a></li><li><a href="#draw-image">Draw Image</a></li></ul></li></ul></li><li><a href="#install-and-run-your-plugin">Install and Run your Plugin</a><ul><li><a href="#cmakeliststxt">CMakeLists.txt</a></li><li><a href="#setuppy">setup.py</a></li><li><a href="#faced-problems">Faced Problems</a></li></ul></li><li><a href="#launch-the-plugin">Launch the plugin</a></li><li><a href="#future-work">Future Work</a></li><li><a href="#references">References</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>This project is part of the Robocademy 
+<a href="https://robocademy.com/2020/06/25/enroll-in-robot-operating-system-learning-path-by-lentin-joseph/">Robot Operating System Learning Path</a> by 
+<a href="https://lentinjoseph.com/">Lentin Joseph</a>. 
+The project shows how the <code class="language-plaintext highlighter-rouge">rqt_turtle</code> plugin for ROS’ <a href="http://wiki.ros.org/rqt">GUI framework rqt</a> was created.</p>
+
+<p>The final plugin looks like this:</p>
+
+<figure>
+    <a href="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/rqt-turtle.png"><img src="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/rqt-turtle.png" /></a>
+    <figcaption>Loaded rqt turtle plugin.</figcaption>
+</figure>
+
+<p>The video below gives more insights on what is currently implemented:</p>
+
+<p><a href="https://youtu.be/2IQtxEmP2a4"><img src="http://img.youtube.com/vi/2IQtxEmP2a4/0.jpg" alt="rqt turtle YouTube" /></a></p>
+
+<p>The plugin can be used to draw inside <a href="http://wiki.ros.org/turtlesim">turtlesim</a> with turtlebot.
+Although the following description might help you to write your own rqt plugin, also have a look at the official <a href="http://wiki.ros.org/rqt/Tutorials">rqt tutorials</a>, especially the tutorial <a href="http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin">Create your new rqt plugin</a>. 
+There are tutorials explaining how to write plugins using python or C++. The <code class="language-plaintext highlighter-rouge">rqt_turtle</code> plugin is written in C++.
+Note that the following documentation doesn’t list the full source code. For this The <a href="https://github.com/fjp/rqt-turtle">source code</a> is hosted on GitHub.</p>
+
+<p>The code tries to follow the <a href="http://wiki.ros.org/CppStyleGuide">ROS CppStyleGuide</a> and the code API documentation can be created with <a href="http://wiki.ros.org/Doxygen">doxygen</a>. The code was written with the <a href="https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros">vscode ROS plugin</a>
+that allows to debug rqt plugins using attach to process method. 
+See the <a href="https://github.com/ms-iot/vscode-ros/blob/master/doc/debug-support.md">documentation</a> on how to setup debugging and its debugging capabilities.</p>
+
+<h2 id="c-vs-python">C++ vs Python</h2>
+
+<p>Note that most rqt plugins are written in Python and it is even recommended to write them in Python. 
+However, because of few documented C++ plugins, this project shows how to write a plugin in C++ and it is similar to the
+<a href="http://wiki.ros.org/rqt_image_view"><code class="language-plaintext highlighter-rouge">rqt_image_view</code> plugin</a> that is also programmed in C++. 
+In case you are planning to reuse existing rqt plugins make sure to use the 
+language that they are written in. As you will see later in this writeup, I had to use some compromise to use existing rqt plugins which are were written in Python. Another drawback is that the <a href="https://en.wikipedia.org/wiki/XML-RPC">XML-RPC</a> functionality available from the ROS Master API is not well documented. 
+For example using Python to obtain service or topic information such as types or arguments is much easier with Python.</p>
+
+<h2 id="create-the-empty-ros-package">Create the Empty ROS Package</h2>
+
+<p>The first step is to create an empty ROS package and specify the required dependencies. 
+Note, that it is possible to add missing dependencies later on.
+Inside a <a href="http://wiki.ros.org/catkin/workspaces">ros workspace</a> use the <a href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html"><code class="language-plaintext highlighter-rouge">catkin create</code></a> command from <a href="https://catkin-tools.readthedocs.io/en/latest/">catkin-tools</a> to creat the empty <code class="language-plaintext highlighter-rouge">rqt_turtle</code> package:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>catkin create pkg rqt_turtle <span class="se">\</span>
+<span class="go">    -a "Franz Pucher" "ros@fjp.at" \
+    -m "Franz Pucher" "ros@fjp.at" \
+    -l "MIT" \
+    -d "rqt plugin for ROS rqt to draw in turtlesim using turtlebot." \
+    --catkin-deps roscpp rqt_gui rqt_gui_cpp
+</span></code></pre></div></div>
+
+<p>This will add the <a href="http://docs.ros.org/noetic/api/roscpp/html/index.html"><code class="language-plaintext highlighter-rouge">roscpp</code></a> client library and rqt related dependency packages to the plugin.</p>
+
+<h2 id="modify-the-package-content">Modify the package content</h2>
+
+<p>This section follows the instructions in <a href="http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin">wiki.ros.org/rqt/Tutorials/Create your new rqt plugin</a>.</p>
+
+<h3 id="packagexml">package.xml</h3>
+
+<p>To make the rqt plugin discoverable, for catkin, we must declare the plugin in the <code class="language-plaintext highlighter-rouge">package.xml</code> by referencing a <code class="language-plaintext highlighter-rouge">plugin.xml</code>.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c">&lt;!-- The export tag contains other, unspecified, tags --&gt;</span>
+  <span class="nt">&lt;export&gt;</span>
+    <span class="c">&lt;!-- Other tools can request additional information be placed here --&gt;</span>
+    <span class="nt">&lt;rqt_gui</span> <span class="na">plugin=</span><span class="s">"${prefix}/plugin.xml"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/export&gt;</span>
+</code></pre></div></div>
+
+<p>For more information see the <a href="http://docs.ros.org/indigo/api/catkin/html/howto/format2/catkin_library_dependencies.html">catkin library dependencies</a>.</p>
+
+<h3 id="pluginxml">plugin.xml</h3>
+
+<p>Now create the <code class="language-plaintext highlighter-rouge">plugin.xml</code> with the following content:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- To make the plugin discoverable by rqt the path to the library librqt_turtle.so needs to be specified --&gt;</span>
+<span class="c">&lt;!-- The installed plugin library can be found in the devel/lib/ folder. --&gt;</span>
+<span class="nt">&lt;library</span> <span class="na">path=</span><span class="s">"lib/librqt_turtle"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;class</span> <span class="na">name=</span><span class="s">"rqt_turtle/TurtlePlugin"</span> <span class="na">type=</span><span class="s">"rqt_turtle::TurtlePlugin"</span> <span class="na">base_class_type=</span><span class="s">"rqt_gui_cpp::Plugin"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;description&gt;</span>
+      Plugin for ROS rqt to draw in turtlesim using turtlebot.
+    <span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;qtgui&gt;</span>
+      <span class="c">&lt;!-- group the plugin into the folder Robot Tools... --&gt;</span>
+      <span class="nt">&lt;group&gt;</span>
+        <span class="nt">&lt;label&gt;</span>Robot Tools<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;icon</span> <span class="na">type=</span><span class="s">"theme"</span><span class="nt">&gt;</span>folder<span class="nt">&lt;/icon&gt;</span>
+        <span class="nt">&lt;statustip&gt;</span>Plugins related to robot tools.<span class="nt">&lt;/statustip&gt;</span>
+      <span class="nt">&lt;/group&gt;</span>
+      <span class="nt">&lt;label&gt;</span>TurtleSim<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;icon</span> <span class="na">type=</span><span class="s">"theme"</span><span class="nt">&gt;</span>input-tablet<span class="nt">&lt;/icon&gt;</span>
+      <span class="nt">&lt;statustip&gt;</span>Plugin for ROS rqt to draw in turtlesim using turtlebot.<span class="nt">&lt;/statustip&gt;</span>
+    <span class="nt">&lt;/qtgui&gt;</span>
+  <span class="nt">&lt;/class&gt;</span>
+<span class="nt">&lt;/library&gt;</span>
+</code></pre></div></div>
+
+<p>A description of these xml attributes is found in the <a href="http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin#Attributes_of_library_element_in_plugin.xml">rqt tutorial</a>.</p>
+
+<p>The first attribute <code class="language-plaintext highlighter-rouge">library path</code> specifies the path to the library <code class="language-plaintext highlighter-rouge">librqt_turtle.so</code> which makes the plugin discoverable for rqt.
+In this case the installed plugin library can be found in the ros workspace inside the <code class="language-plaintext highlighter-rouge">devel/lib/</code> folder.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">rqt_turtle</code> plugin will be grouped into the existing Robot Tools menu of <code class="language-plaintext highlighter-rouge">rqt</code> with the icon type <code class="language-plaintext highlighter-rouge">input-table</code>. The names
+for other icons can be found in the <a href="https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html">Icon Naming Specification</a>.</p>
+
+<h2 id="design-the-ui">Design the UI</h2>
+
+<p>ROS rqt plugins are based on the <a href="https://www.qt.io/product/framework">Qt framework</a>. When <a href="https://wiki.qt.io/Install_Qt_5_on_Ubuntu">installing Qt</a>, 
+using the official Ubuntu package <code class="language-plaintext highlighter-rouge">sudo apt-get install qt5-default</code> the required tools to develop Qt applications are installed too.
+Qt provides its own Qt Creator IDE and a Designer that lets you create GUIs that work are cross platform, meaning they will work on Linux, macOS and Windows.</p>
+
+<p>To design an ui file open a terminal and enter <code class="language-plaintext highlighter-rouge">designer</code></p>
+
+<figure>
+    <a href="/pr-preview/pr-15/assets/ros/qt/designer.png"><img src="/pr-preview/pr-15/assets/ros/qt/designer.png" /></a>
+    <figcaption>Qt designer - New Form.</figcaption>
+</figure>
+
+<p>Select <code class="language-plaintext highlighter-rouge">Widget</code> from the New Form Wizard Dialog because <code class="language-plaintext highlighter-rouge">rqt</code> can be composed with plugins that are of type Qt Widgets.
+This means you can turn existing Qt Widgets into <code class="language-plaintext highlighter-rouge">rqt</code> plugins.</p>
+
+<p>The following image shows the design of the <code class="language-plaintext highlighter-rouge">rqt_turtle</code> plugin. On the right you can see the components.</p>
+
+<figure>
+    <a href="/pr-preview/pr-15/assets/ros/rqt_turtle/turtle_plugin_ui.png"><img src="/pr-preview/pr-15/assets/ros/rqt_turtle/turtle_plugin_ui.png" /></a>
+    <figcaption>Qt Designer - rqt turtle plugin.</figcaption>
+</figure>
+
+<h2 id="write-the-plugin-code">Write the Plugin Code</h2>
+
+<p>Instructions on how to write a plugin in C++ is found in this <a href="http://wiki.ros.org/rqt/Tutorials/Writing%20a%20C%2B%2B%20Plugin">rqt tutorial</a>.
+Keep in mind the special note from the tutorial about using <code class="language-plaintext highlighter-rouge">roscpp</code> with rqt:</p>
+
+<p>The plugin should not call <a href="http://wiki.ros.org/roscpp/Overview/Initialization%20and%20Shutdown"><code class="language-plaintext highlighter-rouge">init_node</code></a> as this is performed by <a href="http://wiki.ros.org/rqt_gui_cpp"><code class="language-plaintext highlighter-rouge">rqt_gui_cpp</code></a>. 
+The plugin can use any roscpp-specific functionality (like <a href="http://wiki.ros.org/roscpp/Overview/Publishers%20and%20Subscribers">Publishers and Subscribers</a> or <a href="http://wiki.ros.org/roscpp/Overview/Parameter%20Server">Parameters</a>). Just make sure to stop timers and publishers, unsubscribe from Topics etc in the <code class="language-plaintext highlighter-rouge">shutdown_plugin</code> method.</p>
+
+<p>A C++ plugin inherits from <a href="http://wiki.ros.org/nodelet">Nodelet</a> and therefore gains the same advantages (i.e. enables exchanging boost&gt;::shared_pointer).</p>
+
+<p>Due to restrictions in Qt, you cannot manipulate Qt widgets directly within ROS callbacks, because they are running in a different thread. 
+In the ROS callback you can:</p>
+
+<ul>
+  <li>emit a Qt signal (which will bridge across the threads) and manipulate the widgets in the receiving slot</li>
+</ul>
+
+<p>OR</p>
+
+<ul>
+  <li>only operate on non-widget entities like QAbstractItemModels</li>
+</ul>
+
+<h3 id="ros-components">ROS Components</h3>
+
+<p><a href="http://wiki.ros.org/rqt">ROS rqt</a> makes use of the ROS <code class="language-plaintext highlighter-rouge">pluginlib</code> to dynamically load plugins at runtime.</p>
+
+<p>Note that prior to pluginlib 1.9 (Groovy), the macros <code class="language-plaintext highlighter-rouge">PLUGINLIB_REGISTER_CLASS</code> and <code class="language-plaintext highlighter-rouge">PLUGINLIB_DECLARE_CLASS</code> were used to register exported classes. 
+These have been deprecated in favor of the new <code class="language-plaintext highlighter-rouge">PLUGINLIB_EXPORT_CLASS</code>. The new macro is simpler as it only takes two arguments.
+See <a href="http://wiki.ros.org/pluginlib#pluginlib.2Fpluginlib_groovy.Simplified_Export_Macro">Pluginlib Simplified Export Macro</a>.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// Deprecated:</span>
+<span class="c1">//PLUGINLIB_DECLARE_CLASS(rqt_turtle, TurtlePlugin, rqt_turtle::TurtlePlugin, rqt_gui_cpp::Plugin)</span>
+<span class="c1">/// Use the new macro instead:</span>
+<span class="n">PLUGINLIB_EXPORT_CLASS</span><span class="p">(</span><span class="n">rqt_turtle</span><span class="o">::</span><span class="n">TurtlePlugin</span><span class="p">,</span> <span class="n">rqt_gui_cpp</span><span class="o">::</span><span class="n">Plugin</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The <a href="http://wiki.ros.org/Master">ROS Master</a> provides naming and registration sservices to the rest of the nodes in ROS. 
+It tracks publishers and subscribers to <a href="http://wiki.ros.org/Topics">topics</a> as well as <a href="http://wiki.ros.org/Services">services</a>.
+To obtain a list of existing turtles it would be possible to execute <a href="http://wiki.ros.org/rostopic"><code class="language-plaintext highlighter-rouge">rostopic list</code></a> from the command line and filter for the
+topics that include <code class="language-plaintext highlighter-rouge">/turtle_name/pose</code> or <code class="language-plaintext highlighter-rouge">/turtle_name/cmd_vel</code>. The same can be achieved within a <a href="http://docs.ros.org/noetic/api/roscpp/html/"><code class="language-plaintext highlighter-rouge">roscpp</code></a> 
+node using the <a href="http://docs.ros.org/noetic/api/roscpp/html/namespaceros_1_1master.html#aa922f42cf983b06edb4cf3de7d7ce211"><code class="language-plaintext highlighter-rouge">bool ros::master::getTopics(V_TopicInfo&amp; topics)</code></a> method, see also <a href="https://stackoverflow.com/questions/26785675/ros-get-current-available-topic-in-code-not-command">this example</a>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">TurtlePlugin</span><span class="o">::</span><span class="n">updateTurtleTree</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// https://stackoverflow.com/questions/26785675/ros-get-current-available-topic-in-code-not-command</span>
+    <span class="c1">// Use XML-RPC ROS Master API to get the topic names</span>
+    <span class="c1">// Then filter for topics containing pose (which belongs to a turtle)</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">master</span><span class="o">::</span><span class="n">V_TopicInfo</span> <span class="n">master_topics</span><span class="p">;</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">master</span><span class="o">::</span><span class="n">getTopics</span><span class="p">(</span><span class="n">master_topics</span><span class="p">);</span>
+
+    <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span> <span class="o">=</span> <span class="n">getNodeHandle</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">master</span><span class="o">::</span><span class="n">V_TopicInfo</span><span class="o">::</span><span class="n">iterator</span> <span class="n">it</span> <span class="o">=</span> <span class="n">master_topics</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">master_topics</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="n">it</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">const</span> <span class="n">ros</span><span class="o">::</span><span class="n">master</span><span class="o">::</span><span class="n">TopicInfo</span><span class="o">&amp;</span> <span class="n">info</span> <span class="o">=</span> <span class="o">*</span><span class="n">it</span><span class="p">;</span>
+        <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">"topic_"</span> <span class="o">&lt;&lt;</span> <span class="n">it</span> <span class="o">-</span> <span class="n">master_topics</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">": "</span> <span class="o">&lt;&lt;</span> <span class="n">info</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+        <span class="n">QString</span> <span class="n">topic_name</span> <span class="o">=</span> <span class="n">QString</span><span class="o">::</span><span class="n">fromStdString</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">topic_name</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">"/pose"</span><span class="p">)))</span>
+        <span class="p">{</span>
+            <span class="n">QStringList</span> <span class="n">topic_name_parts</span> <span class="o">=</span> <span class="n">topic_name</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="n">QRegExp</span><span class="p">(</span><span class="s">"</span><span class="se">\\</span><span class="s">/"</span><span class="p">),</span> <span class="n">QString</span><span class="o">::</span><span class="n">SkipEmptyParts</span><span class="p">);</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">turtle_name</span> <span class="o">=</span> <span class="n">topic_name_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">toStdString</span><span class="p">();</span>
+            <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"topic_name_part 0: %s"</span><span class="p">,</span> <span class="n">turtle_name</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+
+            <span class="c1">// Wait for a single pose message to arrive on the turtlesim::Pose topic</span>
+            <span class="n">turtlesim</span><span class="o">::</span><span class="n">PoseConstPtr</span> <span class="n">pose</span> <span class="o">=</span> <span class="n">ros</span><span class="o">::</span><span class="n">topic</span><span class="o">::</span><span class="n">waitForMessage</span><span class="o">&lt;</span><span class="n">turtlesim</span><span class="o">::</span><span class="n">Pose</span><span class="o">&gt;</span><span class="p">(</span><span class="n">topic_name</span><span class="p">.</span><span class="n">toStdString</span><span class="p">());</span>
+            <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"Pose received: x: %f, y: %f, theta: %f"</span><span class="p">,</span> <span class="n">pose</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">,</span> <span class="n">pose</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">,</span> <span class="n">pose</span><span class="o">-&gt;</span><span class="n">theta</span><span class="p">);</span>
+
+            <span class="c1">// Create new turtle in turtle vector</span>
+            <span class="c1">// Note: assume that the pen is toggled on</span>
+            <span class="n">QSharedPointer</span><span class="o">&lt;</span><span class="n">Turtle</span><span class="o">&gt;</span> <span class="n">turtle</span> <span class="o">=</span> <span class="n">QSharedPointer</span><span class="o">&lt;</span><span class="n">Turtle</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">Turtle</span><span class="p">(</span><span class="n">turtle_name</span><span class="p">,</span> <span class="o">*</span><span class="n">pose</span><span class="p">));</span>
+            <span class="n">turtles_</span><span class="p">[</span><span class="n">QString</span><span class="o">::</span><span class="n">fromStdString</span><span class="p">(</span><span class="n">turtle_name</span><span class="p">)]</span> <span class="o">=</span> <span class="n">turtle</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Insert the turtles into the QTreeWidget</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">turtle</span> <span class="o">:</span> <span class="n">turtles_</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">m_pUi</span><span class="o">-&gt;</span><span class="n">treeTurtles</span><span class="o">-&gt;</span><span class="n">insertTopLevelItem</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">turtle</span><span class="o">-&gt;</span><span class="n">toTreeItem</span><span class="p">(</span><span class="n">m_pUi</span><span class="o">-&gt;</span><span class="n">treeTurtles</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">TurtlePlugin::updateTurtleTree()</code> method can be called to get a list of currently active turtles in turtlesim. 
+This means that turtles can also be added the the <code class="language-plaintext highlighter-rouge">rosservice</code> command in another terminal and after refreshing the plugin the newly spawned turtles 
+will be listed.</p>
+
+<h3 id="qt-components">Qt Components</h3>
+
+<p>After designing UIs there are (at least) three possible ways to use them inside an application, which are explained in more detail in the <a href="https://doc.qt.io/qt-5/designer-using-a-ui-file.html">documentation</a>:</p>
+
+<ul>
+  <li><a href="https://doc.qt.io/qt-5/designer-using-a-ui-file.html#the-direct-approach">Direct Approach</a></li>
+  <li><a href="https://doc.qt.io/qt-5/designer-using-a-ui-file.html#the-single-inheritance-approach">Single Inheritance</a>
+    <ul>
+      <li><a href="https://doc.qt.io/qt-5/designer-using-a-ui-file.html#using-a-member-variable">Using a Member Variable</a></li>
+      <li><a href="https://doc.qt.io/qt-5/designer-using-a-ui-file.html#using-a-pointer-member-variable">Using a Pointer Member Variable</a> <strong>recommended approach</strong>*</li>
+    </ul>
+  </li>
+  <li><a href="https://doc.qt.io/qt-5/designer-using-a-ui-file.html#the-multiple-inheritance-approach">Multiple Inheritance Approach</a></li>
+</ul>
+
+<p>All of the approaches would work for <code class="language-plaintext highlighter-rouge">rqt_turtle</code> except the <code class="language-plaintext highlighter-rouge">Direct Approach</code> because it doesn’t allow us to use custom slots.
+The reason to choose the <code class="language-plaintext highlighter-rouge">Single Inheritance using a Pointer Member Variable</code> approach is to avoid including the generated <code class="language-plaintext highlighter-rouge">ui_name_of_gui.h</code> inside the applications header file. Instead a forwrad declaradtion is made which allows to use the ui as pointer member. Then the generated <code class="language-plaintext highlighter-rouge">ui_name_of_gui.h</code>
+can only be included in the applications source (<code class="language-plaintext highlighter-rouge">cpp</code>) file. The <code class="language-plaintext highlighter-rouge">Single Inheritance using a Pointer Member Variable</code> approach is used for all
+ui files that are used in the <code class="language-plaintext highlighter-rouge">rqt_turtle</code> plugin.</p>
+
+<h3 id="signal-and-slots">Signal and Slots</h3>
+
+<p>The Qt framework uses a <a href="https://doc.qt.io/qt-5/signalsandslots.html">signal and slot mechanism</a> to allow the communication between objects.
+For the <code class="language-plaintext highlighter-rouge">rqt_turtle</code> plugin it is used to connect for example the buttons with the plugin’s main class, called <code class="language-plaintext highlighter-rouge">TurtlePlugin</code>, which handles
+the button presses in its custom slots.</p>
+
+<p>All the available turtles inside turtlesim are displayd in the <code class="language-plaintext highlighter-rouge">treeTurtle</code> widget of type <a href="https://doc.qt.io/qt-5/qtreewidget.html"><code class="language-plaintext highlighter-rouge">QTreeWidget</code></a>.
+For this the previously mentioned <code class="language-plaintext highlighter-rouge">TurtlePlugin::updateTurtleTree()</code> is used. One important feature of the <code class="language-plaintext highlighter-rouge">treeTurtle</code> is to obtain the selected turtles.
+This is done by connecting the <code class="language-plaintext highlighter-rouge">QTreeWidget::itemSelectionChanged()</code> signal of <code class="language-plaintext highlighter-rouge">treeTurtle</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">connect</span><span class="p">(</span><span class="n">ui_</span><span class="o">-&gt;</span><span class="n">treeTurtles</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">itemSelectionChanged</span><span class="p">()),</span> 
+                <span class="k">this</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">on_selection_changed</span><span class="p">()));</span>
+</code></pre></div></div>
+
+<p>with the custom <code class="language-plaintext highlighter-rouge">TurtlePlugin::on_selection_chagned()</code> slot:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">TurtlePlugin</span><span class="o">::</span><span class="n">on_selection_changed</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Get list of selected turtles</span>
+    <span class="k">auto</span> <span class="n">selected_items</span> <span class="o">=</span> <span class="n">m_pUi</span><span class="o">-&gt;</span><span class="n">treeTurtles</span><span class="o">-&gt;</span><span class="n">selectedItems</span><span class="p">();</span>
+    <span class="n">selected_turtles_</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">selected_items</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">QString</span> <span class="n">turtle_name</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">stringstream</span> <span class="n">ss</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">item</span> <span class="o">:</span> <span class="n">selected_items</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">turtle_name</span> <span class="o">=</span> <span class="n">item</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">selected_turtles_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">turtle_name</span><span class="p">);</span>
+        <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="n">str</span><span class="p">(</span><span class="n">turtle_name</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"Selected %s"</span><span class="p">,</span> <span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This will store the currently selected turtle names as <a href="https://doc.qt.io/qt-5/qstring.html"><code class="language-plaintext highlighter-rouge">QString</code></a>s in the member variable <code class="language-plaintext highlighter-rouge">selected_turtles_</code> of type <code class="language-plaintext highlighter-rouge">QVector&lt;QString&gt;</code>.
+If no turtles are selected the vector will be empty.</p>
+
+<p>To store the turtles with their settings the plugin uses <a href="https://doc.qt.io/qt-5/qmap.html"><code class="language-plaintext highlighter-rouge">QMap</code></a></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// Vector to keep track of all turtles (keep turtles on the heap using vector of shared pointers)</span>
+<span class="n">QMap</span><span class="o">&lt;</span><span class="n">QString</span><span class="p">,</span> <span class="n">QSharedPointer</span><span class="o">&lt;</span><span class="n">Turtle</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">turtles_</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>This maps the <code class="language-plaintext highlighter-rouge">QString</code> turtle names, for example obtained from <code class="language-plaintext highlighter-rouge">selected_turtles_</code>, to <code class="language-plaintext highlighter-rouge">Turtle</code> object pointers of type <a href="https://doc.qt.io/qt-5/qsharedpointer.html"><code class="language-plaintext highlighter-rouge">QSharedPointer&lt;Turtle&gt;</code></a>. The <code class="language-plaintext highlighter-rouge">Turtle</code> class is used to encapsulate a turtle’s <a href="http://docs.ros.org/noetic/api/turtlesim/html/msg/Pose.html"><code class="language-plaintext highlighter-rouge">turtlesim::Pose</code></a>, <a href="http://docs.ros.org/noetic/api/turtlesim/html/srv/SetPen.html"><code class="language-plaintext highlighter-rouge">turtlesim::SetPen</code></a> and name.
+The <code class="language-plaintext highlighter-rouge">QSharedPointer</code> take care to delete turtles when no references are pointing to them.</p>
+
+<p class="notice">There exist also <code class="language-plaintext highlighter-rouge">QTreeView</code> or <code class="language-plaintext highlighter-rouge">QListView</code> elements inside Qt but those don’t provide as much functionality than their <code class="language-plaintext highlighter-rouge">*Widget</code> counterparts do.
+If you plan the implement such elements using your own functionality then probably the right choice is to use the rudimentary <code class="language-plaintext highlighter-rouge">*View</code> elements.
+Otherwise the <code class="language-plaintext highlighter-rouge">*Widget</code> will be the right choice.</p>
+
+<p>The main <code class="language-plaintext highlighter-rouge">rqt_turtle</code> ui provides the following <a href="https://doc.qt.io/qt-5/qpushbutton.html">QPushButton</a>s, which have their <a href="https://doc.qt.io/qt-5/qabstractbutton.html#clicked"><code class="language-plaintext highlighter-rouge">clicked()</code> signal</a> connected to corresponding slots that do the acutal work:</p>
+
+<ul>
+  <li>Spawn: connected to the <code class="language-plaintext highlighter-rouge">void TurtlePlugin::on_btnSpawn_clicked()</code> slot to open a new ui <code class="language-plaintext highlighter-rouge">ServiceCaller.ui</code> dialog.</li>
+  <li>Reset: connected to the <code class="language-plaintext highlighter-rouge">void TurtlePlugin::on_btnReset_clicked()</code> which calls the <a href="http://wiki.ros.org/turtlesim#Services"><code class="language-plaintext highlighter-rouge">reset</code> service</a> 
+of turtlesim to bring it to the start configuration and set the background color to the value of the currently set background parameters.</li>
+  <li>Color: connected to the <code class="language-plaintext highlighter-rouge">on_btnColor_clicked</code> slot which sets the RGB color values on the <a href="http://wiki.ros.org/Parameter%20Server">ROS parameter server</a> 
+used by turtlesim as background color, see <a href="http://wiki.ros.org/turtlesim#Parameters">turtlesim parameters</a>. 
+After changing the color, the <a href="http://wiki.ros.org/turtlesim#Services"><code class="language-plaintext highlighter-rouge">clear</code> service</a> is called to immediately update the new color.</li>
+</ul>
+
+<p>The <code class="language-plaintext highlighter-rouge">Spawn</code> button and the two <code class="language-plaintext highlighter-rouge">Teleport Abs</code> and <code class="language-plaintext highlighter-rouge">Teleport Rel</code> buttons open a new dialog window. 
+Currently there are three different dialog implementations:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ServiceCaller.ui</code> for “Spawn”, “Teleport Abs” and “Teleport Rel” buttons.</li>
+  <li><code class="language-plaintext highlighter-rouge">Draw.ui</code> for the Draw button.</li>
+  <li><code class="language-plaintext highlighter-rouge">Task.ui</code> called within the Draw dialog to show the drawing progress.</li>
+</ul>
+
+<p>For each ui there exists a class that inherits from <a href="https://doc.qt.io/qt-5/qdialog.html"><code class="language-plaintext highlighter-rouge">QDialog</code></a> to open a 
+<a href="https://doc.qt.io/qt-5/qdialog.html">modeless</a> dialog - 
+following the same <code class="language-plaintext highlighter-rouge">Single Inheritance using a Pointer Member Variable</code> approach described above.
+This allows us to show a modal dialog with the <a href="https://doc.qt.io/qt-5/qdialog.html#exec"><code class="language-plaintext highlighter-rouge">int QDialog::exec()</code></a> method, 
+that can be blocked until the user closes it. Depending on what the user pressed in the dialog it’s possible to call 
+<a href="https://doc.qt.io/qt-5/qdialog.html#accept"><code class="language-plaintext highlighter-rouge">void QDialog::accept()</code></a> or  <a href="https://doc.qt.io/qt-5/qdialog.html#reject"><code class="language-plaintext highlighter-rouge">void QDialog::reject()</code></a> 
+slots which will hide the dialog and set the return value of the <code class="language-plaintext highlighter-rouge">QDialog::exec()</code> method. 
+Note, that instead of <code class="language-plaintext highlighter-rouge">QDialog::exec()</code> <a href="https://doc.qt.io/qt-5/qdialog.html#open"><code class="language-plaintext highlighter-rouge">QDialog::open()</code></a> 
+is recommended to be used in combination with the <a href="https://doc.qt.io/qt-5/qdialog.html#finished"><code class="language-plaintext highlighter-rouge">void QDialog::finished(int result)</code></a> signal.</p>
+
+<p>The following two sections will describe <code class="language-plaintext highlighter-rouge">ServiceCaller</code>, <code class="language-plaintext highlighter-rouge">Draw</code> and <code class="language-plaintext highlighter-rouge">Task</code> uis and their corresponding classes in more detail.</p>
+
+<p class="notice">One way to get data from a dialog is to implement a member function to obtain it.
+<a href="https://stackoverflow.com/questions/3585774/how-to-pass-data-from-a-qdialog">Example1</a>, <a href="https://www.qtcentre.org/threads/25690-How-to-pass-data-from-QDialog-to-MainWindow">Example2</a>. For this plugin this method is required to obtain the service message data entered by the user.</p>
+
+<h3 id="service-caller">Service Caller</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">ServiceCaller</code> class together with it’s ui is used to call the available <a href="http://wiki.ros.org/turtlesim#Services">services of turtlesim</a>.</p>
+
+<p>ROS provides the <code class="language-plaintext highlighter-rouge">rosservice</code> tool which has the <code class="language-plaintext highlighter-rouge">list</code> subcommand to list all the available services that are 
+currently registered with the ROS master.</p>
+
+<p class="notice">Note that it would be easier to use <code class="language-plaintext highlighter-rouge">rospy</code> to obtain service infos from the master.
+Using <code class="language-plaintext highlighter-rouge">roscpp</code> makes it harder to get the required information.</p>
+
+<p>The following list shows three approaches to get information from the ROS master when using <code class="language-plaintext highlighter-rouge">roscpp</code>:</p>
+
+<ul>
+  <li><a href="http://wiki.ros.org/rosapi">rosapi</a> not covered here because it would require adding it as another dependency (reference <a href="https://answers.ros.org/question/152481/get-service-type-from-c/">answer</a>, <a href="https://answers.ros.org/question/108176/how-to-list-all-topicsservices-that-are-known-by-the-server-with-roscpp/">example</a>).</li>
+  <li><a href="https://en.wikipedia.org/wiki/XML-RPC">XML-RPC</a> calls using <a href="http://wiki.ros.org/ROS/Master_API">ROS Master API</a> This would be the way to go if the plugin was written in Python. The ROS Master API seems to be incomplete for C++ (reference <a href="https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/">answer</a>).</li>
+  <li><a href="https://stackoverflow.com/questions/478898/how-do-i-execute-a-command-and-get-the-output-of-the-command-within-c-using-po">Calling terminal commands from C++</a> A hacky solution to execute ros commands such as <code class="language-plaintext highlighter-rouge">rosservice list</code> within C++. The details of this approach are explained in the next section.</li>
+</ul>
+
+<p>Before that, it is worth mentioning how the service calls are implemented:</p>
+
+<p>For example the <code class="language-plaintext highlighter-rouge">Spawn</code>, <code class="language-plaintext highlighter-rouge">Teleport Abs</code> and <code class="language-plaintext highlighter-rouge">Teleport Rel</code> service calls make use of the [<code class="language-plaintext highlighter-rouge">ros::service::calls()</code>] method.
+After pressing one of the buttons a new <code class="language-plaintext highlighter-rouge">ServiceCaller</code> class is created with the <code class="language-plaintext highlighter-rouge">TurtlePlugin::widget_</code> member as parent and the desired service name.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">service_name</span> <span class="o">=</span> <span class="s">"/spawn"</span><span class="p">;</span>
+<span class="n">service_caller_dialog_</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ServiceCaller</span><span class="p">(</span><span class="n">widget_</span><span class="p">,</span> <span class="n">service_name</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The name is used to fill the <code class="language-plaintext highlighter-rouge">ServiceCaller::ui_::request_tree_widget</code>. For this the mentioned <code class="language-plaintext highlighter-rouge">rosservice args</code> command is called from within 
+the <code class="language-plaintext highlighter-rouge">ServiceCaller::createTreeItems(std::string service_name)</code> method:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">ServiceCaller</span><span class="o">::</span><span class="n">createTreeItems</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">service_name</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"Create Tree Items for service %s"</span><span class="p">,</span> <span class="n">service_name</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+
+    <span class="c1">// Get service type and args</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">cmd_type</span> <span class="o">=</span> <span class="s">"rosservice type "</span> <span class="o">+</span> <span class="n">service_name</span><span class="p">;</span>
+    <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"cmd_type: %s"</span><span class="p">,</span> <span class="n">cmd_type</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">service_type</span> <span class="o">=</span> <span class="n">exec_cmd</span><span class="p">(</span><span class="n">cmd_type</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">cmd_args</span> <span class="o">=</span> <span class="s">"rosservice args "</span> <span class="o">+</span> <span class="n">service_name</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">service_args</span> <span class="o">=</span> <span class="n">exec_cmd</span><span class="p">(</span><span class="n">cmd_args</span><span class="p">);</span>
+    <span class="n">QString</span> <span class="n">qstr_service_args_line</span> <span class="o">=</span> <span class="n">QString</span><span class="o">::</span><span class="n">fromStdString</span><span class="p">(</span><span class="n">service_args</span><span class="p">);</span>
+    <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"Service args: %s"</span><span class="p">,</span> <span class="n">qstr_service_args_line</span><span class="p">.</span><span class="n">toStdString</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="n">QStringList</span> <span class="n">qstr_args</span> <span class="o">=</span> <span class="n">qstr_service_args_line</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="n">QRegExp</span><span class="p">(</span><span class="s">"</span><span class="se">\\</span><span class="s">s+"</span><span class="p">),</span> <span class="n">QString</span><span class="o">::</span><span class="n">SkipEmptyParts</span><span class="p">);</span>
+
+    <span class="c1">// https://doc.qt.io/qt-5/qtreewidget.html#details</span>
+    <span class="n">QList</span><span class="o">&lt;</span><span class="n">QTreeWidgetItem</span> <span class="o">*&gt;</span> <span class="n">items</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">qstr_args</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">QStringList</span> <span class="n">i_args</span><span class="p">;</span>
+        <span class="n">i_args</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">qstr_args</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="c1">// TODO type</span>
+        <span class="n">i_args</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">QString</span><span class="o">::</span><span class="n">fromStdString</span><span class="p">(</span><span class="s">"float32"</span><span class="p">));</span>
+        <span class="c1">// TODO init value depending on type</span>
+        <span class="n">i_args</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">QString</span><span class="o">::</span><span class="n">fromStdString</span><span class="p">(</span><span class="s">"0.0"</span><span class="p">));</span>
+        <span class="n">QTreeWidgetItem</span><span class="o">*</span> <span class="n">item</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QTreeWidgetItem</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">QTreeWidget</span> <span class="o">*&gt;</span><span class="p">(</span><span class="nb">nullptr</span><span class="p">),</span> <span class="n">i_args</span><span class="p">);</span>
+        <span class="n">item</span><span class="o">-&gt;</span><span class="n">setFlags</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">ItemIsEditable</span><span class="o">|</span><span class="n">Qt</span><span class="o">::</span><span class="n">ItemIsEnabled</span><span class="p">);</span>
+        <span class="n">items</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">m_pUi</span><span class="o">-&gt;</span><span class="n">request_tree_widget</span><span class="o">-&gt;</span><span class="n">insertTopLevelItems</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">items</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">request_tree_widget</code> is filled with the service arguments, see the services <code class="language-plaintext highlighter-rouge">Spawn</code>, <code class="language-plaintext highlighter-rouge">TeleportAbsolute</code> and <code class="language-plaintext highlighter-rouge">TeleportRelative</code> as an example in the following figures:</p>
+
+<figure class="third">
+  <a href="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/service-caller-spawn.png"><img src="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/service-caller-spawn.png" /></a>
+  <a href="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/service-caller-teleport-abs.png"><img src="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/service-caller-teleport-abs.png" /></a>
+  <a href="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/service-caller-teleport-rel.png"><img src="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/service-caller-teleport-rel.png" /></a>
+  <figcaption>ServiceCaller showing fields of the Spawn service.</figcaption>
+</figure>
+
+<p class="notice">In the current implementation the types are not checked and therefore not displayed correctly, see future work section below.</p>
+
+<p>After the user enters the desired pose and name of the turtle (when the <code class="language-plaintext highlighter-rouge">spawn</code> service was used) the data can be obtained in the <code class="language-plaintext highlighter-rouge">TurtlePlugin</code> class
+with the <code class="language-plaintext highlighter-rouge">QVariantMap ServiceCaller::getRequest()</code> method:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">QVariantMap</span> <span class="n">ServiceCaller</span><span class="o">::</span><span class="n">getRequest</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">QVariantMap</span> <span class="n">map</span><span class="p">;</span>
+
+    <span class="c1">// https://doc.qt.io/archives/qt-4.8/qtreewidgetitemiterator.html#details</span>
+    <span class="n">QTreeWidgetItemIterator</span> <span class="n">it</span><span class="p">(</span><span class="n">m_pUi</span><span class="o">-&gt;</span><span class="n">request_tree_widget</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">QString</span> <span class="n">variable</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">map</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+        <span class="o">++</span><span class="n">it</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">map</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>It returns a <a href="https://doc.qt.io/archives/qt-5.5/qvariant.html#QVariantMap-typedef"><code class="language-plaintext highlighter-rouge">QVariantMap</code></a> that is a <code class="language-plaintext highlighter-rouge">QMap&lt;QString, QVariant&gt;</code>.
+Using <a href="https://doc.qt.io/archives/qt-5.5/qvariant.html"><code class="language-plaintext highlighter-rouge">QVariant</code></a> as value is useful to deal with different types of data, for example <code class="language-plaintext highlighter-rouge">string</code> and <code class="language-plaintext highlighter-rouge">float</code>. 
+With this, the caller (in this case <code class="language-plaintext highlighter-rouge">TurtlePlugin</code>) knows what to expect from the <code class="language-plaintext highlighter-rouge">ServiceCaller</code> class and the <code class="language-plaintext highlighter-rouge">ServiceCaller</code> can be reused 
+for different types of <a href="http://wiki.ros.org/turtlesim#Services">services provided by turtlesim</a>.</p>
+
+<p class="notice">The ServiceCaller currently cannot handle nested service messages. For this use the <a href="http://wiki.ros.org/rqt_service_caller">rqt service caller</a> plugin.</p>
+
+<h4 id="command-line-interface-approach">Command Line Interface Approach</h4>
+
+<p>This approach, to get for example the service list is kind of a hack and doesn’t leverage the <a href="https://en.wikipedia.org/wiki/XML-RPC">XML-RPC</a> backend of ROS.
+However, it is the simpler approach, which is why it’s used for the first/current version of this plugin.</p>
+
+<p>The following C++ snippet shows how to get the output of a terminal command (<a href="https://stackoverflow.com/questions/478898/how-do-i-execute-a-command-and-get-the-output-of-the-command-within-c-using-po">source</a>). In this plugin it’s used to get the output of ros commands within a <code class="language-plaintext highlighter-rouge">roscpp</code> node.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdexcept&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;array&gt;</span><span class="cp">
+</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="nf">exec</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">cmd</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="mi">128</span><span class="o">&gt;</span> <span class="n">buffer</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">result</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">FILE</span><span class="p">,</span> <span class="k">decltype</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pclose</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">pipe</span><span class="p">(</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="s">"r"</span><span class="p">),</span> <span class="n">pclose</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">pipe</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">"popen() failed!"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">buffer</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">buffer</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">pipe</span><span class="p">.</span><span class="n">get</span><span class="p">())</span> <span class="o">!=</span> <span class="nb">nullptr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">buffer</span><span class="p">.</span><span class="n">data</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="xml-rpc-approach">XML-RPC Approach</h4>
+
+<p class="notice">This approach is currently not implemented. Instead the CLI approach described above is used to call ros commands within a roscpp node.</p>
+
+<p>To get the service list in our C++ code we can make use
+of XML-RPC which ROS uses under the hood for its communication. With it we can query the 
+ROS master through the <a href="http://wiki.ros.org/ROS/Master_API">ROS Master API</a>.</p>
+
+<p>First we need to include the <code class="language-plaintext highlighter-rouge">master.h</code>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;ros/master.h&gt;</span><span class="cp">
+</span></code></pre></div></div>
+
+<p>Then we can create <code class="language-plaintext highlighter-rouge">XmlRpc::XmlRpcValue</code> request, response and payload objects which are required for the call.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// The request value can be set to any value</span>
+<span class="n">XmlRpc</span><span class="o">::</span><span class="n">XmlRpcValue</span> <span class="n">request</span> <span class="o">=</span> <span class="s">"/node"</span><span class="p">;</span> 
+<span class="c1">// The response object will receive the server messsage in xml format</span>
+<span class="n">XmlRpc</span><span class="o">::</span><span class="n">XmlRpcValue</span> <span class="n">response</span><span class="p">;</span>
+<span class="n">XmlRpc</span><span class="o">::</span><span class="n">XmlRpcValue</span> <span class="n">payload</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Finally, we need to call the <code class="language-plaintext highlighter-rouge">getSystemState</code> method of the master using the <a href="http://docs.ros.org/noetic/api/roscpp/html/namespaceros_1_1master.html#a6148ee923ef1602d2093daff82573043"><code class="language-plaintext highlighter-rouge">ros::master::execute</code></a> method.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// http://wiki.ros.org/ROS/Master_API</span>
+<span class="c1">// The following calls the getSystemState method with the previously defined request</span>
+<span class="c1">// and returns the response and the payload.</span>
+<span class="n">ros</span><span class="o">::</span><span class="n">master</span><span class="o">::</span><span class="n">execute</span><span class="p">(</span><span class="s">"getSystemState"</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>To view the xml response we can make use of <code class="language-plaintext highlighter-rouge">XmlRpc::XmlRpcValue::toXml</code>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="n">toXml</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
+</code></pre></div></div>
+
+<p>The result will be an array that holds the xml tree:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;&lt;i4&gt;1&lt;/i4&gt;&lt;/value&gt;&lt;value&gt;current system state&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rosout_agg&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rosout&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rosout&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_43389&lt;/value&gt;&lt;value&gt;/rqt_gui_cpp_node_43761&lt;/value&gt;&lt;value&gt;/rqt_gui_cpp_node_45610&lt;/value&gt;&lt;value&gt;/rqt_gui_cpp_node_47424&lt;/value&gt;&lt;value&gt;/rqt_gui_cpp_node_50133&lt;/value&gt;&lt;value&gt;/rqt_gui_cpp_node_50310&lt;/value&gt;&lt;value&gt;/rqt_gui_cpp_node_50562&lt;/value&gt;&lt;value&gt;/rqt_gui_cpp_node_57695&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rosout&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rosout&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rosout/get_loggers&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rosout&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rosout/set_logger_level&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rosout&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_43389/get_loggers&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_43389&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_43389/set_logger_level&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_43389&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_43761/get_loggers&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_43761&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_43761/set_logger_level&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_43761&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_45610/get_loggers&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_45610&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_45610/set_logger_level&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_45610&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_47424/get_loggers&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_47424&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_47424/set_logger_level&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_47424&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_50133/get_loggers&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_50133&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_50133/set_logger_level&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_50133&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_50310/get_loggers&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_50310&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_50310/set_logger_level&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_50310&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_50562/get_loggers&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_50562&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_50562/set_logger_level&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_50562&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_57695/get_loggers&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_57695&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_57695/set_logger_level&lt;/value&gt;&lt;value&gt;&lt;array&gt;&lt;data&gt;&lt;value&gt;/rqt_gui_cpp_node_57695&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;
+</code></pre></div></div>
+
+<p>To access the relevant part - the service list - we can use the following for loop:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">const</span> <span class="kt">int</span> <span class="n">num_services</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">].</span><span class="n">size</span><span class="p">()</span>
+
+<span class="c1">// Create a string array holding the service names</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">services</span><span class="p">[</span><span class="n">num_services</span><span class="p">];</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">num_services</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Get the xml part containing a service value</span>
+    <span class="c1">// e.g., &lt;value&gt;/rosout/get_loggers&lt;/value&gt;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">service_name</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="n">x</span><span class="p">][</span><span class="mi">0</span><span class="p">].</span><span class="n">toXml</span><span class="p">().</span><span class="n">c_str</span><span class="p">();</span>
+    
+    <span class="c1">// remove &lt;value&gt; and &lt;/value&gt; from the string</span>
+    <span class="n">service_name</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">service_name</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">service_name</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="mi">7</span><span class="p">);</span>
+    <span class="n">service_name</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">service_name</span><span class="p">.</span><span class="n">end</span><span class="p">()</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="n">service_name</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+    <span class="n">services</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">service_name</span><span class="p">;</span>
+    <span class="n">ROS_INFO</span><span class="p">(</span><span class="n">service_name</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<details>
+  <summary>Expand for an alternative solution.</summary>
+
+  <p>An alternative to the above snippet would be to use <a href="http://www.grinninglizard.com/tinyxmldocs/index.html"><code class="language-plaintext highlighter-rouge">TinyXML</code></a>, a C++ XML parsing library.
+To load the xml from the response string use <code class="language-plaintext highlighter-rouge">TiXmlDocument::Parse()</code> (see this <a href="https://stackoverflow.com/questions/2862892/can-tinyxml-load-xml-from-string-instead-of-file">SO answer</a>):</p>
+
+  <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TiXmlDocument</span> <span class="n">doc</span><span class="p">;</span>
+<span class="n">doc</span><span class="p">.</span><span class="n">Parse</span><span class="p">((</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">response</span><span class="p">.</span><span class="n">toXml</span><span class="p">().</span><span class="n">c_str</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">TIXML_ENCODING_UTF8</span><span class="p">);</span>
+</code></pre></div>  </div>
+
+  <p>Then it should be possible to parse the XML with the steps outlined in the <a href="http://www.grinninglizard.com/tinyxmldocs/tutorial0.html">TinyXML tutorial</a>.</p>
+
+  <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">;</span>
+<span class="n">MessageMap</span> <span class="n">messages</span><span class="p">;</span>
+
+<span class="n">TiXmlHandle</span> <span class="nf">hDoc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">doc</span><span class="p">);</span>
+<span class="n">TiXmlElement</span><span class="o">*</span> <span class="n">pElem</span><span class="p">;</span>
+<span class="n">TiXmlHandle</span> <span class="nf">hRoot</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// block: name</span>
+<span class="p">{</span>
+    <span class="n">pElem</span><span class="o">=</span><span class="n">hDoc</span><span class="p">.</span><span class="n">FirstChildElement</span><span class="p">().</span><span class="n">Element</span><span class="p">();</span>
+    <span class="c1">// should always have a valid root but handle gracefully if it does</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">pElem</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="n">m_name</span><span class="o">=</span><span class="n">pElem</span><span class="o">-&gt;</span><span class="n">Value</span><span class="p">();</span>
+
+    <span class="c1">// save this for later</span>
+    <span class="n">hRoot</span><span class="o">=</span><span class="n">TiXmlHandle</span><span class="p">(</span><span class="n">pElem</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// block: string table</span>
+<span class="p">{</span>
+    <span class="n">messages</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span> <span class="c1">// trash existing table</span>
+
+    <span class="n">pElem</span><span class="o">=</span><span class="n">hRoot</span><span class="p">.</span><span class="n">FirstChild</span><span class="p">(</span> <span class="s">"Messages"</span> <span class="p">).</span><span class="n">FirstChild</span><span class="p">().</span><span class="n">Element</span><span class="p">();</span>
+    <span class="k">for</span><span class="p">(</span> <span class="n">pElem</span><span class="p">;</span> <span class="n">pElem</span><span class="p">;</span> <span class="n">pElem</span><span class="o">=</span><span class="n">pElem</span><span class="o">-&gt;</span><span class="n">NextSiblingElement</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">pKey</span><span class="o">=</span><span class="n">pElem</span><span class="o">-&gt;</span><span class="n">Value</span><span class="p">();</span>
+        <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">pText</span><span class="o">=</span><span class="n">pElem</span><span class="o">-&gt;</span><span class="n">GetText</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">pKey</span> <span class="o">&amp;&amp;</span> <span class="n">pText</span><span class="p">)</span> 
+        <span class="p">{</span>
+            <span class="n">messages</span><span class="p">[</span><span class="n">pKey</span><span class="p">]</span><span class="o">=</span><span class="n">pText</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>  </div>
+</details>
+
+<p>Useful references for working with XML-RPC in the roscpp client library are this <a href="https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/?answer=152421#post-id-152421">answer</a> and the <a href="http://wiki.ros.org/ROS/Master_API">ROS Master API Wiki page</a>.</p>
+
+<h3 id="draw-dialog">Draw Dialog</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">Draw.ui</code> declares a <code class="language-plaintext highlighter-rouge">QWidget</code> named <code class="language-plaintext highlighter-rouge">DrawWidget</code> that is used as a <code class="language-plaintext highlighter-rouge">QDialog</code>. 
+It provides two tabs, one to draw a shape using the <code class="language-plaintext highlighter-rouge">turtle_shape</code> service from the <a href="http://wiki.ros.org/turtle_actionlib"><code class="language-plaintext highlighter-rouge">turtle_actionlib</code></a>.</p>
+
+<details>
+  <summary>Expand for rqt turtle draw shape demo.</summary>
+
+  <p><img src="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/rqt_turtle-draw-shape-cancel.gif" alt="rqt_turtle-draw-shape" /></p>
+
+</details>
+
+<p>And the second tab to let one or more turtles draw an image.</p>
+
+<details>
+  <summary>Expand for rqt turtle draw image animation.</summary>
+
+  <p><img src="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/rqt_turtle-draw-image-multi.gif" alt="rqt_turtle-draw-image" /></p>
+
+</details>
+
+<p>Both of the following guis make use of <a href="https://doc.qt.io/qt-5/qrunnable.html"><code class="language-plaintext highlighter-rouge">QRunnable</code></a> and <a href="https://doc.qt.io/qt-5/qthreadpool.html"><code class="language-plaintext highlighter-rouge">QThreadPool</code></a> to avoid blocking the gui and allow to cancel the ongoing drawing task.
+The implementation of both workers <a href="https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/action_worker.cpp"><code class="language-plaintext highlighter-rouge">ActionWorker</code></a> 
+and <a href="https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/image_worker.cpp"><code class="language-plaintext highlighter-rouge">ImageWorker</code></a> uses concepts from the <a href="https://www.learnpyqt.com/pyqt5-book/">PyQt5 Book</a>.</p>
+
+<p>Other threading resources:</p>
+<ul>
+  <li><a href="https://stackoverflow.com/questions/35673201/qt-5-update-qprogressbar-during-qthread-work-via-signal">update-qprogressbar-during-qthread-work-via-signal</a></li>
+  <li><a href="https://stackoverflow.com/questions/4093159/what-is-the-correct-way-to-implement-a-qthread-example-please">QThread example</a></li>
+  <li><a href="https://doc.qt.io/qt-5/thread-basics.html">Qt Threading Basics</a></li>
+  <li><a href="https://doc.qt.io/qt-5/threads-technologies.html">Multithreading Technologies in Qt</a></li>
+  <li><a href="https://www.qt.io/blog/2010/06/17/youre-doing-it-wrong">Your doing it wrong</a></li>
+  <li><a href="https://mayaposch.wordpress.com/2011/11/01/how-to-really-truly-use-qthreads-the-full-explanation/">How to really, truly use QThread</a></li>
+  <li><a href="https://doc.qt.io/qt-5/qthread.html#details">QThread Details</a></li>
+  <li><a href="https://doc.qt.io/qt-5/qthreadpool.html#details">QThreadPool Details</a></li>
+</ul>
+
+<h4 id="draw-shape">Draw Shape</h4>
+
+<p>The <a href="http://wiki.ros.org/turtle_actionlib"><code class="language-plaintext highlighter-rouge">turtle_actionlib</code></a> provides a <code class="language-plaintext highlighter-rouge">shape_server</code> that is used to let the turtle named <code class="language-plaintext highlighter-rouge">turtle1</code> draw
+a shape. For this the <code class="language-plaintext highlighter-rouge">Draw</code> class defines an action client <code class="language-plaintext highlighter-rouge">actionlib::SimpleActionClient&lt;turtle_actionlib::ShapeAction&gt; ac_;</code>
+which is used to send an action goal containing the number of edges and the radius of the shape to the server. 
+See also the <a href="http://wiki.ros.org/actionlib/DetailedDescription">detailed description</a> of the <a href="http://wiki.ros.org/actionlib?distro=noetic"><code class="language-plaintext highlighter-rouge">actionlib</code></a> to learn more about how it works.
+The following shows the gui to adjust these two settings including the timeout to automatically cancel the goal:</p>
+
+<figure>
+    <a href="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/draw-shape.png"><img src="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/images/draw-shape.png" /></a>
+    <figcaption>Draw Shape Dialog.</figcaption>
+</figure>
+
+<p>With the <a href="http://docs.ros.org/noetic/api/turtle_actionlib/html/action/Shape.html"><code class="language-plaintext highlighter-rouge">turtle_actionlib/Shape.action</code></a> its possible to specify the number of edges (<code class="language-plaintext highlighter-rouge">int32</code>) and the radius (<code class="language-plaintext highlighter-rouge">float32</code>). 
+To send the specified shape (also known as goal) the client is used as follows:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">Draw</span><span class="o">::</span><span class="n">drawShape</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"Waiting for action server to start."</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">ac_</span><span class="p">.</span><span class="n">isServerConnected</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">QMessageBox</span> <span class="n">msgBox</span><span class="p">;</span>
+        <span class="n">msgBox</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="s">"Action server not connected"</span><span class="p">);</span>
+        <span class="n">msgBox</span><span class="p">.</span><span class="n">setInformativeText</span><span class="p">(</span><span class="s">"Please run 'rosrun turtle_actionlib shape_server' and press Ok or cancel \
+                                   to avoid blocking rqt_turtle gui while wating for shape_server."</span><span class="p">);</span>
+        <span class="n">msgBox</span><span class="p">.</span><span class="n">setStandardButtons</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">::</span><span class="n">Ok</span> <span class="o">|</span> <span class="n">QMessageBox</span><span class="o">::</span><span class="n">Cancel</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">msgBox</span><span class="p">.</span><span class="n">exec</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">ret</span> <span class="o">==</span> <span class="n">QMessageBox</span><span class="o">::</span><span class="n">Cancel</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// Wait for the action server to start</span>
+    <span class="n">ac_</span><span class="p">.</span><span class="n">waitForServer</span><span class="p">();</span> <span class="c1">//will wait for infinite time</span>
+    <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"Action server started, sending goal."</span><span class="p">);</span>
+
+    <span class="c1">/// Create ActionWorker which will send a goal to the action server</span>
+    <span class="kt">int</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">ui_</span><span class="o">-&gt;</span><span class="n">lineEditEdges</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">().</span><span class="n">toInt</span><span class="p">();</span>
+    <span class="kt">float</span> <span class="n">radius</span> <span class="o">=</span> <span class="n">ui_</span><span class="o">-&gt;</span><span class="n">lineEditRadius</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">().</span><span class="n">toFloat</span><span class="p">();</span>
+    <span class="kt">float</span> <span class="n">timeout</span> <span class="o">=</span> <span class="n">ui_</span><span class="o">-&gt;</span><span class="n">lineEditTimeout</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">().</span><span class="n">toFloat</span><span class="p">();</span>
+    <span class="n">ActionWorker</span><span class="o">*</span> <span class="n">action_worker</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ActionWorker</span><span class="p">(</span><span class="n">ac_</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">timeout</span><span class="p">);</span>
+
+    <span class="n">ui_</span><span class="o">-&gt;</span><span class="n">btnDraw</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">"Cancel Goal"</span><span class="p">));</span>
+    <span class="n">disconnect</span><span class="p">(</span><span class="n">ui_</span><span class="o">-&gt;</span><span class="n">btnDraw</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">clicked</span><span class="p">()),</span> <span class="k">this</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">on_btnDraw_clicked</span><span class="p">()));</span>
+    <span class="n">connect</span><span class="p">(</span><span class="n">ui_</span><span class="o">-&gt;</span><span class="n">btnDraw</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">clicked</span><span class="p">()),</span> <span class="n">action_worker</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">kill</span><span class="p">()));</span>
+    <span class="n">connect</span><span class="p">(</span><span class="n">ui_</span><span class="o">-&gt;</span><span class="n">btnDraw</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">clicked</span><span class="p">()),</span> <span class="k">this</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">on_btnCancelGoal_clicked</span><span class="p">()));</span>
+
+    <span class="n">threadpool_</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="n">action_worker</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>First, this code checks wheater the client is connected to the <code class="language-plaintext highlighter-rouge">shape_server</code> to make sure it is available.
+If this is not the case a <a href="https://doc.qt.io/qt-5/qmessagebox.html"><code class="language-plaintext highlighter-rouge">QMessageBox</code></a> is used to inform the user that the 
+<code class="language-plaintext highlighter-rouge">shape_server</code> in the <code class="language-plaintext highlighter-rouge">turtle_actionlib</code> should be started with <code class="language-plaintext highlighter-rouge">rosrun turtle_actionlib shape_server</code>.
+Also note that the <code class="language-plaintext highlighter-rouge">turtle_actionlib</code> works with a turtle named <code class="language-plaintext highlighter-rouge">turtle1</code>. So make sure that a turtle with that name exists.
+To send the goal to another named turtle you can for example run <a href="http://wiki.ros.org/topic_tools/relay">topic_tools/relay</a>.</p>
+
+<p>After the action server is started a new class object of type <a href="https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/action_worker.cpp"><code class="language-plaintext highlighter-rouge">ActionWorker</code></a> is created on the heap.
+This <code class="language-plaintext highlighter-rouge">ActionWorker</code> allows us to send the the goal to the shape server without blocking the main gui.
+For this <a href="https://doc.qt.io/qt-5/qthreadpool.html"><code class="language-plaintext highlighter-rouge">QThreadpool</code></a> together with <a href="https://doc.qt.io/qt-5/qrunnable.html"><code class="language-plaintext highlighter-rouge">QRunnable</code></a> is used.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ActionWorkerKilledException</span><span class="p">{};</span>
+
+<span class="k">class</span> <span class="nc">ActionWorker</span> <span class="o">:</span> <span class="k">public</span> <span class="n">QObject</span><span class="p">,</span> <span class="k">public</span> <span class="n">QRunnable</span>
+<span class="p">{</span>
+    <span class="n">Q_OBJECT</span>
+
+    <span class="c1">/// Reference to the action client instanciated in the Draw class.</span>
+    <span class="n">actionlib</span><span class="o">::</span><span class="n">SimpleActionClient</span><span class="o">&lt;</span><span class="n">turtle_actionlib</span><span class="o">::</span><span class="n">ShapeAction</span><span class="o">&gt;&amp;</span> <span class="n">ac_</span><span class="p">;</span>
+    <span class="c1">/// Number of edges of the regular polygon</span>
+    <span class="kt">int</span> <span class="n">edges_</span><span class="p">;</span>
+    <span class="c1">/// Radius of the regular polygon</span>
+    <span class="kt">float</span> <span class="n">radius_</span><span class="p">;</span>
+    <span class="c1">/// Duration after which the goal will be canceled and the ActionWorker killed.</span>
+    <span class="kt">float</span> <span class="n">timeout_</span><span class="p">;</span>
+    <span class="c1">/// Defaults to false. Set to true when the kill() slot is called.</span>
+    <span class="kt">bool</span> <span class="n">is_killed_</span><span class="p">;</span>
+
+<span class="nl">public:</span>
+    <span class="cm">/**
+     * @brief Construct a new Action Worker object
+     * 
+     * @param ac Reference to the action client which is instanciated in the Draw class that creates this worker.
+     * @param edges Specifies the number of edges the worker should draw.
+     * @param radius Specifies the shape radius the worker should use while drawing.
+     * @param timeout Specifies the duration after which the goal is canceled.
+     */</span>
+    <span class="n">ActionWorker</span><span class="p">(</span><span class="n">actionlib</span><span class="o">::</span><span class="n">SimpleActionClient</span><span class="o">&lt;</span><span class="n">turtle_actionlib</span><span class="o">::</span><span class="n">ShapeAction</span><span class="o">&gt;&amp;</span> <span class="n">ac</span><span class="p">,</span> <span class="kt">int</span> <span class="n">edges</span><span class="p">,</span> <span class="kt">float</span> <span class="n">radius</span><span class="p">,</span> <span class="kt">float</span> <span class="n">timeout</span><span class="p">);</span>
+
+    <span class="cm">/**
+     * @brief Overriede of QRunnable to run the drawing task in another thread from the QThreadPool.
+     * 
+     */</span>
+    <span class="kt">void</span> <span class="n">run</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+
+<span class="nl">signals:</span>
+    <span class="cm">/**
+     * @brief Singals the current progress of the ongoing action. Currently not used
+     * 
+     * @param value could represent the percentage of the progress.
+     */</span>
+    <span class="kt">void</span> <span class="n">progress</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
+
+<span class="k">public</span> <span class="n">slots</span><span class="o">:</span>
+    <span class="cm">/**
+     * @brief Slot to receive a kill signal when the goal should be canceled.
+     * 
+     */</span>
+    <span class="kt">void</span> <span class="n">kill</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Inside the <code class="language-plaintext highlighter-rouge">ActionWorker::run()</code> method the current <a href="http://docs.ros.org/noetic/api/actionlib_msgs/html/msg/GoalStatus.html"><code class="language-plaintext highlighter-rouge">actionlib_msgs/GoalStatus</code></a> 
+can be checked with the <a href="http://docs.ros.org/noetic/api/actionlib/html/classactionlib_1_1SimpleActionClient.html#ac02703c818902c18e72844e58b4ef285"><code class="language-plaintext highlighter-rouge">actionlib::SimpleActionClient::getState()</code></a> method.
+This implementation is similar to the one described in <a href="http://wiki.ros.org/actionlib_tutorials/Tutorials/Writing%20a%20Callback%20Based%20Simple%20Action%20Client">Writing a Callback Based Simple Action Client</a>.
+It avoids blocking until the goal is complete, which would be possible when using <a href="https://docs.ros.org/noetic/api/actionlib/html/classactionlib_1_1SimpleActionClient.html#a94b5a38fae6917f83331560b81eea341"><code class="language-plaintext highlighter-rouge">waitForResult</code></a> described in the [SimpleActionClient] tutorial.</p>
+
+<p>To cancel the goal after the specified timeout is reached the code makes use of <a href="http://wiki.ros.org/roscpp/Overview/Time"><code class="language-plaintext highlighter-rouge">ros::Time</code></a>,
+<a href="http://docs.ros.org/latest/api/rostime/html/classros_1_1DurationBase.html"><code class="language-plaintext highlighter-rouge">ros::Duration</code></a> and the <a href="http://wiki.ros.org/roscpp/Overview/Time#Time_and_Duration_Arithmetic">possible arithmetic</a>.</p>
+
+<p>While the goal is pursued the <code class="language-plaintext highlighter-rouge">Draw</code> button changes its text to <code class="language-plaintext highlighter-rouge">CancelGoal</code> and the connections are updated, see <a href="https://github.com/fjp/rqt-turtle/blob/23d7e9430633df276f21c09f17970aa692bf45d2/rqt_turtle/src/rqt_turtle/draw.cpp#L320"><code class="language-plaintext highlighter-rouge">Draw::drawShape</code></a>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ui_</span><span class="o">-&gt;</span><span class="n">btnDraw</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">"Cancel Goal"</span><span class="p">));</span>
+<span class="n">disconnect</span><span class="p">(</span><span class="n">ui_</span><span class="o">-&gt;</span><span class="n">btnDraw</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">clicked</span><span class="p">()),</span> <span class="k">this</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">on_btnDraw_clicked</span><span class="p">()));</span>
+<span class="n">connect</span><span class="p">(</span><span class="n">ui_</span><span class="o">-&gt;</span><span class="n">btnDraw</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">clicked</span><span class="p">()),</span> <span class="n">action_worker</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">kill</span><span class="p">()));</span>
+<span class="n">connect</span><span class="p">(</span><span class="n">ui_</span><span class="o">-&gt;</span><span class="n">btnDraw</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">clicked</span><span class="p">()),</span> <span class="k">this</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">on_btnCancelGoal_clicked</span><span class="p">()));</span>
+</code></pre></div></div>
+<p>Pressing the “new” <code class="language-plaintext highlighter-rouge">Cancel Goal</code> button reverts the button text and the connections to its original state:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">Draw</span><span class="o">::</span><span class="n">on_btnCancelGoal_clicked</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ui_</span><span class="o">-&gt;</span><span class="n">btnDraw</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="s">"Draw"</span><span class="p">);</span>
+    <span class="n">disconnect</span><span class="p">(</span><span class="n">ui_</span><span class="o">-&gt;</span><span class="n">btnDraw</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">clicked</span><span class="p">()),</span> <span class="k">this</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">on_btnCancelGoal_clicked</span><span class="p">()));</span>
+    <span class="n">connect</span><span class="p">(</span><span class="n">ui_</span><span class="o">-&gt;</span><span class="n">btnDraw</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">clicked</span><span class="p">()),</span> <span class="k">this</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">on_btnDraw_clicked</span><span class="p">()));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Other related references to <a href="http://wiki.ros.org/actionlib?distro=noetic"><code class="language-plaintext highlighter-rouge">actionlib</code></a>:</p>
+
+<ul>
+  <li><a href="http://wiki.ros.org/actionlib_tutorials/Tutorials/Calling%20Action%20Server%20without%20Action%20Client">Calling Action Server without Action Client</a></li>
+  <li><a href="https://github.com/ros/common_tutorials/blob/noetic-devel/turtle_actionlib/src/shape_client.cpp"><code class="language-plaintext highlighter-rouge">turtle_actionlib/src/shape_client.cpp</code></a></li>
+  <li><a href="http://wiki.ros.org/actionlib_tutorials/Tutorials/SimpleActionClient%28Threaded%29">Simple ActionClient Threaded</a></li>
+</ul>
+
+<h4 id="draw-image">Draw Image</h4>
+
+<p>With the plugin it’s also possible to select an image from disk with the <a href="https://doc.qt.io/qt-5/qfiledialog.html"><code class="language-plaintext highlighter-rouge">QFileDialog</code></a> (<a href="https://stackoverflow.com/questions/14033720/qfiledialog-how-to-specify-home-directory">set to the home directory</a> by default) and let multiple turtles draw the contours.</p>
+
+<p><img src="https://raw.githubusercontent.com/fjp/rqt-turtle/master/docs/rqt_turtle-draw-image-multi.gif" alt="rqt_turtle-draw-image" /></p>
+
+<p>The contours are found with <a href="https://docs.opencv.org/2.4/modules/imgproc/doc/feature_detection.html?highlight=canny#canny"><code class="language-plaintext highlighter-rouge">Canny()</code></a> and 
+<a href="https://docs.opencv.org/2.4/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html?highlight=findcontours#findcontours"><code class="language-plaintext highlighter-rouge">findContours</code></a> from OpenCV. 
+The slider in the gui allows you to set the low threshold of the canny edge detection algorithm which will change the number of detected edges.
+A <a href="https://doc.qt.io/qt-5/qobject.html">helpful resource</a> to convert a <code class="language-plaintext highlighter-rouge">cv::Mat</code>, used by OpenCV, to a <a href="https://doc.qt.io/qt-5/qimage.html"><code class="language-plaintext highlighter-rouge">QImage</code></a> is this line of code:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">QImage</span> <span class="n">imgIn</span><span class="o">=</span> <span class="n">QImage</span><span class="p">((</span><span class="n">uchar</span><span class="o">*</span><span class="p">)</span> <span class="n">img</span><span class="p">.</span><span class="n">data</span><span class="p">,</span> <span class="n">img</span><span class="p">.</span><span class="n">cols</span><span class="p">,</span> <span class="n">img</span><span class="p">.</span><span class="n">rows</span><span class="p">,</span> <span class="n">img</span><span class="p">.</span><span class="n">step</span><span class="p">,</span> <span class="n">QImage</span><span class="o">::</span><span class="n">Format_RGB888</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>It is used to display the edge image inside the <a href="https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/resources/Draw.ui"><code class="language-plaintext highlighter-rouge">Draw.ui</code></a> using a QLabel by setting its <a href="https://doc.qt.io/qt-5/qpixmap.html"><code class="language-plaintext highlighter-rouge">QPixmap</code></a> and <a href="https://doc.qt.io/qt-5/qpixmap.html#scaled">scaling it</a> to the same <a href="https://github.com/ros/ros_tutorials/blob/91d2764ebd2344acf8e6754323f5b937b836d218/turtlesim/src/turtle_frame.cpp#L53">size as turtlesim (500x500 pixel)</a>.
+See the <a href="https://doc.qt.io/qt-5/qtwidgets-widgets-imageviewer-example.html">image viewer example</a> for a good reference on what can be done this way.</p>
+
+<p>For more information on OpenCV Canny and finding contours, see</p>
+<ul>
+  <li><a href="https://docs.opencv.org/2.4/doc/tutorials/imgproc/shapedescriptors/find_contours/find_contours.html">Find contours</a>, <a href="https://docs.opencv.org/3.4/d3/dc0/group__imgproc__shape.html#ga17ed9f5d79ae97bd4c7cf18403e1689a">API documentation</a></li>
+  <li><a href="https://docs.opencv.org/trunk/da/d22/tutorial_py_canny.html">tutorial_py_canny</a></li>
+  <li><a href="https://docs.opencv.org/2.4/doc/tutorials/imgproc/imgtrans/canny_detector/canny_detector.html">canny detector</a></li>
+  <li><a href="https://docs.opencv.org/3.4/da/d5c/tutorial_canny_detector.html">turotial canny detector</a></li>
+</ul>
+
+<p>To draw the image faster, using multiple turtles, <a href="https://doc.qt.io/qt-5/qthreadpool.html"><code class="language-plaintext highlighter-rouge">QThreadpool</code></a> together with <a href="https://doc.qt.io/qt-5/qrunnable.html"><code class="language-plaintext highlighter-rouge">QRunnable</code></a> is used.
+For this, the <a href="https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/image_worker.cpp"><code class="language-plaintext highlighter-rouge">ImageWorker</code></a> class inherits from <code class="language-plaintext highlighter-rouge">QRunnable</code> and <a href="https://doc.qt.io/qt-5/qobject.html"><code class="language-plaintext highlighter-rouge">QObject</code></a> to allow the usage of Qt signals. In this case a <code class="language-plaintext highlighter-rouge">progress(QString name, int progress)</code>
+and <code class="language-plaintext highlighter-rouge">finished(QString name)</code> is used to update the progress of multiple workers.</p>
+
+<p>The following class shows the header of the <code class="language-plaintext highlighter-rouge">ImageWorker</code> class. For the source code, please refer to the <a href="https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/src/rqt_turtle/image_worker.cpp"><code class="language-plaintext highlighter-rouge">image_worker.cpp</code></a>.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ImageWorkerKilledException</span><span class="p">{};</span>
+
+
+<span class="k">class</span> <span class="nc">ImageWorker</span> <span class="o">:</span> <span class="k">public</span> <span class="n">QObject</span><span class="p">,</span> <span class="k">public</span> <span class="n">QRunnable</span>
+<span class="p">{</span>
+    <span class="n">Q_OBJECT</span>
+
+    <span class="kt">bool</span> <span class="n">is_killed_</span><span class="p">;</span>
+
+    <span class="n">Turtle</span> <span class="n">turtle_</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">contours_</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">num_contours_</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">num_points_</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">idx_contour_</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">idx_point_</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">percent_</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">turtlesim_size_</span><span class="p">;</span>
+
+    <span class="n">turtlesim</span><span class="o">::</span><span class="n">TeleportAbsolute</span> <span class="n">sTeleportAbs_</span><span class="p">;</span>
+
+<span class="nl">public:</span>
+    <span class="n">ImageWorker</span><span class="p">(</span><span class="n">Turtle</span> <span class="n">turtle</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">contours</span><span class="p">,</span> <span class="kt">float</span> <span class="n">turtlesim_size</span> <span class="o">=</span> <span class="mf">500.0</span><span class="p">);</span>
+
+
+    <span class="kt">void</span> <span class="n">run</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+
+<span class="nl">signals:</span>
+    <span class="kt">void</span> <span class="n">progress</span><span class="p">(</span><span class="n">QString</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="n">finished</span><span class="p">(</span><span class="n">QString</span> <span class="n">name</span><span class="p">);</span>
+
+<span class="k">public</span> <span class="n">slots</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">kill</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="install-and-run-your-plugin">Install and Run your Plugin</h2>
+
+<h3 id="cmakeliststxt">CMakeLists.txt</h3>
+
+<p>Configure the <a href="http://wiki.ros.org/catkin/CMakeLists.txt"><code class="language-plaintext highlighter-rouge">CMakeLists.txt</code></a> using Qt macros, 
+see also <a href="https://doc.qt.io/qt-5/cmake-manual.html#qt5widgets-macros">Qt’s Build with CMake</a>.
+The following macros create rules for calling the <a href="https://doc.qt.io/qt-5/moc.html">Meta-Object compiler (moc)</a> on the given source/ui file.</p>
+
+<ul>
+  <li><a href="https://doc.qt.io/qt-5/qtwidgets-cmake-qt5-wrap-ui.html"><code class="language-plaintext highlighter-rouge">qt5_wrap_ui</code></a> the command will configure the project to process <code class="language-plaintext highlighter-rouge">*.ui</code> 
+files into valid C++ <code class="language-plaintext highlighter-rouge">ui_XXXX.h</code>, <a href="https://stackoverflow.com/questions/16245147/unable-to-include-a-ui-form-header-of-qt5-in-cmake">source</a>, <a href="https://stackoverflow.com/questions/19761767/qt-5-cmake-fails-with-undefined-reference-to-vtable-on-hello-world-with-inc-sr">source</a>.</li>
+  <li><a href="https://doc.qt.io/qt-5/qtcore-cmake-qt5-wrap-cpp.html"><code class="language-plaintext highlighter-rouge">qt5_wrap_cpp</code></a></li>
+</ul>
+
+<p class="notice">Note that these are old and there exist new <a href="https://cmake.org/cmake/help/v3.0/manual/cmake-qt.7.html#automoc"><code class="language-plaintext highlighter-rouge">AUTOMOC</code></a> (<a href="https://stackoverflow.com/questions/25875255/cmake-qt5-qt5-wrap-ui-not-generating-ui-header-files">source</a>) and <a href="https://cmake.org/cmake/help/v3.0/manual/cmake-qt.7.html#autouic"><code class="language-plaintext highlighter-rouge">AUTOUIC</code></a> options in modern CMake.</p>
+
+<p>Note: <code class="language-plaintext highlighter-rouge">ui_XXXX.h</code> files are generated in the build directory <code class="language-plaintext highlighter-rouge">${CMAKE_CURRENT_BINARY_DIR}</code>. This is why we need to use these <code class="language-plaintext highlighter-rouge">set</code> commands:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ensure generated header files are being created in the devel space</span>
+<span class="nb">set</span><span class="p">(</span>_cmake_current_binary_dir <span class="s2">"</span><span class="si">${</span><span class="nv">CMAKE_CURRENT_BINARY_DIR</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>CMAKE_CURRENT_BINARY_DIR <span class="s2">"</span><span class="si">${</span><span class="nv">CATKIN_DEVEL_PREFIX</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">CATKIN_GLOBAL_INCLUDE_DESTINATION</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="nf">qt5_wrap_ui</span><span class="p">(</span>rqt_turtle_UIS_H <span class="si">${</span><span class="nv">rqt_turtle_UIS</span><span class="si">}</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span>CMAKE_CURRENT_BINARY_DIR <span class="s2">"</span><span class="si">${</span><span class="nv">_cmake_current_binary_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>These commands temporarily change the <code class="language-plaintext highlighter-rouge">CMAKE_CURRENT_BINARY_DIR</code> to <code class="language-plaintext highlighter-rouge">"${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_INCLUDE_DESTINATION}"</code> which is a
+private include folder inside the devel space. This is done to save the ui header file, created with the meta objec compiler (moc), into the
+devel space. TODO confirm this?</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># TODO use?
+find_package(class_loader)
+class_loader_hide_library_symbols(${PROJECT_NAME})
+</code></pre></div></div>
+
+<p>Also make sure in your <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code>, to uncomment a line:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Uncomment this if the package has a setup.py. This macro ensures</span>
+<span class="c1">## modules and global scripts declared therein get installed</span>
+<span class="c1">## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html</span>
+<span class="nf">catkin_python_setup</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Add install macro that puts the script into a location where it is rosrun-able is declared. For example:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Mark executable scripts (Python etc.) for installation</span>
+<span class="c1">## in contrast to setup.py, you can choose the destination</span>
+<span class="c1"># For our (optional) script to be installed to the right location, </span>
+<span class="c1"># if users install your package, this line is required</span>
+<span class="nf">catkin_install_python</span><span class="p">(</span>PROGRAMS
+  scripts/rqt_turtle
+  DESTINATION <span class="si">${</span><span class="nv">CATKIN_PACKAGE_BIN_DESTINATION</span><span class="si">}</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>TODO install stuff:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#############</span>
+<span class="c1">## Install ##</span>
+<span class="c1">#############</span>
+
+<span class="c1"># TODO????</span>
+<span class="c1"># See http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin</span>
+<span class="c1"># And https://github.com/ros-visualization/rqt_image_view/blob/master/CMakeLists.txt</span>
+<span class="c1"># TODO?????</span>
+<span class="c1">#Add the following lines to call the resource and plugin.xml # TODO required?</span>
+<span class="c1">#install(DIRECTORY include/${PROJECT_NAME}/</span>
+<span class="c1">#  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}</span>
+<span class="c1">#)</span>
+<span class="c1">#install(DIRECTORY</span>
+<span class="c1">#  resource</span>
+<span class="c1">#  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}</span>
+<span class="c1">#)</span>
+<span class="c1">#install(FILES</span>
+<span class="c1">#  plugin.xml</span>
+<span class="c1">#  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}</span>
+<span class="c1">#)</span>
+
+
+<span class="c1">## Mark executables for installation</span>
+<span class="c1">## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html</span>
+<span class="c1"># install(TARGETS ${PROJECT_NAME}_node</span>
+<span class="c1">#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}</span>
+<span class="c1"># )</span>
+
+<span class="c1">## Mark libraries for installation</span>
+<span class="c1">## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html</span>
+<span class="nb">install</span><span class="p">(</span>TARGETS <span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span>
+  ARCHIVE DESTINATION <span class="si">${</span><span class="nv">CATKIN_PACKAGE_LIB_DESTINATION</span><span class="si">}</span>
+  LIBRARY DESTINATION <span class="si">${</span><span class="nv">CATKIN_PACKAGE_LIB_DESTINATION</span><span class="si">}</span>
+  RUNTIME DESTINATION <span class="si">${</span><span class="nv">CATKIN_GLOBAL_BIN_DESTINATION</span><span class="si">}</span>
+<span class="p">)</span>
+
+<span class="c1">## Mark cpp header files for installation</span>
+<span class="c1"># install(DIRECTORY include/${PROJECT_NAME}/</span>
+<span class="c1">#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}</span>
+<span class="c1">#   FILES_MATCHING PATTERN "*.h"</span>
+<span class="c1">#   PATTERN ".svn" EXCLUDE</span>
+<span class="c1"># )</span>
+
+<span class="c1">## Mark other files for installation (e.g. launch and bag files, etc.)</span>
+<span class="c1"># install(FILES</span>
+<span class="c1">#   # myfile1</span>
+<span class="c1">#   # myfile2</span>
+<span class="c1">#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}</span>
+<span class="c1"># )</span>
+</code></pre></div></div>
+
+<h3 id="setuppy">setup.py</h3>
+
+<p>The <a href="https://docs.ros.org/noetic/api/catkin/html/user_guide/setup_dot_py.html">setup.py</a> is used to install a python package and ROS makes use of this too
+if a package contains python scripts.
+See <a href="https://wiki.ros.org/rospy_tutorials/Tutorials/Makefile#Installing_scripts_and_exporting_modules">also this tutorial</a>,
+<a href="http://docs.ros.org/noetic/api/catkin/html/howto/format2/building_libraries.html">building libraries</a>
+and this <a href="https://answers.ros.org/question/50661/catkin-setuppy-installation-into-devel-space-not-working/">answer</a>
+See <a href="http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin#Install_.26_Run_your_plugin">this section</a>:</p>
+
+<p>See the Running rqt section for how to run your plugin.</p>
+
+<p>With catkin, no matter which method in the link above you want to run your plugin, you need to install it via CMake which puts the script into a package-specific folder which is not on the PATH.</p>
+
+<p>Add macros to your setup.py (reference). For example, after adding the line the section that contains it might look like :</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
+<span class="kn">from</span> <span class="nn">catkin_pkg.python_setup</span> <span class="kn">import</span> <span class="n">generate_distutils_setup</span>
+  
+<span class="n">d</span> <span class="o">=</span> <span class="n">generate_distutils_setup</span><span class="p">(</span>
+    <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="s">'rqt_mypkg'</span><span class="p">],</span>
+    <span class="n">package_dir</span><span class="o">=</span><span class="p">{</span><span class="s">''</span><span class="p">:</span> <span class="s">'src'</span><span class="p">},</span>
+<span class="p">)</span>
+
+<span class="n">setup</span><span class="p">(</span><span class="o">**</span><span class="n">d</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="faced-problems">Faced Problems</h3>
+
+<p>The original plan was to reuse the <a href="http://wiki.ros.org/rqt_service_caller">service caller</a> and <a href="http://wiki.ros.org/rqt_publisher">topic publisher</a> rqt plugins.
+However, these plugins are written in Python which
+makes it hard to use the ui files because they reference some Python specific Qt widgets that are not available in C++.</p>
+
+<p>To make use of other rqt plugins follow this tutorial and understand <a href="http://wiki.ros.org/catkin/CMakeLists.txt#Finding_Dependent_CMake_Packages">What does <code class="language-plaintext highlighter-rouge">find_package()</code> do</a>. Also this <a href="https://answers.ros.org/question/201977/include-header-file-from-another-package-indigo/">answer</a> might be helpful.</p>
+
+<p>The problem with these approaches are that most of the plugins are written in Python.
+The <a href="https://doc.qt.io/archives/qt-4.8/designer-using-custom-widgets.html">promote widget method</a> will work if your plugins use the same programming language because Python doesn’t create a header file.</p>
+
+<p>Another problem was that the other plugins don’t generate a <a href="https://cmake.org/cmake/help/v3.0/manual/cmake-packages.7.html#config-file-packages">PackageNameConfig.cmake</a> file which would allow to export the plugin headers and/or their ui files using the <a href="http://wiki.ros.org/catkin/CMakeLists.txt#catkin_package.28.29"><code class="language-plaintext highlighter-rouge">catkin_package()</code></a> macro. 
+This is why I just copied the ui files from <a href="https://github.com/fjp/rqt-turtle/blob/master/rqt_turtle/resources/ServiceCaller.ui"><code class="language-plaintext highlighter-rouge">ServiceCaller.ui</code></a> into the resources folder of the <code class="language-plaintext highlighter-rouge">rqt_turtle</code> plugin and adjusted its elements with the Qt Designer.</p>
+
+<p>Otherwise we could have used</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">find_package</span><span class="p">(</span>catkin REQUIRED COMPONENTS
+  roscpp
+  rqt_gui
+  rqt_gui_cpp
+  rqt_topic
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>or</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">find_package</span><span class="p">(</span>rqt_topic<span class="p">)</span>
+</code></pre></div></div>
+
+<p>Pro tip: Use <code class="language-plaintext highlighter-rouge">message(${my_package_FOUND})</code> inside your <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> to check if the package was found. If it’s found this will output <code class="language-plaintext highlighter-rouge">1</code> or <code class="language-plaintext highlighter-rouge">True</code>,
+nothing otherwise.</p>
+
+<p>This will define some cmake variables (found <a href="https://cmake.org/cmake/help/v3.0/command/find_package.html#find-package">here</a>) that make it possible to include the exported resources from that packages using</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># WIP TODO remove here (only used for rqt_topic)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">catkin_INCLUDE_DIRS</span><span class="si">}</span><span class="p">)</span>
+<span class="nb">message</span><span class="p">(</span><span class="si">${</span><span class="nv">catkin_INCLUDE_DIRS</span><span class="si">}</span><span class="p">)</span>
+<span class="nb">message</span><span class="p">(</span><span class="si">${</span><span class="nv">rqt_topic_INCLUDE_DIRS</span><span class="si">}</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Then, for example using the ui file should work like this:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">set</span><span class="p">(</span>rqt_turtle_UIS
+  resources/turtle_plugin.ui
+  <span class="si">${</span><span class="nv">rqt_topic_INCLUDE_DIRS</span><span class="si">}</span>/resource/TopicWidget.ui
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="launch-the-plugin">Launch the plugin</h2>
+
+<p>To launch a rqt plugin make sure to read the <a href="http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin#Install_.26_Run_your_plugin">Install and Run your plugin</a> section and the <a href="http://wiki.ros.org/rqt/UserGuide#Running_rqt">Running rqt User Guide</a>.</p>
+
+<p>In case it is not working try to use some solutions from <a href="https://answers.ros.org/question/166851/rqt-reconfigure-no-plugin-found/">this answer</a>.</p>
+
+<h2 id="future-work">Future Work</h2>
+
+<ul>
+  <li>Add control widgets to publish to the <a href="http://wiki.ros.org/turtlesim#Subscribed_Topics"><code class="language-plaintext highlighter-rouge">/turtleX/cmd_vel</code></a> of type <a href="http://docs.ros.org/noetic/api/geometry_msgs/html/msg/Twist.html"><code class="language-plaintext highlighter-rouge">geometry_msgs/Twist</code></a> topic.</li>
+  <li>Add tests using <a href="http://wiki.ros.org/rostest/Writing">rostest</a> and <a href="http://wiki.ros.org/roslaunch/XML/test">roslaunch test tag</a>.</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">rossrv show</code> to get the type of a rosservice and use the information for the <code class="language-plaintext highlighter-rouge">request_tree_widget</code> of the <code class="language-plaintext highlighter-rouge">ServiceCaller.ui</code>.</li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="http://wiki.ros.org/catkin/CMakeLists.txt">catkin CMakeLists.txt</a></li>
+  <li><a href="https://stackoverflow.com/questions/26785675/ros-get-current-available-topic-in-code-not-command">SO: ros-get-current-available-topic-in-code-not-command</a></li>
+  <li><a href="https://github.com/ros-visualization/rqt_image_view"><code class="language-plaintext highlighter-rouge">rqt_image_view</code></a></li>
+  <li><a href="http://wiki.ros.org/pluginlib">ROS <code class="language-plaintext highlighter-rouge">pluginlib</code></a></li>
+  <li><a href="http://wiki.ros.org/rqt_service_caller"><code class="language-plaintext highlighter-rouge">rqt_service_caller</code></a></li>
+  <li><a href="https://answers.ros.org/question/151611/rosservice-list-and-info-from-c/">ROS service list from C++</a></li>
+  <li><a href="http://wiki.ros.org/ROS/Master_API">ROS Master API</a></li>
+  <li><a href="http://www.grinninglizard.com/tinyxmldocs/tutorial0.html">TinyXML Tutorial</a></li>
+  <li><a href="https://doc.qt.io/archives/qt-4.8/designer-using-custom-widgets.html">Qt Designer Using Custom Widgets</a></li>
+  <li><a href="https://doc.qt.io/qt-5.9/designer-using-a-ui-file.html">Qt Designer Using a ui file</a></li>
+  <li><a href="https://answers.ros.org/question/58046/preferred-ros-xml-parsergenerator/">Preferred ROS XML parser/generator</a></li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-15/tags/#noetic" class="page__taxonomy-item p-category" rel="tag">noetic</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-15/tags/#plugin" class="page__taxonomy-item p-category" rel="tag">plugin</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-15/tags/#qt" class="page__taxonomy-item p-category" rel="tag">qt</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-15/tags/#qt5" class="page__taxonomy-item p-category" rel="tag">qt5</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-15/tags/#ros" class="page__taxonomy-item p-category" rel="tag">ros</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-15/tags/#rqt" class="page__taxonomy-item p-category" rel="tag">rqt</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-15/tags/#turtlebot" class="page__taxonomy-item p-category" rel="tag">turtlebot</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-15/tags/#turtlesim" class="page__taxonomy-item p-category" rel="tag">turtlesim</a>
+    
+    </span>
+  </p>
+
+
+  
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-15/categories/#robotics" class="page__taxonomy-item p-category" rel="tag">robotics</a>
+    
+    </span>
+  </p>
+
+
+  
+
+
+        
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2020-08-23T18:00:35+00:00">August 23, 2020</time></p>
+
+
+      </footer>
+
+      
+
+      
+
+  <nav class="pagination" aria-label="Post pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/pr-preview/pr-15/ros/turtle-pong/" class="pagination--pager" title="ROS Turtle Pong">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#edeff5",
+      "text": "#838391"
+    },
+    "button": {
+      "background": "#4b81e8"
+    }
+  },
+  "type": "opt-out"
+});
+</script>
+
+<script data-ad-client="ca-pub-2214309606626131" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script src="https://www.dwin2.com/pub.642237.min.js"></script>
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/fjp" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/pr-preview/pr-15/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+
+  <script src="/pr-preview/pr-15/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/pr-preview/pr-15/assets/js/lunr/lunr.min.js"></script>
+<script src="/pr-preview/pr-15/assets/js/lunr/lunr-store.js"></script>
+<script src="/pr-preview/pr-15/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://fjp.at/pr-preview/pr-15/ros/rqt-turtle/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/ros/rqt-turtle"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://fjp-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

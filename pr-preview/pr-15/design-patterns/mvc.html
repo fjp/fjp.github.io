@@ -1,0 +1,1056 @@
+
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js" dir="ltr">
+  <head>
+    
+<meta charset="utf-8">
+
+
+<!-- begin _includes/seo.html --><title>The Model View Controller Pattern - fjp.github.io</title>
+<meta name="description" content="The model view controller design pattern summarized.">
+
+
+  <meta name="author" content="Franz Pucher">
+  
+  <meta property="article:author" content="Franz Pucher">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="fjp.github.io">
+<meta property="og:title" content="The Model View Controller Pattern">
+<meta property="og:url" content="https://fjp.at/pr-preview/pr-15/design-patterns/mvc">
+
+
+  <meta property="og:description" content="The model view controller design pattern summarized.">
+
+
+
+
+
+  <meta name="twitter:site" content="@franzpucher">
+  <meta name="twitter:title" content="The Model View Controller Pattern">
+  <meta name="twitter:description" content="The model view controller design pattern summarized.">
+  <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-15/design-patterns/mvc">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+
+
+  <meta property="article:published_time" content="2019-10-11T13:41:35+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fjp.at/pr-preview/pr-15/design-patterns/mvc">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/pr-preview/pr-15/feed.xml" type="application/atom+xml" rel="alternate" title="fjp.github.io Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pr-preview/pr-15/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-2214309606626131",
+          enable_page_level_ads: true
+     });
+</script>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+<!--KaTeX-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+<!-- Pseudocode.js -->
+<!-- https://github.com/SaswatPadhi/pseudocode.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"
+        integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous">
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
+<script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js">
+</script>
+
+<!-- Mailinglist -->
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '1518166');
+</script>
+<!-- End MailerLite Universal -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+        
+        <a class="site-title" href="/pr-preview/pr-15/">
+          fjp.github.io
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/"
+                
+                
+              >Home</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/blog/"
+                
+                
+              >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/design-patterns/"
+                
+                
+              >Design Patterns</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/cpp/"
+                
+                
+              >C++</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/projects/fpv/"
+                
+                
+              >FPV</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/about/"
+                
+                
+              >About</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/ads/"
+                
+                
+              >Ads</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/privacy/"
+                
+                
+              >Privacy</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-15/sitemap/"
+                
+                
+              >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+
+  
+    
+
+
+
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-15/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-15/design-patterns" itemprop="item"><span itemprop="name">Design patterns</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">The Model View Controller Pattern</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/pr-preview/pr-15/design-patterns/"><span class="nav__sub-title">Design Patterns</span></a>
+          
+
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-15/design-patterns/"><span class="nav__sub-title">Creational</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/factory">Factory</a></li>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/singleton">Singleton</a></li>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/builder">Builder</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-15/design-patterns/"><span class="nav__sub-title">Structural</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/adapter">Adapter</a></li>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/bridge">Bridge</a></li>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/decorator">Decorator</a></li>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/facade">Facade</a></li>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/composite">Composite</a></li>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/proxy">Proxy</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-15/design-patterns/"><span class="nav__sub-title">Behavioral</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/strategy">Strategy</a></li>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/observer">Observer</a></li>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/command">Command</a></li>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/template-method">Template Method</a></li>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/iterator">Iterator</a></li>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/state">State</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-15/design-patterns/"><span class="nav__sub-title">Architectural</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/mvc" class="active">Model View Controller</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-15/design-patterns/"><span class="nav__sub-title">Functional</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-15/design-patterns/monad">Monad</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="The Model View Controller Pattern">
+    <meta itemprop="description" content="The model view controller design pattern summarized.">
+    <meta itemprop="datePublished" content="2019-10-11T13:41:35+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://fjp.at/pr-preview/pr-15/design-patterns/mvc" itemprop="url">The Model View Controller Pattern
+</a>
+          </h1>
+          
+
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p class="notice">
+<b>The Model View Controller Pattern</b> .
+</p>
+
+<p>The Model View Controller Pattern (MVC) is a compound pattern consisting of the <a href="/pr-preview/pr-15/design-patterns/observer">Observer</a>, 
+<a href="/pr-preview/pr-15/design-patterns/strategy">Strategy</a> and <a href="/pr-preview/pr-15/design-patterns/composite">Composite</a> patterns.</p>
+
+<p>The Model makes use of the <a href="/pr-preview/pr-15/design-patterns/observer">Observer Pattern</a> so that it can keep observers updated yet stay decoupled from them.</p>
+
+<p>The controller is the strategy for the view. The view can use different implementations of the controller to get different behavior.</p>
+
+<p>The view uses the <a href="/pr-preview/pr-15/design-pattern/composite">Composite Pattern</a> to implement the user interface, 
+which usually consists of nested components like panels, frames and buttons. 
+These patterns work together to decouple the three players in the MVC model, which keeps designs clear and flexible. 
+The <a href="/pr-preview/pr-15/design-pattern/adapter">Adapter Pattern</a> can be used to adapt a new model to an existing view and controller.</p>
+
+<figure>
+    <a href="/pr-preview/pr-15/assets/pages/design-patterns/mvc-pattern.png"><img src="/pr-preview/pr-15/assets/pages/design-patterns/mvc-pattern.png" /></a>
+    <figcaption>The Model View Controller Pattern.</figcaption>
+</figure>
+
+<h2 id="example">Example</h2>
+
+<p>The following example shows a music player that uses a <code class="language-plaintext highlighter-rouge">BeatModel</code> that contains the data, a controller to start and 
+stop the sound playing and set the beats per minute. Two views are used, one to control the model and one to view
+its state.</p>
+
+<p>Let’s start with the <code class="language-plaintext highlighter-rouge">BeatModelInterface</code>:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">BeatModelInterface</span> <span class="o">{</span>
+	<span class="kt">void</span> <span class="nf">initialize</span><span class="o">();</span>
+  
+	<span class="kt">void</span> <span class="nf">on</span><span class="o">();</span>
+  
+	<span class="kt">void</span> <span class="nf">off</span><span class="o">();</span>
+  
+    <span class="kt">void</span> <span class="nf">setBPM</span><span class="o">(</span><span class="kt">int</span> <span class="n">bpm</span><span class="o">);</span>
+  
+	<span class="kt">int</span> <span class="nf">getBPM</span><span class="o">();</span>
+  
+	<span class="kt">void</span> <span class="nf">registerObserver</span><span class="o">(</span><span class="nc">BeatObserver</span> <span class="n">o</span><span class="o">);</span>
+  
+	<span class="kt">void</span> <span class="nf">removeObserver</span><span class="o">(</span><span class="nc">BeatObserver</span> <span class="n">o</span><span class="o">);</span>
+  
+	<span class="kt">void</span> <span class="nf">registerObserver</span><span class="o">(</span><span class="nc">BPMObserver</span> <span class="n">o</span><span class="o">);</span>
+  
+	<span class="kt">void</span> <span class="nf">removeObserver</span><span class="o">(</span><span class="nc">BPMObserver</span> <span class="n">o</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>The <code class="language-plaintext highlighter-rouge">BeatModel</code> class implements this interface:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">javax.sound.midi.*</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BeatModel</span> <span class="kd">implements</span> <span class="nc">BeatModelInterface</span><span class="o">,</span> <span class="nc">MetaEventListener</span> <span class="o">{</span>
+	<span class="nc">Sequencer</span> <span class="n">sequencer</span><span class="o">;</span>
+	<span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">BeatObserver</span><span class="o">&gt;</span> <span class="n">beatObservers</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">BeatObserver</span><span class="o">&gt;();</span>
+	<span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">BPMObserver</span><span class="o">&gt;</span> <span class="n">bpmObservers</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">BPMObserver</span><span class="o">&gt;();</span>
+	<span class="kt">int</span> <span class="n">bpm</span> <span class="o">=</span> <span class="mi">90</span><span class="o">;</span>
+	<span class="nc">Sequence</span> <span class="n">sequence</span><span class="o">;</span>
+	<span class="nc">Track</span> <span class="n">track</span><span class="o">;</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">setUpMidi</span><span class="o">();</span>
+		<span class="n">buildTrackAndStart</span><span class="o">();</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">on</span><span class="o">()</span> <span class="o">{</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Starting the sequencer"</span><span class="o">);</span>
+		<span class="n">sequencer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+		<span class="n">setBPM</span><span class="o">(</span><span class="mi">90</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">off</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">setBPM</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+		<span class="n">sequencer</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setBPM</span><span class="o">(</span><span class="kt">int</span> <span class="n">bpm</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">bpm</span> <span class="o">=</span> <span class="n">bpm</span><span class="o">;</span>
+		<span class="n">sequencer</span><span class="o">.</span><span class="na">setTempoInBPM</span><span class="o">(</span><span class="n">getBPM</span><span class="o">());</span>
+		<span class="n">notifyBPMObservers</span><span class="o">();</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getBPM</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">bpm</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kt">void</span> <span class="nf">beatEvent</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">notifyBeatObservers</span><span class="o">();</span>
+	<span class="o">}</span>
+
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">registerObserver</span><span class="o">(</span><span class="nc">BeatObserver</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">beatObservers</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">o</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">notifyBeatObservers</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">beatObservers</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="nc">BeatObserver</span> <span class="n">observer</span> <span class="o">=</span> <span class="o">(</span><span class="nc">BeatObserver</span><span class="o">)</span><span class="n">beatObservers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+			<span class="n">observer</span><span class="o">.</span><span class="na">updateBeat</span><span class="o">();</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">registerObserver</span><span class="o">(</span><span class="nc">BPMObserver</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">bpmObservers</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">o</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">notifyBPMObservers</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bpmObservers</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="nc">BPMObserver</span> <span class="n">observer</span> <span class="o">=</span> <span class="o">(</span><span class="nc">BPMObserver</span><span class="o">)</span><span class="n">bpmObservers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+			<span class="n">observer</span><span class="o">.</span><span class="na">updateBPM</span><span class="o">();</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">removeObserver</span><span class="o">(</span><span class="nc">BeatObserver</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">beatObservers</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="n">o</span><span class="o">);</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">beatObservers</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">removeObserver</span><span class="o">(</span><span class="nc">BPMObserver</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">bpmObservers</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="n">o</span><span class="o">);</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">bpmObservers</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">meta</span><span class="o">(</span><span class="nc">MetaMessage</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">message</span><span class="o">.</span><span class="na">getType</span><span class="o">()</span> <span class="o">==</span> <span class="mi">47</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">beatEvent</span><span class="o">();</span>
+			<span class="n">sequencer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+			<span class="n">setBPM</span><span class="o">(</span><span class="n">getBPM</span><span class="o">());</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setUpMidi</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="n">sequencer</span> <span class="o">=</span> <span class="nc">MidiSystem</span><span class="o">.</span><span class="na">getSequencer</span><span class="o">();</span>
+			<span class="n">sequencer</span><span class="o">.</span><span class="na">open</span><span class="o">();</span>
+			<span class="n">sequencer</span><span class="o">.</span><span class="na">addMetaEventListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+			<span class="n">sequence</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Sequence</span><span class="o">(</span><span class="nc">Sequence</span><span class="o">.</span><span class="na">PPQ</span><span class="o">,</span><span class="mi">4</span><span class="o">);</span>
+			<span class="n">track</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="na">createTrack</span><span class="o">();</span>
+			<span class="n">sequencer</span><span class="o">.</span><span class="na">setTempoInBPM</span><span class="o">(</span><span class="n">getBPM</span><span class="o">());</span>
+			<span class="n">sequencer</span><span class="o">.</span><span class="na">setLoopCount</span><span class="o">(</span><span class="nc">Sequencer</span><span class="o">.</span><span class="na">LOOP_CONTINUOUSLY</span><span class="o">);</span>
+		<span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span>
+	<span class="o">}</span> 
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">buildTrackAndStart</span><span class="o">()</span> <span class="o">{</span>
+		<span class="kt">int</span><span class="o">[]</span> <span class="n">trackList</span> <span class="o">=</span> <span class="o">{</span><span class="mi">35</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">46</span><span class="o">,</span> <span class="mi">0</span><span class="o">};</span>
+
+		<span class="n">sequence</span><span class="o">.</span><span class="na">deleteTrack</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+		<span class="n">track</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="na">createTrack</span><span class="o">();</span>
+
+		<span class="n">makeTracks</span><span class="o">(</span><span class="n">trackList</span><span class="o">);</span>
+		<span class="n">track</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">makeEvent</span><span class="o">(</span><span class="mi">192</span><span class="o">,</span><span class="mi">9</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">4</span><span class="o">));</span>      
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="n">sequencer</span><span class="o">.</span><span class="na">setSequence</span><span class="o">(</span><span class="n">sequence</span><span class="o">);</span>                    
+		<span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span>
+	<span class="o">}</span> 
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">makeTracks</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>        
+
+		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">list</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="kt">int</span> <span class="n">key</span> <span class="o">=</span> <span class="n">list</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+
+			<span class="k">if</span> <span class="o">(</span><span class="n">key</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+				<span class="n">track</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">makeEvent</span><span class="o">(</span><span class="mi">144</span><span class="o">,</span><span class="mi">9</span><span class="o">,</span><span class="n">key</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="n">i</span><span class="o">));</span>
+				<span class="n">track</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">makeEvent</span><span class="o">(</span><span class="mi">128</span><span class="o">,</span><span class="mi">9</span><span class="o">,</span><span class="n">key</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">));</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span>  <span class="nc">MidiEvent</span> <span class="nf">makeEvent</span><span class="o">(</span><span class="kt">int</span> <span class="n">comd</span><span class="o">,</span> <span class="kt">int</span> <span class="n">chan</span><span class="o">,</span> <span class="kt">int</span> <span class="n">one</span><span class="o">,</span> <span class="kt">int</span> <span class="n">two</span><span class="o">,</span> <span class="kt">int</span> <span class="n">tick</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">MidiEvent</span> <span class="n">event</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="nc">ShortMessage</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ShortMessage</span><span class="o">();</span>
+			<span class="n">a</span><span class="o">.</span><span class="na">setMessage</span><span class="o">(</span><span class="n">comd</span><span class="o">,</span> <span class="n">chan</span><span class="o">,</span> <span class="n">one</span><span class="o">,</span> <span class="n">two</span><span class="o">);</span>
+			<span class="n">event</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MidiEvent</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">tick</span><span class="o">);</span>
+
+		<span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> 
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">event</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>The following <code class="language-plaintext highlighter-rouge">DJView</code> class contains two views, one to view the model state and one to control it through a user interface.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DJView</span> <span class="kd">implements</span> <span class="nc">ActionListener</span><span class="o">,</span>  <span class="nc">BeatObserver</span><span class="o">,</span> <span class="nc">BPMObserver</span> <span class="o">{</span>
+	<span class="nc">BeatModelInterface</span> <span class="n">model</span><span class="o">;</span>
+	<span class="nc">ControllerInterface</span> <span class="n">controller</span><span class="o">;</span>
+    <span class="nc">JFrame</span> <span class="n">viewFrame</span><span class="o">;</span>
+    <span class="nc">JPanel</span> <span class="n">viewPanel</span><span class="o">;</span>
+	<span class="nc">BeatBar</span> <span class="n">beatBar</span><span class="o">;</span>
+	<span class="nc">JLabel</span> <span class="n">bpmOutputLabel</span><span class="o">;</span>
+    <span class="nc">JFrame</span> <span class="n">controlFrame</span><span class="o">;</span>
+    <span class="nc">JPanel</span> <span class="n">controlPanel</span><span class="o">;</span>
+    <span class="nc">JLabel</span> <span class="n">bpmLabel</span><span class="o">;</span>
+    <span class="nc">JTextField</span> <span class="n">bpmTextField</span><span class="o">;</span>
+    <span class="nc">JButton</span> <span class="n">setBPMButton</span><span class="o">;</span>
+    <span class="nc">JButton</span> <span class="n">increaseBPMButton</span><span class="o">;</span>
+    <span class="nc">JButton</span> <span class="n">decreaseBPMButton</span><span class="o">;</span>
+    <span class="nc">JMenuBar</span> <span class="n">menuBar</span><span class="o">;</span>
+    <span class="nc">JMenu</span> <span class="n">menu</span><span class="o">;</span>
+    <span class="nc">JMenuItem</span> <span class="n">startMenuItem</span><span class="o">;</span>
+    <span class="nc">JMenuItem</span> <span class="n">stopMenuItem</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">DJView</span><span class="o">(</span><span class="nc">ControllerInterface</span> <span class="n">controller</span><span class="o">,</span> <span class="nc">BeatModelInterface</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>	
+		<span class="k">this</span><span class="o">.</span><span class="na">controller</span> <span class="o">=</span> <span class="n">controller</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">;</span>
+		<span class="n">model</span><span class="o">.</span><span class="na">registerObserver</span><span class="o">((</span><span class="nc">BeatObserver</span><span class="o">)</span><span class="k">this</span><span class="o">);</span>
+		<span class="n">model</span><span class="o">.</span><span class="na">registerObserver</span><span class="o">((</span><span class="nc">BPMObserver</span><span class="o">)</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">createView</span><span class="o">()</span> <span class="o">{</span>
+		<span class="c1">// Create all Swing components here</span>
+        <span class="n">viewPanel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayout</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">));</span>
+        <span class="n">viewFrame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JFrame</span><span class="o">(</span><span class="s">"View"</span><span class="o">);</span>
+        <span class="n">viewFrame</span><span class="o">.</span><span class="na">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">EXIT_ON_CLOSE</span><span class="o">);</span>
+        <span class="n">viewFrame</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="k">new</span> <span class="nc">Dimension</span><span class="o">(</span><span class="mi">100</span><span class="o">,</span> <span class="mi">80</span><span class="o">));</span>
+        <span class="n">bpmOutputLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"offline"</span><span class="o">,</span> <span class="nc">SwingConstants</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
+		<span class="n">beatBar</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BeatBar</span><span class="o">();</span>
+		<span class="n">beatBar</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="nc">JPanel</span> <span class="n">bpmPanel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayout</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">1</span><span class="o">));</span>
+		<span class="n">bpmPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">beatBar</span><span class="o">);</span>
+        <span class="n">bpmPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">bpmOutputLabel</span><span class="o">);</span>
+        <span class="n">viewPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">bpmPanel</span><span class="o">);</span>
+        <span class="n">viewFrame</span><span class="o">.</span><span class="na">getContentPane</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">viewPanel</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
+        <span class="n">viewFrame</span><span class="o">.</span><span class="na">pack</span><span class="o">();</span>
+        <span class="n">viewFrame</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+	<span class="o">}</span>
+  
+  
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">createControls</span><span class="o">()</span> <span class="o">{</span>
+		<span class="c1">// Create all Swing components here</span>
+        <span class="nc">JFrame</span><span class="o">.</span><span class="na">setDefaultLookAndFeelDecorated</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">controlFrame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JFrame</span><span class="o">(</span><span class="s">"Control"</span><span class="o">);</span>
+        <span class="n">controlFrame</span><span class="o">.</span><span class="na">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">EXIT_ON_CLOSE</span><span class="o">);</span>
+        <span class="n">controlFrame</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="k">new</span> <span class="nc">Dimension</span><span class="o">(</span><span class="mi">100</span><span class="o">,</span> <span class="mi">80</span><span class="o">));</span>
+
+        <span class="n">controlPanel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayout</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">));</span>
+
+        <span class="n">menuBar</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JMenuBar</span><span class="o">();</span>
+        <span class="n">menu</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JMenu</span><span class="o">(</span><span class="s">"DJ Control"</span><span class="o">);</span>
+        <span class="n">startMenuItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JMenuItem</span><span class="o">(</span><span class="s">"Start"</span><span class="o">);</span>
+        <span class="n">menu</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">startMenuItem</span><span class="o">);</span>
+        <span class="n">startMenuItem</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">controller</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+        <span class="n">stopMenuItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JMenuItem</span><span class="o">(</span><span class="s">"Stop"</span><span class="o">);</span>
+        <span class="n">menu</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">stopMenuItem</span><span class="o">);</span> 
+        <span class="n">stopMenuItem</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">controller</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+        <span class="nc">JMenuItem</span> <span class="n">exit</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JMenuItem</span><span class="o">(</span><span class="s">"Quit"</span><span class="o">);</span>
+        <span class="n">exit</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+        <span class="n">menu</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">exit</span><span class="o">);</span>
+        <span class="n">menuBar</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">menu</span><span class="o">);</span>
+        <span class="n">controlFrame</span><span class="o">.</span><span class="na">setJMenuBar</span><span class="o">(</span><span class="n">menuBar</span><span class="o">);</span>
+
+        <span class="n">bpmTextField</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JTextField</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+        <span class="n">bpmLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"Enter BPM:"</span><span class="o">,</span> <span class="nc">SwingConstants</span><span class="o">.</span><span class="na">RIGHT</span><span class="o">);</span>
+        <span class="n">setBPMButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Set"</span><span class="o">);</span>
+        <span class="n">setBPMButton</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="k">new</span> <span class="nc">Dimension</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span><span class="mi">40</span><span class="o">));</span>
+        <span class="n">increaseBPMButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"&gt;&gt;"</span><span class="o">);</span>
+        <span class="n">decreaseBPMButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"&lt;&lt;"</span><span class="o">);</span>
+        <span class="n">setBPMButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">increaseBPMButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">decreaseBPMButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+
+        <span class="nc">JPanel</span> <span class="n">buttonPanel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayout</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">));</span>
+
+		<span class="n">buttonPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">decreaseBPMButton</span><span class="o">);</span>
+		<span class="n">buttonPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">increaseBPMButton</span><span class="o">);</span>
+
+        <span class="nc">JPanel</span> <span class="n">enterPanel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayout</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">));</span>
+        <span class="n">enterPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">bpmLabel</span><span class="o">);</span>
+        <span class="n">enterPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">bpmTextField</span><span class="o">);</span>
+        <span class="nc">JPanel</span> <span class="n">insideControlPanel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayout</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">));</span>
+        <span class="n">insideControlPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">enterPanel</span><span class="o">);</span>
+        <span class="n">insideControlPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">setBPMButton</span><span class="o">);</span>
+        <span class="n">insideControlPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">buttonPanel</span><span class="o">);</span>
+        <span class="n">controlPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">insideControlPanel</span><span class="o">);</span>
+        
+        <span class="n">bpmLabel</span><span class="o">.</span><span class="na">setBorder</span><span class="o">(</span><span class="nc">BorderFactory</span><span class="o">.</span><span class="na">createEmptyBorder</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span><span class="mi">5</span><span class="o">,</span><span class="mi">5</span><span class="o">,</span><span class="mi">5</span><span class="o">));</span>
+        <span class="n">bpmOutputLabel</span><span class="o">.</span><span class="na">setBorder</span><span class="o">(</span><span class="nc">BorderFactory</span><span class="o">.</span><span class="na">createEmptyBorder</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span><span class="mi">5</span><span class="o">,</span><span class="mi">5</span><span class="o">,</span><span class="mi">5</span><span class="o">));</span>
+
+        <span class="n">controlFrame</span><span class="o">.</span><span class="na">getRootPane</span><span class="o">().</span><span class="na">setDefaultButton</span><span class="o">(</span><span class="n">setBPMButton</span><span class="o">);</span>
+        <span class="n">controlFrame</span><span class="o">.</span><span class="na">getContentPane</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">controlPanel</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
+
+        <span class="n">controlFrame</span><span class="o">.</span><span class="na">pack</span><span class="o">();</span>
+        <span class="n">controlFrame</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    <span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">enableStopMenuItem</span><span class="o">()</span> <span class="o">{</span>
+    	<span class="n">stopMenuItem</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">disableStopMenuItem</span><span class="o">()</span> <span class="o">{</span>
+    	<span class="n">stopMenuItem</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">enableStartMenuItem</span><span class="o">()</span> <span class="o">{</span>
+    	<span class="n">startMenuItem</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">disableStartMenuItem</span><span class="o">()</span> <span class="o">{</span>
+    	<span class="n">startMenuItem</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+	<span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">setBPMButton</span><span class="o">)</span> <span class="o">{</span>
+			<span class="kt">int</span> <span class="n">bpm</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">bpmTextField</span><span class="o">.</span><span class="na">getText</span><span class="o">());</span>
+        	<span class="n">controller</span><span class="o">.</span><span class="na">setBPM</span><span class="o">(</span><span class="n">bpm</span><span class="o">);</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">increaseBPMButton</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">controller</span><span class="o">.</span><span class="na">increaseBPM</span><span class="o">();</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">decreaseBPMButton</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">controller</span><span class="o">.</span><span class="na">decreaseBPM</span><span class="o">();</span>
+		<span class="o">}</span>
+    <span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateBPM</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">model</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="kt">int</span> <span class="n">bpm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="na">getBPM</span><span class="o">();</span>
+			<span class="k">if</span> <span class="o">(</span><span class="n">bpm</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+				<span class="k">if</span> <span class="o">(</span><span class="n">bpmOutputLabel</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        			<span class="n">bpmOutputLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"offline"</span><span class="o">);</span>
+				<span class="o">}</span>
+			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+				<span class="k">if</span> <span class="o">(</span><span class="n">bpmOutputLabel</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        			<span class="n">bpmOutputLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Current BPM: "</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="na">getBPM</span><span class="o">());</span>
+				<span class="o">}</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+  
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateBeat</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">beatBar</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			 <span class="n">beatBar</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>The <code class="language-plaintext highlighter-rouge">createView</code> method creates the view of the model, which displays the current BPM and the beat bar. 
+The user interface contorls are created with <code class="language-plaintext highlighter-rouge">createControls</code> method, which displays the BPM text entry field, 
+and the buttons.</p>
+
+<p>Here is the output after running the two test programs:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>java </code></pre></figure>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-15/tags/#architectural" class="page__taxonomy-item p-category" rel="tag">architectural</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-15/tags/#controller" class="page__taxonomy-item p-category" rel="tag">controller</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-15/tags/#design-patterns" class="page__taxonomy-item p-category" rel="tag">design patterns</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-15/tags/#model" class="page__taxonomy-item p-category" rel="tag">model</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-15/tags/#mvc" class="page__taxonomy-item p-category" rel="tag">mvc</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-15/tags/#pattern" class="page__taxonomy-item p-category" rel="tag">pattern</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-15/tags/#programming" class="page__taxonomy-item p-category" rel="tag">programming</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-15/tags/#view" class="page__taxonomy-item p-category" rel="tag">view</a>
+    
+    </span>
+  </p>
+
+
+  
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-15/categories/#design-patterns" class="page__taxonomy-item p-category" rel="tag">design patterns</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-15/categories/#programming" class="page__taxonomy-item p-category" rel="tag">programming</a>
+    
+    </span>
+  </p>
+
+
+  
+
+
+        
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2019-10-11T13:41:35+00:00">October 11, 2019</time></p>
+
+
+      </footer>
+
+      
+
+      
+
+  <nav class="pagination" aria-label="Post pagination">
+    
+      <a href="/pr-preview/pr-15/design-patterns/state" class="pagination--pager" title="The State Pattern">Previous</a>
+    
+    
+      <a href="/pr-preview/pr-15/design-patterns/proxy" class="pagination--pager" title="The Proxy Pattern">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#edeff5",
+      "text": "#838391"
+    },
+    "button": {
+      "background": "#4b81e8"
+    }
+  },
+  "type": "opt-out"
+});
+</script>
+
+<script data-ad-client="ca-pub-2214309606626131" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script src="https://www.dwin2.com/pub.642237.min.js"></script>
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/fjp" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/pr-preview/pr-15/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+
+  <script src="/pr-preview/pr-15/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/pr-preview/pr-15/assets/js/lunr/lunr.min.js"></script>
+<script src="/pr-preview/pr-15/assets/js/lunr/lunr-store.js"></script>
+<script src="/pr-preview/pr-15/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://fjp.at/pr-preview/pr-15/design-patterns/mvc";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/design-patterns/mvc-pattern"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://fjp-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>
