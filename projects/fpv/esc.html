@@ -405,13 +405,7 @@
             
               <li><a href="/projects/fpv/propeller">Propellers</a></li>
             
-              <li><a href="/projects/fpv/battery">Batteries</a></li>
-            
               <li><a href="/projects/fpv/pdb">Power Distribution Board</a></li>
-            
-              <li><a href="/projects/fpv/flightcontroller">Flightcontroller</a></li>
-            
-              <li><a href="/projects/fpv/receiver">RC Receiver</a></li>
             
           </ul>
           
@@ -425,18 +419,6 @@
           
           <ul>
             
-              <li><a href="/projects/fpv/flight-controller-software#setup">Setup</a></li>
-            
-              <li><a href="/projects/fpv/flight-controller-software#ports">Ports</a></li>
-            
-              <li><a href="/projects/fpv/flight-controller-software#configuration">Configuration</a></li>
-            
-              <li><a href="/projects/fpv/flight-controller-software#modes">Modes</a></li>
-            
-              <li><a href="/projects/fpv/flight-controller-software#motors">Motors</a></li>
-            
-              <li><a href="/projects/fpv/flight-controller-software#pid">PID Tuning</a></li>
-            
               <li><a href="/projects/fpv/rate-expo-settings">RC Rates and Expo Settings</a></li>
             
           </ul>
@@ -445,7 +427,7 @@
       
         <li>
           
-            <a href="/projects/fpv/transmitter"><span class="nav__sub-title">RC Transmitter</span></a>
+            <span class="nav__sub-title">RC Transmitter</span>
           
 
           
@@ -455,7 +437,7 @@
             
               <li><a href="/projects/fpv/r-xsr">Receiver Binding R-XSR</a></li>
             
-              <li><a href="/projects/fpv/throttle-curves">RC Rate and EXPO Settings</a></li>
+              <li><a href="/projects/fpv/throttle-curves">Throttle Curves</a></li>
             
           </ul>
           
@@ -463,41 +445,11 @@
       
         <li>
           
-            <a href="/projects/fpv/fpv-system/"><span class="nav__sub-title">FPV System</span></a>
+            <span class="nav__sub-title">PID Values</span>
           
 
           
           <ul>
-            
-              <li><a href="/projects/fpv/fpv-system/camera">FPV Camera</a></li>
-            
-              <li><a href="/projects/fpv/fpv-system/vtx">FPV Transmitter and Receiver</a></li>
-            
-              <li><a href="/projects/fpv/fpv-system/antennas">Antennas</a></li>
-            
-          </ul>
-          
-        </li>
-      
-        <li>
-          
-            <a href="/projects/fpv/charger"><span class="nav__sub-title">Charger and Testers</span></a>
-          
-
-          
-        </li>
-      
-        <li>
-          
-            <a href="/projects/fpv/pid/#introduction"><span class="nav__sub-title">PID Values</span></a>
-          
-
-          
-          <ul>
-            
-              <li><a href="/projects/fpv/pid/#theory">PID Basics</a></li>
-            
-              <li><a href="/projects/fpv/pid/#tuning">PID Tuning</a></li>
             
               <li><a href="/projects/fpv/pid-lua-script">PID Lua Script</a></li>
             
@@ -507,59 +459,15 @@
       
         <li>
           
-            <a href="/projects/fpv/calculations/#introduction"><span class="nav__sub-title">Thrust and Flight Time</span></a>
+            <span class="nav__sub-title">Build and Setup</span>
           
 
           
           <ul>
-            
-              <li><a href="/projects/fpv/calculations/#calculations">Basic Calculations</a></li>
-            
-              <li><a href="/projects/fpv/calculations/#weight">Weight</a></li>
-            
-              <li><a href="/projects/fpv/calculations/#thrust">Thrust</a></li>
-            
-              <li><a href="/projects/fpv/calculations/#motors">Finding matching Motors</a></li>
-            
-              <li><a href="/projects/fpv/calculations/#esc">Finding matching ESCs</a></li>
-            
-              <li><a href="/projects/fpv/calculations/#flight-time">Flight Time Calculation</a></li>
-            
-          </ul>
-          
-        </li>
-      
-        <li>
-          
-            <a href="/projects/fpv/build"><span class="nav__sub-title">Build and Setup</span></a>
-          
-
-          
-          <ul>
-            
-              <li><a href="/projects/fpv/build/#part-selection">Calculations and Part Selection</a></li>
             
               <li><a href="/projects/fpv/assembly">Assembly</a></li>
             
-              <li><a href="/projects/fpv/esc-settings">ESC Settings</a></li>
-            
               <li><a href="/projects/fpv/telemetry">Telemetry</a></li>
-            
-          </ul>
-          
-        </li>
-      
-        <li>
-          
-            <a href="/projects/fpv/rights/#introduction"><span class="nav__sub-title">Rights</span></a>
-          
-
-          
-          <ul>
-            
-              <li><a href="/projects/fpv/rights/#law-insurance">Law and Insurance regulations</a></li>
-            
-              <li><a href="/projects/fpv/rights/#drones">Drones</a></li>
             
           </ul>
           
@@ -611,7 +519,7 @@ This can be achieved through two ways: one is to use <a href="https://en.wikiped
 With this measurement the position of the rotor can be infered.</p>
 
 <p>A Hall effect sensor can make use of the magnetic interaction of the magnets on the rotor to provide a signal
-that evaluates to the position of the rotor. A <a href="/projects/fpv/glossar/#receiver">receiver</a> or <a href="/projects/fpv/glossar/#fc">flight controller (FC)</a> commands the the speed of a motor and compares the desired with the target 
+that evaluates to the position of the rotor. A <a href="/projects/fpv/glossar/#receiver">receiver</a> or <a href="/projects/fpv/glossar/#flight-controller">flight controller (FC)</a> commands the the speed of a motor and compares the desired with the target 
 speed value. With this speed difference it is possible to adjust the speed to reduce the difference.</p>
 
 <p>An ESC controls the speed of a motor via <a href="https://en.wikipedia.org/wiki/Pulse-width_modulation">pulse witdth modulation (PWM)</a>. 
@@ -728,7 +636,7 @@ even while starting.</p>
 
 <p>Another important aspect when using ESCs is that not every <a href="/projects/fpv/glossar#battery">battery</a> can be connected. 
 A <a href="/projects/fpv/glossar#lipo">LiPo</a> battery often has not only one, but two, three or even more cells. 
-The more cells are connected in series, the higher the battery voltage. Often this is not indicated in volt but in cell count (S) of the battery. In the chapter <a href="/projects/fpv/battery">LiPo battery</a> the cell count is explained in more detail.
+The more cells are connected in series, the higher the battery voltage. Often this is not indicated in volt but in cell count (S) of the battery. The cell count is explained in more detail in the <a href="/projects/fpv/glossar#battery">glossar</a>.
 It is important, that LiPo batteries are divided in cell counts from one to six (1S to 6S). However, an ESC always has a
 maximum operating voltage or battery cell count with that it’s allowed to be operated. This means, if indicated 
 on the ESC or its data sheet that it is only allowed to be operated with up to 3S or 4S, only a battery with that specifications must be used. With a 3S battery the voltage mean lies at 11.1 volt.</p>
@@ -738,11 +646,6 @@ on the ESC or its data sheet that it is only allowed to be operated with up to 3
 <p>If the electronic components in a copter should be powered independently of the ESCs or if only optocoupler ESCs are used,
 there exist other ways to power the flight controller and other electronic components such as LEDs:
 It’s possible to use an <a href="/projects/fpv/glossar#ubec">UBEC</a> (Universial Battery Elimination Circuit). This device is connected to the battery and can be used to provide constant output voltage for electronic components.</p>
-
-<figure>
-    <a href="/assets/collections/fpv/esc/ubec.jpg"><img src="/assets/collections/fpv/esc/ubec.jpg" /></a>
-    <figcaption>Power supply via UBEC.</figcaption>
-</figure>
 
 <p>If connected to a 11.1 volt battery it is possible to power for example a receiver with 5 volt. Consult the 
 datasheet of the manufacturer to find a suitable UBEC that is capable of handling the input voltage and maximum current
