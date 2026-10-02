@@ -52,6 +52,9 @@ jobs:
             's{\b((?:href|src)=["\x27])/(?!/|\Q$ENV{PREVIEW_PATH}\E/)}{$1/$ENV{PREVIEW_PATH}/}g'
           # Lets the deployment step check that this exact commit is live
           echo "$HEAD_SHA" > _site/preview-sha.txt
+          # A preview needs no CNAME, and the publish action never deletes one,
+          # so it would stay behind when the preview is removed
+          rm -f _site/CNAME
 
       - name: Publish preview
         id: preview
