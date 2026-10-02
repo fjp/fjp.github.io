@@ -1,0 +1,98 @@
+# Builds every pull request and publishes it to
+# https://fjp.at/pr-preview/pr-<number>/ on the gh-pages branch.
+# A successful preview is recorded as a deployment to the "pr-preview"
+# environment, which the master branch protection requires before merging.
+# The preview is removed when the pull request is closed.
+name: Deploy PR preview
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+
+permissions:
+  contents: write
+  pull-requests: write
+  deployments: write
+
+concurrency:
+  group: preview-${{ github.event.number }}
+  cancel-in-progress: false
+
+env:
+  PREVIEW_PATH: pr-preview/pr-${{ github.event.number }}
+  HEAD_REF: ${{ github.head_ref }}
+  HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+
+jobs:
+  preview:
+    # Pull requests from forks get a read-only token and cannot publish
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: true
+
+      - uses: ruby/setup-ruby@v1
+        if: github.event.action != 'closed'
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Build
+        if: github.event.action != 'closed'
+        env:
+          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAGES_REPO_NWO: ${{ github.repository }}
+        run: |
+          bundle exec jekyll build --baseurl "/$PREVIEW_PATH"
+          # Pages link to each other with root-relative URLs such as /projects/fpv/,
+          # point them into the preview so that it can be browsed on its own
+          find _site -name '*.html' -print0 | xargs -0 perl -pi -e \
+            's{\b((?:href|src)=["\x27])/(?!/|\Q$ENV{PREVIEW_PATH}\E/)}{$1/$ENV{PREVIEW_PATH}/}g'
+
+      - name: Publish preview
+        id: preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: _site
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          pages-base-url: fjp.at
+          wait-for-pages-deployment: true
+          qr-code: false
+
+      - name: Record deployment
+        if: steps.preview.outputs.deployment-action == 'deploy'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PREVIEW_URL: ${{ steps.preview.outputs.preview-url }}
+        run: |
+          id=$(jq -n --arg ref "$HEAD_REF" '{
+              ref: $ref,
+              environment: "pr-preview",
+              description: "PR preview",
+              auto_merge: false,
+              required_contexts: [],
+              transient_environment: true,
+              production_environment: false
+            }' | gh api "repos/$GITHUB_REPOSITORY/deployments" --input - --jq .id)
+          sha=$(gh api "repos/$GITHUB_REPOSITORY/deployments/$id" --jq .sha)
+          if [ "$sha" != "$HEAD_SHA" ]; then
+            # The branch moved while building, the run for the new commit records it
+            gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses" -f state=inactive --silent
+            exit 0
+          fi
+          gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses" \
+            -f state=success -f environment_url="$PREVIEW_URL" --silent
+
+      - name: Deactivate deployments
+        if: steps.preview.outputs.deployment-action == 'remove'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api -X GET "repos/$GITHUB_REPOSITORY/deployments" \
+            -f environment=pr-preview -f ref="$HEAD_REF" --jq '.[].id' |
+          while read -r id; do
+            gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses" -f state=inactive --silent
+          done
