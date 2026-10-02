@@ -1,0 +1,1330 @@
+
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js" dir="ltr">
+  <head>
+    
+<meta charset="utf-8">
+
+
+<!-- begin _includes/seo.html --><title>Camera calibration and reprojection error - fjp.github.io</title>
+<meta name="description" content="Camera calibration and reprojection error.">
+
+
+  <meta name="author" content="Franz Pucher">
+  
+  <meta property="article:author" content="Franz Pucher">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="fjp.github.io">
+<meta property="og:title" content="Camera calibration and reprojection error">
+<meta property="og:url" content="https://fjp.at/pr-preview/pr-19/posts/computer-vision/camera-calibration-reprojection-error/">
+
+
+  <meta property="og:description" content="Camera calibration and reprojection error.">
+
+
+
+  <meta property="og:image" content="https://fjp.at/pr-preview/pr-19/assets/images/opencv_logo.png">
+  
+
+
+
+  <meta name="twitter:site" content="@franzpucher">
+  <meta name="twitter:title" content="Camera calibration and reprojection error">
+  <meta name="twitter:description" content="Camera calibration and reprojection error.">
+  <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-19/posts/computer-vision/camera-calibration-reprojection-error/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://fjp.at/pr-preview/pr-19/assets/images/opencv_logo.png">
+    
+  
+
+  
+
+
+
+
+
+  <meta property="article:published_time" content="2024-12-27T15:31:41+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fjp.at/pr-preview/pr-19/posts/computer-vision/camera-calibration-reprojection-error/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/pr-preview/pr-19/feed.xml" type="application/atom+xml" rel="alternate" title="fjp.github.io Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pr-preview/pr-19/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-2214309606626131",
+          enable_page_level_ads: true
+     });
+</script>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+<!--KaTeX-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+<!-- Pseudocode.js -->
+<!-- https://github.com/SaswatPadhi/pseudocode.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"
+        integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous">
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
+<script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js">
+</script>
+
+<!-- Mailinglist -->
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '1518166');
+</script>
+<!-- End MailerLite Universal -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+        
+        <a class="site-title" href="/pr-preview/pr-19/">
+          fjp.github.io
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-19/"
+                
+                
+              >Home</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-19/blog/"
+                
+                
+              >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-19/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-19/design-patterns/"
+                
+                
+              >Design Patterns</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-19/cpp/"
+                
+                
+              >C++</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-19/projects/fpv/"
+                
+                
+              >FPV</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-19/about/"
+                
+                
+              >About</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-19/ads/"
+                
+                
+              >Ads</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-19/privacy/"
+                
+                
+              >Privacy</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-19/sitemap/"
+                
+                
+              >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('/pr-preview/pr-19/assets/images/opencv_logo.png');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          Camera calibration and reprojection error
+
+        
+      </h1>
+      
+        <p class="page__lead">Camera calibration and reprojection error.
+</p>
+      
+      
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+
+  
+    
+
+
+
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-19/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-19/categories/#posts" itemprop="item"><span itemprop="name">Posts</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-19/categories/#computer-vision" itemprop="item"><span itemprop="name">Computer vision</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Camera calibration and reprojection error</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Camera calibration and reprojection error">
+    <meta itemprop="description" content="Camera calibration and reprojection error.">
+    <meta itemprop="datePublished" content="2024-12-27T15:31:41+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc" aria-label="Table of contents">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#camera-calibration-and-reprojection-error">Camera calibration and reprojection error</a><ul><li><a href="#calibration-process">Calibration process</a><ul><li><a href="#using-multiple-views">Using multiple views</a></li><li><a href="#optimization-process-in-detail">Optimization process in detail</a></li></ul></li><li><a href="#camera-calibration-quality-analysis">Camera Calibration Quality Analysis</a><ul><li><a href="#red-flags-to-watch-for">Red Flags to Watch For:</a></li></ul></li><li><a href="#application-of-calibration-parameters">Application of calibration parameters</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <h1 id="camera-calibration-and-reprojection-error">Camera calibration and reprojection error</h1>
+
+<p>Imagine you’re taking a photo of a 3D object, like a cube. When you take the picture, you’re converting 3D points in the real world into 2D points on your photo (this is projection). Now, if you know the camera’s properties (like position, orientation, focal length, etc.), you can mathematically predict where each 3D point should appear in the 2D image.</p>
+
+<p>The reprojection error is the difference between:</p>
+
+<ol>
+  <li>Where you actually observe a point in your 2D image</li>
+  <li>Where your mathematical model predicts that point should appear</li>
+</ol>
+
+<p>Think of it as measuring how accurate your camera model is. A smaller reprojection error means your camera model better matches reality. It’s typically measured in pixels - if your model predicts a point should be at pixel coordinates (100, 100) but you actually observe it at (102, 101), your reprojection error would be about 2.2 pixels.</p>
+
+<p>Since you work with Python, here’s a simplified example of how reprojection error might be calculated:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">calculate_reprojection_error</span><span class="p">(</span><span class="n">observed_points</span><span class="p">,</span> <span class="n">projected_points</span><span class="p">):</span>
+    <span class="s">"""
+    Calculate reprojection error between observed and projected points
+    
+    Args:
+        observed_points: Nx2 array of observed 2D points in image
+        projected_points: Nx2 array of predicted 2D points from 3D-&gt;2D projection
+    
+    Returns:
+        Mean reprojection error in pixels
+    """</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+    
+    <span class="c1"># Calculate Euclidean distance between each pair of points
+</span>    <span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">((</span><span class="n">observed_points</span> <span class="o">-</span> <span class="n">projected_points</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    
+    <span class="c1"># Return mean error
+</span>    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Let’s say we have:</p>
+
+<p>A 3D point in real world: P = (X=100mm, Y=50mm, Z=1000mm)
+A camera with focal length f = 800 pixels
+Camera center (principal point) at image coordinates (cx=320, cy=240)</p>
+
+<p>The basic pinhole camera projection equation is:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Convert 3D world point to 2D image point
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">f</span> <span class="o">*</span> <span class="p">(</span><span class="n">X</span><span class="o">/</span><span class="n">Z</span><span class="p">)</span> <span class="o">+</span> <span class="n">cx</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">f</span> <span class="o">*</span> <span class="p">(</span><span class="n">Y</span><span class="o">/</span><span class="n">Z</span><span class="p">)</span> <span class="o">+</span> <span class="n">cy</span>
+</code></pre></div></div>
+
+<p>Let’s plug in our numbers:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Predicted image coordinates from our model
+</span><span class="n">x</span> <span class="o">=</span> <span class="mi">800</span> <span class="o">*</span> <span class="p">(</span><span class="mi">100</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="o">+</span> <span class="mi">320</span> <span class="o">=</span> <span class="mi">400</span> <span class="n">pixels</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">800</span> <span class="o">*</span> <span class="p">(</span><span class="mi">50</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="o">+</span> <span class="mi">240</span> <span class="o">=</span> <span class="mi">280</span> <span class="n">pixels</span>
+
+<span class="c1"># So our model predicts point P will appear at (400, 280) in the image
+</span><span class="n">predicted</span> <span class="o">=</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">280</span><span class="p">)</span>
+
+<span class="c1"># But when we actually look at our image, we find the point at
+</span><span class="n">actual</span> <span class="o">=</span> <span class="p">(</span><span class="mi">405</span><span class="p">,</span> <span class="mi">283</span><span class="p">)</span>
+
+<span class="c1"># Reprojection error = sqrt((405-400)² + (283-280)²)
+</span><span class="n">error</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">25</span> <span class="o">+</span> <span class="mi">9</span><span class="p">)</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">34</span><span class="p">)</span> <span class="err">≈</span> <span class="mf">5.8</span> <span class="n">pixels</span>
+</code></pre></div></div>
+
+<p>This difference occurs because:</p>
+
+<p>Real cameras aren’t perfect pinhole cameras
+There might be lens distortion
+Our camera parameters (focal length, center) might not be exactly right
+Measurement errors when detecting points in the image</p>
+
+<p>This is why we use reprojection error during camera calibration - we try to find camera parameters that minimize this error across many points.</p>
+
+<h2 id="calibration-process">Calibration process</h2>
+
+<p>A chessboard pattern is used for camera calibration because it provides several key advantages:</p>
+
+<ol>
+  <li>Easy point detection - The strong black and white contrast of corners makes them very reliable to detect automatically in images. These corners are what we call the “control points” - points whose positions we know very precisely in both 3D space and the 2D image.</li>
+  <li>Known geometry - Since a chessboard is flat (planar) and has equal square sizes, we know the exact physical distances between all corner points. For example, if each square is 30mm, we know that diagonal corners of a square are exactly 42.4mm apart (30 * √2). This gives us ground truth 3D coordinates.</li>
+</ol>
+
+<p>Here’s how it works:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Let's say our chessboard squares are 30mm
+# For a 9x6 board, we can define the 3D coordinates of every corner as:
+</span><span class="n">corners_3d</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+        <span class="c1"># Z=0 because board is flat (in XY plane)
+</span>        <span class="n">corners_3d</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">x</span><span class="o">*</span><span class="mi">30</span><span class="p">,</span> <span class="n">y</span><span class="o">*</span><span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  
+
+<span class="c1"># When we take a photo, our corner detector finds the corresponding 
+# 2D pixel coordinates of these same points in the image
+</span><span class="n">corners_2d</span> <span class="o">=</span> <span class="n">detect_chessboard_corners</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>  <span class="c1"># Returns pixel coordinates
+</span>
+<span class="c1"># Now we can solve for camera parameters by minimizing the reprojection error
+# between these known 3D-&gt;2D point correspondences
+</span></code></pre></div></div>
+
+<p>Each photo of the chessboard from different angles gives us more point correspondences, improving our calibration accuracy. The chessboard essentially gives us a very precise ruler in 3D space that we can use to figure out exactly how our camera maps 3D points to 2D image points.</p>
+
+<h3 id="using-multiple-views">Using multiple views</h3>
+
+<p>The brilliant thing about using multiple chessboard views is that we don’t need to know the actual distances from the camera or the exact 3D locations of the chessboard! Here’s why:
+When calibrating:</p>
+
+<ol>
+  <li>We take photos of the chessboard in different orientations (tilted, rotated, at different distances)</li>
+  <li>We arbitrarily set our world coordinate system where:
+    <ul>
+      <li>The chessboard lies in the XY plane (Z=0)</li>
+      <li>The top-left corner is at (0,0,0)</li>
+      <li>We only need to know the physical size of each square (e.g., 30mm)</li>
+    </ul>
+  </li>
+</ol>
+
+<p>For each view, the calibration algorithm solves for:</p>
+
+<ul>
+  <li>The camera’s intrinsic parameters (focal length, principal point, distortion)</li>
+  <li>The extrinsic parameters (rotation and translation) that describe where the chessboard is relative to the camera for that specific view</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># For each view i:
+#   R[i] = 3x3 rotation matrix
+#   t[i] = 3x1 translation vector
+#   These transform points from chessboard coordinates to camera coordinates
+</span>
+<span class="c1"># A point P on the chessboard goes through these transformations:
+# 1. Start with chessboard coordinates (we know these from square size)
+</span><span class="n">P_chess</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="mi">30</span><span class="p">,</span> <span class="n">y</span><span class="o">*</span><span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># 2. Transform to camera coordinates for this view
+</span><span class="n">P_cam</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">P_chess</span> <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="c1"># 3. Project to image coordinates using camera intrinsics
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">f</span> <span class="o">*</span> <span class="p">(</span><span class="n">P_cam</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">P_cam</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="n">cx</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">f</span> <span class="o">*</span> <span class="p">(</span><span class="n">P_cam</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">P_cam</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="n">cy</span>
+</code></pre></div></div>
+
+<p>Best practices for capturing views:</p>
+
+<ul>
+  <li>Take 10-20 different views</li>
+  <li>Vary the orientation (rotate board ~45° in different directions)</li>
+  <li>Vary the distance (but keep corners clearly visible)</li>
+  <li>Cover different parts of the image (especially corners)</li>
+  <li>Keep the board relatively flat (don’t shoot at extremely steep angles)</li>
+</ul>
+
+<p>The algorithm uses all these views together to solve for the camera parameters that minimize the total reprojection error across all points in all views. Each view adds more constraints to the system, making the calibration more robust.</p>
+
+<h3 id="optimization-process-in-detail">Optimization process in detail</h3>
+
+<p>The following shows a practical example that illustrates both the optimization process and the implementation.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="o">@</span><span class="n">dataclass</span>
+<span class="k">class</span> <span class="nc">CameraParams</span><span class="p">:</span>
+    <span class="s">"""Camera intrinsic parameters"""</span>
+    <span class="n">fx</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># focal length x
+</span>    <span class="n">fy</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># focal length y
+</span>    <span class="n">cx</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># principal point x
+</span>    <span class="n">cy</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># principal point y
+</span>    <span class="n">k1</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># radial distortion coefficient 1
+</span>    <span class="n">k2</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># radial distortion coefficient 2
+</span>
+<span class="k">def</span> <span class="nf">create_chessboard_points</span><span class="p">(</span><span class="n">board_size</span><span class="p">,</span> <span class="n">square_size</span><span class="p">):</span>
+    <span class="s">"""Create 3D points for chessboard corners in board coordinate system"""</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">board_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">board_size</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">points</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">board_size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">:</span><span class="n">board_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]].</span><span class="n">T</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">points</span> <span class="o">*</span> <span class="n">square_size</span>
+
+<span class="k">def</span> <span class="nf">project_points</span><span class="p">(</span><span class="n">points_3d</span><span class="p">,</span> <span class="n">rvec</span><span class="p">,</span> <span class="n">tvec</span><span class="p">,</span> <span class="n">camera_params</span><span class="p">):</span>
+    <span class="s">"""Project 3D points to 2D using camera parameters"""</span>
+    <span class="c1"># Convert rotation vector to matrix
+</span>    <span class="n">R</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">Rodrigues</span><span class="p">(</span><span class="n">rvec</span><span class="p">)</span>
+    
+    <span class="c1"># Transform points to camera coordinate system
+</span>    <span class="n">points_cam</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span> <span class="o">@</span> <span class="n">points_3d</span><span class="p">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">tvec</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)).</span><span class="n">T</span>
+    
+    <span class="c1"># Perspective division
+</span>    <span class="n">x</span> <span class="o">=</span> <span class="n">points_cam</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">points_cam</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">points_cam</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">points_cam</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+    
+    <span class="c1"># Apply radial distortion
+</span>    <span class="n">r2</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span>
+    <span class="n">distortion</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">camera_params</span><span class="p">.</span><span class="n">k1</span><span class="o">*</span><span class="n">r2</span> <span class="o">+</span> <span class="n">camera_params</span><span class="p">.</span><span class="n">k2</span><span class="o">*</span><span class="n">r2</span><span class="o">*</span><span class="n">r2</span><span class="p">)</span>
+    <span class="n">x_distorted</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">distortion</span>
+    <span class="n">y_distorted</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="n">distortion</span>
+    
+    <span class="c1"># Project to image coordinates
+</span>    <span class="n">points_2d</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">column_stack</span><span class="p">([</span>
+        <span class="n">camera_params</span><span class="p">.</span><span class="n">fx</span> <span class="o">*</span> <span class="n">x_distorted</span> <span class="o">+</span> <span class="n">camera_params</span><span class="p">.</span><span class="n">cx</span><span class="p">,</span>
+        <span class="n">camera_params</span><span class="p">.</span><span class="n">fy</span> <span class="o">*</span> <span class="n">y_distorted</span> <span class="o">+</span> <span class="n">camera_params</span><span class="p">.</span><span class="n">cy</span>
+    <span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">points_2d</span>
+
+<span class="k">def</span> <span class="nf">calibration_error</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">points_3d</span><span class="p">,</span> <span class="n">views_2d</span><span class="p">):</span>
+    <span class="s">"""Calculate total reprojection error across all views"""</span>
+    <span class="n">n_views</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">views_2d</span><span class="p">)</span>
+    <span class="n">n_points</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">points_3d</span><span class="p">)</span>
+    
+    <span class="c1"># Unpack optimization parameters
+</span>    <span class="n">camera_params</span> <span class="o">=</span> <span class="n">CameraParams</span><span class="p">(</span>
+        <span class="n">fx</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fy</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">cx</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">cy</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+        <span class="n">k1</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">k2</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Rotation and translation for each view
+</span>    <span class="n">rvecs</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">6</span><span class="o">+</span><span class="n">n_views</span><span class="o">*</span><span class="mi">3</span><span class="p">].</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_views</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">tvecs</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">6</span><span class="o">+</span><span class="n">n_views</span><span class="o">*</span><span class="mi">3</span><span class="p">:].</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_views</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    
+    <span class="n">total_error</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="c1"># Calculate error for each view
+</span>    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">points_2d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">views_2d</span><span class="p">):</span>
+        <span class="n">projected</span> <span class="o">=</span> <span class="n">project_points</span><span class="p">(</span><span class="n">points_3d</span><span class="p">,</span> <span class="n">rvecs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tvecs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">camera_params</span><span class="p">)</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">((</span><span class="n">points_2d</span> <span class="o">-</span> <span class="n">projected</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">total_error</span> <span class="o">+=</span> <span class="n">error</span>
+        
+    <span class="k">return</span> <span class="n">total_error</span>
+
+<span class="k">def</span> <span class="nf">calibrate_camera</span><span class="p">(</span><span class="n">board_size</span><span class="p">,</span> <span class="n">square_size</span><span class="p">,</span> <span class="n">views_2d</span><span class="p">):</span>
+    <span class="s">"""
+    Perform camera calibration using multiple chessboard views
+    
+    Args:
+        board_size: Tuple of (rows, cols) interior corners
+        square_size: Physical size of squares in mm
+        views_2d: List of detected corner coordinates for each view
+    """</span>
+    <span class="c1"># Create 3D points in board coordinate system
+</span>    <span class="n">points_3d</span> <span class="o">=</span> <span class="n">create_chessboard_points</span><span class="p">(</span><span class="n">board_size</span><span class="p">,</span> <span class="n">square_size</span><span class="p">)</span>
+    
+    <span class="n">n_views</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">views_2d</span><span class="p">)</span>
+    
+    <span class="c1"># Initial guess for camera parameters
+</span>    <span class="n">image_size</span> <span class="o">=</span> <span class="n">views_2d</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nb">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">initial_params</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="n">image_size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>  <span class="c1"># fx
+</span>        <span class="n">image_size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>  <span class="c1"># fy
+</span>        <span class="n">image_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># cx
+</span>        <span class="n">image_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># cy
+</span>        <span class="mf">0.0</span><span class="p">,</span>  <span class="c1"># k1
+</span>        <span class="mf">0.0</span><span class="p">,</span>  <span class="c1"># k2
+</span>    <span class="p">])</span>
+    
+    <span class="c1"># Initial guess for pose of each view
+</span>    <span class="n">initial_rvecs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_views</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">initial_tvecs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_views</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">initial_tvecs</span><span class="p">[</span><span class="mi">2</span><span class="p">::</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">500</span>  <span class="c1"># Start with boards 500mm away
+</span>    
+    <span class="c1"># Combine all parameters for optimization
+</span>    <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">initial_params</span><span class="p">,</span> <span class="n">initial_rvecs</span><span class="p">,</span> <span class="n">initial_tvecs</span><span class="p">])</span>
+    
+    <span class="c1"># Run optimization
+</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+        <span class="n">calibration_error</span><span class="p">,</span>
+        <span class="n">x0</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">points_3d</span><span class="p">,</span> <span class="n">views_2d</span><span class="p">),</span>
+        <span class="n">method</span><span class="o">=</span><span class="s">'Nelder-Mead'</span><span class="p">,</span>
+        <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s">'maxiter'</span><span class="p">:</span> <span class="mi">1000</span><span class="p">}</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Extract optimized parameters
+</span>    <span class="n">camera_params</span> <span class="o">=</span> <span class="n">CameraParams</span><span class="p">(</span>
+        <span class="n">fx</span><span class="o">=</span><span class="n">result</span><span class="p">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fy</span><span class="o">=</span><span class="n">result</span><span class="p">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">cx</span><span class="o">=</span><span class="n">result</span><span class="p">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">cy</span><span class="o">=</span><span class="n">result</span><span class="p">.</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+        <span class="n">k1</span><span class="o">=</span><span class="n">result</span><span class="p">.</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">k2</span><span class="o">=</span><span class="n">result</span><span class="p">.</span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    <span class="p">)</span>
+    
+    <span class="n">rvecs</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">6</span><span class="o">+</span><span class="n">n_views</span><span class="o">*</span><span class="mi">3</span><span class="p">].</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_views</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">tvecs</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="o">+</span><span class="n">n_views</span><span class="o">*</span><span class="mi">3</span><span class="p">:].</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_views</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">camera_params</span><span class="p">,</span> <span class="n">rvecs</span><span class="p">,</span> <span class="n">tvecs</span>
+
+<span class="c1"># Example usage:
+</span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Define chessboard properties
+</span>    <span class="n">board_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># interior corners
+</span>    <span class="n">square_size</span> <span class="o">=</span> <span class="mi">30</span>  <span class="c1"># mm
+</span>    
+    <span class="c1"># Load and detect corners in images
+</span>    <span class="n">images</span> <span class="o">=</span> <span class="p">[</span><span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="sa">f</span><span class="s">'calib_image_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s">.jpg'</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+    <span class="n">views_2d</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">images</span><span class="p">:</span>
+        <span class="n">ret</span><span class="p">,</span> <span class="n">corners</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">findChessboardCorners</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">board_size</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ret</span><span class="p">:</span>
+            <span class="c1"># Refine corner detection
+</span>            <span class="n">corners</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cornerSubPix</span><span class="p">(</span>
+                <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">),</span>
+                <span class="n">corners</span><span class="p">,</span>
+                <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span>
+                <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+                <span class="n">criteria</span><span class="o">=</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">TERM_CRITERIA_EPS</span> <span class="o">+</span> <span class="n">cv2</span><span class="p">.</span><span class="n">TERM_CRITERIA_MAX_ITER</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">views_2d</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">corners</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    
+    <span class="c1"># Perform calibration
+</span>    <span class="n">camera_params</span><span class="p">,</span> <span class="n">rvecs</span><span class="p">,</span> <span class="n">tvecs</span> <span class="o">=</span> <span class="n">calibrate_camera</span><span class="p">(</span><span class="n">board_size</span><span class="p">,</span> <span class="n">square_size</span><span class="p">,</span> <span class="n">views_2d</span><span class="p">)</span>
+    
+    <span class="k">print</span><span class="p">(</span><span class="s">"Calibrated camera parameters:"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Focal length: (</span><span class="si">{</span><span class="n">camera_params</span><span class="p">.</span><span class="n">fx</span><span class="si">}</span><span class="s">, </span><span class="si">{</span><span class="n">camera_params</span><span class="p">.</span><span class="n">fy</span><span class="si">}</span><span class="s">)"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Principal point: (</span><span class="si">{</span><span class="n">camera_params</span><span class="p">.</span><span class="n">cx</span><span class="si">}</span><span class="s">, </span><span class="si">{</span><span class="n">camera_params</span><span class="p">.</span><span class="n">cy</span><span class="si">}</span><span class="s">)"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Distortion coefficients: k1=</span><span class="si">{</span><span class="n">camera_params</span><span class="p">.</span><span class="n">k1</span><span class="si">}</span><span class="s">, k2=</span><span class="si">{</span><span class="n">camera_params</span><span class="p">.</span><span class="n">k2</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>the optimization process works:</p>
+
+<ol>
+  <li>Initial Guess:</li>
+</ol>
+
+<ul>
+  <li>We start with reasonable guesses for camera parameters (focal length ≈ image width, principal point ≈ image center)</li>
+  <li>We assume each chessboard starts roughly facing the camera and 500mm away</li>
+</ul>
+
+<ol>
+  <li>Optimization Loop:</li>
+</ol>
+
+<ul>
+  <li>For each set of parameters, we:
+  a. Project all 3D chessboard points to 2D using current camera parameters
+  b. Calculate total reprojection error (sum of squared distances between projected and detected points)
+  c. The optimizer (Nelder-Mead in this case) adjusts parameters to minimize this error</li>
+  <li>This continues until the error converges or max iterations reached</li>
+</ul>
+
+<ol>
+  <li>What’s being optimized:</li>
+</ol>
+
+<ul>
+  <li>Camera intrinsics: focal length (fx, fy), principal point (cx, cy), distortion (k1, k2)</li>
+  <li>For each view: rotation (3 parameters) and translation (3 parameters)</li>
+  <li>Total parameters = 6 + 6 × number_of_views</li>
+</ul>
+
+<p>The key points about distances:</p>
+
+<ul>
+  <li>We don’t need to know the actual camera-to-board distances</li>
+  <li>The optimization finds the relative positions (tvecs) automatically</li>
+  <li>The only physical measurement we need is the square size, which sets the scale</li>
+</ul>
+
+<h2 id="camera-calibration-quality-analysis">Camera Calibration Quality Analysis</h2>
+
+<p>Here’s what we’re analyzing and what to look for:</p>
+
+<ol>
+  <li>Mean Reprojection Error:</li>
+</ol>
+
+<ul>
+  <li>Under 0.5 pixels: Excellent</li>
+  <li>Under 1.0 pixels: Good</li>
+  <li>Under 2.0 pixels: Fair</li>
+  <li>Over 2.0 pixels: Poor</li>
+</ul>
+
+<ol>
+  <li>Error Distribution:</li>
+</ol>
+
+<ul>
+  <li>Should be roughly Gaussian</li>
+  <li>No significant outliers</li>
+  <li>Standard deviation should be small relative to mean</li>
+</ul>
+
+<ol>
+  <li>Spatial Distribution:</li>
+</ol>
+
+<ul>
+  <li>Errors should be uniform across the image</li>
+  <li>Watch for patterns or clusters of high error</li>
+  <li>Higher errors at image edges might indicate lens distortion issues</li>
+</ul>
+
+<ol>
+  <li>Distance Effects:</li>
+</ol>
+
+<ul>
+  <li>Errors shouldn’t strongly correlate with board distance</li>
+  <li>If they do, might indicate:
+    <ul>
+      <li>Scale issues</li>
+      <li>Focus problems</li>
+      <li>Insufficient distance variation in calibration images</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="red-flags-to-watch-for">Red Flags to Watch For:</h3>
+
+<ol>
+  <li>Individual views with much higher error than others</li>
+  <li>Strong patterns in the error heatmap</li>
+  <li>Sudden jumps in error with distance</li>
+  <li>Very different errors in x and y directions</li>
+  <li>Large outliers in any metric</li>
+</ol>
+
+<h2 id="application-of-calibration-parameters">Application of calibration parameters</h2>
+
+<p>Once you have your calibrated camera parameters, you can use them for several key applications:</p>
+
+<ol>
+  <li>Undistort Images:</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Remove lens distortion from images
+</span><span class="n">undistorted_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">undistort</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">camera_matrix</span><span class="p">,</span> <span class="n">dist_coeffs</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ol>
+  <li>3D to 2D Projection (World to Image coordinates):</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Project 3D points to image plane
+</span><span class="n">image_points</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">projectPoints</span><span class="p">(</span><span class="n">object_points_3d</span><span class="p">,</span> 
+                                  <span class="n">rvec</span><span class="p">,</span> <span class="n">tvec</span><span class="p">,</span> 
+                                  <span class="n">camera_matrix</span><span class="p">,</span> 
+                                  <span class="n">dist_coeffs</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ol>
+  <li>2D to 3D Ray (Image to World direction):</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Convert image point to normalized ray
+</span><span class="n">image_point</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span>
+<span class="n">normalized_point</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">undistortPoints</span><span class="p">(</span><span class="n">image_point</span><span class="p">,</span> 
+                                     <span class="n">camera_matrix</span><span class="p">,</span>
+                                     <span class="n">dist_coeffs</span><span class="p">)</span>
+<span class="c1"># This gives you a ray direction in camera coordinates
+</span></code></pre></div></div>
+
+<ol>
+  <li>Pose Estimation (Find object position):</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Find position of an object with known 3D points
+</span><span class="n">success</span><span class="p">,</span> <span class="n">rvec</span><span class="p">,</span> <span class="n">tvec</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">solvePnP</span><span class="p">(</span><span class="n">object_points_3d</span><span class="p">,</span>
+                                  <span class="n">detected_points_2d</span><span class="p">,</span>
+                                  <span class="n">camera_matrix</span><span class="p">,</span>
+                                  <span class="n">dist_coeffs</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Stereo Calibration (If you have two cameras):</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Calibrate stereo pair using individual camera parameters
+</span><span class="n">retval</span><span class="p">,</span> <span class="n">cameraMatrix1</span><span class="p">,</span> <span class="n">distCoeffs1</span><span class="p">,</span> <span class="n">cameraMatrix2</span><span class="p">,</span> <span class="n">distCoeffs2</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">F</span> <span class="o">=</span> \
+    <span class="n">cv2</span><span class="p">.</span><span class="n">stereoCalibrate</span><span class="p">(</span><span class="n">object_points</span><span class="p">,</span>
+                        <span class="n">imagePoints1</span><span class="p">,</span>
+                        <span class="n">imagePoints2</span><span class="p">,</span>
+                        <span class="n">camera_matrix1</span><span class="p">,</span>
+                        <span class="n">dist_coeffs1</span><span class="p">,</span>
+                        <span class="n">camera_matrix2</span><span class="p">,</span>
+                        <span class="n">dist_coeffs2</span><span class="p">,</span>
+                        <span class="n">image_size</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Save parameters for later use:</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Save calibration results to file
+</span><span class="n">calibration_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'camera_matrix'</span><span class="p">:</span> <span class="n">camera_matrix</span><span class="p">,</span>
+    <span class="s">'dist_coeffs'</span><span class="p">:</span> <span class="n">dist_coeffs</span><span class="p">,</span>
+    <span class="s">'image_size'</span><span class="p">:</span> <span class="n">image_size</span>
+<span class="p">}</span>
+<span class="n">np</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="s">'camera_calibration.npy'</span><span class="p">,</span> <span class="n">calibration_data</span><span class="p">)</span>
+
+<span class="c1"># Load later
+</span><span class="n">loaded_calib</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">'camera_calibration.npy'</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="bp">True</span><span class="p">).</span><span class="n">item</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>These parameters are essential for:</p>
+
+<ul>
+  <li>3D reconstruction</li>
+  <li>Augmented reality applications</li>
+  <li>Visual SLAM</li>
+  <li>Object pose estimation</li>
+  <li>Depth estimation in stereo systems</li>
+  <li>Any application requiring accurate mapping between 3D world and 2D image</li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-19/tags/#computer-vision" class="page__taxonomy-item p-category" rel="tag">computer vision</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-19/tags/#matplotlib" class="page__taxonomy-item p-category" rel="tag">matplotlib</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-19/tags/#opencv" class="page__taxonomy-item p-category" rel="tag">opencv</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-19/tags/#python" class="page__taxonomy-item p-category" rel="tag">python</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-19/tags/#robotics" class="page__taxonomy-item p-category" rel="tag">robotics</a>
+    
+    </span>
+  </p>
+
+
+  
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-19/categories/#algorithms" class="page__taxonomy-item p-category" rel="tag">algorithms</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-19/categories/#computer-vision" class="page__taxonomy-item p-category" rel="tag">computer vision</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-19/categories/#robotics" class="page__taxonomy-item p-category" rel="tag">robotics</a>
+    
+    </span>
+  </p>
+
+
+  
+
+
+        
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-12-27T15:31:41+00:00">December 27, 2024</time></p>
+
+
+      </footer>
+
+      
+<section class="page__share">
+  <h4 class="page__share-title">Share on</h4>
+
+  <a href="https://x.com/intent/tweet?via=franzpucher&text=Camera+calibration+and+reprojection+error%20https%3A%2F%2Ffjp.at%2Fpr-preview%2Fpr-19%2Fposts%2Fcomputer-vision%2Fcamera-calibration-reprojection-error%2F" class="btn btn--x" aria-label="Share on X" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on X">
+    <i class="fab fa-fw fa-x-twitter" aria-hidden="true"></i><span> X</span>
+  </a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffjp.at%2Fpr-preview%2Fpr-19%2Fposts%2Fcomputer-vision%2Fcamera-calibration-reprojection-error%2F" class="btn btn--facebook" aria-label="Share on Facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook">
+    <i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span>
+  </a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://fjp.at/pr-preview/pr-19/posts/computer-vision/camera-calibration-reprojection-error/" class="btn btn--linkedin" aria-label="Share on LinkedIn" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn">
+    <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span>
+  </a>
+
+  <a href="https://bsky.app/intent/compose?text=Camera+calibration+and+reprojection+error%20https%3A%2F%2Ffjp.at%2Fpr-preview%2Fpr-19%2Fposts%2Fcomputer-vision%2Fcamera-calibration-reprojection-error%2F" class="btn btn--bluesky" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Bluesky">
+    <i class="fab fa-fw fa-bluesky" aria-hidden="true"></i><span> Bluesky</span>
+  </a>
+</section>
+
+
+      
+
+  <nav class="pagination" aria-label="Post pagination">
+    
+      <a href="/pr-preview/pr-19/posts/probabilistic-robotics/" class="pagination--pager" title="Porbabilistic Robotics Overview">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+    
+
+<div class="page__related">
+  
+  <h2 class="page__related-title">You May Also Enjoy</h2>
+  <div class="grid__wrapper">
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://images-na.ssl-images-amazon.com/images/I/51Q2dvR+eTL._SX424_BO1,204,203,200_.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-19/posts/probabilistic-robotics/" rel="permalink">Porbabilistic Robotics Overview
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Overview of algorithms in probabilistic robotics.
+</p>
+  </article>
+</div>
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pr-preview/pr-19/assets/vector/vector-sdk-alpha.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-19/posts/vector/" rel="permalink">Vector Robot
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Regaining access to Vector Robot and working with the Vector Python SDK.
+</p>
+  </article>
+</div>
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pr-preview/pr-19/assets/images/500x300.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-19/editors/vim%20setup/vim/" rel="permalink">Vim Setup and Basics
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Describes how to setup vim using a popular vimrc and explains the basics.
+
+</p>
+  </article>
+</div>
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pr-preview/pr-19/assets/images/docker-logo.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-19/posts/tooling/docker/" rel="permalink">Docker Basics
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Docker Container Basics.
+</p>
+  </article>
+</div>
+    
+  </div>
+</div>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#edeff5",
+      "text": "#838391"
+    },
+    "button": {
+      "background": "#4b81e8"
+    }
+  },
+  "type": "opt-out"
+});
+</script>
+
+<script data-ad-client="ca-pub-2214309606626131" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script src="https://www.dwin2.com/pub.642237.min.js"></script>
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/fjp" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/pr-preview/pr-19/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+
+  <script src="/pr-preview/pr-19/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/pr-preview/pr-19/assets/js/lunr/lunr.min.js"></script>
+<script src="/pr-preview/pr-19/assets/js/lunr/lunr-store.js"></script>
+<script src="/pr-preview/pr-19/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://fjp.at/pr-preview/pr-19/posts/computer-vision/camera-calibration-reprojection-error/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/posts/computer-vision/camera-calibration-reprojection-error"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://fjp-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>
