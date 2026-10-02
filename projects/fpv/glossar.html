@@ -54,7 +54,7 @@
 
 
 
-  <meta property="article:published_time" content="2026-10-02T11:55:07+00:00">
+  <meta property="article:published_time" content="2026-10-02T11:58:49+00:00">
 
 
 
@@ -540,7 +540,7 @@
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="FPV Glossar">
     <meta itemprop="description" content="Glossar for FPV terms">
-    <meta itemprop="datePublished" content="2026-10-02T11:55:07+00:00">
+    <meta itemprop="datePublished" content="2026-10-02T11:58:49+00:00">
     
 
     <div class="page__inner-wrap">
@@ -559,7 +559,19 @@
 
       <section class="page__content e-content" itemprop="text">
         
-        <h2 id="analog">Analog</h2>
+        <h2 id="access">ACCESS</h2>
+
+<p>ACCESS (Advanced Communication Control, Elevated Spread Spectrum) is the radio protocol <a href="/projects/fpv/glossar#frsky">FrSky</a> introduced in 2019
+as successor of its ACCST protocol. It is supported by the <a href="/projects/fpv/glossar#isrm">ISRM</a> module of the <a href="/projects/fpv/glossar#taranis">Taranis</a> X9D Plus SE 2019
+and by ACCESS <a href="/projects/fpv/glossar#receiver">receivers</a> such as the <a href="/projects/fpv/glossar#r-xsr">R-XSR</a> with ACCESS <a href="/projects/fpv/glossar#firmware">firmware</a>.
+Before an ACCESS receiver can be <a href="/projects/fpv/glossar#bind">bound</a> it needs to be <a href="/projects/fpv/glossar#register">registered</a> with the transmitter.</p>
+
+<h2 id="analog">Analog</h2>
+
+<p>In the context of <a href="/projects/fpv/glossar#fpv">FPV</a> analog refers to the classic way of transmitting the live video from the <a href="/projects/fpv/glossar#fpv-camera">FPV camera</a>
+over a <a href="/projects/fpv/glossar#vtx">VTX</a>, usually in the 5.8 GHz band using the PAL or NTSC standard.
+Analog video has a very low latency and its image quality degrades gradually with increasing distance or obstacles instead of freezing,
+which is why it is popular for racing. Digital HD systems provide a much sharper image in exchange for a slightly higher latency.</p>
 
 <h2 id="battery">Battery</h2>
 
@@ -599,16 +611,16 @@ because of their high energy density, which makes them weigh less and therefore 
 
 <h2 id="betaflight">BetaFlight</h2>
 
-<p>The BetaFlight open source <a href="/projects/fpv/glossar#flight-controller">Flight Controller</a> <a href="/projects/fpv/glossar#firmware">frimware</a> project (found on <a href="https://github.com/betaflight">GitHub</a>) provides
-<a href="/projects/fpv/glossar#firmware">frimwares</a> for <a href="/projects/fpv/glossar#flight-controller">FCs</a>. To configure and <a href="/projects/fpv/glossar#flash">flash</a> a firmware onto a Flight Controller we use 
+<p>The BetaFlight open source <a href="/projects/fpv/glossar#flight-controller">Flight Controller</a> <a href="/projects/fpv/glossar#firmware">firmware</a> project (found on <a href="https://github.com/betaflight">GitHub</a>) provides
+<a href="/projects/fpv/glossar#firmware">firmwares</a> for <a href="/projects/fpv/glossar#flight-controller">FCs</a>. To configure and <a href="/projects/fpv/glossar#flash">flash</a> a firmware onto a Flight Controller we use 
 the <a href="/projects/fpv/glossar#betaflight-configurator">BetaFlight Configurator</a>.</p>
 
-<p>BetaFlight is a fork of the <a href="/projects/fpv/glossar/#clean-flight">CleanFlight</a> project, which is considered less experimental. However, modern Flight Controllers are supported mostly by BetaFlight.</p>
+<p>BetaFlight is a fork of the <a href="/projects/fpv/glossar/#cleanflight">CleanFlight</a> project, which is considered less experimental. However, modern Flight Controllers are supported mostly by BetaFlight.</p>
 
 <h2 id="betaflight-configurator">BetaFlight Configurator</h2>
 
-<p>Part of the <a href="/projects/fpv/glossar#betaflight">BetaFlight</a> open source <a href="/projects/fpv/glossar#flight-controller">Flight Controllers</a> <a href="/projects/fpv/glossar#firmware">frimware</a> project.
-It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) configuration tool for the BetaFlight <a href="/projects/fpv/glossar#firmware">frimware</a>.</p>
+<p>Part of the <a href="/projects/fpv/glossar#betaflight">BetaFlight</a> open source <a href="/projects/fpv/glossar#flight-controller">Flight Controllers</a> <a href="/projects/fpv/glossar#firmware">firmware</a> project.
+It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) configuration tool for the BetaFlight <a href="/projects/fpv/glossar#firmware">firmware</a>.</p>
 
 <h2 id="bind">Bind</h2>
 
@@ -616,17 +628,34 @@ It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) c
 
 <h2 id="blheli">BLHeli</h2>
 
-<p><a href="/projects/fpv/glossar#firmware">Frimware</a> for <a href="/projects/fpv/glossar#esc">ESCs</a> that is used to process the input data from a <a href="/projects/fpv/glossar/#flight-controller">Flight Controller</a> and translate that into suitable control commands for the motor. Although the firmware was originally developed for helicopters it is also used for multicopters. 
-Another commonly used firmware for ESCs is called <a href="/prjects/fpv/glossar#simonk">SimonK</a>.</p>
+<p><a href="/projects/fpv/glossar#firmware">Firmware</a> for <a href="/projects/fpv/glossar#esc">ESCs</a> that is used to process the input data from a <a href="/projects/fpv/glossar/#flight-controller">Flight Controller</a> and translate that into suitable control commands for the motor. Although the firmware was originally developed for helicopters it is also used for multicopters. 
+Another commonly used firmware for ESCs is called <a href="/projects/fpv/glossar#simonk">SimonK</a>.</p>
+
+<h2 id="cfk">CFK</h2>
+
+<p>German abbreviation for “Carbonfaserverstärkter Kunststoff”, which is known as
+<a href="https://en.wikipedia.org/wiki/Carbon_fiber_reinforced_polymer">carbon fiber reinforced polymer</a> (CFRP) in English.
+Because of its high stiffness and low weight it is the most common material for <a href="/projects/fpv/glossar#fpv">FPV</a> <a href="/projects/fpv/frame">frames</a> and <a href="/projects/fpv/propeller">propellers</a>.</p>
 
 <h2 id="cleanflight">CleanFlight</h2>
+
+<p>Open source <a href="/projects/fpv/glossar#flight-controller">Flight Controller</a> <a href="/projects/fpv/glossar#firmware">firmware</a> (found on <a href="https://github.com/cleanflight">GitHub</a>),
+which started as a fork of the BaseFlight project. <a href="/projects/fpv/glossar#betaflight">BetaFlight</a> was in turn forked from CleanFlight.</p>
 
 <h2 id="dfu">DFU</h2>
 
 <p>DFU stands for “Device Firmware Update” which is a mode of a <a href="/projects/fpv/glossar#flight-controller">Flight Controller</a> 
-device that is required to <a href="/projects/fpv/glossar#flash">flash</a> a new <a href="/project/fpv/glossar#firmware">Firmware</a> onto a <a href="/projects/fpv/glossar#flight-controller">FC</a>. It depends on the FC board how to get the device into the DFU mode. 
+device that is required to <a href="/projects/fpv/glossar#flash">flash</a> a new <a href="/projects/fpv/glossar#firmware">Firmware</a> onto a <a href="/projects/fpv/glossar#flight-controller">FC</a>. It depends on the FC board how to get the device into the DFU mode. 
 Either you need to short the BL or BOOT pads (or press and hold the BOOT tactile button if your FC board has one) while 
 plugging the USB into the Flight Controller board.</p>
+
+<h2 id="esc">ESC</h2>
+
+<p>The Electronic Speed Controller (ESC) is connected to the <a href="/projects/fpv/glossar#pdb">PDB</a> and 
+controls the speed of a motor by adjusting its <a href="/projects/fpv/glossar#rpm">rpm</a> (revolutions per minute). 
+A quadcopter uses four ESCs which can be part of the <a href="/projects/fpv/glossar/#flight-controller">Flight Controller</a>. 
+The input signal to an ESC comes from the Flight Controller, which tells the ESC at which speed a motor should run.
+More details are found on the <a href="/projects/fpv/esc">ESC page</a>.</p>
 
 <h2 id="eu-lbt">EU LBT</h2>
 
@@ -638,32 +667,41 @@ Reference: <a href="https://brushlesswhoop.com/frsky-eu-lbt-vs-fcc/">Brushless W
 <p>Stands for Federal Communications Commission which regulates use of radio frequencies within the United States.
 Reference: <a href="https://brushlesswhoop.com/frsky-eu-lbt-vs-fcc/">Brushless Whoop</a>.</p>
 
+<h2 id="firmware">Firmware</h2>
+
+<p>In the context of <a href="/projects/fpv/glossar/#fpv">FPV</a> a <a href="https://en.wikipedia.org/wiki/Firmware">firmware</a> is the software that runs on the <a href="/projects/fpv/glossar/#flight-controller">Flight Controller</a>.
+Other devices such as <a href="/projects/fpv/glossar#esc">ESCs</a>, <a href="/projects/fpv/glossar#receiver">receivers</a> and <a href="/projects/fpv/glossar#transmitter">transmitters</a> run their own firmware too.</p>
+
 <h2 id="flash">Flash</h2>
 
 <p><a href="https://en.wikipedia.org/wiki/Firmware#Flashing">Flashing</a> means to update a Software, 
-also refered to as <a href="/projects/fpv/glossar#firmware">Firmware</a>, that runs on a device,
+also referred to as <a href="/projects/fpv/glossar#firmware">Firmware</a>, that runs on a device,
 such as a <a href="/projects/fpv/glossar#flight-controller">Flight Controller</a> board. The term “to flash” comes from the 
 Flash storage component of a device where the Firmware is stored.</p>
 
-<h2 id="frsky">FrSky</h2>
+<h2 id="flight-controller">Flight Controller</h2>
 
-<p><a href="https://www.frsky-rc.com/">FrSky</a> is a chinese company that manufactures modules for <a href="/projects/fpv/glossar#rc">rc</a> toys such as <a href="/projects/fpv/glossar/#transmitter">transmitters</a>, <a href="/projects/fpv/glossar#receiver">receivers</a> or <a href="/projects/fpv/glossar#flight-controller">Flight Controllers</a>.</p>
+<p><a href="https://en.wikipedia.org/wiki/Microcontroller">Micro Controller</a> board that contains input and output (I/O) pins and a processing unit (microchip), 
+which runs a Flight Controller <a href="/projects/fpv/glossar#firmware">firmware</a>. 
+The Flight Controller acts as the brain of a drone.
+By processing <a href="/projects/fpv/glossar#sensor">sensor</a> input signals the Flight Controller is used to compute output signals for external or internal <a href="/projects/fpv/glossar/#esc">ESCs</a> to keep level flight. Other input signals are used to adjust the <a href="/projects/fpv/glossar/#pose">pose</a> of the quad in the air such as the <a href="/projects/fpv/glossar/#receiver">receiver</a> and other internal or external sensors. A Flight Controller usually
+contains multiple internal <a href="/projects/fpv/glossar/#sensor">sensors</a> such as <a href="/projects/fpv/glossar#imu">IMUs</a>.</p>
 
 <h2 id="fport">FPort</h2>
 
-<p><a href="/projects/fpv/glossar#rx">Rx</a> protocol that acts as a communication interface between <a href="/projects/fpv/glossar#receiver">receiver</a> and <a href="/projects/fpv/glossar#flight-controller">flight controller</a>. FPort is developed by <a href="/projects/fpv/glossar#betaflight">Betaflight’s</a> developer team and <a href="/projects/fpv/glossar#frsky">FrSky</a> for its <a href="/projects/fpv/glossar#receiver">receivers</a>. FPort (possibly stands for “Frsky Port”?) is developed by both Betaflight Dev Team and Frsky</p>
+<p><a href="/projects/fpv/glossar#rx">Rx</a> protocol that acts as a communication interface between <a href="/projects/fpv/glossar#receiver">receiver</a> and <a href="/projects/fpv/glossar#flight-controller">flight controller</a>. FPort is developed by <a href="/projects/fpv/glossar#betaflight">Betaflight’s</a> developer team and <a href="/projects/fpv/glossar#frsky">FrSky</a> for its <a href="/projects/fpv/glossar#receiver">receivers</a>.</p>
 
-<ol>
+<ul>
   <li>FPort combines <a href="/projects/fpv/glossar#sbus">SBUS</a> and <a href="/projects/fpv/glossar#smartport">Smartport</a> <a href="/projects/fpv/glossar#telemetry">Telemetry</a> into one single wire
     <ul>
       <li>Simplify cable management and soldering</li>
       <li>Save a UART port because SBUS and Smartport take up two separate UART’s</li>
-      <li>FPort is an uninverted protocol, which should avoid doing “uninversion hacks” on F4 FC in future Frsky receivers</li>
-      <li>FPort is slightly faster than SBUS</li>
-      <li><a href="/projects/fpv/glossar#rssi">RSSI</a> works automatically (no need to pass through a channel)</li>
     </ul>
   </li>
-</ol>
+  <li>FPort is an uninverted protocol, which should avoid doing “uninversion hacks” on F4 FC in future Frsky receivers</li>
+  <li>FPort is slightly faster than SBUS</li>
+  <li><a href="/projects/fpv/glossar#rssi">RSSI</a> works automatically (no need to pass through a channel)</li>
+</ul>
 
 <p>References:</p>
 
@@ -671,42 +709,44 @@ Flash storage component of a device where the Firmware is stored.</p>
   <li><a href="https://oscarliang.com/setup-frsky-fport/">Oscar Liang - Setup FrSky FPort</a></li>
 </ul>
 
-<h2 id="esc">ESC</h2>
-
-<p>The Electronic Speed Controller (ESC) is conected to the <a href="/projects/fpv/glossar#pdb">PDB</a> and 
-controls the speed of a motor by adjusting its rpms (rotation per minutes). 
-A quadcopter uses four ESCs which can be part of the <a href="/projects/fpv/glossar/#flight-controller">Flight Controller</a>. 
-The input signal to an ESC comes from the Flight Controller, which tells the ESC at which speed a motor should run.</p>
-
-<h2 id="flight-controller">Flight Controller</h2>
-
-<p><a href="">Micro Controller</a> board that contains input and output (I/O) pins and a processing unit (microchrip), 
-which runs a Flight Controller <a href="/projects/fpv/glossar#firmware">frimware</a>. 
-The Flight Controller acts as the brain of a drone.
-By processing <a href="/projects/fpv/glossar#sensor">sensor</a> input signals the Flight Controller is used to compute output signals for external or internal <a href="/projects/fpv/glossar/#esc">ESCs</a> to keep level flight. Other input signals are used to adjust the <a href="/projects/fpv/glossar/#pose">pose</a> of the quad in the air such as the <a href="/projects/fpv/glossar/#receiver">receiver</a> and other internal or external sensors. A Flight Controller usually
-contains multiple internal <a href="/projects/fpv/glossar/#sensor">sensors</a> such as <a href="/projects/fpv/glossar#imu">IMUs</a>.</p>
-
-<h2 id="firmware">Firmware</h2>
-
-<p>In the context of <a href="/projects/fpv/glossar/#fpv">FPV</a> a <a href="https://en.wikipedia.org/wiki/Firmware">firmware</a> is the software that runs on the <a href="/projects/fpv/glossar/#flight-controller">Flight Controller</a></p>
-
 <h2 id="fpv">FPV</h2>
 
-<p>Abbreviation for first person view, where the live image from a flying quad is view through an <a href="/projects/fpv/glossar/#analog">analog</a> video receiving system. This can be either a <a href="/projects/fpv/glossar/#goggle">fpv goggle</a> or monitor.</p>
+<p>Abbreviation for first person view, where the live image from a flying quad is viewed through an <a href="/projects/fpv/glossar/#analog">analog</a> video receiving system. This can be either a <a href="/projects/fpv/glossar/#goggle">fpv goggle</a> or monitor.</p>
 
-<h2 id="frsky-1">FrSky</h2>
+<h2 id="fpv-camera">FPV Camera</h2>
 
-<p>Company that produces radio controlled <a href="/projects/fpv/glossar/#transmitter">transmitters</a> and <a href="/projects/fpv/glossar/#receiver">receivers</a>, which are most common in the FPV scene. At their hompage <a href="https://www.frsky-rc.com/">https://www.frsky-rc.com/</a> you can see all the products and download manuals and firmware updates.</p>
+<p>Small and lightweight camera mounted at the front of the quad that captures the live image for the pilot.
+FPV cameras are optimized for low latency and quickly changing light conditions rather than for a high resolution.
+The video signal is sent to the <a href="/projects/fpv/glossar#vtx">VTX</a>, which transmits it to the <a href="/projects/fpv/glossar#goggle">goggles</a>.
+The quad in this project uses a RunCam Swift 2 (see <a href="/projects/fpv/components">components</a>).</p>
+
+<h2 id="frsky">FrSky</h2>
+
+<p><a href="https://www.frsky-rc.com/">FrSky</a> is a Chinese company that manufactures modules for <a href="/projects/fpv/glossar#rc">rc</a> toys such as <a href="/projects/fpv/glossar/#transmitter">transmitters</a>, <a href="/projects/fpv/glossar#receiver">receivers</a> or <a href="/projects/fpv/glossar#flight-controller">Flight Controllers</a>.
+Their transmitters and receivers are among the most common in the FPV scene.
+At their homepage <a href="https://www.frsky-rc.com/">https://www.frsky-rc.com/</a> you can see all the products and download manuals and firmware updates.</p>
 
 <h2 id="goggle">Goggle</h2>
 
 <p>Used to view the <a href="/projects/fpv/glossar/#analog">analog</a> live image captured by the camera on the quad, which is transmitted with the video transmitter that sits also on the quad.</p>
 
+<h2 id="imu">IMU</h2>
+
+<p>An <a href="https://en.wikipedia.org/wiki/Inertial_measurement_unit">inertial measurement unit</a> (IMU) is a <a href="/projects/fpv/glossar#sensor">sensor</a> that measures
+angular rates with a gyroscope and accelerations with an accelerometer. The <a href="/projects/fpv/glossar#flight-controller">Flight Controller</a> uses these measurements
+to estimate and control the <a href="/projects/fpv/glossar#pose">pose</a> of the quad.</p>
+
+<h2 id="isrm">ISRM</h2>
+
+<p>Name of the internal <a href="/projects/fpv/glossar#transmitter">transmitter</a> module of <a href="/projects/fpv/glossar#frsky">FrSky’s</a> 2019 radios such as the <a href="/projects/fpv/glossar#taranis">Taranis</a> X9D Plus SE 2019.
+It supports the <a href="/projects/fpv/glossar#access">ACCESS</a> protocol and the older ACCST D16 protocol, depending on the selected mode and <a href="/projects/fpv/glossar#firmware">firmware</a>.
+How to update it is explained on the <a href="/projects/fpv/taranis#update-internal-module-firmware-optional">Taranis page</a>.</p>
+
 <h2 id="lbt">LBT</h2>
 
 <p>LBT stands for Listen Before Talk or Listen Before Transmit and describes the version of a 
 <a href="/projects/fpv/glossar/#firmware">firmware</a> for <a href="/projects/fpv/glossar/#transmitter">transmitters</a> and 
-<a href="/projects/fpv/glossar/#transmitter">receivers</a>. The LBT version also refered to as EU LBT is the allowed version 
+<a href="/projects/fpv/glossar/#receiver">receivers</a>. The LBT version also referred to as EU LBT is the allowed version 
 in the European Union. Most of the <a href="/projects/fpv/glossar#frsky">FrSky</a> 
 receivers and transmitters are sometimes referenced as EU or non EU or <a href="/projects/fpv/glossar/#eu-lbt">EU LBT</a> 
 and <a href="/projects/fpv/glossar/#fcc">FCC</a>.</p>
@@ -715,18 +755,39 @@ and <a href="/projects/fpv/glossar/#fcc">FCC</a>.</p>
 
 <h2 id="led">LED</h2>
 
+<p><a href="https://en.wikipedia.org/wiki/Light-emitting_diode">Light Emitting Diodes</a> are used as visual guidance for a quad copter.</p>
+
 <h2 id="lipo">LiPo</h2>
 
-<p>Refers to a type of <a href="/projects/fpv/glossar#battery">battery</a> and is the abbreviation for <a href="https://en.wikipedia.org/wiki/Lithium_polymer_battery">__li__thium-ion __po__lymere</a></p>
+<p>Refers to a type of <a href="/projects/fpv/glossar#battery">battery</a> and is the abbreviation for <a href="https://en.wikipedia.org/wiki/Lithium_polymer_battery">__li__thium __po__lymer</a>.</p>
 
-<p><a href="https://en.wikipedia.org/wiki/Light-emitting_diode">Light Emitting Diodes</a> are used as visual guidance for a quad copter.</p>
+<h2 id="motor">Motor</h2>
+
+<p>Quads use brushless DC motors that are driven by an <a href="/projects/fpv/glossar#esc">ESC</a> and spin the <a href="/projects/fpv/propeller">propellers</a>.
+How they work and how to read their specifications is explained on the <a href="/projects/fpv/motor">motor page</a>.</p>
+
+<h2 id="opentx">OpenTX</h2>
+
+<p>Open source <a href="/projects/fpv/glossar#firmware">firmware</a> for RC <a href="/projects/fpv/glossar#transmitter">transmitters</a> such as the <a href="/projects/fpv/glossar#taranis">Taranis</a> X9D Plus.
+It is configured on the radio itself or with <a href="/projects/fpv/glossar#opentx-companion">OpenTX Companion</a>.
+Reference: <a href="https://www.open-tx.org/">OpenTX</a>.</p>
+
+<h2 id="opentx-companion">OpenTX Companion</h2>
+
+<p>Desktop application for Windows, Linux and MacOS that is used to configure models and settings of an <a href="/projects/fpv/glossar#opentx">OpenTX</a> radio,
+to back them up and to <a href="/projects/fpv/glossar#flash">flash</a> new OpenTX <a href="/projects/fpv/glossar#firmware">firmware</a> onto the radio.</p>
 
 <h2 id="pdb">PDB</h2>
 
 <p>The Power Distribution Board (PDB) acts as the heart of an <a href="/projects/fpv/glossar#fpv">FPV</a> quad. 
-It is connected to the <a href="/projects/fpv/glossar#battery">Battery</a> and distributes its power to other components of the quad. The main components its is connected to are the <a href="/projects/fpv/glossar/#esc">ESCs</a> to power the 
-<a href="/projects/fpv-quad/fpv-glossar#motor">motors</a>. A PDB usually has additional voltage outputs such as 5V and 12V to power 
+It is connected to the <a href="/projects/fpv/glossar#battery">Battery</a> and distributes its power to other components of the quad. The main components it is connected to are the <a href="/projects/fpv/glossar/#esc">ESCs</a> to power the 
+<a href="/projects/fpv/glossar#motor">motors</a>. A PDB usually has additional voltage outputs such as 5V and 12V to power 
 <a href="/projects/fpv/glossar/#sensor">sensors</a> or <a href="/projects/fpv/glossar#led">LEDs</a>.</p>
+
+<h2 id="pose">Pose</h2>
+
+<p>The pose describes the position and orientation (attitude) of the quad in space.
+The orientation is commonly expressed with the roll, pitch and yaw angles.</p>
 
 <h2 id="pwm">PWM</h2>
 
@@ -735,7 +796,7 @@ It is connected to the <a href="/projects/fpv/glossar#battery">Battery</a> and d
 <h2 id="radio">Radio</h2>
 
 <p>The term radio is used for the <a href="/projects/fpv/glossar#transmitter">transmitter</a> device.
-It comes from the fact that <a href="https://en.wikipedia.org/wiki/Radio_frequency">radio frequency</a> is used as a communication medium between the transmitter and receiver of <a href="/projects/fpv/glossar#rc">rc</a></p>
+It comes from the fact that <a href="https://en.wikipedia.org/wiki/Radio_frequency">radio frequency</a> is used as a communication medium between the transmitter and receiver of <a href="/projects/fpv/glossar#rc">rc</a>.</p>
 
 <h2 id="rc">RC</h2>
 
@@ -743,37 +804,103 @@ It comes from the fact that <a href="https://en.wikipedia.org/wiki/Radio_frequen
 
 <h2 id="receiver">Receiver</h2>
 
-<p>The receiver (also refered to as <code class="language-plaintext highlighter-rouge">Rx</code>) is installed in the quad or radio controlled (rc) vehicle and communicates with the <a href="/projects/fpv/glossar#transmitter">transmitter</a></p>
+<p>The receiver (also referred to as <a href="/projects/fpv/glossar#rx"><code class="language-plaintext highlighter-rouge">Rx</code></a>) is installed in the quad or radio controlled (rc) vehicle and communicates with the <a href="/projects/fpv/glossar#transmitter">transmitter</a>.</p>
 
 <h2 id="redundancy">Redundancy</h2>
 
 <p>Describes a type of <a href="/projects/fpv/glossar#receiver">receiver</a> which can be used in combination with other receivers 
 of the same type to provide redundancy in case of a receiver failure.</p>
 
+<h2 id="register">Register</h2>
+
+<p>Registering is a step required by the <a href="/projects/fpv/glossar#access">ACCESS</a> protocol before a <a href="/projects/fpv/glossar#receiver">receiver</a> can be <a href="/projects/fpv/glossar#bind">bound</a>.
+During registration the receiver gets a name and stores the owner ID of the <a href="/projects/fpv/glossar#transmitter">transmitter</a>.
+The steps for the R-XSR are shown on the <a href="/projects/fpv/r-xsr">R-XSR page</a>.</p>
+
+<h2 id="rpm">RPM</h2>
+
+<p>Abbreviation for revolutions per minute, which is the unit used for the rotational speed of a <a href="/projects/fpv/glossar#motor">motor</a>.</p>
+
+<h2 id="rssi">RSSI</h2>
+
+<p>Received Signal Strength Indicator. It indicates how good the radio link between <a href="/projects/fpv/glossar#transmitter">transmitter</a> and <a href="/projects/fpv/glossar#receiver">receiver</a> is
+and is usually shown in the <a href="/projects/fpv/glossar#goggle">goggles</a> or reported via <a href="/projects/fpv/glossar#telemetry">telemetry</a> to warn before the link is lost.</p>
+
+<h2 id="rx">Rx</h2>
+
+<p>Short for <a href="/projects/fpv/glossar#receiver">receiver</a>.</p>
+
 <h2 id="r-xsr">R-XSR</h2>
 
-<p><a href="/projects/fpv/glossar#redundancy">Redundancy</a> <a href="/projects/fpv/glossar/#receiver">receiver</a> produced by <a href="/projects/fpv/glossar#frsky">FrSky</a>.</p>
+<p><a href="/projects/fpv/glossar#redundancy">Redundancy</a> <a href="/projects/fpv/glossar/#receiver">receiver</a> produced by <a href="/projects/fpv/glossar#frsky">FrSky</a>.
+Its setup is explained on the <a href="/projects/fpv/r-xsr">R-XSR page</a>.</p>
+
+<h2 id="sbus">SBUS</h2>
+
+<p>Serial bus protocol originally developed by Futaba and used by <a href="/projects/fpv/glossar#frsky">FrSky</a> <a href="/projects/fpv/glossar#receiver">receivers</a>
+to transmit up to 16 channels over a single wire to the <a href="/projects/fpv/glossar#flight-controller">Flight Controller</a>.
+SBUS is an inverted serial signal, which is why some Flight Controllers need a dedicated or inverted UART for it.</p>
 
 <h2 id="sensor">Sensor</h2>
 
+<p>A sensor measures a physical quantity and provides it to the <a href="/projects/fpv/glossar#flight-controller">Flight Controller</a>.
+Common sensors on a quad are the <a href="/projects/fpv/glossar#imu">IMU</a> (gyroscope and accelerometer), a barometer to measure altitude
+and a current sensor on the <a href="/projects/fpv/glossar#pdb">PDB</a> to measure the current draw.</p>
+
+<h2 id="servo">Servo</h2>
+
+<p>A <a href="https://en.wikipedia.org/wiki/Servo_(radio_control)">servo</a> is an actuator with position control used in RC models, for example to move control surfaces of a plane.
+Its three wire connector (signal, power and ground) is the standard connector for RC equipment such as <a href="/projects/fpv/glossar#receiver">receivers</a> and <a href="/projects/fpv/glossar#esc">ESCs</a>.</p>
+
 <h2 id="simonk">SimonK</h2>
 
-<p><a href="/projects/fpv/glossar#firmware">Frimware</a> for <a href="/projects/fpv/glossar#esc">ESCs</a> that is used to process the input 
+<p><a href="/projects/fpv/glossar#firmware">Firmware</a> for <a href="/projects/fpv/glossar#esc">ESCs</a> that is used to process the input 
 data from a <a href="/projects/fpv/glossar/#flight-controller">Flight Controller</a> and translate that into suitable control 
-commands for the motor. This frimware was developed by Simon Kirby and its intended to be used in multicopters. 
+commands for the motor. This firmware was developed by Simon Kirby and its intended to be used in multicopters. 
 Its source code can be found on <a href="https://github.com/sim-/tgy">Simon Kirby’s GitHub repository</a>.
-Another commonly used firmware for ESCs is <a href="/prjects/fpv/glossar#blheli">BLHeli</a>.</p>
+Another commonly used firmware for ESCs is <a href="/projects/fpv/glossar#blheli">BLHeli</a>.</p>
+
+<h2 id="smartport">SmartPort</h2>
+
+<p>SmartPort (S.Port) is <a href="/projects/fpv/glossar#frsky">FrSky’s</a> bidirectional single wire protocol to transmit <a href="/projects/fpv/glossar#telemetry">telemetry</a> data
+from the <a href="/projects/fpv/glossar#flight-controller">Flight Controller</a> and other sensors over the <a href="/projects/fpv/glossar#receiver">receiver</a> to the <a href="/projects/fpv/glossar#transmitter">transmitter</a>.
+It is also used to <a href="/projects/fpv/glossar#flash">flash</a> firmware onto receivers. Like <a href="/projects/fpv/glossar#sbus">SBUS</a> it is an inverted signal.</p>
+
+<h2 id="taranis">Taranis</h2>
+
+<p>Series of RC <a href="/projects/fpv/glossar#transmitter">transmitters</a> from <a href="/projects/fpv/glossar#frsky">FrSky</a> running <a href="/projects/fpv/glossar#opentx">OpenTX</a>.
+This project uses the <a href="/projects/fpv/taranis">Taranis X9D Plus SE 2019</a>.</p>
+
+<h2 id="tbs">TBS</h2>
+
+<p>Team BlackSheep (TBS) is a manufacturer of FPV equipment such as the TBS Unify Pro <a href="/projects/fpv/glossar#vtx">video transmitters</a> and the TBS Crossfire long range radio system.</p>
+
+<h2 id="telemetry">Telemetry</h2>
+
+<p>Telemetry is data sent from the quad back to the pilot, such as battery voltage, current draw or <a href="/projects/fpv/glossar#rssi">RSSI</a>.
+With <a href="/projects/fpv/glossar#smartport">SmartPort</a> or <a href="/projects/fpv/glossar#fport">FPort</a> the <a href="/projects/fpv/glossar#receiver">receiver</a> sends it to the <a href="/projects/fpv/glossar#transmitter">transmitter</a>,
+where it can be displayed or used for alarms. The setup is explained on the <a href="/projects/fpv/telemetry">telemetry page</a>.</p>
 
 <h2 id="transmitter">Transmitter</h2>
 
-<p>Also known as <a href="/projects/fpv/glossar#radio">radio</a> is the radio controlled (<a href="/projects/fpv/glossar#rc">rc</a>) part that communicates with a <a href="/projects/fpv/glossar/#receiver">receiver</a>. The term <code class="language-plaintext highlighter-rouge">Tx</code> is commonly referred to transmitting units.
+<p>Also known as <a href="/projects/fpv/glossar#radio">radio</a> is the radio controlled (<a href="/projects/fpv/glossar#rc">rc</a>) part that communicates with a <a href="/projects/fpv/glossar/#receiver">receiver</a>. The term <a href="/projects/fpv/glossar#tx"><code class="language-plaintext highlighter-rouge">Tx</code></a> is commonly referred to transmitting units.
 Such units can be external or internal in transmitter devices. External devices can be swapped.</p>
 
-<p>One of the most common manufacturers for <a href="/projects/fpv/glossar#fpv">FPV</a> quad transmitters is <a href="/projects/fpv/glossar#frsky">FrSky</a></p>
+<p>One of the most common manufacturers for <a href="/projects/fpv/glossar#fpv">FPV</a> quad transmitters is <a href="/projects/fpv/glossar#frsky">FrSky</a>.</p>
+
+<h2 id="tx">Tx</h2>
+
+<p>Short for <a href="/projects/fpv/glossar#transmitter">transmitter</a>.</p>
 
 <h2 id="ubec">UBEC</h2>
 
-<p>If the electronic components in a copter should be powered independently of the ESCs or if only optocoupler ESCs are used, there exist other ways to power the flight controller and other electronic components such as LEDs: It’s possible to use an UBEC (Universial Battery Elimination Circuit). This device is connected to the battery and can be used to provide constant output voltage for electronic components.</p>
+<p>If the electronic components in a copter should be powered independently of the ESCs or if only optocoupler ESCs are used, there exist other ways to power the flight controller and other electronic components such as LEDs: It’s possible to use an UBEC (Universal Battery Elimination Circuit). This device is connected to the battery and can be used to provide constant output voltage for electronic components.</p>
+
+<h2 id="vtx">VTX</h2>
+
+<p>The video transmitter (VTX) sends the live image of the <a href="/projects/fpv/glossar#fpv-camera">FPV camera</a> to the <a href="/projects/fpv/glossar#goggle">goggles</a>,
+usually in the 5.8 GHz band. Its output power and channel can often be changed from the <a href="/projects/fpv/glossar#flight-controller">Flight Controller</a>,
+for example with the TBS SmartAudio protocol of the <a href="/projects/fpv/glossar#tbs">TBS</a> Unify Pro used in this project.</p>
 
         
       </section>
@@ -854,7 +981,7 @@ Such units can be external or internal in transmitter devices. External devices 
         
 
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2026-10-02T11:55:07+00:00">October 2, 2026</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2026-10-02T11:58:49+00:00">October 2, 2026</time></p>
 
 
       </footer>
