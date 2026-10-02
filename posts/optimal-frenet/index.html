@@ -1,14 +1,19 @@
+
+
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.27.1 by Michael Rose
-  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
 
-<html lang="en-US" class="no-js">
+<html lang="en-US" class="no-js" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    
+<meta charset="utf-8">
+
 
 <!-- begin _includes/seo.html --><title>Trajectory Planning in the Frenet Space - fjp.github.io</title>
 <meta name="description" content="Planning mobile robot trajectories in structured environments using a reference path and Frenet coordinates.">
@@ -32,6 +37,7 @@
 
 
   <meta property="og:image" content="https://fjp.at/assets/posts/2017-12-03-trajectory-following/minimize-error.png">
+  
 
 
 
@@ -43,9 +49,12 @@
   
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://fjp.at/assets/posts/2017-12-03-trajectory-following/minimize-error.png">
+    
   
 
   
+
+
 
 
 
@@ -152,8 +161,9 @@
 
   </head>
 
-  <body class="layout--single wide" dir="ltr">
-    <nav class="skip-links">
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
     <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
@@ -163,10 +173,11 @@
 
     
 
+
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
         
         <a class="site-title" href="/">
           fjp.github.io
@@ -252,7 +263,10 @@
 
     <div class="initial-content">
       
+
+
   
+
 
 
 
@@ -276,6 +290,7 @@
 </p>
       
       
+
 
   <p class="page__meta">
     
@@ -315,7 +330,8 @@
 
 
 
-<nav class="breadcrumbs">
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
   <ol itemscope itemtype="https://schema.org/BreadcrumbList">
     
     
@@ -352,7 +368,8 @@
   
 
 
-  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Trajectory Planning in the Frenet Space">
     <meta itemprop="description" content="Planning mobile robot trajectories in structured environments using a reference path and Frenet coordinates.">
     <meta itemprop="datePublished" content="2018-08-25T15:31:41+00:00">
@@ -361,10 +378,10 @@
     <div class="page__inner-wrap">
       
 
-      <section class="page__content" itemprop="text">
+      <section class="page__content e-content" itemprop="text">
         
           <aside class="sidebar__right ">
-            <nav class="toc">
+            <nav class="toc" aria-label="Table of contents">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
               <ul class="toc__menu"><li><a href="#trajectory-planning-in-the-frenet-space">Trajectory Planning in the Frenet Space</a><ul><li><a href="#algorithm">Algorithm</a></li></ul></li><li><a href="#frenet-coordinates">Frenet Coordinates</a><ul><li><a href="#frenet-features">Frenet Features</a><ul><li><a href="#reference-path">Reference Path</a><ul><li><a href="#clothoid">Clothoid</a></li><li><a href="#polyline">Polyline</a></li></ul></li><li><a href="#transformation">Transformation</a></li></ul></li><li><a href="#usage">Usage</a><ul><li><a href="#jupyter-notebook">Jupyter Notebook</a></li><li><a href="#frenet-gui">Frenet GUI</a></li><li><a href="#dependencies">Dependencies</a></li></ul></li><li><a href="#references">References</a><ul><li><a href="#python-code">Python code:</a></li></ul></li><li><a href="#helper-function">Helper Function</a></li><li><a href="#python-code-in-jupyter-notebook">Python Code in Jupyter Notebook</a></li></ul></li></ul>
             </nav>
@@ -578,7 +595,10 @@ conda activate &lt;env-name&gt;
       <footer class="page__meta">
         
         
+
   
+    
+
 
 
   
@@ -605,9 +625,11 @@ conda activate &lt;env-name&gt;
   </p>
 
 
-
+  
 
   
+    
+
 
 
   
@@ -626,13 +648,19 @@ conda activate &lt;env-name&gt;
   </p>
 
 
+  
+
+
         
+
 
   <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2018-08-25T15:31:41+00:00">August 25, 2018</time></p>
 
+
       </footer>
 
-      <section class="page__share">
+      
+<section class="page__share">
   <h4 class="page__share-title">Share on</h4>
 
   <a href="https://x.com/intent/tweet?via=franzpucher&text=Trajectory+Planning+in+the+Frenet+Space%20https%3A%2F%2Ffjp.at%2Fposts%2Foptimal-frenet%2F" class="btn btn--x" aria-label="Share on X" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on X">
@@ -654,7 +682,8 @@ conda activate &lt;env-name&gt;
 
 
       
-  <nav class="pagination">
+
+  <nav class="pagination" aria-label="Post pagination">
     
       <a href="/tooling/python/bokeh-ipython-jekyll/" class="pagination--pager" title="Interactive Bokeh for Jekyll using iPython">Previous</a>
     
@@ -668,7 +697,8 @@ conda activate &lt;env-name&gt;
 
     
       
-        <div class="page__comments">
+        
+<div class="page__comments">
   
   
       <h4 class="page__comments-title">Comments</h4>
@@ -683,6 +713,7 @@ conda activate &lt;env-name&gt;
   
   
     
+
 <div class="page__related">
   
   <h2 class="page__related-title">You May Also Enjoy</h2>
@@ -707,6 +738,7 @@ conda activate &lt;env-name&gt;
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -752,6 +784,7 @@ conda activate &lt;env-name&gt;
     </h2>
     
 
+
   <p class="page__meta">
     
 
@@ -795,6 +828,7 @@ conda activate &lt;env-name&gt;
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -840,6 +874,7 @@ conda activate &lt;env-name&gt;
     </h2>
     
 
+
   <p class="page__meta">
     
 
@@ -877,7 +912,8 @@ conda activate &lt;env-name&gt;
 
     
       <div class="search-content">
-        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
     <label class="sr-only" for="search">
       Enter your search term...
     </label>
@@ -911,7 +947,10 @@ window.cookieconsent.initialise({
 <script src="https://www.dwin2.com/pub.642237.min.js"></script>
 <!-- end custom footer snippets -->
 
-        <div class="page__footer-follow">
+        
+
+
+<div class="page__footer-follow">
   <ul class="social-icons">
     
 
@@ -934,10 +973,11 @@ window.cookieconsent.initialise({
     
 
     
-      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
     
   </ul>
 </div>
+
 
 <div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
 
@@ -945,7 +985,9 @@ window.cookieconsent.initialise({
     </div>
 
     
+
   <script src="/assets/js/main.min.js"></script>
+
 
 
 
@@ -953,6 +995,7 @@ window.cookieconsent.initialise({
 <script src="/assets/js/lunr/lunr.min.js"></script>
 <script src="/assets/js/lunr/lunr-store.js"></script>
 <script src="/assets/js/lunr/lunr-en.js"></script>
+
 
 
 
@@ -966,6 +1009,7 @@ window.cookieconsent.initialise({
 
   gtag('config', 'G-B3D47JZCLS', { 'anonymize_ip': false});
 </script>
+
 
 
 
