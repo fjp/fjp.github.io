@@ -12,12 +12,10 @@ toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: https://camo.githubusercontent.com/8178215d6cb90842dc95c9d437b1bdf09b2d57a7/687474703a2f2f7374617469632e726367726f7570732e6e65742f666f72756d732f6174746163686d656e74732f362f312f302f332f372f362f61393038383930302d3232382d62665f6c6f676f2e6a7067
-  overlay_image: https://camo.githubusercontent.com/8178215d6cb90842dc95c9d437b1bdf09b2d57a7/687474703a2f2f7374617469632e726367726f7570732e6e65742f666f72756d732f6174746163686d656e74732f362f312f302f332f372f362f61393038383930302d3232382d62665f6c6f676f2e6a7067
+  teaser: /assets/collections/fpv/betaflight/betaflight-ports.png
+  overlay_image: /assets/collections/fpv/betaflight/betaflight-ports.png
   overlay_filter: 0.5
   caption: "Source: [**Betaflight**](https://github.com/betaflight/betaflight)"
-redirect_from:
-  - /projects/fpv/
 sidebar:
   nav: "fpv"
 ---
@@ -39,7 +37,7 @@ Betaflight's was intentionally developed for race copters which is why it provid
 
 
 <figure >
-    <a href="/assets/collections/fpv/betaflight/betaflight.jpg"><img src="/assets/collections/fpv/betaflight/betaflight.jpg"></a>
-    <figcaption>Betaflight Graphical User Interface (GUI).</figcaption>
+    <a href="/assets/collections/fpv/betaflight/betaflight-ports.png"><img src="/assets/collections/fpv/betaflight/betaflight-ports.png"></a>
+    <figcaption>Betaflight Configurator Graphical User Interface (GUI) showing the Ports tab.</figcaption>
 </figure>
 

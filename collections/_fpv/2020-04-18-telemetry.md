@@ -15,8 +15,6 @@ header:
   teaser: /assets/collections/fpv/taranis/taranis.jpg
   overlay_image: /assets/collections/fpv/taranis/bootloader.jpg
   overlay_filter: 0.5
-redirect_from:
-  - /projects/fpv/
 sidebar:
   nav: "fpv"
 ---

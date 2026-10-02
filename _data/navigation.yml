@@ -135,95 +135,100 @@ fpv:
         url: /projects/fpv/esc
       - title: "Propellers"
         url: /projects/fpv/propeller
-      - title: "Batteries"
-        url: /projects/fpv/battery
       - title: "Power Distribution Board"
         url: /projects/fpv/pdb
-      - title: "Flightcontroller"
-        url: /projects/fpv/flightcontroller
-      - title: "RC Receiver"
-        url: /projects/fpv/receiver
+      # Planned pages, enable once they exist:
+      # - title: "Batteries"
+      #   url: /projects/fpv/battery
+      # - title: "Flightcontroller"
+      #   url: /projects/fpv/flightcontroller
+      # - title: "RC Receiver"
+      #   url: /projects/fpv/receiver
   - title: "Flight Controller Software"
     url: /projects/fpv/flight-controller-software
     children:
-      - title: Setup
-        url: /projects/fpv/flight-controller-software#setup
-      - title: Ports
-        url: /projects/fpv/flight-controller-software#ports
-      - title: Configuration
-        url: /projects/fpv/flight-controller-software#configuration
-      - title: Modes
-        url: /projects/fpv/flight-controller-software#modes
-      - title: Motors
-        url: /projects/fpv/flight-controller-software#motors
-      - title: PID Tuning
-        url: /projects/fpv/flight-controller-software#pid
+      # Planned sections, enable once they exist:
+      # - title: Setup
+      #   url: /projects/fpv/flight-controller-software#setup
+      # - title: Ports
+      #   url: /projects/fpv/flight-controller-software#ports
+      # - title: Configuration
+      #   url: /projects/fpv/flight-controller-software#configuration
+      # - title: Modes
+      #   url: /projects/fpv/flight-controller-software#modes
+      # - title: Motors
+      #   url: /projects/fpv/flight-controller-software#motors
+      # - title: PID Tuning
+      #   url: /projects/fpv/flight-controller-software#pid
       - title: RC Rates and Expo Settings
         url: /projects/fpv/rate-expo-settings
   - title: "RC Transmitter"
-    url: /projects/fpv/transmitter
+    # url: /projects/fpv/transmitter (planned)
     children:
       - title: Taranis X9D Plus SE 2019
         url: /projects/fpv/taranis
       - title: Receiver Binding R-XSR
         url: /projects/fpv/r-xsr
-      - title: RC Rate and EXPO Settings
+      - title: Throttle Curves
         url: /projects/fpv/throttle-curves
-  - title: "FPV System"
-    url: /projects/fpv/fpv-system/
-    children:
-      - title: "FPV Camera"
-        url: /projects/fpv/fpv-system/camera
-      - title: "FPV Transmitter and Receiver"
-        url: /projects/fpv/fpv-system/vtx
-      - title: "Antennas"
-        url: /projects/fpv/fpv-system/antennas
-  - title: "Charger and Testers"
-    url: /projects/fpv/charger
+  # Planned pages, enable once they exist:
+  # - title: "FPV System"
+  #   url: /projects/fpv/fpv-system/
+  #   children:
+  #     - title: "FPV Camera"
+  #       url: /projects/fpv/fpv-system/camera
+  #     - title: "FPV Transmitter and Receiver"
+  #       url: /projects/fpv/fpv-system/vtx
+  #     - title: "Antennas"
+  #       url: /projects/fpv/fpv-system/antennas
+  # - title: "Charger and Testers"
+  #   url: /projects/fpv/charger
   - title: "PID Values"
-    url: /projects/fpv/pid/#introduction
+    # url: /projects/fpv/pid/#introduction (planned)
     children:
-      - title: "PID Basics"
-        url: /projects/fpv/pid/#theory
-      - title: "PID Tuning"
-        url: /projects/fpv/pid/#tuning
+      # - title: "PID Basics"
+      #   url: /projects/fpv/pid/#theory
+      # - title: "PID Tuning"
+      #   url: /projects/fpv/pid/#tuning
       - title: "PID Lua Script"
         url: /projects/fpv/pid-lua-script
-  - title: "Thrust and Flight Time"
-    url: /projects/fpv/calculations/#introduction
-    children:
-      - title: "Basic Calculations"
-        url: /projects/fpv/calculations/#calculations
-      - title: "Weight"
-        url: /projects/fpv/calculations/#weight
-      - title: "Thrust"
-        url: /projects/fpv/calculations/#thrust
-      - title: "Finding matching Motors"
-        url: /projects/fpv/calculations/#motors
-      - title: "Finding matching ESCs"
-        url: /projects/fpv/calculations/#esc
-      - title: "Flight Time Calculation"
-        url: /projects/fpv/calculations/#flight-time
+  # Planned page, enable once it exists:
+  # - title: "Thrust and Flight Time"
+  #   url: /projects/fpv/calculations/#introduction
+  #   children:
+  #     - title: "Basic Calculations"
+  #       url: /projects/fpv/calculations/#calculations
+  #     - title: "Weight"
+  #       url: /projects/fpv/calculations/#weight
+  #     - title: "Thrust"
+  #       url: /projects/fpv/calculations/#thrust
+  #     - title: "Finding matching Motors"
+  #       url: /projects/fpv/calculations/#motors
+  #     - title: "Finding matching ESCs"
+  #       url: /projects/fpv/calculations/#esc
+  #     - title: "Flight Time Calculation"
+  #       url: /projects/fpv/calculations/#flight-time
   - title: "Build and Setup"
-    url: /projects/fpv/build
+    # url: /projects/fpv/build (planned)
     children:
-      - title: "Calculations and Part Selection"
-        url: /projects/fpv/build/#part-selection
+      # - title: "Calculations and Part Selection"
+      #   url: /projects/fpv/build/#part-selection
       - title: "Assembly"
         url: /projects/fpv/assembly
-      - title: ESC Settings
-        url: /projects/fpv/esc-settings
+      # - title: ESC Settings
+      #   url: /projects/fpv/esc-settings
       - title: Telemetry
         url: /projects/fpv/telemetry
-  - title: "Rights"
-    url: /projects/fpv/rights/#introduction
-    children:
-      - title: "Law and Insurance regulations"
-        url: /projects/fpv/rights/#law-insurance
-      - title: "Drones"
-        url: /projects/fpv/rights/#drones
-  
-  
+  # Planned page, enable once it exists:
+  # - title: "Rights"
+  #   url: /projects/fpv/rights/#introduction
+  #   children:
+  #     - title: "Law and Insurance regulations"
+  #       url: /projects/fpv/rights/#law-insurance
+  #     - title: "Drones"
+  #       url: /projects/fpv/rights/#drones
+
+
 design-patterns:
   - title: "Design Patterns"
     url: /design-patterns/

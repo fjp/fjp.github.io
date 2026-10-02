@@ -12,11 +12,9 @@ toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: /assets/collections/fpv/receiver/r-xsr.jpg
-  overlay_image: /assets/collections/fpv/receiver/r-xsr.jpg
+  teaser: /assets/collections/fpv/receiver/r-xsr-top.jpg
+  overlay_image: /assets/collections/fpv/receiver/r-xsr-top.jpg
   overlay_filter: 0.5
-redirect_from:
-  - /projects/fpv/
 sidebar:
   nav: "fpv"
 ---
@@ -32,7 +30,7 @@ This post is abou the [FrSky R-XSR SmartPort Receiver](https://www.frsky-rc.com/
 
 ## Receiver Firmware Update
 
-This section explains how to [flash](/projects/fpv/glossar/#flash) the latest [receiver](/projects/fpv/glossar/#receiver) [firmware](/projects/fpv/glossar/#firmware) for an R-XSR receiver and how to [bind](/projects/fpv/glossar/#receiver) it to the [Taranis](/projects/fpv/glossar/#taranis) X9D Plus 2019 [transmitter](/projects/fpv/glossar/#receiver).
+This section explains how to [flash](/projects/fpv/glossar/#flash) the latest [receiver](/projects/fpv/glossar/#receiver) [firmware](/projects/fpv/glossar/#firmware) for an R-XSR receiver and how to [bind](/projects/fpv/glossar/#bind) it to the [Taranis](/projects/fpv/glossar/#taranis) X9D Plus 2019 [transmitter](/projects/fpv/glossar/#transmitter).
 
 Download the latest [ACCESS](/projects/fpv/glossar/#access) firmware from the 
 [product page](https://www.frsky-rc.com/r-xsr/). Here you can decide between [S.Port](/projects/fpv/glossar/#smartport) and [F.Port](/projects/fpv/glossar/#fport) variants. 
