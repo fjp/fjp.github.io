@@ -1,0 +1,882 @@
+
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js" dir="ltr">
+  <head>
+    
+<meta charset="utf-8">
+
+
+<!-- begin _includes/seo.html --><title>The Decorator Pattern - fjp.github.io</title>
+<meta name="description" content="The decorator design pattern summarized.">
+
+
+  <meta name="author" content="Franz Pucher">
+  
+  <meta property="article:author" content="Franz Pucher">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="fjp.github.io">
+<meta property="og:title" content="The Decorator Pattern">
+<meta property="og:url" content="https://fjp.at/pr-preview/pr-18/design-patterns/decorator">
+
+
+  <meta property="og:description" content="The decorator design pattern summarized.">
+
+
+
+  <meta property="og:image" content="https://fjp.at/pr-preview/pr-18/assets/pages/design-patterns/decorator-pattern.png">
+  
+
+
+
+  <meta name="twitter:site" content="@franzpucher">
+  <meta name="twitter:title" content="The Decorator Pattern">
+  <meta name="twitter:description" content="The decorator design pattern summarized.">
+  <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-18/design-patterns/decorator">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://fjp.at/pr-preview/pr-18/assets/pages/design-patterns/decorator-pattern.png">
+    
+  
+
+  
+
+
+
+
+
+  <meta property="article:published_time" content="2018-09-23T13:41:35+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fjp.at/pr-preview/pr-18/design-patterns/decorator">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/pr-preview/pr-18/feed.xml" type="application/atom+xml" rel="alternate" title="fjp.github.io Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pr-preview/pr-18/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-2214309606626131",
+          enable_page_level_ads: true
+     });
+</script>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+<!--KaTeX-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+<!-- Pseudocode.js -->
+<!-- https://github.com/SaswatPadhi/pseudocode.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"
+        integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous">
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
+<script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js">
+</script>
+
+<!-- Mailinglist -->
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '1518166');
+</script>
+<!-- End MailerLite Universal -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+        
+        <a class="site-title" href="/pr-preview/pr-18/">
+          fjp.github.io
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-18/"
+                
+                
+              >Home</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-18/blog/"
+                
+                
+              >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-18/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-18/design-patterns/"
+                
+                
+              >Design Patterns</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-18/cpp/"
+                
+                
+              >C++</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-18/projects/fpv/"
+                
+                
+              >FPV</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-18/about/"
+                
+                
+              >About</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-18/ads/"
+                
+                
+              >Ads</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-18/privacy/"
+                
+                
+              >Privacy</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-18/sitemap/"
+                
+                
+              >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('/pr-preview/pr-18/assets/pages/design-patterns/decorator-pattern.png');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          The Decorator Pattern
+
+        
+      </h1>
+      
+        <p class="page__lead">The decorator design pattern summarized.
+</p>
+      
+      
+
+
+
+      
+    </div>
+  
+  
+    <span class="page__hero-caption">Source: <a href="{{ page.url }}/#reference"><strong>Head First Design Patterns</strong></a>
+</span>
+  
+</div>
+
+
+
+
+
+
+  
+    
+
+
+
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-18/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-18/design-patterns" itemprop="item"><span itemprop="name">Design patterns</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">The Decorator Pattern</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/pr-preview/pr-18/design-patterns/"><span class="nav__sub-title">Design Patterns</span></a>
+          
+
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-18/design-patterns/"><span class="nav__sub-title">Creational</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/factory">Factory</a></li>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/singleton">Singleton</a></li>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/builder">Builder</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-18/design-patterns/"><span class="nav__sub-title">Structural</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/adapter">Adapter</a></li>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/bridge">Bridge</a></li>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/decorator" class="active">Decorator</a></li>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/facade">Facade</a></li>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/composite">Composite</a></li>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/proxy">Proxy</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-18/design-patterns/"><span class="nav__sub-title">Behavioral</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/strategy">Strategy</a></li>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/observer">Observer</a></li>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/command">Command</a></li>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/template-method">Template Method</a></li>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/iterator">Iterator</a></li>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/state">State</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-18/design-patterns/"><span class="nav__sub-title">Architectural</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/mvc">Model View Controller</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-18/design-patterns/"><span class="nav__sub-title">Functional</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-18/design-patterns/monad">Monad</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="The Decorator Pattern">
+    <meta itemprop="description" content="The decorator design pattern summarized.">
+    <meta itemprop="datePublished" content="2018-09-23T13:41:35+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p class="notice">
+<b>The Decorator Pattern</b> attaches additional
+responsibilities to an object dynamically.
+Decorators provide a flexible alternative to
+subclassing for extending functionality
+</p>
+
+<p>The Decorator Pattern provides an alternative to subclassing for extending behavior. This is possible
+with a set of decorator classes that are used to wrap concrete components. These
+Decorator classes are of the same type as the components and therefore mirror the type of the components they decorate.
+This is done either through inheritance or interface implementation. Decorators change the behavior of their components by adding
+new functionality before and/or after (or even in place of) method calls to the component.</p>
+
+<p>Using the decorator design pattern can result in many small objects, and overuse can be complex.
+On its own, the decorator pattern adds a lot of small classes to a design which can be
+hard to understand. It also has typing problems which arise when code is dependent on a specific type,
+which is destroyed when using decorators. Decorators are typically transparent to the client of the
+component. That is, unless the client is relying on the component’s concrete type. To avoid this
+drawback other design patterns such as the <a href="/pr-preview/pr-18/design-patterns/factory">factory pattern</a> are helpful.</p>
+
+<figure>
+    <a href="/pr-preview/pr-18/assets/pages/design-patterns/decorator-pattern.png"><img src="/pr-preview/pr-18/assets/pages/design-patterns/decorator-pattern.png" /></a>
+    <figcaption>Extensible and at the same time closed design with the decorator pattern.</figcaption>
+</figure>
+
+<p>In the following example Beverage acts as a abstract component class.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Beverage</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Size</span> <span class="o">{</span> <span class="no">TALL</span><span class="o">,</span> <span class="no">GRANDE</span><span class="o">,</span> <span class="no">VENTI</span> <span class="o">};</span>
+	<span class="nc">Size</span> <span class="n">size</span> <span class="o">=</span> <span class="nc">Size</span><span class="o">.</span><span class="na">TALL</span><span class="o">;</span>
+	<span class="nc">String</span> <span class="n">description</span> <span class="o">=</span> <span class="s">"Unknown Beverage"</span><span class="o">;</span>
+
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getDescription</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">description</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSize</span><span class="o">(</span><span class="nc">Size</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">size</span> <span class="o">=</span> <span class="n">size</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nc">Size</span> <span class="nf">getSize</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">size</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">double</span> <span class="nf">cost</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>The concrete components implement this interface.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Espresso</span> <span class="kd">extends</span> <span class="nc">Beverage</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="nf">Espresso</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">description</span> <span class="o">=</span> <span class="s">"Espresso"</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">double</span> <span class="nf">cost</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="mf">1.99</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Another concrete component.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DarkRoast</span> <span class="kd">extends</span> <span class="nc">Beverage</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="nf">DarkRoast</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">description</span> <span class="o">=</span> <span class="s">"Dark Roast Coffee"</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">double</span> <span class="nf">cost</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="o">.</span><span class="mi">99</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>To extend the behavior of these concrete components the following condiment decorator inherits the <code class="language-plaintext highlighter-rouge">Beverage</code> base class
+and has a member of type <code class="language-plaintext highlighter-rouge">Beverage</code>.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">CondimentDecorator</span> <span class="kd">extends</span> <span class="nc">Beverage</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="nc">Beverage</span> <span class="n">beverage</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kd">abstract</span> <span class="nc">String</span> <span class="nf">getDescription</span><span class="o">();</span>
+
+	<span class="kd">public</span> <span class="nc">Size</span> <span class="nf">getSize</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">beverage</span><span class="o">.</span><span class="na">getSize</span><span class="o">();</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Using these classes it is possible to wrap the concrete components which gives them
+new behaviors. Note that this is not obtained through direct inheritance.
+The next two code snippets show concrete decorators that implement the <code class="language-plaintext highlighter-rouge">CondimentDecorator</code> interface.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Whip</span> <span class="kd">extends</span> <span class="nc">CondimentDecorator</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="nf">Whip</span><span class="o">(</span><span class="nc">Beverage</span> <span class="n">beverage</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">beverage</span> <span class="o">=</span> <span class="n">beverage</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getDescription</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">beverage</span><span class="o">.</span><span class="na">getDescription</span><span class="o">()</span> <span class="o">+</span> <span class="s">", Whip"</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">double</span> <span class="nf">cost</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">beverage</span><span class="o">.</span><span class="na">cost</span><span class="o">()</span> <span class="o">+</span> <span class="o">.</span><span class="mi">10</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Another condiment decorator.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Soy</span> <span class="kd">extends</span> <span class="nc">CondimentDecorator</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="nf">Soy</span><span class="o">(</span><span class="nc">Beverage</span> <span class="n">beverage</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">beverage</span> <span class="o">=</span> <span class="n">beverage</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getDescription</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">beverage</span><span class="o">.</span><span class="na">getDescription</span><span class="o">()</span> <span class="o">+</span> <span class="s">", Soy"</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">double</span> <span class="nf">cost</span><span class="o">()</span> <span class="o">{</span>
+		<span class="kt">double</span> <span class="n">cost</span> <span class="o">=</span> <span class="n">beverage</span><span class="o">.</span><span class="na">cost</span><span class="o">();</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">beverage</span><span class="o">.</span><span class="na">getSize</span><span class="o">()</span> <span class="o">==</span> <span class="nc">Size</span><span class="o">.</span><span class="na">TALL</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">cost</span> <span class="o">+=</span> <span class="o">.</span><span class="mi">10</span><span class="o">;</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">beverage</span><span class="o">.</span><span class="na">getSize</span><span class="o">()</span> <span class="o">==</span> <span class="nc">Size</span><span class="o">.</span><span class="na">GRANDE</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">cost</span> <span class="o">+=</span> <span class="o">.</span><span class="mi">15</span><span class="o">;</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">beverage</span><span class="o">.</span><span class="na">getSize</span><span class="o">()</span> <span class="o">==</span> <span class="nc">Size</span><span class="o">.</span><span class="na">VENTI</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">cost</span> <span class="o">+=</span> <span class="o">.</span><span class="mi">20</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">cost</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>And another one.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Mocha</span> <span class="kd">extends</span> <span class="nc">CondimentDecorator</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="nf">Mocha</span><span class="o">(</span><span class="nc">Beverage</span> <span class="n">beverage</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">beverage</span> <span class="o">=</span> <span class="n">beverage</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getDescription</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">beverage</span><span class="o">.</span><span class="na">getDescription</span><span class="o">()</span> <span class="o">+</span> <span class="s">", Mocha"</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">double</span> <span class="nf">cost</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">beverage</span><span class="o">.</span><span class="na">cost</span><span class="o">()</span> <span class="o">+</span> <span class="o">.</span><span class="mi">20</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>To instantiate a concrete component, or in this example, a beverage and decorate it with condiments,
+the following main class can be executed.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StarbuzzCoffee</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+		<span class="nc">Beverage</span> <span class="n">beverage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Espresso</span><span class="o">();</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">beverage</span><span class="o">.</span><span class="na">getDescription</span><span class="o">()</span>
+				<span class="o">+</span> <span class="s">" $"</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">beverage</span><span class="o">.</span><span class="na">cost</span><span class="o">()));</span>
+
+		<span class="nc">Beverage</span> <span class="n">beverage2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DarkRoast</span><span class="o">();</span>
+		<span class="n">beverage2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Mocha</span><span class="o">(</span><span class="n">beverage2</span><span class="o">);</span>
+		<span class="n">beverage2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Mocha</span><span class="o">(</span><span class="n">beverage2</span><span class="o">);</span>
+		<span class="n">beverage2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Whip</span><span class="o">(</span><span class="n">beverage2</span><span class="o">);</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">beverage2</span><span class="o">.</span><span class="na">getDescription</span><span class="o">()</span>
+				<span class="o">+</span> <span class="s">" $"</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">beverage2</span><span class="o">.</span><span class="na">cost</span><span class="o">()));</span>
+
+		<span class="nc">Beverage</span> <span class="n">beverage3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HouseBlend</span><span class="o">();</span>
+		<span class="n">beverage3</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="nc">Size</span><span class="o">.</span><span class="na">VENTI</span><span class="o">);</span>
+		<span class="n">beverage3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Soy</span><span class="o">(</span><span class="n">beverage3</span><span class="o">);</span>
+		<span class="n">beverage3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Mocha</span><span class="o">(</span><span class="n">beverage3</span><span class="o">);</span>
+		<span class="n">beverage3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Whip</span><span class="o">(</span><span class="n">beverage3</span><span class="o">);</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">beverage3</span><span class="o">.</span><span class="na">getDescription</span><span class="o">()</span>
+				<span class="o">+</span> <span class="s">" $"</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">beverage3</span><span class="o">.</span><span class="na">cost</span><span class="o">()));</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Starting this application results in the following output.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>java StarbuzzCoffee
+Espresso <span class="nv">$1</span>.99
+Dark Roast Coffee, Mocha, Mocha, Whip <span class="nv">$1</span>.49
+House Blend Coffee, Soy, Mocha, Whip <span class="nv">$1</span>.34</code></pre></figure>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-18/tags/#decorator" class="page__taxonomy-item p-category" rel="tag">decorator</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-18/tags/#design-patterns" class="page__taxonomy-item p-category" rel="tag">design patterns</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-18/tags/#pattern" class="page__taxonomy-item p-category" rel="tag">pattern</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-18/tags/#programming" class="page__taxonomy-item p-category" rel="tag">programming</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-18/tags/#structural" class="page__taxonomy-item p-category" rel="tag">structural</a>
+    
+    </span>
+  </p>
+
+
+  
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-18/categories/#design-patterns" class="page__taxonomy-item p-category" rel="tag">design patterns</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-18/categories/#programming" class="page__taxonomy-item p-category" rel="tag">programming</a>
+    
+    </span>
+  </p>
+
+
+  
+
+
+        
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2018-09-23T13:41:35+00:00">September 23, 2018</time></p>
+
+
+      </footer>
+
+      
+
+      
+
+  <nav class="pagination" aria-label="Post pagination">
+    
+      <a href="/pr-preview/pr-18/design-patterns/factory" class="pagination--pager" title="The Factory Pattern">Previous</a>
+    
+    
+      <a href="/pr-preview/pr-18/design-patterns/singleton" class="pagination--pager" title="The Singleton Pattern">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#edeff5",
+      "text": "#838391"
+    },
+    "button": {
+      "background": "#4b81e8"
+    }
+  },
+  "type": "opt-out"
+});
+</script>
+
+<script data-ad-client="ca-pub-2214309606626131" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script src="https://www.dwin2.com/pub.642237.min.js"></script>
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/fjp" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/pr-preview/pr-18/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+
+  <script src="/pr-preview/pr-18/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/pr-preview/pr-18/assets/js/lunr/lunr.min.js"></script>
+<script src="/pr-preview/pr-18/assets/js/lunr/lunr-store.js"></script>
+<script src="/pr-preview/pr-18/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://fjp.at/pr-preview/pr-18/design-patterns/decorator";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/design-patterns/decorator-pattern"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://fjp-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>
