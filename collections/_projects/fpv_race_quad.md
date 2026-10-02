@@ -25,3 +25,13 @@ In this project we will [build](/projects/fpv/assembly) a race quad. For the par
 
 If you are new to this hobby follow this project. You find the index on the left. All the required theory will be outlined first, followed by [build instructions](/projects/fpv/assembly). 
 Common terms are explained in the [glossar](/projects/fpv/glossar) and linked throuhout the single pages.
+
+
+## How FPV Drones Are Made
+
+The [frame](/projects/fpv/frame) of the quad in this project is an iX5 from iFlight.
+Before the parts end up on your workbench, a lot happens in the factory. In the following video iFlight
+shows the full production process of their FPV drones, from raw materials and precision manufacturing
+over assembly to quality control and final testing.
+
+{% include video id="i1IQXR6Rr4o" provider="youtube" %}
