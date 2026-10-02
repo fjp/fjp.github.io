@@ -1,12 +1,9 @@
 source "https://rubygems.org"
 
-gem "github-pages", group: :jekyll_plugins
-
-gem "jekyll-jupyter-notebook"
+# Keep in sync with the version GitHub Pages uses: https://pages.github.com/versions/
+gem "github-pages", "~> 232", group: :jekyll_plugins
 
 gem 'jekyll-include-cache'
-
-gem 'jekyll_github_sample'
 
 gem 'jekyll-redirect-from'
 

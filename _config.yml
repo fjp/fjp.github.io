@@ -11,7 +11,7 @@
 # https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
 
 # theme                  : "minimal-mistakes-jekyll"
-remote_theme           : "mmistakes/minimal-mistakes"
+remote_theme           : "mmistakes/minimal-mistakes@4.28.1"
 minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
@@ -148,6 +148,11 @@ exclude:
   - CHANGELOG
   - LICENSE
   - README
+  # Jekyll's default excludes no longer apply once this list is set
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
 
 
 # Markdown Processing
@@ -189,7 +194,6 @@ plugins:
 #  - jekyll-algolia
 #  - jekyll/tagging
 #  - jekyll-tagging-related_posts
-  - jekyll-jupyter-notebook
   - jekyll-include-cache
 #  - jekyll_github_sample
   - jekyll-redirect-from
@@ -207,7 +211,6 @@ whitelist:
 #  - jekyll-algolia
 #  - jekyll/tagging
 #  - jekyll-tagging-related_posts
-  - jekyll-jupyter-notebook
   - jekyll-include-cache
   - jekyll-redirect-from
 
