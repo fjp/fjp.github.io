@@ -17,16 +17,30 @@ concurrency:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    # The repository variable RUNNER picks the runner: "local" runs the job on
+    # the self-hosted runner with that label, no variable means GitHub's runners
+    runs-on: ${{ vars.RUNNER || 'ubuntu-latest' }}
     steps:
       - uses: actions/checkout@v7
         with:
           submodules: true
 
       - uses: ruby/setup-ruby@v1
+        if: runner.environment == 'github-hosted'
         with:
           ruby-version: "3.3"
           bundler-cache: true
+
+      # The self-hosted runner brings its own Ruby and keeps the gems between runs
+      - name: Install gems
+        if: runner.environment == 'self-hosted'
+        env:
+          BUNDLE_FROZEN: "true"
+        run: |
+          export BUNDLE_PATH="$RUNNER_TOOL_CACHE/bundle"
+          bundle install --jobs 4
+          # The build step needs the same gems
+          echo "BUNDLE_PATH=$BUNDLE_PATH" >> "$GITHUB_ENV"
 
       - name: Build
         env:
