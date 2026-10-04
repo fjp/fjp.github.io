@@ -44,8 +44,6 @@ jobs:
       # The self-hosted runner brings its own Ruby and keeps the gems between runs
       - name: Install gems
         if: runner.environment == 'self-hosted' && github.event.action != 'closed'
-        env:
-          BUNDLE_FROZEN: "true"
         run: |
           export BUNDLE_PATH="$RUNNER_TOOL_CACHE/bundle"
           bundle install --jobs 4
