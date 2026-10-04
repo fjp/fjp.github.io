@@ -3,6 +3,9 @@
 {% else %}
   {% assign teaser = site.teaser %}
 {% endif %}
+{% if include.show_teaser == false %}
+  {% assign teaser = nil %}
+{% endif %}
 
 {% if post.id %}
   {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}

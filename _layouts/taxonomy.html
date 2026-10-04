@@ -1,0 +1,66 @@
+---
+layout: archive
+---
+{% comment %}
+  Index of all tags or categories, selected with "taxonomy: tags" or
+  "taxonomy: categories" in the page's front matter. The theme's tags and
+  categories layouts read site.tags and site.categories, which only contain
+  posts, so this collects the terms of every page and of every document in
+  every collection.
+{% endcomment %}
+{%- assign locale = page.locale | default: layout.locale | default: site.locale -%}
+{%- assign key = page.taxonomy | default: "tags" -%}
+
+{{ content }}
+
+{%- assign entries = site.documents | concat: site.pages -%}
+{%- assign terms = "" | split: "" -%}
+{%- for doc in entries -%}
+  {%- comment -%}
+    join and split turn missing terms (static files in collection folders)
+    into an empty list, so concat always gets an array
+  {%- endcomment -%}
+  {%- assign doc_terms = doc[key] | join: "|" | split: "|" -%}
+  {%- assign terms = terms | concat: doc_terms -%}
+{%- endfor -%}
+{%- assign terms = terms | uniq -%}
+
+{%- comment -%}
+  Sort by number of documents (most first), then by name: the rank
+  10000 - count has four digits and sorts in the opposite order of count.
+{%- endcomment -%}
+{%- assign ranked = "" | split: "" -%}
+{%- for term in terms -%}
+  {%- assign docs = entries | where_exp: "doc", "doc[key] contains term" -%}
+  {%- assign rank = 10000 | minus: docs.size -%}
+  {%- capture entry -%}{{ rank }}|{{ term }}{%- endcapture -%}
+  {%- assign ranked = ranked | push: entry -%}
+{%- endfor -%}
+{%- assign ranked = ranked | sort_natural -%}
+
+<ul class="taxonomy__index">
+  {%- for entry in ranked -%}
+    {%- assign parts = entry | split: "|" -%}
+    {%- assign count = 10000 | minus: parts[0] -%}
+    <li>
+      <a href="#{{ parts[1] | slugify }}">
+        <strong>{{ parts[1] }}</strong> <span class="taxonomy__count">{{ count }}</span>
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>
+
+{% assign entries_layout = page.entries_layout | default: 'list' %}
+{% for entry in ranked %}
+  {%- assign term = entry | split: "|" | last -%}
+  {%- assign docs = entries | where_exp: "doc", "doc[key] contains term" | sort: "date" | reverse -%}
+  <section id="{{ term | slugify }}" class="taxonomy__section">
+    <h2 class="archive__subtitle">{{ term }}</h2>
+    <div class="entries-{{ entries_layout }}">
+      {% for post in docs %}
+        {% include archive-single.html locale=locale type=entries_layout show_teaser=false %}
+      {% endfor %}
+    </div>
+    <a href="#page-title" class="back-to-top">{{ site.data.ui-text[locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+  </section>
+{% endfor %}
