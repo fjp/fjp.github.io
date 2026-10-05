@@ -25,6 +25,11 @@ system on [Taranis](/projects/fpv/glossar#taranis) [transmitters](/projects/fpv/
 We will also see how to [flash](/projects/fpv/glossar#flash) the [firmware](/projects/fpv/glossar#firmware) of the internal [transmitter](/projects/fpv/glossar#transmitter) module of the Taranis into
 the [EU-LBT](/projects/fpv/glossar#eu-lbt) mode. To [register](/projects/fpv/glossar/#register) and [bind](/projects/fpv/glossar#bind) an [ACCESS](/projects/fpv/glossar#access) [receiver](/projects/fpv/glossar#receiver) look into the [next post](/projects/fpv/r-xsr).
 
+**Update 2026:** OpenTX is no longer developed, its last release was in April 2022.
+Its fork [EdgeTX](https://edgetx.org/), started in 2021, is now the firmware most radios ship with, and it still supports the Taranis X9D Plus 2019 and X9D Plus SE 2019.
+Instead of OpenTX Companion, use EdgeTX Companion or the browser-based [EdgeTX Buddy](https://buddy.edgetx.org/) to download and flash it.
+{: .notice--info}
+
 
 
 <figure>

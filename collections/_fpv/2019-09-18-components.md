@@ -26,6 +26,15 @@ when I started this hobby. The shop links show where you can get the individual 
 the original equipement manufacturer (OEM) where you can find datasheets and further informations such as installation guides. If you would like to learn more about the operation of each part and how they interact with each other read
 the next pages which cover the theory behind FPV. On the left you see the menu to this project.
 
+**Update 2026:** This parts list is from 2019, and most of these parts are no longer sold.
+The role of each component is still the same, but current builds differ in a few ways:
+an [ExpressLRS](https://www.expresslrs.org/) receiver instead of FrSky ACCST/ACCESS (see the [R-XSR page](/projects/fpv/r-xsr)),
+ESCs with [AM32](https://am32.ca/) or Bluejay firmware instead of BLHeli_32 (see the [ESC page](/projects/fpv/esc)),
+[EdgeTX](https://edgetx.org/) instead of OpenTX on the radio (see the [Taranis page](/projects/fpv/taranis)),
+and often a digital HD video system such as DJI, Walksnail Avatar or HDZero instead of the analog FPV bundle below.
+[Oscar Liang's overview](https://oscarliang.com/fpv-system/) compares the current video systems.
+{: .notice--info}
+
 
 ## Batteries/Charger
 

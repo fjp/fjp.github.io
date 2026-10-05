@@ -21,6 +21,10 @@ sidebar:
 
 This post is abou the [FrSky R-XSR SmartPort Receiver](https://www.frsky-rc.com/product/r-xsr/) which is also capabale of the new [F.Port](/projects/fpv/glossar/#fport) protocol that requires only a single connection to the [Flight Controller](/projects/fpv/glossar/#flight-controller) for communication. 
 
+**Update 2026:** In FPV, FrSky's ACCST and ACCESS links have largely been replaced by the open source [ExpressLRS](https://www.expresslrs.org/), which offers more range and lower latency with inexpensive receivers.
+The Taranis X9D Plus 2019 can use ExpressLRS with an external module in its JR module bay.
+{: .notice--info}
+
 
 <figure class="half">
     <a href="/assets/collections/fpv/receiver/r-xsr-top.jpg"><img src="/assets/collections/fpv/receiver/r-xsr-top.jpg"></a>
