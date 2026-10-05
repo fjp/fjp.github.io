@@ -3,6 +3,8 @@ layout: single #collection
 title: Introduction to FPV
 permalink: /projects/fpv/
 excerpt: "Build instructions for an FPV race quad."
+date: 2019-09-18 23:08:51 +0200
+last_modified_at: 2026-10-02 13:58:41 +0200
 categories: [fpv, rc, quad]
 tags: [fpv, rc, quad, getfpv, motors, brushless, esc, props, flightcontroller, antennas, camera, goggles, frsky, fatshark]
 comments: true
