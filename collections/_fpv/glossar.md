@@ -3,6 +3,8 @@ layout: single #collection
 title: FPV Glossar
 permalink: /projects/fpv/glossar
 excerpt: "Glossar for FPV terms"
+date: 2019-09-18 23:12:06 +0200
+last_modified_at: 2026-10-02 13:58:10 +0200
 categories: [fpv, rc, quad]
 tags: [fpv, rc, quad, getfpv, motors, brushless, esc, props, flightcontroller, antennas, camera, goggles, frsky, fatshark]
 comments: true
