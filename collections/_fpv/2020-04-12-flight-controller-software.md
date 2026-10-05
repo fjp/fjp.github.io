@@ -35,6 +35,11 @@ Betaflight is an open source [flight controller](/projects/fpv/glossar#flight-co
 which supports a variety of flight controllers, which comes with an easy to use and intuitive graphical user interface (GUI). Although the name implies that it is a beta version, which it get's because it is a fork of the popular Cleanflight software, it is well established and should be seen as a progression to Cleanflight. 
 Betaflight's was intentionally developed for race copters which is why it provides faster communication protocols (loop time) and therefore faster and more percise control of the copter.
 
+**Update 2026:** The screenshots on these pages are from 2020. Betaflight now uses date-based version numbers (the current release series is 2025.12),
+and the Betaflight Configurator has been renamed to the [Betaflight App](https://app.betaflight.com/), which runs in Chromium-based browsers and can be installed from there.
+Tabs and option names may differ from the screenshots.
+{: .notice--info}
+
 
 <figure >
     <a href="/assets/collections/fpv/betaflight/betaflight-ports.png"><img src="/assets/collections/fpv/betaflight/betaflight-ports.png"></a>

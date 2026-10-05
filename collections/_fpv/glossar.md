@@ -66,6 +66,7 @@ BetaFlight is a fork of the [CleanFlight](/projects/fpv/glossar/#cleanflight) pr
 
 Part of the [BetaFlight](/projects/fpv/glossar#betaflight) open source [Flight Controllers](/projects/fpv/glossar#flight-controller) [firmware](/projects/fpv/glossar#firmware) project.
 It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) configuration tool for the BetaFlight [firmware](/projects/fpv/glossar#firmware).
+It has since been renamed to the [Betaflight App](https://app.betaflight.com/), which runs in Chromium-based browsers.
 
 ## Bind
 
@@ -75,6 +76,7 @@ Bind is referred to binding a [receiver](/projects/fpv/glossar#receiver) with a 
 
 [Firmware](/projects/fpv/glossar#firmware) for [ESCs](/projects/fpv/glossar#esc) that is used to process the input data from a [Flight Controller](/projects/fpv/glossar/#flight-controller) and translate that into suitable control commands for the motor. Although the firmware was originally developed for helicopters it is also used for multicopters. 
 Another commonly used firmware for ESCs is called [SimonK](/projects/fpv/glossar#simonk).
+Development of the 32-bit version BLHeli_32 ended in June 2024. Its open source successors are [AM32](https://am32.ca/) for 32-bit ESCs and [Bluejay](https://github.com/bird-sanctuary/bluejay) for 8-bit BLHeli_S ESCs.
 
 ## CFK
 
@@ -94,6 +96,12 @@ device that is required to [flash](/projects/fpv/glossar#flash) a new [Firmware]
 Either you need to short the BL or BOOT pads (or press and hold the BOOT tactile button if your FC board has one) while 
 plugging the USB into the Flight Controller board.
 
+## EdgeTX
+
+Open source [firmware](/projects/fpv/glossar#firmware) for RC [transmitters](/projects/fpv/glossar#transmitter), started in 2021 as a fork of [OpenTX](/projects/fpv/glossar#opentx).
+Most radios ship with it today. It is configured on the radio, with EdgeTX Companion or with the browser-based [EdgeTX Buddy](https://buddy.edgetx.org/).
+Reference: [EdgeTX](https://edgetx.org/).
+
 ## ESC
 
 The Electronic Speed Controller (ESC) is connected to the [PDB](/projects/fpv/glossar#pdb) and 
@@ -106,6 +114,12 @@ More details are found on the [ESC page](/projects/fpv/esc).
 
 EU [LBT](/projects/fpv/glossar#lbt) stands for European Union Listen Before Talk (or Transmit) and is a [firmware](/projects/fpv/glossar#firmware) version for [receivers](/projects/fpv/glossar/#receiver) and [transmitter](/projects/fpv/glossar#transmitter) modules, which is allowed in the geographical region of the EU. Another firmware version is the [FCC](/projects/fpv/glossar#fcc) version which can be used outside the EU.
 Reference: [Brushless Whoop](https://brushlesswhoop.com/frsky-eu-lbt-vs-fcc/).
+
+## ExpressLRS
+
+Open source RC link (ELRS) between [transmitter](/projects/fpv/glossar#transmitter) and [receiver](/projects/fpv/glossar#receiver) on 2.4 GHz or 900 MHz.
+It uses LoRa modulation and small packets for long range and low latency, and has become the most common RC link in FPV.
+Reference: [ExpressLRS](https://www.expresslrs.org/).
 
 ## FCC
 
@@ -209,6 +223,7 @@ How they work and how to read their specifications is explained on the [motor pa
 Open source [firmware](/projects/fpv/glossar#firmware) for RC [transmitters](/projects/fpv/glossar#transmitter) such as the [Taranis](/projects/fpv/glossar#taranis) X9D Plus.
 It is configured on the radio itself or with [OpenTX Companion](/projects/fpv/glossar#opentx-companion).
 Reference: [OpenTX](https://www.open-tx.org/).
+OpenTX is no longer developed (its last release was in April 2022), most radios now run its fork [EdgeTX](/projects/fpv/glossar#edgetx).
 
 ## OpenTX Companion
 
