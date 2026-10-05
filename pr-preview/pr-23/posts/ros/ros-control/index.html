@@ -1,0 +1,1497 @@
+
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js" dir="ltr">
+  <head>
+    
+<meta charset="utf-8">
+
+
+<!-- begin _includes/seo.html --><title>ROS Control, An overview - fjp.github.io</title>
+<meta name="description" content="ROS Control combines a set of packages that include controller interfaces, controller managers, transmissions and hardware_interfaces.">
+
+
+  <meta name="author" content="Franz Pucher">
+  
+  <meta property="article:author" content="Franz Pucher">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="fjp.github.io">
+<meta property="og:title" content="ROS Control, An overview">
+<meta property="og:url" content="https://fjp.at/pr-preview/pr-23/posts/ros/ros-control/">
+
+
+  <meta property="og:description" content="ROS Control combines a set of packages that include controller interfaces, controller managers, transmissions and hardware_interfaces.">
+
+
+
+  <meta property="og:image" content="https://fjp.at/pr-preview/pr-23/assets/collections/diffbot/ros/ros_control/gazebo_ros_control.png">
+  
+
+
+
+  <meta name="twitter:site" content="@franzpucher">
+  <meta name="twitter:title" content="ROS Control, An overview">
+  <meta name="twitter:description" content="ROS Control combines a set of packages that include controller interfaces, controller managers, transmissions and hardware_interfaces.">
+  <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-23/posts/ros/ros-control/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://fjp.at/pr-preview/pr-23/assets/collections/diffbot/ros/ros_control/gazebo_ros_control.png">
+    
+  
+
+  
+
+
+
+
+
+  <meta property="article:published_time" content="2020-03-13T18:31:41+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fjp.at/pr-preview/pr-23/posts/ros/ros-control/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/pr-preview/pr-23/feed.xml" type="application/atom+xml" rel="alternate" title="fjp.github.io Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pr-preview/pr-23/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-2214309606626131",
+          enable_page_level_ads: true
+     });
+</script>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+<!--KaTeX-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+<!-- Pseudocode.js -->
+<!-- https://github.com/SaswatPadhi/pseudocode.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"
+        integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous">
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
+<script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js">
+</script>
+
+<!-- Mailinglist -->
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '1518166');
+</script>
+<!-- End MailerLite Universal -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+        
+        <a class="site-title" href="/pr-preview/pr-23/">
+          fjp.github.io
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-23/"
+                
+                
+              >Home</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-23/blog/"
+                
+                
+              >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-23/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-23/design-patterns/"
+                
+                
+              >Design Patterns</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-23/cpp/"
+                
+                
+              >C++</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-23/projects/fpv/"
+                
+                
+              >FPV</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-23/about/"
+                
+                
+              >About</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-23/ads/"
+                
+                
+              >Ads</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-23/privacy/"
+                
+                
+              >Privacy</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-23/sitemap/"
+                
+                
+              >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/pr-preview/pr-23/assets/collections/diffbot/ros/ros_control/gazebo_ros_control.png');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          ROS Control, An overview
+
+        
+      </h1>
+      
+        <p class="page__lead">ROS Control combines a set of packages that include controller interfaces, controller managers, transmissions and hardware_interfaces.
+</p>
+      
+      
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          24 minute read
+        
+      </span>
+    
+  </p>
+
+
+      
+    </div>
+  
+  
+    <span class="page__hero-caption">Source: <a href="http://wiki.ros.org/ros_control"><strong>ROS Control Wiki</strong></a>
+</span>
+  
+</div>
+
+
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-23/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-23/posts/" itemprop="item"><span itemprop="name">Posts</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-23/categories/#ros" itemprop="item"><span itemprop="name">Ros</span></a>
+            <meta itemprop="position" content="3" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">ROS Control, An overview</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="ROS Control, An overview">
+    <meta itemprop="description" content="ROS Control combines a set of packages that include controller interfaces, controller managers, transmissions and hardware_interfaces.">
+    <meta itemprop="datePublished" content="2020-03-13T18:31:41+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc" aria-label="Table of contents">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#big-picture-and-goals">Big Picture and Goals</a><ul><li><a href="#history">History</a></li><li><a href="#related-work">Related Work</a></li></ul></li><li><a href="#ros-control-and-its-repositories">Ros Control and its Repositories</a><ul><li><a href="#setting-up-a-robot">Setting up a Robot</a><ul><li><a href="#hardware-abstraction-and-controllers">Hardware Abstraction and Controllers</a></li><li><a href="#exclusive-resource-ownwership">Exclusive Resource Ownwership</a></li><li><a href="#memory-layout">Memory Layout</a></li><li><a href="#simulation-backend">Simulation Backend</a></li></ul></li><li><a href="#controllers">Controllers</a><ul><li><a href="#controller-toolbox">Controller Toolbox</a></li><li><a href="#ros-controllers">ROS Controllers</a></li></ul></li><li><a href="#controller-lifecycle-management">Controller Lifecycle Management</a><ul><li><a href="#controller-manager">Controller Manager</a></li><li><a href="#the-control-loop">The Control Loop</a></li><li><a href="#the-control-loop-extended">The Control Loop Extended</a><ul><li><a href="#mechanical-transmissions">Mechanical Transmissions</a></li><li><a href="#safety-issues">Safety Issues</a></li></ul></li></ul></li></ul></li><li><a href="#reference">Reference</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>ROS Control combines a set of packages that include controller interfaces, controller managers, transmissions and hardware_interfaces. The ROS control framework is used to implement and manage robot controllers for real robots and in simulation within gazebo.</p>
+
+<h2 id="big-picture-and-goals">Big Picture and Goals</h2>
+
+<p>Let’s start with a typical scenario: you have a robot, or even more general, a piece of hardware, and you would 
+like to run an application that leverages ROS specific libraries like <a href="https://moveit.ros.org/">MovieIt!</a> or the <a href="http://wiki.ros.org/navigation">navigation stack</a>. 
+All these libraries are well tested and you don’t want to rewrite them. On the other hand you probably have a 
+computer that is running a simulator like <a href="http://gazebosim.org/">Gazebo</a> to simulate your robot. To make ends meet we can make use of the <a href="http://wiki.ros.org/ros_control">ROS control</a> project.</p>
+
+<figure>
+    <a href="/pr-preview/pr-23/assets/ros/ros-control/ros-control-overview.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/ros-control-overview.png" /></a>
+    <figcaption>Overview of ROS control project (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>ROS control helps you writing controllers including real-time constraints, transmissions and joint limits. 
+It provides tools for modeling the robot in software, represented by the robot hardware interface (<code class="language-plaintext highlighter-rouge">hardware_interface::RobotHW</code>), and comes 
+with ready to use out of the box controllers, thanks to a common interface (<a href="http://docs.ros.org/melodic/api/controller_interface/html/c++/classcontroller__interface_1_1ControllerBase.html"><code class="language-plaintext highlighter-rouge">controller_interface::ControllerBase</code></a>) for different applications which then talk to third-party tools. 
+The important aspects to highlight is that the hardware access to the robot is decoupled, so you don’t expose how you talk to your robot. This means that controllers and your robot hardware structure are decoupled so you can develop them independently and in isolation which enables you to share and mix and match controllers.</p>
+
+<p>When you want to write your robot backend, there’s a possibility to leverage an out of the box simulation backend (<code class="language-plaintext highlighter-rouge">gazebo_ros_control</code> plugin). 
+After you’ve tested your robot in simulation, and want to work on the real robot hardware, you will want to write your custom hardware backend for your robot. For this, there are also tools that help making this task easier for you.</p>
+
+<p>There is already a set of existing controllers (see the <a href="http://wiki.ros.org/ros_controllers"><code class="language-plaintext highlighter-rouge">ros_controllers</code></a> meta package) that are robot agnostic, which should hopefully enable you to leverage some of those. However, if your application requires it, then there are tools (<a href="http://wiki.ros.org/controller_interface"><code class="language-plaintext highlighter-rouge">controller_interface</code></a>) that help you also implement custom controllers. ROS control also provides the <a href="http://wiki.ros.org/controller_manager">controller manager</a> for controlling the life cycle of your controllers.</p>
+
+<p>When it comes to third party libraries, there is out of the box compatibility with general purpose robot tools like visualization, <code class="language-plaintext highlighter-rouge">tf</code> and <code class="language-plaintext highlighter-rouge">rqt</code> plugins. The project provides also compatibility with the navigation stack for differential drive robots and biped humanoid robots and it also enables motion planning with <code class="language-plaintext highlighter-rouge">MoveIt</code>.</p>
+
+<p>The whole idea is that what you can focus on your actual application or research paper and not have to bother writing the boiler plate code to get everything working with your robot hardware.</p>
+
+<p>Another important aspect is that ROS control is real-time ready in the sense that if your application has (hard) real-time constraints then you can use ROS control with it. However, if your application doesn’t have real-time constraints then it is not imposed on you. Also the choice of using a real-time operating system is entirely up to you.</p>
+
+<p>In a nutshell, the goals of the project are to</p>
+
+<ul>
+  <li>lower the entry barrier for exposing hardware to ROS.</li>
+  <li>promote the reuse of control code in the same spirit that ROS has done for non-control code, at least non-real-time control code.</li>
+  <li>provide a set of ready-to-use tools.</li>
+  <li>have a real-time ready implementation.</li>
+</ul>
+
+<h3 id="history">History</h3>
+
+<p>By the year 2009 there was the <code class="language-plaintext highlighter-rouge">pr2_controller_manager</code> that was developed by Willow Garage which was specific for the pr2 robot. This changed in the late 2012, where hiDOF in collaboration with Willow Garage started the ROS control project which by early 2013 was continued by PAL robotics and community efforts. ROS control is basically a robot agnostic version of the <code class="language-plaintext highlighter-rouge">pr2_controller_manager</code>.</p>
+
+<h3 id="related-work">Related Work</h3>
+
+<p>There’s quite a few component-based frameworks like Orocos RTT (and also there’s a couple of projects that build upon Orocos RTT as well), openRTM, Yarp. For computational graph models there’s Ecto there’s Microblx, and many non-robotics implementations, especially within the audio and graphics communities.</p>
+
+<p>Without ROS control there would be no end-to-end solution for ROS users. ROS control tries to bring standard ROS interfaces (topics, services, actions) closer to the hardware and therefore to push the integration effort to the driver level, the rightmost part of the overview image.</p>
+
+<figure>
+    <a href="/pr-preview/pr-23/assets/ros/ros-control/ros-control-black-box.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/ros-control-black-box.png" /></a>
+    <figcaption>Overview of ROS control project (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<h2 id="ros-control-and-its-repositories">Ros Control and its Repositories</h2>
+
+<p>The ROS control project consists of a github organization that’s called <a href="https://github.com/ros-controls">ros controls</a>.
+There you find messages and action definitions, tools that help you writing real-time code (<a href="https://github.com/ros-controls/realtime_tools">realtime_tools</a>) in the context of control, hardware interfaces (<a href="http://wiki.ros.org/hardware_interface"><code class="language-plaintext highlighter-rouge">hardware_interface</code></a> and the <a href="http://wiki.ros.org/transmission_interface"><code class="language-plaintext highlighter-rouge">transmission_interface</code></a> package to describe your robot and the <a href="http://wiki.ros.org/controller_manager"><code class="language-plaintext highlighter-rouge">controller_manager</code></a>. The core framework is found in the <a href="https://github.com/ros-controls/ros_control"><code class="language-plaintext highlighter-rouge">ros_control</code></a> package which is compatible with <a href="https://github.com/ros-controls/ros_controllers"><code class="language-plaintext highlighter-rouge">ros_controllers</code></a> that provides a set of robot agnostic controllers.</p>
+
+<p>The <a href="http://wiki.ros.org/ros_control"><code class="language-plaintext highlighter-rouge">ros_control</code></a> meta package is composed of the following individual packages:</p>
+
+<ul>
+  <li><a href="http://wiki.ros.org/control_toolbox"><code class="language-plaintext highlighter-rouge">control_toolbox</code></a>: This package contains common modules (PID and Sine) that can be used by all controllers.</li>
+  <li><a href="http://wiki.ros.org/controller_interface"><code class="language-plaintext highlighter-rouge">controller_interface</code></a>: This package contains the interface base class for existing controllers and to develop new ones that will work with the ROS control framework.</li>
+  <li><a href="http://wiki.ros.org/controller_manager"><code class="language-plaintext highlighter-rouge">controller_manager</code></a>: This package provides the infrastructure to load, unload, start, and stop controllers.</li>
+  <li><a href="http://wiki.ros.org/controller_manager_msgs"><code class="language-plaintext highlighter-rouge">controller_manager_msgs</code></a>: This package provides the message and service definitions for the controller manager.</li>
+  <li><a href="http://wiki.ros.org/hardware_interface"><code class="language-plaintext highlighter-rouge">hardware_interface</code></a>: This contains the base class for the hardware interfaces</li>
+  <li><a href="http://wiki.ros.org/transmission_interface"><code class="language-plaintext highlighter-rouge">transmission_interface</code></a>: This package contains the interface classes to model transmissions (<a href="http://docs.ros.org/melodic/api/transmission_interface/html/c++/classtransmission__interface_1_1SimpleTransmission.html">simple reducers</a>, <a href="http://docs.ros.org/melodic/api/transmission_interface/html/c++/classtransmission__interface_1_1DifferentialTransmission.html">differentials</a> or <a href="http://docs.ros.org/melodic/api/transmission_interface/html/c++/classtransmission__interface_1_1FourBarLinkageTransmission.html">four-bar linkages</a>)</li>
+</ul>
+
+<h3 id="setting-up-a-robot">Setting up a Robot</h3>
+
+<p>ROS control is split into two parts. First there is the robot hardware abstraction, 
+which is used to communicate with the hardware. It provides resources like joints and it also handles resource conflicts. 
+On the other hand, we have controllers. They talk to the hardware through the hardware interface and they require resources that are provided by the hardware abstraction.</p>
+
+<figure>
+    <a href="/pr-preview/pr-23/assets/ros/ros-control/controllers-vs-hardware-abstraction.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/controllers-vs-hardware-abstraction.png" /></a>
+    <figcaption>Controllers vs Hardware abstraction (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<h4 id="hardware-abstraction-and-controllers">Hardware Abstraction and Controllers</h4>
+
+<p>Let’s get a more detailed view of the hardware abstraction and the communication between and with ROS controllers.</p>
+
+<figure>
+    <a href="/pr-preview/pr-23/assets/ros/ros-control/controllers-and-hardware-interfaces.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/controllers-and-hardware-interfaces.png" /></a>
+    <figcaption>Controllers and hardware interfaces (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>The hardware interface is a software representation of the robot and its abstract hardware.
+In ROS control speak, we have the notion of resources, which are actuators, joints and sensors.<br />
+Some resources are are read-only, such as joint states, IMU, force-torque sensors, and so on, and some are read and write compatible, such as position, velocity, and effort joints.
+A bunch of hardware interfaces, where one is just a set of similar resources, represent a robot.</p>
+
+<p>The robot hardware, represented in software, and the controllers are connected via ROS control’s interfaces, 
+not to be confused with typical ROS interfaces like topics, actions or services. 
+This means, we are just passing pointers around which is real-time safe. The interfaces of the robot hardware are
+used by controllers to connect and communicate with the hardware. 
+At the leftmost part of the image we see that controllers have their interfaces, which are typically ROS interfaces
+(topics, services or actions) that are custom so your controller can expose whatever it wants.</p>
+
+<h4 id="exclusive-resource-ownwership">Exclusive Resource Ownwership</h4>
+
+<p>You can have multiple controllers accessing the same interface. 
+In the image below you can see that the two arm controllers both use the first arm joint.</p>
+
+<figure>
+    <a href="/pr-preview/pr-23/assets/ros/ros-control/exclusive-resource-ownership.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/exclusive-resource-ownership.png" /></a>
+    <figcaption>Exclusive resource ownership (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>By default there’s a policy of exclusive resource ownership. 
+In this case, you can either have one or the other but not both controllers running at the same time,
+which is enforced by ROS control. If you want other policies, you can implement them as well.</p>
+
+<h4 id="memory-layout">Memory Layout</h4>
+
+<p>Now we will learn how the hardware interface actually communicates with the real or simulated hardware using doubles and floats which represent the actual data that you want to pass around.</p>
+
+<p>The following image depicts the memory layout of your raw data and you can see the memory regions where you
+actually read and write from and to hardware.</p>
+
+<figure class="half">
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/memory-layout-read.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/memory-layout-read.png" /></a>
+    <a href="/pr-preview/pr-23/assets/ros/ros-control/memory-layout-rw.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/memory-layout-rw.png" /></a>
+    <figcaption>Memory layouts for a joint state interface for reading states of a resource and another joint command interface for reading and writing from and to a resource (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>A resource is nothing else than pointers to the raw data that adds some semantics to the data such as describing that it is a position or velocity, the name of the joint and that it belongs for example to a joint state interface.</p>
+
+<p>As you see in the memory layout image above, joint state interfaces are used for reading joint state.
+If you have a resource that can receive commands and at the same time provide feedback you can use the joint command interface. This interface is the base interface for other joint interfaces for position, velocity and effort (see the <a href="http://docs.ros.org/melodic/api/hardware_interface/html/c++/classhardware__interface_1_1JointCommandInterface.html">C++ <code class="language-plaintext highlighter-rouge">hardware_interface</code> API</a>).
+These interfaces provide semantic meaning which allow you to read the joint state and also send semantically meaningful commands.</p>
+
+<p>The following is a simple code example.</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;hardware_interface/robot_hw.h&gt;</span><span class="cp">
+</span>
+<span class="k">class</span> <span class="nc">MyRobot</span> <span class="o">:</span>
+    <span class="k">public</span> <span class="n">hardware_interface</span><span class="o">::</span><span class="n">RobotHW</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">MyRobot</span><span class="p">();</span> <span class="c1">// Setup robot</span>
+    <span class="n">MyRobot</span><span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="o">&amp;</span><span class="n">nh</span><span class="p">,</span> <span class="n">urdf</span><span class="o">::</span><span class="n">Model</span> <span class="o">*</span><span class="n">urdf_model</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">);</span>
+    
+    <span class="c1">// Talk to HW</span>
+    <span class="kt">void</span> <span class="n">read</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="n">write</span><span class="p">();</span>
+    
+    
+    <span class="c1">// Requirement only if needed ...</span>
+    <span class="k">virtual</span> <span class="kt">bool</span> <span class="n">checkForConflict</span><span class="p">(...)</span> <span class="k">const</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To implement your custom robot hardware interface you inherit from a class called <code class="language-plaintext highlighter-rouge">hardware_interface::RobotHW</code> that is part of ROS control. In the constructor you set up your robot, either implemented in code (see for example: <a href="https://github.com/eborghi10/my_ROS_mobile_robot/blob/master/my_robot_base/include/my_robot_hw_interface.h">eborghi10/my_ROS_mobile_robot</a>) or using a robot description in the form of an urdf model. The latter requires that you pass the urdf model to the constructor or load it from the parameter server. An example using the urdf description can be found in the <a href="https://github.com/PickNikRobotics/ros_control_boilerplate">ros_control_boilerpalte</a> repository.</p>
+
+<p>After the robot setup we need to implement the <code class="language-plaintext highlighter-rouge">read()</code> and <code class="language-plaintext highlighter-rouge">write()</code> methods, which is robot specific and up to you to implement. The <code class="language-plaintext highlighter-rouge">read()</code> method is used to populate the raw data with your robot’s state. <code class="language-plaintext highlighter-rouge">write()</code> is used to send out 
+raw commands via CAN bus, Ethernet, Ethercat, serial port or whatever protocol your robot hardware uses.</p>
+
+<p>Within the ROS community, there are some projects that can help you out with this. 
+Examples are <a href="https://rosindustrial.org/">ROS-Industrial</a>, <a href="http://wiki.ros.org/rosserial">rosserial</a>, <a href="http://wiki.ros.org/sr_ronex">SR Ronex</a> and other custom solutions out there that you can leverage.</p>
+
+<p>In case exclusive resource ownership is not good enough, you can always reimplement the virtual member function <a href="http://docs.ros.org/melodic/api/hardware_interface/html/c++/classhardware__interface_1_1RobotHW.html#ab491cf8d359534fe104f59300c188878"><code class="language-plaintext highlighter-rouge">hardware_interface::RobotHW::checkForConflicts()</code></a> with your custom implementation.</p>
+
+<p>In summary, the package called <a href="http://wiki.ros.org/hardware_interface">hardware_interface</a> (see also its <a href="http://docs.ros.org/melodic/api/hardware_interface/html/c++/annotated.html">C++ API</a>) provides all the building blocks for constructing a robot hardware abstraction. It is the software representation of your robot 
+and the idea is to abstract hardware away which is done using resources (actuators, joints and sensors), interfaces, that are sets of similar resources, and make up a robot, which is a set of interfaces. The hardware interface also handles resource conflicts and by default we have exclusive resource ownership.</p>
+
+<p>Out of the box ROS control provides resources and interfaces to read states such as joint state (position, velocity and effort) IMU and force-torque sensors. If, in addition to reading, you also want to send commands there are interfaces for position control joints, but also velocity and effort control joints. For a list of all available interfaces check out the <a href="http://wiki.ros.org/ros_control#Hardware_Interfaces">Hardware Interfaces</a> section on the <code class="language-plaintext highlighter-rouge">ros_control</code> wiki page.</p>
+
+<p>Similar interfaces exist for actuators, which will be explained later.</p>
+
+<h4 id="simulation-backend">Simulation Backend</h4>
+
+<figure>
+    <a href="/pr-preview/pr-23/assets/ros/ros-control/simulation-overview.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/simulation-overview.png" /></a>
+    <figcaption>Robot simulation using ROS control and Gazebo (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>To simulate your robot there is a package called <a href="http://wiki.ros.org/gazebo_ros_control"><code class="language-plaintext highlighter-rouge">gazebo_ros_control</code></a> which is located outside the ROS control organization repositories in <a href="https://github.com/ros-simulation/gazebo_ros_pkgs">ros-simulation/gazebo_ros_pkgs</a>. It is a <a href="http://gazebosim.org/">Gazebo</a> plugin for ROS control.
+There exists a default plugin, which populates all the joint interfaces from the URDF by parsing transmission specification and optionally joint limits, which will be describe later in the post. If you use the default plugin and want your
+robot to show up in your Gazebo simulator, the following is all you have to add to your urdf description, apart from the robot’s transmissions.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;gazebo&gt;</span>
+  <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">"gazebo_ros_control"</span> <span class="na">filename=</span><span class="s">"libgazebo_ros_control.so"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;robotNamespace&gt;</span>/my_robot<span class="nt">&lt;/robotNamespace&gt;</span>
+  <span class="nt">&lt;/plugin&gt;</span>
+<span class="nt">&lt;/gazebo&gt;</span>
+</code></pre></div></div>
+
+<p>This makes it simple to test ROS control because we don’t have to write any robot hardware interface code. 
+Instead, we just need to setup some configuration files.</p>
+
+<p>There’s also a custom plugin where most of the details are up to you. TODO source?</p>
+
+<h3 id="controllers">Controllers</h3>
+
+<p>In the following images we concentrate on the controllers</p>
+
+<figure class="half">
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/controllers01.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/controllers01.png" /></a>
+    <a href="/pr-preview/pr-23/assets/ros/ros-control/controllers02.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/controllers02.png" /></a>
+    <figcaption>Controllers (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>and see more of the arm controller’s internals.</p>
+
+<figure class="half">
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/arm-controller.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/arm-controller.png" /></a>
+    <figcaption>arm controller (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>As mentioned, a controller requires resources in the form of <code class="language-plaintext highlighter-rouge">ros_control</code> hardware interfaces (located on the right side in the image). On the left hand side we have the controller’s ROS API.</p>
+
+<p>Controllers use a plugin interface that implements the controller lifecycle. The lifecycle is a simple state machine with transitions between two states which are “stopped” and “running”. A controller has two computation units where one is real-time safe and the other is non real-time.</p>
+
+<p>The state machine uses non real-time operations to load and unload a controller.</p>
+
+<figure class="half">
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/controller-load-unload.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/controller-load-unload.png" /></a>
+    <figcaption>Plugin interface transitions: load and unload (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>Loading controller is done by the <code class="language-plaintext highlighter-rouge">controller_manager</code> which initializes the controller plugin defined in a config yaml file and checks requisites, for example the existence of hardware resources 
+(note that this is not the same as hardware resource conflict handling). In the arm controller example, 
+we need two joints named <code class="language-plaintext highlighter-rouge">arm_1_joint</code> and <code class="language-plaintext highlighter-rouge">arm_2_joint</code> and they must implement the <code class="language-plaintext highlighter-rouge">PositionJointInterface</code>.
+In case your robot doesn’t have that interface with the resources, the controller you want to use cannot work with that robot. You can also check for things like the robot URDF description configuration or a controller specific configuration like ROS parameters scoped within the controller namespace. Finally in the load method you setup the ROS interfaces which define how your clients will talk to the controller.</p>
+
+<p>The steps to unload a controller plugin are implemented in the destructor of the controller.</p>
+
+<p>ROS control has real-time safe operations, for transitioning between the stopped and running states.</p>
+
+<figure class="half">
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/controller-start-stop.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/controller-start-stop.png" /></a>
+    <figcaption>Plugin interface transitions: start and stop (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>When you <code class="language-plaintext highlighter-rouge">start()</code> the controller the following is what gets executed before the first controller <code class="language-plaintext highlighter-rouge">update()</code>:</p>
+
+<ul>
+  <li>Resource conflict handling (different from resources existence: by this time we know that resources exists but we check if the resource is already in use or available for your controller (in the case of exclusive ownership)</li>
+  <li>The next typical policy is to apply what’s called semantic zero. This means, after the controller starts you would for example hold the position, set the velocity to zero, activate gravity compensation or something else that makes sense in your use case.</li>
+</ul>
+
+<p>The <code class="language-plaintext highlighter-rouge">stop()</code> operation goes from the “running” to the “stop” state. The typical policy for this operation is to cancle goals.
+Cancelling all goals avoids a rapid movement the next time you start your controller because it doesn’t try to resume what it was doing the last time around.</p>
+
+<p>The last real-time safe operation is <code class="language-plaintext highlighter-rouge">update()</code> which is a real-time safe computation, if implemented accordingly. This means you have to take care the implementation of <code class="language-plaintext highlighter-rouge">update()</code> is actually real-time safe, or if you don’t have real-time constrains, that the implementation is deterministic. 
+The <code class="language-plaintext highlighter-rouge">updated()</code> method is executed periodically in the “running” state.</p>
+
+<p>Finally, the last part of computations that exist in controllers are non real-time operations which are executed asynchronously and take place in the callbacks of your controller’s ROS interface.</p>
+
+<p>In summary, controllers are dynamically loadable <strong>plugins</strong> that have an interface which defines a very <strong>simple state machine</strong>. This interface clearly separates the operations that are <strong>non real-time safe</strong> from those that are required to be <strong>real-time safe</strong>. Finally, the computation can take place in the <strong>controller update</strong>, which in this case is both periodic and real-time safe, and we have computation in the <strong>ROS API callbacks</strong>, which is asynchronous and non real-time safe.</p>
+
+<h4 id="controller-toolbox">Controller Toolbox</h4>
+
+<p>To write your own controllers there is a helpful package <a href="http://wiki.ros.org/control_toolbox"><code class="language-plaintext highlighter-rouge">controller_toolbox</code></a> which contains tools useful for writing
+<strong>controllers</strong> or <strong>robot abstractions</strong>.</p>
+
+<p>The following is a list of tools you can use:</p>
+
+<ul>
+  <li><strong>Pid</strong> PID loop</li>
+  <li><strong>SineSweep</strong> for joint frequency analysis</li>
+  <li><strong>Dither</strong> white noise generator</li>
+  <li><strong>LimitedProxy</strong> for convergence without overshoot</li>
+  <li>…</li>
+</ul>
+
+<h4 id="ros-controllers">ROS Controllers</h4>
+
+<p>Another helpful repository is <a href="http://wiki.ros.org/ros_controllers"><code class="language-plaintext highlighter-rouge">ros_controllers</code></a> which provides ready to use out of the box controllers. 
+If you plan to develop a controller, you should first check in this repository if it already exists.</p>
+
+<p>This repository has three controllers for reporting the joint state from sensors:</p>
+
+<ul>
+  <li><a href="http://wiki.ros.org/joint_state_controller"><code class="language-plaintext highlighter-rouge">joint_state_controller</code></a> reads joint states and publishes it to the <code class="language-plaintext highlighter-rouge">/joint_state</code> topic of type <a href="http://docs.ros.org/melodic/api/sensor_msgs/html/msg/JointState.html"><code class="language-plaintext highlighter-rouge">sensor_msgs/JointState</code></a>.
+Note: although it contains the word controller in its name, it is not actually controlling anything. However, it should always be used to publish the current joint states for other nodes such as <code class="language-plaintext highlighter-rouge">tf</code>. It is also worth mentioning that it should not be confused with <a href="http://wiki.ros.org/joint_state_publisher"><code class="language-plaintext highlighter-rouge">joint_state_publisher</code></a> (see <a href="https://answers.ros.org/question/303358/what-is-the-difference-between-joint_state_publisher-and-joint_state_controller/">this answer</a> for a distinction).</li>
+  <li><a href="http://wiki.ros.org/imu_sensor_controller"><code class="language-plaintext highlighter-rouge">imu_sensor_controller</code></a> publishes <a href="http://docs.ros.org/melodic/api/sensor_msgs/html/msg/Imu.html"><code class="language-plaintext highlighter-rouge">sensor_msgs/Imu</code></a> topics.</li>
+  <li><a href="http://wiki.ros.org/force_torque_sensor_controller"><code class="language-plaintext highlighter-rouge">force_torque_sensor_controller</code></a> publishes <a href="http://docs.ros.org/melodic/api/geometry_msgs/html/msg/Wrench.html"><code class="language-plaintext highlighter-rouge">geometry_msgs/Wrench</code></a> topics.</li>
+</ul>
+
+<p>It also provides multiple general purpose controllers. There are three packages that implement simple single joint controllers that operate in different control spaces (position, velocity and effort). 
+These main ROS controllers are grouped according to the commands that get passed to your hardware/simulator:</p>
+
+<ul>
+  <li><a href="http://wiki.ros.org/effort_controllers"><code class="language-plaintext highlighter-rouge">effort_controllers</code></a>: used when you want to send commands to an effort interface. This means that the joints you want to control accept an effort command.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">joint_effort_controller</code> with this subclass the <code class="language-plaintext highlighter-rouge">effort_controllers</code> plugin accepts effort set values as input.</li>
+      <li><code class="language-plaintext highlighter-rouge">joint_position_controller</code> with this subclass the <code class="language-plaintext highlighter-rouge">effort_controllers</code> plugin accepts position set values as input.</li>
+      <li><code class="language-plaintext highlighter-rouge">joint_velocity_controller</code> with this subclass the <code class="language-plaintext highlighter-rouge">effort_controllers</code> plugin accepts velocity set values as input.</li>
+    </ul>
+  </li>
+  <li><a href="http://wiki.ros.org/position_controllers"><code class="language-plaintext highlighter-rouge">position_controllers</code></a>: used when you want to send commands to a position interface. This means that the joints you want to control accept a position command.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">joint_position_controller</code> with this subclass the <code class="language-plaintext highlighter-rouge">position_controllers</code> plugin accepts only position set values as input.</li>
+      <li><code class="language-plaintext highlighter-rouge">joint_group_position_controller</code></li>
+    </ul>
+  </li>
+  <li><a href="http://wiki.ros.org/velocity_controllers"><code class="language-plaintext highlighter-rouge">velocity_controllers</code></a>: used when you want to send commands to a position interface. This means that the joints you want to control accept a velocity command.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">joint_velocity_controller</code> with this subclass the <code class="language-plaintext highlighter-rouge">position_controllers</code> plugin accepts only velocity set values as input.</li>
+      <li><code class="language-plaintext highlighter-rouge">joint_group_velocity_controller</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p>To set an entire trajectory, the following controllers are defined:</p>
+
+<ul>
+  <li><a href="http://wiki.ros.org/joint_trajectory_controller?distro=melodic"><code class="language-plaintext highlighter-rouge">joint_trajectory_controllers</code></a> is mostly used for manipulation and implements the action interface that is expected by <a href="https://moveit.ros.org/">MoveIt!</a> in the default ROS bindings. The controller accepts commands as either actions of type <a href="http://docs.ros.org/api/control_msgs/html/action/FollowJointTrajectory.html"><code class="language-plaintext highlighter-rouge">control_msgs/FollowJointTrajectory</code></a> or via the topic <a href="http://docs.ros.org/melodic/api/trajectory_msgs/html/msg/JointTrajectory.html"><code class="language-plaintext highlighter-rouge">trajectory_msgs/JointTrajectory</code></a>.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">position_controller</code></li>
+      <li><code class="language-plaintext highlighter-rouge">velocity_controller</code></li>
+      <li><code class="language-plaintext highlighter-rouge">effort_controller</code></li>
+      <li><code class="language-plaintext highlighter-rouge">position_velocity_controller</code></li>
+      <li><code class="language-plaintext highlighter-rouge">position_velocity_acceleration_controller</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p>For navigation there is the <a href="http://wiki.ros.org/diff_drive_controller"><code class="language-plaintext highlighter-rouge">diff_drive_controller</code></a> which accepts commands in the form of <a href="http://docs.ros.org/melodic/api/geometry_msgs/html/msg/Twist.html"><code class="language-plaintext highlighter-rouge">geometry_msgs/Twist</code></a> topics and publishes odometry to <a href="http://wiki.ros.org/tf"><code class="language-plaintext highlighter-rouge">tf</code></a> and <a href="http://docs.ros.org/melodic/api/nav_msgs/html/msg/Odometry.html"><code class="language-plaintext highlighter-rouge">nav_msgs/Odometry</code></a>. It exposes a ROS interface that is compatible with the <a href="http://wiki.ros.org/navigation">ROS navigation stack</a>.</p>
+
+<p>For manipulation we can use the <a href="http://wiki.ros.org/gripper_action_controller"><code class="language-plaintext highlighter-rouge">gripper_action_controller</code></a> which implements a single-DOF gripper controller. 
+It accepts commands as actions of type <a href="http://docs.ros.org/melodic/api/control_msgs/html/msg/GripperCommand.html"><code class="language-plaintext highlighter-rouge">control_msgs/GripperCommandAction</code></a> and is compatible with <a href="https://moveit.ros.org/">MoveIt!</a>.</p>
+
+<h3 id="controller-lifecycle-management">Controller Lifecycle Management</h3>
+
+<p>To bring the robot hardware abstraction and the controllers together ROS control uses the <strong>controller manager</strong> 
+which lives in a package with the same <a href="http://wiki.ros.org/controller_manager"><code class="language-plaintext highlighter-rouge">controller_manager</code></a> and takes care of the control loop.</p>
+
+<h4 id="controller-manager">Controller Manager</h4>
+
+<figure class="half">
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/controller-manager.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/controller-manager.png" /></a>
+    <figcaption>Controller lifecycle management (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>The controller manager knows about the robot and the controllers. Its two main purposes are: <strong>robot resource management</strong> and <strong>controller lifecycle management</strong>.</p>
+
+<figure class="half">
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/robot-resources.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/robot-resources.png" /></a>
+    <figcaption>Robot resource conflict handling (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>The controller manager knows about resources and can therefore enforce the resource conflict policy, for example, exclusive ownership.</p>
+
+<p>It also takes care of controller lifecycle management. Because the <code class="language-plaintext highlighter-rouge">controller_manager</code> knows about the controllers 
+it handles the transitions of the controller state machine and it also updates the running controllers.
+It is important to mention that, by design, controller updates are serialized in a single thread and they are periodic.</p>
+
+<figure class="half">
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/controller-lifecycle.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/controller-lifecycle.png" /></a>
+    <figcaption>Controller lifecycle management (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>The controller manager has an API which is based on ROS services. This API is used for</p>
+
+<ul>
+  <li>Controller lifecycle managment: to transition between the states of the controller state machine
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">load_controller</code></li>
+      <li><code class="language-plaintext highlighter-rouge">unload_controller</code></li>
+      <li><code class="language-plaintext highlighter-rouge">switch_controller</code>: Note that there are no separate start and stop services. Instead, there is a service that is called 
+switch. With that, it is possible to to stop a set of controllers and then start a set of controllers in the same control cycle. This might be relevant if you have a robot arm that is stopped hanging in mid air and you want to change control strategies. What might happen in this case is that your arm falls down when a few control cycles pass. With the switch service you can guarantee that there is no control cycle without any controller running unless that is what you want.</li>
+    </ul>
+  </li>
+  <li>Query services:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">list_controllers</code>: list the currently running controllers or which controllers are available for loading.</li>
+      <li><code class="language-plaintext highlighter-rouge">list_controller_types</code>:</li>
+    </ul>
+  </li>
+  <li>Other services useful for debugging
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">reload_controller_libraries</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="the-control-loop">The Control Loop</h4>
+
+<p>The following image shows the control loop in its most basic and simplified form:</p>
+
+<figure class="half">
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/control-loop-simple.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/control-loop-simple.png" /></a>
+    <figcaption>Basic control loop (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>Typically, you first read the state from the hardware through the hardware interface, then use the controller manager to update the controllers with the current hardware state, and finally you send the commands from the update step back out to the hardware.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;my_robot/my_robot.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;controller_manager/controller_manager.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Setup</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">"my_robot"</span><span class="p">);</span>
+    
+    <span class="n">MyRobot</span><span class="o">::</span><span class="n">MyRobot</span> <span class="n">robot</span><span class="p">;</span>
+    <span class="n">controller_manager</span><span class="o">::</span><span class="n">ControllerManager</span> <span class="n">cm</span><span class="p">(</span><span class="o">&amp;</span><span class="n">robot</span><span class="p">);</span>
+    
+    <span class="nl">ros:</span><span class="n">AsyncSpinner</span> <span class="n">spinner</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">spinner</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+    
+    <span class="c1">// Control loop</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">Time</span> <span class="n">prev_time</span> <span class="o">=</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">Rate</span> <span class="n">rate</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span> <span class="c1">// 10 Hz rate</span>
+    
+    <span class="k">while</span> <span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">ok</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="k">const</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span>     <span class="n">time</span>   <span class="o">=</span> <span class="n">ros</span><span class="o">:</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+        <span class="k">const</span> <span class="n">ros</span><span class="o">::</span><span class="n">Duration</span> <span class="n">period</span> <span class="o">=</span> <span class="n">time</span> <span class="o">-</span> <span class="n">prev_time</span><span class="p">;</span>
+        
+        <span class="n">robot</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+        <span class="n">cm</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">period</span><span class="p">);</span>
+        <span class="n">root</span><span class="p">.</span><span class="n">write</span><span class="p">();</span>
+        
+        <span class="n">rate</span><span class="p">.</span><span class="n">sleep</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Let’s step through the code snippet:</p>
+
+<p>We first initialize our ROS node:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Setup</span>
+<span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">"my_robot"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Create an instance of your robot so that this instance knows about all the resources that are available (remember the <code class="language-plaintext highlighter-rouge">hardware_interface</code>). Next we create an instance of the controller manager and pass it the robot, so that it can handle its resources:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MyRobot</span><span class="o">::</span><span class="n">MyRobot</span> <span class="n">robot</span><span class="p">;</span>
+<span class="n">controller_manager</span><span class="o">::</span><span class="n">ControllerManager</span> <span class="nf">cm</span><span class="p">(</span><span class="o">&amp;</span><span class="n">robot</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Next, we setup a separate thread that will be used to service ROS callbacks:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">ros:</span><span class="n">AsyncSpinner</span> <span class="nf">spinner</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">spinner</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>The following snippes show the actual control loop. 
+First we setup the period of the control loop, which in this case is slow (non real-time) 10 Hz.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Control loop</span>
+<span class="n">ros</span><span class="o">::</span><span class="n">Time</span> <span class="n">prev_time</span> <span class="o">=</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="n">ros</span><span class="o">::</span><span class="n">Rate</span> <span class="nf">rate</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span> <span class="c1">// 10 Hz rate</span>
+</code></pre></div></div>
+
+<p>Inside the <code class="language-plaintext highlighter-rouge">while</code> loop we do some basic bookkeeping to get the system time in order to compute the control period:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">const</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span>     <span class="n">time</span>   <span class="o">=</span> <span class="n">ros</span><span class="o">:</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="k">const</span> <span class="n">ros</span><span class="o">::</span><span class="n">Duration</span> <span class="n">period</span> <span class="o">=</span> <span class="n">time</span> <span class="o">-</span> <span class="n">prev_time</span><span class="p">;</span>
+</code></pre></div></div>
+<p>And then the actual control loop (read, update, write) begins executing:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">robot</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+<span class="n">cm</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">period</span><span class="p">);</span>
+<span class="n">root</span><span class="p">.</span><span class="n">write</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>All these steps keep getting repeated with the specified rate:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rate</span><span class="p">.</span><span class="n">sleep</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">read</code>, <code class="language-plaintext highlighter-rouge">update</code> and <code class="language-plaintext highlighter-rouge">write</code> operations take place in a thread, which is called the control thread:</p>
+
+<figure class="third">
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/control-thread.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/control-thread.png" /></a>
+    <figcaption>The control loop thread (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>This thread potentially operates in real-time. If your system has real-time contraints, then it is this part of the code (read, update, write) where you should make sure it has real-time scheduling.</p>
+
+<p>There is another non real-time thread, called the spinner thread, that is responsible for servicing ROS callbacks.</p>
+
+<figure class="half">
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/control-spinner-thread.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/control-spinner-thread.png" /></a>
+    <figcaption>The control and spinner threads (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>As we see in the image above, the spinner thread</p>
+
+<p>There are different kinds of callbacks that are serviced by this thread. First, those from the controller manager API
+and second, there’s the ROS API from your controllers which is custom and up to you. 
+And finally there might be other callbacks registered which depends on your setup.</p>
+
+<p>It is important to mention, that we have the computations, which are non real-time in a separate thread.
+Having these non real-time computations separate means that we respect requirements from real-time applications but also deterministic execution.</p>
+
+<p>In the code example above we don’t have real-time constraints because it’s a slow robot operating at 10 Hz.
+However, it also makes sense in this example to have the threads separate. For example, imagine a robot with 10,000 joints that has a controller which needs to parse its URDF while loading. In this example, there is no way to guarantee that parsing that URDF will take less than 0.1 seconds.</p>
+
+<p>If we would serialize everything in the same thread then such long lasting operations would not guarantee to respect the rate of the control loop. Therefore, these operations are separated into a spinner thread (even if we’re not using a real-time operating system).</p>
+
+<p>Because we have two threads, they need to talk to each other, as we can see in the image above. 
+We have to handle concurrency with care, especially with respect to the control thread. 
+Because it operates in real-time we have to make sure that we never block it to avoid suffering from <a href="https://en.wikipedia.org/wiki/Priority_inversion">priority inversions</a> or other bad things that might happen.</p>
+
+<p>To deal with concurrency and other things there’s a package that’s called <a href="http://wiki.ros.org/realtime_tools"><code class="language-plaintext highlighter-rouge">realtime_tools</code></a> which has tools that are usable from a hard real-time thread. It includes:</p>
+<ul>
+  <li><strong>RealtimePublisher</strong>: publish to a ROS topic</li>
+  <li><strong>RealtimeBuffer</strong>: share resource with non real-time thread.</li>
+  <li><strong>RealtimeClock</strong>: query estimates of the system clock.</li>
+  <li>…</li>
+</ul>
+
+<h4 id="the-control-loop-extended">The Control Loop Extended</h4>
+
+<p>Let’s now look at the complete control loop used in ROS control’s framework:</p>
+
+<figure class="half">
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/control-loop-extended.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/control-loop-extended.png" /></a>
+    <figcaption>The extended control loop (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>With this extended control loop we can make use of mechanical transmissions, take care of joint limits and provide emergency stops.</p>
+
+<h5 id="mechanical-transmissions">Mechanical Transmissions</h5>
+
+<p>If your hardware doesn’t take care of mechanical transmissions by itself than we have to do this in software.
+For this, there is a package called <a href="http://wiki.ros.org/transmission_interface"><code class="language-plaintext highlighter-rouge">transmission_interface</code></a> which contains data structures for representing mechanical transmissions, and methods for propagating position, velocity and effort variables between <strong>actuator and joint spaces</strong>.</p>
+
+<p>In the same spirit as the <code class="language-plaintext highlighter-rouge">hardware_interface</code> package, this package wraps existing raw data (eg. current actuator position, reference joint command, etc.) under a consistent interface. By not imposing a specific layout on the raw data, it becomes easier to support arbitrary hardware drivers to software control.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">transmission_interface</code> is not used by controllers themselves (it does not implement a HardwareInterface) but instead operates before or after the controllers update, in the <code class="language-plaintext highlighter-rouge">read()</code> and <code class="language-plaintext highlighter-rouge">write()</code> methods (or equivalents) of the robot abstraction.</p>
+
+<p>The following transmissions already exist and are ready to use:</p>
+
+<ul>
+  <li>Simple reducer</li>
+  <li>Four-bar linkage</li>
+  <li>Differential</li>
+</ul>
+
+<figure class="third">
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/simple_transmission.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/simple_transmission.png" /></a>
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/four_bar_linkage_transmission.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/four_bar_linkage_transmission.png" /></a>
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/differential_transmission.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/differential_transmission.png" /></a>
+    <figcaption>Transmission types (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>There are plugins that help you in loading transmissions from the URDF and thereby simplifies the process of populating the <code class="language-plaintext highlighter-rouge">hardware_interface::RobotHW</code> interfaces. 
+Without these plugins it would be very complex to populate your robot hardware interface.</p>
+
+<p>The following URDF xml snippet shows a configuration for a simple reducer. This is what you have to put in your URDF.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;transmission</span> <span class="na">name=</span><span class="s">"arm_1_trans"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;type&gt;</span>transmission_interface/SimpleTransmission<span class="nt">&lt;/type&gt;</span>
+  <span class="nt">&lt;actuator</span> <span class="na">name=</span><span class="s">"arm_1_motor"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;mechanicalReduction&gt;</span>42<span class="nt">&lt;/mechanicalReduction&gt;</span>
+  <span class="nt">&lt;/actuator&gt;</span>
+  <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">"arm_1_joint"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;hardwareInterface&gt;</span>hardware_interface/PositionJointInterface<span class="nt">&lt;/hardwareInterface&gt;</span>
+  <span class="nt">&lt;/joint&gt;</span>
+<span class="nt">&lt;/transmission&gt;</span>
+</code></pre></div></div>
+
+<p>Here you’re specifying the type of the transmission the name of the actuator and joint that you were relating to one another and things like the mechanical reduction and the type of hardware interfaces that you’d expect to expose.</p>
+
+<h5 id="safety-issues">Safety Issues</h5>
+
+<p>You might be interested in enforcing joint limits before you send the commands to the robot hardware.
+For this, there is a package called <code class="language-plaintext highlighter-rouge">joint_limits_interface</code>. It is the last line of defense before commanding hardware</p>
+<ul>
+  <li>don’t trust controllers.
+It is implemented using simple and fast low-level stragegies.</li>
+</ul>
+
+<p>Inside the package you find</p>
+
+<ul>
+  <li>data structures for <strong>representing</strong> joint limits.</li>
+  <li>Convenience methods for <strong>populating</strong> these data structrues from:
+    <ul>
+      <li>URDF</li>
+      <li>yaml (similar to MoveIt! + jerk)</li>
+    </ul>
+  </li>
+  <li>Methods for <strong>enforcing</strong> joint limits
+    <ul>
+      <li>soft-limits (PR2 like) and clamping strategies</li>
+      <li>work for different hardware interfaces</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The following example curves, generated from real data, explains the joint limits implementation:</p>
+
+<figure>
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/joint_limits.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/joint_limits.png" /></a>
+    <figcaption>Joint limits (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>The blue curve shows the command of a controller that we don’t trust. The red line shows the result after enforcing
+the joint limits. At the bottom we see, that the velocity limit is enforced and at the top the position is enforced too.
+However, it is a smooth stop and we see that it is not a hard clamping at the top, because we used a soft limit specification.</p>
+
+<p>The last issue that is also concerned with safety is the emergency stop (E-stop). 
+The E-stop is typically robot specific which means you have to take care of its implementation.
+There’s also the distinction between an <strong>emergency stop</strong>, 
+which is usually much harder where you for example remove energy sources, and there’s also the notion of a <strong>protective stop</strong> which is meant to reduce risks and control hazards.</p>
+
+<p>Relevant standards:</p>
+<ul>
+  <li>ISO 10218-1:2011 Robots and robotic devices - Safety requirements for industrial robots</li>
+  <li>ISO 13482:2014 Robots and robotic devices - Safety requirements for personal care robots</li>
+</ul>
+
+<p>The issue that remains, whatever you do in case of an emergency stop, 
+is that you have to recover from it. The question that remins is: What is the sane thing to do when you release the stop?
+There are potentially many controllers running that do different things. This means that there is no one size fits all solution on what you should do.</p>
+
+<p>One interesting solution to this is that you should let controllers decide what to do in case of an emergency stop. 
+The controller manager has this feature that it can be updated with an optional prior that says controllers reset. 
+This means that in a single control cycle you stop all running controllers, followed by starting them and finally you update them. If we adhere to the typical policy that, explained before, is to stop and thereby cancel all goals and then start, 
+which enters semantic zero mode, that when you update, you have the same behavior.</p>
+
+<figure>
+  <a href="/pr-preview/pr-23/assets/ros/ros-control/e-stop-handling.png"><img src="/pr-preview/pr-23/assets/ros/ros-control/e-stop-handling.png" /></a>
+    <figcaption>E-stop handling. (Source: <a href="http://wiki.ros.org/ros_control">ROS.org ros_control</a>).</figcaption>
+</figure>
+
+<p>This concludes the part of the control loop.</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+  <li><a href="https://vimeo.com/107507546">ROSCon 2014 talk</a> and the presented <a href="http://roscon.ros.org/2014/wp-content/uploads/2014/07/ros_control_an_overview.pdf">slides</a></li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-23/tags/#c" class="page__taxonomy-item p-category" rel="tag">c++</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-23/tags/#control" class="page__taxonomy-item p-category" rel="tag">control</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-23/tags/#controllers" class="page__taxonomy-item p-category" rel="tag">controllers</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-23/tags/#hardware" class="page__taxonomy-item p-category" rel="tag">hardware</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-23/tags/#interface" class="page__taxonomy-item p-category" rel="tag">interface</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-23/tags/#robotics" class="page__taxonomy-item p-category" rel="tag">robotics</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-23/tags/#ros" class="page__taxonomy-item p-category" rel="tag">ros</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-23/tags/#ros-control" class="page__taxonomy-item p-category" rel="tag">ros-control</a>
+    
+    </span>
+  </p>
+
+
+  
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-23/categories/#control" class="page__taxonomy-item p-category" rel="tag">control</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-23/categories/#controllers" class="page__taxonomy-item p-category" rel="tag">controllers</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-23/categories/#robotics" class="page__taxonomy-item p-category" rel="tag">robotics</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-23/categories/#ros" class="page__taxonomy-item p-category" rel="tag">ros</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-23/categories/#ros-control" class="page__taxonomy-item p-category" rel="tag">ros-control</a>
+    
+    </span>
+  </p>
+
+
+  
+
+
+        
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2020-03-13T18:31:41+01:00">March 13, 2020</time></p>
+
+
+      </footer>
+
+      
+<section class="page__share">
+  <h4 class="page__share-title">Share on</h4>
+
+  <a href="https://x.com/intent/tweet?via=franzpucher&text=ROS+Control%2C+An+overview%20https%3A%2F%2Ffjp.at%2Fpr-preview%2Fpr-23%2Fposts%2Fros%2Fros-control%2F" class="btn btn--x" aria-label="Share on X" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on X">
+    <i class="fab fa-fw fa-x-twitter" aria-hidden="true"></i><span> X</span>
+  </a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffjp.at%2Fpr-preview%2Fpr-23%2Fposts%2Fros%2Fros-control%2F" class="btn btn--facebook" aria-label="Share on Facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook">
+    <i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span>
+  </a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://fjp.at/pr-preview/pr-23/posts/ros/ros-control/" class="btn btn--linkedin" aria-label="Share on LinkedIn" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn">
+    <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span>
+  </a>
+
+  <a href="https://bsky.app/intent/compose?text=ROS+Control%2C+An+overview%20https%3A%2F%2Ffjp.at%2Fpr-preview%2Fpr-23%2Fposts%2Fros%2Fros-control%2F" class="btn btn--bluesky" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Bluesky">
+    <i class="fab fa-fw fa-bluesky" aria-hidden="true"></i><span> Bluesky</span>
+  </a>
+</section>
+
+
+      
+
+  <nav class="pagination" aria-label="Post pagination">
+    
+      <a href="/pr-preview/pr-23/posts/mapping/occupancy-grid-mapping/" class="pagination--pager" title="Occupancy Grid Mapping">Previous</a>
+    
+    
+      <a href="/pr-preview/pr-23/posts/tooling/docker/" class="pagination--pager" title="Docker Basics">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+    
+
+<div class="page__related">
+  
+  <h2 class="page__related-title">You May Also Enjoy</h2>
+  <div class="grid__wrapper">
+    
+      
+      
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pr-preview/pr-23/assets/images/opencv_logo.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-23/posts/computer-vision/camera-calibration-reprojection-error/" rel="permalink">Camera calibration and reprojection error
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Camera calibration and reprojection error.
+</p>
+  </article>
+</div>
+    
+      
+      
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://images-na.ssl-images-amazon.com/images/I/51Q2dvR+eTL._SX424_BO1,204,203,200_.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-23/posts/probabilistic-robotics/" rel="permalink">Porbabilistic Robotics Overview
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Overview of algorithms in probabilistic robotics.
+</p>
+  </article>
+</div>
+    
+      
+      
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pr-preview/pr-23/assets/vector/vector-sdk-alpha.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-23/posts/vector/" rel="permalink">Vector Robot
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Regaining access to Vector Robot and working with the Vector Python SDK.
+</p>
+  </article>
+</div>
+    
+      
+      
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-23/editors/vim%20setup/vim/" rel="permalink">Vim Setup and Basics
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Describes how to setup vim using a popular vimrc and explains the basics.
+
+</p>
+  </article>
+</div>
+    
+  </div>
+</div>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#edeff5",
+      "text": "#838391"
+    },
+    "button": {
+      "background": "#4b81e8"
+    }
+  },
+  "type": "opt-out"
+});
+</script>
+
+<script data-ad-client="ca-pub-2214309606626131" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script src="https://www.dwin2.com/pub.642237.min.js"></script>
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/fjp" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/pr-preview/pr-23/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+
+  <script src="/pr-preview/pr-23/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/pr-preview/pr-23/assets/js/lunr/lunr.min.js"></script>
+<script src="/pr-preview/pr-23/assets/js/lunr/lunr-store.js"></script>
+<script src="/pr-preview/pr-23/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://fjp.at/pr-preview/pr-23/posts/ros/ros-control/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/posts/ros/ros-controls"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://fjp-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>
