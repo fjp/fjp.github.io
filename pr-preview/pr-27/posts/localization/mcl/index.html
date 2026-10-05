@@ -1,0 +1,1542 @@
+
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js" dir="ltr">
+  <head>
+    
+<meta charset="utf-8">
+
+
+<!-- begin _includes/seo.html --><title>Monte Carlo Localization - fjp.github.io</title>
+<meta name="description" content="Monte Carlo Localization Algorithm and C++ Implementation">
+
+
+  <meta name="author" content="Franz Pucher">
+  
+  <meta property="article:author" content="Franz Pucher">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="fjp.github.io">
+<meta property="og:title" content="Monte Carlo Localization">
+<meta property="og:url" content="https://fjp.at/pr-preview/pr-27/posts/localization/mcl/">
+
+
+  <meta property="og:description" content="Monte Carlo Localization Algorithm and C++ Implementation">
+
+
+
+  <meta property="og:image" content="https://fjp.at/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/particle_filters.gif">
+  
+
+
+
+  <meta name="twitter:site" content="@franzpucher">
+  <meta name="twitter:title" content="Monte Carlo Localization">
+  <meta name="twitter:description" content="Monte Carlo Localization Algorithm and C++ Implementation">
+  <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-27/posts/localization/mcl/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://fjp.at/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/particle_filters.gif">
+    
+  
+
+  
+
+
+
+
+
+  <meta property="article:published_time" content="2019-04-17T19:00:42+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fjp.at/pr-preview/pr-27/posts/localization/mcl/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/pr-preview/pr-27/feed.xml" type="application/atom+xml" rel="alternate" title="fjp.github.io Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pr-preview/pr-27/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-2214309606626131",
+          enable_page_level_ads: true
+     });
+</script>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+<!--KaTeX-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+<!-- Pseudocode.js -->
+<!-- https://github.com/SaswatPadhi/pseudocode.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"
+        integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous">
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
+<script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js">
+</script>
+
+<!-- Mailinglist -->
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '1518166');
+</script>
+<!-- End MailerLite Universal -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+        
+        <a class="site-title" href="/pr-preview/pr-27/">
+          fjp.github.io
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-27/"
+                
+                
+              >Home</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-27/blog/"
+                
+                
+              >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-27/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-27/design-patterns/"
+                
+                
+              >Design Patterns</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-27/cpp/"
+                
+                
+              >C++</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-27/projects/fpv/"
+                
+                
+              >FPV</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-27/about/"
+                
+                
+              >About</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-27/ads/"
+                
+                
+              >Ads</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-27/privacy/"
+                
+                
+              >Privacy</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-27/sitemap/"
+                
+                
+              >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style="background-color: #000; background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/particle_filters.gif');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          Monte Carlo Localization
+
+        
+      </h1>
+      
+        <p class="page__lead">Monte Carlo Localization Algorithm and C++ Implementation
+</p>
+      
+      
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+      
+    </div>
+  
+  
+    <span class="page__hero-caption">Source: <a href="https://commons.wikimedia.org/wiki/File:Particle_filters.gif">Wikimedia</a>
+</span>
+  
+</div>
+
+
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-27/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-27/posts/" itemprop="item"><span itemprop="name">Posts</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-27/categories/#localization" itemprop="item"><span itemprop="name">Localization</span></a>
+            <meta itemprop="position" content="3" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Monte Carlo Localization</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Monte Carlo Localization">
+    <meta itemprop="description" content="Monte Carlo Localization Algorithm and C++ Implementation">
+    <meta itemprop="datePublished" content="2019-04-17T19:00:42+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc" aria-label="Table of contents">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#monte-carlo-localization-algorithm">Monte Carlo Localization Algorithm</a></li><li><a href="#c-implementation">C++ Implementation</a><ul><li><a href="#robot-base-class">Robot Base Class</a></li><li><a href="#global-functions">Global functions</a></li><li><a href="#visualization">Visualization</a></li><li><a href="#main">Main</a></li></ul></li><li><a href="#compile-and-run">Compile and Run</a></li><li><a href="#results">Results</a></li><li><a href="#links">Links</a></li><li><a href="#reference">Reference</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>This post is a summary of the <a href="https://eu.udacity.com/course/robotics-software-engineer--nd209">Udacity Robotics Nanodegree Lab</a> on localization using <a href="https://en.wikipedia.org/wiki/Monte_Carlo_localization">Monte Carlo Localization</a> (MCL).
+The Udacity repo can be found <a href="https://github.com/udacity/RoboND-MCL-Lab">here</a></p>
+
+<p>To follow this tutorial, clone the repo to a folder of your choice.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git clone https://github.com/udacity/RoboND-MCL-Lab </code></pre></figure>
+
+<h2 id="monte-carlo-localization-algorithm">Monte Carlo Localization Algorithm</h2>
+
+<pre id="read-1" style="display:none;">
+    
+\begin{algorithm}
+\caption{SLAM}
+\begin{algorithmic}
+\PROCEDURE{SLAM}{$X_{t-1}, u_t, z_t$}
+    \STATE $\bar{X}_t = X_t = \empty$
+    \FOR{$m = 1$ \TO $M$}
+        \STATE $x_t^{[k]} = $ \CALL{MotionUpdate}{$u_t, x_{t-1}^{[k]}$}
+        \STATE $w_t^{[k]} = $ \CALL{SensorUpdate}{$z_t, x_{t}^{[k]}$}
+        \STATE $m_t^{[k]} = $ \CALL{UpdateOccupancyGrid}{$z_t, x_{t}^{[k]}, m_{t-1}^{[k]}$}
+        \STATE $\bar{X}_t = \bar{X}_t + \left &lt; x_{t}^{[k]}, w_{t}^{[k]} \right &gt;$
+    \ENDFOR
+    \FOR{$k = 1$ \TO $M$}
+        \STATE draw $i$ with probability $w_t^{[i]}$ 
+        \STATE add $\left &lt; x_t^{[i]}, m_t^{[i]} \right &gt;$ \TO $X_t$
+    \ENDFOR
+    \RETURN $X_t$ 
+\ENDPROCEDURE
+\end{algorithmic}
+\end{algorithm}
+
+</pre>
+<div class="post-pseudocode" id="goal-1"></div>
+<script type="text/javascript">
+    var code = document.getElementById("read-1").textContent;
+    var parentEl = document.getElementById("goal-1");
+    var options = {
+        lineNumber: true
+    };
+    pseudocode.render(code, parentEl, options);
+</script>
+
+<h2 id="c-implementation">C++ Implementation</h2>
+
+<p>The following headers are used in the lab, which are mainly from the standard c++ library.
+One exception is the third party plotting library found <a href="https://github.com/lava/matplotlib-cpp">here</a> that uses python’s matplotlib as its backend.</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">"src/matplotlibcpp.h"</span><span class="c1"> //Graph Library</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdexcept&gt;</span><span class="c1"> // throw errors</span><span class="cp">
+#include</span> <span class="cpf">&lt;random&gt;</span><span class="c1"> //C++ 11 Random Numbers</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span>
+<span class="k">namespace</span> <span class="n">plt</span> <span class="o">=</span> <span class="n">matplotlibcpp</span><span class="p">;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span></code></pre></figure>
+
+<p>Next, some global variables are defined for the fixed landmarks and the world size.
+The random generator gets initialized and a forward declaration of two functions is made, namely
+<code class="language-plaintext highlighter-rouge">mod</code> and <code class="language-plaintext highlighter-rouge">gen_real_random</code>.</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">// Landmarks</span>
+<span class="kt">double</span> <span class="n">landmarks</span><span class="p">[</span><span class="mi">8</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="p">{</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">20.0</span> <span class="p">},</span> <span class="p">{</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">80.0</span> <span class="p">},</span> <span class="p">{</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">50.0</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">20.0</span> <span class="p">},</span> <span class="p">{</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">80.0</span> <span class="p">},</span> <span class="p">{</span> <span class="mf">80.0</span><span class="p">,</span> <span class="mf">80.0</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="mf">80.0</span><span class="p">,</span> <span class="mf">20.0</span> <span class="p">},</span> <span class="p">{</span> <span class="mf">80.0</span><span class="p">,</span> <span class="mf">50.0</span> <span class="p">}</span> <span class="p">};</span>
+
+<span class="c1">// Map size in meters</span>
+<span class="kt">double</span> <span class="n">world_size</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">;</span>
+
+<span class="c1">// Random Generators</span>
+<span class="n">random_device</span> <span class="n">rd</span><span class="p">;</span>
+<span class="n">mt19937</span> <span class="n">gen</span><span class="p">(</span><span class="n">rd</span><span class="p">());</span>
+
+<span class="c1">// Global Functions</span>
+<span class="kt">double</span> <span class="n">mod</span><span class="p">(</span><span class="kt">double</span> <span class="n">first_term</span><span class="p">,</span> <span class="kt">double</span> <span class="n">second_term</span><span class="p">);</span>
+<span class="kt">double</span> <span class="n">gen_real_random</span><span class="p">();</span></code></pre></figure>
+
+<h3 id="robot-base-class">Robot Base Class</h3>
+
+<p>The lab uses a robot class that initializes a robot with a random x and y location and orientation in its constructor.</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Robot</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Constructor</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">gen_real_random</span><span class="p">()</span> <span class="o">*</span> <span class="n">world_size</span><span class="p">;</span> <span class="c1">// robot's x coordinate</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">gen_real_random</span><span class="p">()</span> <span class="o">*</span> <span class="n">world_size</span><span class="p">;</span> <span class="c1">// robot's y coordinate</span>
+    <span class="n">orient</span> <span class="o">=</span> <span class="n">gen_real_random</span><span class="p">()</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">M_PI</span><span class="p">;</span> <span class="c1">// robot's orientation</span>
+
+    <span class="n">forward_noise</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span> <span class="c1">//noise of the forward movement</span>
+    <span class="n">turn_noise</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span> <span class="c1">//noise of the turn</span>
+    <span class="n">sense_noise</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span> <span class="c1">//noise of the sensing</span>
+<span class="p">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">set</span><span class="p">(</span><span class="kt">double</span> <span class="n">new_x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">new_y</span><span class="p">,</span> <span class="kt">double</span> <span class="n">new_orient</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Set robot new position and orientation</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">new_x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">new_x</span> <span class="o">&gt;=</span> <span class="n">world_size</span><span class="p">)</span>
+        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="p">(</span><span class="s">"X coordinate out of bound"</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">new_y</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">new_y</span> <span class="o">&gt;=</span> <span class="n">world_size</span><span class="p">)</span>
+        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="p">(</span><span class="s">"Y coordinate out of bound"</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">new_orient</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">new_orient</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">M_PI</span><span class="p">)</span>
+        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="p">(</span><span class="s">"Orientation must be in [0..2pi]"</span><span class="p">);</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">new_x</span><span class="p">;</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">new_y</span><span class="p">;</span>
+    <span class="n">orient</span> <span class="o">=</span> <span class="n">new_orient</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">set_noise</span><span class="p">(</span><span class="kt">double</span> <span class="n">new_forward_noise</span><span class="p">,</span> <span class="kt">double</span> <span class="n">new_turn_noise</span><span class="p">,</span> <span class="kt">double</span> <span class="n">new_sense_noise</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Simulate noise, often useful in particle filters</span>
+    <span class="n">forward_noise</span> <span class="o">=</span> <span class="n">new_forward_noise</span><span class="p">;</span>
+    <span class="n">turn_noise</span> <span class="o">=</span> <span class="n">new_turn_noise</span><span class="p">;</span>
+    <span class="n">sense_noise</span> <span class="o">=</span> <span class="n">new_sense_noise</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">sense</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Measure the distances from the robot toward the landmarks</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">z</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">landmarks</span><span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">landmarks</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+    <span class="kt">double</span> <span class="n">dist</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">landmarks</span><span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">landmarks</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">pow</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">landmarks</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">pow</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">landmarks</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]),</span> <span class="mi">2</span><span class="p">));</span>
+        <span class="n">dist</span> <span class="o">+=</span> <span class="n">gen_gauss_random</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">sense_noise</span><span class="p">);</span>
+        <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">z</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Robot</span> <span class="nf">move</span><span class="p">(</span><span class="kt">double</span> <span class="n">turn</span><span class="p">,</span> <span class="kt">double</span> <span class="n">forward</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">forward</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="p">(</span><span class="s">"Robot cannot move backward"</span><span class="p">);</span>
+
+    <span class="c1">// turn, and add randomness to the turning command</span>
+    <span class="n">orient</span> <span class="o">=</span> <span class="n">orient</span> <span class="o">+</span> <span class="n">turn</span> <span class="o">+</span> <span class="n">gen_gauss_random</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">turn_noise</span><span class="p">);</span>
+    <span class="n">orient</span> <span class="o">=</span> <span class="n">mod</span><span class="p">(</span><span class="n">orient</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">M_PI</span><span class="p">);</span>
+
+    <span class="c1">// move, and add randomness to the motion command</span>
+    <span class="kt">double</span> <span class="n">dist</span> <span class="o">=</span> <span class="n">forward</span> <span class="o">+</span> <span class="n">gen_gauss_random</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">forward_noise</span><span class="p">);</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">orient</span><span class="p">)</span> <span class="o">*</span> <span class="n">dist</span><span class="p">);</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">orient</span><span class="p">)</span> <span class="o">*</span> <span class="n">dist</span><span class="p">);</span>
+
+    <span class="c1">// cyclic truncate</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">mod</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">world_size</span><span class="p">);</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">mod</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">world_size</span><span class="p">);</span>
+
+    <span class="c1">// set particle</span>
+    <span class="n">Robot</span> <span class="n">res</span><span class="p">;</span>
+    <span class="n">res</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">orient</span><span class="p">);</span>
+    <span class="n">res</span><span class="p">.</span><span class="n">set_noise</span><span class="p">(</span><span class="n">forward_noise</span><span class="p">,</span> <span class="n">turn_noise</span><span class="p">,</span> <span class="n">sense_noise</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">string</span> <span class="nf">show_pose</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Returns the robot current position and orientation in a string format</span>
+    <span class="k">return</span> <span class="s">"[x="</span> <span class="o">+</span> <span class="n">to_string</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s">" y="</span> <span class="o">+</span> <span class="n">to_string</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="s">" orient="</span> <span class="o">+</span> <span class="n">to_string</span><span class="p">(</span><span class="n">orient</span><span class="p">)</span> <span class="o">+</span> <span class="s">"]"</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">string</span> <span class="nf">read_sensors</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Returns all the distances from the robot toward the landmarks</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">z</span> <span class="o">=</span> <span class="n">sense</span><span class="p">();</span>
+    <span class="n">string</span> <span class="n">readings</span> <span class="o">=</span> <span class="s">"["</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">z</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">readings</span> <span class="o">+=</span> <span class="n">to_string</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s">" "</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">readings</span><span class="p">[</span><span class="n">readings</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sc">']'</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">readings</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="nf">measurement_prob</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">measurement</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Calculates how likely a measurement should be</span>
+    <span class="kt">double</span> <span class="n">prob</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">dist</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">landmarks</span><span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">landmarks</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">pow</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">landmarks</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">pow</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">landmarks</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]),</span> <span class="mi">2</span><span class="p">));</span>
+        <span class="n">prob</span> <span class="o">*=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">sense_noise</span><span class="p">,</span> <span class="n">measurement</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">prob</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The class has the following public member variables</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">orient</span><span class="p">;</span> <span class="c1">//robot poses</span>
+<span class="kt">double</span> <span class="n">forward_noise</span><span class="p">,</span> <span class="n">turn_noise</span><span class="p">,</span> <span class="n">sense_noise</span><span class="p">;</span> <span class="c1">//robot noises</span></code></pre></figure>
+
+<p>It uses the follwoing private methods</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="nf">gen_gauss_random</span><span class="p">(</span><span class="kt">double</span> <span class="n">mean</span><span class="p">,</span> <span class="kt">double</span> <span class="n">variance</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Gaussian random</span>
+    <span class="n">normal_distribution</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">gauss_dist</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">variance</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">gauss_dist</span><span class="p">(</span><span class="n">gen</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="nf">gaussian</span><span class="p">(</span><span class="kt">double</span> <span class="n">mu</span><span class="p">,</span> <span class="kt">double</span> <span class="n">sigma</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Probability of x for 1-dim Gaussian with mean mu and var. sigma</span>
+    <span class="k">return</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">pow</span><span class="p">((</span><span class="n">mu</span> <span class="o">-</span> <span class="n">x</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">pow</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">M_PI</span> <span class="o">*</span> <span class="p">(</span><span class="n">pow</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="mi">2</span><span class="p">)));</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="global-functions">Global functions</h3>
+
+<p>Other useufl global functions</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">// Functions</span>
+<span class="kt">double</span> <span class="nf">gen_real_random</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Generate real random between 0 and 1</span>
+    <span class="n">uniform_real_distribution</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">real_dist</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span> <span class="c1">//Real</span>
+    <span class="k">return</span> <span class="n">real_dist</span><span class="p">(</span><span class="n">gen</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">double</span> <span class="n">mod</span><span class="p">(</span><span class="kt">double</span> <span class="n">first_term</span><span class="p">,</span> <span class="kt">double</span> <span class="n">second_term</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Compute the modulus</span>
+    <span class="k">return</span> <span class="n">first_term</span> <span class="o">-</span> <span class="p">(</span><span class="n">second_term</span><span class="p">)</span><span class="o">*</span><span class="n">floor</span><span class="p">(</span><span class="n">first_term</span> <span class="o">/</span> <span class="p">(</span><span class="n">second_term</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">double</span> <span class="n">evaluation</span><span class="p">(</span><span class="n">Robot</span> <span class="n">r</span><span class="p">,</span> <span class="n">Robot</span> <span class="n">p</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">//Calculate the mean error of the system</span>
+    <span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//the second part is because of world's cyclicity</span>
+        <span class="kt">double</span> <span class="n">dx</span> <span class="o">=</span> <span class="n">mod</span><span class="p">((</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span> <span class="o">-</span> <span class="n">r</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">world_size</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)),</span> <span class="n">world_size</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">world_size</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">);</span>
+        <span class="kt">double</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">mod</span><span class="p">((</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">y</span> <span class="o">-</span> <span class="n">r</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="p">(</span><span class="n">world_size</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)),</span> <span class="n">world_size</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">world_size</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">);</span>
+        <span class="kt">double</span> <span class="n">err</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">pow</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">pow</span><span class="p">(</span><span class="n">dy</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+        <span class="n">sum</span> <span class="o">+=</span> <span class="n">err</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">sum</span> <span class="o">/</span> <span class="n">n</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">double</span> <span class="n">max</span><span class="p">(</span><span class="kt">double</span> <span class="n">arr</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Identify the max element in an array</span>
+    <span class="kt">double</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max</span><span class="p">)</span>
+            <span class="n">max</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">max</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="visualization">Visualization</h3>
+
+<p>For visualization matplotlib is used as backend.</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">visualization</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">Robot</span> <span class="n">robot</span><span class="p">,</span> <span class="kt">int</span> <span class="n">step</span><span class="p">,</span> <span class="n">Robot</span> <span class="n">p</span><span class="p">[],</span> <span class="n">Robot</span> <span class="n">pr</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="c1">//Draw the robot, landmarks, particles and resampled particles on a graph</span>
+
+    <span class="c1">//Graph Format</span>
+    <span class="n">plt</span><span class="o">::</span><span class="n">title</span><span class="p">(</span><span class="s">"MCL, step "</span> <span class="o">+</span> <span class="n">to_string</span><span class="p">(</span><span class="n">step</span><span class="p">));</span>
+    <span class="n">plt</span><span class="o">::</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">::</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+
+    <span class="c1">//Draw particles in green</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">plt</span><span class="o">::</span><span class="n">plot</span><span class="p">({</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span> <span class="p">},</span> <span class="p">{</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">y</span> <span class="p">},</span> <span class="s">"go"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">//Draw resampled particles in yellow</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">plt</span><span class="o">::</span><span class="n">plot</span><span class="p">({</span> <span class="n">pr</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span> <span class="p">},</span> <span class="p">{</span> <span class="n">pr</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">y</span> <span class="p">},</span> <span class="s">"yo"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">//Draw landmarks in red</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">landmarks</span><span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">landmarks</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">plt</span><span class="o">::</span><span class="n">plot</span><span class="p">({</span> <span class="n">landmarks</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="p">},</span> <span class="p">{</span> <span class="n">landmarks</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="p">},</span> <span class="s">"ro"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">//Draw robot position in blue</span>
+    <span class="n">plt</span><span class="o">::</span><span class="n">plot</span><span class="p">({</span> <span class="n">robot</span><span class="p">.</span><span class="n">x</span> <span class="p">},</span> <span class="p">{</span> <span class="n">robot</span><span class="p">.</span><span class="n">y</span> <span class="p">},</span> <span class="s">"bo"</span><span class="p">);</span>
+
+    <span class="c1">//Save the image and close the plot</span>
+    <span class="n">plt</span><span class="o">::</span><span class="n">save</span><span class="p">(</span><span class="s">"./Images/Step"</span> <span class="o">+</span> <span class="n">to_string</span><span class="p">(</span><span class="n">step</span><span class="p">)</span> <span class="o">+</span> <span class="s">".png"</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">::</span><span class="n">clf</span><span class="p">();</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="main">Main</h3>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">//Practice Interfacing with Robot Class</span>
+    <span class="n">Robot</span> <span class="n">myrobot</span><span class="p">;</span>
+    <span class="n">myrobot</span><span class="p">.</span><span class="n">set_noise</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">);</span>
+    <span class="n">myrobot</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="mf">30.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="n">M_PI</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">);</span>
+    <span class="n">myrobot</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="o">-</span><span class="n">M_PI</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">);</span>
+    <span class="c1">//cout &lt;&lt; myrobot.read_sensors() &lt;&lt; endl;</span>
+    <span class="n">myrobot</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="o">-</span><span class="n">M_PI</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">);</span>
+    <span class="c1">//cout &lt;&lt; myrobot.read_sensors() &lt;&lt; endl;</span>
+
+    <span class="c1">// Create a set of particles</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+    <span class="n">Robot</span> <span class="n">p</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">set_noise</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">);</span>
+        <span class="c1">//cout &lt;&lt; p[i].show_pose() &lt;&lt; endl;</span>
+    <span class="p">}</span>
+
+    <span class="c1">//Re-initialize myrobot object and Initialize a measurment vector</span>
+    <span class="n">myrobot</span> <span class="o">=</span> <span class="n">Robot</span><span class="p">();</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">z</span><span class="p">;</span>
+
+    <span class="c1">//Iterating 50 times over the set of particles</span>
+    <span class="kt">int</span> <span class="n">steps</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">steps</span><span class="p">;</span> <span class="n">t</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="c1">//Move the robot and sense the environment afterwards</span>
+        <span class="n">myrobot</span> <span class="o">=</span> <span class="n">myrobot</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">);</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">myrobot</span><span class="p">.</span><span class="n">sense</span><span class="p">();</span>
+
+        <span class="c1">// Simulate a robot motion for each of these particles</span>
+        <span class="n">Robot</span> <span class="n">p2</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">p2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">move</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">);</span>
+            <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">p2</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="p">}</span>
+
+        <span class="c1">//Generate particle weights depending on robot's measurement</span>
+        <span class="kt">double</span> <span class="n">w</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">measurement_prob</span><span class="p">(</span><span class="n">z</span><span class="p">);</span>
+            <span class="c1">//cout &lt;&lt; w[i] &lt;&lt; endl;</span>
+        <span class="p">}</span>
+
+        <span class="c1">//Resample the particles with a sample probability proportional to the importance weight</span>
+        <span class="n">Robot</span> <span class="n">p3</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+        <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">gen_real_random</span><span class="p">()</span> <span class="o">*</span> <span class="n">n</span><span class="p">;</span>
+        <span class="c1">//cout &lt;&lt; index &lt;&lt; endl;</span>
+        <span class="kt">double</span> <span class="n">beta</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+        <span class="kt">double</span> <span class="n">mw</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+        <span class="c1">//cout &lt;&lt; mw;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">beta</span> <span class="o">+=</span> <span class="n">gen_real_random</span><span class="p">()</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">mw</span><span class="p">;</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">beta</span> <span class="o">&gt;</span> <span class="n">w</span><span class="p">[</span><span class="n">index</span><span class="p">])</span> <span class="p">{</span>
+                <span class="n">beta</span> <span class="o">-=</span> <span class="n">w</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+                <span class="n">index</span> <span class="o">=</span> <span class="n">mod</span><span class="p">((</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">n</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">p3</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">p</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">p3</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+            <span class="c1">//cout &lt;&lt; p[k].show_pose() &lt;&lt; endl;</span>
+        <span class="p">}</span>
+
+        <span class="c1">//Evaluate the Error</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Step = "</span> <span class="o">&lt;&lt;</span> <span class="n">t</span> <span class="o">&lt;&lt;</span> <span class="s">", Evaluation = "</span> <span class="o">&lt;&lt;</span> <span class="n">evaluation</span><span class="p">(</span><span class="n">myrobot</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+        <span class="c1">//####   DON'T MODIFY ANYTHING ABOVE HERE! ENTER CODE BELOW ####</span>
+
+        <span class="c1">//Graph the position of the robot and the particles at each step</span>
+        <span class="n">visualization</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">myrobot</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">);</span>
+
+    <span class="p">}</span> <span class="c1">//End of Steps loop</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="compile-and-run">Compile and Run</h2>
+
+<p>Compile with</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">g++ solution.cpp <span class="nt">-o</span> app <span class="nt">-std</span><span class="o">=</span>c++11 <span class="nt">-I</span>/usr/include/python2.7 <span class="nt">-lpython2</span>.7</code></pre></figure>
+
+<p>And finally run the program with</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">./app</code></pre></figure>
+
+<p>This will output:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Step <span class="o">=</span> 0, Evaluation <span class="o">=</span> 4.36165
+Step <span class="o">=</span> 1, Evaluation <span class="o">=</span> 4.13259
+Step <span class="o">=</span> 2, Evaluation <span class="o">=</span> 3.42951
+Step <span class="o">=</span> 3, Evaluation <span class="o">=</span> 3.2404
+Step <span class="o">=</span> 4, Evaluation <span class="o">=</span> 2.7659
+Step <span class="o">=</span> 5, Evaluation <span class="o">=</span> 2.48962
+Step <span class="o">=</span> 6, Evaluation <span class="o">=</span> 2.31978
+Step <span class="o">=</span> 7, Evaluation <span class="o">=</span> 2.24096
+Step <span class="o">=</span> 8, Evaluation <span class="o">=</span> 2.2645
+Step <span class="o">=</span> 9, Evaluation <span class="o">=</span> 2.16855
+Step <span class="o">=</span> 10, Evaluation <span class="o">=</span> 2.0289
+Step <span class="o">=</span> 11, Evaluation <span class="o">=</span> 1.90762
+Step <span class="o">=</span> 12, Evaluation <span class="o">=</span> 1.90886
+Step <span class="o">=</span> 13, Evaluation <span class="o">=</span> 1.86255
+Step <span class="o">=</span> 14, Evaluation <span class="o">=</span> 1.80935
+Step <span class="o">=</span> 15, Evaluation <span class="o">=</span> 1.75033
+Step <span class="o">=</span> 16, Evaluation <span class="o">=</span> 1.73623
+Step <span class="o">=</span> 17, Evaluation <span class="o">=</span> 1.66427
+Step <span class="o">=</span> 18, Evaluation <span class="o">=</span> 1.65443
+Step <span class="o">=</span> 19, Evaluation <span class="o">=</span> 1.68175
+Step <span class="o">=</span> 20, Evaluation <span class="o">=</span> 1.62883
+Step <span class="o">=</span> 21, Evaluation <span class="o">=</span> 1.61669
+Step <span class="o">=</span> 22, Evaluation <span class="o">=</span> 1.60328
+Step <span class="o">=</span> 23, Evaluation <span class="o">=</span> 1.55554
+Step <span class="o">=</span> 24, Evaluation <span class="o">=</span> 1.54531
+Step <span class="o">=</span> 25, Evaluation <span class="o">=</span> 1.48853
+Step <span class="o">=</span> 26, Evaluation <span class="o">=</span> 1.52531
+Step <span class="o">=</span> 27, Evaluation <span class="o">=</span> 1.54713
+Step <span class="o">=</span> 28, Evaluation <span class="o">=</span> 1.57839
+Step <span class="o">=</span> 29, Evaluation <span class="o">=</span> 1.59364
+Step <span class="o">=</span> 30, Evaluation <span class="o">=</span> 1.65056
+Step <span class="o">=</span> 31, Evaluation <span class="o">=</span> 1.6718
+Step <span class="o">=</span> 32, Evaluation <span class="o">=</span> 1.67659
+Step <span class="o">=</span> 33, Evaluation <span class="o">=</span> 1.61774
+Step <span class="o">=</span> 34, Evaluation <span class="o">=</span> 1.57891
+Step <span class="o">=</span> 35, Evaluation <span class="o">=</span> 1.50999
+Step <span class="o">=</span> 36, Evaluation <span class="o">=</span> 1.40922
+Step <span class="o">=</span> 37, Evaluation <span class="o">=</span> 1.40538
+Step <span class="o">=</span> 38, Evaluation <span class="o">=</span> 1.41737
+Step <span class="o">=</span> 39, Evaluation <span class="o">=</span> 1.39369
+Step <span class="o">=</span> 40, Evaluation <span class="o">=</span> 1.38676
+Step <span class="o">=</span> 41, Evaluation <span class="o">=</span> 1.43119
+Step <span class="o">=</span> 42, Evaluation <span class="o">=</span> 1.39935
+Step <span class="o">=</span> 43, Evaluation <span class="o">=</span> 1.37321
+Step <span class="o">=</span> 44, Evaluation <span class="o">=</span> 1.4212
+Step <span class="o">=</span> 45, Evaluation <span class="o">=</span> 1.55304
+Step <span class="o">=</span> 46, Evaluation <span class="o">=</span> 1.75291
+Step <span class="o">=</span> 47, Evaluation <span class="o">=</span> 1.93479
+Step <span class="o">=</span> 48, Evaluation <span class="o">=</span> 1.94307
+Step <span class="o">=</span> 49, Evaluation <span class="o">=</span> 1.25727</code></pre></figure>
+
+<h2 id="results">Results</h2>
+
+<figure class="third ">
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step0.png" title="Iteration 0">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step0.png" alt="Iteration 0" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step1.png" title="Iteration 1">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step1.png" alt="Iteration 1" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step2.png" title="Iteration 2">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step2.png" alt="Iteration 2" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step3.png" title="Iteration 3">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step3.png" alt="Iteration 3" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step4.png" title="Iteration 4">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step4.png" alt="Iteration 4" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step5.png" title="Iteration 5">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step5.png" alt="Iteration 5" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step6.png" title="Iteration 6">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step6.png" alt="Iteration 6" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step7.png" title="Iteration 7">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step7.png" alt="Iteration 7" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step8.png" title="Iteration 8">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step8.png" alt="Iteration 8" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step9.png" title="Iteration 9">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step9.png" alt="Iteration 9" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step10.png" title="Iteration 10">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step10.png" alt="Iteration 10" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step11.png" title="Iteration 11">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step11.png" alt="Iteration 11" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step12.png" title="Iteration 12">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step12.png" alt="Iteration 12" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step13.png" title="Iteration 13">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step13.png" alt="Iteration 13" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step14.png" title="Iteration 14">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step14.png" alt="Iteration 14" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step15.png" title="Iteration 15">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step15.png" alt="Iteration 15" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step16.png" title="Iteration 16">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step16.png" alt="Iteration 16" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step17.png" title="Iteration 17">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step17.png" alt="Iteration 17" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step18.png" title="Iteration 18">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step18.png" alt="Iteration 18" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step19.png" title="Iteration 19">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step19.png" alt="Iteration 19" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step20.png" title="Iteration 20">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step20.png" alt="Iteration 20" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step21.png" title="Iteration 21">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step21.png" alt="Iteration 21" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step22.png" title="Iteration 22">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step22.png" alt="Iteration 22" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step23.png" title="Iteration 23">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step23.png" alt="Iteration 23" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step24.png" title="Iteration 24">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step24.png" alt="Iteration 24" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step25.png" title="Iteration 25">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step25.png" alt="Iteration 25" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step26.png" title="Iteration 26">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step26.png" alt="Iteration 26" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step27.png" title="Iteration 27">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step27.png" alt="Iteration 27" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step28.png" title="Iteration 28">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step28.png" alt="Iteration 28" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step29.png" title="Iteration 29">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step29.png" alt="Iteration 29" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step30.png" title="Iteration 30">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step30.png" alt="Iteration 30" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step31.png" title="Iteration 31">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step31.png" alt="Iteration 31" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step32.png" title="Iteration 32">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step32.png" alt="Iteration 32" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step33.png" title="Iteration 33">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step33.png" alt="Iteration 33" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step34.png" title="Iteration 34">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step34.png" alt="Iteration 34" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step35.png" title="Iteration 35">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step35.png" alt="Iteration 35" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step36.png" title="Iteration 36">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step36.png" alt="Iteration 36" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step37.png" title="Iteration 37">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step37.png" alt="Iteration 37" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step38.png" title="Iteration 38">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step38.png" alt="Iteration 38" />
+      </a>
+    
+  
+    
+      <a href="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step39.png" title="Iteration 39">
+          <img src="/pr-preview/pr-27/assets/posts/2019-04-17-monte-carlo-localization/Images/Step39.png" alt="Iteration 39" />
+      </a>
+    
+  
+  
+    <figcaption>Iterations of the Monte Carlo Localization Algorithm.
+</figcaption>
+  
+</figure>
+
+<h2 id="links">Links</h2>
+
+<p>Further details about MCL are found in the <a href="http://robots.stanford.edu/papers/thrun.robust-mcl.pdf">paper</a> of Sebastian Thrun et al.</p>
+
+<h2 id="reference">Reference</h2>
+
+<p>This post is a summary of the MCLLab from the <a href="https://eu.udacity.com/course/robotics-software-engineer--nd209">Robotics Nanodegree of Udacity</a></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-27/tags/#c" class="page__taxonomy-item p-category" rel="tag">c++</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-27/tags/#cpp" class="page__taxonomy-item p-category" rel="tag">cpp</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-27/tags/#implementation" class="page__taxonomy-item p-category" rel="tag">implementation</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-27/tags/#localization" class="page__taxonomy-item p-category" rel="tag">localization</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-27/tags/#mcl" class="page__taxonomy-item p-category" rel="tag">mcl</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-27/tags/#monte-carlo" class="page__taxonomy-item p-category" rel="tag">monte carlo</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-27/tags/#robotics" class="page__taxonomy-item p-category" rel="tag">robotics</a>
+    
+    </span>
+  </p>
+
+
+  
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-27/categories/#localization" class="page__taxonomy-item p-category" rel="tag">localization</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-27/categories/#monte-carlo-localization" class="page__taxonomy-item p-category" rel="tag">monte carlo localization</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-27/categories/#robotics" class="page__taxonomy-item p-category" rel="tag">robotics</a>
+    
+    </span>
+  </p>
+
+
+  
+
+
+        
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2019-04-17T19:00:42+02:00">April 17, 2019</time></p>
+
+
+      </footer>
+
+      
+<section class="page__share">
+  <h4 class="page__share-title">Share on</h4>
+
+  <a href="https://x.com/intent/tweet?via=franzpucher&text=Monte+Carlo+Localization%20https%3A%2F%2Ffjp.at%2Fpr-preview%2Fpr-27%2Fposts%2Flocalization%2Fmcl%2F" class="btn btn--x" aria-label="Share on X" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on X">
+    <i class="fab fa-fw fa-x-twitter" aria-hidden="true"></i><span> X</span>
+  </a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffjp.at%2Fpr-preview%2Fpr-27%2Fposts%2Flocalization%2Fmcl%2F" class="btn btn--facebook" aria-label="Share on Facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook">
+    <i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span>
+  </a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://fjp.at/pr-preview/pr-27/posts/localization/mcl/" class="btn btn--linkedin" aria-label="Share on LinkedIn" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn">
+    <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span>
+  </a>
+
+  <a href="https://bsky.app/intent/compose?text=Monte+Carlo+Localization%20https%3A%2F%2Ffjp.at%2Fpr-preview%2Fpr-27%2Fposts%2Flocalization%2Fmcl%2F" class="btn btn--bluesky" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Bluesky">
+    <i class="fab fa-fw fa-bluesky" aria-hidden="true"></i><span> Bluesky</span>
+  </a>
+</section>
+
+
+      
+
+  <nav class="pagination" aria-label="Post pagination">
+    
+      <a href="/pr-preview/pr-27/posts/ros/ros-kalman-filter/" class="pagination--pager" title="ROS Kalman Filter for Sensor Fusion">Previous</a>
+    
+    
+      <a href="/pr-preview/pr-27/posts/slam/fastslam/" class="pagination--pager" title="SLAM using Grid-based FastSLAM">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+    
+
+<div class="page__related">
+  
+  <h2 class="page__related-title">You May Also Enjoy</h2>
+  <div class="grid__wrapper">
+    
+      
+      
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pr-preview/pr-27/assets/images/opencv_logo.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-27/posts/computer-vision/camera-calibration-reprojection-error/" rel="permalink">Camera calibration and reprojection error
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Camera calibration and reprojection error.
+</p>
+  </article>
+</div>
+    
+      
+      
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://images-na.ssl-images-amazon.com/images/I/51Q2dvR+eTL._SX424_BO1,204,203,200_.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-27/posts/probabilistic-robotics/" rel="permalink">Porbabilistic Robotics Overview
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Overview of algorithms in probabilistic robotics.
+</p>
+  </article>
+</div>
+    
+      
+      
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pr-preview/pr-27/assets/vector/vector-sdk-alpha.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-27/posts/vector/" rel="permalink">Vector Robot
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Regaining access to Vector Robot and working with the Vector Python SDK.
+</p>
+  </article>
+</div>
+    
+      
+      
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-27/editors/vim%20setup/vim/" rel="permalink">Vim Setup and Basics
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Describes how to setup vim using a popular vimrc and explains the basics.
+
+</p>
+  </article>
+</div>
+    
+  </div>
+</div>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#edeff5",
+      "text": "#838391"
+    },
+    "button": {
+      "background": "#4b81e8"
+    }
+  },
+  "type": "opt-out"
+});
+</script>
+
+<script data-ad-client="ca-pub-2214309606626131" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script src="https://www.dwin2.com/pub.642237.min.js"></script>
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/fjp" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/pr-preview/pr-27/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+
+  <script src="/pr-preview/pr-27/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/pr-preview/pr-27/assets/js/lunr/lunr.min.js"></script>
+<script src="/pr-preview/pr-27/assets/js/lunr/lunr-store.js"></script>
+<script src="/pr-preview/pr-27/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://fjp.at/pr-preview/pr-27/posts/localization/mcl/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/posts/localization/monte-carlo-localization"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://fjp-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>
