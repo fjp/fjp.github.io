@@ -1,0 +1,888 @@
+
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js" dir="ltr">
+  <head>
+    
+<meta charset="utf-8">
+
+
+<!-- begin _includes/seo.html --><title>Autonomous 2WD Robot - ROS Noetic - fjp.github.io</title>
+<meta name="description" content="ROS Noetic Setup on Raspberry Pi 4 for an autonomous 2WD Robot running ROS melodic to sense and act in an environment.">
+
+
+  <meta name="author" content="Franz Pucher">
+  
+  <meta property="article:author" content="Franz Pucher">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="fjp.github.io">
+<meta property="og:title" content="Autonomous 2WD Robot - ROS Noetic">
+<meta property="og:url" content="https://fjp.at/pr-preview/pr-24/projects/diffbot/ros-noetic/">
+
+
+  <meta property="og:description" content="ROS Noetic Setup on Raspberry Pi 4 for an autonomous 2WD Robot running ROS melodic to sense and act in an environment.">
+
+
+
+  <meta property="og:image" content="https://fjp.at/pr-preview/pr-24/assets/images/noetic.png">
+  
+
+
+
+  <meta name="twitter:site" content="@franzpucher">
+  <meta name="twitter:title" content="Autonomous 2WD Robot - ROS Noetic">
+  <meta name="twitter:description" content="ROS Noetic Setup on Raspberry Pi 4 for an autonomous 2WD Robot running ROS melodic to sense and act in an environment.">
+  <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-24/projects/diffbot/ros-noetic/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://fjp.at/pr-preview/pr-24/assets/images/noetic.png">
+    
+  
+
+  
+
+
+
+
+
+  <meta property="article:published_time" content="2019-12-05T09:00:35+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fjp.at/pr-preview/pr-24/projects/diffbot/ros-noetic/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/pr-preview/pr-24/feed.xml" type="application/atom+xml" rel="alternate" title="fjp.github.io Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pr-preview/pr-24/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-2214309606626131",
+          enable_page_level_ads: true
+     });
+</script>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+<!--KaTeX-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+<!-- Pseudocode.js -->
+<!-- https://github.com/SaswatPadhi/pseudocode.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"
+        integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous">
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
+<script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js">
+</script>
+
+<!-- Mailinglist -->
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '1518166');
+</script>
+<!-- End MailerLite Universal -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+        
+        <a class="site-title" href="/pr-preview/pr-24/">
+          fjp.github.io
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-24/"
+                
+                
+              >Home</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-24/blog/"
+                
+                
+              >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-24/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-24/design-patterns/"
+                
+                
+              >Design Patterns</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-24/cpp/"
+                
+                
+              >C++</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-24/projects/fpv/"
+                
+                
+              >FPV</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-24/about/"
+                
+                
+              >About</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-24/ads/"
+                
+                
+              >Ads</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-24/privacy/"
+                
+                
+              >Privacy</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-24/sitemap/"
+                
+                
+              >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/pr-preview/pr-24/assets/images/noetic.png');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          Autonomous 2WD Robot - ROS Noetic
+
+        
+      </h1>
+      
+        <p class="page__lead">ROS Noetic Setup on Raspberry Pi 4 for an autonomous 2WD Robot running ROS melodic to sense and act in an environment.
+</p>
+      
+      
+
+
+
+      
+    </div>
+  
+  
+    <span class="page__hero-caption">Source: <a href="http://wiki.ros.org/noetic"><strong>ROS Noetic</strong></a>
+</span>
+  
+</div>
+
+
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-24/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-24/projects/" itemprop="item"><span itemprop="name">Projects</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-24/projects/diffbot/" itemprop="item"><span itemprop="name">Diffbot</span></a>
+            <meta itemprop="position" content="3" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Autonomous 2WD Robot - ROS Noetic</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/pr-preview/pr-24/projects/diffbot/"><span class="nav__sub-title">DiffBot</span></a>
+          
+
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-24/projects/diffbot/components/"><span class="nav__sub-title">Components</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/components/#robot-base">Robot Base</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/components/#sensors">Sensors</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/components/#actuators">Actuators</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/components/#human-machine-interface-hmi">Human Machine Interface</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/assembly/">Assembly</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-24/projects/diffbot/rpi-setup/"><span class="nav__sub-title">Raspberry Pi 4B</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/rpi-setup/#obtain-ubuntu-mate-2004-arm-image">Ubuntu Mate 20.04</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/hardware-interfaces/">Hardware Interfaces</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-noetic/" class="active">ROS Noetic Setup</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-network/">ROS Network Setup</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-24/projects/diffbot/ros-integration/"><span class="nav__sub-title">ROS Integration</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-integration/#ros-message-interface">ROS Message Interface</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-integration/#hardware-driver">Hardware Driver</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-integration/#modeling-the-robot-urdf-and-xacro">Modeling the Robot: URDF</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-integration/#simulation-in-gazebo">Simulation in Gazebo</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-integration/#verifying-transforms">Verifying Transforms</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-integration/#adding-sensors-and-actuators-in-ros">Adding Sensors and Actuators</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-integration/#utilizing-and-configuring-existing-ros-packages">Utilizing existing ROS Packages</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-24/projects/diffbot/ros-packages/"><span class="nav__sub-title">ROS Packages and Nodes</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-packages/robot-description/">Robot Description</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-packages/gazebo/">Gazebo Simulation</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-packages/control/">Control</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-packages/base/">Base Hardware Interface</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-packages/odometry/">Odometry</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-packages/navigation/">Navigation</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-packages/planner/">Planner</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-packages/slam/">SLAM</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-packages/driver/">Driver - Perception, Localization</a></li>
+            
+              <li><a href="/pr-preview/pr-24/projects/diffbot/ros-packages/hmi/">Human Machine Interface</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-24/projects/diffbot/system-integration/"><span class="nav__sub-title">System integration</span></a>
+          
+
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Autonomous 2WD Robot - ROS Noetic">
+    <meta itemprop="description" content="ROS Noetic Setup on Raspberry Pi 4 for an autonomous 2WD Robot running ROS melodic to sense and act in an environment.">
+    <meta itemprop="datePublished" content="2019-12-05T09:00:35+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc" aria-label="Table of contents">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#setup-ros-noetic">Setup ROS Noetic</a></li><li><a href="#ros-installation">ROS Installation</a></li><li><a href="#build-tool-catkin_tools">Build Tool: catkin_tools</a></li><li><a href="#command-overview-of-catkin_tools">Command Overview of catkin_tools</a></li><li><a href="#resources">Resources</a></li><li><a href="#ros-style-guide">ROS Style Guide</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>The following guide shows how to setup <a href="http://wiki.ros.org/noetic">ROS Noetic</a> and other important tools specific to ROS.</p>
+
+<h2 id="setup-ros-noetic">Setup ROS Noetic</h2>
+
+<p>The ROS distribution Noetic is supported by Ubuntu 20.04 which is why we are going to install it.
+Instructions can be found on the offical <a href="http://wiki.ros.org/noetic/Installation/Ubuntu">ROS documentation</a>.
+Just follow these instructions and choose this configuration: <code class="language-plaintext highlighter-rouge">Desktop-Full Install: (Recommended)</code>. 
+Although it is overkill, it will provide all examples that you might want to try.</p>
+
+<h2 id="ros-installation">ROS Installation</h2>
+
+<p>The robot setup is supposed to run on Ubuntu Mate 20.04 Focal Fossa. <a href="http://wiki.ros.org/melodic">ROS Noetic</a> is intended to run with this Ubuntu version.</p>
+
+<p>Another program that is required to run ROS nodes written with the <code class="language-plaintext highlighter-rouge">rospy</code> client library is <code class="language-plaintext highlighter-rouge">python-is-python3</code>. Install it with:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">sudo apt install python-is-python3
+</span></code></pre></div></div>
+
+<h2 id="build-tool-catkin_tools">Build Tool: <code class="language-plaintext highlighter-rouge">catkin_tools</code></h2>
+
+<p>To work with ROS we will use <a href="https://catkin-tools.readthedocs.io/en/latest/index.html"><code class="language-plaintext highlighter-rouge">catkin_tools</code></a> 
+instead of <a href="http://wiki.ros.org/catkin/commands/catkin_make"><code class="language-plaintext highlighter-rouge">catkin_make</code></a>. <code class="language-plaintext highlighter-rouge">catkin_tools</code> provide commands such as <a href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html"><code class="language-plaintext highlighter-rouge">catkin build</code></a> which we will use instead of <a href="https://wiki.ros.org/catkin/commands/catkin_make"><code class="language-plaintext highlighter-rouge">catkin_make</code></a> because the <code class="language-plaintext highlighter-rouge">catkin_tools</code> are more actively developed than <code class="language-plaintext highlighter-rouge">catkin_make</code>
+<a href="https://robotics.stackexchange.com/questions/16604/ros-catkin-make-vs-catkin-build">ref</a>.</p>
+
+<p>Follow the <a href="https://catkin-tools.readthedocs.io/en/latest/installing.html#installing-on-ubuntu-with-apt-get">instructions to insall</a> <code class="language-plaintext highlighter-rouge">catkin_tools</code> from a Ubuntu package repository. After sucessfully installing <code class="language-plaintext highlighter-rouge">catkin_tools</code> we can create and initialize a workspace (called <code class="language-plaintext highlighter-rouge">ros</code> for this project) with the <a href="https://catkin-tools.readthedocs.io/en/latest/quick_start.html">commands listed in the build_tools documentation</a>:</p>
+
+<p class="notice">Note that we already <code class="language-plaintext highlighter-rouge">source</code>d the <code class="language-plaintext highlighter-rouge">setup.bash</code> while following the <a href="http://wiki.ros.org/melodic/Installation/Ubuntu">ROS installation instructions</a>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fjp@ubuntu:~/git/2wd-robot/ros<span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-p</span> ~/git/2wd-robot/ros/src    <span class="c"># Make a new workspace and source space</span>
+fjp@ubuntu:~/git/2wd-robot/ros<span class="nv">$ </span><span class="nb">cd</span> ~/git/2wd-robot/ros              <span class="c"># Navigate to the workspace root</span>
+fjp@ubuntu:~/git/2wd-robot/ros<span class="nv">$ </span>catkin init                         <span class="c"># Initialize it with a hidden marker file</span>
+Initializing catkin workspace <span class="k">in</span> <span class="sb">`</span>/home/fjp/git/2wd-robot/ros<span class="sb">`</span><span class="nb">.</span>
+<span class="nt">----------------------------------------------------------------</span>
+Profile:                     default
+Extending:             <span class="o">[</span><span class="nb">env</span><span class="o">]</span> /opt/ros/melodic
+Workspace:                   /home/fjp/git/2wd-robot/ros
+<span class="nt">----------------------------------------------------------------</span>
+Build Space:       <span class="o">[</span>missing] /home/fjp/git/2wd-robot/ros/build
+Devel Space:       <span class="o">[</span>missing] /home/fjp/git/2wd-robot/ros/devel
+Install Space:      <span class="o">[</span>unused] /home/fjp/git/2wd-robot/ros/install
+Log Space:         <span class="o">[</span>missing] /home/fjp/git/2wd-robot/ros/logs
+Source Space:       <span class="o">[</span>exists] /home/fjp/git/2wd-robot/ros/src
+DESTDIR:            <span class="o">[</span>unused] None
+<span class="nt">----------------------------------------------------------------</span>
+Devel Space Layout:          linked
+Install Space Layout:        None
+<span class="nt">----------------------------------------------------------------</span>
+Additional CMake Args:       None
+Additional Make Args:        None
+Additional catkin Make Args: None
+Internal Make Job Server:    True
+Cache Job Environments:      False
+<span class="nt">----------------------------------------------------------------</span>
+Whitelisted Packages:        None
+Blacklisted Packages:        None
+<span class="nt">----------------------------------------------------------------</span>
+Workspace configuration appears valid.
+<span class="nt">----------------------------------------------------------------</span>
+</code></pre></div></div>
+
+<h2 id="command-overview-of-catkin_tools">Command Overview of <code class="language-plaintext highlighter-rouge">catkin_tools</code></h2>
+
+<p>To <a href="https://catkin-tools.readthedocs.io/en/latest/quick_start.html#adding-packages-to-the-workspace">create packages</a>, which will be covered in the next posts in more depth, we will use <a href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html#catkin-create-pkg"><code class="language-plaintext highlighter-rouge">catkin create pkg PKG_NAME</code></a>.</p>
+
+<p>Building the workspace is done with <a href="https://catkin-tools.readthedocs.io/en/latest/quick_start.html#building-the-workspace"><code class="language-plaintext highlighter-rouge">catkin build</code></a>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fjp@ubuntu:~/git/2wd-robot/ros<span class="nv">$ </span>catkin build
+<span class="nt">----------------------------------------------------------------</span>
+Profile:                     default
+Extending:             <span class="o">[</span><span class="nb">env</span><span class="o">]</span> /opt/ros/melodic
+Workspace:                   /home/fjp/git/2wd-robot/ros
+<span class="nt">----------------------------------------------------------------</span>
+Build Space:        <span class="o">[</span>exists] /home/fjp/git/2wd-robot/ros/build
+Devel Space:        <span class="o">[</span>exists] /home/fjp/git/2wd-robot/ros/devel
+Install Space:      <span class="o">[</span>unused] /home/fjp/git/2wd-robot/ros/install
+Log Space:         <span class="o">[</span>missing] /home/fjp/git/2wd-robot/ros/logs
+Source Space:       <span class="o">[</span>exists] /home/fjp/git/2wd-robot/ros/src
+DESTDIR:            <span class="o">[</span>unused] None
+<span class="nt">----------------------------------------------------------------</span>
+Devel Space Layout:          linked
+Install Space Layout:        None
+<span class="nt">----------------------------------------------------------------</span>
+Additional CMake Args:       None
+Additional Make Args:        None
+Additional catkin Make Args: None
+Internal Make Job Server:    True
+Cache Job Environments:      False
+<span class="nt">----------------------------------------------------------------</span>
+Whitelisted Packages:        None
+Blacklisted Packages:        None
+<span class="nt">----------------------------------------------------------------</span>
+Workspace configuration appears valid.
+
+NOTE: Forcing CMake to run <span class="k">for </span>each package.
+<span class="nt">----------------------------------------------------------------</span>
+<span class="o">[</span>build] No packages were found <span class="k">in </span>the <span class="nb">source </span>space <span class="s1">'/home/fjp/git/2wd-robot/ros/src'</span>
+<span class="o">[</span>build] No packages to be built.
+<span class="o">[</span>build] Package table is up to date.
+Starting  <span class="o">&gt;&gt;&gt;</span> catkin_tools_prebuild
+Finished  <span class="o">&lt;&lt;&lt;</span> catkin_tools_prebuild                <span class="o">[</span> 10.0 seconds <span class="o">]</span>
+<span class="o">[</span>build] Summary: All 1 packages succeeded!
+<span class="o">[</span>build]   Ignored:   None.
+<span class="o">[</span>build]   Warnings:  None.
+<span class="o">[</span>build]   Abandoned: None.
+<span class="o">[</span>build]   Failed:    None.
+<span class="o">[</span>build] Runtime: 10.1 seconds total.
+</code></pre></div></div>
+
+<p>Finally the newly built packages have to be <a href="https://catkin-tools.readthedocs.io/en/latest/quick_start.html#loading-the-workspace-environment">loaded in the environment</a> using <code class="language-plaintext highlighter-rouge">source</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fjp@ubuntu:~/git/2wd-robot/ros<span class="nv">$ </span><span class="nb">source</span> ~/git/2wd-robot/ros/devel/setup.bash <span class="c"># Load the workspace's environment</span>
+</code></pre></div></div>
+
+<h2 id="resources">Resources</h2>
+
+<p>Although the <a href="https://wiki.ros.org/catkin/Tutorials">catkin tutorial</a> uses <code class="language-plaintext highlighter-rouge">catkin_make</code> it provides a helpful guide to create a workspace</p>
+
+<h2 id="ros-style-guide">ROS Style Guide</h2>
+
+<p>The project follows <a href="http://wiki.ros.org/ROS/Patterns/Conventions">ROS conventions</a> and the <a href="http://wiki.ros.org/PyStyleGuide">style guide</a> from ROS in writing Python code.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-24/tags/#2wd" class="page__taxonomy-item p-category" rel="tag">2wd</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-24/tags/#autonomous" class="page__taxonomy-item p-category" rel="tag">autonomous</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-24/tags/#focal-fossa" class="page__taxonomy-item p-category" rel="tag">focal fossa</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-24/tags/#noetic" class="page__taxonomy-item p-category" rel="tag">noetic</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-24/tags/#pi" class="page__taxonomy-item p-category" rel="tag">pi</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-24/tags/#raspberry" class="page__taxonomy-item p-category" rel="tag">raspberry</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-24/tags/#robot" class="page__taxonomy-item p-category" rel="tag">robot</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-24/tags/#ros" class="page__taxonomy-item p-category" rel="tag">ros</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-24/tags/#ubuntu" class="page__taxonomy-item p-category" rel="tag">ubuntu</a>
+    
+    </span>
+  </p>
+
+
+  
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-24/categories/#robotics" class="page__taxonomy-item p-category" rel="tag">robotics</a>
+    
+    </span>
+  </p>
+
+
+  
+
+
+        
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2019-12-05T09:00:35+01:00">December 5, 2019</time></p>
+
+
+      </footer>
+
+      
+
+      
+
+  <nav class="pagination" aria-label="Post pagination">
+    
+      <a href="/pr-preview/pr-24/projects/diffbot/ros-packages/robot-description/" class="pagination--pager" title="Autonomous 2WD Robot - Robot Description Package">Previous</a>
+    
+    
+      <a href="/pr-preview/pr-24/projects/diffbot/ros-packages/" class="pagination--pager" title="Autonomous 2WD Robot - ROS Packages and Nodes">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#edeff5",
+      "text": "#838391"
+    },
+    "button": {
+      "background": "#4b81e8"
+    }
+  },
+  "type": "opt-out"
+});
+</script>
+
+<script data-ad-client="ca-pub-2214309606626131" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script src="https://www.dwin2.com/pub.642237.min.js"></script>
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/fjp" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/pr-preview/pr-24/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+
+  <script src="/pr-preview/pr-24/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/pr-preview/pr-24/assets/js/lunr/lunr.min.js"></script>
+<script src="/pr-preview/pr-24/assets/js/lunr/lunr-store.js"></script>
+<script src="/pr-preview/pr-24/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://fjp.at/pr-preview/pr-24/projects/diffbot/ros-noetic/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/projects/diffbot/ros-melodic"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://fjp-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>
