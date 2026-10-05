@@ -52,7 +52,7 @@ After you have connected the receiver to the S.Port, located in the battery comp
 This will flash the latest F.Port firmware onto the R-XSR receiver.
 
 
-For other helpful resources on how to flash the receiver, look at the official FrSky [support page](https://www.frsky-rc.com/how-to-use-the-transmitter-to-flash-the-firmware-of-the-x8r-receiver/) and the [R-XSR manual](https://www.frsky-rc.com/wp-content/uploads/Downloads/Manual/X9DP2019/X9D%20Plus%202019%20X9D%20Plus%20SE%202019-Manual.pdf). 
+For other helpful resources on how to flash the receiver, look at the official FrSky [support page](https://www.frsky-rc.com/how-to-use-the-transmitter-to-flash-the-firmware-of-the-x8r-receiver/) and the [R-XSR manual](https://www.frsky-rc.com/wp-content/uploads/Downloads/Manual/R-XSR/R-XSR%20ACCST%20-Manual.pdf). 
 
 
 ## Register and Bind R-XSR to Taranis X9D Plus 2019
