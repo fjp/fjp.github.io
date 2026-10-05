@@ -1,0 +1,800 @@
+
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js" dir="ltr">
+  <head>
+    
+<meta charset="utf-8">
+
+
+<!-- begin _includes/seo.html --><title>Autonomous 2WD Robot - RPi 4 Ubuntu Bionic - fjp.github.io</title>
+<meta name="description" content="Ubuntu 18.04 Bionic Setup on Raspberry Pi 4 for an autonomous 2WD Robot running ROS Noetic to sense and act in an environment.">
+
+
+  <meta name="author" content="Franz Pucher">
+  
+  <meta property="article:author" content="Franz Pucher">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="fjp.github.io">
+<meta property="og:title" content="Autonomous 2WD Robot - RPi 4 Ubuntu Bionic">
+<meta property="og:url" content="https://fjp.at/pr-preview/pr-25/projects/diffbot/rpi-setup/">
+
+
+  <meta property="og:description" content="Ubuntu 18.04 Bionic Setup on Raspberry Pi 4 for an autonomous 2WD Robot running ROS Noetic to sense and act in an environment.">
+
+
+
+  <meta property="og:image" content="https://fjp.at/pr-preview/pr-25/assets/collections/diffbot/components/raspberry-pi-4.jpg">
+  
+
+
+
+  <meta name="twitter:site" content="@franzpucher">
+  <meta name="twitter:title" content="Autonomous 2WD Robot - RPi 4 Ubuntu Bionic">
+  <meta name="twitter:description" content="Ubuntu 18.04 Bionic Setup on Raspberry Pi 4 for an autonomous 2WD Robot running ROS Noetic to sense and act in an environment.">
+  <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-25/projects/diffbot/rpi-setup/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://fjp.at/pr-preview/pr-25/assets/collections/diffbot/components/raspberry-pi-4.jpg">
+    
+  
+
+  
+
+
+
+
+
+  <meta property="article:published_time" content="2019-11-28T09:00:35+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fjp.at/pr-preview/pr-25/projects/diffbot/rpi-setup/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/pr-preview/pr-25/feed.xml" type="application/atom+xml" rel="alternate" title="fjp.github.io Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pr-preview/pr-25/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-2214309606626131",
+          enable_page_level_ads: true
+     });
+</script>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+<!--KaTeX-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+<!-- Pseudocode.js -->
+<!-- https://github.com/SaswatPadhi/pseudocode.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"
+        integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous">
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
+<script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js">
+</script>
+
+<!-- Mailinglist -->
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '1518166');
+</script>
+<!-- End MailerLite Universal -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+        
+        <a class="site-title" href="/pr-preview/pr-25/">
+          fjp.github.io
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-25/"
+                
+                
+              >Home</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-25/blog/"
+                
+                
+              >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-25/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-25/design-patterns/"
+                
+                
+              >Design Patterns</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-25/cpp/"
+                
+                
+              >C++</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-25/projects/fpv/"
+                
+                
+              >FPV</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-25/about/"
+                
+                
+              >About</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-25/ads/"
+                
+                
+              >Ads</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-25/privacy/"
+                
+                
+              >Privacy</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-25/sitemap/"
+                
+                
+              >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/pr-preview/pr-25/assets/collections/diffbot/components/raspberry-pi-4.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          Autonomous 2WD Robot - RPi 4 Ubuntu Bionic
+
+        
+      </h1>
+      
+        <p class="page__lead">Ubuntu 18.04 Bionic Setup on Raspberry Pi 4 for an autonomous 2WD Robot running ROS Noetic to sense and act in an environment.
+</p>
+      
+      
+
+
+
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-25/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-25/projects/" itemprop="item"><span itemprop="name">Projects</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-25/projects/diffbot/" itemprop="item"><span itemprop="name">Diffbot</span></a>
+            <meta itemprop="position" content="3" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Autonomous 2WD Robot - RPi 4 Ubuntu Bionic</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/pr-preview/pr-25/projects/diffbot/"><span class="nav__sub-title">DiffBot</span></a>
+          
+
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-25/projects/diffbot/components/"><span class="nav__sub-title">Components</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/components/#robot-base">Robot Base</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/components/#sensors">Sensors</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/components/#actuators">Actuators</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/components/#human-machine-interface-hmi">Human Machine Interface</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/assembly/">Assembly</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-25/projects/diffbot/rpi-setup/"><span class="nav__sub-title">Raspberry Pi 4B</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/rpi-setup/#obtain-ubuntu-mate-2004-arm-image">Ubuntu Mate 20.04</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/hardware-interfaces/">Hardware Interfaces</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-noetic/">ROS Noetic Setup</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-network/">ROS Network Setup</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-25/projects/diffbot/ros-integration/"><span class="nav__sub-title">ROS Integration</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-integration/#ros-message-interface">ROS Message Interface</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-integration/#hardware-driver">Hardware Driver</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-integration/#modeling-the-robot-urdf-and-xacro">Modeling the Robot: URDF</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-integration/#simulation-in-gazebo">Simulation in Gazebo</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-integration/#verifying-transforms">Verifying Transforms</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-integration/#adding-sensors-and-actuators-in-ros">Adding Sensors and Actuators</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-integration/#utilizing-and-configuring-existing-ros-packages">Utilizing existing ROS Packages</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-25/projects/diffbot/ros-packages/"><span class="nav__sub-title">ROS Packages and Nodes</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-packages/robot-description/">Robot Description</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-packages/gazebo/">Gazebo Simulation</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-packages/control/">Control</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-packages/base/">Base Hardware Interface</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-packages/odometry/">Odometry</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-packages/navigation/">Navigation</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-packages/planner/">Planner</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-packages/slam/">SLAM</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-packages/driver/">Driver - Perception, Localization</a></li>
+            
+              <li><a href="/pr-preview/pr-25/projects/diffbot/ros-packages/hmi/">Human Machine Interface</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-25/projects/diffbot/system-integration/"><span class="nav__sub-title">System integration</span></a>
+          
+
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Autonomous 2WD Robot - RPi 4 Ubuntu Bionic">
+    <meta itemprop="description" content="Ubuntu 18.04 Bionic Setup on Raspberry Pi 4 for an autonomous 2WD Robot running ROS Noetic to sense and act in an environment.">
+    <meta itemprop="datePublished" content="2019-11-28T09:00:35+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc" aria-label="Table of contents">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#obtain-ubuntu-2004-mate-image-for-raspberry-pi">Obtain Ubuntu 20.04 Mate Image for Raspberry Pi</a></li><li><a href="#wifi-issues">Wifi Issues</a></li><li><a href="#prepare-ubuntu">Prepare Ubuntu</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>These are the instructions to setup a custom Ubuntu 20.04 Focal Fossa on Raspberry Pi 4 B.</p>
+
+<h2 id="obtain-ubuntu-2004-mate-image-for-raspberry-pi">Obtain Ubuntu 20.04 Mate Image for Raspberry Pi</h2>
+
+<p>To install the long term supported (LTS) Ubuntu 20.04 on the Raspberry Pi 4B we make use of <a href="https://ubuntu-mate.org/download/arm64/focal/">arm64 version</a> 
+of <a href="https://ubuntu-mate.org/">Ubuntu Mate</a>.</p>
+
+<p>Download the latest release of the image and flash it to an empty sd card. To do this follow the instructions on the 
+<a href="https://www.raspberrypi.org/documentation/installation/installing-images/">Raspberry Pi documentation</a> or 
+<a href="https://www.balena.io/etcher/">balenaEtcher</a>. 
+Another way is to use the <a href="https://www.raspberrypi.org/downloads/">Raspberry Pi Imager</a> explained <a href="https://www.raspberrypi.org/blog/raspberry-pi-imager-imaging-utility/">here</a>.</p>
+
+<h2 id="wifi-issues">Wifi Issues</h2>
+
+<p>So far there are no known issues using WiFi with Ubuntu Mate 20.04 arm64 on the Raspberry Pi 4B.</p>
+
+<details>
+  <summary>Possible issues with other images</summary>
+  
+  If you are not in the US it is possible that you encounter connection problems when connected to a 5Ghz Wifi network.
+  If you are in a different country than the US you need to update your regulatory country. 5Ghz needs this to know the right bands to use.
+
+This can be changed by editing the value of `REGDOMAIN` in the file `/etc/default/crda` ([Central Regulatory Domain Agent](https://wireless.wiki.kernel.org/en/developers/regulatory/crda)) to the code for your country [ref](https://github.com/TheRemote/Ubuntu-Server-raspi4-unofficial/issues/98).
+</details>
+
+<h2 id="prepare-ubuntu">Prepare Ubuntu</h2>
+
+<p>After flashing the image to the sd card insert it to the Pi, hook it up to a monitor via HDMI and power it up by pluggin in the USB-C connector.
+Then you should follow the <a href="https://ubuntu-mate.org/raspberry-pi/install/">installation instructions</a> on the screen.</p>
+
+<p>Once finished, follow the next steps to install ROS Noetic.</p>
+
+<p class="notice">To proceed with the next steps on installing ROS and other related dependencies you can run a bash script.
+Just clone this repository: https://github.com/fjp/diffbot.git and run <code class="language-plaintext highlighter-rouge">ubuntu-setup.sh</code>. But to learn more, you should follow the instructions on the following pages.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-25/tags/#2wd" class="page__taxonomy-item p-category" rel="tag">2wd</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-25/tags/#autonomous" class="page__taxonomy-item p-category" rel="tag">autonomous</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-25/tags/#bionic" class="page__taxonomy-item p-category" rel="tag">bionic</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-25/tags/#differential-drive" class="page__taxonomy-item p-category" rel="tag">differential drive</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-25/tags/#noetic" class="page__taxonomy-item p-category" rel="tag">noetic</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-25/tags/#pi" class="page__taxonomy-item p-category" rel="tag">pi</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-25/tags/#raspberry" class="page__taxonomy-item p-category" rel="tag">raspberry</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-25/tags/#robot" class="page__taxonomy-item p-category" rel="tag">robot</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-25/tags/#ros" class="page__taxonomy-item p-category" rel="tag">ros</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-25/tags/#ubuntu" class="page__taxonomy-item p-category" rel="tag">ubuntu</a>
+    
+    </span>
+  </p>
+
+
+  
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-25/categories/#robotics" class="page__taxonomy-item p-category" rel="tag">robotics</a>
+    
+    </span>
+  </p>
+
+
+  
+
+
+        
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2019-11-28T09:00:35+01:00">November 28, 2019</time></p>
+
+
+      </footer>
+
+      
+
+      
+
+  <nav class="pagination" aria-label="Post pagination">
+    
+      <a href="/pr-preview/pr-25/projects/diffbot/assembly/" class="pagination--pager" title="Autonomous 2WD Robot - Assembly">Previous</a>
+    
+    
+      <a href="/pr-preview/pr-25/projects/diffbot/hardware-interfaces/" class="pagination--pager" title="Autonomous 2WD Robot - Hardware Interfaces">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#edeff5",
+      "text": "#838391"
+    },
+    "button": {
+      "background": "#4b81e8"
+    }
+  },
+  "type": "opt-out"
+});
+</script>
+
+<script data-ad-client="ca-pub-2214309606626131" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script src="https://www.dwin2.com/pub.642237.min.js"></script>
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/fjp" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/pr-preview/pr-25/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+
+  <script src="/pr-preview/pr-25/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/pr-preview/pr-25/assets/js/lunr/lunr.min.js"></script>
+<script src="/pr-preview/pr-25/assets/js/lunr/lunr-store.js"></script>
+<script src="/pr-preview/pr-25/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://fjp.at/pr-preview/pr-25/projects/diffbot/rpi-setup/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/projects/diffbot/rpi-setup"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://fjp-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>
