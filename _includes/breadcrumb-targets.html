@@ -1,0 +1,12 @@
+{%- comment -%}
+  Everything a breadcrumb can link to, rendered once per build with
+  include_cached: "|<url>|" for every page and document, followed by
+  "|#<slug>|" for every category.
+{%- endcomment -%}
+|{%- for p in site.pages -%}{{ p.url }}|{%- endfor -%}
+{%- for d in site.documents -%}{{ d.url }}|{%- endfor -%}
+{%- assign entries = site.documents | concat: site.pages -%}
+{%- for doc in entries -%}
+  {%- assign doc_categories = doc.categories | join: "|" | split: "|" -%}
+  {%- for category in doc_categories -%}#{{ category | slugify }}|{%- endfor -%}
+{%- endfor -%}

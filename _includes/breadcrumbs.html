@@ -1,0 +1,59 @@
+{% comment %}
+  Overrides the theme's breadcrumbs, which link a folder of the page URL to
+  /<folder> (or to the category <folder> for posts), so that /projects/fpv/frame
+  linked its "Fpv" crumb to /fpv. Here each folder links to the page at the
+  path up to that folder. Without such a page it links to the category of that
+  name, and without a category it is shown as plain text.
+{% endcomment %}
+{% assign locale = include.locale | default: site.locale %}
+{% capture targets %}{% include_cached breadcrumb-targets.html %}{% endcapture %}
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    {% assign crumbs = page.url | split: '/' %}
+    {% assign crumb_path = '/' %}
+    {% assign i = 1 %}
+    {% for crumb in crumbs offset: 1 %}
+      {% if forloop.first %}
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="{{ '/' | relative_url }}" itemprop="item"><span itemprop="name">{{ site.data.ui-text[locale].breadcrumb_home_label | default: "Home" }}</span></a>
+
+          <meta itemprop="position" content="{{ i }}" />
+        </li>
+        <span class="sep">{{ site.data.ui-text[locale].breadcrumb_separator | default: "/" }}</span>
+      {% endif %}
+      {% if forloop.last %}
+        <li class="current"{% if page.locale %} lang="{{ page.locale }}"{% endif %}>{{ page.title }}</li>
+      {% else %}
+        {% assign crumb_path = crumb_path | append: crumb | append: '/' %}
+        {% assign crumb_file = crumb_path | split: '/' | join: '/' %}
+        {% assign crumb_slug = crumb | url_decode | slugify %}
+        {% capture probe_dir %}|{{ crumb_path }}|{% endcapture %}
+        {% capture probe_file %}|{{ crumb_file }}|{% endcapture %}
+        {% capture probe_html %}|{{ crumb_file }}.html|{% endcapture %}
+        {% capture probe_category %}|#{{ crumb_slug }}|{% endcapture %}
+        {% assign crumb_url = nil %}
+        {% if targets contains probe_dir %}
+          {% assign crumb_url = crumb_path %}
+        {% elsif targets contains probe_file %}
+          {% assign crumb_url = crumb_file %}
+        {% elsif targets contains probe_html %}
+          {% assign crumb_url = crumb_file | append: '.html' %}
+        {% elsif targets contains probe_category %}
+          {% assign crumb_url = crumb_slug | prepend: '#' | prepend: site.category_archive.path %}
+        {% endif %}
+        {% assign crumb_name = crumb | url_decode | replace: '-', ' ' | capitalize %}
+        {% if crumb_url %}
+          {% assign i = i | plus: 1 %}
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="{{ crumb_url | relative_url }}" itemprop="item"><span itemprop="name">{{ crumb_name }}</span></a>
+            <meta itemprop="position" content="{{ i }}" />
+          </li>
+        {% else %}
+          <li>{{ crumb_name }}</li>
+        {% endif %}
+        <span class="sep">{{ site.data.ui-text[locale].breadcrumb_separator | default: "/" }}</span>
+      {% endif %}
+    {% endfor %}
+  </ol>
+</nav>
