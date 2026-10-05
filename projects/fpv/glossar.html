@@ -554,7 +554,8 @@ the <a href="/projects/fpv/glossar#betaflight-configurator">BetaFlight Configura
 <h2 id="betaflight-configurator">BetaFlight Configurator</h2>
 
 <p>Part of the <a href="/projects/fpv/glossar#betaflight">BetaFlight</a> open source <a href="/projects/fpv/glossar#flight-controller">Flight Controllers</a> <a href="/projects/fpv/glossar#firmware">firmware</a> project.
-It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) configuration tool for the BetaFlight <a href="/projects/fpv/glossar#firmware">firmware</a>.</p>
+It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) configuration tool for the BetaFlight <a href="/projects/fpv/glossar#firmware">firmware</a>.
+It has since been renamed to the <a href="https://app.betaflight.com/">Betaflight App</a>, which runs in Chromium-based browsers.</p>
 
 <h2 id="bind">Bind</h2>
 
@@ -563,7 +564,8 @@ It is a cross platform (runs on most operating systems, Windows, Linux, MacOS) c
 <h2 id="blheli">BLHeli</h2>
 
 <p><a href="/projects/fpv/glossar#firmware">Firmware</a> for <a href="/projects/fpv/glossar#esc">ESCs</a> that is used to process the input data from a <a href="/projects/fpv/glossar/#flight-controller">Flight Controller</a> and translate that into suitable control commands for the motor. Although the firmware was originally developed for helicopters it is also used for multicopters. 
-Another commonly used firmware for ESCs is called <a href="/projects/fpv/glossar#simonk">SimonK</a>.</p>
+Another commonly used firmware for ESCs is called <a href="/projects/fpv/glossar#simonk">SimonK</a>.
+Development of the 32-bit version BLHeli_32 ended in June 2024. Its open source successors are <a href="https://am32.ca/">AM32</a> for 32-bit ESCs and <a href="https://github.com/bird-sanctuary/bluejay">Bluejay</a> for 8-bit BLHeli_S ESCs.</p>
 
 <h2 id="cfk">CFK</h2>
 
@@ -583,6 +585,12 @@ device that is required to <a href="/projects/fpv/glossar#flash">flash</a> a new
 Either you need to short the BL or BOOT pads (or press and hold the BOOT tactile button if your FC board has one) while 
 plugging the USB into the Flight Controller board.</p>
 
+<h2 id="edgetx">EdgeTX</h2>
+
+<p>Open source <a href="/projects/fpv/glossar#firmware">firmware</a> for RC <a href="/projects/fpv/glossar#transmitter">transmitters</a>, started in 2021 as a fork of <a href="/projects/fpv/glossar#opentx">OpenTX</a>.
+Most radios ship with it today. It is configured on the radio, with EdgeTX Companion or with the browser-based <a href="https://buddy.edgetx.org/">EdgeTX Buddy</a>.
+Reference: <a href="https://edgetx.org/">EdgeTX</a>.</p>
+
 <h2 id="esc">ESC</h2>
 
 <p>The Electronic Speed Controller (ESC) is connected to the <a href="/projects/fpv/glossar#pdb">PDB</a> and 
@@ -595,6 +603,12 @@ More details are found on the <a href="/projects/fpv/esc">ESC page</a>.</p>
 
 <p>EU <a href="/projects/fpv/glossar#lbt">LBT</a> stands for European Union Listen Before Talk (or Transmit) and is a <a href="/projects/fpv/glossar#firmware">firmware</a> version for <a href="/projects/fpv/glossar/#receiver">receivers</a> and <a href="/projects/fpv/glossar#transmitter">transmitter</a> modules, which is allowed in the geographical region of the EU. Another firmware version is the <a href="/projects/fpv/glossar#fcc">FCC</a> version which can be used outside the EU.
 Reference: <a href="https://brushlesswhoop.com/frsky-eu-lbt-vs-fcc/">Brushless Whoop</a>.</p>
+
+<h2 id="expresslrs">ExpressLRS</h2>
+
+<p>Open source RC link (ELRS) between <a href="/projects/fpv/glossar#transmitter">transmitter</a> and <a href="/projects/fpv/glossar#receiver">receiver</a> on 2.4 GHz or 900 MHz.
+It uses LoRa modulation and small packets for long range and low latency, and has become the most common RC link in FPV.
+Reference: <a href="https://www.expresslrs.org/">ExpressLRS</a>.</p>
 
 <h2 id="fcc">FCC</h2>
 
@@ -704,7 +718,8 @@ How they work and how to read their specifications is explained on the <a href="
 
 <p>Open source <a href="/projects/fpv/glossar#firmware">firmware</a> for RC <a href="/projects/fpv/glossar#transmitter">transmitters</a> such as the <a href="/projects/fpv/glossar#taranis">Taranis</a> X9D Plus.
 It is configured on the radio itself or with <a href="/projects/fpv/glossar#opentx-companion">OpenTX Companion</a>.
-Reference: <a href="https://www.open-tx.org/">OpenTX</a>.</p>
+Reference: <a href="https://www.open-tx.org/">OpenTX</a>.
+OpenTX is no longer developed (its last release was in April 2022), most radios now run its fork <a href="/projects/fpv/glossar#edgetx">EdgeTX</a>.</p>
 
 <h2 id="opentx-companion">OpenTX Companion</h2>
 
