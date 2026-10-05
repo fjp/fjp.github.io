@@ -24,7 +24,7 @@ A [flight controller](/projects/fpv/glossar#flight-controller) can be operated w
 ([firmware](/projects/fpv/glossar#firmware)). Popular software for FPV race copters are 
 [Cleanflight](http://cleanflight.com/), its successor [Betaflight](https://betaflight.com/)
 and [LibrePilot](https://www.librepilot.org/site/index.html). Another software used specifically for FPV races is
-KISS from [Flyduino](https://kiss.flyduino.net/) with its related flight controller. 
+KISS from [Flyduino](https://www.flyduino.net/) with its related flight controller. 
 We will use Betaflight because it supports a wide variety of flight controllers.
 
 - **Cleanflight**: Simple interface which is used via a Chrome browser application window. 
