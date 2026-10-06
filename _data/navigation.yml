@@ -192,22 +192,21 @@ fpv:
       #   url: /projects/fpv/pid/#tuning
       - title: "PID Lua Script"
         url: /projects/fpv/pid-lua-script
-  # Planned page, enable once it exists:
-  # - title: "Thrust and Flight Time"
-  #   url: /projects/fpv/calculations/#introduction
-  #   children:
-  #     - title: "Basic Calculations"
-  #       url: /projects/fpv/calculations/#calculations
-  #     - title: "Weight"
-  #       url: /projects/fpv/calculations/#weight
-  #     - title: "Thrust"
-  #       url: /projects/fpv/calculations/#thrust
-  #     - title: "Finding matching Motors"
-  #       url: /projects/fpv/calculations/#motors
-  #     - title: "Finding matching ESCs"
-  #       url: /projects/fpv/calculations/#esc
-  #     - title: "Flight Time Calculation"
-  #       url: /projects/fpv/calculations/#flight-time
+  - title: "Thrust and Flight Time"
+    url: /projects/fpv/calculations/#introduction
+    children:
+      - title: "Basic Calculations"
+        url: /projects/fpv/calculations/#calculations
+      - title: "Weight"
+        url: /projects/fpv/calculations/#weight
+      - title: "Thrust"
+        url: /projects/fpv/calculations/#thrust
+      - title: "Finding matching Motors"
+        url: /projects/fpv/calculations/#motors
+      - title: "Finding matching ESCs"
+        url: /projects/fpv/calculations/#esc
+      - title: "Flight Time Calculation"
+        url: /projects/fpv/calculations/#flight-time
   - title: "Build and Setup"
     # url: /projects/fpv/build (planned)
     children:
