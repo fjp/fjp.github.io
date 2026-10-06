@@ -171,16 +171,15 @@ fpv:
         url: /projects/fpv/r-xsr
       - title: Throttle Curves
         url: /projects/fpv/throttle-curves
-  # Planned pages, enable once they exist:
-  # - title: "FPV System"
-  #   url: /projects/fpv/fpv-system/
-  #   children:
-  #     - title: "FPV Camera"
-  #       url: /projects/fpv/fpv-system/camera
-  #     - title: "FPV Transmitter and Receiver"
-  #       url: /projects/fpv/fpv-system/vtx
-  #     - title: "Antennas"
-  #       url: /projects/fpv/fpv-system/antennas
+  - title: "FPV System"
+    url: /projects/fpv/fpv-system/
+    children:
+      - title: "FPV Camera"
+        url: /projects/fpv/fpv-system/camera
+      - title: "FPV Transmitter and Receiver"
+        url: /projects/fpv/fpv-system/vtx
+      - title: "Antennas"
+        url: /projects/fpv/fpv-system/antennas
   - title: "Charger and Testers"
     url: /projects/fpv/charger
   - title: "PID Values"
