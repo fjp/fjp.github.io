@@ -36,6 +36,9 @@
 
 
 
+  <meta property="og:image" content="https://fjp.at/pr-preview/pr-28/assets/collections/fpv/propeller/propeller-header.jpg">
+  
+
 
 
   <meta name="twitter:site" content="@franzpucher">
@@ -44,7 +47,8 @@
   <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-28/projects/fpv/propeller">
 
   
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://fjp.at/pr-preview/pr-28/assets/collections/fpv/propeller/propeller-header.jpg">
     
   
 
@@ -57,6 +61,8 @@
   <meta property="article:published_time" content="2020-05-13T10:00:35+02:00">
 
 
+
+  <meta property="article:modified_time" content="2026-10-06T00:00:00+02:00">
 
 
 
@@ -259,6 +265,44 @@
 
     <div class="initial-content">
       
+
+
+  
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/pr-preview/pr-28/assets/collections/fpv/propeller/propeller-header.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          The Propeller
+
+        
+      </h1>
+      
+        <p class="page__lead">The Propeller transforms the energy from the battery into velocity.
+</p>
+      
+      
+
+
+
+      
+    </div>
+  
+  
+    <span class="page__hero-caption">Master Airscrew BN 5x4.5 propeller of this build
+</span>
+  
+</div>
 
 
 
@@ -473,20 +517,9 @@
     <meta itemprop="headline" content="The Propeller">
     <meta itemprop="description" content="The Propeller transforms the energy from the battery into velocity.">
     <meta itemprop="datePublished" content="2020-05-13T10:00:35+02:00">
-    
+    <meta itemprop="dateModified" content="2026-10-06T00:00:00+02:00">
 
     <div class="page__inner-wrap">
-      
-        <header>
-          <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="https://fjp.at/pr-preview/pr-28/projects/fpv/propeller" itemprop="url">The Propeller
-</a>
-          </h1>
-          
-
-
-
-        </header>
       
 
       <section class="page__content e-content" itemprop="text">
@@ -494,7 +527,7 @@
           <aside class="sidebar__right ">
             <nav class="toc" aria-label="Table of contents">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#plastic-fiberglass-or-carbon">Plastic, Fiberglass or Carbon</a></li></ul>
+              <ul class="toc__menu"><li><a href="#size-and-pitch">Size and Pitch</a><ul><li><a href="#diameter">Diameter</a></li><li><a href="#pitch">Pitch</a></li><li><a href="#blade-count">Blade Count</a></li></ul></li><li><a href="#direction-of-rotation">Direction of Rotation</a></li><li><a href="#plastic-fiberglass-or-carbon">Plastic, Fiberglass or Carbon</a></li><li><a href="#references">References</a></li></ul>
             </nav>
           </aside>
         
@@ -505,17 +538,74 @@ and lifts the plane off the ground.</p>
 <p>The propeller causes a similar effect with the difference that not the whole plane needs to move forward.
 Instead, the uplift is created through the rotation of the propeller similar to a helicopter.</p>
 
+<h2 id="size-and-pitch">Size and Pitch</h2>
+
+<p>Propellers are specified by their diameter and pitch, both in inches, and often by the number of blades.
+A 5x4.5 propeller, also written as 5045, has a diameter of 5 inches and a pitch of 4.5 inches.
+A third number, as in 5x4.5x3, gives the number of blades.
+This build uses two-blade Master Airscrew BN (bullnose) 5x4.5 propellers made of glass fiber reinforced polyamide, see the <a href="/pr-preview/pr-28/projects/fpv/components#props">components</a>.
+A set contains two propellers for each direction of rotation.</p>
+
+<figure class="half">
+    <a href="/pr-preview/pr-28/assets/collections/fpv/propeller/propellers-5x4.5.jpg"><img src="/pr-preview/pr-28/assets/collections/fpv/propeller/propellers-5x4.5.jpg" /></a>
+    <a href="/pr-preview/pr-28/assets/collections/fpv/propeller/propeller-5x4.5.jpg"><img src="/pr-preview/pr-28/assets/collections/fpv/propeller/propeller-5x4.5.jpg" /></a>
+    <figcaption>Set of four Master Airscrew BN 5x4.5 two-blade propellers and a single propeller.</figcaption>
+</figure>
+
+<h3 id="diameter">Diameter</h3>
+
+<p>The diameter is the size of the circle that the blade tips describe.
+It is limited by the frame, because the propellers must neither touch each other nor the frame.
+This is why quads are named after the propeller size they carry, for example a 5 inch quad.</p>
+
+<p>A larger diameter moves more air per revolution and creates more thrust.
+It also has more inertia, so the <a href="/pr-preview/pr-28/projects/fpv/glossar#motor">motor</a> needs more torque to speed it up and slow it down, and the quad reacts slower.
+Larger propellers therefore need motors with more torque, which usually means a larger stator.</p>
+
+<h3 id="pitch">Pitch</h3>
+
+<p>The pitch is the distance a propeller would move forward in one revolution if it were screwed through a solid material.
+A higher pitch moves more air per revolution and allows higher speeds, but it needs more torque and draws more current.
+A lower pitch reacts quicker and draws less current.</p>
+
+<p>Pitch and <a href="/pr-preview/pr-28/projects/fpv/glossar#rpm">RPM</a> $n$ give the theoretical speed of the air pushed by the propeller, the pitch speed:</p>
+
+\[v_p = p \cdot \frac{n}{60}\]
+
+<p>The EMAX RS2205 2300 $K_v$ <a href="/pr-preview/pr-28/projects/fpv/motor">motor</a> of this build turns at about $2300 \cdot 11.1 \approx 25\,530$ RPM without load
+on a 3S <a href="/pr-preview/pr-28/projects/fpv/glossar#lipo">LiPo</a> battery with a nominal voltage of 11.1 V. With a pitch of 4.5 inches, which is 0.1143 m:</p>
+
+\[v_p = 0.1143\,\text{m} \cdot \frac{25\,530}{60\,\text{s}} \approx 48.6\,\frac{\text{m}}{\text{s}} \approx 175\,\frac{\text{km}}{\text{h}}\]
+
+<p>This is an upper bound. Under load the motor turns slower, the battery voltage sags,
+and a propeller in air slips instead of moving forward by its full pitch in each revolution.</p>
+
+<h3 id="blade-count">Blade Count</h3>
+
+<p>Propellers with more blades have more blade area. At the same diameter they create more thrust and more grip in the air,
+which helps when the frame limits the diameter. On the other hand they create more drag, draw more current and are less efficient.
+Three-blade propellers are the most common choice on 5 inch quads today, while this build uses two-blade propellers.</p>
+
+<h2 id="direction-of-rotation">Direction of Rotation</h2>
+
+<p>Propellers are made for clockwise (CW) and counterclockwise (CCW) rotation.
+On a quad, two diagonally opposite motors spin clockwise and the other two counterclockwise, so that their torques cancel out and the quad doesn’t yaw.
+Each propeller has to match the direction of its motor: the leading edge, which is the thicker and rounded edge of a blade, points in the direction of rotation.
+A propeller on a motor with the wrong direction pushes the air upwards, and the quad flips over right after takeoff.</p>
+
 <h2 id="plastic-fiberglass-or-carbon">Plastic, Fiberglass or Carbon</h2>
 
-<p>Propellers can consisto of different materials. Small and in general inexpensive propellers are made of conventional plastic (e.g. EPP propellers).
-Improve quality of propellers is achieved through addition of carbon fiber or fiberglass. Propeller materials mixed of carbon- and fiberglass exist too.
+<p>Propellers can consist of different materials. Small and in general inexpensive propellers are made of conventional plastic (e.g. EPP propellers).
+Better quality is achieved through the addition of carbon fiber or fiberglass. Propeller materials mixed of carbon- and fiberglass exist too.
 The best quality comes with a propeller consisting of pure carbon fiber because they are very light and highly efficient. Because of its
 expensive material and manufacturing process it is more expensive compared to a traditional plastic propeller.</p>
 
-<p>References:</p>
+<h2 id="references">References</h2>
 
 <ul>
-  <li>http://wiki.mikrokopter.de/en/Propeller</li>
+  <li><a href="https://wiki.mikrokopter.de/en/Propeller">MikroKopter Wiki: Propeller</a></li>
+  <li><a href="https://oscarliang.com/propellers/">Oscar Liang: How to Choose the Best Propellers for FPV Drones</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Propeller_(aeronautics)">Wikipedia: Propeller (aeronautics)</a></li>
 </ul>
 
 
@@ -580,7 +670,7 @@ expensive material and manufacturing process it is more expensive compared to a 
         
 
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2020-05-13T10:00:35+02:00">May 13, 2020</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-updated" datetime="2026-10-06">October 6, 2026</time></p>
 
 
       </footer>
