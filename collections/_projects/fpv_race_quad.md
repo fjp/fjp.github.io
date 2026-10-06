@@ -4,15 +4,15 @@ title: Introduction to FPV
 permalink: /projects/fpv/
 excerpt: "Build instructions for an FPV race quad."
 date: 2019-09-18 23:08:51 +0200
-last_modified_at: 2026-10-02 13:58:41 +0200
+last_modified_at: 2026-10-06
 categories: [fpv, rc, quad]
 tags: [fpv, rc, quad, getfpv, motors, brushless, esc, props, flightcontroller, antennas, camera, goggles, frsky, fatshark]
 comments: true
 header:
-#  overlay_image: /assets/projects/autonomous-rc-car/hpi-racing-bmw-m3.png
-#  overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
-#  caption: "Source: [**hpiracing**](http://www.hpiracing.com/de/kit/114343)"
-#  show_overlay_excerpt: true
+  teaser: /assets/collections/fpv/quad/quad-header.jpg
+  overlay_image: /assets/collections/fpv/quad/quad-header.jpg
+  overlay_filter: 0.5
+  caption: "The race quad of this project"
 redirect_from:
   - /fpv/
 sidebar:
@@ -26,6 +26,13 @@ where you feel the thrill and try not to crash your drone into the next tree. Ev
 ## FPV Race Quad Build
 
 In this project we will [build](/projects/fpv/assembly) a race quad. For the parts that will be used to build this quad check out the [part list](/projects/fpv/components).
+
+<figure class="third">
+    <a href="/assets/collections/fpv/quad/finished-quad-1.jpg"><img src="/assets/collections/fpv/quad/finished-quad-1.jpg"></a>
+    <a href="/assets/collections/fpv/quad/finished-quad-2.jpg"><img src="/assets/collections/fpv/quad/finished-quad-2.jpg"></a>
+    <a href="/assets/collections/fpv/quad/finished-quad-3.jpg"><img src="/assets/collections/fpv/quad/finished-quad-3.jpg"></a>
+    <figcaption>The finished race quad: iFlight iX5 frame, EMAX RS2205 motors, DYS Aria ESCs and a RunCam Swift 2 camera.</figcaption>
+</figure>
 
 If you are new to this hobby follow this project. You find the index on the left. All the required theory will be outlined first, followed by [build instructions](/projects/fpv/assembly). 
 Common terms are explained in the [glossar](/projects/fpv/glossar) and linked throuhout the single pages.
