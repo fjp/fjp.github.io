@@ -28,12 +28,14 @@ autonomous_rc_car:
     children:
       - title: "Arduino MKR1000"
         url: /projects/autonomous-rc-car/arduino-mkr1000/
-      - title: "Raspbery Pi and ROS"
-        url: /projects/autonomous-rc-car/raspbery-pi-ros/
+      # Planned page, enable once it exists:
+      # - title: "Raspbery Pi and ROS"
+      #   url: /projects/autonomous-rc-car/raspbery-pi-ros/
       - title: "RC Car"
         url: /projects/autonomous-rc-car/rc-car-parts/
-      - title: "System integration"
-        url: /projects/autonomous-rc-car/system-integration/
+      # Planned page, enable once it exists:
+      # - title: "System integration"
+      #   url: /projects/autonomous-rc-car/system-integration/
   - title: "Prerequisites"
     url: /projects/autonomous-rc-car/#prerequisites
 
@@ -44,20 +46,20 @@ diffbot:
     url: /projects/diffbot/components/
     children:
       - title: "Robot Base"
-        url: /projects/diffbot/components/#robot-base
+        url: https://ros-mobile-robots.com/components/#robot-base
       - title: "Sensors"
-        url: /projects/diffbot/components/#sensors
+        url: https://ros-mobile-robots.com/components/#sensors
       - title: "Actuators"
-        url: /projects/diffbot/components/#actuators
+        url: https://ros-mobile-robots.com/components/#actuators
       - title: "Human Machine Interface"
-        url: /projects/diffbot/components/#human-machine-interface-hmi
+        url: https://ros-mobile-robots.com/components/#human-machine-interface-hmi
       - title: "Assembly"
         url: /projects/diffbot/assembly/
   - title: "Raspberry Pi 4B"
     url: /projects/diffbot/rpi-setup/
     children:
       - title: "Ubuntu Mate 20.04"
-        url: /projects/diffbot/rpi-setup/#obtain-ubuntu-mate-2004-arm-image
+        url: /projects/diffbot/rpi-setup/#obtain-ubuntu-2004-mate-image-for-raspberry-pi
       - title: "Hardware Interfaces"
         url: /projects/diffbot/hardware-interfaces/
       - title: "ROS Noetic Setup"
@@ -91,21 +93,23 @@ diffbot:
       - title: "Control"
         url: /projects/diffbot/ros-packages/control/
       - title: "Base Hardware Interface"
-        url: /projects/diffbot/ros-packages/base/
+        url: https://ros-mobile-robots.com/packages/diffbot_base/
       - title: "Odometry"
         url: /projects/diffbot/ros-packages/odometry/
       - title: "Navigation"
         url: /projects/diffbot/ros-packages/navigation/
-      - title: "Planner"
-        url: /projects/diffbot/ros-packages/planner/
+      # Planned page, enable once it exists:
+      # - title: "Planner"
+      #   url: /projects/diffbot/ros-packages/planner/
       - title: "SLAM"
-        url: /projects/diffbot/ros-packages/slam/
-      - title: "Driver - Perception, Localization"
-        url: /projects/diffbot/ros-packages/driver/
-      - title: "Human Machine Interface"
-        url: /projects/diffbot/ros-packages/hmi/
-  - title: "System integration"
-    url: /projects/diffbot/system-integration/
+        url: https://ros-mobile-robots.com/diffbot_slam/
+      # Planned pages, enable once they exist:
+      # - title: "Driver - Perception, Localization"
+      #   url: /projects/diffbot/ros-packages/driver/
+      # - title: "Human Machine Interface"
+      #   url: /projects/diffbot/ros-packages/hmi/
+  # - title: "System integration"
+  #   url: /projects/diffbot/system-integration/
 
 math:
   - title: "Introduction"
@@ -243,8 +247,9 @@ design-patterns:
     children:
       - title: "Adapter"
         url: /design-patterns/adapter
-      - title: "Bridge"
-        url: /design-patterns/bridge
+      # Planned page, enable once it exists:
+      # - title: "Bridge"
+      #   url: /design-patterns/bridge
       - title: "Decorator"
         url: /design-patterns/decorator
       - title: "Facade"
@@ -286,52 +291,57 @@ home-automation:
     children:
       - title: "Voltus - Bauprogramm"
         url: /projects/home-automation/voltus
-      - title: "KNX Overview"
-        url: /projects/home-automation/knx
+      # Planned page (branch feature/knx), enable once it exists:
+      # - title: "KNX Overview"
+      #   url: /projects/home-automation/knx
       - title: "KNX Button Selection"
         url: /projects/home-automation/knx-button-selection
   - title: "Raspberry Pi Home Assistant Setup"
     url: /projects/home-automation/setup
     children:
       - title: "Temperature and Humidity"
-        url: /home-automation/esp8266-dht
-      - title: "Shelly Light Control"
-        url: /home-automation/shelly-light
-      - title: "Shelly Rolling Shutter Control"
-        url: /home-automation/shelly-blinds
+        url: /projects/home-automation/esp8266-dht
+      # Planned pages, enable once they exist:
+      # - title: "Shelly Light Control"
+      #   url: /home-automation/shelly-light
+      # - title: "Shelly Rolling Shutter Control"
+      #   url: /home-automation/shelly-blinds
 
 # Cpp books
 pppucpp:
-  - title: "Computers People and Programming"
-    url: /pppucpp-ch1/
-    children:
-      - title: "Review"
-        url: /pppucpp-ch1/review
-      - title: "Terms"
-        url: /pppucpp-ch1/terms
-      - title: "Exercises"
-        url: /pppucpp-ch1/exercises
-  - title: "Hello World!"
-    url: /pppucpp-ch2/
-    children:
-      - title: "Review"
-        url: /pppucpp-ch2/review
-      - title: "Terms"
-        url: /pppucpp-ch2/terms
-      - title: "Drill"
-        url: /pppucpp-ch2/drill
-      - title: "Exercises"
-        url: /pppucpp-ch2/exercises
-  - title: "Objects, Types and Values"
-    url: /pppucpp-ch3/
-    children:
-      - title: "Review"
-        url: /pppucpp-ch3/review
-      - title: "Terms"
-        url: /pppucpp-ch3/terms
-      - title: "Drill"
-        url: /pppucpp-ch3/drill
-      - title: "Try This"
-        url: /pppucpp-ch3/trythis
-      - title: "Exercises"
-        url: /pppucpp-ch3/exercises
+  - title: "Programming: Principles and Practice Using C++"
+    url: /pppucpp/
+  # Planned chapter pages, enable once they exist:
+  # - title: "Computers People and Programming"
+  #   url: /pppucpp-ch1/
+  #   children:
+  #     - title: "Review"
+  #       url: /pppucpp-ch1/review
+  #     - title: "Terms"
+  #       url: /pppucpp-ch1/terms
+  #     - title: "Exercises"
+  #       url: /pppucpp-ch1/exercises
+  # - title: "Hello World!"
+  #   url: /pppucpp-ch2/
+  #   children:
+  #     - title: "Review"
+  #       url: /pppucpp-ch2/review
+  #     - title: "Terms"
+  #       url: /pppucpp-ch2/terms
+  #     - title: "Drill"
+  #       url: /pppucpp-ch2/drill
+  #     - title: "Exercises"
+  #       url: /pppucpp-ch2/exercises
+  # - title: "Objects, Types and Values"
+  #   url: /pppucpp-ch3/
+  #   children:
+  #     - title: "Review"
+  #       url: /pppucpp-ch3/review
+  #     - title: "Terms"
+  #       url: /pppucpp-ch3/terms
+  #     - title: "Drill"
+  #       url: /pppucpp-ch3/drill
+  #     - title: "Try This"
+  #       url: /pppucpp-ch3/trythis
+  #     - title: "Exercises"
+  #       url: /pppucpp-ch3/exercises

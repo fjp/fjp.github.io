@@ -20,7 +20,7 @@ header:
 A Kalman filter is used as a state predictor for a system with a model given in [state-space representation](https://en.wikipedia.org/wiki/State-space_representation).
 
 Note: This article is about the linear Kalman filter that assumes a linear model. Other versions of the Kalman filter such as 
-the [extended Kalman filter](/posts/state-estimation/extended-kalman-filter/) and the [unscented Kalman filter](/posts/state-estimation/unscented-kalman-filter/) are used for nonlinear models. 
+the [extended Kalman filter](/posts/state-estimation/extended-kalman-filter/) and the [unscented Kalman filter](/blog/ukf.html) are used for nonlinear models. 
 
 ## State Space Representation
 

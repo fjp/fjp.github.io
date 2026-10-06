@@ -31,7 +31,7 @@ The algorithm can map any arbitrary environment by dividing it into a finite num
 
 In mapping problems the robot pose $x\_{1:t}$ is known and the map $m\_{t}$ at time $t$, either static or dynamic is unknown. 
 Therefore the mapping problem is to find the posterior belief of the map $p(m\_t|x\_{1:t}, z\_{1:t})$ given the robot poses and its measurements $z\_{1:t}$.
-Compared to [localization](/posts/localization/), where a robot pose is estimated in a known map, the goal of mapping is to estimate the map itself. 
+Compared to [localization](/posts/localization/mcl/), where a robot pose is estimated in a known map, the goal of mapping is to estimate the map itself. 
 
 ## Motivation
 
@@ -66,7 +66,7 @@ a resulting map and localize the robot with respect to this map.
 
 The problem of generating a map under the assumption that the robot poses are known and non noisy is refered to as mapping with known poses. The problem can be represented as a graph with a node $m$ as the map,
 $z_t$, which are nodes representing the measurements of sensing the environment and the poses $x_t$ also as nodes. 
-The occupancy grid mapping algorithm can estimate the posterior given noisy measurements and known poses. Usually though the poses are unknown which is the case in [SLAM](/posts/slam/slam). Mapping, however, happens after SLAM.
+The occupancy grid mapping algorithm can estimate the posterior given noisy measurements and known poses. Usually though the poses are unknown which is the case in [SLAM](/posts/slam/fastslam/). Mapping, however, happens after SLAM.
 During SLAM the robot built a map of the environment and localized itself relative to it. After SLAM the occupancy grid mapping algorithm uses the exact robot poses filtered from SLAM.
 With the known poses from SLAM and noisy measurements, the mapping algorithm generates a map fit for path planning and navigation. 
 
