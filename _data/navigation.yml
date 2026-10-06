@@ -142,8 +142,8 @@ fpv:
       # Planned pages, enable once they exist:
       # - title: "Flightcontroller"
       #   url: /projects/fpv/flightcontroller
-      # - title: "RC Receiver"
-      #   url: /projects/fpv/receiver
+      - title: "RC Receiver"
+        url: /projects/fpv/receiver
   - title: "Flight Controller Software"
     url: /projects/fpv/flight-controller-software
     children:
@@ -163,7 +163,7 @@ fpv:
       - title: RC Rates and Expo Settings
         url: /projects/fpv/rate-expo-settings
   - title: "RC Transmitter"
-    # url: /projects/fpv/transmitter (planned)
+    url: /projects/fpv/transmitter
     children:
       - title: Taranis X9D Plus SE 2019
         url: /projects/fpv/taranis
