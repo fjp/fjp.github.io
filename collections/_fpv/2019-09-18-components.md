@@ -39,6 +39,8 @@ and often a digital HD video system such as DJI, Walksnail Avatar or HDZero inst
 
 ## Batteries/Charger
 
+More about the batteries and how to charge them on the pages [LiPo Batteries](/projects/fpv/battery) and [Charger and Testers](/projects/fpv/charger).
+
 <figure class="third">
     <a href="/assets/collections/fpv/components/ev-peak-cq3-4x-100w-lead_2.jpg"><img src="/assets/collections/fpv/components/ev-peak-cq3-4x-100w-lead_2.jpg" width="600"></a>
     <a href="/assets/collections/fpv/components/ev-peak-cellmeter-7-battery-capacity-checker.jpg"><img src="/assets/collections/fpv/components/ev-peak-cellmeter-7-battery-capacity-checker.jpg" width="600"></a>

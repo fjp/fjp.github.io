@@ -137,9 +137,9 @@ fpv:
         url: /projects/fpv/propeller
       - title: "Power Distribution Board"
         url: /projects/fpv/pdb
+      - title: "Batteries"
+        url: /projects/fpv/battery
       # Planned pages, enable once they exist:
-      # - title: "Batteries"
-      #   url: /projects/fpv/battery
       # - title: "Flightcontroller"
       #   url: /projects/fpv/flightcontroller
       # - title: "RC Receiver"
@@ -181,8 +181,8 @@ fpv:
   #       url: /projects/fpv/fpv-system/vtx
   #     - title: "Antennas"
   #       url: /projects/fpv/fpv-system/antennas
-  # - title: "Charger and Testers"
-  #   url: /projects/fpv/charger
+  - title: "Charger and Testers"
+    url: /projects/fpv/charger
   - title: "PID Values"
     # url: /projects/fpv/pid/#introduction (planned)
     children:
