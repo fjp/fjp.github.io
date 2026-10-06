@@ -19,7 +19,7 @@ sidebar:
   nav: "fpv"
 ---
 
-This post is abou the [FrSky R-XSR SmartPort Receiver](https://www.frsky-rc.com/product/r-xsr/) which is also capabale of the new [F.Port](/projects/fpv/glossar/#fport) protocol that requires only a single connection to the [Flight Controller](/projects/fpv/glossar/#flight-controller) for communication. 
+This post is abou the [FrSky R-XSR SmartPort Receiver](https://www.frsky-rc.com/product/r-xsr/) which is also capabale of the new [F.Port](/projects/fpv/glossar#fport) protocol that requires only a single connection to the [Flight Controller](/projects/fpv/glossar#flight-controller) for communication. 
 
 **Update 2026:** In FPV, FrSky's ACCST and ACCESS links have largely been replaced by the open source [ExpressLRS](https://www.expresslrs.org/), which offers more range and lower latency with inexpensive receivers.
 The Taranis X9D Plus 2019 can use ExpressLRS with an external module in its JR module bay.
@@ -34,12 +34,12 @@ The Taranis X9D Plus 2019 can use ExpressLRS with an external module in its JR m
 
 ## Receiver Firmware Update
 
-This section explains how to [flash](/projects/fpv/glossar/#flash) the latest [receiver](/projects/fpv/glossar/#receiver) [firmware](/projects/fpv/glossar/#firmware) for an R-XSR receiver and how to [bind](/projects/fpv/glossar/#bind) it to the [Taranis](/projects/fpv/glossar/#taranis) X9D Plus 2019 [transmitter](/projects/fpv/glossar/#transmitter).
+This section explains how to [flash](/projects/fpv/glossar#flash) the latest [receiver](/projects/fpv/glossar#receiver) [firmware](/projects/fpv/glossar#firmware) for an R-XSR receiver and how to [bind](/projects/fpv/glossar#bind) it to the [Taranis](/projects/fpv/glossar#taranis) X9D Plus 2019 [transmitter](/projects/fpv/glossar#transmitter).
 
-Download the latest [ACCESS](/projects/fpv/glossar/#access) firmware from the 
-[product page](https://www.frsky-rc.com/r-xsr/). Here you can decide between [S.Port](/projects/fpv/glossar/#smartport) and [F.Port](/projects/fpv/glossar/#fport) variants. 
+Download the latest [ACCESS](/projects/fpv/glossar#access) firmware from the 
+[product page](https://www.frsky-rc.com/r-xsr/). Here you can decide between [S.Port](/projects/fpv/glossar#smartport) and [F.Port](/projects/fpv/glossar#fport) variants. 
 If you don't know what to choose, it is recommended to select the newer F.Port firmware, as it allows you to 
-connect your receiver with just a single wire to your [Flight Controller](/projects/fpv/glossar/#flight-controller).
+connect your receiver with just a single wire to your [Flight Controller](/projects/fpv/glossar#flight-controller).
 
 Choose for example, `FW-RXSR-ACCESS_v1.1.4.zip`, which is, at the time of writing, the latest firmware and includes the F.Port firmware. Especially the file `RXSR-FPORT_ACCESS_191107.frsk` will be relevant for flashing. Unpack the zip file and copy the content to the `FIRMWARES` folder (create it, if it doesn't exist) on the external sd card of your Taranis.
 

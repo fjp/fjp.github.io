@@ -37,7 +37,7 @@ which is why it is popular for racing. Digital HD systems provide a much sharper
 
 ## Battery
 
-Batteries in a [FPV](/projects/fpv/glossar/#fpv) drone are connected to the [PDB](/projects/fpv/glossar/#pdb) to power the components. For drones [LiPo](/projects/fpv/glossar/#lipo) batteries are used 
+Batteries in a [FPV](/projects/fpv/glossar#fpv) drone are connected to the [PDB](/projects/fpv/glossar#pdb) to power the components. For drones [LiPo](/projects/fpv/glossar#lipo) batteries are used 
 because of their high energy density, which makes them weigh less and therefore improve the flight time.
 
 A battery has two important measures. Its capacity and cell count that specify their voltage level.
@@ -60,7 +60,7 @@ The BetaFlight open source [Flight Controller](/projects/fpv/glossar#flight-cont
 [firmwares](/projects/fpv/glossar#firmware) for [FCs](/projects/fpv/glossar#flight-controller). To configure and [flash](/projects/fpv/glossar#flash) a firmware onto a Flight Controller we use 
 the [BetaFlight Configurator](/projects/fpv/glossar#betaflight-configurator).
 
-BetaFlight is a fork of the [CleanFlight](/projects/fpv/glossar/#cleanflight) project, which is considered less experimental. However, modern Flight Controllers are supported mostly by BetaFlight. 
+BetaFlight is a fork of the [CleanFlight](/projects/fpv/glossar#cleanflight) project, which is considered less experimental. However, modern Flight Controllers are supported mostly by BetaFlight. 
 
 ## BetaFlight Configurator
 
@@ -74,7 +74,7 @@ Bind is referred to binding a [receiver](/projects/fpv/glossar#receiver) with a 
 
 ## BLHeli
 
-[Firmware](/projects/fpv/glossar#firmware) for [ESCs](/projects/fpv/glossar#esc) that is used to process the input data from a [Flight Controller](/projects/fpv/glossar/#flight-controller) and translate that into suitable control commands for the motor. Although the firmware was originally developed for helicopters it is also used for multicopters. 
+[Firmware](/projects/fpv/glossar#firmware) for [ESCs](/projects/fpv/glossar#esc) that is used to process the input data from a [Flight Controller](/projects/fpv/glossar#flight-controller) and translate that into suitable control commands for the motor. Although the firmware was originally developed for helicopters it is also used for multicopters. 
 Another commonly used firmware for ESCs is called [SimonK](/projects/fpv/glossar#simonk).
 Development of the 32-bit version BLHeli_32 ended in June 2024. Its open source successors are [AM32](https://am32.ca/) for 32-bit ESCs and [Bluejay](https://github.com/bird-sanctuary/bluejay) for 8-bit BLHeli_S ESCs.
 
@@ -106,13 +106,13 @@ Reference: [EdgeTX](https://edgetx.org/).
 
 The Electronic Speed Controller (ESC) is connected to the [PDB](/projects/fpv/glossar#pdb) and 
 controls the speed of a motor by adjusting its [rpm](/projects/fpv/glossar#rpm) (revolutions per minute). 
-A quadcopter uses four ESCs which can be part of the [Flight Controller](/projects/fpv/glossar/#flight-controller). 
+A quadcopter uses four ESCs which can be part of the [Flight Controller](/projects/fpv/glossar#flight-controller). 
 The input signal to an ESC comes from the Flight Controller, which tells the ESC at which speed a motor should run.
 More details are found on the [ESC page](/projects/fpv/esc).
 
 ## EU LBT
 
-EU [LBT](/projects/fpv/glossar#lbt) stands for European Union Listen Before Talk (or Transmit) and is a [firmware](/projects/fpv/glossar#firmware) version for [receivers](/projects/fpv/glossar/#receiver) and [transmitter](/projects/fpv/glossar#transmitter) modules, which is allowed in the geographical region of the EU. Another firmware version is the [FCC](/projects/fpv/glossar#fcc) version which can be used outside the EU.
+EU [LBT](/projects/fpv/glossar#lbt) stands for European Union Listen Before Talk (or Transmit) and is a [firmware](/projects/fpv/glossar#firmware) version for [receivers](/projects/fpv/glossar#receiver) and [transmitter](/projects/fpv/glossar#transmitter) modules, which is allowed in the geographical region of the EU. Another firmware version is the [FCC](/projects/fpv/glossar#fcc) version which can be used outside the EU.
 Reference: [Brushless Whoop](https://brushlesswhoop.com/frsky-eu-lbt-vs-fcc/).
 
 ## ExpressLRS
@@ -128,7 +128,7 @@ Reference: [Brushless Whoop](https://brushlesswhoop.com/frsky-eu-lbt-vs-fcc/).
 
 ## Firmware
 
-In the context of [FPV](/projects/fpv/glossar/#fpv) a [firmware](https://en.wikipedia.org/wiki/Firmware) is the software that runs on the [Flight Controller](/projects/fpv/glossar/#flight-controller).
+In the context of [FPV](/projects/fpv/glossar#fpv) a [firmware](https://en.wikipedia.org/wiki/Firmware) is the software that runs on the [Flight Controller](/projects/fpv/glossar#flight-controller).
 Other devices such as [ESCs](/projects/fpv/glossar#esc), [receivers](/projects/fpv/glossar#receiver) and [transmitters](/projects/fpv/glossar#transmitter) run their own firmware too.
 
 ## Flash
@@ -143,8 +143,8 @@ Flash storage component of a device where the Firmware is stored.
 [Micro Controller](https://en.wikipedia.org/wiki/Microcontroller) board that contains input and output (I/O) pins and a processing unit (microchip), 
 which runs a Flight Controller [firmware](/projects/fpv/glossar#firmware). 
 The Flight Controller acts as the brain of a drone.
-By processing [sensor](/projects/fpv/glossar#sensor) input signals the Flight Controller is used to compute output signals for external or internal [ESCs](/projects/fpv/glossar/#esc) to keep level flight. Other input signals are used to adjust the [pose](/projects/fpv/glossar/#pose) of the quad in the air such as the [receiver](/projects/fpv/glossar/#receiver) and other internal or external sensors. A Flight Controller usually
-contains multiple internal [sensors](/projects/fpv/glossar/#sensor) such as [IMUs](/projects/fpv/glossar#imu).
+By processing [sensor](/projects/fpv/glossar#sensor) input signals the Flight Controller is used to compute output signals for external or internal [ESCs](/projects/fpv/glossar#esc) to keep level flight. Other input signals are used to adjust the [pose](/projects/fpv/glossar#pose) of the quad in the air such as the [receiver](/projects/fpv/glossar#receiver) and other internal or external sensors. A Flight Controller usually
+contains multiple internal [sensors](/projects/fpv/glossar#sensor) such as [IMUs](/projects/fpv/glossar#imu).
 
 ## FPort
 
@@ -163,7 +163,7 @@ References:
 
 ## FPV
 
-Abbreviation for first person view, where the live image from a flying quad is viewed through an [analog](/projects/fpv/glossar/#analog) video receiving system. This can be either a [fpv goggle](/projects/fpv/glossar/#goggle) or monitor.
+Abbreviation for first person view, where the live image from a flying quad is viewed through an [analog](/projects/fpv/glossar#analog) video receiving system. This can be either a [fpv goggle](/projects/fpv/glossar#goggle) or monitor.
 
 ## FPV Camera
 
@@ -174,13 +174,13 @@ The quad in this project uses a RunCam Swift 2 (see [components](/projects/fpv/c
 
 ## FrSky
 
-[FrSky](https://www.frsky-rc.com/) is a Chinese company that manufactures modules for [rc](/projects/fpv/glossar#rc) toys such as [transmitters](/projects/fpv/glossar/#transmitter), [receivers](/projects/fpv/glossar#receiver) or [Flight Controllers](/projects/fpv/glossar#flight-controller).
+[FrSky](https://www.frsky-rc.com/) is a Chinese company that manufactures modules for [rc](/projects/fpv/glossar#rc) toys such as [transmitters](/projects/fpv/glossar#transmitter), [receivers](/projects/fpv/glossar#receiver) or [Flight Controllers](/projects/fpv/glossar#flight-controller).
 Their transmitters and receivers are among the most common in the FPV scene.
 At their homepage [https://www.frsky-rc.com/](https://www.frsky-rc.com/) you can see all the products and download manuals and firmware updates. 
 
 ## Goggle
 
-Used to view the [analog](/projects/fpv/glossar/#analog) live image captured by the camera on the quad, which is transmitted with the video transmitter that sits also on the quad.
+Used to view the [analog](/projects/fpv/glossar#analog) live image captured by the camera on the quad, which is transmitted with the video transmitter that sits also on the quad.
 
 ## IMU
 
@@ -197,11 +197,11 @@ How to update it is explained on the [Taranis page](/projects/fpv/taranis#update
 ## LBT
 
 LBT stands for Listen Before Talk or Listen Before Transmit and describes the version of a 
-[firmware](/projects/fpv/glossar/#firmware) for [transmitters](/projects/fpv/glossar/#transmitter) and 
-[receivers](/projects/fpv/glossar/#receiver). The LBT version also referred to as EU LBT is the allowed version 
+[firmware](/projects/fpv/glossar#firmware) for [transmitters](/projects/fpv/glossar#transmitter) and 
+[receivers](/projects/fpv/glossar#receiver). The LBT version also referred to as EU LBT is the allowed version 
 in the European Union. Most of the [FrSky](/projects/fpv/glossar#frsky) 
-receivers and transmitters are sometimes referenced as EU or non EU or [EU LBT](/projects/fpv/glossar/#eu-lbt) 
-and [FCC](/projects/fpv/glossar/#fcc).
+receivers and transmitters are sometimes referenced as EU or non EU or [EU LBT](/projects/fpv/glossar#eu-lbt) 
+and [FCC](/projects/fpv/glossar#fcc).
 
 Reference: [Brushless Whoop](https://brushlesswhoop.com/frsky-eu-lbt-vs-fcc/).
 
@@ -233,9 +233,9 @@ to back them up and to [flash](/projects/fpv/glossar#flash) new OpenTX [firmware
 ## PDB
 
 The Power Distribution Board (PDB) acts as the heart of an [FPV](/projects/fpv/glossar#fpv) quad. 
-It is connected to the [Battery](/projects/fpv/glossar#battery) and distributes its power to other components of the quad. The main components it is connected to are the [ESCs](/projects/fpv/glossar/#esc) to power the 
+It is connected to the [Battery](/projects/fpv/glossar#battery) and distributes its power to other components of the quad. The main components it is connected to are the [ESCs](/projects/fpv/glossar#esc) to power the 
 [motors](/projects/fpv/glossar#motor). A PDB usually has additional voltage outputs such as 5V and 12V to power 
-[sensors](/projects/fpv/glossar/#sensor) or [LEDs](/projects/fpv/glossar#led).
+[sensors](/projects/fpv/glossar#sensor) or [LEDs](/projects/fpv/glossar#led).
 
 ## Pose
 
@@ -285,7 +285,7 @@ Short for [receiver](/projects/fpv/glossar#receiver).
 
 ## R-XSR
 
-[Redundancy](/projects/fpv/glossar#redundancy) [receiver](/projects/fpv/glossar/#receiver) produced by [FrSky](/projects/fpv/glossar#frsky).
+[Redundancy](/projects/fpv/glossar#redundancy) [receiver](/projects/fpv/glossar#receiver) produced by [FrSky](/projects/fpv/glossar#frsky).
 Its setup is explained on the [R-XSR page](/projects/fpv/r-xsr).
 
 ## SBUS
@@ -308,7 +308,7 @@ Its three wire connector (signal, power and ground) is the standard connector fo
 ## SimonK
 
 [Firmware](/projects/fpv/glossar#firmware) for [ESCs](/projects/fpv/glossar#esc) that is used to process the input 
-data from a [Flight Controller](/projects/fpv/glossar/#flight-controller) and translate that into suitable control 
+data from a [Flight Controller](/projects/fpv/glossar#flight-controller) and translate that into suitable control 
 commands for the motor. This firmware was developed by Simon Kirby and its intended to be used in multicopters. 
 Its source code can be found on [Simon Kirby's GitHub repository](https://github.com/sim-/tgy).
 Another commonly used firmware for ESCs is [BLHeli](/projects/fpv/glossar#blheli).
@@ -336,7 +336,7 @@ where it can be displayed or used for alarms. The setup is explained on the [tel
 
 ## Transmitter
 
-Also known as [radio](/projects/fpv/glossar#radio) is the radio controlled ([rc](/projects/fpv/glossar#rc)) part that communicates with a [receiver](/projects/fpv/glossar/#receiver). The term [`Tx`](/projects/fpv/glossar#tx) is commonly referred to transmitting units.
+Also known as [radio](/projects/fpv/glossar#radio) is the radio controlled ([rc](/projects/fpv/glossar#rc)) part that communicates with a [receiver](/projects/fpv/glossar#receiver). The term [`Tx`](/projects/fpv/glossar#tx) is commonly referred to transmitting units.
 Such units can be external or internal in transmitter devices. External devices can be swapped. 
 
 One of the most common manufacturers for [FPV](/projects/fpv/glossar#fpv) quad transmitters is [FrSky](/projects/fpv/glossar#frsky).
