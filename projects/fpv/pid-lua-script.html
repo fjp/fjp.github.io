@@ -62,6 +62,8 @@
 
 
 
+  <meta property="article:modified_time" content="2026-10-06T00:00:00+02:00">
+
 
 
   
@@ -512,7 +514,7 @@
     <meta itemprop="headline" content="Taranis X9D Plus SE 2019 - PID Tuning Lua Script">
     <meta itemprop="description" content="Setting up PID Tuning via a Lua Script on the Taranis X9D Plus SE 2019.">
     <meta itemprop="datePublished" content="2020-04-18T10:00:35+02:00">
-    
+    <meta itemprop="dateModified" content="2026-10-06T00:00:00+02:00">
 
     <div class="page__inner-wrap">
       
@@ -522,20 +524,86 @@
           <aside class="sidebar__right ">
             <nav class="toc" aria-label="Table of contents">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#lua-script">Lua Script</a></li><li><a href="#betaflight-configuration">Betaflight Configuration</a></li></ul>
+              <ul class="toc__menu"><li><a href="#requirements">Requirements</a></li><li><a href="#installation">Installation</a></li><li><a href="#usage">Usage</a></li><li><a href="#references">References</a></li></ul>
             </nav>
           </aside>
         
-        <h2 id="lua-script">Lua Script</h2>
+        <p>The <a href="https://github.com/betaflight/betaflight-tx-lua-scripts">Betaflight TX Lua scripts</a> run on the <a href="/projects/fpv/glossar#radio">radio</a>
+and change Betaflight settings such as PIDs, <a href="/projects/fpv/rate-expo-settings">rates</a>, filters and VTX channels directly from the <a href="/projects/fpv/taranis">Taranis</a>,
+without a computer. This makes it possible to adjust the tune between two flights at the field.
+The scripts talk to the <a href="/projects/fpv/glossar#flight-controller">flight controller</a> over the <a href="/projects/fpv/glossar#telemetry">telemetry</a> link of the receiver.</p>
 
-<p>https://github.com/betaflight/betaflight-tx-lua-scripts</p>
+<h2 id="requirements">Requirements</h2>
 
-<h2 id="betaflight-configuration">Betaflight Configuration</h2>
+<ul>
+  <li><strong>Radio firmware</strong>: <a href="/projects/fpv/glossar#opentx">OpenTX</a> 2.3.12 or newer, or <a href="/projects/fpv/glossar#edgetx">EdgeTX</a> 2.4.0 or newer.</li>
+  <li><strong>Receiver with telemetry</strong>: FrSky receivers with SmartPort or <a href="/projects/fpv/glossar#fport">FPort</a> such as the <a href="/projects/fpv/r-xsr">R-XSR</a> of this build,
+TBS Crossfire, <a href="/projects/fpv/glossar#expresslrs">ExpressLRS</a> or ImmersionRC Ghost. Update the receiver to its latest firmware to avoid known telemetry bugs.</li>
+  <li><strong>Telemetry enabled in Betaflight</strong>: in Betaflight 4.1 this is the Telemetry feature in the Configuration tab, in newer versions it is in the Receiver tab.</li>
+</ul>
 
 <figure>
     <a href="/assets/collections/fpv/betaflight/betaflight-config-receiver.png"><img src="/assets/collections/fpv/betaflight/betaflight-config-receiver.png" /></a>
-    <figcaption>Configure the Flight Controller.</figcaption>
+    <figcaption>Betaflight 4.1.1 with the FrSky FPort receiver and the Telemetry feature enabled in the Configuration tab.</figcaption>
 </figure>
+
+<h2 id="installation">Installation</h2>
+
+<ol>
+  <li>Download the zip file of the latest version from the <a href="https://github.com/betaflight/betaflight-tx-lua-scripts/releases">releases page</a> (1.8.0 from January 2026 at the time of writing).</li>
+  <li>Connect the radio’s SD card to the computer, either with a card reader or by connecting the radio over USB and selecting its SD card (USB storage).</li>
+  <li>Unzip the file and copy the contents of its <code class="language-plaintext highlighter-rouge">obj</code> folder to the SD card, so that the <code class="language-plaintext highlighter-rouge">SCRIPTS</code> folder merges with the one on the card.
+Don’t copy the contents of the repository itself.</li>
+  <li>Check that the file <code class="language-plaintext highlighter-rouge">bf.lua</code> is in the folder <code class="language-plaintext highlighter-rouge">/SCRIPTS/TOOLS</code> on the SD card.</li>
+</ol>
+
+<h2 id="usage">Usage</h2>
+
+<p>Open the TOOLS page of the radio settings (on the Taranis X9D Plus with a long press on [MENU]), select “Betaflight setup” and press [ENTER].
+The first start after installing or updating compiles the scripts and returns to the TOOLS page; start it again to use it.</p>
+
+<p>The Taranis has a monochrome display, so the script uses these controls:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Button</th>
+      <th style="text-align: left">Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">[+] / [-] / rotary encoder</td>
+      <td style="text-align: left">Move between fields</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">[PAGE]</td>
+      <td style="text-align: left">Next page, long press for the previous page</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">[ENTER]</td>
+      <td style="text-align: left">Edit the selected field, long press for the function menu</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">[EXIT]</td>
+      <td style="text-align: left">Go back or close the script</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Changes take effect only when they are saved: long press [ENTER] to open the function menu and select “save page”.
+Leaving a page without saving discards its changes. Land and disarm before saving, then fly again to check the change,
+and change only a few values at a time.</p>
+
+<p>The function menu also reloads the VTX tables. Betaflight manages bands and channels of SmartAudio and Tramp video transmitters in VTX tables since version 4.1,
+and the script downloads the table of each model the first time it connects. After changing the VTX table in Betaflight, reload it in the script.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://github.com/betaflight/betaflight-tx-lua-scripts">Betaflight TX Lua scripts on GitHub</a> (installation, controls and supported radios)</li>
+  <li><a href="https://github.com/betaflight/betaflight-tx-lua-scripts/releases">Releases</a></li>
+</ul>
 
         
       </section>
@@ -606,7 +674,7 @@
         
 
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2020-04-18T10:00:35+02:00">April 18, 2020</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-updated" datetime="2026-10-06">October 6, 2026</time></p>
 
 
       </footer>
