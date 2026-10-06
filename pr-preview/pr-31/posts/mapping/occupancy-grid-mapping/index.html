@@ -1,0 +1,913 @@
+
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js" dir="ltr">
+  <head>
+    
+<meta charset="utf-8">
+
+
+<!-- begin _includes/seo.html --><title>Occupancy Grid Mapping - fjp.github.io</title>
+<meta name="description" content="Occupancy Grid Map algorithm to map an environment.">
+
+
+  <meta name="author" content="Franz Pucher">
+  
+  <meta property="article:author" content="Franz Pucher">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="fjp.github.io">
+<meta property="og:title" content="Occupancy Grid Mapping">
+<meta property="og:url" content="https://fjp.at/pr-preview/pr-31/posts/mapping/occupancy-grid-mapping/">
+
+
+  <meta property="og:description" content="Occupancy Grid Map algorithm to map an environment.">
+
+
+
+  <meta property="og:image" content="https://fjp.at/pr-preview/pr-31/assets/posts/2019-04-17-monte-carlo-localization/particle_filters.gif">
+  
+
+
+
+  <meta name="twitter:site" content="@franzpucher">
+  <meta name="twitter:title" content="Occupancy Grid Mapping">
+  <meta name="twitter:description" content="Occupancy Grid Map algorithm to map an environment.">
+  <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-31/posts/mapping/occupancy-grid-mapping/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://fjp.at/pr-preview/pr-31/assets/posts/2019-04-17-monte-carlo-localization/particle_filters.gif">
+    
+  
+
+  
+
+
+
+
+
+  <meta property="article:published_time" content="2019-06-05T19:00:42+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fjp.at/pr-preview/pr-31/posts/mapping/occupancy-grid-mapping/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/pr-preview/pr-31/feed.xml" type="application/atom+xml" rel="alternate" title="fjp.github.io Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pr-preview/pr-31/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-2214309606626131",
+          enable_page_level_ads: true
+     });
+</script>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+<!--KaTeX-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+<!-- Pseudocode.js -->
+<!-- https://github.com/SaswatPadhi/pseudocode.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"
+        integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous">
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
+<script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js">
+</script>
+
+<!-- Mailinglist -->
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '1518166');
+</script>
+<!-- End MailerLite Universal -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+        
+        <a class="site-title" href="/pr-preview/pr-31/">
+          fjp.github.io
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-31/"
+                
+                
+              >Home</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-31/blog/"
+                
+                
+              >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-31/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-31/design-patterns/"
+                
+                
+              >Design Patterns</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-31/cpp/"
+                
+                
+              >C++</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-31/projects/fpv/"
+                
+                
+              >FPV</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-31/about/"
+                
+                
+              >About</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-31/ads/"
+                
+                
+              >Ads</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-31/privacy/"
+                
+                
+              >Privacy</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-31/sitemap/"
+                
+                
+              >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('/pr-preview/pr-31/assets/posts/2019-04-17-monte-carlo-localization/particle_filters.gif');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          Occupancy Grid Mapping
+
+        
+      </h1>
+      
+        <p class="page__lead">Occupancy Grid Map algorithm to map an environment.
+</p>
+      
+      
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-31/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-31/posts/" itemprop="item"><span itemprop="name">Posts</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-31/categories/#mapping" itemprop="item"><span itemprop="name">Mapping</span></a>
+            <meta itemprop="position" content="3" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Occupancy Grid Mapping</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Occupancy Grid Mapping">
+    <meta itemprop="description" content="Occupancy Grid Map algorithm to map an environment.">
+    <meta itemprop="datePublished" content="2019-06-05T19:00:42+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc" aria-label="Table of contents">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#mapping">Mapping</a></li><li><a href="#motivation">Motivation</a></li><li><a href="#challenges">Challenges</a></li><li><a href="#mapping-with-known-poses">Mapping with Known Poses</a></li><li><a href="#ros-gmapping">ROS gmapping</a></li><li><a href="#links">Links</a></li><li><a href="#reference">Reference</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>This post describes how to map an environment with the Occupancy Grid Map algorithm.
+The algorithm can map any arbitrary environment by dividing it into a finite number of grid cells.</p>
+
+<h2 id="mapping">Mapping</h2>
+
+<p>In mapping problems the robot pose $x_{1:t}$ is known and the map $m_{t}$ at time $t$, either static or dynamic is unknown. 
+Therefore the mapping problem is to find the posterior belief of the map $p(m_t|x_{1:t}, z_{1:t})$ given the robot poses and its measurements $z_{1:t}$.
+Compared to <a href="/pr-preview/pr-31/posts/localization/">localization</a>, where a robot pose is estimated in a known map, the goal of mapping is to estimate the map itself.</p>
+
+<h2 id="motivation">Motivation</h2>
+
+<p>Mapping is required in dynamic as well as static environments. In dynamic environments obstacles in the environment change and the robot has adapt to these changes by updating its map.
+Because sensor measurements are always noisy, also static environments need to be mapped. This is a correction to account fo the noise and to obtain a high accuracy map.</p>
+
+<h2 id="challenges">Challenges</h2>
+
+<p>The challenges in mapping are the number of state variables. In localization, only the robots pose is estimated with its $x$ and $y$ position in a known environment, where a map was previously generated. 
+A map on the other hand lies in a continuous space. 
+This can lead to infinitely many variables used to describe the map. Additional uncertainty is present through sensor data perception. 
+Other challenges are the space and its geometries that should be mapped. For example repetitive environments such as walkways with no doors or similar looking ones.<br />
+To map an environment, the robot pose is assumed to be known and the occupancy grid mapping algorithm can be used to solve the problem.
+However, the hypotesis space is huge. This is the space of all possible maps that can be formed during mapping. The space is highly dimensional because maps are defined over a continuous space.
+To overcome these challenges, the occupancy grid map algorithm presents a discrete approximation of the map. But even with these approximations the space of all possible maps will still be high.
+Therefore, the challenge is to estimate the full posterior map for maps with high dimensional spaces.</p>
+
+<p>Information about walls and objcts are required to map an environment. This data can be gathered by laser range finders or cameras. With this sensory information a mobile robot can
+detect obstacles in the environment. Such data can be combined into a final map.</p>
+
+<p>The following lists the difficulties while mapping an environment:</p>
+
+<ol>
+  <li>Environment size: Large environments are harder to map because of the amount of data to be processed. In such a case the robot has to collect all the instantaneous poses and obstacles, form
+a resulting map and localize the robot with respect to this map.</li>
+  <li>Perceptual range: If the map is larger than the perceptual range of the robot the mapping problem becomes more challenging.</li>
+  <li>Noisy sensors: All sensors, such as perception sensors, odometry sensors and actuators. During mapping the noise has to be filtered from these sensors to avoid adding up these errors.</li>
+  <li>Perceptual ambiguity: Repetitive environments or places that look a like result in an ambiguity. The robot then must correlate between these two places, which the robot travelled to at different points in time.</li>
+  <li>Cycles: If the robot travels in a cyclic manner, for example going back and forth in a corridor. In such a case robot odometry incrementally accumulates an error, which results in a large error at the end of the cycle.</li>
+</ol>
+
+<h2 id="mapping-with-known-poses">Mapping with Known Poses</h2>
+
+<p>The problem of generating a map under the assumption that the robot poses are known and non noisy is refered to as mapping with known poses. The problem can be represented as a graph with a node $m$ as the map,
+$z_t$, which are nodes representing the measurements of sensing the environment and the poses $x_t$ also as nodes. 
+The occupancy grid mapping algorithm can estimate the posterior given noisy measurements and known poses. Usually though the poses are unknown which is the case in <a href="/pr-preview/pr-31/posts/slam/slam">SLAM</a>. Mapping, however, happens after SLAM.
+During SLAM the robot built a map of the environment and localized itself relative to it. After SLAM the occupancy grid mapping algorithm uses the exact robot poses filtered from SLAM.
+With the known poses from SLAM and noisy measurements, the mapping algorithm generates a map fit for path planning and navigation.</p>
+
+<h2 id="ros-gmapping">ROS gmapping</h2>
+
+<p>The <a href="http://wiki.ros.org/gmapping">gmapping</a> ROS package uses the Grid-based FastSLAM algorithm. This package contains the single <code class="language-plaintext highlighter-rouge">slam_gmapping</code> node, which subscribes to the <code class="language-plaintext highlighter-rouge">tf</code> and <code class="language-plaintext highlighter-rouge">scans</code> topics. 
+Using these inputs, it generates a 2D occupancy grid map and outputs robot poses on the <code class="language-plaintext highlighter-rouge">map</code> and <code class="language-plaintext highlighter-rouge">entropy</code> topics. Additional map data is provided through the <code class="language-plaintext highlighter-rouge">map_metadata</code> topic. Another way to access the map is to use the service provided by the node. 
+To demonstrate gmapping, turtlebot will be deployed in the willow garage environment inside gazebo. Moving the turtlebout around using the <code class="language-plaintext highlighter-rouge">teleop</code> package and running the <code class="language-plaintext highlighter-rouge">slam_gmapping</code> node will generate a map.</p>
+
+<h2 id="links">Links</h2>
+
+<p>The gmapping algorithm can be found <a href="https://openslam-org.github.io/gmapping.html">here</a>.</p>
+
+<h2 id="reference">Reference</h2>
+
+<p>This post is a summary of the lesson on Occupancy Grid Mapping from the <a href="https://eu.udacity.com/course/robotics-software-engineer--nd209">Robotics Nanodegree of Udacity</a>.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-31/tags/#gird" class="page__taxonomy-item p-category" rel="tag">gird</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-31/tags/#map" class="page__taxonomy-item p-category" rel="tag">map</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-31/tags/#mapping" class="page__taxonomy-item p-category" rel="tag">mapping</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-31/tags/#occupancy" class="page__taxonomy-item p-category" rel="tag">occupancy</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-31/tags/#occupancy-grid-mapping" class="page__taxonomy-item p-category" rel="tag">occupancy grid mapping</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-31/tags/#robotics" class="page__taxonomy-item p-category" rel="tag">robotics</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-31/tags/#ros" class="page__taxonomy-item p-category" rel="tag">ros</a>
+    
+    </span>
+  </p>
+
+
+  
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-31/categories/#grid-map" class="page__taxonomy-item p-category" rel="tag">grid map</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-31/categories/#mapping" class="page__taxonomy-item p-category" rel="tag">mapping</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-31/categories/#robotics" class="page__taxonomy-item p-category" rel="tag">robotics</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-31/categories/#ros" class="page__taxonomy-item p-category" rel="tag">ros</a>
+    
+    </span>
+  </p>
+
+
+  
+
+
+        
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2019-06-05T19:00:42+02:00">June 5, 2019</time></p>
+
+
+      </footer>
+
+      
+<section class="page__share">
+  <h4 class="page__share-title">Share on</h4>
+
+  <a href="https://x.com/intent/tweet?via=franzpucher&text=Occupancy+Grid+Mapping%20https%3A%2F%2Ffjp.at%2Fpr-preview%2Fpr-31%2Fposts%2Fmapping%2Foccupancy-grid-mapping%2F" class="btn btn--x" aria-label="Share on X" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on X">
+    <i class="fab fa-fw fa-x-twitter" aria-hidden="true"></i><span> X</span>
+  </a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffjp.at%2Fpr-preview%2Fpr-31%2Fposts%2Fmapping%2Foccupancy-grid-mapping%2F" class="btn btn--facebook" aria-label="Share on Facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook">
+    <i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span>
+  </a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://fjp.at/pr-preview/pr-31/posts/mapping/occupancy-grid-mapping/" class="btn btn--linkedin" aria-label="Share on LinkedIn" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn">
+    <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span>
+  </a>
+
+  <a href="https://bsky.app/intent/compose?text=Occupancy+Grid+Mapping%20https%3A%2F%2Ffjp.at%2Fpr-preview%2Fpr-31%2Fposts%2Fmapping%2Foccupancy-grid-mapping%2F" class="btn btn--bluesky" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Bluesky">
+    <i class="fab fa-fw fa-bluesky" aria-hidden="true"></i><span> Bluesky</span>
+  </a>
+</section>
+
+
+      
+
+  <nav class="pagination" aria-label="Post pagination">
+    
+      <a href="/pr-preview/pr-31/posts/slam/fastslam/" class="pagination--pager" title="SLAM using Grid-based FastSLAM">Previous</a>
+    
+    
+      <a href="/pr-preview/pr-31/posts/ros/ros-control/" class="pagination--pager" title="ROS Control, An overview">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+    
+
+<div class="page__related">
+  
+  <h2 class="page__related-title">You May Also Enjoy</h2>
+  <div class="grid__wrapper">
+    
+      
+      
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pr-preview/pr-31/assets/images/opencv_logo.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-31/posts/computer-vision/camera-calibration-reprojection-error/" rel="permalink">Camera calibration and reprojection error
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Camera calibration and reprojection error.
+</p>
+  </article>
+</div>
+    
+      
+      
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://images-na.ssl-images-amazon.com/images/I/51Q2dvR+eTL._SX424_BO1,204,203,200_.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-31/posts/probabilistic-robotics/" rel="permalink">Porbabilistic Robotics Overview
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Overview of algorithms in probabilistic robotics.
+</p>
+  </article>
+</div>
+    
+      
+      
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pr-preview/pr-31/assets/vector/vector-sdk-alpha.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-31/posts/vector/" rel="permalink">Vector Robot
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Regaining access to Vector Robot and working with the Vector Python SDK.
+</p>
+  </article>
+</div>
+    
+      
+      
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-31/editors/vim%20setup/vim/" rel="permalink">Vim Setup and Basics
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Describes how to setup vim using a popular vimrc and explains the basics.
+
+</p>
+  </article>
+</div>
+    
+  </div>
+</div>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#edeff5",
+      "text": "#838391"
+    },
+    "button": {
+      "background": "#4b81e8"
+    }
+  },
+  "type": "opt-out"
+});
+</script>
+
+<script data-ad-client="ca-pub-2214309606626131" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script src="https://www.dwin2.com/pub.642237.min.js"></script>
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/fjp" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/pr-preview/pr-31/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+
+  <script src="/pr-preview/pr-31/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/pr-preview/pr-31/assets/js/lunr/lunr.min.js"></script>
+<script src="/pr-preview/pr-31/assets/js/lunr/lunr-store.js"></script>
+<script src="/pr-preview/pr-31/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://fjp.at/pr-preview/pr-31/posts/mapping/occupancy-grid-mapping/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/posts/mapping/occupancy-grid-mapping"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://fjp-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>
