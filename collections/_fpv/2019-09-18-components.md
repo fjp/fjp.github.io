@@ -70,6 +70,8 @@ More about the batteries and how to charge them on the pages [LiPo Batteries](/p
 
 ## FPV-System (Goggles, Camera)
 
+How camera, video transmitter and goggles work together is explained on the [FPV System](/projects/fpv/fpv-system/) pages.
+
 <figure class="third">
     <a href="/assets/collections/fpv/components/ultimate-fatshark-hdo-antenna-bundle.jpg"><img src="/assets/collections/fpv/components/ultimate-fatshark-hdo-antenna-bundle.jpg"></a>
     <a href="/assets/collections/fpv/components/runcam-swift-2.jpg"><img src="/assets/collections/fpv/components/runcam-swift-2.jpg"></a>
@@ -91,6 +93,7 @@ The FPV bundle of this build includes the Lumenier AXII 2 diversity antenna set:
 all with SMA connectors. The R on the patch stands for right-hand circular polarization (RHCP).
 The antennas on the quad and on the goggles must use the same polarization.
 The diversity receiver of the goggles can combine the directional patch antenna, which reaches further in the direction it points to, with an omnidirectional antenna.
+More on polarization, antenna types and connectors on the [antennas page](/projects/fpv/fpv-system/antennas).
 
 <figure class="half">
     <a href="/assets/collections/fpv/components/lumenier-axii-2.jpg"><img src="/assets/collections/fpv/components/lumenier-axii-2.jpg"></a>
