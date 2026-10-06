@@ -4,6 +4,7 @@ title:  "Race Quad Components"
 permalink: /projects/fpv/components
 excerpt: "Components of the fpv race quad."
 date:   2019-09-18 20:41:35 +0200
+last_modified_at: 2026-10-06
 categories: [fpv, quad]
 tags: [getfpv, fpv, quad, race, drone, camera, props, motors, esc, brushless, goggles]
 comments: true
@@ -82,6 +83,18 @@ and often a digital HD video system such as DJI, Walksnail Avatar or HDZero inst
 
 
 ## Antennas
+
+The video transmitter on the quad and the receiver in the goggles each need antennas for the 5.8 GHz video link.
+The FPV bundle of this build includes the Lumenier AXII 2 diversity antenna set: two omnidirectional AXII 2 antennas and an AXII 5.8 patch antenna,
+all with SMA connectors. The R on the patch stands for right-hand circular polarization (RHCP).
+The antennas on the quad and on the goggles must use the same polarization.
+The diversity receiver of the goggles can combine the directional patch antenna, which reaches further in the direction it points to, with an omnidirectional antenna.
+
+<figure class="half">
+    <a href="/assets/collections/fpv/components/lumenier-axii-2.jpg"><img src="/assets/collections/fpv/components/lumenier-axii-2.jpg"></a>
+    <a href="/assets/collections/fpv/components/lumenier-axii-patch.jpg"><img src="/assets/collections/fpv/components/lumenier-axii-patch.jpg"></a>
+    <figcaption>Lumenier AXII 2 omnidirectional antennas and AXII 5.8 patch antenna (RHCP).</figcaption>
+</figure>
 
 ## Motors and ESC
 
