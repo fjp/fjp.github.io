@@ -12,6 +12,11 @@ use_math: true
 toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
+header:
+  teaser: /assets/collections/fpv/propeller/propeller-header.jpg
+  overlay_image: /assets/collections/fpv/propeller/propeller-header.jpg
+  overlay_filter: 0.5
+  caption: "Master Airscrew BN 5x4.5 propeller of this build"
 sidebar:
   nav: "fpv"
 ---
@@ -28,7 +33,14 @@ Instead, the uplift is created through the rotation of the propeller similar to 
 Propellers are specified by their diameter and pitch, both in inches, and often by the number of blades.
 A 5x4.5 propeller, also written as 5045, has a diameter of 5 inches and a pitch of 4.5 inches.
 A third number, as in 5x4.5x3, gives the number of blades.
-This build uses 5x4.5 propellers, see the [components](/projects/fpv/components#props).
+This build uses two-blade Master Airscrew BN (bullnose) 5x4.5 propellers made of glass fiber reinforced polyamide, see the [components](/projects/fpv/components#props).
+A set contains two propellers for each direction of rotation.
+
+<figure class="half">
+    <a href="/assets/collections/fpv/propeller/propellers-5x4.5.jpg"><img src="/assets/collections/fpv/propeller/propellers-5x4.5.jpg"></a>
+    <a href="/assets/collections/fpv/propeller/propeller-5x4.5.jpg"><img src="/assets/collections/fpv/propeller/propeller-5x4.5.jpg"></a>
+    <figcaption>Set of four Master Airscrew BN 5x4.5 two-blade propellers and a single propeller.</figcaption>
+</figure>
 
 ### Diameter
 
@@ -66,7 +78,7 @@ and a propeller in air slips instead of moving forward by its full pitch in each
 
 Propellers with more blades have more blade area. At the same diameter they create more thrust and more grip in the air,
 which helps when the frame limits the diameter. On the other hand they create more drag, draw more current and are less efficient.
-Three-blade propellers are the most common choice on 5 inch quads.
+Three-blade propellers are the most common choice on 5 inch quads today, while this build uses two-blade propellers.
 
 ## Direction of Rotation
 
