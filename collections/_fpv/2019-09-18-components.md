@@ -19,7 +19,7 @@ sidebar:
   nav: "fpv"
 ---
 
-The following sections outline the main components that are required to start with [FPV](/projects/fpv/glossar/#fpv) 
+The following sections outline the main components that are required to start with [FPV](/projects/fpv/glossar#fpv) 
 and to build your first drone. The list is not complete and some parts maybe outdated when you read this page.
 It may be even wiser to buy a single component that combines multiple parts listed below, depending on what you desire.
 However, this list should guide you what the important parts of a race quad are and what I would've liked to know
@@ -76,14 +76,14 @@ How camera, video transmitter and goggles work together is explained on the [FPV
     <a href="/assets/collections/fpv/components/ultimate-fatshark-hdo-antenna-bundle.jpg"><img src="/assets/collections/fpv/components/ultimate-fatshark-hdo-antenna-bundle.jpg"></a>
     <a href="/assets/collections/fpv/components/runcam-swift-2.jpg"><img src="/assets/collections/fpv/components/runcam-swift-2.jpg"></a>
   <a href="/assets/collections/fpv/assembly/vtx/02-vtx-antenna-placement-top.jpg"><img src="/assets/collections/fpv/assembly/vtx/02-vtx-antenna-placement-top.jpg"></a>
-    <figcaption>FPV system: FatShark HDO, RunCam Swift 2 and [VTX](/projects/fpv/glossar/#vtx) [TBS](/projects/fpv/glossar/#tbs) Unify Pro HV.</figcaption>
+    <figcaption>FPV system: FatShark HDO, RunCam Swift 2 and [VTX](/projects/fpv/glossar#vtx) [TBS](/projects/fpv/glossar#tbs) Unify Pro HV.</figcaption>
 </figure>
 
 | Component  | Description                            | Shops                 | OEM Link            | Comment |
 |:----------:|:--------------------------------------:|:---------------------:|:-------------------:|         |
 | FPV Bundle | Ultimate FPV Bundle - Fat Shark HDO, rapidFIRE, + Lumenier AXII 2 Diversity Antenna Bundle | [getfpv](https://www.getfpv.com/ultimate-fpv-bundle.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89),  | [FatShark](https://web.archive.org/web/20190819134533/https://www.fatshark.com/product/hdo-fpv-goggles/), [immersionRC](https://www.immersionrc.com/fpv-products/rapidfire/), [Lumenier](https://www.lumenier.com/collections/antennas)  | See OEM links for the datasheets | 
 | Camera       | RunCam Swift 2 (2.5mm Lens)          | [getfpv](https://www.getfpv.com/runcam-swift-2-2-5mm-lens-orange.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89), [Banggood](https://www.banggood.com/RunCam-Swift-2-13-CCD-PAL-Micro-Camera-FOV-130150165-Degree-2_5mm2_3mm2_1mm-Integrated-OSD-MIC-p-1118948.html?rmmds=myorder&ID=226517043&cur_warehouse=UK&p=GQ230138854743201909&custlinkid=604623) | [RunCam](https://web.archive.org/web/20190919060634/https://shop.runcam.com/runcam-swift-2/) |  |
-| [VTX](/projects/fpv/glossar/#vtx) | [TBS](/projects/fpv/glossar/#tbs) Unify Pro HV  | | [Team Black Sheep](https://www.team-blacksheep.com/tbs-unify-pro-manual-de.pdf) |  |
+| [VTX](/projects/fpv/glossar#vtx) | [TBS](/projects/fpv/glossar#tbs) Unify Pro HV  | | [Team Black Sheep](https://www.team-blacksheep.com/tbs-unify-pro-manual-de.pdf) |  |
 
 
 ## Antennas
@@ -121,6 +121,6 @@ More on polarization, antenna types and connectors on the [antennas page](/proje
 
 ## Receiver
 
-The following receiver from [FrSky](/projects/fpv/glossar/#frsky) will be installed in the quad and should be used together with a FrSky [transmitter](/projects/fpv/glossar/#transmitter).
+The following receiver from [FrSky](/projects/fpv/glossar#frsky) will be installed in the quad and should be used together with a FrSky [transmitter](/projects/fpv/glossar#transmitter).
 - GetFPV: [FRSKY R-XSR 2.4GHZ 16CH ACCST MICRO RECEIVER W/ S-BUS & CPPM](https://www.getfpv.com/frsky-r-xsr-2-4ghz-16ch-accst-micro-receiver-w-s-bus-cppm.html?cmid=eHZ3Y2tBWGYrQWM9&afid=TVZmU1BzYnlObnc9&ats=WDA0ZG1qK1ZCcW89)
 

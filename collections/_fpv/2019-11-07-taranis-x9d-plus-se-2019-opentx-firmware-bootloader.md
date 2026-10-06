@@ -23,7 +23,7 @@ This post covers how to flash the latest version of [OpenTX](/projects/fpv/gloss
 is a highly configurable open source firmware for [radios](/projects/fpv/glossar#radio), that acts as the operating
 system on [Taranis](/projects/fpv/glossar#taranis) [transmitters](/projects/fpv/glossar#transmitter).
 We will also see how to [flash](/projects/fpv/glossar#flash) the [firmware](/projects/fpv/glossar#firmware) of the internal [transmitter](/projects/fpv/glossar#transmitter) module of the Taranis into
-the [EU-LBT](/projects/fpv/glossar#eu-lbt) mode. To [register](/projects/fpv/glossar/#register) and [bind](/projects/fpv/glossar#bind) an [ACCESS](/projects/fpv/glossar#access) [receiver](/projects/fpv/glossar#receiver) look into the [next post](/projects/fpv/r-xsr).
+the [EU-LBT](/projects/fpv/glossar#eu-lbt) mode. To [register](/projects/fpv/glossar#register) and [bind](/projects/fpv/glossar#bind) an [ACCESS](/projects/fpv/glossar#access) [receiver](/projects/fpv/glossar#receiver) look into the [next post](/projects/fpv/r-xsr).
 
 **Update 2026:** OpenTX is no longer developed, its last release was in April 2022.
 Its fork [EdgeTX](https://edgetx.org/), started in 2021, is now the firmware most radios ship with, and it still supports the Taranis X9D Plus 2019 and X9D Plus SE 2019.
@@ -40,7 +40,7 @@ Instead of OpenTX Companion, use EdgeTX Companion or the browser-based [EdgeTX B
 ## OpenTX
 
 To begin with the update of the OpenTX firmware on the Taranis, download the latest version of the 
-[OpenTX Companion](/projects/fpv/glossar/#opentx-companion) software (available for Windows, Mac and Linux) from [open-tx.org](https://www.open-tx.org/2019/10/05/opentx-2.3.1). On this webpage you also find the [sdcard content](https://downloads.open-tx.org/2.3/release/sdcard/) which we will need to put on a seperate sd card that will be inserted in
+[OpenTX Companion](/projects/fpv/glossar#opentx-companion) software (available for Windows, Mac and Linux) from [open-tx.org](https://www.open-tx.org/2019/10/05/opentx-2.3.1). On this webpage you also find the [sdcard content](https://downloads.open-tx.org/2.3/release/sdcard/) which we will need to put on a seperate sd card that will be inserted in
 the Taranis radio.
 
 Note that the Taranis X9D Plus SE 2019 doesn't ship with a sd card. However, it has an internal storage for the bootloader
@@ -110,7 +110,7 @@ Note: Don't press the power button for too long in order to enter the bootloader
     <figcaption>OpenTX Companion.</figcaption>
 </figure>
 
-On the bootloader screen above you can also check the bootloader version which is important if you want to update the bootloader. The optional update procedure is explained at the end of this post [Update Bootloader (Optional)](/projects/fpv/taranis/#update-bootloader-optional).
+On the bootloader screen above you can also check the bootloader version which is important if you want to update the bootloader. The optional update procedure is explained at the end of this post [Update Bootloader (Optional)](/projects/fpv/taranis#update-bootloader-optional).
 
 ## Flash OpenTX
 
@@ -184,7 +184,7 @@ Because it is not allowed to share this script, just write a mail to the [FrSky 
 
 If you would like to use the latest bootloader that comes with the OpenTX firmware then copy the `*.bin` file to the `EEPROM` folder of your external `EXTARANIS` sd card and rename it to something short `opentx-2.3.1.bin`. Remember that the `*.bin` firmware file was downloaded via OpenTX Companion.
 
-Follow the [steps](/projects/fpv/taranis/#update-bootloader-optional) at the end of this post to update the bootloader.
+Follow the [steps](/projects/fpv/taranis#update-bootloader-optional) at the end of this post to update the bootloader.
 
 ## Update Internal Module Firmware (Optional)
 
