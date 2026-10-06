@@ -62,6 +62,8 @@
 
 
 
+  <meta property="article:modified_time" content="2026-10-06T00:00:00+02:00">
+
 
 
   
@@ -434,6 +436,8 @@
             
               <li><a href="/pr-preview/pr-34/projects/fpv/pdb">Power Distribution Board</a></li>
             
+              <li><a href="/pr-preview/pr-34/projects/fpv/battery">Batteries</a></li>
+            
           </ul>
           
         </li>
@@ -467,6 +471,14 @@
               <li><a href="/pr-preview/pr-34/projects/fpv/throttle-curves">Throttle Curves</a></li>
             
           </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-34/projects/fpv/charger"><span class="nav__sub-title">Charger and Testers</span></a>
+          
+
           
         </li>
       
@@ -539,7 +551,7 @@
     <meta itemprop="headline" content="The Motor and how it works">
     <meta itemprop="description" content="The motors of a FPV quad explained.">
     <meta itemprop="datePublished" content="2019-10-30T09:00:35+01:00">
-    
+    <meta itemprop="dateModified" content="2026-10-06T00:00:00+02:00">
 
     <div class="page__inner-wrap">
       
@@ -625,6 +637,17 @@ It belongs to the lanthanide series and is a rare-earth element. Magnets manufac
 <p>For a brushless dc motor to work, it requires three phase wires instead of two in the case of a brushed dc motor.
 The three phases carry AC current where each phase is shifted by 120 degrees. This way the current direction and
 therefore the direction of magnetic fields are changed, which leads to repulsion and attraction with the permanent magnets that are attached to the rotor.</p>
+
+<p>The <a href="/pr-preview/pr-34/projects/fpv/esc">ESCs</a> of FPV quads usually don’t create a smooth sine wave but switch the battery voltage in six steps per electrical revolution:
+in each step one phase is connected to plus, one to minus and the third one is left open.
+The ESC measures the voltage that the moving magnets induce in the open phase (the back EMF) to detect the position of the rotor
+and to switch to the next step at the right moment. Because each phase repeats the same pattern 120 degrees later,
+the magnetic field of the stator rotates and pulls the magnets of the rotor along.</p>
+
+<figure>
+    <a href="/pr-preview/pr-34/assets/collections/fpv/motor/brushless-operating-principle.svg"><img src="/pr-preview/pr-34/assets/collections/fpv/motor/brushless-operating-principle.svg" alt="Cross-section of a 12N14P outrunner with the phase coils on the stator teeth, and the six-step switching pattern of the three phases A, B and C over one electrical revolution." /></a>
+    <figcaption>Left: cross-section of an outrunner like the EMAX RS2205 with 12 stator teeth and 14 magnets. Coils of the same phase sit in pairs on neighboring teeth, as in the common dLRK winding. Right: the six switching steps of the three phases. With 14 magnets, which are 7 pole pairs, the rotor turns by 1/7 of a revolution per electrical revolution.</figcaption>
+</figure>
 
 <h2 id="outrunner-vs-inrunner">Outrunner vs Inrunner</h2>
 
@@ -855,7 +878,7 @@ EMAX RS2205/2300 $K_v$.</p>
         
 
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2019-10-30T09:00:35+01:00">October 30, 2019</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-updated" datetime="2026-10-06">October 6, 2026</time></p>
 
 
       </footer>
