@@ -15,8 +15,8 @@
 <meta charset="utf-8">
 
 
-<!-- begin _includes/seo.html --><title>Flight Controller Software - fjp.github.io</title>
-<meta name="description" content="Software for a Flight Controller and its configuration aspects.">
+<!-- begin _includes/seo.html --><title>The RC Transmitter - fjp.github.io</title>
+<meta name="description" content="The RC transmitter, also known as radio, is used to control the quad.">
 
 
   <meta name="author" content="Franz Pucher">
@@ -28,27 +28,27 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="fjp.github.io">
-<meta property="og:title" content="Flight Controller Software">
-<meta property="og:url" content="https://fjp.at/projects/fpv/flight-controller-software">
+<meta property="og:title" content="The RC Transmitter">
+<meta property="og:url" content="https://fjp.at/projects/fpv/transmitter">
 
 
-  <meta property="og:description" content="Software for a Flight Controller and its configuration aspects.">
+  <meta property="og:description" content="The RC transmitter, also known as radio, is used to control the quad.">
 
 
 
-  <meta property="og:image" content="https://fjp.at/assets/collections/fpv/betaflight/betaflight-ports.png">
+  <meta property="og:image" content="https://fjp.at/assets/collections/fpv/taranis/bootloader.jpg">
   
 
 
 
   <meta name="twitter:site" content="@franzpucher">
-  <meta name="twitter:title" content="Flight Controller Software">
-  <meta name="twitter:description" content="Software for a Flight Controller and its configuration aspects.">
-  <meta name="twitter:url" content="https://fjp.at/projects/fpv/flight-controller-software">
+  <meta name="twitter:title" content="The RC Transmitter">
+  <meta name="twitter:description" content="The RC transmitter, also known as radio, is used to control the quad.">
+  <meta name="twitter:url" content="https://fjp.at/projects/fpv/transmitter">
 
   
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://fjp.at/assets/collections/fpv/betaflight/betaflight-ports.png">
+    <meta name="twitter:image" content="https://fjp.at/assets/collections/fpv/taranis/bootloader.jpg">
     
   
 
@@ -58,7 +58,7 @@
 
 
 
-  <meta property="article:published_time" content="2020-04-12T10:00:35+02:00">
+  <meta property="article:published_time" content="2026-10-06T09:00:00+02:00">
 
 
 
@@ -69,7 +69,7 @@
   
 
 
-<link rel="canonical" href="https://fjp.at/projects/fpv/flight-controller-software">
+<link rel="canonical" href="https://fjp.at/projects/fpv/transmitter">
 
 
 
@@ -275,18 +275,18 @@
 
 
 <div class="page__hero--overlay"
-  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/collections/fpv/betaflight/betaflight-ports.png');"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/collections/fpv/taranis/bootloader.jpg');"
 >
   
     <div class="wrapper">
       <h1 id="page-title" class="page__title" itemprop="headline">
         
-          Flight Controller Software
+          The RC Transmitter
 
         
       </h1>
       
-        <p class="page__lead">Software for a Flight Controller and its configuration aspects.
+        <p class="page__lead">The RC transmitter, also known as radio, is used to control the quad.
 </p>
       
       
@@ -296,9 +296,6 @@
       
     </div>
   
-  
-    <span class="page__hero-caption">Source: <a href="https://github.com/betaflight/betaflight"><strong>Betaflight</strong></a>
-</span>
   
 </div>
 
@@ -371,7 +368,7 @@
     
       
       
-        <li class="current">Flight Controller Software</li>
+        <li class="current">The RC Transmitter</li>
       
     
   </ol>
@@ -566,9 +563,9 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Flight Controller Software">
-    <meta itemprop="description" content="Software for a Flight Controller and its configuration aspects.">
-    <meta itemprop="datePublished" content="2020-04-12T10:00:35+02:00">
+    <meta itemprop="headline" content="The RC Transmitter">
+    <meta itemprop="description" content="The RC transmitter, also known as radio, is used to control the quad.">
+    <meta itemprop="datePublished" content="2026-10-06T09:00:00+02:00">
     
 
     <div class="page__inner-wrap">
@@ -579,36 +576,71 @@
           <aside class="sidebar__right ">
             <nav class="toc" aria-label="Table of contents">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              
+              <ul class="toc__menu"><li><a href="#stick-modes">Stick Modes</a></li><li><a href="#firmware">Firmware</a></li><li><a href="#internal-and-external-modules">Internal and External Modules</a></li><li><a href="#pages-in-this-section">Pages in this Section</a></li></ul>
             </nav>
           </aside>
         
-        <p>A <a href="/projects/fpv/glossar#flight-controller">flight controller</a> can be operated with different software 
-(<a href="/projects/fpv/glossar#firmware">firmware</a>). Popular software for FPV race copters are 
-<a href="http://cleanflight.com/">Cleanflight</a>, its successor <a href="https://betaflight.com/">Betaflight</a>
-and <a href="https://www.librepilot.org/site/index.html">LibrePilot</a>. Another software used specifically for FPV races is
-KISS from <a href="https://www.flyduino.net/">Flyduino</a> with its related flight controller. 
-We will use Betaflight because it supports a wide variety of flight controllers.</p>
-
-<ul>
-  <li><strong>Cleanflight</strong>: Simple interface which is used via a Chrome browser application window.</li>
-  <li><strong>Betaflight</strong>: A software fork of Cleanflight and specifically optimized for race copters.</li>
-  <li><strong>LibrePilot</strong>: Software with lots of configuration options and a well structured menu to adjust the PID values.</li>
-</ul>
-
-<p>Betaflight is an open source <a href="/projects/fpv/glossar#flight-controller">flight controller</a> software (firmware)
-which supports a variety of flight controllers, which comes with an easy to use and intuitive graphical user interface (GUI). Although the name implies that it is a beta version, which it get’s because it is a fork of the popular Cleanflight software, it is well established and should be seen as a progression to Cleanflight. 
-Betaflight’s was intentionally developed for race copters which is why it provides faster communication protocols (loop time) and therefore faster and more percise control of the copter.</p>
-
-<p class="notice--info"><strong>Update 2026:</strong> The screenshots on these pages are from 2020. Betaflight now uses date-based version numbers (the current release series is 2025.12),
-and the Betaflight Configurator has been renamed to the <a href="https://app.betaflight.com/">Betaflight App</a>, which runs in Chromium-based browsers and can be installed from there.
-Tabs and option names may differ from the screenshots.</p>
+        <p>The RC <a href="/projects/fpv/glossar#transmitter">transmitter</a>, also called radio, is what the pilot holds in the hands.
+It reads the sticks and switches and sends them to the <a href="/projects/fpv/receiver">receiver</a> on the quad.
+This build uses the FrSky <a href="/projects/fpv/taranis">Taranis</a> X9D Plus SE 2019.</p>
 
 <figure>
-    <a href="/assets/collections/fpv/betaflight/betaflight-ports.png"><img src="/assets/collections/fpv/betaflight/betaflight-ports.png" /></a>
-    <figcaption>Betaflight Configurator Graphical User Interface (GUI) showing the Ports tab.</figcaption>
+    <a href="/assets/collections/fpv/taranis/taranis.jpg"><img src="/assets/collections/fpv/taranis/taranis.jpg" alt="FrSky Taranis X9D Plus SE 2019" /></a>
+    <figcaption>FrSky Taranis X9D Plus SE 2019 Carbon.</figcaption>
 </figure>
 
+<h2 id="stick-modes">Stick Modes</h2>
+
+<p>The two sticks control throttle, yaw, pitch and roll. Which stick controls what is defined by the stick mode:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Mode</th>
+      <th style="text-align: left">Left stick</th>
+      <th style="text-align: left">Right stick</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Mode 2</td>
+      <td style="text-align: left">Throttle (up and down) and yaw (left and right)</td>
+      <td style="text-align: left">Pitch (up and down) and roll (left and right)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Mode 1</td>
+      <td style="text-align: left">Pitch (up and down) and yaw (left and right)</td>
+      <td style="text-align: left">Throttle (up and down) and roll (left and right)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Mode 2 is the most common mode for FPV quads. The throttle stick has no spring that centers it, so it stays where it is left.</p>
+
+<h2 id="firmware">Firmware</h2>
+
+<p>The radio runs a firmware that acts as its operating system. It defines models, mixes, switches, <a href="/projects/fpv/throttle-curves">throttle curves</a> and
+<a href="/projects/fpv/telemetry">telemetry</a> screens, and it runs Lua scripts such as the <a href="/projects/fpv/pid-lua-script">Betaflight Lua script</a>.
+The Taranis of this build runs <a href="/projects/fpv/glossar#opentx">OpenTX</a>. Most radios today run its successor <a href="/projects/fpv/glossar#edgetx">EdgeTX</a>,
+which also supports the Taranis X9D Plus 2019, see the <a href="/projects/fpv/taranis">Taranis page</a>.</p>
+
+<h2 id="internal-and-external-modules">Internal and External Modules</h2>
+
+<p>The radio link is created by an RF module. The Taranis X9D Plus 2019 has an internal <a href="/projects/fpv/glossar#isrm">ISRM</a> module,
+which speaks FrSky’s ACCESS and ACCST D16 protocols.
+On its back it also has a JR module bay for external modules, for example for TBS Crossfire or <a href="/projects/fpv/glossar#expresslrs">ExpressLRS</a>.
+This way the radio can be used with other receivers without replacing it.</p>
+
+<h2 id="pages-in-this-section">Pages in this Section</h2>
+
+<ul>
+  <li><a href="/projects/fpv/taranis">Taranis X9D Plus SE 2019</a>: firmware, bootloader and internal module</li>
+  <li><a href="/projects/fpv/r-xsr">Receiver binding R-XSR</a>: receiver firmware, registration and binding</li>
+  <li><a href="/projects/fpv/throttle-curves">Throttle curves</a></li>
+  <li><a href="/projects/fpv/rate-expo-settings">RC rate and expo settings</a></li>
+  <li><a href="/projects/fpv/telemetry">Telemetry</a></li>
+  <li><a href="/projects/fpv/pid-lua-script">PID Lua script</a></li>
+</ul>
 
         
       </section>
@@ -628,13 +660,7 @@ Tabs and option names may differ from the screenshots.</p>
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/#betaflight" class="page__taxonomy-item p-category" rel="tag">betaflight</a><span class="sep">, </span>
-    
-      <a href="/tags/#cleanflight" class="page__taxonomy-item p-category" rel="tag">cleanflight</a><span class="sep">, </span>
-    
       <a href="/tags/#drone" class="page__taxonomy-item p-category" rel="tag">drone</a><span class="sep">, </span>
-    
-      <a href="/tags/#flight-controller" class="page__taxonomy-item p-category" rel="tag">flight controller</a><span class="sep">, </span>
     
       <a href="/tags/#fpv" class="page__taxonomy-item p-category" rel="tag">fpv</a><span class="sep">, </span>
     
@@ -642,7 +668,13 @@ Tabs and option names may differ from the screenshots.</p>
     
       <a href="/tags/#race" class="page__taxonomy-item p-category" rel="tag">race</a><span class="sep">, </span>
     
-      <a href="/tags/#software" class="page__taxonomy-item p-category" rel="tag">software</a>
+      <a href="/tags/#radio" class="page__taxonomy-item p-category" rel="tag">radio</a><span class="sep">, </span>
+    
+      <a href="/tags/#taranis" class="page__taxonomy-item p-category" rel="tag">taranis</a><span class="sep">, </span>
+    
+      <a href="/tags/#transmitter" class="page__taxonomy-item p-category" rel="tag">transmitter</a><span class="sep">, </span>
+    
+      <a href="/tags/#tx" class="page__taxonomy-item p-category" rel="tag">tx</a>
     
     </span>
   </p>
@@ -675,7 +707,7 @@ Tabs and option names may differ from the screenshots.</p>
         
 
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2020-04-12T10:00:35+02:00">April 12, 2020</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2026-10-06T09:00:00+02:00">October 6, 2026</time></p>
 
 
       </footer>
@@ -686,10 +718,10 @@ Tabs and option names may differ from the screenshots.</p>
 
   <nav class="pagination" aria-label="Post pagination">
     
-      <a href="/projects/fpv/esc" class="pagination--pager" title="The Brushless Controller ESC">Previous</a>
+      <a href="/projects/fpv/receiver" class="pagination--pager" title="The RC Receiver">Previous</a>
     
     
-      <a href="/projects/fpv/pdb" class="pagination--pager" title="The Power Distribution Board">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -827,8 +859,8 @@ window.cookieconsent.initialise({
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://fjp.at/projects/fpv/flight-controller-software";  /* Replace PAGE_URL with your page's canonical URL variable */
-      this.page.identifier = "/projects/fpv/flight-controller-software"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+      this.page.url = "https://fjp.at/projects/fpv/transmitter";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/projects/fpv/transmitter"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
     (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');

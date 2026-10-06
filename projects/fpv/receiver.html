@@ -15,8 +15,8 @@
 <meta charset="utf-8">
 
 
-<!-- begin _includes/seo.html --><title>Flight Controller Software - fjp.github.io</title>
-<meta name="description" content="Software for a Flight Controller and its configuration aspects.">
+<!-- begin _includes/seo.html --><title>The RC Receiver - fjp.github.io</title>
+<meta name="description" content="The RC receiver receives the commands from the transmitter.">
 
 
   <meta name="author" content="Franz Pucher">
@@ -28,27 +28,29 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="fjp.github.io">
-<meta property="og:title" content="Flight Controller Software">
-<meta property="og:url" content="https://fjp.at/projects/fpv/flight-controller-software">
+<meta property="og:title" content="The RC Receiver">
+<meta property="og:url" content="https://fjp.at/projects/fpv/receiver">
 
 
-  <meta property="og:description" content="Software for a Flight Controller and its configuration aspects.">
+  <meta property="og:description" content="The RC receiver receives the commands from the transmitter.">
 
 
 
-  <meta property="og:image" content="https://fjp.at/assets/collections/fpv/betaflight/betaflight-ports.png">
+  <meta property="og:image" content="https://fjp.at/assets/collections/fpv/receiver/r-xsr-top.jpg">
   
 
 
 
   <meta name="twitter:site" content="@franzpucher">
-  <meta name="twitter:title" content="Flight Controller Software">
-  <meta name="twitter:description" content="Software for a Flight Controller and its configuration aspects.">
-  <meta name="twitter:url" content="https://fjp.at/projects/fpv/flight-controller-software">
+  <meta name="twitter:title" content="The RC Receiver">
+  <meta name="twitter:description" content="The RC receiver receives the commands from the transmitter.">
+  <meta name="twitter:url" content="https://fjp.at/projects/fpv/receiver">
 
   
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://fjp.at/assets/collections/fpv/betaflight/betaflight-ports.png">
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://fjp.at/assets/collections/fpv/receiver/r-xsr-top.jpg">
+      
     
   
 
@@ -58,7 +60,7 @@
 
 
 
-  <meta property="article:published_time" content="2020-04-12T10:00:35+02:00">
+  <meta property="article:published_time" content="2026-10-06T09:00:00+02:00">
 
 
 
@@ -69,7 +71,7 @@
   
 
 
-<link rel="canonical" href="https://fjp.at/projects/fpv/flight-controller-software">
+<link rel="canonical" href="https://fjp.at/projects/fpv/receiver">
 
 
 
@@ -265,44 +267,6 @@
       
 
 
-  
-
-
-
-
-
-
-
-
-<div class="page__hero--overlay"
-  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/collections/fpv/betaflight/betaflight-ports.png');"
->
-  
-    <div class="wrapper">
-      <h1 id="page-title" class="page__title" itemprop="headline">
-        
-          Flight Controller Software
-
-        
-      </h1>
-      
-        <p class="page__lead">Software for a Flight Controller and its configuration aspects.
-</p>
-      
-      
-
-
-
-      
-    </div>
-  
-  
-    <span class="page__hero-caption">Source: <a href="https://github.com/betaflight/betaflight"><strong>Betaflight</strong></a>
-</span>
-  
-</div>
-
-
 
 
 
@@ -371,7 +335,7 @@
     
       
       
-        <li class="current">Flight Controller Software</li>
+        <li class="current">The RC Receiver</li>
       
     
   </ol>
@@ -436,7 +400,7 @@
             
               <li><a href="/projects/fpv/battery">Batteries</a></li>
             
-              <li><a href="/projects/fpv/receiver">RC Receiver</a></li>
+              <li><a href="/projects/fpv/receiver" class="active">RC Receiver</a></li>
             
           </ul>
           
@@ -566,12 +530,23 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Flight Controller Software">
-    <meta itemprop="description" content="Software for a Flight Controller and its configuration aspects.">
-    <meta itemprop="datePublished" content="2020-04-12T10:00:35+02:00">
+    <meta itemprop="headline" content="The RC Receiver">
+    <meta itemprop="description" content="The RC receiver receives the commands from the transmitter.">
+    <meta itemprop="datePublished" content="2026-10-06T09:00:00+02:00">
     
 
     <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://fjp.at/projects/fpv/receiver" itemprop="url">The RC Receiver
+</a>
+          </h1>
+          
+
+
+
+        </header>
       
 
       <section class="page__content e-content" itemprop="text">
@@ -579,36 +554,113 @@
           <aside class="sidebar__right ">
             <nav class="toc" aria-label="Table of contents">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              
+              <ul class="toc__menu"><li><a href="#protocols">Protocols</a></li><li><a href="#antennas">Antennas</a></li><li><a href="#failsafe">Failsafe</a></li><li><a href="#receiver-used-in-this-build">Receiver Used in this Build</a></li></ul>
             </nav>
           </aside>
         
-        <p>A <a href="/projects/fpv/glossar#flight-controller">flight controller</a> can be operated with different software 
-(<a href="/projects/fpv/glossar#firmware">firmware</a>). Popular software for FPV race copters are 
-<a href="http://cleanflight.com/">Cleanflight</a>, its successor <a href="https://betaflight.com/">Betaflight</a>
-and <a href="https://www.librepilot.org/site/index.html">LibrePilot</a>. Another software used specifically for FPV races is
-KISS from <a href="https://www.flyduino.net/">Flyduino</a> with its related flight controller. 
-We will use Betaflight because it supports a wide variety of flight controllers.</p>
-
-<ul>
-  <li><strong>Cleanflight</strong>: Simple interface which is used via a Chrome browser application window.</li>
-  <li><strong>Betaflight</strong>: A software fork of Cleanflight and specifically optimized for race copters.</li>
-  <li><strong>LibrePilot</strong>: Software with lots of configuration options and a well structured menu to adjust the PID values.</li>
-</ul>
-
-<p>Betaflight is an open source <a href="/projects/fpv/glossar#flight-controller">flight controller</a> software (firmware)
-which supports a variety of flight controllers, which comes with an easy to use and intuitive graphical user interface (GUI). Although the name implies that it is a beta version, which it get’s because it is a fork of the popular Cleanflight software, it is well established and should be seen as a progression to Cleanflight. 
-Betaflight’s was intentionally developed for race copters which is why it provides faster communication protocols (loop time) and therefore faster and more percise control of the copter.</p>
-
-<p class="notice--info"><strong>Update 2026:</strong> The screenshots on these pages are from 2020. Betaflight now uses date-based version numbers (the current release series is 2025.12),
-and the Betaflight Configurator has been renamed to the <a href="https://app.betaflight.com/">Betaflight App</a>, which runs in Chromium-based browsers and can be installed from there.
-Tabs and option names may differ from the screenshots.</p>
+        <p>The <a href="/projects/fpv/glossar#receiver">receiver</a> on the quad receives the stick commands from the <a href="/projects/fpv/transmitter">transmitter</a>
+and passes them to the <a href="/projects/fpv/glossar#flight-controller">flight controller</a>.
+In the other direction it sends <a href="/projects/fpv/telemetry">telemetry</a> such as the battery voltage back to the radio.</p>
 
 <figure>
-    <a href="/assets/collections/fpv/betaflight/betaflight-ports.png"><img src="/assets/collections/fpv/betaflight/betaflight-ports.png" /></a>
-    <figcaption>Betaflight Configurator Graphical User Interface (GUI) showing the Ports tab.</figcaption>
+    <a href="/assets/collections/fpv/receiver/r-xsr-top.jpg"><img src="/assets/collections/fpv/receiver/r-xsr-top.jpg" alt="FrSky R-XSR receiver" /></a>
+    <figcaption>FrSky R-XSR receiver of this build.</figcaption>
 </figure>
 
+<h2 id="protocols">Protocols</h2>
+
+<p>Two links are involved: the radio link between transmitter and receiver, and the wired connection between receiver and flight controller.</p>
+
+<p><strong>Radio link.</strong> The transmitter module and the receiver must use the same protocol.
+FrSky uses ACCST D16 and its successor <a href="/projects/fpv/glossar#access">ACCESS</a>, TBS uses Crossfire,
+and the open source <a href="/projects/fpv/glossar#expresslrs">ExpressLRS</a> has become the most common link in FPV.</p>
+
+<p><strong>Receiver to flight controller.</strong> The receiver is connected to a UART of the flight controller:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Protocol</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><a href="/projects/fpv/glossar#sbus">SBUS</a></td>
+      <td style="text-align: left">FrSky’s serial protocol for up to 16 channels, an inverted UART signal</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/projects/fpv/glossar#smartport">SmartPort</a></td>
+      <td style="text-align: left">FrSky’s telemetry protocol on a separate wire</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/projects/fpv/glossar#fport">FPort</a></td>
+      <td style="text-align: left">Combines SBUS and SmartPort on a single wire in both directions</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">CRSF</td>
+      <td style="text-align: left">Protocol of Crossfire and ExpressLRS for channels and telemetry in both directions</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The receiver of this build runs FPort, so a single wire carries the stick commands and the telemetry, see the <a href="/projects/fpv/r-xsr">R-XSR page</a>.</p>
+
+<h2 id="antennas">Antennas</h2>
+
+<p>Most receivers have two antennas, which are mounted at a right angle to each other and outside of the carbon frame,
+because carbon fiber shields the radio signal. See <a href="/projects/fpv/assembly#receiver-antennas">receiver antennas</a> in the assembly.</p>
+
+<h2 id="failsafe">Failsafe</h2>
+
+<p>Failsafe defines what happens when the quad loses the radio link.
+The receiver should stop sending signals in this case (“No pulses”, see <a href="/projects/fpv/r-xsr#failsafe-mode">failsafe mode</a>),
+so that the flight controller detects the loss and Betaflight takes over in two stages
+(<a href="https://betaflight.com/docs/wiki/guides/current/failsafe">Betaflight failsafe guide</a>):</p>
+
+<ol>
+  <li><strong>Stage 1 (guard period)</strong>: for a short time, by default 1.5 seconds in current versions, Betaflight holds the channels at their fallback values.
+If the link comes back within this time, the quad flies on normally.</li>
+  <li><strong>Stage 2</strong>: after the guard period Betaflight runs the selected failsafe procedure.
+By default it disarms and the quad drops, alternatively it can level out and land slowly, or fly back with GPS Rescue if a GPS is installed.</li>
+</ol>
+
+<p>Test the failsafe on the bench with the propellers removed by switching off the radio.</p>
+
+<h2 id="receiver-used-in-this-build">Receiver Used in this Build</h2>
+
+<p>This build uses the FrSky R-XSR, which is set up on the <a href="/projects/fpv/r-xsr">R-XSR page</a>. According to its manual it has these specifications:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Property</th>
+      <th style="text-align: left">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Channels</td>
+      <td style="text-align: left">16 (channels 1 to 16 over SBUS, 1 to 8 over CPPM)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Operating voltage</td>
+      <td style="text-align: left">3.5 to 10 V</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Operating current</td>
+      <td style="text-align: left">70 mA at 5 V</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Weight and dimensions</td>
+      <td style="text-align: left">1.5 g, 16 × 11 × 5.4 mm</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Compatibility</td>
+      <td style="text-align: left">FrSky X-series modules and radios in D16 mode, ACCESS with the ACCESS firmware</td>
+    </tr>
+  </tbody>
+</table>
 
         
       </section>
@@ -628,13 +680,9 @@ Tabs and option names may differ from the screenshots.</p>
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/#betaflight" class="page__taxonomy-item p-category" rel="tag">betaflight</a><span class="sep">, </span>
-    
-      <a href="/tags/#cleanflight" class="page__taxonomy-item p-category" rel="tag">cleanflight</a><span class="sep">, </span>
-    
       <a href="/tags/#drone" class="page__taxonomy-item p-category" rel="tag">drone</a><span class="sep">, </span>
     
-      <a href="/tags/#flight-controller" class="page__taxonomy-item p-category" rel="tag">flight controller</a><span class="sep">, </span>
+      <a href="/tags/#fport" class="page__taxonomy-item p-category" rel="tag">fport</a><span class="sep">, </span>
     
       <a href="/tags/#fpv" class="page__taxonomy-item p-category" rel="tag">fpv</a><span class="sep">, </span>
     
@@ -642,7 +690,11 @@ Tabs and option names may differ from the screenshots.</p>
     
       <a href="/tags/#race" class="page__taxonomy-item p-category" rel="tag">race</a><span class="sep">, </span>
     
-      <a href="/tags/#software" class="page__taxonomy-item p-category" rel="tag">software</a>
+      <a href="/tags/#receiver" class="page__taxonomy-item p-category" rel="tag">receiver</a><span class="sep">, </span>
+    
+      <a href="/tags/#rx" class="page__taxonomy-item p-category" rel="tag">rx</a><span class="sep">, </span>
+    
+      <a href="/tags/#sbus" class="page__taxonomy-item p-category" rel="tag">sbus</a>
     
     </span>
   </p>
@@ -675,7 +727,7 @@ Tabs and option names may differ from the screenshots.</p>
         
 
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2020-04-12T10:00:35+02:00">April 12, 2020</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2026-10-06T09:00:00+02:00">October 6, 2026</time></p>
 
 
       </footer>
@@ -686,10 +738,10 @@ Tabs and option names may differ from the screenshots.</p>
 
   <nav class="pagination" aria-label="Post pagination">
     
-      <a href="/projects/fpv/esc" class="pagination--pager" title="The Brushless Controller ESC">Previous</a>
+      <a href="/projects/fpv/fpv-system/vtx" class="pagination--pager" title="FPV Transmitter and Receiver">Previous</a>
     
     
-      <a href="/projects/fpv/pdb" class="pagination--pager" title="The Power Distribution Board">Next</a>
+      <a href="/projects/fpv/transmitter" class="pagination--pager" title="The RC Transmitter">Next</a>
     
   </nav>
 
@@ -827,8 +879,8 @@ window.cookieconsent.initialise({
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://fjp.at/projects/fpv/flight-controller-software";  /* Replace PAGE_URL with your page's canonical URL variable */
-      this.page.identifier = "/projects/fpv/flight-controller-software"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+      this.page.url = "https://fjp.at/projects/fpv/receiver";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/projects/fpv/receiver"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
     (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
