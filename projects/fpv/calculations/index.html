@@ -15,8 +15,8 @@
 <meta charset="utf-8">
 
 
-<!-- begin _includes/seo.html --><title>The Frame and its Components - fjp.github.io</title>
-<meta name="description" content="The frame of a fpv quad and its parts.">
+<!-- begin _includes/seo.html --><title>Thrust and Flight Time - fjp.github.io</title>
+<meta name="description" content="Calculations to find matching parts and to estimate the flight time.">
 
 
   <meta name="author" content="Franz Pucher">
@@ -28,27 +28,23 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="fjp.github.io">
-<meta property="og:title" content="The Frame and its Components">
-<meta property="og:url" content="https://fjp.at/projects/fpv/frame">
+<meta property="og:title" content="Thrust and Flight Time">
+<meta property="og:url" content="https://fjp.at/projects/fpv/calculations/">
 
 
-  <meta property="og:description" content="The frame of a fpv quad and its parts.">
+  <meta property="og:description" content="Calculations to find matching parts and to estimate the flight time.">
 
 
-
-  <meta property="og:image" content="https://fjp.at/assets/collections/fpv/frame/frame-components-raster.jpg">
-  
 
 
 
   <meta name="twitter:site" content="@franzpucher">
-  <meta name="twitter:title" content="The Frame and its Components">
-  <meta name="twitter:description" content="The frame of a fpv quad and its parts.">
-  <meta name="twitter:url" content="https://fjp.at/projects/fpv/frame">
+  <meta name="twitter:title" content="Thrust and Flight Time">
+  <meta name="twitter:description" content="Calculations to find matching parts and to estimate the flight time.">
+  <meta name="twitter:url" content="https://fjp.at/projects/fpv/calculations/">
 
   
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://fjp.at/assets/collections/fpv/frame/frame-components-raster.jpg">
+    <meta name="twitter:card" content="summary">
     
   
 
@@ -58,7 +54,7 @@
 
 
 
-  <meta property="article:published_time" content="2019-10-25T19:30:35+02:00">
+  <meta property="article:published_time" content="2026-10-06T09:00:00+02:00">
 
 
 
@@ -69,7 +65,7 @@
   
 
 
-<link rel="canonical" href="https://fjp.at/projects/fpv/frame">
+<link rel="canonical" href="https://fjp.at/projects/fpv/calculations/">
 
 
 
@@ -265,41 +261,6 @@
       
 
 
-  
-
-
-
-
-
-
-
-
-<div class="page__hero--overlay"
-  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/collections/fpv/frame/frame-components-raster.jpg');"
->
-  
-    <div class="wrapper">
-      <h1 id="page-title" class="page__title" itemprop="headline">
-        
-          The Frame and its Components
-
-        
-      </h1>
-      
-        <p class="page__lead">The frame of a fpv quad and its parts.
-</p>
-      
-      
-
-
-
-      
-    </div>
-  
-  
-</div>
-
-
 
 
 
@@ -368,7 +329,7 @@
     
       
       
-        <li class="current">The Frame and its Components</li>
+        <li class="current">Thrust and Flight Time</li>
       
     
   </ol>
@@ -421,7 +382,7 @@
           
           <ul>
             
-              <li><a href="/projects/fpv/frame" class="active">Frame</a></li>
+              <li><a href="/projects/fpv/frame">Frame</a></li>
             
               <li><a href="/projects/fpv/motor">Brushless Motors</a></li>
             
@@ -543,12 +504,23 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="The Frame and its Components">
-    <meta itemprop="description" content="The frame of a fpv quad and its parts.">
-    <meta itemprop="datePublished" content="2019-10-25T19:30:35+02:00">
+    <meta itemprop="headline" content="Thrust and Flight Time">
+    <meta itemprop="description" content="Calculations to find matching parts and to estimate the flight time.">
+    <meta itemprop="datePublished" content="2026-10-06T09:00:00+02:00">
     
 
     <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://fjp.at/projects/fpv/calculations/" itemprop="url">Thrust and Flight Time
+</a>
+          </h1>
+          
+
+
+
+        </header>
       
 
       <section class="page__content e-content" itemprop="text">
@@ -556,56 +528,177 @@
           <aside class="sidebar__right ">
             <nav class="toc" aria-label="Table of contents">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#frame-composition">Frame Composition</a></li><li><a href="#materials">Materials</a></li><li><a href="#frame-size-and-application-purpose">Frame Size and Application Purpose</a></li><li><a href="#further-reading-material">Further reading material</a></li></ul>
+              <ul class="toc__menu"><li><a href="#introduction">Introduction</a></li><li><a href="#calculations">Basic Calculations</a></li><li><a href="#weight">Weight</a></li><li><a href="#thrust">Thrust</a></li><li><a href="#motors">Finding Matching Motors</a></li><li><a href="#esc">Finding Matching ESCs</a></li><li><a href="#flight-time">Flight Time Calculation</a></li></ul>
             </nav>
           </aside>
         
-        <p>The frame of a race drone is not only important to house all the individual components of a drone, 
-its aerodynamics play a significant role for speed and flight stability.</p>
+        <h2 id="introduction">Introduction</h2>
 
-<h2 id="frame-composition">Frame Composition</h2>
+<p>Before buying parts it helps to check that they fit together: the motors have to lift the quad with enough reserve,
+the ESCs and the battery have to deliver the current the motors draw, and the battery capacity determines how long the quad flies.
+This page does these calculations for the parts of this build, using the thrust data that EMAX publishes for the RS2205 2300 $K_v$ motor.</p>
 
-<p>For multicopters many frames exist, that are made up of different pieces and are assembled differently.
-Most larger drones commonly consist of a centerplate as their core, arms also known as booms, that hold motors at their ends, and the landing gear. Depending on the size of the motors, dedicated motor mounts are used at the booms to fix the motors. In the field of FPV race quad frames consist of a single centerplate which includes the arms.
-This means no weaknesses due to screw connections and a lighter frame.</p>
+<h2 id="calculations">Basic Calculations</h2>
 
-<figure class="half">
-  <a href="/assets/collections/fpv/frame/frame-components.jpg"><img src="/assets/collections/fpv/frame/frame-components.jpg" /></a>
-    <a href="/assets/collections/fpv/frame/frame-components-raster.jpg"><img src="/assets/collections/fpv/frame/frame-components-raster.jpg" /></a>
-    <figcaption>Frame components iFlight iX5 V3 X Hybrid.</figcaption>
-</figure>
+<p>The electrical power $P$ is the product of voltage $U$ and current $I$, and the energy $E$ stored in a battery is its voltage times its capacity $Q$:</p>
 
-<p>Nevertheless additional parts exist that are attached to the centerplate, 
-such as mounting constructions and cover plates including screws and distance bolts. 
-These parts are required for the other essential components such as the <a href="/projects/fpv/glossar#flight-controller">Flightcontroller</a>, 
-<a href="/projects/fpv/glossar#battery">battery</a> or <a href="/projects/fpv/glossar#fpv-camera">FPV camera</a>. 
-With these mounting material the parts are kept at specific frame locations and are protected from a possible crash.</p>
+\[P = U \cdot I \qquad E = U \cdot Q\]
 
-<h2 id="materials">Materials</h2>
+<p>A 3S battery with 11.1 V and 1300 mAh stores $11.1\,\text{V} \cdot 1.3\,\text{Ah} \approx 14.4\,\text{Wh}$, see <a href="/projects/fpv/battery">LiPo Batteries</a>.</p>
 
-<p>During a flight a FPV frame needs to withstand heavy strain and high <a href="https://en.wikipedia.org/wiki/G-force">g-forces</a>. 
-Because of this most permium frames consist of an extremely light and stable <a href="https://en.wikipedia.org/wiki/Carbon_fiber_reinforced_polymer">carbon fiber reinforced polymer</a>,
-also known as <a href="/projects/fpv/glossar#cfk">CFK</a>.</p>
+<h2 id="weight">Weight</h2>
 
-<p>This material combines specific attributes that are required in aviation and airplane construction.
-Compared to other materials, CFK stands out with high stability while at the same time providing low weight.
-The material <a href="https://en.wikipedia.org/wiki/Density">density</a> specifies how much a material weights with respect to a
-specific volume. The <a href="https://en.wikipedia.org/wiki/Ultimate_tensile_strength">tensil strength</a> denotes the capacity of a material or structure to withstand loads tending to elongate. Young’s modulus is a mechanical property in the 
-linear elasticity regime that measures the stiffness of a solid material.</p>
+<p>The all-up weight (AUW) is the weight of the ready-to-fly quad including the battery.
+The following table adds up the parts of this build with the weights given by manufacturers and reviews.
+The values marked as estimate are typical values, weighing the finished quad on a kitchen scale replaces them.</p>
 
-<h2 id="frame-size-and-application-purpose">Frame Size and Application Purpose</h2>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Part</th>
+      <th style="text-align: right">Weight</th>
+      <th style="text-align: left">Source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">iFlight iX5 frame with hardware</td>
+      <td style="text-align: right">86 g</td>
+      <td style="text-align: left"><a href="https://intofpv.com/archive/index.php/thread-7268.html">IntoFPV</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">4 × EMAX RS2205 2300 $K_v$</td>
+      <td style="text-align: right">4 × 30 g = 120 g</td>
+      <td style="text-align: left"><a href="https://www.getfpv.com/discontinued/emax-rs2205-2300kv-racespec-motor-cw.html">getfpv</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">4 × DYS Aria 35A ESC with wires</td>
+      <td style="text-align: right">4 × 8.1 g = 32.4 g</td>
+      <td style="text-align: left"><a href="https://oscarliang.com/dys-aria-35a-esc">Oscar Liang</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Matek F722-STD flight controller</td>
+      <td style="text-align: right">7 g</td>
+      <td style="text-align: left"><a href="https://www.racer.lt/datasheets/about/matek-f722-std-532.html">racer.lt</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Matek FCHUB-6S PDB</td>
+      <td style="text-align: right">8.5 g</td>
+      <td style="text-align: left"><a href="https://www.mateksys.com/downloads/FCHUB-6S_manual.pdf">Matek manual</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">RunCam Swift 2 camera</td>
+      <td style="text-align: right">14 g</td>
+      <td style="text-align: left"><a href="https://www.getfpv.com/discontinued/runcam-swift-2-2-5mm-lens-orange.html">getfpv</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">TBS Unify Pro HV video transmitter</td>
+      <td style="text-align: right">7 g</td>
+      <td style="text-align: left"><a href="https://www.getfpv.com/fpv/video-transmitters/tbs-unify-pro-5g8-hv-sma.html">getfpv</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">FrSky R-XSR receiver</td>
+      <td style="text-align: right">1.5 g</td>
+      <td style="text-align: left"><a href="https://www.frsky-rc.com/wp-content/uploads/Downloads/Manual/R-XSR/R-XSR%20ACCST%20-Manual.pdf">FrSky manual</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Propellers, VTX antenna, cables, XT60, battery strap</td>
+      <td style="text-align: right">about 40 g</td>
+      <td style="text-align: left">estimate</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Quad without battery</strong></td>
+      <td style="text-align: right"><strong>about 316 g</strong></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">3S 1300 mAh LiPo</td>
+      <td style="text-align: right">about 120 g</td>
+      <td style="text-align: left">estimate</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>All-up weight</strong></td>
+      <td style="text-align: right"><strong>about 440 g</strong></td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
 
-<p>The size of a frame construction influences the flight characteristics of a drone.
-One common metric is the center distance, which is the distance between one motor center point (motor shaft) to a diagonally opposite motor center point. This means that the diagonal motor-to-motor distance of a 200 frame is 200mm.</p>
+<h2 id="thrust">Thrust</h2>
 
-<p>Up to a certain limit, larger frames provide more stable flight characteristics. A smaller frame is used to fly faster, 
-where common frame sizes are between 100mm to 300mm for race drones and acrobatic flights. Frames can also be categorized into micro and mini. Frames less than 150mm are considered micro frames and frames above 150mm are known as mini frames.</p>
+<p>According to EMAX’s <a href="/projects/fpv/motor#relation-between-thrust-and-weight">thrust table</a>, one RS2205 2300 $K_v$ motor with a
+5x4.5 bullnose propeller creates up to 712 g of thrust at 12 V, which is close to the voltage of a 3S battery.
+Four motors therefore create up to $4 \cdot 712\,\text{g} = 2848\,\text{g}$, and the thrust-to-weight ratio of this build is</p>
 
-<h2 id="further-reading-material">Further reading material</h2>
+\[\text{TWR} = \frac{4 \cdot T_{\max}}{m_{\text{AUW}}} = \frac{2848\,\text{g}}{440\,\text{g}} \approx 6.5\]
 
-<p>All about multirotor fpv drone frames at <a href="https://www.getfpv.com/learn/new-to-fpv/all-about-multirotor-fpv-drone-frame/">GetFPV learning pages</a>.</p>
+<p>A quad needs a ratio of at least 2 to fly controllably. Race and freestyle quads are built with much higher ratios,
+because the reserve makes fast accelerations and climbs possible.</p>
 
-<p>To see how frames and complete quads are produced, watch the <a href="/projects/fpv/#how-fpv-drones-are-made">iFlight factory video</a> on the introduction page.</p>
+<p>To hover, each motor has to carry a quarter of the weight, which is about 110 g.
+The thrust table gives about 2 A per motor for this, so the quad draws about 8 A while hovering, a little more than 10 % of the current at full throttle.</p>
+
+<h2 id="motors">Finding Matching Motors</h2>
+
+<p>The motor $K_v$, the cell count of the battery and the propeller have to fit together.
+Without load the RS2205 would turn at $2300 \cdot 12 = 27\,600$ RPM at 12 V. With the 5x4.5 propeller the thrust table shows 20 080 RPM at full throttle,
+which is 73 % of the speed without load. This gives a pitch speed of $0.1143\,\text{m} \cdot 20\,080 / 60\,\text{s} \approx 38\,\text{m/s}$ or about 138 km/h,
+compared to the upper bound of 175 km/h on the <a href="/projects/fpv/propeller#pitch">propeller page</a>.
+A larger propeller or a higher pitch would load the motor more and draw more current, a battery with more cells would need a motor with a lower $K_v$.</p>
+
+<h2 id="esc">Finding Matching ESCs</h2>
+
+<p>At full throttle one motor draws 20.7 A at 12 V according to the thrust table, and 29.9 A at 16 V on a 4S battery.
+The DYS Aria ESCs are rated for 35 A, so they have enough reserve on 3S and still on 4S,
+see <a href="/projects/fpv/esc#ampere-a-and-load-capacity">ampere and load capacity</a>.
+The <a href="/projects/fpv/pdb#the-matek-fchub-6s-of-this-build">PDB</a> supplies 30 A per ESC continuously, which is also enough on 3S.</p>
+
+<p>All four motors together draw $4 \cdot 20.7\,\text{A} = 82.8\,\text{A}$ at full throttle, that is about 1 kW.
+From a 1300 mAh battery this requires a C-rating of $82.8 / 1.3 \approx 64$.
+The Lumenier 60C battery of the parts list delivers 78 A continuously, and because a quad flies at full throttle only for short moments,
+the batteries of this build can deliver these peaks.</p>
+
+<h2 id="flight-time">Flight Time Calculation</h2>
+
+<p>Only about 80 % of the capacity should be used, so that the cells don’t drop below about 3.5 V under load.
+With the usable capacity $0.8 \cdot Q$ and the average current $I_{\text{avg}}$ the flight time is</p>
+
+\[t = \frac{0.8 \cdot Q}{I_{\text{avg}}}\]
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Flight</th>
+      <th style="text-align: right">Average current</th>
+      <th style="text-align: right">Flight time with 1300 mAh</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Hovering</td>
+      <td style="text-align: right">about 8 A</td>
+      <td style="text-align: right">about 8 minutes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Calm flying</td>
+      <td style="text-align: right">20 A</td>
+      <td style="text-align: right">about 3.1 minutes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Racing</td>
+      <td style="text-align: right">25 A</td>
+      <td style="text-align: right">about 2.5 minutes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Aggressive racing</td>
+      <td style="text-align: right">30 A</td>
+      <td style="text-align: right">about 2.1 minutes</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The average currents for flying are assumptions. The <a href="/projects/fpv/pdb#current-sensor">current sensor</a> of the PDB
+measures the actual consumption, which Betaflight shows in the OSD as used capacity in mAh.</p>
 
         
       </section>
@@ -625,15 +718,21 @@ where common frame sizes are between 100mm to 300mm for race drones and acrobati
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
+      <a href="/tags/#calculation" class="page__taxonomy-item p-category" rel="tag">calculation</a><span class="sep">, </span>
+    
       <a href="/tags/#drone" class="page__taxonomy-item p-category" rel="tag">drone</a><span class="sep">, </span>
+    
+      <a href="/tags/#flight-time" class="page__taxonomy-item p-category" rel="tag">flight time</a><span class="sep">, </span>
     
       <a href="/tags/#fpv" class="page__taxonomy-item p-category" rel="tag">fpv</a><span class="sep">, </span>
     
-      <a href="/tags/#frame" class="page__taxonomy-item p-category" rel="tag">frame</a><span class="sep">, </span>
-    
       <a href="/tags/#quad" class="page__taxonomy-item p-category" rel="tag">quad</a><span class="sep">, </span>
     
-      <a href="/tags/#race" class="page__taxonomy-item p-category" rel="tag">race</a>
+      <a href="/tags/#race" class="page__taxonomy-item p-category" rel="tag">race</a><span class="sep">, </span>
+    
+      <a href="/tags/#thrust" class="page__taxonomy-item p-category" rel="tag">thrust</a><span class="sep">, </span>
+    
+      <a href="/tags/#weight" class="page__taxonomy-item p-category" rel="tag">weight</a>
     
     </span>
   </p>
@@ -666,7 +765,7 @@ where common frame sizes are between 100mm to 300mm for race drones and acrobati
         
 
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2019-10-25T19:30:35+02:00">October 25, 2019</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2026-10-06T09:00:00+02:00">October 6, 2026</time></p>
 
 
       </footer>
@@ -677,10 +776,10 @@ where common frame sizes are between 100mm to 300mm for race drones and acrobati
 
   <nav class="pagination" aria-label="Post pagination">
     
-      <a href="/projects/fpv/glossar" class="pagination--pager" title="FPV Glossar">Previous</a>
+      <a href="/projects/fpv/battery" class="pagination--pager" title="LiPo Batteries">Previous</a>
     
     
-      <a href="/projects/fpv/motor" class="pagination--pager" title="The Motor and how it works">Next</a>
+      <a href="/projects/fpv/charger" class="pagination--pager" title="Charger and Testers">Next</a>
     
   </nav>
 
@@ -818,8 +917,8 @@ window.cookieconsent.initialise({
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://fjp.at/projects/fpv/frame";  /* Replace PAGE_URL with your page's canonical URL variable */
-      this.page.identifier = "/projects/fpv/frame"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+      this.page.url = "https://fjp.at/projects/fpv/calculations/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/projects/fpv/calculations"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
     (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
