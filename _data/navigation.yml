@@ -217,14 +217,13 @@ fpv:
       #   url: /projects/fpv/esc-settings
       - title: Telemetry
         url: /projects/fpv/telemetry
-  # Planned page, enable once it exists:
-  # - title: "Rights"
-  #   url: /projects/fpv/rights/#introduction
-  #   children:
-  #     - title: "Law and Insurance regulations"
-  #       url: /projects/fpv/rights/#law-insurance
-  #     - title: "Drones"
-  #       url: /projects/fpv/rights/#drones
+  - title: "Rights and Regulations"
+    url: /projects/fpv/rights/#introduction
+    children:
+      - title: "Law and Insurance Regulations"
+        url: /projects/fpv/rights/#law-insurance
+      - title: "Drones"
+        url: /projects/fpv/rights/#drones
 
 
 design-patterns:
