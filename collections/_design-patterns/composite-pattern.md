@@ -15,7 +15,7 @@ header:
   teaser: /assets/pages/design-patterns/composite-pattern.png
   overlay_image: /assets/pages/design-patterns/composite-pattern.png
   #overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
-  caption: "Source: [**Head First Design Patterns**]({{ page.url }}/#reference)"
+  caption: "Source: [**Head First Design Patterns**](/design-patterns/#references)"
   #show_overlay_excerpt: true
 redirect_from:
     - /design-patterns/
@@ -579,7 +579,7 @@ public class MenuItem extends MenuComponent {
 {% endhighlight %}
 
 Here we return a `NullIterator` because there is nothing to iterate over in a `Leaf` node.
-The implementation of the `NullIterator` which is a [Null Object](/design-patterns/null-object) design pattern, 
+The implementation of the `NullIterator` which is a Null Object design pattern, 
 follows in the next code snippet. This special iterator always returns `false` when `hasNext()` is called:
 
 {% highlight bash %}

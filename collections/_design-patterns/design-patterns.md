@@ -105,7 +105,7 @@ Example: Seperate `Journal` class and `PersistanceManager` class for saving the 
 <p>
 <b>Open-Closed Principle (OCP)</b> <br>
 Entities should be open for extension but closed for modification. It is better to extend a class (for example using 
-multiple inheritance) rather than modifying a class that has already been tested (the change may be necessary due to changed requirements). Patterns that extend a class without modifying the class itself are the <a href="/observer/">observer pattern</a> and the <a href="/decorator/">decorator pattern</a> patterns.
+multiple inheritance) rather than modifying a class that has already been tested (the change may be necessary due to changed requirements). Patterns that extend a class without modifying the class itself are the <a href="/design-patterns/observer">observer pattern</a> and the <a href="/design-patterns/decorator">decorator pattern</a> patterns.
 </p>
 {: .notice}
 
@@ -115,7 +115,7 @@ Example: `Product` class with different traits (color, size) and `ProductFilter`
 
 <p>
 <b>Liskov Substitution Principle (LSP)</b> <br>
-Objects should be replaceable with instances of their subtypes without altering the correctness of the program. To follow this principle use the <a href="/factory/">factory pattern</a> (factory method or abstract factory).
+Objects should be replaceable with instances of their subtypes without altering the correctness of the program. To follow this principle use the <a href="/design-patterns/factory">factory pattern</a> (factory method or abstract factory).
 </p>
 {: .notice}
 
@@ -125,7 +125,7 @@ Example: The classical rectangles and squares example shows how this principle i
 
 <p>
 <b>Interface Segregation Principle (ISP)</b> <br>
-Many client-specific interfaces are better than one general purpose interface. No client (somebody how uses your code) should be forced to depend on methods that it does not use. Patterns that use this principle are the <a href="/decorator/">decorator pattern</a>.
+Many client-specific interfaces are better than one general purpose interface. No client (somebody how uses your code) should be forced to depend on methods that it does not use. Patterns that use this principle are the <a href="/design-patterns/decorator">decorator pattern</a>.
 </p>
 {: .notice}
 
@@ -177,7 +177,7 @@ With composition it is possible to delegate behaviors instead of inheriting them
   <b>Strive for loosely coupled designs between objects that interact. </b>
   Loosely coupled designs allow us to build flexible object oriented
 systems that can handle change because they minimize
-the interdependency between objects. This principle can be seen in the <a href="/observer/">observer pattern</a>.
+the interdependency between objects. This principle can be seen in the <a href="/design-patterns/observer">observer pattern</a>.
 </p>
 {: .notice}
 
