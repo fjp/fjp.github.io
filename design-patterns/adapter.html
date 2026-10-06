@@ -297,7 +297,7 @@
     </div>
   
   
-    <span class="page__hero-caption">Source: <a href="{{ page.url }}/#reference"><strong>Head First Design Patterns</strong></a>
+    <span class="page__hero-caption">Source: <a href="#reference"><strong>Head First Design Patterns</strong></a>
 </span>
   
 </div>
@@ -416,8 +416,6 @@
             
               <li><a href="/design-patterns/adapter" class="active">Adapter</a></li>
             
-              <li><a href="/design-patterns/bridge">Bridge</a></li>
-            
               <li><a href="/design-patterns/decorator">Decorator</a></li>
             
               <li><a href="/design-patterns/facade">Facade</a></li>
@@ -526,14 +524,14 @@ which is expected by the client. With the object adapter, the adapter implements
 
 <figure>
     <a href="/assets/pages/design-patterns/adapter-object-pattern.png"><img src="/assets/pages/design-patterns/adapter-object-pattern.png" /></a>
-    <figcaption>Object Adapter Pattern implements the Adaptee and uses composition for the target interface (Source: <a href="/design-patterns/adapter/#reference">Head First Design Patterns</a>).</figcaption>
+    <figcaption>Object Adapter Pattern implements the Adaptee and uses composition for the target interface (Source: <a href="#reference">Head First Design Patterns</a>).</figcaption>
 </figure>
 
 <p>Another way to implement an adapter in programming languages that support multiple inheritance like C++ is to let the adapter class inherit both the target interface and the adaptee. This is known as Class Adapter. An Object Adapter uses composition to pass requests to an Adaptee.</p>
 
 <figure>
     <a href="/assets/pages/design-patterns/adapter-class-pattern.png"><img src="/assets/pages/design-patterns/adapter-class-pattern.png" /></a>
-    <figcaption>Class Adapter Pattern subclasses the Target and the Adaptee (Source: <a href="/design-patterns/adapter/#reference">Head First Design Patterns</a>).</figcaption>
+    <figcaption>Class Adapter Pattern subclasses the Target and the Adaptee (Source: <a href="#reference">Head First Design Patterns</a>).</figcaption>
 </figure>
 
 <p>Adapters are similar to the <a href="/design-patterns/facade">Facade Pattern</a> and the <a href="/design-patterns/decorator">Decorator Pattern</a>. An adapter wraps an object to change its interface, 

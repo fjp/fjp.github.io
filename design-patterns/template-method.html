@@ -413,8 +413,6 @@
             
               <li><a href="/design-patterns/adapter">Adapter</a></li>
             
-              <li><a href="/design-patterns/bridge">Bridge</a></li>
-            
               <li><a href="/design-patterns/decorator">Decorator</a></li>
             
               <li><a href="/design-patterns/facade">Facade</a></li>
@@ -520,7 +518,7 @@ Notice, that hooks make it possible to alter the behavior of the algorithm in th
     <figcaption>Template Method Pattern defines the steps of an algorithm and allows subclasses to provide the implementation for one or more steps.</figcaption>
 </figure>
 
-<p>The Template Method Pattern follows the <a href="/desing-patterns/">Hollywood Principle</a>, 
+<p>The Template Method Pattern follows the <a href="/design-patterns/">Hollywood Principle</a>, 
 which guides us to put decision making in high-level modules
 that can decided how and when to call low-level modules: “don’t call us, we’ll call you”.</p>
 
@@ -530,7 +528,7 @@ Instead many algorithms in Java and C++, for example <code class="language-plain
 <p>The Pattern is a great design tool for creating frameworks, where the framework controls how something gets done, 
 but lets the user specify some details of the framework’s algorithm behavior. For example the <code class="language-plaintext highlighter-rouge">paint()</code> method of Swing’s  (Java GUI Toolkit) <code class="language-plaintext highlighter-rouge">JFrame</code> container needs to be implemented by a user-defined <code class="language-plaintext highlighter-rouge">Frame</code> class.</p>
 
-<p>Related patterns are the <a href="/desing-patterns/factory">Strategy Pattern</a> and the <a href="/desing-patterns/factory">Factory Method Pattern</a>. The Template Method Pattern ecnapsulates algorithms by inheritance, whereas the <a href="/desing-patterns/factory">Strategy Pattern</a> does this by composition. The <a href="/desing-patterns/factory">Factory Method Pattern</a> is a specialization of the Template Method pattern. It has a (template) method to create an object.</p>
+<p>Related patterns are the <a href="/design-patterns/factory">Strategy Pattern</a> and the <a href="/design-patterns/factory">Factory Method Pattern</a>. The Template Method Pattern ecnapsulates algorithms by inheritance, whereas the <a href="/design-patterns/factory">Strategy Pattern</a> does this by composition. The <a href="/design-patterns/factory">Factory Method Pattern</a> is a specialization of the Template Method pattern. It has a (template) method to create an object.</p>
 
 <p>The following example shows one possible implementation of the Template Method pattern.
 It is about producing coffee and tea. The steps for each beverage are similar:</p>
