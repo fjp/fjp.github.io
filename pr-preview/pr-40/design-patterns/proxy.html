@@ -1,0 +1,1100 @@
+
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js" dir="ltr">
+  <head>
+    
+<meta charset="utf-8">
+
+
+<!-- begin _includes/seo.html --><title>The Proxy Pattern - fjp.github.io</title>
+<meta name="description" content="The proxy design pattern summarized.">
+
+
+  <meta name="author" content="Franz Pucher">
+  
+  <meta property="article:author" content="Franz Pucher">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="fjp.github.io">
+<meta property="og:title" content="The Proxy Pattern">
+<meta property="og:url" content="https://fjp.at/pr-preview/pr-40/design-patterns/proxy">
+
+
+  <meta property="og:description" content="The proxy design pattern summarized.">
+
+
+
+  <meta property="og:image" content="https://fjp.at/pr-preview/pr-40/assets/pages/design-patterns/proxy-pattern.png">
+  
+
+
+
+  <meta name="twitter:site" content="@franzpucher">
+  <meta name="twitter:title" content="The Proxy Pattern">
+  <meta name="twitter:description" content="The proxy design pattern summarized.">
+  <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-40/design-patterns/proxy">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://fjp.at/pr-preview/pr-40/assets/pages/design-patterns/proxy-pattern.png">
+    
+  
+
+  
+
+
+
+
+
+  <meta property="article:published_time" content="2019-10-11T15:41:35+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fjp.at/pr-preview/pr-40/design-patterns/proxy">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/pr-preview/pr-40/feed.xml" type="application/atom+xml" rel="alternate" title="fjp.github.io Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pr-preview/pr-40/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!--
+  Consent comes from the European regulations message in AdSense (Privacy & messaging),
+  Google's certified consent tool. The AdSense script below shows it to visitors from the
+  EEA, UK and Switzerland and answers through the IAB TCF API (__tcfapi).
+  Scripts that store data on the device are queued with
+    (window.afterConsent = window.afterConsent || []).push({ google: true, run: function () { ... } })
+  and run once visitors allow storage on their device (TCF purpose 1), for Google (vendor 755)
+  if google is true, or right away when the message doesn't apply to them.
+  With an ad blocker the message never loads, and queued scripts never run.
+-->
+<script>
+  (function () {
+    var queue = window.afterConsent = window.afterConsent || [];
+    var consent = null;
+    function runAllowed() {
+      for (var i = 0; i < queue.length; i++) {
+        var item = queue[i];
+        if (!item.done && (item.google ? consent.google : consent.storage)) {
+          item.done = true;
+          item.run();
+        }
+      }
+    }
+    queue.push = function (item) {
+      Array.prototype.push.call(queue, item);
+      if (consent) runAllowed();
+      return queue.length;
+    };
+    function onConsent(tcData, success) {
+      if (!success || !tcData) return;
+      if (tcData.gdprApplies === false) {
+        consent = { storage: true, google: true };
+      } else if (tcData.eventStatus === "tcloaded" || tcData.eventStatus === "useractioncomplete") {
+        var storage = !!tcData.purpose.consents[1];
+        consent = { storage: storage, google: storage && !!tcData.vendor.consents[755] };
+      } else {
+        return;
+      }
+      runAllowed();
+    }
+    (function waitForConsentTool(tries) {
+      if (typeof window.__tcfapi === "function") window.__tcfapi("addEventListener", 2, onConsent);
+      else if (tries > 0) setTimeout(function () { waitForConsentTool(tries - 1); }, 250);
+    })(120);
+  })();
+</script>
+
+<!-- AdSense (Auto ads are configured in AdSense), which also brings the consent message -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2214309606626131"
+     crossorigin="anonymous"></script>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+<!--KaTeX-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+<!-- Pseudocode.js -->
+<!-- https://github.com/SaswatPadhi/pseudocode.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"
+        integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous">
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
+<script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js">
+</script>
+
+<!-- Mailinglist -->
+<!-- MailerLite Universal, after consent to storage on the device (see afterConsent above) -->
+<script>
+  (window.afterConsent = window.afterConsent || []).push({
+    run: function () {
+      (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+      .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+      n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+      (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+      ml('account', '1518166');
+    }
+  });
+</script>
+<!-- End MailerLite Universal -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+        
+        <a class="site-title" href="/pr-preview/pr-40/">
+          fjp.github.io
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-40/"
+                
+                
+              >Home</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-40/blog/"
+                
+                
+              >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-40/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-40/design-patterns/"
+                
+                
+              >Design Patterns</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-40/cpp/"
+                
+                
+              >C++</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-40/projects/fpv/"
+                
+                
+              >FPV</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-40/about/"
+                
+                
+              >About</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-40/ads/"
+                
+                
+              >Ads</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-40/privacy/"
+                
+                
+              >Privacy</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-40/sitemap/"
+                
+                
+              >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('/pr-preview/pr-40/assets/pages/design-patterns/proxy-pattern.png');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          The Proxy Pattern
+
+        
+      </h1>
+      
+        <p class="page__lead">The proxy design pattern summarized.
+</p>
+      
+      
+
+
+
+      
+    </div>
+  
+  
+    <span class="page__hero-caption">Source: <a href="/pr-preview/pr-40/design-patterns/#references"><strong>Head First Design Patterns</strong></a>
+</span>
+  
+</div>
+
+
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-40/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-40/design-patterns/" itemprop="item"><span itemprop="name">Design patterns</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">The Proxy Pattern</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/pr-preview/pr-40/design-patterns/"><span class="nav__sub-title">Design Patterns</span></a>
+          
+
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-40/design-patterns/"><span class="nav__sub-title">Creational</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-40/design-patterns/factory">Factory</a></li>
+            
+              <li><a href="/pr-preview/pr-40/design-patterns/singleton">Singleton</a></li>
+            
+              <li><a href="/pr-preview/pr-40/design-patterns/builder">Builder</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-40/design-patterns/"><span class="nav__sub-title">Structural</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-40/design-patterns/adapter">Adapter</a></li>
+            
+              <li><a href="/pr-preview/pr-40/design-patterns/decorator">Decorator</a></li>
+            
+              <li><a href="/pr-preview/pr-40/design-patterns/facade">Facade</a></li>
+            
+              <li><a href="/pr-preview/pr-40/design-patterns/composite">Composite</a></li>
+            
+              <li><a href="/pr-preview/pr-40/design-patterns/proxy" class="active">Proxy</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-40/design-patterns/"><span class="nav__sub-title">Behavioral</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-40/design-patterns/strategy">Strategy</a></li>
+            
+              <li><a href="/pr-preview/pr-40/design-patterns/observer">Observer</a></li>
+            
+              <li><a href="/pr-preview/pr-40/design-patterns/command">Command</a></li>
+            
+              <li><a href="/pr-preview/pr-40/design-patterns/template-method">Template Method</a></li>
+            
+              <li><a href="/pr-preview/pr-40/design-patterns/iterator">Iterator</a></li>
+            
+              <li><a href="/pr-preview/pr-40/design-patterns/state">State</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-40/design-patterns/"><span class="nav__sub-title">Architectural</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-40/design-patterns/mvc">Model View Controller</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-40/design-patterns/"><span class="nav__sub-title">Functional</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-40/design-patterns/monad">Monad</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="The Proxy Pattern">
+    <meta itemprop="description" content="The proxy design pattern summarized.">
+    <meta itemprop="datePublished" content="2019-10-11T15:41:35+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p class="notice">
+<b>The Proxy Pattern</b> provides a surrogate or placeholder for another object to control access to it.
+</p>
+
+<p>The Proxy Pattern provides a representative for another object in order to control the client’s access to it.
+There are a number of ways it can manage that access.</p>
+
+<ul>
+  <li><strong>Remote Proxy:</strong> manages interaction between a client and a remote object.</li>
+  <li><strong>Virtual Proxy:</strong> controls access to an object that is expensive to instantiate.</li>
+  <li><strong>Protection Proxy:</strong> controls access to the methods of an object based on the caller.</li>
+</ul>
+
+<p>Other variants of the Proxy Pattern are the following:</p>
+
+<ul>
+  <li><strong>Firewall Proxy:</strong> controls access to a set of network resources, protecting the subject from malicious clients. This is used in corporate firewall systems.</li>
+  <li><strong>Smart Reference Proxy:</strong> provides additional actions whenever a subject is referenced, such as counting the number of references to an object. In C++ this is a <a href="https://en.cppreference.com/book/intro/smart_pointers#shared_ptr">shared smart pointer</a>.</li>
+  <li><strong>Caching Proxy:</strong> provides t3emporary storage for results of operations that are expensive. It can also allow multiple clients to share the results to reduce computation or network latency. This is often seen in web server proxies as well as content management and publishing systems.</li>
+  <li><strong>Synchronization Proxy:</strong> provides safe access to a subject from multiple threas. This proxy is used in JavaSpaces, where it controls synchronized access to an underlying set of objects in a distributed environment.</li>
+  <li><strong>Complexity Hiding Proxy:</strong> hides the complexity of and controls access to a complex set of classes. This is sometimes called the Facade Proxy. The Complexity Hiding Proxy differs from the <a href="/pr-preview/pr-40/design-patterns/facade">Facade Pattern</a> in that the proxy controls access, while the Facade Pattern just provides an alternative interface.</li>
+  <li><strong>Copy-On-Write Proxy:</strong> controls the opying of an object by deferring the copying of an object until it is required by a client. This is a variant of the Virtual Proxy.</li>
+</ul>
+
+<figure>
+    <a href="/pr-preview/pr-40/assets/pages/design-patterns/proxy-pattern.png"><img src="/pr-preview/pr-40/assets/pages/design-patterns/proxy-pattern.png" /></a>
+    <figcaption>The Proxy Pattern.</figcaption>
+</figure>
+
+<h2 id="remote-proxy-pattern-example">Remote Proxy Pattern Example</h2>
+
+<p>The following example shows a company that has <code class="language-plaintext highlighter-rouge">GumballMachine</code>s which they want to monitor remotely.
+To do this, we use a <code class="language-plaintext highlighter-rouge">GumballMonitor</code> that will talk to a proxy, which knows how to talk to the remote <code class="language-plaintext highlighter-rouge">GumballMachines</code> and how to return a report from the state of the <code class="language-plaintext highlighter-rouge">GumballMachine</code>.</p>
+
+<p>The first step is to turn the <code class="language-plaintext highlighter-rouge">GumballMachine</code> into a service that can handle remote requests from clients. 
+To do that, we need to:</p>
+<ol>
+  <li>Create a remote interface for the <code class="language-plaintext highlighter-rouge">GumballMachine</code>. This will provide a set of methods that can be called remotely.</li>
+  <li>Make sure all the return types in the interface are serializable.</li>
+  <li>Implement the interface in a concrete class.</li>
+</ol>
+
+<p>Let’s start with the remote interface:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.rmi.*</span><span class="o">;</span>
+ 
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">GumballMachineRemote</span> <span class="kd">extends</span> <span class="nc">Remote</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getCount</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">RemoteException</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getLocation</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">RemoteException</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="nc">State</span> <span class="nf">getState</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">RemoteException</span><span class="o">;</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>The <code class="language-plaintext highlighter-rouge">State</code> class is not yet serializable. To fix this we use the following implementation:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+  
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">State</span> <span class="kd">extends</span> <span class="nc">Serializable</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertQuarter</span><span class="o">();</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">ejectQuarter</span><span class="o">();</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">turnCrank</span><span class="o">();</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">dispense</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Each <code class="language-plaintext highlighter-rouge">State</code> has a reference to a <code class="language-plaintext highlighter-rouge">GumballMachine</code> which should not be serialized.
+In Java this can be achieved with the <code class="language-plaintext highlighter-rouge">transient</code> keyword as shown with the 
+following <code class="language-plaintext highlighter-rouge">NoQuarterState</code> class.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NoQuarterState</span> <span class="kd">implements</span> <span class="nc">State</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">2L</span><span class="o">;</span>
+    <span class="kd">transient</span> <span class="nc">GumballMachine</span> <span class="n">gumballMachine</span><span class="o">;</span>
+ 
+    <span class="kd">public</span> <span class="nf">NoQuarterState</span><span class="o">(</span><span class="nc">GumballMachine</span> <span class="n">gumballMachine</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">gumballMachine</span> <span class="o">=</span> <span class="n">gumballMachine</span><span class="o">;</span>
+    <span class="o">}</span>
+ 
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertQuarter</span><span class="o">()</span> <span class="o">{</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You inserted a quarter"</span><span class="o">);</span>
+		<span class="n">gumballMachine</span><span class="o">.</span><span class="na">setState</span><span class="o">(</span><span class="n">gumballMachine</span><span class="o">.</span><span class="na">getHasQuarterState</span><span class="o">());</span>
+	<span class="o">}</span>
+ 
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">ejectQuarter</span><span class="o">()</span> <span class="o">{</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You haven't inserted a quarter"</span><span class="o">);</span>
+	<span class="o">}</span>
+ 
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">turnCrank</span><span class="o">()</span> <span class="o">{</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You turned, but there's no quarter"</span><span class="o">);</span>
+	 <span class="o">}</span>
+ 
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">dispense</span><span class="o">()</span> <span class="o">{</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You need to pay first"</span><span class="o">);</span>
+	<span class="o">}</span> 
+ 
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="s">"waiting for quarter"</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>The <code class="language-plaintext highlighter-rouge">GumballMachine</code> class needs to act as a service and handle request coming over the network.
+Therefore the <code class="language-plaintext highlighter-rouge">GumballMachine</code> needs to implement the <code class="language-plaintext highlighter-rouge">GumballMachineRemote</code> interface.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.rmi.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.rmi.server.*</span><span class="o">;</span>
+ 
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GumballMachine</span>
+		<span class="kd">extends</span> <span class="nc">UnicastRemoteObject</span> <span class="kd">implements</span> <span class="nc">GumballMachineRemote</span> 
+<span class="o">{</span>
+	<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">2L</span><span class="o">;</span>
+	<span class="nc">State</span> <span class="n">soldOutState</span><span class="o">;</span>
+	<span class="nc">State</span> <span class="n">noQuarterState</span><span class="o">;</span>
+	<span class="nc">State</span> <span class="n">hasQuarterState</span><span class="o">;</span>
+	<span class="nc">State</span> <span class="n">soldState</span><span class="o">;</span>
+	<span class="nc">State</span> <span class="n">winnerState</span><span class="o">;</span>
+ 
+	<span class="nc">State</span> <span class="n">state</span> <span class="o">=</span> <span class="n">soldOutState</span><span class="o">;</span>
+	<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+ 	<span class="nc">String</span> <span class="n">location</span><span class="o">;</span>
+
+	<span class="kd">public</span> <span class="nf">GumballMachine</span><span class="o">(</span><span class="nc">String</span> <span class="n">location</span><span class="o">,</span> <span class="kt">int</span> <span class="n">numberGumballs</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">RemoteException</span> <span class="o">{</span>
+		<span class="n">soldOutState</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SoldOutState</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+		<span class="n">noQuarterState</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">NoQuarterState</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+		<span class="n">hasQuarterState</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HasQuarterState</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+		<span class="n">soldState</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SoldState</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+		<span class="n">winnerState</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WinnerState</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+
+		<span class="k">this</span><span class="o">.</span><span class="na">count</span> <span class="o">=</span> <span class="n">numberGumballs</span><span class="o">;</span>
+ 		<span class="k">if</span> <span class="o">(</span><span class="n">numberGumballs</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">state</span> <span class="o">=</span> <span class="n">noQuarterState</span><span class="o">;</span>
+		<span class="o">}</span> 
+		<span class="k">this</span><span class="o">.</span><span class="na">location</span> <span class="o">=</span> <span class="n">location</span><span class="o">;</span>
+	<span class="o">}</span>
+ 
+ 
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertQuarter</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">state</span><span class="o">.</span><span class="na">insertQuarter</span><span class="o">();</span>
+	<span class="o">}</span>
+ 
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">ejectQuarter</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">state</span><span class="o">.</span><span class="na">ejectQuarter</span><span class="o">();</span>
+	<span class="o">}</span>
+ 
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">turnCrank</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">state</span><span class="o">.</span><span class="na">turnCrank</span><span class="o">();</span>
+		<span class="n">state</span><span class="o">.</span><span class="na">dispense</span><span class="o">();</span>
+	<span class="o">}</span>
+
+	<span class="kt">void</span> <span class="nf">setState</span><span class="o">(</span><span class="nc">State</span> <span class="n">state</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">state</span> <span class="o">=</span> <span class="n">state</span><span class="o">;</span>
+	<span class="o">}</span>
+ 
+	<span class="kt">void</span> <span class="nf">releaseBall</span><span class="o">()</span> <span class="o">{</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"A gumball comes rolling out the slot..."</span><span class="o">);</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">count</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">refill</span><span class="o">(</span><span class="kt">int</span> <span class="n">count</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">count</span> <span class="o">=</span> <span class="n">count</span><span class="o">;</span>
+		<span class="n">state</span> <span class="o">=</span> <span class="n">noQuarterState</span><span class="o">;</span>
+	<span class="o">}</span>
+ 
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getCount</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">count</span><span class="o">;</span>
+	<span class="o">}</span>
+ 
+    <span class="kd">public</span> <span class="nc">State</span> <span class="nf">getState</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">state</span><span class="o">;</span>
+    <span class="o">}</span>
+ 
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getLocation</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">location</span><span class="o">;</span>
+    <span class="o">}</span>
+  
+    <span class="kd">public</span> <span class="nc">State</span> <span class="nf">getSoldOutState</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">soldOutState</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">State</span> <span class="nf">getNoQuarterState</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">noQuarterState</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">State</span> <span class="nf">getHasQuarterState</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">hasQuarterState</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">State</span> <span class="nf">getSoldState</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">soldState</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">State</span> <span class="nf">getWinnerState</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">winnerState</span><span class="o">;</span>
+    <span class="o">}</span>
+ 
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+		<span class="nc">StringBuffer</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
+		<span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"\nMighty Gumball, Inc."</span><span class="o">);</span>
+		<span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"\nJava-enabled Standing Gumball Model #2014"</span><span class="o">);</span>
+		<span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"\nInventory: "</span> <span class="o">+</span> <span class="n">count</span> <span class="o">+</span> <span class="s">" gumball"</span><span class="o">);</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">count</span> <span class="o">!=</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"s"</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
+		<span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"Machine is "</span> <span class="o">+</span> <span class="n">state</span> <span class="o">+</span> <span class="s">"\n"</span><span class="o">);</span>
+		<span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>To let the <code class="language-plaintext highlighter-rouge">GumballMachine</code> serve requests, we need to make sure we register it with the
+RMI registry, which is Java’s <a href="https://en.wikipedia.org/wiki/Java_remote_method_invocation">Remote Method Invocation</a> registry. This allows clients to locate this service. The following test code takes care of the registration:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.rmi.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GumballMachineTestDrive</span> <span class="o">{</span>
+ 
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">GumballMachineRemote</span> <span class="n">gumballMachine</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+		<span class="kt">int</span> <span class="n">count</span><span class="o">;</span>
+
+		<span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">.</span><span class="na">length</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"GumballMachine &lt;name&gt; &lt;inventory&gt;"</span><span class="o">);</span>
+ 			<span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+		<span class="o">}</span>
+
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="n">count</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+
+			<span class="n">gumballMachine</span> <span class="o">=</span> 
+				<span class="k">new</span> <span class="nf">GumballMachine</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">count</span><span class="o">);</span>
+			<span class="nc">Naming</span><span class="o">.</span><span class="na">rebind</span><span class="o">(</span><span class="s">"//"</span> <span class="o">+</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="s">"/gumballmachine"</span><span class="o">,</span> <span class="n">gumballMachine</span><span class="o">);</span>
+		<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>The constructor of the <code class="language-plaintext highlighter-rouge">GumballMachine</code> can throw exceptions because it extends the Java <code class="language-plaintext highlighter-rouge">UnicastRemoteObject</code> class.
+Therefore the creation of <code class="language-plaintext highlighter-rouge">GumballMachine</code> needs to be placed inside a <code class="language-plaintext highlighter-rouge">try</code> and <code class="language-plaintext highlighter-rouge">catch</code> statement.
+The call to <code class="language-plaintext highlighter-rouge">Naming.rebind</code> publishes the <code class="language-plaintext highlighter-rouge">GumballMachine</code> stub under the name <code class="language-plaintext highlighter-rouge">gumballmachine</code>.</p>
+
+<p>For the <code class="language-plaintext highlighter-rouge">GumballMonitor</code> to work over the network, we have to rely on the remote interface <code class="language-plaintext highlighter-rouge">GumballMachineRemote</code>.
+This class will also catch any exceptions that might happen when requests over the network happen.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.rmi.*</span><span class="o">;</span>
+ 
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GumballMonitor</span> <span class="o">{</span>
+	<span class="nc">GumballMachineRemote</span> <span class="n">machine</span><span class="o">;</span>
+ 
+	<span class="kd">public</span> <span class="nf">GumballMonitor</span><span class="o">(</span><span class="nc">GumballMachineRemote</span> <span class="n">machine</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">machine</span> <span class="o">=</span> <span class="n">machine</span><span class="o">;</span>
+	<span class="o">}</span>
+ 
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">report</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Gumball Machine: "</span> <span class="o">+</span> <span class="n">machine</span><span class="o">.</span><span class="na">getLocation</span><span class="o">());</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Current inventory: "</span> <span class="o">+</span> <span class="n">machine</span><span class="o">.</span><span class="na">getCount</span><span class="o">()</span> <span class="o">+</span> <span class="s">" gumballs"</span><span class="o">);</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Current state: "</span> <span class="o">+</span> <span class="n">machine</span><span class="o">.</span><span class="na">getState</span><span class="o">());</span>
+		<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">RemoteException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>To monitor a bunch of remote <code class="language-plaintext highlighter-rouge">GumballMachines</code> we can use the following test program:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.rmi.*</span><span class="o">;</span>
+ 
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GumballMonitorTestDrive</span> <span class="o">{</span>
+ 
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">String</span><span class="o">[]</span> <span class="n">location</span> <span class="o">=</span> <span class="o">{</span><span class="s">"rmi://santafe.mightygumball.com/gumballmachine"</span><span class="o">,</span>
+		                     <span class="s">"rmi://boulder.mightygumball.com/gumballmachine"</span><span class="o">,</span>
+		                     <span class="s">"rmi://seattle.mightygumball.com/gumballmachine"</span><span class="o">};</span> 
+		
+		<span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="o">{</span>
+            <span class="n">location</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+            <span class="n">location</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="s">"rmi://"</span> <span class="o">+</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="s">"/gumballmachine"</span><span class="o">;</span>
+        <span class="o">}</span>
+		
+		<span class="nc">GumballMonitor</span><span class="o">[]</span> <span class="n">monitor</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GumballMonitor</span><span class="o">[</span><span class="n">location</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
+		
+		
+		
+		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">location</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="k">try</span> <span class="o">{</span>
+           		<span class="nc">GumballMachineRemote</span> <span class="n">machine</span> <span class="o">=</span> 
+						<span class="o">(</span><span class="nc">GumballMachineRemote</span><span class="o">)</span> <span class="nc">Naming</span><span class="o">.</span><span class="na">lookup</span><span class="o">(</span><span class="n">location</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+           		<span class="n">monitor</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GumballMonitor</span><span class="o">(</span><span class="n">machine</span><span class="o">);</span>
+				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">monitor</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        	<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            	<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        	<span class="o">}</span>
+		<span class="o">}</span>
+ 
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">monitor</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="n">monitor</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">report</span><span class="o">();</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>It uses the locations to monitor to create an array of <code class="language-plaintext highlighter-rouge">GumballMonitor</code>s.
+Then it uses a <code class="language-plaintext highlighter-rouge">GumballMachineRemote</code> proxy to iterate through the state of each <code class="language-plaintext highlighter-rouge">GumballMachine</code>.</p>
+
+<p>Here is the output after running the two test programs:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>java GumballMonitorTestDrive
+Gumball Machine: santafe.mightygumball.com
+Current inventory: 99 gumballs
+Current state: waiting <span class="k">for </span>quarter
+
+Gumball Machine: boulder.mightygumball.com
+Current inventory: 44 gumballs
+Current state: waiting <span class="k">for </span>turn of crank
+
+Gumball Machine: seattle.mightygumball.com
+Current inventory: 187 gumballs
+Current state: waiting <span class="k">for </span>quarter</code></pre></figure>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-40/tags/#design-patterns" class="page__taxonomy-item p-category" rel="tag">design patterns</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-40/tags/#pattern" class="page__taxonomy-item p-category" rel="tag">pattern</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-40/tags/#programming" class="page__taxonomy-item p-category" rel="tag">programming</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-40/tags/#proxy" class="page__taxonomy-item p-category" rel="tag">proxy</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-40/tags/#structural" class="page__taxonomy-item p-category" rel="tag">structural</a>
+    
+    </span>
+  </p>
+
+
+  
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-40/categories/#design-patterns" class="page__taxonomy-item p-category" rel="tag">design patterns</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-40/categories/#programming" class="page__taxonomy-item p-category" rel="tag">programming</a>
+    
+    </span>
+  </p>
+
+
+  
+
+
+        
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2019-10-11T15:41:35+02:00">October 11, 2019</time></p>
+
+
+      </footer>
+
+      
+
+      
+
+  <nav class="pagination" aria-label="Post pagination">
+    
+      <a href="/pr-preview/pr-40/design-patterns/mvc" class="pagination--pager" title="The Model View Controller Pattern">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div class="page__footer-copyright">
+  <a href="/pr-preview/pr-40/privacy/">Privacy</a> &middot; <a href="#cookie-settings">Cookie settings</a>
+</div>
+<script>
+  // "Cookie settings" reopens the AdSense consent message
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest('a[href="#cookie-settings"]')) return;
+    event.preventDefault();
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    window.googlefc.callbackQueue.push(function () { window.googlefc.showRevocationMessage(); });
+  });
+</script>
+
+<!-- Awin publisher MasterTag, after consent to storage on the device (see afterConsent in head/custom.html) -->
+<script>
+  (window.afterConsent = window.afterConsent || []).push({
+    run: function () {
+      var script = document.createElement("script");
+      script.src = "https://www.dwin2.com/pub.642237.min.js";
+      document.body.appendChild(script);
+    }
+  });
+</script>
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/fjp" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/pr-preview/pr-40/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+
+  <script src="/pr-preview/pr-40/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/pr-preview/pr-40/assets/js/lunr/lunr.min.js"></script>
+<script src="/pr-preview/pr-40/assets/js/lunr/lunr-store.js"></script>
+<script src="/pr-preview/pr-40/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+    
+  <!--
+    Overrides the theme's Disqus include. Disqus (and the ads and trackers it brings)
+    loads only when a visitor clicks the button above the comment thread.
+  -->
+  <script>
+    (function () {
+      var thread = document.getElementById("disqus_thread");
+      if (!thread) return;
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn--primary";
+      button.textContent = "Show comments (loads Disqus)";
+      thread.parentNode.insertBefore(button, thread);
+      button.addEventListener("click", function () {
+        button.remove();
+        window.disqus_config = function () {
+          this.page.url = "https://fjp.at/pr-preview/pr-40/design-patterns/proxy";
+          this.page.identifier = "/design-patterns/proxy-pattern";
+        };
+        var script = document.createElement("script");
+        script.src = "https://fjp-github-io.disqus.com/embed.js";
+        script.setAttribute("data-timestamp", +new Date());
+        (document.head || document.body).appendChild(script);
+      });
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>
