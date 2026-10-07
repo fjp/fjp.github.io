@@ -1,31 +1,4 @@
 <!--
-  Overrides the theme's Google Analytics include. Instead of starting right away,
-  gtag.js waits for the Analytics choice in the consent message (see afterConsent in
-  head/custom.html). Advertising features follow the advertising choices.
+  Overrides the theme's Google Analytics include on purpose: Analytics is loaded by the consent
+  script in head/custom.html, only after consent in the AdSense consent message.
 -->
-<script>
-  (window.afterConsent = window.afterConsent || []).push({
-    analytics: true,
-    run: function (values) {
-      // Values of googlefc.ConsentModePurposeStatusEnum
-      var GRANTED = 1, NOT_APPLICABLE = 3;
-      function granted(key) {
-        return values && (values[key] === GRANTED || values[key] === NOT_APPLICABLE) ? "granted" : "denied";
-      }
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function () { dataLayer.push(arguments); };
-      gtag('consent', 'default', {
-        analytics_storage: 'granted',
-        ad_storage: granted('adStoragePurposeConsentStatus'),
-        ad_user_data: granted('adUserDataPurposeConsentStatus'),
-        ad_personalization: granted('adPersonalizationPurposeConsentStatus')
-      });
-      gtag('js', new Date());
-      gtag('config', '{{ site.analytics.google.tracking_id }}', { 'anonymize_ip': {{ site.analytics.google.anonymize_ip | default: false }} });
-      var script = document.createElement("script");
-      script.async = true;
-      script.src = "https://www.googletagmanager.com/gtag/js?id={{ site.analytics.google.tracking_id }}";
-      document.head.appendChild(script);
-    }
-  });
-</script>
