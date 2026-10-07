@@ -1,0 +1,19 @@
+<!--
+  Overrides the theme's Google Analytics include. Instead of starting right away,
+  gtag.js waits for consent to Google (see afterConsent in head/custom.html).
+-->
+<script>
+  (window.afterConsent = window.afterConsent || []).push({
+    google: true,
+    run: function () {
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id={{ site.analytics.google.tracking_id }}";
+      document.head.appendChild(script);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', '{{ site.analytics.google.tracking_id }}', { 'anonymize_ip': {{ site.analytics.google.anonymize_ip | default: false }} });
+    }
+  });
+</script>
