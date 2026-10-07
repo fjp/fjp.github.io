@@ -105,50 +105,39 @@
 
 <!--
   Consent comes from the European regulations message in AdSense (Privacy & messaging),
-  Google's certified consent tool. The AdSense script below shows it to visitors from the
-  EEA, UK and Switzerland. Scripts that need consent are queued with
-    (window.afterConsent = window.afterConsent || []).push({ analytics: true, run: function (values) { ... } })
-  for Google Analytics, or
-    (window.afterConsent = window.afterConsent || []).push({ vendor: 907, run: function () { ... } })
-  for a vendor of the IAB Global Vendor List (here AWIN AG). The queue follows the message's answer
-  through the Privacy & messaging JavaScript API (googlefc), see
-  https://developers.google.com/funding-choices/fc-api-docs
-  - Analytics runs when the Analytics choice (analytics_storage) allows it. If that isn't set up in
-    AdSense, storage consent (TCF purpose 1) for Google (vendor 755) decides.
-  - A vendor runs when storage (purpose 1) and that vendor were allowed in the message.
-  - Outside Europe, where the message doesn't apply, everything runs.
-  - A TCF listener stays registered, so later choices (e.g. via "Cookie settings") count too.
-    When visitors withdraw consent, the Analytics cookies are deleted and the page reloads, so
-    scripts that already ran are gone. With an ad blocker the consent tool never loads, and
-    nothing in the queue runs.
+  Google's certified consent tool, which the AdSense script below shows to visitors from the
+  EEA, UK and Switzerland. With consent mode turned on in AdSense, the message updates Google's
+  consent state itself, also for an Analytics tag that's already running. This script only
+  decides whether Analytics loads at all ("basic" consent mode):
+  - consent defaults: denied in the EEA, UK and Switzerland, granted elsewhere
+  - Analytics loads once per page, when the Analytics choice is granted or doesn't apply
+  - a later change of the choice (e.g. via "Cookie settings") reloads the page, so the new
+    page starts from the settled choice
+  - a denied choice deletes the _ga cookies
+  It replaces the theme's Analytics include (see analytics-providers/google-gtag.html) and only
+  loads Analytics in production builds. API: https://developers.google.com/funding-choices/fc-api-docs
 -->
 <script>
   (function () {
-    var queue = window.afterConsent = window.afterConsent || [];
-    var answer = null;
+    var property = "";
+    window.dataLayer = window.dataLayer || [];
+    var gtag = window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+    var europe = ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE",
+      "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
+      "IS", "LI", "NO", "GB", "CH"];
+    var denied = { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" };
+    gtag("consent", "default", Object.assign({ region: europe }, denied));
+    gtag("consent", "default", { analytics_storage: "granted", ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted" });
+
     window.googlefc = window.googlefc || {};
     window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
-
     // Values of googlefc.ConsentModePurposeStatusEnum
-    var UNKNOWN = 0, GRANTED = 1, DENIED = 2, NOT_APPLICABLE = 3, NOT_CONFIGURED = 4;
+    var GRANTED = 1, NOT_APPLICABLE = 3;
 
-    // The latest complete TCF answer (null until one arrives)
-    var tcData = null;
-
-    // true or false, or null while the answer isn't known
-    function allowed(item) {
-      var vendor = item.vendor;
-      if (item.analytics) {
-        var values = answer.values;
-        var analytics = values ? values.analyticsStoragePurposeConsentStatus : NOT_CONFIGURED;
-        if (analytics === GRANTED || analytics === NOT_APPLICABLE) return true;
-        if (analytics === DENIED) return false;
-        if (analytics !== NOT_CONFIGURED) return null;
-        vendor = 755;
-      }
-      if (!tcData) return null;
-      if (tcData.gdprApplies === false) return true;
-      return !!(tcData.purpose.consents[1] && tcData.vendor.consents[vendor]);
+    function analyticsAllowed() {
+      var values = typeof googlefc.getGoogleConsentModeValues === "function" ? googlefc.getGoogleConsentModeValues() : null;
+      var status = values ? values.analyticsStoragePurposeConsentStatus : 0;
+      return status === GRANTED || status === NOT_APPLICABLE;
     }
 
     // Also removes cookies that earlier versions of the site set without asking
@@ -163,49 +152,39 @@
       });
     }
 
+    function startAnalytics() {
+      if (!property) return;
+      gtag("js", new Date());
+      gtag("config", property, { anonymize_ip: false });
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + property;
+      document.head.appendChild(script);
+    }
+
+    // Once per page, when Google's message knows the answer: from an earlier visit, after the
+    // visitor's first choice, or because the message doesn't apply. With an ad blocker the
+    // message never loads, and Analytics stays off.
+    var decided = false;
     function decide() {
-      var withdrawn = false;
-      for (var i = 0; i < queue.length; i++) {
-        var item = queue[i];
-        var ok = allowed(item);
-        if (ok === true && !item.done) {
-          item.done = true;
-          item.run(answer.values);
-        } else if (ok === false) {
-          if (item.analytics) deleteAnalyticsCookies();
-          if (item.done) withdrawn = true;
-        }
-      }
-      // A script that already ran lost its consent: reload, so it's gone
-      if (withdrawn) location.reload();
+      if (decided) return;
+      decided = true;
+      if (analyticsAllowed()) startAnalytics();
+      else deleteAnalyticsCookies();
     }
 
-    function followConsent() {
-      answer = { values: typeof googlefc.getGoogleConsentModeValues === "function" ? googlefc.getGoogleConsentModeValues() : null };
-      decide();
-    }
-
-    queue.push = function (item) {
-      Array.prototype.push.call(queue, item);
-      if (answer) decide();
-      return queue.length;
-    };
-
-    // The readiness callbacks below run only once. A TCF listener that stays registered reports
-    // every later choice too, e.g. after "Cookie settings". Early answers can be incomplete (no
-    // eventStatus, purpose or vendor), so only complete ones count, or gdprApplies: false.
-    // Google's consent mode values may update a moment after the TCF event, so the choice is
-    // checked again shortly after.
+    // Later changes only reach a TCF listener; the readiness callbacks run once. Incomplete
+    // answers and "message shown" events are skipped. The first completed answer on a page is
+    // handled by decide(); a later one switches Analytics off and reloads, because Google's
+    // value reader still returns the old choice at that moment.
+    var firstAnswer = true;
     function onTcData(data, success) {
       if (!success || !data) return;
-      var complete = data.eventStatus === "tcloaded" || data.eventStatus === "useractioncomplete";
-      if (data.gdprApplies !== false && !(complete && data.purpose && data.vendor)) return;
-      tcData = data;
-      followConsent();
-      if (data.eventStatus === "useractioncomplete") {
-        setTimeout(followConsent, 500);
-        setTimeout(followConsent, 2000);
-      }
+      if (data.eventStatus === "tcloaded") { firstAnswer = false; return; }
+      if (data.eventStatus !== "useractioncomplete") return;
+      if (firstAnswer) { firstAnswer = false; return; }
+      if (property) window["ga-disable-" + property] = true;
+      location.reload();
     }
     var listening = false;
     function listen() {
@@ -214,11 +193,8 @@
       window.__tcfapi("addEventListener", 2, onTcData);
     }
 
-    // Runs once the answer is known: from an earlier visit, after visitors choose, or when the
-    // message doesn't apply.
     window.googlefc.callbackQueue.push({ CONSENT_API_READY: listen });
-    window.googlefc.callbackQueue.push({ CONSENT_MODE_DATA_READY: function () { listen(); followConsent(); } });
-    window.googlefc.callbackQueue.push({ CONSENT_DATA_READY: function () { listen(); followConsent(); } });
+    window.googlefc.callbackQueue.push({ CONSENT_MODE_DATA_READY: function () { listen(); decide(); } });
   })();
 </script>
 
@@ -869,17 +845,6 @@ I’m flying with a rocket</code></pre></figure>
   });
 </script>
 
-<!-- Awin publisher MasterTag, after consent to storage for AWIN AG, IAB vendor 907 (see afterConsent in head/custom.html) -->
-<script>
-  (window.afterConsent = window.afterConsent || []).push({
-    vendor: 907,
-    run: function () {
-      var script = document.createElement("script");
-      script.src = "https://www.dwin2.com/pub.642237.min.js";
-      document.body.appendChild(script);
-    }
-  });
-</script>
 <!-- end custom footer snippets -->
 
         
