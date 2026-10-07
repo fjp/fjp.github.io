@@ -106,47 +106,106 @@
 <!--
   Consent comes from the European regulations message in AdSense (Privacy & messaging),
   Google's certified consent tool. The AdSense script below shows it to visitors from the
-  EEA, UK and Switzerland and answers through the IAB TCF API (__tcfapi).
-  Scripts that store data on the device are queued with
-    (window.afterConsent = window.afterConsent || []).push({ google: true, run: function () { ... } })
-  and run once visitors allow storage on their device (TCF purpose 1), for Google (vendor 755)
-  if google is true, or right away when the message doesn't apply to them.
-  With an ad blocker the message never loads, and queued scripts never run.
+  EEA, UK and Switzerland. Scripts that need consent are queued with
+    (window.afterConsent = window.afterConsent || []).push({ analytics: true, run: function (values) { ... } })
+  for Google Analytics, or
+    (window.afterConsent = window.afterConsent || []).push({ vendor: 907, run: function () { ... } })
+  for a vendor of the IAB Global Vendor List (here AWIN AG). The queue follows the message's answer
+  through the Privacy & messaging JavaScript API (googlefc), see
+  https://developers.google.com/funding-choices/fc-api-docs
+  - Analytics runs when the Analytics choice (analytics_storage) allows it. If that isn't set up in
+    AdSense, storage consent (TCF purpose 1) for Google (vendor 755) decides.
+  - A vendor runs when storage (purpose 1) and that vendor were allowed in the message.
+  - Outside Europe, where the message doesn't apply, everything runs.
+  - When visitors withdraw consent, the Analytics cookies are deleted and the page reloads, so
+    scripts that already ran are gone. With an ad blocker the consent tool never loads, and
+    nothing in the queue runs.
 -->
 <script>
   (function () {
     var queue = window.afterConsent = window.afterConsent || [];
-    var consent = null;
-    function runAllowed() {
+    var answer = null;
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+
+    // Values of googlefc.ConsentModePurposeStatusEnum
+    var UNKNOWN = 0, GRANTED = 1, DENIED = 2, NOT_APPLICABLE = 3, NOT_CONFIGURED = 4;
+
+    // The current TCF answer, or null if it isn't available
+    function readTcData(callback) {
+      if (typeof window.__tcfapi !== "function") return callback(null);
+      var answered = false;
+      window.__tcfapi("addEventListener", 2, function (tcData, success) {
+        if (answered || (success && tcData && tcData.eventStatus === "cmpuishown")) return;
+        answered = true;
+        if (success && tcData) window.__tcfapi("removeEventListener", 2, function () {}, tcData.listenerId);
+        callback(success ? tcData : null);
+      });
+    }
+
+    // true or false, or null while the answer isn't known
+    function allowed(item) {
+      var vendor = item.vendor;
+      if (item.analytics) {
+        var values = answer.values;
+        var analytics = values ? values.analyticsStoragePurposeConsentStatus : NOT_CONFIGURED;
+        if (analytics === GRANTED || analytics === NOT_APPLICABLE) return true;
+        if (analytics === DENIED) return false;
+        if (analytics !== NOT_CONFIGURED) return null;
+        vendor = 755;
+      }
+      var tcData = answer.tcData;
+      if (!tcData) return null;
+      if (tcData.gdprApplies === false) return true;
+      return !!(tcData.purpose.consents[1] && tcData.vendor.consents[vendor]);
+    }
+
+    // Also removes cookies that earlier versions of the site set without asking
+    function deleteAnalyticsCookies() {
+      var site = location.hostname.split(".").slice(-2).join(".");
+      document.cookie.split(";").forEach(function (cookie) {
+        var name = cookie.split("=")[0].trim();
+        if (name !== "_ga" && name.indexOf("_ga_") !== 0) return;
+        ["", "; domain=" + location.hostname, "; domain=." + site].forEach(function (domain) {
+          document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + domain;
+        });
+      });
+    }
+
+    function decide() {
+      var withdrawn = false;
       for (var i = 0; i < queue.length; i++) {
         var item = queue[i];
-        if (!item.done && (item.google ? consent.google : consent.storage)) {
+        var ok = allowed(item);
+        if (ok === true && !item.done) {
           item.done = true;
-          item.run();
+          item.run(answer.values);
+        } else if (ok === false) {
+          if (item.analytics) deleteAnalyticsCookies();
+          if (item.done) withdrawn = true;
         }
       }
+      // A script that already ran lost its consent: reload, so it's gone
+      if (withdrawn) location.reload();
     }
+
+    function followConsent() {
+      var values = typeof googlefc.getGoogleConsentModeValues === "function" ? googlefc.getGoogleConsentModeValues() : null;
+      readTcData(function (tcData) {
+        answer = { values: values, tcData: tcData };
+        decide();
+      });
+    }
+
     queue.push = function (item) {
       Array.prototype.push.call(queue, item);
-      if (consent) runAllowed();
+      if (answer) decide();
       return queue.length;
     };
-    function onConsent(tcData, success) {
-      if (!success || !tcData) return;
-      if (tcData.gdprApplies === false) {
-        consent = { storage: true, google: true };
-      } else if (tcData.eventStatus === "tcloaded" || tcData.eventStatus === "useractioncomplete") {
-        var storage = !!tcData.purpose.consents[1];
-        consent = { storage: storage, google: storage && !!tcData.vendor.consents[755] };
-      } else {
-        return;
-      }
-      runAllowed();
-    }
-    (function waitForConsentTool(tries) {
-      if (typeof window.__tcfapi === "function") window.__tcfapi("addEventListener", 2, onConsent);
-      else if (tries > 0) setTimeout(function () { waitForConsentTool(tries - 1); }, 250);
-    })(120);
+    // Runs once the answer is known: from an earlier visit, after visitors choose, or when the
+    // message doesn't apply. CONSENT_DATA_READY runs again when visitors change their choice.
+    window.googlefc.callbackQueue.push({ CONSENT_MODE_DATA_READY: followConsent });
+    window.googlefc.callbackQueue.push({ CONSENT_DATA_READY: followConsent });
   })();
 </script>
 
@@ -188,20 +247,6 @@
 <script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js">
 </script>
 
-<!-- Mailinglist -->
-<!-- MailerLite Universal, after consent to storage on the device (see afterConsent above) -->
-<script>
-  (window.afterConsent = window.afterConsent || []).push({
-    run: function () {
-      (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-      .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-      n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-      (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-      ml('account', '1518166');
-    }
-  });
-</script>
-<!-- End MailerLite Universal -->
 
 <!-- end custom head snippets -->
 
@@ -1252,9 +1297,10 @@ This function uses the ingredients making use of the ingredient factory.</p>
   });
 </script>
 
-<!-- Awin publisher MasterTag, after consent to storage on the device (see afterConsent in head/custom.html) -->
+<!-- Awin publisher MasterTag, after consent to storage for AWIN AG, IAB vendor 907 (see afterConsent in head/custom.html) -->
 <script>
   (window.afterConsent = window.afterConsent || []).push({
+    vendor: 907,
     run: function () {
       var script = document.createElement("script");
       script.src = "https://www.dwin2.com/pub.642237.min.js";
@@ -1320,8 +1366,9 @@ This function uses the ingredients making use of the ingredient factory.</p>
 
     
   <!--
-    Overrides the theme's Disqus include. Disqus (and the ads and trackers it brings)
-    loads only when a visitor clicks the button above the comment thread.
+    Overrides the theme's Disqus include. Disqus loads only when a visitor clicks the button
+    above the comment thread, which says that Disqus sets cookies and shows ads. The click is the
+    consent for Disqus; the consent message isn't asked.
   -->
   <script>
     (function () {
@@ -1330,10 +1377,15 @@ This function uses the ingredients making use of the ingredient factory.</p>
       var button = document.createElement("button");
       button.type = "button";
       button.className = "btn btn--primary";
-      button.textContent = "Show comments (loads Disqus)";
+      button.textContent = "Show comments";
+      var note = document.createElement("p");
+      note.className = "small";
+      note.innerHTML = 'Comments are hosted by Disqus. Clicking loads Disqus, which sets cookies and shows ads. See the <a href="/pr-preview/pr-40/privacy/">privacy policy</a>.';
       thread.parentNode.insertBefore(button, thread);
+      thread.parentNode.insertBefore(note, thread);
       button.addEventListener("click", function () {
         button.remove();
+        note.remove();
         window.disqus_config = function () {
           this.page.url = "https://fjp.at/pr-preview/pr-40/design-patterns/factory";
           this.page.identifier = "/design-patterns/factory-pattern";
