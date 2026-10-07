@@ -14,7 +14,8 @@
     AdSense, storage consent (TCF purpose 1) for Google (vendor 755) decides.
   - A vendor runs when storage (purpose 1) and that vendor were allowed in the message.
   - Outside Europe, where the message doesn't apply, everything runs.
-  - When visitors withdraw consent, the Analytics cookies are deleted and the page reloads, so
+  - A TCF listener stays registered, so later choices (e.g. via "Cookie settings") count too.
+    When visitors withdraw consent, the Analytics cookies are deleted and the page reloads, so
     scripts that already ran are gone. With an ad blocker the consent tool never loads, and
     nothing in the queue runs.
 -->
@@ -28,17 +29,8 @@
     // Values of googlefc.ConsentModePurposeStatusEnum
     var UNKNOWN = 0, GRANTED = 1, DENIED = 2, NOT_APPLICABLE = 3, NOT_CONFIGURED = 4;
 
-    // The current TCF answer, or null if it isn't available
-    function readTcData(callback) {
-      if (typeof window.__tcfapi !== "function") return callback(null);
-      var answered = false;
-      window.__tcfapi("addEventListener", 2, function (tcData, success) {
-        if (answered || (success && tcData && tcData.eventStatus === "cmpuishown")) return;
-        answered = true;
-        if (success && tcData) window.__tcfapi("removeEventListener", 2, function () {}, tcData.listenerId);
-        callback(success ? tcData : null);
-      });
-    }
+    // The latest complete TCF answer (null until one arrives)
+    var tcData = null;
 
     // true or false, or null while the answer isn't known
     function allowed(item) {
@@ -51,7 +43,6 @@
         if (analytics !== NOT_CONFIGURED) return null;
         vendor = 755;
       }
-      var tcData = answer.tcData;
       if (!tcData) return null;
       if (tcData.gdprApplies === false) return true;
       return !!(tcData.purpose.consents[1] && tcData.vendor.consents[vendor]);
@@ -87,11 +78,8 @@
     }
 
     function followConsent() {
-      var values = typeof googlefc.getGoogleConsentModeValues === "function" ? googlefc.getGoogleConsentModeValues() : null;
-      readTcData(function (tcData) {
-        answer = { values: values, tcData: tcData };
-        decide();
-      });
+      answer = { values: typeof googlefc.getGoogleConsentModeValues === "function" ? googlefc.getGoogleConsentModeValues() : null };
+      decide();
     }
 
     queue.push = function (item) {
@@ -99,10 +87,35 @@
       if (answer) decide();
       return queue.length;
     };
+
+    // The readiness callbacks below run only once. A TCF listener that stays registered reports
+    // every later choice too, e.g. after "Cookie settings". Early answers can be incomplete (no
+    // eventStatus, purpose or vendor), so only complete ones count, or gdprApplies: false.
+    // Google's consent mode values may update a moment after the TCF event, so the choice is
+    // checked again shortly after.
+    function onTcData(data, success) {
+      if (!success || !data) return;
+      var complete = data.eventStatus === "tcloaded" || data.eventStatus === "useractioncomplete";
+      if (data.gdprApplies !== false && !(complete && data.purpose && data.vendor)) return;
+      tcData = data;
+      followConsent();
+      if (data.eventStatus === "useractioncomplete") {
+        setTimeout(followConsent, 500);
+        setTimeout(followConsent, 2000);
+      }
+    }
+    var listening = false;
+    function listen() {
+      if (listening || typeof window.__tcfapi !== "function") return;
+      listening = true;
+      window.__tcfapi("addEventListener", 2, onTcData);
+    }
+
     // Runs once the answer is known: from an earlier visit, after visitors choose, or when the
-    // message doesn't apply. CONSENT_DATA_READY runs again when visitors change their choice.
-    window.googlefc.callbackQueue.push({ CONSENT_MODE_DATA_READY: followConsent });
-    window.googlefc.callbackQueue.push({ CONSENT_DATA_READY: followConsent });
+    // message doesn't apply.
+    window.googlefc.callbackQueue.push({ CONSENT_API_READY: listen });
+    window.googlefc.callbackQueue.push({ CONSENT_MODE_DATA_READY: function () { listen(); followConsent(); } });
+    window.googlefc.callbackQueue.push({ CONSENT_DATA_READY: function () { listen(); followConsent(); } });
   })();
 </script>
 
