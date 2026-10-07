@@ -98,15 +98,105 @@
 
 
     <!-- start custom head snippets -->
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!--
+  Consent comes from the European regulations message in AdSense (Privacy & messaging),
+  Google's certified consent tool, which the AdSense script below shows to visitors from the
+  EEA, UK and Switzerland. With consent mode turned on in AdSense, the message updates Google's
+  consent state itself, also for an Analytics tag that's already running. This script only
+  decides whether Analytics loads at all ("basic" consent mode):
+  - consent defaults: denied in the EEA, UK and Switzerland, granted elsewhere
+  - Analytics loads once per page, when the Analytics choice is granted or doesn't apply
+  - a later change of the choice (e.g. via "Cookie settings") reloads the page, so the new
+    page starts from the settled choice
+  - a denied choice deletes the _ga cookies
+  It replaces the theme's Analytics include (see analytics-providers/google-gtag.html) and only
+  loads Analytics in production builds. API: https://developers.google.com/funding-choices/fc-api-docs
+-->
 <script>
-     (adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-2214309606626131",
-          enable_page_level_ads: true
-     });
+  (function () {
+    var property = "G-B3D47JZCLS";
+    window.dataLayer = window.dataLayer || [];
+    var gtag = window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+    var europe = ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE",
+      "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
+      "IS", "LI", "NO", "GB", "CH"];
+    var denied = { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" };
+    gtag("consent", "default", Object.assign({ region: europe }, denied));
+    gtag("consent", "default", { analytics_storage: "granted", ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted" });
+
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    // Values of googlefc.ConsentModePurposeStatusEnum
+    var GRANTED = 1, NOT_APPLICABLE = 3;
+
+    function analyticsAllowed() {
+      var values = typeof googlefc.getGoogleConsentModeValues === "function" ? googlefc.getGoogleConsentModeValues() : null;
+      var status = values ? values.analyticsStoragePurposeConsentStatus : 0;
+      return status === GRANTED || status === NOT_APPLICABLE;
+    }
+
+    // Also removes cookies that earlier versions of the site set without asking
+    function deleteAnalyticsCookies() {
+      var site = location.hostname.split(".").slice(-2).join(".");
+      document.cookie.split(";").forEach(function (cookie) {
+        var name = cookie.split("=")[0].trim();
+        if (name !== "_ga" && name.indexOf("_ga_") !== 0) return;
+        ["", "; domain=" + location.hostname, "; domain=." + site].forEach(function (domain) {
+          document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + domain;
+        });
+      });
+    }
+
+    function startAnalytics() {
+      if (!property) return;
+      gtag("js", new Date());
+      gtag("config", property, { anonymize_ip: false });
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + property;
+      document.head.appendChild(script);
+    }
+
+    // Once per page, when Google's message knows the answer: from an earlier visit, after the
+    // visitor's first choice, or because the message doesn't apply. With an ad blocker the
+    // message never loads, and Analytics stays off.
+    var decided = false;
+    function decide() {
+      if (decided) return;
+      decided = true;
+      if (analyticsAllowed()) startAnalytics();
+      else deleteAnalyticsCookies();
+    }
+
+    // Later changes only reach a TCF listener; the readiness callbacks run once. Incomplete
+    // answers and "message shown" events are skipped. The first completed answer on a page is
+    // handled by decide(); a later one switches Analytics off and reloads, because Google's
+    // value reader still returns the old choice at that moment.
+    var firstAnswer = true;
+    function onTcData(data, success) {
+      if (!success || !data) return;
+      if (data.eventStatus === "tcloaded") { firstAnswer = false; return; }
+      if (data.eventStatus !== "useractioncomplete") return;
+      if (firstAnswer) { firstAnswer = false; return; }
+      if (property) window["ga-disable-" + property] = true;
+      location.reload();
+    }
+    var listening = false;
+    function listen() {
+      if (listening || typeof window.__tcfapi !== "function") return;
+      listening = true;
+      window.__tcfapi("addEventListener", 2, onTcData);
+    }
+
+    window.googlefc.callbackQueue.push({ CONSENT_API_READY: listen });
+    window.googlefc.callbackQueue.push({ CONSENT_MODE_DATA_READY: function () { listen(); decide(); } });
+  })();
 </script>
+
+<!-- AdSense (Auto ads are configured in AdSense), which also brings the consent message -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2214309606626131"
+     crossorigin="anonymous"></script>
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
 
 
@@ -142,16 +232,6 @@
 <script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js">
 </script>
 
-<!-- Mailinglist -->
-<!-- MailerLite Universal -->
-<script>
-    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-    ml('account', '1518166');
-</script>
-<!-- End MailerLite Universal -->
 
 <!-- end custom head snippets -->
 
@@ -588,24 +668,20 @@
     <div id="footer" class="page__footer">
       <footer>
         <!-- start custom footer snippets -->
-<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<div class="page__footer-copyright">
+  <a href="/privacy/">Privacy</a> &middot; <a href="#cookie-settings">Cookie settings</a>
+</div>
 <script>
-window.cookieconsent.initialise({
-  "palette": {
-    "popup": {
-      "background": "#edeff5",
-      "text": "#838391"
-    },
-    "button": {
-      "background": "#4b81e8"
-    }
-  },
-  "type": "opt-out"
-});
+  // "Cookie settings" reopens the AdSense consent message
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest('a[href="#cookie-settings"]')) return;
+    event.preventDefault();
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    window.googlefc.callbackQueue.push(function () { window.googlefc.showRevocationMessage(); });
+  });
 </script>
 
-<script data-ad-client="ca-pub-2214309606626131" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script src="https://www.dwin2.com/pub.642237.min.js"></script>
 <!-- end custom footer snippets -->
 
         
@@ -661,15 +737,10 @@ window.cookieconsent.initialise({
 
 
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B3D47JZCLS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-B3D47JZCLS', { 'anonymize_ip': false});
-</script>
+  <!--
+  Overrides the theme's Google Analytics include on purpose: Analytics is loaded by the consent
+  script in head/custom.html, only after consent in the AdSense consent message.
+-->
 
 
 
@@ -678,16 +749,36 @@ window.cookieconsent.initialise({
 
 
     
+  <!--
+    Overrides the theme's Disqus include. Disqus loads only when a visitor clicks the button
+    above the comment thread, which says that Disqus sets cookies and shows ads. The click is the
+    consent for Disqus; the consent message isn't asked.
+  -->
   <script>
-    var disqus_config = function () {
-      this.page.url = "https://fjp.at/design-patterns/monad";  /* Replace PAGE_URL with your page's canonical URL variable */
-      this.page.identifier = "/design-patterns/monad-pattern"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
-    };
-    (function() { /* DON'T EDIT BELOW THIS LINE */
-      var d = document, s = d.createElement('script');
-      s.src = 'https://fjp-github-io.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
+    (function () {
+      var thread = document.getElementById("disqus_thread");
+      if (!thread) return;
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn--primary";
+      button.textContent = "Show comments";
+      var note = document.createElement("p");
+      note.className = "small";
+      note.innerHTML = 'Comments are hosted by Disqus. Clicking loads Disqus, which sets cookies and shows ads. See the <a href="/privacy/">privacy policy</a>.';
+      thread.parentNode.insertBefore(button, thread);
+      thread.parentNode.insertBefore(note, thread);
+      button.addEventListener("click", function () {
+        button.remove();
+        note.remove();
+        window.disqus_config = function () {
+          this.page.url = "https://fjp.at/design-patterns/monad";
+          this.page.identifier = "/design-patterns/monad-pattern";
+        };
+        var script = document.createElement("script");
+        script.src = "https://fjp-github-io.disqus.com/embed.js";
+        script.setAttribute("data-timestamp", +new Date());
+        (document.head || document.body).appendChild(script);
+      });
     })();
   </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
