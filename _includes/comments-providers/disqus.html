@@ -1,7 +1,8 @@
 {% if site.comments.disqus.shortname %}
   <!--
-    Overrides the theme's Disqus include. Disqus (and the ads and trackers it brings)
-    loads only when a visitor clicks the button above the comment thread.
+    Overrides the theme's Disqus include. Disqus loads only when a visitor clicks the button
+    above the comment thread, which says that Disqus sets cookies and shows ads. The click is the
+    consent for Disqus; the consent message isn't asked.
   -->
   <script>
     (function () {
@@ -10,10 +11,15 @@
       var button = document.createElement("button");
       button.type = "button";
       button.className = "btn btn--primary";
-      button.textContent = "Show comments (loads Disqus)";
+      button.textContent = "Show comments";
+      var note = document.createElement("p");
+      note.className = "small";
+      note.innerHTML = 'Comments are hosted by Disqus. Clicking loads Disqus, which sets cookies and shows ads. See the <a href="{{ '/privacy/' | relative_url }}">privacy policy</a>.';
       thread.parentNode.insertBefore(button, thread);
+      thread.parentNode.insertBefore(note, thread);
       button.addEventListener("click", function () {
         button.remove();
+        note.remove();
         window.disqus_config = function () {
           this.page.url = "{{ page.url | absolute_url }}";
           this.page.identifier = "{{ page.id }}";
