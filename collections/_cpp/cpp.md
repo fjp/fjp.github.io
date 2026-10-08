@@ -49,11 +49,11 @@ The test framework used in this project is the Google C++ test. It is recommende
 
 Solutions of exercises from the book can be found [here](/pppucpp/).
 
-<a target="_blank" href="https://www.amazon.de/gp/product/0321992784/ref=as_li_tl?ie=UTF8&camp=1638&creative=6742&creativeASIN=0321992784&linkCode=as2&tag=fjp-21&linkId=98e7898fd70659f071f1512fd4b47921"><img border="0" src="//ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=DE&ASIN=0321992784&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL160_&tag=fjp-21" ></a><img src="//ir-de.amazon-adsystem.com/e/ir?t=fjp-21&l=am2&o=3&a=0321992784" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+[Programming: Principles and Practice Using C++](https://www.amazon.de/dp/0321992784/?tag=fjp-21) by Bjarne Stroustrup (affiliate link)
 
 ### Clean Code: A Handbook of Agile Software Craftsmanship
 
-<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-eu.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=DE&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=fjp-21&language=de_DE&marketplace=amazon&region=DE&placement=0132350882&asins=0132350882&linkId=403f06fa8d7514d15858fd509b5e8310&show_border=true&link_opens_in_new_window=true"></iframe>
+[Clean Code: A Handbook of Agile Software Craftsmanship](https://www.amazon.de/dp/0132350882/?tag=fjp-21) by Robert C. Martin (affiliate link)
 
 [Uncle Bob](https://en.wikipedia.org/wiki/Robert_C._Martin) teach us in this book about the best practices for writing code that can be understood by our colleagues, 
 and hence, is of high maintainability. There are many lessons we can learn from this book. Here is a [summary](https://medium.com/@huytrongnguyen1985/lessons-learnt-from-the-clean-code-robert-c-martin-cecbe2b09139) of them.
