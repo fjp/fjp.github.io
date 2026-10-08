@@ -160,7 +160,7 @@ This link points to a template `CMakeLists.txt` ROS provides. Calling `catkin_ma
 The TurtleBot platforms follow the [REP 119 specification](http://www.ros.org/reps/rep-0119.html) which is part of the [ROS Enhancement Proposals (REP)](http://www.ros.org/reps/rep-0000.html)
 Here, TurtleBot2 is deployed in a gazebo environment and estimate its pose. This is done by using two of its onboard sensors, which consist of rotary encoders, imu and a rgbd camera. 
 
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/MOEjL8JDvd0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="1280" height="720" src="https://www.youtube-nocookie.com/embed/MOEjL8JDvd0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 To obtain the list of subscriber and publisher topics we obtain the turtlebot package from ROS with the following terminal commands. This will clone the package into the catkin workspace
 
