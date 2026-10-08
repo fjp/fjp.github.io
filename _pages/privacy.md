@@ -73,12 +73,12 @@ You can manage personalised advertising in [Google's ad settings](https://adsset
 We use Google Analytics 4, provided by Google Ireland Limited, to understand which pages are read and how visitors find them.
 
 - In the EEA, the UK and Switzerland, Google Analytics loads **only after you consent** to statistics in the consent message (Art. 6(1)(a) GDPR, § 165(3) TKG 2021). If you withdraw consent, Analytics stops and its cookies are deleted.
-- Outside these regions, Google Analytics loads without asking. The legal basis there is our legitimate interest in knowing which pages are read (Art. 6(1)(f) GDPR); Google doesn't store IP addresses, data is kept for two months, and you can object at any time, for example with [Google's opt-out browser add-on](https://tools.google.com/dlpage/gaoptout).
+- Outside these regions, Google Analytics loads without asking. The legal basis there is our legitimate interest in knowing which pages are read (Art. 6(1)(f) GDPR); Google doesn't store IP addresses, event data is kept for two months (see below), and you can object at any time, for example with [Google's opt-out browser add-on](https://tools.google.com/dlpage/gaoptout).
 
 Google Analytics sets the cookies `_ga` and `_ga_<ID>`, which store a random identifier for up to two years.
 It processes the pages you visit, the time spent, the referring website, your device type, browser, operating system and approximate location.
 Google Analytics 4 doesn't store IP addresses. Google uses them to derive the approximate location and for basic tasks such as spam detection and routing, and then discards them.
-We keep event data in Google Analytics for **two months**.
+We keep event data in Google Analytics for **two months**; each new visit restarts this period for your random identifier. The setting doesn't apply to standard aggregated reports, which contain no data about individual visitors.
 Google Analytics is linked to our AdSense account to report earnings per page.
 Google signals is enabled: if you're signed in to a Google account and have allowed ad personalisation there, Google may connect the visit to your account for reports across devices. You can turn this off in your [Google account settings](https://myadcenter.google.com/).
 
