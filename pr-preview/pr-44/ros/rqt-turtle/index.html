@@ -486,7 +486,7 @@ The project shows how the <code class="language-plaintext highlighter-rouge">rqt
 
 <p>The video below gives more insights on what is currently implemented:</p>
 
-<p><a href="https://youtu.be/2IQtxEmP2a4"><img src="http://img.youtube.com/vi/2IQtxEmP2a4/0.jpg" alt="rqt turtle YouTube" /></a></p>
+<p><a href="https://youtu.be/2IQtxEmP2a4"><img src="/pr-preview/pr-44/assets/ros/rqt_turtle/rqt-turtle-youtube.jpg" alt="rqt turtle video on YouTube" /></a></p>
 
 <p>The plugin can be used to draw inside <a href="http://wiki.ros.org/turtlesim">turtlesim</a> with turtlebot.
 Although the following description might help you to write your own rqt plugin, also have a look at the official <a href="http://wiki.ros.org/rqt/Tutorials">rqt tutorials</a>, especially the tutorial <a href="http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin">Create your new rqt plugin</a>. 
@@ -1653,6 +1653,12 @@ nothing otherwise.</p>
         frame.src = url.href;
         frame.hidden = false;
         box.remove();
+        // The theme runs FitVids on page load, when these iframes had no src yet; size them now.
+        // Videos from the theme's video include already sit in a responsive container.
+        if (!frame.closest(".responsive-video-container") && window.jQuery && jQuery.fn.fitVids) {
+          if (/%$/.test(frame.getAttribute("width") || "")) { frame.setAttribute("width", "560"); frame.setAttribute("height", "315"); }
+          jQuery(frame.parentNode).fitVids();
+        }
       });
       box.append(note, button);
       frame.hidden = true;

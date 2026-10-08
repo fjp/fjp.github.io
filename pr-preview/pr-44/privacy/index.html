@@ -502,13 +502,13 @@ You can manage personalised advertising in <a href="https://adssettings.google.c
 
 <ul>
   <li>In the EEA, the UK and Switzerland, Google Analytics loads <strong>only after you consent</strong> to statistics in the consent message (Art. 6(1)(a) GDPR, § 165(3) TKG 2021). If you withdraw consent, Analytics stops and its cookies are deleted.</li>
-  <li>Outside these regions, Google Analytics loads without asking. The legal basis there is our legitimate interest in knowing which pages are read (Art. 6(1)(f) GDPR); Google doesn’t store IP addresses, data is kept for two months, and you can object at any time, for example with <a href="https://tools.google.com/dlpage/gaoptout">Google’s opt-out browser add-on</a>.</li>
+  <li>Outside these regions, Google Analytics loads without asking. The legal basis there is our legitimate interest in knowing which pages are read (Art. 6(1)(f) GDPR); Google doesn’t store IP addresses, event data is kept for two months (see below), and you can object at any time, for example with <a href="https://tools.google.com/dlpage/gaoptout">Google’s opt-out browser add-on</a>.</li>
 </ul>
 
 <p>Google Analytics sets the cookies <code class="language-plaintext highlighter-rouge">_ga</code> and <code class="language-plaintext highlighter-rouge">_ga_&lt;ID&gt;</code>, which store a random identifier for up to two years.
 It processes the pages you visit, the time spent, the referring website, your device type, browser, operating system and approximate location.
 Google Analytics 4 doesn’t store IP addresses. Google uses them to derive the approximate location and for basic tasks such as spam detection and routing, and then discards them.
-We keep event data in Google Analytics for <strong>two months</strong>.
+We keep event data in Google Analytics for <strong>two months</strong>; each new visit restarts this period for your random identifier. The setting doesn’t apply to standard aggregated reports, which contain no data about individual visitors.
 Google Analytics is linked to our AdSense account to report earnings per page.
 Google signals is enabled: if you’re signed in to a Google account and have allowed ad personalisation there, Google may connect the visit to your account for reports across devices. You can turn this off in your <a href="https://myadcenter.google.com/">Google account settings</a>.</p>
 
@@ -667,6 +667,12 @@ In Austria this is the Österreichische Datenschutzbehörde, Barichgasse 40–42
         frame.src = url.href;
         frame.hidden = false;
         box.remove();
+        // The theme runs FitVids on page load, when these iframes had no src yet; size them now.
+        // Videos from the theme's video include already sit in a responsive container.
+        if (!frame.closest(".responsive-video-container") && window.jQuery && jQuery.fn.fitVids) {
+          if (/%$/.test(frame.getAttribute("width") || "")) { frame.setAttribute("width", "560"); frame.setAttribute("height", "315"); }
+          jQuery(frame.parentNode).fitVids();
+        }
       });
       box.append(note, button);
       frame.hidden = true;
