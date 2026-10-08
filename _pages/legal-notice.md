@@ -16,7 +16,8 @@ Carinagasse 8<br>
 6800 Feldkirch<br>
 Austria
 
-E-mail: [ros@fjp.at](mailto:ros@fjp.at)
+E-mail: [ros@fjp.at](mailto:ros@fjp.at)<br>
+Phone: [+43 699 17251989](tel:+4369917251989)
 
 ## Purpose of this website
 
