@@ -558,7 +558,7 @@ This link points to a template <code class="language-plaintext highlighter-rouge
 <p>The TurtleBot platforms follow the <a href="http://www.ros.org/reps/rep-0119.html">REP 119 specification</a> which is part of the <a href="http://www.ros.org/reps/rep-0000.html">ROS Enhancement Proposals (REP)</a>
 Here, TurtleBot2 is deployed in a gazebo environment and estimate its pose. This is done by using two of its onboard sensors, which consist of rotary encoders, imu and a rgbd camera.</p>
 
-<iframe width="1280" height="720" src="https://www.youtube-nocookie.com/embed/MOEjL8JDvd0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<iframe width="1280" height="720" data-consent-src="https://www.youtube-nocookie.com/embed/MOEjL8JDvd0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 
 <p>To obtain the list of subscriber and publisher topics we obtain the turtlebot package from ROS with the following terminal commands. This will clone the package into the catkin workspace</p>
 
@@ -1499,6 +1499,43 @@ Access the <a href="https://github.com/udacity/RoboND-EKFLab">EKF Lab</a> in the
     window.googlefc = window.googlefc || {};
     window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
     window.googlefc.callbackQueue.push(function () { window.googlefc.showRevocationMessage(); });
+  });
+</script>
+
+<style>
+  .consent-embed { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5em;
+    max-width: 100%; aspect-ratio: 16 / 9; padding: 1em; box-sizing: border-box; text-align: center; font-size: .8em;
+    background: #f5f5f5; border: 1px solid #ddd; }
+  .consent-embed p { margin: 0; max-width: 32em; }
+  .responsive-video-container .consent-embed { position: absolute; inset: 0; width: 100%; height: 100%; }
+</style>
+<script>
+  // Videos load only after a click: their iframes use data-consent-src instead of src, so nothing is requested
+  // from YouTube or Vimeo until the visitor agrees.
+  document.addEventListener("DOMContentLoaded", function () {
+    var names = { "www.youtube-nocookie.com": "YouTube (Google)", "player.vimeo.com": "Vimeo (USA)" };
+    document.querySelectorAll("iframe[data-consent-src]").forEach(function (frame) {
+      var url = new URL(frame.getAttribute("data-consent-src"), location.href);
+      var name = names[url.hostname] || url.hostname;
+      var box = document.createElement("div");
+      box.className = "consent-embed";
+      var width = frame.getAttribute("width");
+      if (width) box.style.width = /%$/.test(width) ? width : width + "px";
+      var note = document.createElement("p");
+      note.textContent = "This video is hosted by " + name + ". Loading it sends your IP address to " + name + ", which may store cookies.";
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn--primary";
+      button.textContent = "Load video";
+      button.addEventListener("click", function () {
+        frame.src = url.href;
+        frame.hidden = false;
+        box.remove();
+      });
+      box.append(note, button);
+      frame.hidden = true;
+      frame.parentNode.insertBefore(box, frame);
+    });
   });
 </script>
 
