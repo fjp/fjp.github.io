@@ -55,7 +55,7 @@ either the measurement update or the state prediction.
 
 ## References
 
-<a href="https://www.amazon.de/Applied-Optimal-Estimation-Mit-Press/dp/0262570483/ref=as_li_ss_il?s=books-intl-de&ie=UTF8&qid=1551390892&sr=1-1&keywords=optimal+estimation&linkCode=li2&tag=fjp-21&linkId=85bcdf63f00d2b9b918d322eb6079771&language=de_DE" target="_blank"><img border="0" src="//ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=0262570483&Format=_SL160_&ID=AsinImage&MarketPlace=DE&ServiceVersion=20070822&WS=1&tag=fjp-21&language=de_DE" ></a><img src="https://ir-de.amazon-adsystem.com/e/ir?t=fjp-21&language=de_DE&l=li2&o=3&a=0262570483" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+[Applied Optimal Estimation](https://www.amazon.de/dp/0262570483/?tag=fjp-21) by Arthur Gelb (affiliate link)
 
 
-<a href="https://www.amazon.de/Probabilistic-Robotics-INTELLIGENT-ROBOTICS-AUTONOMOUS/dp/0262201623/ref=as_li_ss_il?ie=UTF8&qid=1551730012&sr=8-1&keywords=probabilistic+robotics&linkCode=li2&tag=fjp-21&linkId=7fba87448a00855820511f309b7a4d41&language=de_DE" target="_blank"><img border="0" src="//ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=0262201623&Format=_SL160_&ID=AsinImage&MarketPlace=DE&ServiceVersion=20070822&WS=1&tag=fjp-21&language=de_DE" ></a><img src="https://ir-de.amazon-adsystem.com/e/ir?t=fjp-21&language=de_DE&l=li2&o=3&a=0262201623" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+[Probabilistic Robotics](https://www.amazon.de/dp/0262201623/?tag=fjp-21) by Sebastian Thrun, Wolfram Burgard and Dieter Fox (affiliate link)
