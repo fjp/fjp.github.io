@@ -12,6 +12,7 @@
 <html lang="en-US" class="no-js" dir="ltr">
   <head>
     
+
 <meta charset="utf-8">
 
 
@@ -92,8 +93,8 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+<link rel="preload" href="/assets/vendor/fontawesome-free-7.3.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/assets/vendor/fontawesome-free-7.3.1/css/all.min.css"></noscript>
 
 
 
@@ -200,36 +201,24 @@
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
 
 
-<!--KaTeX-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<!-- KaTeX and pseudocode.js are served from assets/vendor, so visitors don't contact a CDN.
+     The pseudocode include renders while the page loads and needs KaTeX at that point, so
+     pages with pseudocode load KaTeX right away; all other pages defer it. -->
+<link rel="stylesheet" href="/assets/vendor/katex-0.19.0/katex.min.css">
+<script defer src="/assets/vendor/katex-0.19.0/katex.min.js"></script>
+<script defer src="/assets/vendor/katex-0.19.0/contrib/auto-render.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         renderMathInElement(document.body, {
-          // customised options
-          // • auto-render specific keys, e.g.:
           delimiters: [
               {left: '$$', right: '$$', display: true},
               {left: '$', right: '$', display: false},
               {left: '\\(', right: '\\)', display: false},
               {left: '\\[', right: '\\]', display: true}
           ],
-          // • rendering keys, e.g.:
           throwOnError : false
         });
     });
-</script>
-
-
-
-<!-- Pseudocode.js -->
-<!-- https://github.com/SaswatPadhi/pseudocode.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"
-        integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous">
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
-<script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js">
 </script>
 
 
@@ -432,7 +421,7 @@ It also lets us solve systems of equations.</p>
 
 <h2 id="vectors">Vectors</h2>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/fNk_zzaMoSs?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/fNk_zzaMoSs?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
 <h2 id="span-bases-and-linear-combinations">Span, Bases and Linear Combinations</h2>
 
@@ -465,7 +454,7 @@ $$
 The basis of a vector space is a set of linearly independent vectors that span the full space
 </p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/k7RM-ot2NWY?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/k7RM-ot2NWY?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
 <h2 id="matrices-as-linear-transformations">Matrices as Linear Transformations</h2>
 
@@ -527,11 +516,11 @@ i_y v_x &amp; j_y v_y
 $$
 </p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kYB8IZa5AuE?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/kYB8IZa5AuE?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
 <h2 id="matrix-multiplication-as-composition">Matrix Multiplication as Composition</h2>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XkY2DOUCWMU?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/XkY2DOUCWMU?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
 <h2 id="three-dimensional-linear-transformations">Three Dimensional Linear Transformations</h2>
 
@@ -576,7 +565,7 @@ x \hat{i} + y \hat{j} + z \hat{k}
 $$
 </p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rHLEWRxRGiM?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/rHLEWRxRGiM?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
 <h2 id="the-determinant">The Determinant</h2>
 
@@ -675,7 +664,7 @@ $$
 $$
 </p>
 
-<iframe width="936" height="527" src="https://www.youtube.com/embed/Ip3X9LOh2dk?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+<iframe width="936" height="527" src="https://www.youtube-nocookie.com/embed/Ip3X9LOh2dk?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
 <h2 id="inverse-matrices-column-space-and-null-space">Inverse Matrices, Column Space and Null Space</h2>
 
@@ -688,7 +677,7 @@ $$
 In linear algebra these variables get only scaled and added to each other but not modified by any other nonlinear function,
 for example squared, multiplied by each other, or the sine or cosine of that variables.</p>
 
-<iframe width="936" height="527" src="https://www.youtube.com/embed/uQhTuRlWMxw?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+<iframe width="936" height="527" src="https://www.youtube-nocookie.com/embed/uQhTuRlWMxw?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
 <h3 id="nonsquare-matrices-as-transformations-between-spaces">Nonsquare Matrices as Transformations between Spaces</h3>
 
@@ -749,7 +738,7 @@ three dimensional plane.</p>
 <p>Such a nonsquare matrix can still have full rank if the number of dimensions in the column space is equal to the
 number of dimensions of the input space.</p>
 
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/v8VSDg_WQlA?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+<iframe width="1280" height="720" src="https://www.youtube-nocookie.com/embed/v8VSDg_WQlA?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
 <h2 id="dot-product-and-duality">Dot Product and Duality</h2>
 
@@ -776,7 +765,7 @@ given by the angle between the two vectors:</p>
   <li>The dot product is zero $\vec{v} \cdot \vec{w} = 0$ if the angle is straight ($\theta = 90\deg$)</li>
 </ul>
 
-<iframe width="936" height="527" src="https://www.youtube.com/embed/LyGKycYT2v0?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+<iframe width="936" height="527" src="https://www.youtube-nocookie.com/embed/LyGKycYT2v0?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
 <h2 id="cross-product">Cross Product</h2>
 
@@ -814,7 +803,7 @@ $$
 $$
 </p>
 
-<iframe width="936" height="527" src="https://www.youtube.com/embed/eu6i7WJeinw?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+<iframe width="936" height="527" src="https://www.youtube-nocookie.com/embed/eu6i7WJeinw?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
 <h2 id="cross-product-in-depth">Cross Product in depth</h2>
 
@@ -885,7 +874,7 @@ $$
     <figcaption>Cross product.</figcaption>
 </figure>
 
-<iframe width="936" height="527" src="https://www.youtube.com/embed/BaM7OCEm3G0?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+<iframe width="936" height="527" src="https://www.youtube-nocookie.com/embed/BaM7OCEm3G0?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
 <h2 id="change-of-basis">Change of Basis</h2>
 
@@ -898,7 +887,7 @@ vectors with coordinates in $B$ to the same vector with coordinates in $B’$. T
 <p>An expression like $\mathbf{AMA}^{-1}$ is a transformation $\mathbf{M}$ of some kind but viewed in another coordinate system.
 The middle matrix $\mathbf{M}$ represents the transformation in $B$ and the outer matrices represent an empathy, the shift in perspective.</p>
 
-<iframe width="936" height="527" src="https://www.youtube.com/embed/P2LTAUO1TdA?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+<iframe width="936" height="527" src="https://www.youtube-nocookie.com/embed/P2LTAUO1TdA?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
 <h2 id="eigenvectors-and-eigenvalues">Eigenvectors and Eigenvalues</h2>
 
@@ -957,11 +946,11 @@ $$
 $$
 </div>
 
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/PFDu9oVAE-g?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+<iframe width="1280" height="720" src="https://www.youtube-nocookie.com/embed/PFDu9oVAE-g?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
 <h2 id="abstract-vector-spaces">Abstract Vector Spaces</h2>
 
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/TgKwz5Ikpc8?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<iframe width="1280" height="720" src="https://www.youtube-nocookie.com/embed/TgKwz5Ikpc8?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 
         
       </section>
