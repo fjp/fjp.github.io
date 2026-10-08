@@ -19,5 +19,5 @@ header:
   show_overlay_excerpt: true
 sidebar:
   nav: diffbot
-redirect_to: https://ros-mobile-robots.com/hardware-interfaces/
+redirect_to: https://ros-mobile-robots.com/processing_units/hardware-interfaces/
 ---
