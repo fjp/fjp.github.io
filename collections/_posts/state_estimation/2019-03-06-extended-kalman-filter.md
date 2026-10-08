@@ -55,7 +55,7 @@ either the measurement update or the state prediction.
 
 ## References
 
-[Applied Optimal Estimation](https://www.amazon.de/dp/0262570483/?tag=fjp-21) by Arthur Gelb (affiliate link)
+[Applied Optimal Estimation](https://www.amazon.de/dp/0262570483/?tag=fjp-21), edited by Arthur Gelb (The Analytic Sciences Corporation) (affiliate link)
 
 
 [Probabilistic Robotics](https://www.amazon.de/dp/0262201623/?tag=fjp-21) by Sebastian Thrun, Wolfram Burgard and Dieter Fox (affiliate link)
