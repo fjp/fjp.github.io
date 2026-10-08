@@ -946,13 +946,34 @@ a higher max rate makes flips and rolls faster without touching the feel around 
   <br>As an Amazon Associate I earn from qualifying purchases.
 </div>
 <script>
-  // "Cookie settings" reopens the AdSense consent message
+  // "Cookie settings" reopens the AdSense consent message, or explains why it can't
   document.addEventListener("click", function (event) {
     if (!event.target.closest('a[href="#cookie-settings"]')) return;
     event.preventDefault();
     window.googlefc = window.googlefc || {};
     window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
-    window.googlefc.callbackQueue.push(function () { window.googlefc.showRevocationMessage(); });
+    var timer = null, opened = false;
+    window.googlefc.callbackQueue.push(function () {
+      // the tool is there (possibly late): drop the pending or shown note, then open the settings
+      opened = true;
+      clearTimeout(timer);
+      var shown = document.getElementById("cookie-settings-note");
+      if (shown) shown.remove();
+      window.googlefc.showRevocationMessage();
+    });
+    // If Google's consent tool is blocked (ad blockers usually block it), the queue never runs: say so
+    timer = setTimeout(function () {
+      if (opened || document.getElementById("cookie-settings-note")) return;
+      var note = document.createElement("div");
+      note.id = "cookie-settings-note";
+      note.setAttribute("role", "status");
+      note.textContent = "Google's consent tool isn't available in this browser right now, probably because of an ad blocker or privacy extension, so the cookie settings can't be opened here. Any earlier choice stays as it was, and Google Analytics doesn't start on this page while the tool is blocked.";
+      note.style.cssText = "position:fixed;left:50%;bottom:1rem;transform:translateX(-50%);z-index:1000;box-sizing:border-box;" +
+        "width:calc(100vw - 2rem);max-width:32rem;padding:.8em 1em;background:#333;color:#fff;border-radius:4px;" +
+        "font-size:.8rem;line-height:1.4;box-shadow:0 2px 8px rgba(0,0,0,.3)";
+      document.body.appendChild(note);
+      setTimeout(function () { note.remove(); }, 12000);
+    }, 2500);
   });
 </script>
 
