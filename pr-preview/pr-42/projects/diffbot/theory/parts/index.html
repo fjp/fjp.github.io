@@ -1,0 +1,882 @@
+
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js" dir="ltr">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+<!-- begin _includes/seo.html --><title>Autonomous 2WD Robot - Theory of Components - fjp.github.io</title>
+<meta name="description" content="Theory behind the components of the autonomous 2WD differential drive robot.">
+
+
+  <meta name="author" content="Franz Pucher">
+  
+  <meta property="article:author" content="Franz Pucher">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="fjp.github.io">
+<meta property="og:title" content="Autonomous 2WD Robot - Theory of Components">
+<meta property="og:url" content="https://fjp.at/pr-preview/pr-42/projects/diffbot/theory/parts/">
+
+
+  <meta property="og:description" content="Theory behind the components of the autonomous 2WD differential drive robot.">
+
+
+
+  <meta property="og:image" content="https://fjp.at/pr-preview/pr-42/assets/collections/diffbot/components/raspberry-pi-4.jpg">
+  
+
+
+
+  <meta name="twitter:site" content="@franzpucher">
+  <meta name="twitter:title" content="Autonomous 2WD Robot - Theory of Components">
+  <meta name="twitter:description" content="Theory behind the components of the autonomous 2WD differential drive robot.">
+  <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-42/projects/diffbot/theory/parts/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://fjp.at/pr-preview/pr-42/assets/collections/diffbot/components/raspberry-pi-4.jpg">
+    
+  
+
+  
+
+
+
+
+
+  <meta property="article:published_time" content="2020-08-06T21:00:35+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fjp.at/pr-preview/pr-42/projects/diffbot/theory/parts/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/pr-preview/pr-42/feed.xml" type="application/atom+xml" rel="alternate" title="fjp.github.io Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pr-preview/pr-42/assets/css/main.css">
+<link rel="preload" href="/pr-preview/pr-42/assets/vendor/fontawesome-free-7.3.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/pr-preview/pr-42/assets/vendor/fontawesome-free-7.3.1/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!--
+  Consent comes from the European regulations message in AdSense (Privacy & messaging),
+  Google's certified consent tool, which the AdSense script below shows to visitors from the
+  EEA, UK and Switzerland. With consent mode turned on in AdSense, the message updates Google's
+  consent state itself, also for an Analytics tag that's already running. This script only
+  decides whether Analytics loads at all ("basic" consent mode):
+  - consent defaults: denied in the EEA, UK and Switzerland, granted elsewhere
+  - Analytics loads once per page, when the Analytics choice is granted or doesn't apply
+  - a later change of the choice (e.g. via "Cookie settings") reloads the page, so the new
+    page starts from the settled choice
+  - a denied choice deletes the _ga cookies
+  It replaces the theme's Analytics include (see analytics-providers/google-gtag.html) and only
+  loads Analytics in production builds. API: https://developers.google.com/funding-choices/fc-api-docs
+-->
+<script>
+  (function () {
+    var property = "";
+    window.dataLayer = window.dataLayer || [];
+    var gtag = window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+    var europe = ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE",
+      "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
+      "IS", "LI", "NO", "GB", "CH"];
+    var denied = { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" };
+    gtag("consent", "default", Object.assign({ region: europe }, denied));
+    gtag("consent", "default", { analytics_storage: "granted", ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted" });
+
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    // Values of googlefc.ConsentModePurposeStatusEnum
+    var GRANTED = 1, NOT_APPLICABLE = 3;
+
+    function analyticsAllowed() {
+      var values = typeof googlefc.getGoogleConsentModeValues === "function" ? googlefc.getGoogleConsentModeValues() : null;
+      var status = values ? values.analyticsStoragePurposeConsentStatus : 0;
+      return status === GRANTED || status === NOT_APPLICABLE;
+    }
+
+    // Also removes cookies that earlier versions of the site set without asking
+    function deleteAnalyticsCookies() {
+      var site = location.hostname.split(".").slice(-2).join(".");
+      document.cookie.split(";").forEach(function (cookie) {
+        var name = cookie.split("=")[0].trim();
+        if (name !== "_ga" && name.indexOf("_ga_") !== 0) return;
+        ["", "; domain=" + location.hostname, "; domain=." + site].forEach(function (domain) {
+          document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + domain;
+        });
+      });
+    }
+
+    function startAnalytics() {
+      if (!property) return;
+      gtag("js", new Date());
+      gtag("config", property, { anonymize_ip: false });
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + property;
+      document.head.appendChild(script);
+    }
+
+    // Once per page, when Google's message knows the answer: from an earlier visit, after the
+    // visitor's first choice, or because the message doesn't apply. With an ad blocker the
+    // message never loads, and Analytics stays off.
+    var decided = false;
+    function decide() {
+      if (decided) return;
+      decided = true;
+      if (analyticsAllowed()) startAnalytics();
+      else deleteAnalyticsCookies();
+    }
+
+    // Later changes only reach a TCF listener; the readiness callbacks run once. Incomplete
+    // answers and "message shown" events are skipped. The first completed answer on a page is
+    // handled by decide(); a later one switches Analytics off and reloads, because Google's
+    // value reader still returns the old choice at that moment.
+    var firstAnswer = true;
+    function onTcData(data, success) {
+      if (!success || !data) return;
+      if (data.eventStatus === "tcloaded") { firstAnswer = false; return; }
+      if (data.eventStatus !== "useractioncomplete") return;
+      if (firstAnswer) { firstAnswer = false; return; }
+      if (property) window["ga-disable-" + property] = true;
+      location.reload();
+    }
+    var listening = false;
+    function listen() {
+      if (listening || typeof window.__tcfapi !== "function") return;
+      listening = true;
+      window.__tcfapi("addEventListener", 2, onTcData);
+    }
+
+    window.googlefc.callbackQueue.push({ CONSENT_API_READY: listen });
+    window.googlefc.callbackQueue.push({ CONSENT_MODE_DATA_READY: function () { listen(); decide(); } });
+  })();
+</script>
+
+<!-- AdSense (Auto ads are configured in AdSense), which also brings the consent message -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2214309606626131"
+     crossorigin="anonymous"></script>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+<!-- KaTeX and pseudocode.js are served from assets/vendor, so visitors don't contact a CDN.
+     The pseudocode include renders while the page loads and needs KaTeX at that point, so
+     pages with pseudocode load KaTeX right away; all other pages defer it. -->
+<link rel="stylesheet" href="/pr-preview/pr-42/assets/vendor/katex-0.19.0/katex.min.css">
+<script defer src="/pr-preview/pr-42/assets/vendor/katex-0.19.0/katex.min.js"></script>
+<script defer src="/pr-preview/pr-42/assets/vendor/katex-0.19.0/contrib/auto-render.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError : false
+        });
+    });
+</script>
+
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+        
+        <a class="site-title" href="/pr-preview/pr-42/">
+          fjp.github.io
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-42/"
+                
+                
+              >Home</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-42/blog/"
+                
+                
+              >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-42/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-42/design-patterns/"
+                
+                
+              >Design Patterns</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-42/cpp/"
+                
+                
+              >C++</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-42/projects/fpv/"
+                
+                
+              >FPV</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-42/about/"
+                
+                
+              >About</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-42/privacy/"
+                
+                
+              >Privacy</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-42/sitemap/"
+                
+                
+              >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/pr-preview/pr-42/assets/collections/diffbot/components/raspberry-pi-4.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          Autonomous 2WD Robot - Theory of Components
+
+        
+      </h1>
+      
+        <p class="page__lead">Theory behind the components of the autonomous 2WD differential drive robot.
+</p>
+      
+      
+
+
+
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-42/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-42/projects/" itemprop="item"><span itemprop="name">Projects</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-42/projects/diffbot/" itemprop="item"><span itemprop="name">Diffbot</span></a>
+            <meta itemprop="position" content="3" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-42/projects/diffbot/theory/" itemprop="item"><span itemprop="name">Theory</span></a>
+            <meta itemprop="position" content="4" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Autonomous 2WD Robot - Theory of Components</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/pr-preview/pr-42/projects/diffbot/"><span class="nav__sub-title">DiffBot</span></a>
+          
+
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-42/projects/diffbot/components/"><span class="nav__sub-title">Components</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="https://ros-mobile-robots.com/components/#robot-base">Robot Base</a></li>
+            
+              <li><a href="https://ros-mobile-robots.com/components/#sensors">Sensors</a></li>
+            
+              <li><a href="https://ros-mobile-robots.com/components/#actuators">Actuators</a></li>
+            
+              <li><a href="https://ros-mobile-robots.com/components/#human-machine-interface-hmi">Human Machine Interface</a></li>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/assembly/">Assembly</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-42/projects/diffbot/rpi-setup/"><span class="nav__sub-title">Raspberry Pi 4B</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/rpi-setup/#obtain-ubuntu-2004-mate-image-for-raspberry-pi">Ubuntu Mate 20.04</a></li>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/hardware-interfaces/">Hardware Interfaces</a></li>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/ros-noetic/">ROS Noetic Setup</a></li>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/ros-network/">ROS Network Setup</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-42/projects/diffbot/ros-integration/"><span class="nav__sub-title">ROS Integration</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/ros-integration/#ros-message-interface">ROS Message Interface</a></li>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/ros-integration/#hardware-driver">Hardware Driver</a></li>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/ros-integration/#modeling-the-robot-urdf-and-xacro">Modeling the Robot: URDF</a></li>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/ros-integration/#simulation-in-gazebo">Simulation in Gazebo</a></li>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/ros-integration/#verifying-transforms">Verifying Transforms</a></li>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/ros-integration/#adding-sensors-and-actuators-in-ros">Adding Sensors and Actuators</a></li>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/ros-integration/#utilizing-and-configuring-existing-ros-packages">Utilizing existing ROS Packages</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-42/projects/diffbot/ros-packages/"><span class="nav__sub-title">ROS Packages and Nodes</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/ros-packages/robot-description/">Robot Description</a></li>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/ros-packages/gazebo/">Gazebo Simulation</a></li>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/ros-packages/control/">Control</a></li>
+            
+              <li><a href="https://ros-mobile-robots.com/packages/diffbot_base/">Base Hardware Interface</a></li>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/ros-packages/odometry/">Odometry</a></li>
+            
+              <li><a href="/pr-preview/pr-42/projects/diffbot/ros-packages/navigation/">Navigation</a></li>
+            
+              <li><a href="https://ros-mobile-robots.com/diffbot_slam/">SLAM</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Autonomous 2WD Robot - Theory of Components">
+    <meta itemprop="description" content="Theory behind the components of the autonomous 2WD differential drive robot.">
+    <meta itemprop="datePublished" content="2020-08-06T21:00:35+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc" aria-label="Table of contents">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#encoders">Encoders</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>In the following the theory behind some of the components of the 2WD differential drive robot are explained.</p>
+
+<h2 id="encoders">Encoders</h2>
+
+<p>Encoders are attached to motors to report incremental movements which can be used to measure the position displacement and even speed or (noisy) acceleration. 
+There are different types of encoders but for the differential drive robot we are focusing on rotational incremental encoders. 
+Such encoders are used to measure the speed of a rotating motor or wheel.
+There exist also quadrature encoders which can measure not only the wheel speed but also the direction the wheel is turning.</p>
+
+<p>References:</p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Incremental_encoder">Wikipedia: Incremental encoder</a></li>
+  <li><a href="https://dronebotworkshop.com/robot-car-with-speed-sensors/">DroneBotWorkshop</a>, <a href="https://www.youtube.com/watch?v=oQQpAACa3ac">YouTube Video</a></li>
+  <li><a href="https://www.motioncontroltips.com/what-are-pulses-per-revolution-for-encoders/">What are pulses per revolution for encoders?</a></li>
+  <li><a href="https://www.cuidevices.com/blog/what-is-encoder-ppr-cpr-and-lpr">What is encoder PPR CPR and LPR</a></li>
+  <li><a href="https://www.linearmotiontips.com/how-encoder-resolution-is-determined/">How encoder resolution is determined</a></li>
+  <li><a href="https://www.linearmotiontips.com/what-is-quadrature-encoding/">What is quadrature encoding</a></li>
+  <li><a href="https://www.motioncontroltips.com/faq-how-do-i-determine-the-required-pulses-per-revolution-for-an-encoder-application/">Determining pulses per revolution for an encoder application</a></li>
+  <li><a href="https://www.cuidevices.com/blog/capacitive-magnetic-and-optical-encoders-comparing-the-technologies">Comparing capacitive, optical, magnetic encoders</a></li>
+  <li><a href="https://datasheet.lcsc.com/szlcsc/3PEAK-LM393-SR_C93150.pdf">LM393 Comperator Datasheet</a></li>
+  <li><a href="https://www.endrich.com/fm/2/ITR-8105.pdf">Opto Interruper ITR8105 Datasheet</a></li>
+  <li><a href="https://www.eprolabs.com/wp-content/uploads/2016/07/SEN-0060.pdf">Opto Interrupter Modules Dataseheet</a></li>
+  <li><a href="https://www.eprolabs.com/product/opto-interrupter-module/">Opto Interrupter Module</a></li>
+  <li><a href="https://www.adafruit.com/product/3986">Adafruit T-Slot Photo Interrupter</a></li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-42/tags/#2wd" class="page__taxonomy-item p-category" rel="tag">2wd</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-42/tags/#autonomous" class="page__taxonomy-item p-category" rel="tag">autonomous</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-42/tags/#cameras" class="page__taxonomy-item p-category" rel="tag">cameras</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-42/tags/#differential-drive" class="page__taxonomy-item p-category" rel="tag">differential drive</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-42/tags/#encoders" class="page__taxonomy-item p-category" rel="tag">encoders</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-42/tags/#noetic" class="page__taxonomy-item p-category" rel="tag">noetic</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-42/tags/#pi" class="page__taxonomy-item p-category" rel="tag">pi</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-42/tags/#raspberry" class="page__taxonomy-item p-category" rel="tag">raspberry</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-42/tags/#robot" class="page__taxonomy-item p-category" rel="tag">robot</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-42/tags/#ros" class="page__taxonomy-item p-category" rel="tag">ros</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-42/tags/#theory" class="page__taxonomy-item p-category" rel="tag">theory</a>
+    
+    </span>
+  </p>
+
+
+  
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-42/categories/#robotics" class="page__taxonomy-item p-category" rel="tag">robotics</a>
+    
+    </span>
+  </p>
+
+
+  
+
+
+        
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2020-08-06T21:00:35+02:00">August 6, 2020</time></p>
+
+
+      </footer>
+
+      
+
+      
+
+  <nav class="pagination" aria-label="Post pagination">
+    
+      <a href="/pr-preview/pr-42/projects/diffbot/ros-integration/" class="pagination--pager" title="Autonomous 2WD Robot - Integrating a Robot into ROS">Previous</a>
+    
+    
+      <a href="/pr-preview/pr-42/projects/diffbot/ros-packages/gazebo/" class="pagination--pager" title="Autonomous 2WD Robot - Gazebo Package">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div class="page__footer-copyright">
+  <a href="/pr-preview/pr-42/privacy/">Privacy</a> &middot; <a href="#cookie-settings">Cookie settings</a>
+</div>
+<script>
+  // "Cookie settings" reopens the AdSense consent message
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest('a[href="#cookie-settings"]')) return;
+    event.preventDefault();
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    window.googlefc.callbackQueue.push(function () { window.googlefc.showRevocationMessage(); });
+  });
+</script>
+
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/fjp" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/pr-preview/pr-42/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+
+  <script src="/pr-preview/pr-42/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/pr-preview/pr-42/assets/js/lunr/lunr.min.js"></script>
+<script src="/pr-preview/pr-42/assets/js/lunr/lunr-store.js"></script>
+<script src="/pr-preview/pr-42/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+    
+  <!--
+    Overrides the theme's Disqus include. Disqus loads only when a visitor clicks the button
+    above the comment thread, which says that Disqus sets cookies and shows ads. The click is the
+    consent for Disqus; the consent message isn't asked.
+  -->
+  <script>
+    (function () {
+      var thread = document.getElementById("disqus_thread");
+      if (!thread) return;
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn--primary";
+      button.textContent = "Show comments";
+      var note = document.createElement("p");
+      note.className = "small";
+      note.innerHTML = 'Comments are hosted by Disqus. Clicking loads Disqus, which sets cookies and shows ads. See the <a href="/pr-preview/pr-42/privacy/">privacy policy</a>.';
+      thread.parentNode.insertBefore(button, thread);
+      thread.parentNode.insertBefore(note, thread);
+      button.addEventListener("click", function () {
+        button.remove();
+        note.remove();
+        window.disqus_config = function () {
+          this.page.url = "https://fjp.at/pr-preview/pr-42/projects/diffbot/theory/parts/";
+          this.page.identifier = "/projects/diffbot/theory/theory-parts";
+        };
+        var script = document.createElement("script");
+        script.src = "https://fjp-github-io.disqus.com/embed.js";
+        script.setAttribute("data-timestamp", +new Date());
+        (document.head || document.body).appendChild(script);
+      });
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>
