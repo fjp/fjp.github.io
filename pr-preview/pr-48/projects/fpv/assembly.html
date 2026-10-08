@@ -1,0 +1,1298 @@
+
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js" dir="ltr">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+<!-- begin _includes/seo.html --><title>Assembly of a Race Quad - fjp.github.io</title>
+<meta name="description" content="The Assembly of a FPV Race Quad.">
+
+
+  <meta name="author" content="Franz Pucher">
+  
+  <meta property="article:author" content="Franz Pucher">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="fjp.github.io">
+<meta property="og:title" content="Assembly of a Race Quad">
+<meta property="og:url" content="https://fjp.at/pr-preview/pr-48/projects/fpv/assembly">
+
+
+  <meta property="og:description" content="The Assembly of a FPV Race Quad.">
+
+
+
+  <meta property="og:image" content="https://fjp.at/pr-preview/pr-48/assets/collections/fpv/assembly/part-placement-side.jpg">
+  
+
+
+
+  <meta name="twitter:site" content="@franzpucher">
+  <meta name="twitter:title" content="Assembly of a Race Quad">
+  <meta name="twitter:description" content="The Assembly of a FPV Race Quad.">
+  <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-48/projects/fpv/assembly">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://fjp.at/pr-preview/pr-48/assets/collections/fpv/assembly/part-placement-side.jpg">
+    
+  
+
+  
+
+
+
+
+
+  <meta property="article:published_time" content="2019-11-11T09:00:35+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fjp.at/pr-preview/pr-48/projects/fpv/assembly">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/pr-preview/pr-48/feed.xml" type="application/atom+xml" rel="alternate" title="fjp.github.io Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pr-preview/pr-48/assets/css/main.css">
+<link rel="preload" href="/pr-preview/pr-48/assets/vendor/fontawesome-free-7.3.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/pr-preview/pr-48/assets/vendor/fontawesome-free-7.3.1/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!--
+  Consent comes from the European regulations message in AdSense (Privacy & messaging),
+  Google's certified consent tool, which the AdSense script below shows to visitors from the
+  EEA, UK and Switzerland. With consent mode turned on in AdSense, the message updates Google's
+  consent state itself, also for an Analytics tag that's already running. This script only
+  decides whether Analytics loads at all ("basic" consent mode):
+  - consent defaults: denied in the EEA, UK and Switzerland, granted elsewhere
+  - Analytics loads once per page, when the Analytics choice is granted or doesn't apply
+  - a later change of the choice (e.g. via "Cookie settings") reloads the page, so the new
+    page starts from the settled choice
+  - a denied choice deletes the _ga cookies
+  It replaces the theme's Analytics include (see analytics-providers/google-gtag.html) and only
+  loads Analytics in production builds. API: https://developers.google.com/funding-choices/fc-api-docs
+-->
+<script>
+  (function () {
+    var property = "";
+    window.dataLayer = window.dataLayer || [];
+    var gtag = window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+    var europe = ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE",
+      "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
+      "IS", "LI", "NO", "GB", "CH"];
+    var denied = { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" };
+    gtag("consent", "default", Object.assign({ region: europe }, denied));
+    gtag("consent", "default", { analytics_storage: "granted", ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted" });
+
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    // Values of googlefc.ConsentModePurposeStatusEnum
+    var GRANTED = 1, NOT_APPLICABLE = 3;
+
+    function analyticsAllowed() {
+      var values = typeof googlefc.getGoogleConsentModeValues === "function" ? googlefc.getGoogleConsentModeValues() : null;
+      var status = values ? values.analyticsStoragePurposeConsentStatus : 0;
+      return status === GRANTED || status === NOT_APPLICABLE;
+    }
+
+    // Also removes cookies that earlier versions of the site set without asking
+    function deleteAnalyticsCookies() {
+      var site = location.hostname.split(".").slice(-2).join(".");
+      document.cookie.split(";").forEach(function (cookie) {
+        var name = cookie.split("=")[0].trim();
+        if (name !== "_ga" && name.indexOf("_ga_") !== 0) return;
+        ["", "; domain=" + location.hostname, "; domain=." + site].forEach(function (domain) {
+          document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + domain;
+        });
+      });
+    }
+
+    function startAnalytics() {
+      if (!property) return;
+      gtag("js", new Date());
+      gtag("config", property, { anonymize_ip: false });
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + property;
+      document.head.appendChild(script);
+    }
+
+    // Once per page, when Google's message knows the answer: from an earlier visit, after the
+    // visitor's first choice, or because the message doesn't apply. With an ad blocker the
+    // message never loads, and Analytics stays off.
+    var decided = false;
+    function decide() {
+      if (decided) return;
+      decided = true;
+      if (analyticsAllowed()) startAnalytics();
+      else deleteAnalyticsCookies();
+    }
+
+    // Later changes only reach a TCF listener; the readiness callbacks run once. Incomplete
+    // answers and "message shown" events are skipped. The first completed answer on a page is
+    // handled by decide(); a later one switches Analytics off and reloads, because Google's
+    // value reader still returns the old choice at that moment.
+    var firstAnswer = true;
+    function onTcData(data, success) {
+      if (!success || !data) return;
+      if (data.eventStatus === "tcloaded") { firstAnswer = false; return; }
+      if (data.eventStatus !== "useractioncomplete") return;
+      if (firstAnswer) { firstAnswer = false; return; }
+      if (property) window["ga-disable-" + property] = true;
+      location.reload();
+    }
+    var listening = false;
+    function listen() {
+      if (listening || typeof window.__tcfapi !== "function") return;
+      listening = true;
+      window.__tcfapi("addEventListener", 2, onTcData);
+    }
+
+    window.googlefc.callbackQueue.push({ CONSENT_API_READY: listen });
+    window.googlefc.callbackQueue.push({ CONSENT_MODE_DATA_READY: function () { listen(); decide(); } });
+  })();
+</script>
+
+<!-- AdSense (Auto ads are configured in AdSense), which also brings the consent message -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2214309606626131"
+     crossorigin="anonymous"></script>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+<!-- KaTeX and pseudocode.js are served from assets/vendor, so visitors don't contact a CDN.
+     The pseudocode include renders while the page loads and needs KaTeX at that point, so
+     pages with pseudocode load KaTeX right away; all other pages defer it. -->
+<link rel="stylesheet" href="/pr-preview/pr-48/assets/vendor/katex-0.19.0/katex.min.css">
+<script defer src="/pr-preview/pr-48/assets/vendor/katex-0.19.0/katex.min.js"></script>
+<script defer src="/pr-preview/pr-48/assets/vendor/katex-0.19.0/contrib/auto-render.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError : false
+        });
+    });
+</script>
+
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+        
+        <a class="site-title" href="/pr-preview/pr-48/">
+          fjp.github.io
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/"
+                
+                
+              >Home</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/blog/"
+                
+                
+              >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/design-patterns/"
+                
+                
+              >Design Patterns</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/cpp/"
+                
+                
+              >C++</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/projects/fpv/"
+                
+                
+              >FPV</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/about/"
+                
+                
+              >About</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/privacy/"
+                
+                
+              >Privacy</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/sitemap/"
+                
+                
+              >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/pr-preview/pr-48/assets/collections/fpv/assembly/part-placement-side.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          Assembly of a Race Quad
+
+        
+      </h1>
+      
+        <p class="page__lead">The Assembly of a FPV Race Quad.
+</p>
+      
+      
+
+
+
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-48/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-48/projects/" itemprop="item"><span itemprop="name">Projects</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-48/projects/fpv/" itemprop="item"><span itemprop="name">Fpv</span></a>
+            <meta itemprop="position" content="3" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Assembly of a Race Quad</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/pr-preview/pr-48/projects/fpv/"><span class="nav__sub-title">Introduction</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/glossar">Glossar</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-48/projects/fpv/components"><span class="nav__sub-title">Race Quad Components</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/frame">Frame</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/motor">Brushless Motors</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/esc">Brushless ESC</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/propeller">Propellers</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/pdb">Power Distribution Board</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/battery">Batteries</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/receiver">RC Receiver</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-48/projects/fpv/flight-controller-software"><span class="nav__sub-title">Flight Controller Software</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/rate-expo-settings">RC Rates and Expo Settings</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-48/projects/fpv/transmitter"><span class="nav__sub-title">RC Transmitter</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/taranis">Taranis X9D Plus SE 2019</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/r-xsr">Receiver Binding R-XSR</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/throttle-curves">Throttle Curves</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-48/projects/fpv/fpv-system/"><span class="nav__sub-title">FPV System</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/fpv-system/camera">FPV Camera</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/fpv-system/vtx">FPV Transmitter and Receiver</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/fpv-system/antennas">Antennas</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-48/projects/fpv/charger"><span class="nav__sub-title">Charger and Testers</span></a>
+          
+
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">PID Values</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/pid-lua-script">PID Lua Script</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-48/projects/fpv/calculations/#introduction"><span class="nav__sub-title">Thrust and Flight Time</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/calculations/#calculations">Basic Calculations</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/calculations/#weight">Weight</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/calculations/#thrust">Thrust</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/calculations/#motors">Finding matching Motors</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/calculations/#esc">Finding matching ESCs</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/calculations/#flight-time">Flight Time Calculation</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">Build and Setup</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/assembly" class="active">Assembly</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/telemetry">Telemetry</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-48/projects/fpv/rights/#introduction"><span class="nav__sub-title">Rights and Regulations</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/rights/#law-insurance">Law and Insurance Regulations</a></li>
+            
+              <li><a href="/pr-preview/pr-48/projects/fpv/rights/#drones">Drones</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Assembly of a Race Quad">
+    <meta itemprop="description" content="The Assembly of a FPV Race Quad.">
+    <meta itemprop="datePublished" content="2019-11-11T09:00:35+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc" aria-label="Table of contents">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#motor-mounting">Motor Mounting</a></li><li><a href="#power-distribution-board-assembly">Power Distribution Board Assembly</a><ul><li><a href="#test-pdb-power-connection">Test PDB Power Connection</a></li></ul></li><li><a href="#install-escs">Install ESCs</a></li><li><a href="#prepare-the-flight-controller">Prepare the Flight Controller</a></li><li><a href="#fpv-system">FPV System</a><ul><li><a href="#camera-setup">Camera Setup</a></li><li><a href="#vtx-preparation">VTX Preparation</a></li><li><a href="#install-the-camera-and-the-vtx">Install the Camera and the VTX</a></li></ul></li><li><a href="#prepare-the-receiver">Prepare the Receiver</a><ul><li><a href="#connect-the-receiver-to-the-flight-controller">Connect the Receiver to the Flight Controller</a></li><li><a href="#receiver-antennas">Receiver Antennas</a></li></ul></li><li><a href="#connect-escs-to-the-pdb">Connect ESCs to the PDB</a></li><li><a href="#landing-pads">Landing Pads</a></li><li><a href="#final-result">Final Result</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>After selecting all components of a race quad it is time to assemble everything together. 
+First, we have to decide where each part will be located in the quad. Therefore,
+we assembe the <a href="/pr-preview/pr-48/projects/fpv/frame">frame</a> and mount each component to its final location inside the frame.</p>
+
+<figure class="third">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/part-placement-top.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/part-placement-top.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/part-placement-side.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/part-placement-side.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/part-placement-rotor-side.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/part-placement-rotor-side.jpg" /></a>
+    <figcaption>Placement of the components. Images just for illustration. Verify the placement doesn't interfere with the spinning propellers.</figcaption>
+</figure>
+
+<p>Several components need to be prepared for the assembly, because they need for example some soldering or heat shrinks applied.</p>
+
+<h2 id="motor-mounting">Motor Mounting</h2>
+
+<p>First we mount the four motors to the base plate of the frame. Thereby we have to take care of the direction the motor 
+rotates (CW and CCW) and wheather the motor has a CW or CCW shaft thread.
+Because we will use <a href="/pr-preview/pr-48/projects/fpv/glossar#betaflight">BetaFlight</a> to configure the <a href="/pr-preview/pr-48/projects/fpv/glossar#flight-controller">Flight Controller</a> we use the default motor configuration of this <a href="/pr-preview/pr-48/projects/fpv/glossar#firmware">firmware</a>.</p>
+
+<figure class="half">
+  <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/motors/01-motor-placement.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/motors/01-motor-placement.jpg" /></a>
+  <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/motors/quad_x.svg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/motors/quad_x.svg" /></a>
+    <figcaption>Placement of the motors according to BetaFlight's default motor configuration.</figcaption>
+</figure>
+
+<p>After we’ve figured out the correct location of the motors on each arm, we fix them with the provided screws to the frame:</p>
+
+<figure>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/motors/02-motor-mounting.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/motors/02-motor-mounting.jpg" /></a>
+    <figcaption>Screw motors to the frame.</figcaption>
+</figure>
+
+<h2 id="power-distribution-board-assembly">Power Distribution Board Assembly</h2>
+
+<p>Let’s begin preparing the <a href="/pr-preview/pr-48/projects/fpv/glossar#pdb">Power Distribuiton Board</a>. 
+The PDB is powerd with the battery pack via an XT60 plug.</p>
+
+<figure class="third">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb/01-pdb-xt60.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb/01-pdb-xt60.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb/02-tin-pdb.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb/02-tin-pdb.jpg" /></a>
+  <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb/03-tin-xt60.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb/03-tin-xt60.jpg" /></a>
+    <figcaption>Power the PDB with the XT60 plug.</figcaption>
+</figure>
+
+<p>Solder the XT60 plug to the PDB and keep the spinning propellers in mind to solder the XT60 in an appropriate orientation
+to avoid collisions between the parts.</p>
+
+<figure class="half">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb/04-solder-xt60-pdb.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb/04-solder-xt60-pdb.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb/05-pdb-xt60-result.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb/05-pdb-xt60-result.jpg" /></a>
+    <figcaption>Solder XT60 Battery plug to PDB while taking the spinning propellers into account.</figcaption>
+</figure>
+
+<h3 id="test-pdb-power-connection">Test PDB Power Connection</h3>
+
+<p>After soldering the battery connector, we test the connection using a multimeter. 
+First, perform a continuity test between plus and minus connector to verify that no short connection was produced while soldering. To verify no short connection exists, the multimeter should NOT beep, otherwise the two leads are connected.
+A short would result in a high current flow from the battery plus to minus with dangerous consequences.</p>
+
+<figure>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb/06-short-test.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb/06-short-test.jpg" /></a>
+    <figcaption>Continuity test with multimeter.</figcaption>
+</figure>
+
+<p>After verifying that no short exists, we can perform a (small) smoke test to test the connection on the PDB so far.
+Therefore we connect a battery which should hopefully cause no smoke. If that is the case, we can check the voltage across the pads. Be careful though, to not produce a short with the mulimeter probes.</p>
+
+<figure class="half">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb/07-smoke-test.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb/07-smoke-test.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb/08-voltage-test.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb/08-voltage-test.jpg" /></a>
+    <figcaption>Smoke test and voltage check with multimeter. Take care with the multimeter probes to avoid a short.</figcaption>
+</figure>
+
+<h2 id="install-escs">Install ESCs</h2>
+
+<p>To install the [ESC]s we place them on the individual copter arms and measure the three motor phase wires.
+The image below shows that the wires will be soldered to solder pads that are closest to each motor phase wire.</p>
+
+<figure class="half">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/01-measure-motor-phases.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/01-measure-motor-phases.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/02-cut-motor-phases.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/02-cut-motor-phases.jpg" /></a>
+    <figcaption>Place ESC on the arms and cut the motor phase wires.</figcaption>
+</figure>
+
+<p>After, the ESC is placed accordingly, we strip the isolation of the three motor phase wires:</p>
+
+<figure>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/03-isolate-motor-phases.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/03-isolate-motor-phases.jpg" /></a>
+    <figcaption>Stripped motor phase wires.</figcaption>
+</figure>
+
+<p>Now we can tin the wires and the ESC solder pads.</p>
+
+<figure class="half">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/04-tin-motor-phases.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/04-tin-motor-phases.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/05-tin-esc.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/05-tin-esc.jpg" /></a>
+    <figcaption>Tinned motor phase wires and ESC solder pads.</figcaption>
+</figure>
+
+<p>Solder the tinned motor phase wires to the ESC solder pads:</p>
+
+<figure class="third">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/06-tinned.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/06-tinned.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/07-solder-motor-esc.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/07-solder-motor-esc.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/08-soldered.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/08-soldered.jpg" /></a>
+    <figcaption>Solder the tinned motor phase wires to the tinned ESC pads.</figcaption>
+</figure>
+
+<p>To supply the ESC with power we measure the plus and minus wires of the ESCs to fit to the dedicated ESC pads on the Power Distribution Board:</p>
+
+<figure class="half">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/09-prepare-pdb.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/09-prepare-pdb.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/10-measure-esc-wires-pdb.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/esc/10-measure-esc-wires-pdb.jpg" /></a>
+    <figcaption>Prepare powering the ESCs through the PDB.</figcaption>
+</figure>
+
+<p>After we’ve cut the ESC power wires to the correct length we are ready to prepare the other parts, such as the <a href="/pr-preview/pr-48/projects/fpv/glossar#fpv">FPV system</a>.</p>
+
+<h2 id="prepare-the-flight-controller">Prepare the Flight Controller</h2>
+
+<p>Tin the pins of the <a href="/pr-preview/pr-48/projects/fpv/glossar#flight-controller">Flight Controller</a> (FC) that will be used
+to connect components such as the control wires of the <a href="/pr-preview/pr-48/projects/fpv/glossar#esc">ESCs</a> and the <a href="/pr-preview/pr-48/projects/fpv/glossar#fpv">FPV System</a>. The required pins will be shown in the following sections, where the individual compoenents
+are prepared and connected to the FC.</p>
+
+<p>The FC will be placed above the <a href="/pr-preview/pr-48/projects/fpv/glossar#pdb">PDB</a> where rubber standoffs help
+to reduce unwanted noisy measurements in the sensors of the FC (gyroscope and accelerometer, see <a href="/pr-preview/pr-48/projects/fpv/glossar#imu">IMU</a>).</p>
+
+<h2 id="fpv-system">FPV System</h2>
+
+<h3 id="camera-setup">Camera Setup</h3>
+
+<p>The RunCam Swift 2 camera will be mounted to the parts provided by the iFlight frame.</p>
+
+<figure class="half">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/cam/runcam-swift2-frame-mount.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/cam/runcam-swift2-frame-mount.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/cam/runcam-swift2-frame-mounted.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/cam/runcam-swift2-frame-mounted.jpg" /></a>
+    <figcaption>Mounting plates of the iFlight frame for the RunCam Swift 2.</figcaption>
+</figure>
+
+<p>The provided camera connector connects the camera port to power and the video output signal to the 
+<a href="/pr-preview/pr-48/projects/fpv/glossar#vtx">VTX</a>.</p>
+
+<figure>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/cam/runcam-swift2-back.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/cam/runcam-swift2-back.jpg" /></a>
+    <figcaption>RunCam Swift 2 connector cable.</figcaption>
+</figure>
+
+<p>To connect the camera to the VTX it will be prepared in the next section.</p>
+
+<h3 id="vtx-preparation">VTX Preparation</h3>
+
+<p>Depending on the final placement of the VTX in the copter the antenna needs to be adjusted as shown in the image below.
+Also make sure that the program button on the VTX is reachable when mounted. This way it is possible to switch bands and other
+settings such as the (allowed) signal strength later on.</p>
+
+<figure>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/01-tbs-unify-pro-manual.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/01-tbs-unify-pro-manual.jpg" /></a>
+    <figcaption>.</figcaption>
+</figure>
+
+<p>When you found the right antenna pig tail position, apply some shrink tubing to the VTX:</p>
+
+<figure class="half">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/02-vtx-antenna-placement-top.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/02-vtx-antenna-placement-top.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/03-vtx-antenna-placement-bottom.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/03-vtx-antenna-placement-bottom.jpg" /></a>
+    <figcaption>.</figcaption>
+</figure>
+
+<p>Next, we prepare the cable of the VTX by removing the power supply cables (plus 5V and Ground) for the camer. 
+The reason for this is that the camera will be powerd over the PDB and not the VTX, which whould be possible too.
+However, this should reduce the heat of the VTX.</p>
+
+<figure class="half">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/04-vtx-cable-preperation.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/04-vtx-cable-preperation.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/05-vtx-cable-prepared.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/05-vtx-cable-prepared.jpg" /></a>
+    <figcaption>.</figcaption>
+</figure>
+
+<h3 id="install-the-camera-and-the-vtx">Install the Camera and the VTX</h3>
+
+<p>With the prepared cables of the camera and the VTX we look for suitable pins on the <a href="/pr-preview/pr-48/projects/fpv/glossar#pdb">PDB</a> and the <a href="/pr-preview/pr-48/projects/fpv/glossar#flight-controller">FC</a>.</p>
+
+<figure class="third">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/06-cam-pdb-vtx.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/06-cam-pdb-vtx.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/07-cam-pdb-fc-vtx-connected.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/07-cam-pdb-fc-vtx-connected.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/08-cam-pdb-fc-vtx-connected.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/08-cam-pdb-fc-vtx-connected.jpg" /></a>
+    <figcaption>.</figcaption>
+</figure>
+
+<p>The following image shows the final placement of the camer and VTX in the frame.
+The VTX is mounted on the top plate of the iFlight frame.</p>
+
+<figure>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/09-vtx-antenna-placement.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/vtx/09-vtx-antenna-placement.jpg" /></a>
+    <figcaption>.</figcaption>
+</figure>
+
+<h2 id="prepare-the-receiver">Prepare the Receiver</h2>
+
+<p>Place the receiver in the frame where won’t interfere with the propellers. 
+Try to place it below the propellor line - where the propellers will spin - to avoid that the antennas get sucked
+into the propellers. This could happen if the antennas are mounted above the propellers and bend too much.
+The next section will show how to strengthen the receiver antennas which should make it possible to mount them also 
+above the propeller line. However in the following setup the receiver is placed in the bottom of the frame
+which leads to the antennas being below the propellers.</p>
+
+<figure>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/r-xsr/01-r-xsr-frame-top.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/r-xsr/01-r-xsr-frame-top.jpg" /></a>
+    <figcaption>Placement of the receiver inside the frame.</figcaption>
+</figure>
+
+<p>Next, we prepare the <a href="/pr-preview/pr-48/projects/fpv/glossar#r-xsr">R-XSR</a> receiver to use only its <a href="/pr-preview/pr-48/projects/fpv/glossar#fport">F.Port</a>.
+Because we use only the F.Port we remove the input and output <a href="/pr-preview/pr-48/projects/fpv/glossar#sbus">SBus</a> cables.</p>
+
+<figure>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/r-xsr/02-r-xsr-remove-connection.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/r-xsr/02-r-xsr-remove-connection.jpg" /></a>
+    <figcaption>Remove SBus connections of the receiver.</figcaption>
+</figure>
+
+<p>After removing the SBus cables and applying a shrink tube, the receiver looks like this:</p>
+
+<figure class="half">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/r-xsr/03-r-xsr-prepared-top.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/r-xsr/03-r-xsr-prepared-top.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/r-xsr/04-r-xsr-prepared-bottom.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/r-xsr/04-r-xsr-prepared-bottom.jpg" /></a>
+    <figcaption>Prepared R-XSR receiver.</figcaption>
+</figure>
+
+<h3 id="connect-the-receiver-to-the-flight-controller">Connect the Receiver to the Flight Controller</h3>
+
+<p>The R-XSR receiver in this build is flashed with the <a href="/pr-preview/pr-48/projects/fpv/glossar#fport">FPort</a> protocol which requires
+only one wire and thereby combines <a href="/pr-preview/pr-48/projects/fpv/glossar#sbus">SBUS</a> and <a href="/pr-preview/pr-48/projects/fpv/glossar#smartport">Smarport</a> <a href="/pr-preview/pr-48/projects/fpv/glossar#telemetry">Telemetry</a>. For this, a receiver with an FPort firmware uses its SmartPort connector to
+communicate with the Flight Controller via one of its <a href="/pr-preview/pr-48/projects/fpv/">UART</a> TX pins. In this build, TX1 is used.
+The receiver can get its power from the Flight Controller which is convenient when soldering because the 
+Mateksys F722 FC has a <a href="/pr-preview/pr-48/projects/fpv/glossar#tx">TX</a> pin right next beside 5V and Ground pins.</p>
+
+<figure>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/r-xsr/05-r-xsr-fc.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/r-xsr/05-r-xsr-fc.jpg" /></a>
+    <figcaption>Receiver connected to TX, 5V and Ground pins of the Flight Controller.</figcaption>
+</figure>
+
+<p>The SmartPort of Frsky receivers is an “inverted” signal which can’t be read direclty with F4 flight controllers. 
+It’s no problem for F3 and F7 flight controllers and it can be direclty connected to one of the free UARTS TX pins, shown above.</p>
+
+<p>To configure FPort in <a href="/pr-preview/pr-48/projects/fpv/glossar#betaflight">Betaflight</a> it is necessary to adjust settings in the Configuration and Ports tab:</p>
+
+<ul>
+  <li>Configuration: In the “Receiver” section select “FrSky FPort” as “Serial Receiver Provider”. Telemetry can be enabled in the section “Other Features”.</li>
+  <li>Ports: Enable “Serial Rx” for the UART identifier which is connected with the SmartPort of the receiver.</li>
+</ul>
+
+<figure class="half">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/betaflight/betaflight-ports.png"><img src="/pr-preview/pr-48/assets/collections/fpv/betaflight/betaflight-ports.png" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/betaflight/betaflight-config-receiver.png"><img src="/pr-preview/pr-48/assets/collections/fpv/betaflight/betaflight-config-receiver.png" /></a>
+    <figcaption>Setting up a FPort receiver in Betaflight.</figcaption>
+</figure>
+
+<p>Because SmartPort (and also FPort, which is the same physical port on the receiver) is an “inverted” signal it is required to enter the following commands in Betaflight’s command line interface (CLI) when using F3 or F7 flight controllers:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">set </span>serialrx_halfduplex <span class="o">=</span> ON
+<span class="nb">set </span>serialrx_inverted <span class="o">=</span> ON
+save
+</code></pre></div></div>
+
+<p>After successfully setting up the receiver in Betaflight and <a href="/pr-preview/pr-48/projects/fpv/r-xsr">binding the receiver</a> with the transmitter we should verify the control inside the Betaflight’s “Receiver” tab.
+Moving the control sticks and the sliders should be visible inside Betaflight.</p>
+
+<p>The final placement inside the quadcopter will look like in the following image, 
+which makes it possible to press the (small) F/S button on the receiver. 
+This button is also used to <a href="/pr-preview/pr-48/projects/fpv/r-xsr">bind the receiver</a>.</p>
+
+<figure>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/r-xsr/06-r-xsr-frame.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/r-xsr/06-r-xsr-frame.jpg" /></a>
+    <figcaption>Final placement of the R-XSR receiver in the copter allows to press the F/S button.</figcaption>
+</figure>
+
+<p>To setup telemetry on the Taranis X9D Plus navigate to the Telemetry Page. To get there,
+short press “Menu” button on the Taranis and then “Page” until you reach the Telemetry Page.
+The complete telemetry setup is explained on the <a href="/pr-preview/pr-48/projects/fpv/telemetry">telemetry page</a>.</p>
+
+<h3 id="receiver-antennas">Receiver Antennas</h3>
+
+<p>The following shows how to strengthen the antennas of the receiver to avoid bending too much and a
+possible collision with the propellers. Also make sure not to fixate the antennas too close to the frame,
+because it would lead to reduced signal strength (lower <a href="/pr-preview/pr-48/projects/fpv/glossar#rssi">RSSI</a>).</p>
+
+<figure>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/antenna/01-antennas-zip-tie.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/antenna/01-antennas-zip-tie.jpg" /></a>
+    <figcaption>Zip ties and shrink tubings for the receiver antennas.</figcaption>
+</figure>
+
+<figure class="half">
+  <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/antenna/02-zip-tie-placement.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/antenna/02-zip-tie-placement.jpg" /></a>
+  <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/antenna/03-zip-tie-shrink-tubing.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/antenna/03-zip-tie-shrink-tubing.jpg" /></a>
+    <figcaption>Placement of the zip ties and shrink tubings for the receiver antennas.</figcaption>
+</figure>
+
+<figure class="half">
+  <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/antenna/04-cut-zip-tie.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/antenna/04-cut-zip-tie.jpg" /></a>
+  <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/antenna/05-cutted-zip-tie.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/antenna/05-cutted-zip-tie.jpg" /></a>
+    <figcaption>Cut zip ties.</figcaption>
+</figure>
+
+<figure class="third">
+  <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/antenna/06-result.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/antenna/06-result.jpg" /></a>
+  <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/antenna/07-result.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/antenna/07-result.jpg" /></a>
+  <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/antenna/08-result.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/rx/antenna/08-result.jpg" /></a>
+    <figcaption>Final result of the receiver antennas after applying zip ties and shrink tubings.</figcaption>
+</figure>
+
+<h2 id="connect-escs-to-the-pdb">Connect ESCs to the PDB</h2>
+
+<p>One of the last steps is to tin the PDB pads that are going to power the <a href="/pr-preview/pr-48/projects/fpv/glossar#esc">ESCs</a> 
+using four power (red) and ground (black) wires. This should be one of the last steps because the
+power wires will fix the PDB to the frame and this makes it harder to solder other components that require power from
+the PDB, such as the VTX system, installed in the previous steps.</p>
+
+<figure class="half">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb-fc/01-pdb-esc.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb-fc/01-pdb-esc.jpg" /></a>
+    <figcaption>Solder ESC power wires to the PDB.</figcaption>
+</figure>
+
+<p>To control the ESCs they are connected to the Flight Controller signal pins S1 to S4 each with its own Ground connector.
+The FC is placed above the PDB using rubber standoffs to reduce vibrations that can disturb the inertial measurement unit
+(<a href="/pr-preview/pr-48/projects/fpv/glossar#imu">IMU</a>) of the FC.</p>
+
+<figure class="third">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb-fc/02-fc-placement.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb-fc/02-fc-placement.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb-fc/03-fc.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb-fc/03-fc.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb-fc/04-rubber-standoffs.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/pdb-fc/04-rubber-standoffs.jpg" /></a>
+    <figcaption>Solder the ESC control wires to the Flight Controller.</figcaption>
+</figure>
+
+<h2 id="landing-pads">Landing Pads</h2>
+
+<p>To avoid scratches on the bottom of the carbon fiber frame we apply soft foam landing pads:</p>
+
+<figure class="half">
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/landing-pads/01-landing-pads-close.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/landing-pads/01-landing-pads-close.jpg" /></a>
+    <a href="/pr-preview/pr-48/assets/collections/fpv/assembly/landing-pads/02-landing-pads.jpg"><img src="/pr-preview/pr-48/assets/collections/fpv/assembly/landing-pads/02-landing-pads.jpg" /></a>
+    <figcaption>Solder the ESC control wires to the Flight Controller.</figcaption>
+</figure>
+
+<h2 id="final-result">Final Result</h2>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-48/tags/#assembly" class="page__taxonomy-item p-category" rel="tag">assembly</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-48/tags/#drone" class="page__taxonomy-item p-category" rel="tag">drone</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-48/tags/#fpv" class="page__taxonomy-item p-category" rel="tag">fpv</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-48/tags/#quad" class="page__taxonomy-item p-category" rel="tag">quad</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-48/tags/#race" class="page__taxonomy-item p-category" rel="tag">race</a>
+    
+    </span>
+  </p>
+
+
+  
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-48/categories/#fpv" class="page__taxonomy-item p-category" rel="tag">fpv</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-48/categories/#quad" class="page__taxonomy-item p-category" rel="tag">quad</a>
+    
+    </span>
+  </p>
+
+
+  
+
+
+        
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2019-11-11T09:00:35+01:00">November 11, 2019</time></p>
+
+
+      </footer>
+
+      
+
+      
+
+  <nav class="pagination" aria-label="Post pagination">
+    
+      <a href="/pr-preview/pr-48/projects/fpv/taranis" class="pagination--pager" title="Taranis X9D Plus SE 2019 - OpenTX and EU-LBT/FCC Firmware">Previous</a>
+    
+    
+      <a href="/pr-preview/pr-48/projects/fpv/r-xsr" class="pagination--pager" title="FrSky R-XSR Receiver">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div class="page__footer-copyright">
+  <a href="/pr-preview/pr-48/legal-notice/">Legal notice</a> &middot; <a href="/pr-preview/pr-48/privacy/">Privacy</a> &middot; <a href="#cookie-settings">Cookie settings</a>
+  <br>As an Amazon Associate I earn from qualifying purchases.
+</div>
+<script>
+  // "Cookie settings" reopens the AdSense consent message, or explains why it can't
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest('a[href="#cookie-settings"]')) return;
+    event.preventDefault();
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    var timer = null, opened = false;
+    window.googlefc.callbackQueue.push(function () {
+      // the tool is there (possibly late): drop the pending or shown note, then open the settings
+      opened = true;
+      clearTimeout(timer);
+      var shown = document.getElementById("cookie-settings-note");
+      if (shown) shown.remove();
+      window.googlefc.showRevocationMessage();
+    });
+    // If Google's consent tool is blocked (ad blockers usually block it), the queue never runs: say so
+    timer = setTimeout(function () {
+      if (opened || document.getElementById("cookie-settings-note")) return;
+      var note = document.createElement("div");
+      note.id = "cookie-settings-note";
+      note.setAttribute("role", "status");
+      note.textContent = "Google's consent tool isn't available in this browser right now, probably because of an ad blocker or privacy extension, so the cookie settings can't be opened here. Any earlier choice stays as it was, and Google Analytics doesn't start on this page while the tool is blocked.";
+      note.style.cssText = "position:fixed;left:50%;bottom:1rem;transform:translateX(-50%);z-index:1000;box-sizing:border-box;" +
+        "width:calc(100vw - 2rem);max-width:32rem;padding:.8em 1em;background:#333;color:#fff;border-radius:4px;" +
+        "font-size:.8rem;line-height:1.4;box-shadow:0 2px 8px rgba(0,0,0,.3)";
+      document.body.appendChild(note);
+      setTimeout(function () { note.remove(); }, 12000);
+    }, 2500);
+  });
+</script>
+
+<style>
+  .consent-embed { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5em;
+    max-width: 100%; aspect-ratio: 16 / 9; padding: 1em; box-sizing: border-box; text-align: center; font-size: .8em;
+    background: #f5f5f5; border: 1px solid #ddd; }
+  .consent-embed p { margin: 0; max-width: 32em; }
+  .responsive-video-container .consent-embed { position: absolute; inset: 0; width: 100%; height: 100%; }
+</style>
+<script>
+  // Videos load only after a click: their iframes use data-consent-src instead of src, so nothing is requested
+  // from YouTube or Vimeo until the visitor agrees.
+  document.addEventListener("DOMContentLoaded", function () {
+    var names = { "www.youtube-nocookie.com": "YouTube (Google)", "player.vimeo.com": "Vimeo (USA)" };
+    document.querySelectorAll("iframe[data-consent-src]").forEach(function (frame) {
+      var url = new URL(frame.getAttribute("data-consent-src"), location.href);
+      var name = names[url.hostname] || url.hostname;
+      var box = document.createElement("div");
+      box.className = "consent-embed";
+      var width = frame.getAttribute("width");
+      if (width) box.style.width = /%$/.test(width) ? width : width + "px";
+      var note = document.createElement("p");
+      note.textContent = "This video is hosted by " + name + ". Loading it sends your IP address to " + name + ", which may store cookies.";
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn--primary";
+      button.textContent = "Load video";
+      button.addEventListener("click", function () {
+        frame.src = url.href;
+        frame.hidden = false;
+        box.remove();
+        // The theme runs FitVids on page load, when these iframes had no src yet; size them now.
+        // Videos from the theme's video include already sit in a responsive container.
+        if (!frame.closest(".responsive-video-container") && window.jQuery && jQuery.fn.fitVids) {
+          if (/%$/.test(frame.getAttribute("width") || "")) { frame.setAttribute("width", "560"); frame.setAttribute("height", "315"); }
+          jQuery(frame.parentNode).fitVids();
+        }
+      });
+      box.append(note, button);
+      frame.hidden = true;
+      frame.parentNode.insertBefore(box, frame);
+    });
+  });
+</script>
+
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/fjp" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/pr-preview/pr-48/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+
+  <script src="/pr-preview/pr-48/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/pr-preview/pr-48/assets/js/lunr/lunr.min.js"></script>
+<script src="/pr-preview/pr-48/assets/js/lunr/lunr-store.js"></script>
+<script src="/pr-preview/pr-48/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+    
+  <!--
+    Overrides the theme's Disqus include. Disqus loads only when a visitor clicks the button
+    above the comment thread, which says that Disqus sets cookies and shows ads. The click is the
+    consent for Disqus; the consent message isn't asked.
+  -->
+  <script>
+    (function () {
+      var thread = document.getElementById("disqus_thread");
+      if (!thread) return;
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn--primary";
+      button.textContent = "Show comments";
+      var note = document.createElement("p");
+      note.className = "small";
+      note.innerHTML = 'Comments are hosted by Disqus. Clicking loads Disqus, which sets cookies and shows ads. See the <a href="/pr-preview/pr-48/privacy/">privacy policy</a>.';
+      thread.parentNode.insertBefore(button, thread);
+      thread.parentNode.insertBefore(note, thread);
+      button.addEventListener("click", function () {
+        button.remove();
+        note.remove();
+        window.disqus_config = function () {
+          this.page.url = "https://fjp.at/pr-preview/pr-48/projects/fpv/assembly";
+          this.page.identifier = "/projects/fpv/assembly";
+        };
+        var script = document.createElement("script");
+        script.src = "https://fjp-github-io.disqus.com/embed.js";
+        script.setAttribute("data-timestamp", +new Date());
+        (document.head || document.body).appendChild(script);
+      });
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

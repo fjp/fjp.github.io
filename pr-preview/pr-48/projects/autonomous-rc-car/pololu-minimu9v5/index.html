@@ -1,0 +1,1113 @@
+
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js" dir="ltr">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+<!-- begin _includes/seo.html --><title>MinIMU-9 v5 and RTIMULib2 - fjp.github.io</title>
+<meta name="description" content="Use the Pololu MinIMU 9 v5 with the RTIMULib2.">
+
+
+  <meta name="author" content="Franz Pucher">
+  
+  <meta property="article:author" content="Franz Pucher">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="fjp.github.io">
+<meta property="og:title" content="MinIMU-9 v5 and RTIMULib2">
+<meta property="og:url" content="https://fjp.at/pr-preview/pr-48/projects/autonomous-rc-car/pololu-minimu9v5/">
+
+
+  <meta property="og:description" content="Use the Pololu MinIMU 9 v5 with the RTIMULib2.">
+
+
+
+  <meta property="og:image" content="https://a.pololu-files.com/picture/0J7057.1200.jpg?1b03058e38d92f82f95abf7a0aa39315">
+  
+
+
+
+  <meta name="twitter:site" content="@franzpucher">
+  <meta name="twitter:title" content="MinIMU-9 v5 and RTIMULib2">
+  <meta name="twitter:description" content="Use the Pololu MinIMU 9 v5 with the RTIMULib2.">
+  <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-48/projects/autonomous-rc-car/pololu-minimu9v5/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://a.pololu-files.com/picture/0J7057.1200.jpg?1b03058e38d92f82f95abf7a0aa39315">
+    
+  
+
+  
+
+
+
+
+
+  <meta property="article:published_time" content="2018-06-19T20:55:36+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fjp.at/pr-preview/pr-48/projects/autonomous-rc-car/pololu-minimu9v5/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/pr-preview/pr-48/feed.xml" type="application/atom+xml" rel="alternate" title="fjp.github.io Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pr-preview/pr-48/assets/css/main.css">
+<link rel="preload" href="/pr-preview/pr-48/assets/vendor/fontawesome-free-7.3.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/pr-preview/pr-48/assets/vendor/fontawesome-free-7.3.1/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!--
+  Consent comes from the European regulations message in AdSense (Privacy & messaging),
+  Google's certified consent tool, which the AdSense script below shows to visitors from the
+  EEA, UK and Switzerland. With consent mode turned on in AdSense, the message updates Google's
+  consent state itself, also for an Analytics tag that's already running. This script only
+  decides whether Analytics loads at all ("basic" consent mode):
+  - consent defaults: denied in the EEA, UK and Switzerland, granted elsewhere
+  - Analytics loads once per page, when the Analytics choice is granted or doesn't apply
+  - a later change of the choice (e.g. via "Cookie settings") reloads the page, so the new
+    page starts from the settled choice
+  - a denied choice deletes the _ga cookies
+  It replaces the theme's Analytics include (see analytics-providers/google-gtag.html) and only
+  loads Analytics in production builds. API: https://developers.google.com/funding-choices/fc-api-docs
+-->
+<script>
+  (function () {
+    var property = "";
+    window.dataLayer = window.dataLayer || [];
+    var gtag = window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+    var europe = ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE",
+      "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
+      "IS", "LI", "NO", "GB", "CH"];
+    var denied = { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" };
+    gtag("consent", "default", Object.assign({ region: europe }, denied));
+    gtag("consent", "default", { analytics_storage: "granted", ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted" });
+
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    // Values of googlefc.ConsentModePurposeStatusEnum
+    var GRANTED = 1, NOT_APPLICABLE = 3;
+
+    function analyticsAllowed() {
+      var values = typeof googlefc.getGoogleConsentModeValues === "function" ? googlefc.getGoogleConsentModeValues() : null;
+      var status = values ? values.analyticsStoragePurposeConsentStatus : 0;
+      return status === GRANTED || status === NOT_APPLICABLE;
+    }
+
+    // Also removes cookies that earlier versions of the site set without asking
+    function deleteAnalyticsCookies() {
+      var site = location.hostname.split(".").slice(-2).join(".");
+      document.cookie.split(";").forEach(function (cookie) {
+        var name = cookie.split("=")[0].trim();
+        if (name !== "_ga" && name.indexOf("_ga_") !== 0) return;
+        ["", "; domain=" + location.hostname, "; domain=." + site].forEach(function (domain) {
+          document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + domain;
+        });
+      });
+    }
+
+    function startAnalytics() {
+      if (!property) return;
+      gtag("js", new Date());
+      gtag("config", property, { anonymize_ip: false });
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + property;
+      document.head.appendChild(script);
+    }
+
+    // Once per page, when Google's message knows the answer: from an earlier visit, after the
+    // visitor's first choice, or because the message doesn't apply. With an ad blocker the
+    // message never loads, and Analytics stays off.
+    var decided = false;
+    function decide() {
+      if (decided) return;
+      decided = true;
+      if (analyticsAllowed()) startAnalytics();
+      else deleteAnalyticsCookies();
+    }
+
+    // Later changes only reach a TCF listener; the readiness callbacks run once. Incomplete
+    // answers and "message shown" events are skipped. The first completed answer on a page is
+    // handled by decide(); a later one switches Analytics off and reloads, because Google's
+    // value reader still returns the old choice at that moment.
+    var firstAnswer = true;
+    function onTcData(data, success) {
+      if (!success || !data) return;
+      if (data.eventStatus === "tcloaded") { firstAnswer = false; return; }
+      if (data.eventStatus !== "useractioncomplete") return;
+      if (firstAnswer) { firstAnswer = false; return; }
+      if (property) window["ga-disable-" + property] = true;
+      location.reload();
+    }
+    var listening = false;
+    function listen() {
+      if (listening || typeof window.__tcfapi !== "function") return;
+      listening = true;
+      window.__tcfapi("addEventListener", 2, onTcData);
+    }
+
+    window.googlefc.callbackQueue.push({ CONSENT_API_READY: listen });
+    window.googlefc.callbackQueue.push({ CONSENT_MODE_DATA_READY: function () { listen(); decide(); } });
+  })();
+</script>
+
+<!-- AdSense (Auto ads are configured in AdSense), which also brings the consent message -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2214309606626131"
+     crossorigin="anonymous"></script>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+<!-- KaTeX and pseudocode.js are served from assets/vendor, so visitors don't contact a CDN.
+     The pseudocode include renders while the page loads and needs KaTeX at that point, so
+     pages with pseudocode load KaTeX right away; all other pages defer it. -->
+<link rel="stylesheet" href="/pr-preview/pr-48/assets/vendor/katex-0.19.0/katex.min.css">
+<script defer src="/pr-preview/pr-48/assets/vendor/katex-0.19.0/katex.min.js"></script>
+<script defer src="/pr-preview/pr-48/assets/vendor/katex-0.19.0/contrib/auto-render.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError : false
+        });
+    });
+</script>
+
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+        
+        <a class="site-title" href="/pr-preview/pr-48/">
+          fjp.github.io
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/"
+                
+                
+              >Home</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/blog/"
+                
+                
+              >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/design-patterns/"
+                
+                
+              >Design Patterns</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/cpp/"
+                
+                
+              >C++</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/projects/fpv/"
+                
+                
+              >FPV</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/about/"
+                
+                
+              >About</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/privacy/"
+                
+                
+              >Privacy</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-48/sitemap/"
+                
+                
+              >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('https://a.pololu-files.com/picture/0J7057.1200.jpg?1b03058e38d92f82f95abf7a0aa39315');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          MinIMU-9 v5 and RTIMULib2
+
+        
+      </h1>
+      
+        <p class="page__lead">Use the Pololu MinIMU 9 v5 with the RTIMULib2.
+</p>
+      
+      
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-48/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-48/projects/" itemprop="item"><span itemprop="name">Projects</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-48/projects/autonomous-rc-car/" itemprop="item"><span itemprop="name">Autonomous rc car</span></a>
+            <meta itemprop="position" content="3" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">MinIMU-9 v5 and RTIMULib2</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="MinIMU-9 v5 and RTIMULib2">
+    <meta itemprop="description" content="Use the Pololu MinIMU 9 v5 with the RTIMULib2.">
+    <meta itemprop="datePublished" content="2018-06-19T20:55:36+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc" aria-label="Table of contents">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#introduction">Introduction</a></li><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#hardware">Hardware</a></li><li><a href="#hardware-connection">Hardware Connection</a></li><li><a href="#rtimulib2">RTIMULib2</a><ul><li><a href="#calibration">Calibration</a></li><li><a href="#troubleshooting">Troubleshooting</a></li></ul></li><li><a href="#future-work">Future Work</a></li></ul>
+            </nav>
+          </aside>
+        
+        <h2 id="introduction">Introduction</h2>
+
+<p>This blog post describes how to connect the <a href="https://www.pololu.com/product/2738">Pololu MinIMU-9 v5</a> to a Rasperry Pi 3 B+ and use
+the <a href="https://github.com/fjp/RTIMULib2">RTIMULib2</a> to visualize the inertial measurement unit (imu) data such as orientation and acceleration.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>This post requires that you have setup a Rasperry Pi running Linux Mate described in another blog post or the standard <a href="https://www.raspberrypi.org/downloads/raspbian/">Raspbian OS</a> and the <a href="https://www.pololu.com/product/2738">Pololu MinIMU-9 v5</a> from Pololu.</p>
+
+<h2 id="hardware">Hardware</h2>
+
+<p>The MinIMU-9 v5 PCB houses two chips. One is the <a href="https://www.pololu.com/file/0J1087/LSM6DS33.pdf">LSM6DS33</a> which contains a gyroscope and a linear accelerometer and the other one is the <a href="https://www.pololu.com/file/0J1089/LIS3MDL.pdf">LIS3MDL</a> that contains a 3-axis magnetometer.
+Pololu also supplies a great free piece of software (<a href="https://github.com/DavidEGrayson/minimu9-ahrs">minimu9-ahrs</a>) for Raspberry Pi for reading sensor data from Pololu IMU boards over I²C. When I first got the board, I tested it with this software and it worked great. However, because I require ros support I decided to use
+the RTIMULib2 which I will explain in more detail later.</p>
+
+<h2 id="hardware-connection">Hardware Connection</h2>
+
+<p>The MinIMU has six pins, which are shown in the following figure.
+Beside the VDD and GND to power the imu, the SDA (data signal) and SCL (clock signal) pins are important.</p>
+
+<figure class=""><img src="https://a.pololu-files.com/picture/0J7068.1200.jpg?b556a123006d9828b014751124c74296" alt="" /><figcaption>
+      Pololu MinIMU-9 v5
+
+    </figcaption></figure>
+
+<p>To communicate with the IMU the GPIO pins of the raspberrypi can be used.
+By taking a look at the Raspberry Pi bus leaf from splitbrain.org, we see that GPIO 2 and 3 are called SDA and SCL,
+which can be direclty connected to the corresponding imu pins.</p>
+
+<figure class=""><img src="/pr-preview/pr-48/assets/posts/2018-06-16-minimu9v5-rtimulib2/rpiblusleaf.png" alt="" /><figcaption>
+      Rasberry Pi Bus leaf
+
+    </figcaption></figure>
+
+<p>For test purposes I used a bread board and four male to femal jumper wires to to connect the PCB to the GPIO pins.</p>
+
+<h2 id="rtimulib2">RTIMULib2</h2>
+
+<p>The RTIMULib2 did not support the LSM6DS33 and the LIS3MDL which are on the MinIMU-9 v5 PCB. Therefore, I wrote a driver to support the imu which
+can be found in <a href="https://github.com/fjp/RTIMULib2">this github repository</a>.</p>
+
+<p>To install the library, just clone the repository</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git clone https://github.com/fjp/RTIMULib2</code></pre></figure>
+
+<p>Then <code class="language-plaintext highlighter-rouge">cd</code> into the new RTIMULib2 folder and build and install the library</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd </span>RTIMULib2/RTIMULib
+<span class="nb">mkdir </span>build
+<span class="nb">cd </span>build
+cmake ..
+make
+<span class="nb">sudo </span>make <span class="nb">install</span></code></pre></figure>
+
+<p>The last command copies the library into the shared library path <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> of linux.</p>
+
+<p>To run a test program, change into the Linux folder and build the example programs in there.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd </span>RTIMULib2/Linux
+<span class="nb">mkdir </span>build
+<span class="nb">cd </span>build
+cmake ..
+make</code></pre></figure>
+
+<p>These commands will create new folders inside the build directory which contain the program executables.</p>
+
+<p>The visual demo can be executed with the following lines of bash code:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd </span>RTIMULib2/Linux/build/RTIMULibDemoGL
+make
+./RTIMULibDemoGL</code></pre></figure>
+
+<p>This should establish a connection to the connected IMU and open a Qt GUI that lets you see the orientation of the imu.</p>
+
+<figure class=""><img src="/pr-preview/pr-48/assets/posts/2018-06-16-minimu9v5-rtimulib2/RTIMULibDemoGL.png" alt="" /><figcaption>
+      RTIMULibDemoGL
+
+    </figcaption></figure>
+
+<p>The first time you start the GUI a file called RTIMULib.ini is created which is used to store the imu settings (address of the chips, fusion state)
+and calibration data. Furthermore, the IMU is not calibrated and will result in poor tracking behavior while rotating.
+Therefore the sensors (magnetometer, accelerometer and gyroscope) need to be calibrated which I will explain in the next section.</p>
+
+<h3 id="calibration">Calibration</h3>
+
+<p>Calibrate the magnetometer and the accelerometer using the buttons on top of the gui.
+A tutorial on how to calibrate these sensors is given in the <a href="https://github.com/fjp/RTIMULib2/blob/master/Calibration.pdf">Calibration.pdf</a> in the repository.</p>
+
+<p>Here are two screenshots of the values after I calibrated the two sensors:</p>
+
+<figure class=""><img src="/pr-preview/pr-48/assets/posts/2018-06-16-minimu9v5-rtimulib2/calibrate-accelerometer.png" alt="" /><figcaption>
+      Calibrate accelerometer
+
+    </figcaption></figure>
+
+<figure class=""><img src="/pr-preview/pr-48/assets/posts/2018-06-16-minimu9v5-rtimulib2/calibrate-magnetometer.png" alt="" /><figcaption>
+      Calibrate magnetometer
+
+    </figcaption></figure>
+
+<h3 id="troubleshooting">Troubleshooting</h3>
+
+<p>If you have troubles to connect the IMU, take a look for errors at your terminal output and try re-connect the IMU and use the correct settings.
+Using the auto detect should help to find any supported imu.</p>
+
+<figure class=""><img src="/pr-preview/pr-48/assets/posts/2018-06-16-minimu9v5-rtimulib2/select-imu.png" alt="" /><figcaption>
+      Selecting the right imu
+
+    </figcaption></figure>
+
+<h2 id="future-work">Future Work</h2>
+
+<p>Instead of using the RTIMULib2 it should be possible to use the output from the mentioned <a href="https://github.com/DavidEGrayson/minimu9-ahrs">minimu9-ahrs</a> program and
+create a ros node with this code.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-48/tags/#accel" class="page__taxonomy-item p-category" rel="tag">accel</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-48/tags/#accelerometer" class="page__taxonomy-item p-category" rel="tag">accelerometer</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-48/tags/#compass" class="page__taxonomy-item p-category" rel="tag">compass</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-48/tags/#gyro" class="page__taxonomy-item p-category" rel="tag">gyro</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-48/tags/#gyroscope" class="page__taxonomy-item p-category" rel="tag">gyroscope</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-48/tags/#imu" class="page__taxonomy-item p-category" rel="tag">imu</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-48/tags/#interal-measurement-unit" class="page__taxonomy-item p-category" rel="tag">interal measurement unit</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-48/tags/#mag" class="page__taxonomy-item p-category" rel="tag">mag</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-48/tags/#magnetometer" class="page__taxonomy-item p-category" rel="tag">magnetometer</a>
+    
+    </span>
+  </p>
+
+
+  
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-48/categories/#autonomous" class="page__taxonomy-item p-category" rel="tag">autonomous</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-48/categories/#rc-car" class="page__taxonomy-item p-category" rel="tag">rc-car</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-48/categories/#sensors" class="page__taxonomy-item p-category" rel="tag">sensors</a>
+    
+    </span>
+  </p>
+
+
+  
+
+
+        
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2018-06-19T20:55:36+02:00">June 19, 2018</time></p>
+
+
+      </footer>
+
+      
+<section class="page__share">
+  <h4 class="page__share-title">Share on</h4>
+
+  <a href="https://x.com/intent/tweet?via=franzpucher&text=MinIMU-9+v5+and+RTIMULib2%20https%3A%2F%2Ffjp.at%2Fpr-preview%2Fpr-48%2Fprojects%2Fautonomous-rc-car%2Fpololu-minimu9v5%2F" class="btn btn--x" aria-label="Share on X" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on X">
+    <i class="fab fa-fw fa-x-twitter" aria-hidden="true"></i><span> X</span>
+  </a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffjp.at%2Fpr-preview%2Fpr-48%2Fprojects%2Fautonomous-rc-car%2Fpololu-minimu9v5%2F" class="btn btn--facebook" aria-label="Share on Facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook">
+    <i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span>
+  </a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://fjp.at/pr-preview/pr-48/projects/autonomous-rc-car/pololu-minimu9v5/" class="btn btn--linkedin" aria-label="Share on LinkedIn" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn">
+    <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span>
+  </a>
+
+  <a href="https://bsky.app/intent/compose?text=MinIMU-9+v5+and+RTIMULib2%20https%3A%2F%2Ffjp.at%2Fpr-preview%2Fpr-48%2Fprojects%2Fautonomous-rc-car%2Fpololu-minimu9v5%2F" class="btn btn--bluesky" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Bluesky">
+    <i class="fab fa-fw fa-bluesky" aria-hidden="true"></i><span> Bluesky</span>
+  </a>
+</section>
+
+
+      
+
+  <nav class="pagination" aria-label="Post pagination">
+    
+      <a href="/pr-preview/pr-48/operating%20systems/virtualbox/ubuntu/macos/ubuntu-1604lts-virtualbox-macOS/" class="pagination--pager" title="Ubuntu 16.04 LTS Virtualbox on macOS 10.13.2 Host">Previous</a>
+    
+    
+      <a href="/pr-preview/pr-48/tooling/python/bokeh-ipython-jekyll/" class="pagination--pager" title="Interactive Bokeh for Jekyll using iPython">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+    
+
+<div class="page__related">
+  
+  <h2 class="page__related-title">You May Also Enjoy</h2>
+  <div class="grid__wrapper">
+    
+      
+      
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pr-preview/pr-48/assets/images/opencv_logo.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-48/posts/computer-vision/camera-calibration-reprojection-error/" rel="permalink">Camera calibration and reprojection error
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Camera calibration and reprojection error.
+</p>
+  </article>
+</div>
+    
+      
+      
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://images-na.ssl-images-amazon.com/images/I/51Q2dvR+eTL._SX424_BO1,204,203,200_.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-48/posts/probabilistic-robotics/" rel="permalink">Porbabilistic Robotics Overview
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Overview of algorithms in probabilistic robotics.
+</p>
+  </article>
+</div>
+    
+      
+      
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pr-preview/pr-48/assets/vector/vector-sdk-alpha.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-48/posts/vector/" rel="permalink">Vector Robot
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Regaining access to Vector Robot and working with the Vector Python SDK.
+</p>
+  </article>
+</div>
+    
+      
+      
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pr-preview/pr-48/editors/vim%20setup/vim/" rel="permalink">Vim Setup and Basics
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Describes how to setup vim using a popular vimrc and explains the basics.
+
+</p>
+  </article>
+</div>
+    
+  </div>
+</div>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div class="page__footer-copyright">
+  <a href="/pr-preview/pr-48/legal-notice/">Legal notice</a> &middot; <a href="/pr-preview/pr-48/privacy/">Privacy</a> &middot; <a href="#cookie-settings">Cookie settings</a>
+  <br>As an Amazon Associate I earn from qualifying purchases.
+</div>
+<script>
+  // "Cookie settings" reopens the AdSense consent message, or explains why it can't
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest('a[href="#cookie-settings"]')) return;
+    event.preventDefault();
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    var timer = null, opened = false;
+    window.googlefc.callbackQueue.push(function () {
+      // the tool is there (possibly late): drop the pending or shown note, then open the settings
+      opened = true;
+      clearTimeout(timer);
+      var shown = document.getElementById("cookie-settings-note");
+      if (shown) shown.remove();
+      window.googlefc.showRevocationMessage();
+    });
+    // If Google's consent tool is blocked (ad blockers usually block it), the queue never runs: say so
+    timer = setTimeout(function () {
+      if (opened || document.getElementById("cookie-settings-note")) return;
+      var note = document.createElement("div");
+      note.id = "cookie-settings-note";
+      note.setAttribute("role", "status");
+      note.textContent = "Google's consent tool isn't available in this browser right now, probably because of an ad blocker or privacy extension, so the cookie settings can't be opened here. Any earlier choice stays as it was, and Google Analytics doesn't start on this page while the tool is blocked.";
+      note.style.cssText = "position:fixed;left:50%;bottom:1rem;transform:translateX(-50%);z-index:1000;box-sizing:border-box;" +
+        "width:calc(100vw - 2rem);max-width:32rem;padding:.8em 1em;background:#333;color:#fff;border-radius:4px;" +
+        "font-size:.8rem;line-height:1.4;box-shadow:0 2px 8px rgba(0,0,0,.3)";
+      document.body.appendChild(note);
+      setTimeout(function () { note.remove(); }, 12000);
+    }, 2500);
+  });
+</script>
+
+<style>
+  .consent-embed { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5em;
+    max-width: 100%; aspect-ratio: 16 / 9; padding: 1em; box-sizing: border-box; text-align: center; font-size: .8em;
+    background: #f5f5f5; border: 1px solid #ddd; }
+  .consent-embed p { margin: 0; max-width: 32em; }
+  .responsive-video-container .consent-embed { position: absolute; inset: 0; width: 100%; height: 100%; }
+</style>
+<script>
+  // Videos load only after a click: their iframes use data-consent-src instead of src, so nothing is requested
+  // from YouTube or Vimeo until the visitor agrees.
+  document.addEventListener("DOMContentLoaded", function () {
+    var names = { "www.youtube-nocookie.com": "YouTube (Google)", "player.vimeo.com": "Vimeo (USA)" };
+    document.querySelectorAll("iframe[data-consent-src]").forEach(function (frame) {
+      var url = new URL(frame.getAttribute("data-consent-src"), location.href);
+      var name = names[url.hostname] || url.hostname;
+      var box = document.createElement("div");
+      box.className = "consent-embed";
+      var width = frame.getAttribute("width");
+      if (width) box.style.width = /%$/.test(width) ? width : width + "px";
+      var note = document.createElement("p");
+      note.textContent = "This video is hosted by " + name + ". Loading it sends your IP address to " + name + ", which may store cookies.";
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn--primary";
+      button.textContent = "Load video";
+      button.addEventListener("click", function () {
+        frame.src = url.href;
+        frame.hidden = false;
+        box.remove();
+        // The theme runs FitVids on page load, when these iframes had no src yet; size them now.
+        // Videos from the theme's video include already sit in a responsive container.
+        if (!frame.closest(".responsive-video-container") && window.jQuery && jQuery.fn.fitVids) {
+          if (/%$/.test(frame.getAttribute("width") || "")) { frame.setAttribute("width", "560"); frame.setAttribute("height", "315"); }
+          jQuery(frame.parentNode).fitVids();
+        }
+      });
+      box.append(note, button);
+      frame.hidden = true;
+      frame.parentNode.insertBefore(box, frame);
+    });
+  });
+</script>
+
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/fjp" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/pr-preview/pr-48/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+
+  <script src="/pr-preview/pr-48/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/pr-preview/pr-48/assets/js/lunr/lunr.min.js"></script>
+<script src="/pr-preview/pr-48/assets/js/lunr/lunr-store.js"></script>
+<script src="/pr-preview/pr-48/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+    
+  <!--
+    Overrides the theme's Disqus include. Disqus loads only when a visitor clicks the button
+    above the comment thread, which says that Disqus sets cookies and shows ads. The click is the
+    consent for Disqus; the consent message isn't asked.
+  -->
+  <script>
+    (function () {
+      var thread = document.getElementById("disqus_thread");
+      if (!thread) return;
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn--primary";
+      button.textContent = "Show comments";
+      var note = document.createElement("p");
+      note.className = "small";
+      note.innerHTML = 'Comments are hosted by Disqus. Clicking loads Disqus, which sets cookies and shows ads. See the <a href="/pr-preview/pr-48/privacy/">privacy policy</a>.';
+      thread.parentNode.insertBefore(button, thread);
+      thread.parentNode.insertBefore(note, thread);
+      button.addEventListener("click", function () {
+        button.remove();
+        note.remove();
+        window.disqus_config = function () {
+          this.page.url = "https://fjp.at/pr-preview/pr-48/projects/autonomous-rc-car/pololu-minimu9v5/";
+          this.page.identifier = "/projects/autonomous-rc-car/minimu9v5-rtimulib2";
+        };
+        var script = document.createElement("script");
+        script.src = "https://fjp-github-io.disqus.com/embed.js";
+        script.setAttribute("data-timestamp", +new Date());
+        (document.head || document.body).appendChild(script);
+      });
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>
