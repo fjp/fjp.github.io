@@ -12,7 +12,7 @@ Information according to § 5 of the Austrian E-Commerce Act (ECG) and disclosur
 ## Provider and media owner
 
 Franz Pucher<br>
-Carinagasse 8<br>
+Carinagasse 8a<br>
 6800 Feldkirch<br>
 Austria
 

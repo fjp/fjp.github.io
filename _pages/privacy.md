@@ -15,7 +15,7 @@ Last updated: 8 October 2026
 ## Controller
 
 Franz Pucher<br>
-Carinagasse 8<br>
+Carinagasse 8a<br>
 6800 Feldkirch<br>
 Austria<br>
 E-mail: [ros@fjp.at](mailto:ros@fjp.at)
