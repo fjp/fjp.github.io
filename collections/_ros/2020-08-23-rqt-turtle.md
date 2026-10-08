@@ -34,7 +34,7 @@ The final plugin looks like this:
 
 The video below gives more insights on what is currently implemented:
 
-[![rqt turtle YouTube](http://img.youtube.com/vi/2IQtxEmP2a4/0.jpg)](https://youtu.be/2IQtxEmP2a4)
+[![rqt turtle video on YouTube](/assets/ros/rqt_turtle/rqt-turtle-youtube.jpg)](https://youtu.be/2IQtxEmP2a4)
 
 The plugin can be used to draw inside [turtlesim](http://wiki.ros.org/turtlesim) with turtlebot.
 Although the following description might help you to write your own rqt plugin, also have a look at the official [rqt tutorials](http://wiki.ros.org/rqt/Tutorials), especially the tutorial [Create your new rqt plugin](http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin). 

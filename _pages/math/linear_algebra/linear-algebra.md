@@ -32,7 +32,7 @@ It also lets us solve systems of equations.
 
 ## Vectors
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/fNk_zzaMoSs?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" data-consent-src="https://www.youtube-nocookie.com/embed/fNk_zzaMoSs?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 
@@ -70,7 +70,7 @@ The basis of a vector space is a set of linearly independent vectors that span t
 </p>
 {: .notice}
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/k7RM-ot2NWY?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" data-consent-src="https://www.youtube-nocookie.com/embed/k7RM-ot2NWY?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Matrices as Linear Transformations
 
@@ -136,12 +136,12 @@ $$
 </p>
 {: .notice}
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/kYB8IZa5AuE?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" data-consent-src="https://www.youtube-nocookie.com/embed/kYB8IZa5AuE?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Matrix Multiplication as Composition
 
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/XkY2DOUCWMU?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" data-consent-src="https://www.youtube-nocookie.com/embed/XkY2DOUCWMU?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Three Dimensional Linear Transformations
 
@@ -188,7 +188,7 @@ $$
 </p>
 {: .notice}
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/rHLEWRxRGiM?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" data-consent-src="https://www.youtube-nocookie.com/embed/rHLEWRxRGiM?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 ## The Determinant
@@ -295,7 +295,7 @@ $$
 </p>
 {: .notice}
 
-<iframe width="936" height="527" src="https://www.youtube-nocookie.com/embed/Ip3X9LOh2dk?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="936" height="527" data-consent-src="https://www.youtube-nocookie.com/embed/Ip3X9LOh2dk?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Inverse Matrices, Column Space and Null Space
 
@@ -307,7 +307,7 @@ In linear algebra these variables get only scaled and added to each other but no
 for example squared, multiplied by each other, or the sine or cosine of that variables.
 
 
-<iframe width="936" height="527" src="https://www.youtube-nocookie.com/embed/uQhTuRlWMxw?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="936" height="527" data-consent-src="https://www.youtube-nocookie.com/embed/uQhTuRlWMxw?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 ### Nonsquare Matrices as Transformations between Spaces
@@ -371,7 +371,7 @@ three dimensional plane.
 Such a nonsquare matrix can still have full rank if the number of dimensions in the column space is equal to the
 number of dimensions of the input space.
 
-<iframe width="1280" height="720" src="https://www.youtube-nocookie.com/embed/v8VSDg_WQlA?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="1280" height="720" data-consent-src="https://www.youtube-nocookie.com/embed/v8VSDg_WQlA?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Dot Product and Duality
 
@@ -398,7 +398,7 @@ given by the angle between the two vectors:
 - The dot product is zero $\vec{v} \cdot \vec{w} = 0$ if the angle is straight ($\theta = 90\deg$)
 
 
-<iframe width="936" height="527" src="https://www.youtube-nocookie.com/embed/LyGKycYT2v0?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="936" height="527" data-consent-src="https://www.youtube-nocookie.com/embed/LyGKycYT2v0?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 ## Cross Product
@@ -437,7 +437,7 @@ $$
 </p>
 {: .notice}
 
-<iframe width="936" height="527" src="https://www.youtube-nocookie.com/embed/eu6i7WJeinw?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="936" height="527" data-consent-src="https://www.youtube-nocookie.com/embed/eu6i7WJeinw?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 ## Cross Product in depth
@@ -508,7 +508,7 @@ $$
     <figcaption>Cross product.</figcaption>
 </figure>
 
-<iframe width="936" height="527" src="https://www.youtube-nocookie.com/embed/BaM7OCEm3G0?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="936" height="527" data-consent-src="https://www.youtube-nocookie.com/embed/BaM7OCEm3G0?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Change of Basis
 
@@ -522,7 +522,7 @@ vectors with coordinates in $B$ to the same vector with coordinates in $B'$. The
 An expression like $\mathbf{AMA}^{-1}$ is a transformation $\mathbf{M}$ of some kind but viewed in another coordinate system.
 The middle matrix $\mathbf{M}$ represents the transformation in $B$ and the outer matrices represent an empathy, the shift in perspective.  
 
-<iframe width="936" height="527" src="https://www.youtube-nocookie.com/embed/P2LTAUO1TdA?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="936" height="527" data-consent-src="https://www.youtube-nocookie.com/embed/P2LTAUO1TdA?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Eigenvectors and Eigenvalues
 
@@ -580,9 +580,9 @@ $$
 </div>
 {: .notice}
 
-<iframe width="1280" height="720" src="https://www.youtube-nocookie.com/embed/PFDu9oVAE-g?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="1280" height="720" data-consent-src="https://www.youtube-nocookie.com/embed/PFDu9oVAE-g?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 ## Abstract Vector Spaces
 
-<iframe width="1280" height="720" src="https://www.youtube-nocookie.com/embed/TgKwz5Ikpc8?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="1280" height="720" data-consent-src="https://www.youtube-nocookie.com/embed/TgKwz5Ikpc8?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

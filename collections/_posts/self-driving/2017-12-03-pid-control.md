@@ -23,7 +23,7 @@ Summary of the PID controller invented 1922 by [Nicolas Minorsky](https://en.wik
 - I is the integral gain and is used to reduce the steady offset errors. This part is used to reduce past errors caused by unmodeled disturbances.
 - D is the differential gain, which penalizes strong changes in the cross track error. Therefore it compensates "future" errors.
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/4Y7zG48uHRo?rel=0" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" data-consent-src="https://www.youtube-nocookie.com/embed/4Y7zG48uHRo?rel=0" frameborder="0" allowfullscreen></iframe>
 
 
 ## PID tuning
