@@ -105,7 +105,7 @@ See [Disqus's privacy policy](https://disqus.com/privacy-policy/).
 
 ## Other external content
 
-A few pages show images from other websites, for example Wikimedia Commons or GitHub, or are exported notebooks that load scripts from cdnjs.cloudflare.com.
+A few pages show images from other websites, for example Wikimedia Commons, GitHub or book covers from Amazon, or are exported notebooks that load scripts from cdnjs.cloudflare.com.
 When such a page loads, your browser requests these files from their servers, which receive your IP address.
 The legal basis is our legitimate interest in showing this content (Art. 6(1)(f) GDPR).
 
