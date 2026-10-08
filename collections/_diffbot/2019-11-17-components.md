@@ -59,12 +59,12 @@ Order list
 
 | Part                    | Store |
 |:------------------------|:---------------------------------------------------------------------------:|
-| Raspberry Pi 4 B (4 Gb) | [Amazon.com](https://amzn.to/3ltuJUo), [Amazon.de](https://amzn.to/2IchIAc) |
-| SanDisk 64 GB SD Card Class 10 | [Amazon.com](https://amzn.to/2GLOyr0), [Amazon.de](https://amzn.to/3dcFmYE) |
-|Robot Smart Chassis Kit  | [Amazon.com](https://amzn.to/34GXNAK), [Amazon.de](https://amzn.to/2Gy3CJ4) |
-| SLAMTEC RPLidar A2M8 (12 m) | [Amazon.com](https://amzn.to/3lthTFz), [Amazon.de](https://amzn.to/30MyImR) |
-| Grove Ultrasonic Ranger | [Amazon.com](https://amzn.to/36M9TLS), [Amazon.de](https://amzn.to/34GZmyC) |
-| Raspi Camera Module V2, 8 MP, 1080p | [Amazon.com](https://amzn.to/2Ib9fgG), [Amazon.de](https://amzn.to/2FdVDQF) |
+| Raspberry Pi 4 B (4 Gb) | [Amazon.com](https://www.amazon.com/dp/B07TD42S27?tag=fjp033-20), [Amazon.de](https://amzn.to/2IchIAc) |
+| SanDisk 64 GB SD Card Class 10 | [Amazon.com](https://www.amazon.com/dp/B073JYVKNX?tag=fjp033-20), [Amazon.de](https://amzn.to/3dcFmYE) |
+|Robot Smart Chassis Kit  | [Amazon.com](https://www.amazon.com/dp/B07DNYQ3PX?tag=fjp033-20), [Amazon.de](https://amzn.to/2Gy3CJ4) |
+| SLAMTEC RPLidar A2M8 (12 m) | [Amazon.com](https://www.amazon.com/dp/B07VPNHPQQ?tag=fjp033-20), [Amazon.de](https://amzn.to/30MyImR) |
+| Grove Ultrasonic Ranger | [Amazon.com](https://www.amazon.com/dp/B01BKA4GNA?tag=fjp033-20), [Amazon.de](https://amzn.to/34GZmyC) |
+| Raspi Camera Module V2, 8 MP, 1080p | [Amazon.com](https://www.amazon.com/dp/B01ER2SKFS?tag=fjp033-20), [Amazon.de](https://amzn.to/2FdVDQF) |
 | Grove Motor Driver | [seeedstudio.com](https://www.seeedstudio.com/Grove-I2C-Motor-Driver-with-L298.html), [Amazon.de](https://amzn.to/36M8O6M) |
 | I2C Hub | [seeedstudio.com](https://www.seeedstudio.com/Grove-I2C-Hub.html), [Amazon.de](https://amzn.to/34CGEbz) |
 
