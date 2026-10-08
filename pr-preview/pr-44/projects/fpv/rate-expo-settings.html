@@ -1,0 +1,1052 @@
+
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js" dir="ltr">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+<!-- begin _includes/seo.html --><title>RC Rate and Expo Settings - fjp.github.io</title>
+<meta name="description" content="All about RC Rate and EXPO for the RC transmitter.">
+
+
+  <meta name="author" content="Franz Pucher">
+  
+  <meta property="article:author" content="Franz Pucher">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="fjp.github.io">
+<meta property="og:title" content="RC Rate and Expo Settings">
+<meta property="og:url" content="https://fjp.at/pr-preview/pr-44/projects/fpv/rate-expo-settings">
+
+
+  <meta property="og:description" content="All about RC Rate and EXPO for the RC transmitter.">
+
+
+
+  <meta property="og:image" content="https://fjp.at/pr-preview/pr-44/assets/collections/fpv/taranis/bootloader.jpg">
+  
+
+
+
+  <meta name="twitter:site" content="@franzpucher">
+  <meta name="twitter:title" content="RC Rate and Expo Settings">
+  <meta name="twitter:description" content="All about RC Rate and EXPO for the RC transmitter.">
+  <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-44/projects/fpv/rate-expo-settings">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://fjp.at/pr-preview/pr-44/assets/collections/fpv/taranis/bootloader.jpg">
+    
+  
+
+  
+
+
+
+
+
+  <meta property="article:published_time" content="2020-04-19T10:00:35+02:00">
+
+
+
+  <meta property="article:modified_time" content="2026-10-06T00:00:00+02:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fjp.at/pr-preview/pr-44/projects/fpv/rate-expo-settings">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/pr-preview/pr-44/feed.xml" type="application/atom+xml" rel="alternate" title="fjp.github.io Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pr-preview/pr-44/assets/css/main.css">
+<link rel="preload" href="/pr-preview/pr-44/assets/vendor/fontawesome-free-7.3.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/pr-preview/pr-44/assets/vendor/fontawesome-free-7.3.1/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!--
+  Consent comes from the European regulations message in AdSense (Privacy & messaging),
+  Google's certified consent tool, which the AdSense script below shows to visitors from the
+  EEA, UK and Switzerland. With consent mode turned on in AdSense, the message updates Google's
+  consent state itself, also for an Analytics tag that's already running. This script only
+  decides whether Analytics loads at all ("basic" consent mode):
+  - consent defaults: denied in the EEA, UK and Switzerland, granted elsewhere
+  - Analytics loads once per page, when the Analytics choice is granted or doesn't apply
+  - a later change of the choice (e.g. via "Cookie settings") reloads the page, so the new
+    page starts from the settled choice
+  - a denied choice deletes the _ga cookies
+  It replaces the theme's Analytics include (see analytics-providers/google-gtag.html) and only
+  loads Analytics in production builds. API: https://developers.google.com/funding-choices/fc-api-docs
+-->
+<script>
+  (function () {
+    var property = "";
+    window.dataLayer = window.dataLayer || [];
+    var gtag = window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+    var europe = ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE",
+      "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
+      "IS", "LI", "NO", "GB", "CH"];
+    var denied = { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" };
+    gtag("consent", "default", Object.assign({ region: europe }, denied));
+    gtag("consent", "default", { analytics_storage: "granted", ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted" });
+
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    // Values of googlefc.ConsentModePurposeStatusEnum
+    var GRANTED = 1, NOT_APPLICABLE = 3;
+
+    function analyticsAllowed() {
+      var values = typeof googlefc.getGoogleConsentModeValues === "function" ? googlefc.getGoogleConsentModeValues() : null;
+      var status = values ? values.analyticsStoragePurposeConsentStatus : 0;
+      return status === GRANTED || status === NOT_APPLICABLE;
+    }
+
+    // Also removes cookies that earlier versions of the site set without asking
+    function deleteAnalyticsCookies() {
+      var site = location.hostname.split(".").slice(-2).join(".");
+      document.cookie.split(";").forEach(function (cookie) {
+        var name = cookie.split("=")[0].trim();
+        if (name !== "_ga" && name.indexOf("_ga_") !== 0) return;
+        ["", "; domain=" + location.hostname, "; domain=." + site].forEach(function (domain) {
+          document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + domain;
+        });
+      });
+    }
+
+    function startAnalytics() {
+      if (!property) return;
+      gtag("js", new Date());
+      gtag("config", property, { anonymize_ip: false });
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + property;
+      document.head.appendChild(script);
+    }
+
+    // Once per page, when Google's message knows the answer: from an earlier visit, after the
+    // visitor's first choice, or because the message doesn't apply. With an ad blocker the
+    // message never loads, and Analytics stays off.
+    var decided = false;
+    function decide() {
+      if (decided) return;
+      decided = true;
+      if (analyticsAllowed()) startAnalytics();
+      else deleteAnalyticsCookies();
+    }
+
+    // Later changes only reach a TCF listener; the readiness callbacks run once. Incomplete
+    // answers and "message shown" events are skipped. The first completed answer on a page is
+    // handled by decide(); a later one switches Analytics off and reloads, because Google's
+    // value reader still returns the old choice at that moment.
+    var firstAnswer = true;
+    function onTcData(data, success) {
+      if (!success || !data) return;
+      if (data.eventStatus === "tcloaded") { firstAnswer = false; return; }
+      if (data.eventStatus !== "useractioncomplete") return;
+      if (firstAnswer) { firstAnswer = false; return; }
+      if (property) window["ga-disable-" + property] = true;
+      location.reload();
+    }
+    var listening = false;
+    function listen() {
+      if (listening || typeof window.__tcfapi !== "function") return;
+      listening = true;
+      window.__tcfapi("addEventListener", 2, onTcData);
+    }
+
+    window.googlefc.callbackQueue.push({ CONSENT_API_READY: listen });
+    window.googlefc.callbackQueue.push({ CONSENT_MODE_DATA_READY: function () { listen(); decide(); } });
+  })();
+</script>
+
+<!-- AdSense (Auto ads are configured in AdSense), which also brings the consent message -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2214309606626131"
+     crossorigin="anonymous"></script>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+<!-- KaTeX and pseudocode.js are served from assets/vendor, so visitors don't contact a CDN.
+     The pseudocode include renders while the page loads and needs KaTeX at that point, so
+     pages with pseudocode load KaTeX right away; all other pages defer it. -->
+<link rel="stylesheet" href="/pr-preview/pr-44/assets/vendor/katex-0.19.0/katex.min.css">
+<script defer src="/pr-preview/pr-44/assets/vendor/katex-0.19.0/katex.min.js"></script>
+<script defer src="/pr-preview/pr-44/assets/vendor/katex-0.19.0/contrib/auto-render.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError : false
+        });
+    });
+</script>
+
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+        
+        <a class="site-title" href="/pr-preview/pr-44/">
+          fjp.github.io
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-44/"
+                
+                
+              >Home</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-44/blog/"
+                
+                
+              >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-44/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-44/design-patterns/"
+                
+                
+              >Design Patterns</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-44/cpp/"
+                
+                
+              >C++</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-44/projects/fpv/"
+                
+                
+              >FPV</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-44/about/"
+                
+                
+              >About</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-44/privacy/"
+                
+                
+              >Privacy</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-44/sitemap/"
+                
+                
+              >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/pr-preview/pr-44/assets/collections/fpv/taranis/bootloader.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          RC Rate and Expo Settings
+
+        
+      </h1>
+      
+        <p class="page__lead">All about RC Rate and EXPO for the RC transmitter.
+</p>
+      
+      
+
+
+
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-44/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-44/projects/" itemprop="item"><span itemprop="name">Projects</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-44/projects/fpv/" itemprop="item"><span itemprop="name">Fpv</span></a>
+            <meta itemprop="position" content="3" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">RC Rate and Expo Settings</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/pr-preview/pr-44/projects/fpv/"><span class="nav__sub-title">Introduction</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/glossar">Glossar</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-44/projects/fpv/components"><span class="nav__sub-title">Race Quad Components</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/frame">Frame</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/motor">Brushless Motors</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/esc">Brushless ESC</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/propeller">Propellers</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/pdb">Power Distribution Board</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/battery">Batteries</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/receiver">RC Receiver</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-44/projects/fpv/flight-controller-software"><span class="nav__sub-title">Flight Controller Software</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/rate-expo-settings" class="active">RC Rates and Expo Settings</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-44/projects/fpv/transmitter"><span class="nav__sub-title">RC Transmitter</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/taranis">Taranis X9D Plus SE 2019</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/r-xsr">Receiver Binding R-XSR</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/throttle-curves">Throttle Curves</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-44/projects/fpv/fpv-system/"><span class="nav__sub-title">FPV System</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/fpv-system/camera">FPV Camera</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/fpv-system/vtx">FPV Transmitter and Receiver</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/fpv-system/antennas">Antennas</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-44/projects/fpv/charger"><span class="nav__sub-title">Charger and Testers</span></a>
+          
+
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">PID Values</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/pid-lua-script">PID Lua Script</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-44/projects/fpv/calculations/#introduction"><span class="nav__sub-title">Thrust and Flight Time</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/calculations/#calculations">Basic Calculations</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/calculations/#weight">Weight</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/calculations/#thrust">Thrust</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/calculations/#motors">Finding matching Motors</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/calculations/#esc">Finding matching ESCs</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/calculations/#flight-time">Flight Time Calculation</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">Build and Setup</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/assembly">Assembly</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/telemetry">Telemetry</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <a href="/pr-preview/pr-44/projects/fpv/rights/#introduction"><span class="nav__sub-title">Rights and Regulations</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/rights/#law-insurance">Law and Insurance Regulations</a></li>
+            
+              <li><a href="/pr-preview/pr-44/projects/fpv/rights/#drones">Drones</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="RC Rate and Expo Settings">
+    <meta itemprop="description" content="All about RC Rate and EXPO for the RC transmitter.">
+    <meta itemprop="datePublished" content="2020-04-19T10:00:35+02:00">
+    <meta itemprop="dateModified" content="2026-10-06T00:00:00+02:00">
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc" aria-label="Table of contents">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#betaflight-rates-rc-rate-super-rate-and-rc-expo">Betaflight Rates: RC Rate, Super Rate and RC Expo</a></li><li><a href="#actual-rates-center-sensitivity-max-rate-and-expo">Actual Rates: Center Sensitivity, Max Rate and Expo</a></li><li><a href="#choosing-rates">Choosing Rates</a></li><li><a href="#references">References</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>In acro mode (also called rate mode) the sticks of the <a href="/pr-preview/pr-44/projects/fpv/glossar#transmitter">transmitter</a> don’t command an angle but a rotation rate.
+Holding the roll stick halfway makes the quad keep rolling at a certain rate in degrees per second (°/s),
+and centering the stick stops the rotation, so the quad keeps its current attitude.
+How stick deflection translates into rotation rate is defined by the rates, separately for roll, pitch and yaw.
+Good rates allow precise small corrections around the stick center and still fast flips and rolls at full deflection.</p>
+
+<p>The rates are set in the PID Tuning tab of the <a href="/pr-preview/pr-44/projects/fpv/glossar#betaflight-configurator">Betaflight Configurator</a>
+(today the Betaflight App), which also shows a preview of the resulting curve and the maximum rate.
+They only take effect once the <a href="/pr-preview/pr-44/projects/fpv/glossar#receiver">receiver</a> works. For the <a href="/pr-preview/pr-44/projects/fpv/r-xsr">R-XSR</a>
+of this build, the receiver mode in the Configuration tab is set to a serial receiver with the <a href="/pr-preview/pr-44/projects/fpv/glossar#fport">FPort</a> provider:</p>
+
+<figure>
+    <a href="/pr-preview/pr-44/assets/collections/fpv/betaflight/betaflight-config-receiver.png"><img src="/pr-preview/pr-44/assets/collections/fpv/betaflight/betaflight-config-receiver.png" /></a>
+    <figcaption>Betaflight Configurator 10.6 with Betaflight 4.1.1: receiver mode set to a serial receiver with the FrSky FPort provider.</figcaption>
+</figure>
+
+<p>Betaflight offers several rate types (Betaflight, Actual, Quick, RaceFlight and KISS), which describe a similar curve with different parameters.
+Up to Betaflight 4.2 the default was the Betaflight rate type, since Betaflight 4.3 it is Actual rates.
+Both are explained below. The formulas are taken from the Betaflight source code (<a href="https://github.com/betaflight/betaflight/blob/master/src/main/fc/rc.c"><code class="language-plaintext highlighter-rouge">rc.c</code></a>),
+where $x$ is the stick deflection from $-1$ (full left or down) over $0$ (center) to $1$ (full right or up).</p>
+
+<figure>
+    <a href="/pr-preview/pr-44/assets/collections/fpv/rates/rate-curves.png"><img src="/pr-preview/pr-44/assets/collections/fpv/rates/rate-curves.png" /></a>
+    <figcaption>Rotation rate over stick deflection for the Betaflight and the Actual rate type, computed with Betaflight's formulas.</figcaption>
+</figure>
+
+<h2 id="betaflight-rates-rc-rate-super-rate-and-rc-expo">Betaflight Rates: RC Rate, Super Rate and RC Expo</h2>
+
+<p>The Betaflight rate type has three parameters per axis:</p>
+
+<ul>
+  <li><strong>RC Rate</strong> $r$ scales the whole curve linearly. With an RC rate of 1.00 and no super rate, full stick results in 200 °/s.
+Above 2.0 the RC rate increases much faster, because Betaflight adds $14.54 \cdot (r - 2)$ to it.</li>
+  <li><strong>Super Rate</strong> $s$ makes the curve steeper towards full deflection, which increases the maximum rate without making the center more sensitive.</li>
+  <li><strong>RC Expo</strong> $e$ flattens the curve around the center for finer control. It doesn’t change the maximum rate.</li>
+</ul>
+
+<p>Expo is applied to the stick deflection first, then RC rate and super rate:</p>
+
+\[x_e = x \, |x|^3 \, e + x \, (1 - e)\]
+
+\[\omega = 200 \cdot r \cdot x_e \cdot \frac{1}{1 - |x| \, s}\]
+
+<p>At full deflection ($|x| = 1$) the expo term has no effect and the maximum rate becomes $\omega_{\max} = 200 \, r / (1 - s)$.
+The default values of Betaflight 4.1, RC rate 1.00, super rate 0.70 and RC expo 0, result in $200 / 0.3 \approx 667$ °/s:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Setting</th>
+      <th style="text-align: right">25 % stick</th>
+      <th style="text-align: right">50 % stick</th>
+      <th style="text-align: right">75 % stick</th>
+      <th style="text-align: right">Full stick</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">RC rate 1.00, super rate 0.70 (default)</td>
+      <td style="text-align: right">61 °/s</td>
+      <td style="text-align: right">154 °/s</td>
+      <td style="text-align: right">316 °/s</td>
+      <td style="text-align: right">667 °/s</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">RC rate 1.00, super rate 0.70, RC expo 0.30</td>
+      <td style="text-align: right">43 °/s</td>
+      <td style="text-align: right">113 °/s</td>
+      <td style="text-align: right">261 °/s</td>
+      <td style="text-align: right">667 °/s</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">RC rate 1.00 without super rate</td>
+      <td style="text-align: right">50 °/s</td>
+      <td style="text-align: right">100 °/s</td>
+      <td style="text-align: right">150 °/s</td>
+      <td style="text-align: right">200 °/s</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="actual-rates-center-sensitivity-max-rate-and-expo">Actual Rates: Center Sensitivity, Max Rate and Expo</h2>
+
+<p>Actual rates describe the same kind of curve with parameters that are given directly in °/s:</p>
+
+<ul>
+  <li><strong>Center Sensitivity</strong> $c$ is the slope of the curve at the stick center, given as the rate that full stick would result in if the curve stayed this steep.</li>
+  <li><strong>Max Rate</strong> $m$ is the rotation rate at full stick deflection.</li>
+  <li><strong>Expo</strong> $e$ shapes the curve in between. Higher expo keeps the curve flat longer and makes it steeper towards the end.</li>
+</ul>
+
+\[\omega = c \, x + (m - c) \, |x| \left( x^5 \, e + x \, (1 - e) \right)\]
+
+<p>The defaults since Betaflight 4.3 are a center sensitivity of 70 °/s, a max rate of 670 °/s and an expo of 0,
+which ends at almost the same maximum rate as the old defaults:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Setting</th>
+      <th style="text-align: right">25 % stick</th>
+      <th style="text-align: right">50 % stick</th>
+      <th style="text-align: right">75 % stick</th>
+      <th style="text-align: right">Full stick</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Center 70 °/s, max 670 °/s (default)</td>
+      <td style="text-align: right">55 °/s</td>
+      <td style="text-align: right">185 °/s</td>
+      <td style="text-align: right">390 °/s</td>
+      <td style="text-align: right">670 °/s</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Center 70 °/s, max 670 °/s, expo 0.50</td>
+      <td style="text-align: right">36 °/s</td>
+      <td style="text-align: right">115 °/s</td>
+      <td style="text-align: right">275 °/s</td>
+      <td style="text-align: right">670 °/s</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Because center sensitivity and max rate are independent, it is easier to change one aspect of the curve with Actual rates:
+a higher max rate makes flips and rolls faster without touching the feel around the center.</p>
+
+<h2 id="choosing-rates">Choosing Rates</h2>
+
+<p>There are no right rates, they depend on how you fly. A few rules help when changing them:</p>
+
+<ul>
+  <li>Start with the defaults and change one parameter at a time in small steps, then fly before changing the next one.</li>
+  <li>The max rate determines how fast flips and rolls are at full stick. Center sensitivity (or RC rate) and expo determine how precisely you can make small corrections.</li>
+  <li>Apply expo only in one place. Radio firmware such as <a href="/pr-preview/pr-44/projects/fpv/glossar#opentx">OpenTX</a> or <a href="/pr-preview/pr-44/projects/fpv/glossar#edgetx">EdgeTX</a> can also add expo or rates to the stick inputs, and both add up. Keep the sticks linear on the radio (weight 100 %, expo 0) and set the rates in Betaflight.</li>
+</ul>
+
+<p>The throttle stick is shaped separately, see <a href="/pr-preview/pr-44/projects/fpv/throttle-curves">Setting up Throttle Curves</a>.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://oscarliang.com/rates/">Oscar Liang: FPV Drone Rates and Expo Explained</a></li>
+  <li><a href="https://betaflight.com/docs/wiki/guides/current/Rate-Calculator">Betaflight: Rate Calculator</a></li>
+  <li><a href="https://github.com/betaflight/betaflight/blob/master/src/main/fc/rc.c">Betaflight source code: <code class="language-plaintext highlighter-rouge">rc.c</code></a></li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-44/tags/#betaflight" class="page__taxonomy-item p-category" rel="tag">betaflight</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-44/tags/#drone" class="page__taxonomy-item p-category" rel="tag">drone</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-44/tags/#expo" class="page__taxonomy-item p-category" rel="tag">expo</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-44/tags/#exponential" class="page__taxonomy-item p-category" rel="tag">exponential</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-44/tags/#fport" class="page__taxonomy-item p-category" rel="tag">fport</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-44/tags/#fpv" class="page__taxonomy-item p-category" rel="tag">fpv</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-44/tags/#quad" class="page__taxonomy-item p-category" rel="tag">quad</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-44/tags/#race" class="page__taxonomy-item p-category" rel="tag">race</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-44/tags/#radio" class="page__taxonomy-item p-category" rel="tag">radio</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-44/tags/#rc-rate" class="page__taxonomy-item p-category" rel="tag">rc rate</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-44/tags/#settings" class="page__taxonomy-item p-category" rel="tag">settings</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-44/tags/#transmitter" class="page__taxonomy-item p-category" rel="tag">transmitter</a>
+    
+    </span>
+  </p>
+
+
+  
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-44/categories/#fpv" class="page__taxonomy-item p-category" rel="tag">fpv</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-44/categories/#quad" class="page__taxonomy-item p-category" rel="tag">quad</a>
+    
+    </span>
+  </p>
+
+
+  
+
+
+        
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-updated" datetime="2026-10-06">October 6, 2026</time></p>
+
+
+      </footer>
+
+      
+
+      
+
+  <nav class="pagination" aria-label="Post pagination">
+    
+      <a href="/pr-preview/pr-44/projects/fpv/throttle-curves" class="pagination--pager" title="Setting up Throttle Curves">Previous</a>
+    
+    
+      <a href="/pr-preview/pr-44/projects/fpv/propeller" class="pagination--pager" title="The Propeller">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div class="page__footer-copyright">
+  <a href="/pr-preview/pr-44/legal-notice/">Legal notice</a> &middot; <a href="/pr-preview/pr-44/privacy/">Privacy</a> &middot; <a href="#cookie-settings">Cookie settings</a>
+  <br>As an Amazon Associate I earn from qualifying purchases.
+</div>
+<script>
+  // "Cookie settings" reopens the AdSense consent message
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest('a[href="#cookie-settings"]')) return;
+    event.preventDefault();
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    window.googlefc.callbackQueue.push(function () { window.googlefc.showRevocationMessage(); });
+  });
+</script>
+
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/fjp" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/pr-preview/pr-44/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+
+  <script src="/pr-preview/pr-44/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/pr-preview/pr-44/assets/js/lunr/lunr.min.js"></script>
+<script src="/pr-preview/pr-44/assets/js/lunr/lunr-store.js"></script>
+<script src="/pr-preview/pr-44/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+    
+  <!--
+    Overrides the theme's Disqus include. Disqus loads only when a visitor clicks the button
+    above the comment thread, which says that Disqus sets cookies and shows ads. The click is the
+    consent for Disqus; the consent message isn't asked.
+  -->
+  <script>
+    (function () {
+      var thread = document.getElementById("disqus_thread");
+      if (!thread) return;
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn--primary";
+      button.textContent = "Show comments";
+      var note = document.createElement("p");
+      note.className = "small";
+      note.innerHTML = 'Comments are hosted by Disqus. Clicking loads Disqus, which sets cookies and shows ads. See the <a href="/pr-preview/pr-44/privacy/">privacy policy</a>.';
+      thread.parentNode.insertBefore(button, thread);
+      thread.parentNode.insertBefore(note, thread);
+      button.addEventListener("click", function () {
+        button.remove();
+        note.remove();
+        window.disqus_config = function () {
+          this.page.url = "https://fjp.at/pr-preview/pr-44/projects/fpv/rate-expo-settings";
+          this.page.identifier = "/projects/fpv/rate-expo-settings";
+        };
+        var script = document.createElement("script");
+        script.src = "https://fjp-github-io.disqus.com/embed.js";
+        script.setAttribute("data-timestamp", +new Date());
+        (document.head || document.body).appendChild(script);
+      });
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

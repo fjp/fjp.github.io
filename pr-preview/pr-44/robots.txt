@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /pr-preview/
+
+Sitemap: https://fjp.at/pr-preview/pr-44/sitemap.xml
