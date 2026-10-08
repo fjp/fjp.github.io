@@ -4,13 +4,26 @@
   <br>As an Amazon Associate I earn from qualifying purchases.
 </div>
 <script>
-  // "Cookie settings" reopens the AdSense consent message
+  // "Cookie settings" reopens the AdSense consent message, or explains why it can't
   document.addEventListener("click", function (event) {
     if (!event.target.closest('a[href="#cookie-settings"]')) return;
     event.preventDefault();
     window.googlefc = window.googlefc || {};
     window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
-    window.googlefc.callbackQueue.push(function () { window.googlefc.showRevocationMessage(); });
+    var opened = false;
+    window.googlefc.callbackQueue.push(function () { opened = true; window.googlefc.showRevocationMessage(); });
+    // If Google's consent tool is blocked (ad blockers usually block it), the queue never runs: say so
+    setTimeout(function () {
+      if (opened || document.getElementById("cookie-settings-note")) return;
+      var note = document.createElement("div");
+      note.id = "cookie-settings-note";
+      note.setAttribute("role", "status");
+      note.textContent = "Google's consent tool didn't load in this browser, probably because of an ad blocker or privacy extension. While it's blocked, Google Analytics doesn't load here and there's no consent to change.";
+      note.style.cssText = "position:fixed;left:50%;bottom:1rem;transform:translateX(-50%);z-index:1000;max-width:32rem;" +
+        "padding:.8em 1em;background:#333;color:#fff;border-radius:4px;font-size:.8rem;line-height:1.4;box-shadow:0 2px 8px rgba(0,0,0,.3)";
+      document.body.appendChild(note);
+      setTimeout(function () { note.remove(); }, 12000);
+    }, 2500);
   });
 </script>
 
