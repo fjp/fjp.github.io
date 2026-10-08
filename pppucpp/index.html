@@ -55,7 +55,7 @@
 
 
 
-  <meta property="article:published_time" content="2026-10-08T10:35:29+02:00">
+  <meta property="article:published_time" content="2026-10-08T11:39:07+02:00">
 
 
 
@@ -401,7 +401,7 @@
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Programming Principles and Practice using C++">
     <meta itemprop="description" content="Solutions of the C++ book: Proramming Principles and Practice using C++">
-    <meta itemprop="datePublished" content="2026-10-08T10:35:29+02:00">
+    <meta itemprop="datePublished" content="2026-10-08T11:39:07+02:00">
     
 
     <div class="page__inner-wrap">
@@ -533,7 +533,7 @@
         
 
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2026-10-08T10:35:29+02:00">October 8, 2026</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2026-10-08T11:39:07+02:00">October 8, 2026</time></p>
 
 
       </footer>
@@ -594,7 +594,8 @@
       <footer>
         <!-- start custom footer snippets -->
 <div class="page__footer-copyright">
-  <a href="/privacy/">Privacy</a> &middot; <a href="#cookie-settings">Cookie settings</a>
+  <a href="/legal-notice/">Legal notice</a> &middot; <a href="/privacy/">Privacy</a> &middot; <a href="#cookie-settings">Cookie settings</a>
+  <br>As an Amazon Associate I earn from qualifying purchases.
 </div>
 <script>
   // "Cookie settings" reopens the AdSense consent message
@@ -604,6 +605,49 @@
     window.googlefc = window.googlefc || {};
     window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
     window.googlefc.callbackQueue.push(function () { window.googlefc.showRevocationMessage(); });
+  });
+</script>
+
+<style>
+  .consent-embed { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5em;
+    max-width: 100%; aspect-ratio: 16 / 9; padding: 1em; box-sizing: border-box; text-align: center; font-size: .8em;
+    background: #f5f5f5; border: 1px solid #ddd; }
+  .consent-embed p { margin: 0; max-width: 32em; }
+  .responsive-video-container .consent-embed { position: absolute; inset: 0; width: 100%; height: 100%; }
+</style>
+<script>
+  // Videos load only after a click: their iframes use data-consent-src instead of src, so nothing is requested
+  // from YouTube or Vimeo until the visitor agrees.
+  document.addEventListener("DOMContentLoaded", function () {
+    var names = { "www.youtube-nocookie.com": "YouTube (Google)", "player.vimeo.com": "Vimeo (USA)" };
+    document.querySelectorAll("iframe[data-consent-src]").forEach(function (frame) {
+      var url = new URL(frame.getAttribute("data-consent-src"), location.href);
+      var name = names[url.hostname] || url.hostname;
+      var box = document.createElement("div");
+      box.className = "consent-embed";
+      var width = frame.getAttribute("width");
+      if (width) box.style.width = /%$/.test(width) ? width : width + "px";
+      var note = document.createElement("p");
+      note.textContent = "This video is hosted by " + name + ". Loading it sends your IP address to " + name + ", which may store cookies.";
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn--primary";
+      button.textContent = "Load video";
+      button.addEventListener("click", function () {
+        frame.src = url.href;
+        frame.hidden = false;
+        box.remove();
+        // The theme runs FitVids on page load, when these iframes had no src yet; size them now.
+        // Videos from the theme's video include already sit in a responsive container.
+        if (!frame.closest(".responsive-video-container") && window.jQuery && jQuery.fn.fitVids) {
+          if (/%$/.test(frame.getAttribute("width") || "")) { frame.setAttribute("width", "560"); frame.setAttribute("height", "315"); }
+          jQuery(frame.parentNode).fitVids();
+        }
+      });
+      box.append(note, button);
+      frame.hidden = true;
+      frame.parentNode.insertBefore(box, frame);
+    });
   });
 </script>
 

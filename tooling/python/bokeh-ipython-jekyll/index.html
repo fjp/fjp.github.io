@@ -892,7 +892,8 @@ conda config <span class="nt">--append</span> channels conda-forge</code></pre><
       <footer>
         <!-- start custom footer snippets -->
 <div class="page__footer-copyright">
-  <a href="/privacy/">Privacy</a> &middot; <a href="#cookie-settings">Cookie settings</a>
+  <a href="/legal-notice/">Legal notice</a> &middot; <a href="/privacy/">Privacy</a> &middot; <a href="#cookie-settings">Cookie settings</a>
+  <br>As an Amazon Associate I earn from qualifying purchases.
 </div>
 <script>
   // "Cookie settings" reopens the AdSense consent message
@@ -902,6 +903,49 @@ conda config <span class="nt">--append</span> channels conda-forge</code></pre><
     window.googlefc = window.googlefc || {};
     window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
     window.googlefc.callbackQueue.push(function () { window.googlefc.showRevocationMessage(); });
+  });
+</script>
+
+<style>
+  .consent-embed { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5em;
+    max-width: 100%; aspect-ratio: 16 / 9; padding: 1em; box-sizing: border-box; text-align: center; font-size: .8em;
+    background: #f5f5f5; border: 1px solid #ddd; }
+  .consent-embed p { margin: 0; max-width: 32em; }
+  .responsive-video-container .consent-embed { position: absolute; inset: 0; width: 100%; height: 100%; }
+</style>
+<script>
+  // Videos load only after a click: their iframes use data-consent-src instead of src, so nothing is requested
+  // from YouTube or Vimeo until the visitor agrees.
+  document.addEventListener("DOMContentLoaded", function () {
+    var names = { "www.youtube-nocookie.com": "YouTube (Google)", "player.vimeo.com": "Vimeo (USA)" };
+    document.querySelectorAll("iframe[data-consent-src]").forEach(function (frame) {
+      var url = new URL(frame.getAttribute("data-consent-src"), location.href);
+      var name = names[url.hostname] || url.hostname;
+      var box = document.createElement("div");
+      box.className = "consent-embed";
+      var width = frame.getAttribute("width");
+      if (width) box.style.width = /%$/.test(width) ? width : width + "px";
+      var note = document.createElement("p");
+      note.textContent = "This video is hosted by " + name + ". Loading it sends your IP address to " + name + ", which may store cookies.";
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn--primary";
+      button.textContent = "Load video";
+      button.addEventListener("click", function () {
+        frame.src = url.href;
+        frame.hidden = false;
+        box.remove();
+        // The theme runs FitVids on page load, when these iframes had no src yet; size them now.
+        // Videos from the theme's video include already sit in a responsive container.
+        if (!frame.closest(".responsive-video-container") && window.jQuery && jQuery.fn.fitVids) {
+          if (/%$/.test(frame.getAttribute("width") || "")) { frame.setAttribute("width", "560"); frame.setAttribute("height", "315"); }
+          jQuery(frame.parentNode).fitVids();
+        }
+      });
+      box.append(note, button);
+      frame.hidden = true;
+      frame.parentNode.insertBefore(box, frame);
+    });
   });
 </script>
 
