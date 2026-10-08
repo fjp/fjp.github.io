@@ -28,7 +28,7 @@ See also the [legal notice]({{ '/legal-notice/' | relative_url }}).
 |:--------|:--------|:--------------|:------------|:---------|
 | GitHub Pages | Hosting the website | Always | Legitimate interest | GitHub, Inc., USA |
 | Google consent message | Asking for and storing your consent | First visit from the EEA, UK or Switzerland | Legal obligation, legitimate interest | Google Ireland Ltd. |
-| Google AdSense | Advertising | Always; what kind of ads depends on your consent | Consent; for limited ads see below | Google Ireland Ltd. |
+| Google AdSense | Advertising | Always; ads only with your consent | Consent | Google Ireland Ltd. |
 | Google Analytics | Visitor statistics | In the EEA, UK and Switzerland only with consent | Consent; legitimate interest elsewhere | Google Ireland Ltd. |
 | Amazon affiliate links | Commission on purchases | Only when you follow a link | Legitimate interest | Amazon Europe Core S.à r.l., Amazon.com, Inc. |
 | YouTube | Embedded videos | Only after you click "Load video" | Consent | Google Ireland Ltd. |
@@ -56,13 +56,13 @@ Withdrawal doesn't affect the lawfulness of processing before it.
 ## Google AdSense
 
 The website shows advertising from Google AdSense, provided by Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland.
-AdSense loads on every page and receives your IP address and information about the page you're viewing.
+The AdSense script loads on every page and receives your IP address and information about the page you're viewing.
 
 What Google does depends on your choice in the consent message:
 
 - **Consent to storage and personalised ads:** Google may store and read cookies and similar identifiers on your device and show ads based on your interests (Art. 6(1)(a) GDPR, § 165(3) TKG 2021).
 - **Consent to storage, but not to personalised ads:** Google shows non-personalised ads, chosen by the page content and your coarse location. They still use cookies for frequency capping, aggregated reporting and fraud prevention, which is why they also depend on your consent to storage.
-- **No consent to storage:** Google shows only limited ads, or no ads. Limited ads don't use cookies or other storage for advertising. According to Google, they may use cookies or local storage (for example the `__eoi` cookie) to detect invalid traffic and fraud. Your IP address is still processed to deliver the ad. Delivering limited ads is based on our legitimate interest in financing the website (Art. 6(1)(f) GDPR).
+- **No consent to storage:** no ads are shown. The AdSense script still loads, because it shows the consent message and checks your choice, so Google receives your IP address; it doesn't store anything on your device for advertising.
 
 Google acts as an independent controller for its advertising services.
 See [how Google uses information from sites that use its services](https://policies.google.com/technologies/partner-sites) and [Google's privacy policy](https://policies.google.com/privacy).
