@@ -1,0 +1,1080 @@
+
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js" dir="ltr">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+<!-- begin _includes/seo.html --><title>Velux Roof Windows with KNX Buttons, through Home Assistant and the KLF 200 - fjp.github.io</title>
+<meta name="description" content="KNX buttons and a KNX visualization drive Velux io-homecontrol windows and screens: Home Assistant as the bridge, with position status back to KNX, a rain rule, and what the end of the KLF 200 means.">
+
+
+  <meta name="author" content="Franz Pucher">
+  
+  <meta property="article:author" content="Franz Pucher">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="fjp.github.io">
+<meta property="og:title" content="Velux Roof Windows with KNX Buttons, through Home Assistant and the KLF 200">
+<meta property="og:url" content="https://fjp.at/pr-preview/pr-49/projects/home-automation/velux-klf200-knx/">
+
+
+  <meta property="og:description" content="KNX buttons and a KNX visualization drive Velux io-homecontrol windows and screens: Home Assistant as the bridge, with position status back to KNX, a rain rule, and what the end of the KLF 200 means.">
+
+
+
+
+
+  <meta name="twitter:site" content="@franzpucher">
+  <meta name="twitter:title" content="Velux Roof Windows with KNX Buttons, through Home Assistant and the KLF 200">
+  <meta name="twitter:description" content="KNX buttons and a KNX visualization drive Velux io-homecontrol windows and screens: Home Assistant as the bridge, with position status back to KNX, a rain rule, and what the end of the KLF 200 means.">
+  <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-49/projects/home-automation/velux-klf200-knx/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+
+
+  <meta property="article:published_time" content="2026-10-12T22:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fjp.at/pr-preview/pr-49/projects/home-automation/velux-klf200-knx/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/pr-preview/pr-49/feed.xml" type="application/atom+xml" rel="alternate" title="fjp.github.io Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pr-preview/pr-49/assets/css/main.css">
+<link rel="preload" href="/pr-preview/pr-49/assets/vendor/fontawesome-free-7.3.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/pr-preview/pr-49/assets/vendor/fontawesome-free-7.3.1/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!--
+  Consent comes from the European regulations message in AdSense (Privacy & messaging),
+  Google's certified consent tool, which the AdSense script below shows to visitors from the
+  EEA, UK and Switzerland. With consent mode turned on in AdSense, the message updates Google's
+  consent state itself, also for an Analytics tag that's already running. This script only
+  decides whether Analytics loads at all ("basic" consent mode):
+  - consent defaults: denied in the EEA, UK and Switzerland, granted elsewhere
+  - Analytics loads once per page, when the Analytics choice is granted or doesn't apply
+  - a later change of the choice (e.g. via "Cookie settings") reloads the page, so the new
+    page starts from the settled choice
+  - a denied choice deletes the _ga cookies
+  It replaces the theme's Analytics include (see analytics-providers/google-gtag.html) and only
+  loads Analytics in production builds. API: https://developers.google.com/funding-choices/fc-api-docs
+-->
+<script>
+  (function () {
+    var property = "";
+    window.dataLayer = window.dataLayer || [];
+    var gtag = window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+    var europe = ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE",
+      "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
+      "IS", "LI", "NO", "GB", "CH"];
+    var denied = { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" };
+    gtag("consent", "default", Object.assign({ region: europe }, denied));
+    gtag("consent", "default", { analytics_storage: "granted", ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted" });
+
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    // Values of googlefc.ConsentModePurposeStatusEnum
+    var GRANTED = 1, NOT_APPLICABLE = 3;
+
+    function analyticsAllowed() {
+      var values = typeof googlefc.getGoogleConsentModeValues === "function" ? googlefc.getGoogleConsentModeValues() : null;
+      var status = values ? values.analyticsStoragePurposeConsentStatus : 0;
+      return status === GRANTED || status === NOT_APPLICABLE;
+    }
+
+    // Also removes cookies that earlier versions of the site set without asking
+    function deleteAnalyticsCookies() {
+      var site = location.hostname.split(".").slice(-2).join(".");
+      document.cookie.split(";").forEach(function (cookie) {
+        var name = cookie.split("=")[0].trim();
+        if (name !== "_ga" && name.indexOf("_ga_") !== 0) return;
+        ["", "; domain=" + location.hostname, "; domain=." + site].forEach(function (domain) {
+          document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + domain;
+        });
+      });
+    }
+
+    function startAnalytics() {
+      if (!property) return;
+      gtag("js", new Date());
+      gtag("config", property, { anonymize_ip: false });
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + property;
+      document.head.appendChild(script);
+    }
+
+    // Once per page, when Google's message knows the answer: from an earlier visit, after the
+    // visitor's first choice, or because the message doesn't apply. With an ad blocker the
+    // message never loads, and Analytics stays off.
+    var decided = false;
+    function decide() {
+      if (decided) return;
+      decided = true;
+      if (analyticsAllowed()) startAnalytics();
+      else deleteAnalyticsCookies();
+    }
+
+    // Later changes only reach a TCF listener; the readiness callbacks run once. Incomplete
+    // answers and "message shown" events are skipped. The first completed answer on a page is
+    // handled by decide(); a later one switches Analytics off and reloads, because Google's
+    // value reader still returns the old choice at that moment.
+    var firstAnswer = true;
+    function onTcData(data, success) {
+      if (!success || !data) return;
+      if (data.eventStatus === "tcloaded") { firstAnswer = false; return; }
+      if (data.eventStatus !== "useractioncomplete") return;
+      if (firstAnswer) { firstAnswer = false; return; }
+      if (property) window["ga-disable-" + property] = true;
+      location.reload();
+    }
+    var listening = false;
+    function listen() {
+      if (listening || typeof window.__tcfapi !== "function") return;
+      listening = true;
+      window.__tcfapi("addEventListener", 2, onTcData);
+    }
+
+    window.googlefc.callbackQueue.push({ CONSENT_API_READY: listen });
+    window.googlefc.callbackQueue.push({ CONSENT_MODE_DATA_READY: function () { listen(); decide(); } });
+  })();
+</script>
+
+<!-- AdSense (Auto ads are configured in AdSense), which also brings the consent message -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2214309606626131"
+     crossorigin="anonymous"></script>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+<!-- KaTeX and pseudocode.js are served from assets/vendor, so visitors don't contact a CDN.
+     The pseudocode include renders while the page loads and needs KaTeX at that point, so
+     pages with pseudocode load KaTeX right away; all other pages defer it. -->
+<link rel="stylesheet" href="/pr-preview/pr-49/assets/vendor/katex-0.19.0/katex.min.css">
+<script defer src="/pr-preview/pr-49/assets/vendor/katex-0.19.0/katex.min.js"></script>
+<script defer src="/pr-preview/pr-49/assets/vendor/katex-0.19.0/contrib/auto-render.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError : false
+        });
+    });
+</script>
+
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+        
+        <a class="site-title" href="/pr-preview/pr-49/">
+          fjp.github.io
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/"
+                
+                
+              >Home</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/blog/"
+                
+                
+              >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/design-patterns/"
+                
+                
+              >Design Patterns</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/cpp/"
+                
+                
+              >C++</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/projects/fpv/"
+                
+                
+              >FPV</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/about/"
+                
+                
+              >About</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/privacy/"
+                
+                
+              >Privacy</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/sitemap/"
+                
+                
+              >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-49/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-49/projects/" itemprop="item"><span itemprop="name">Projects</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-49/projects/home-automation/" itemprop="item"><span itemprop="name">Home automation</span></a>
+            <meta itemprop="position" content="3" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Velux Roof Windows with KNX Buttons, through Home Assistant and the KLF 200</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/pr-preview/pr-49/projects/home-automation/"><span class="nav__sub-title">Home Automation</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-49/projects/home-automation/voltus">Voltus - Bauprogramm</a></li>
+            
+              <li><a href="/pr-preview/pr-49/projects/home-automation/knx-button-selection">KNX Button Selection</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">KNX + Home Assistant</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-49/projects/home-automation/ets-to-home-assistant">From ETS to Home Assistant</a></li>
+            
+              <li><a href="/pr-preview/pr-49/projects/home-automation/velux-klf200-knx">Velux Windows with KNX Buttons</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">Older projects</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-49/projects/home-automation/setup">Raspberry Pi 4 Setup (2022)</a></li>
+            
+              <li><a href="/pr-preview/pr-49/projects/home-automation/esp8266-dht">Temperature and Humidity (2019)</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Velux Roof Windows with KNX Buttons, through Home Assistant and the KLF 200">
+    <meta itemprop="description" content="KNX buttons and a KNX visualization drive Velux io-homecontrol windows and screens: Home Assistant as the bridge, with position status back to KNX, a rain rule, and what the end of the KLF 200 means.">
+    <meta itemprop="datePublished" content="2026-10-12T22:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://fjp.at/pr-preview/pr-49/projects/home-automation/velux-klf200-knx/" itemprop="url">Velux Roof Windows with KNX Buttons, through Home Assistant and the KLF 200
+</a>
+          </h1>
+          
+
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc" aria-label="Table of contents">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#before-you-buy-the-klf-200-is-discontinued">Before you buy: the KLF 200 is discontinued</a></li><li><a href="#how-the-bridge-works">How the bridge works</a></li><li><a href="#the-example">The example</a></li><li><a href="#airing-with-guards">Airing with guards</a></li><li><a href="#on-the-phone">On the phone</a></li><li><a href="#what-i-would-check-first">What I would check first</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>Our roof windows and their outside screens are Velux INTEGRA products. They speak <strong>io-homecontrol</strong>, a radio protocol, not KNX.
+The rest of the house is KNX, and the wall buttons and the visualization were planned to move the Velux windows like any other blind.
+Something has to translate between the two.</p>
+
+<p>In our house that is <a href="https://www.home-assistant.io/">Home Assistant</a>: it receives the KNX telegrams, moves the Velux products through a <strong>Velux KLF 200</strong> gateway (bought in 2023), and sends their positions back to KNX.
+This page shows that bridge with a small, made-up example you can adapt, and what the end of the KLF 200 means for new installations.</p>
+
+<h2 id="before-you-buy-the-klf-200-is-discontinued">Before you buy: the KLF 200 is discontinued</h2>
+
+<p>Velux has replaced the KLF 200 with the <strong>KLF 150</strong>. That is not a drop-in replacement for Home Assistant:</p>
+
+<ul>
+  <li>The Home Assistant <a href="https://www.home-assistant.io/integrations/velux/">Velux integration</a> talks to the KLF 200 over the local network. Its documentation says the KLF 150 is <strong>not</strong> supported, “even though Velux markets it as the replacement for the now-discontinued KLF 200”, because the KLF 150 has no local API.</li>
+  <li>Velux describes the <a href="https://www.velux.de/fachkunden/produkt-informationen/smart-home/elektrozubehoer/klf-150">KLF 150</a> as an interface for switches and sensors with <strong>potential-free contacts</strong>: it can control 5 products or 5 groups. As far as I can tell from that description, KNX binary outputs could drive it like a set of buttons, but Home Assistant would then know nothing about positions.
+So: if you already have a KLF 200, everything below works, and you may still find used units.</li>
+</ul>
+
+<p><strong>For a new installation, the route that works with Home Assistant is the VELUX ACTIVE gateway (KIG 300).</strong>
+Home Assistant’s Velux documentation says to integrate it with the <a href="https://www.home-assistant.io/integrations/homekit_controller/">HomeKit Device</a> integration, which talks to the gateway locally, without a cloud.
+Its windows and screens then appear as cover entities, and the bridge below should work the same way with those entities in place of the KLF 200’s.
+I haven’t run that combination myself.</p>
+
+<p>Two other routes, for completeness:</p>
+
+<ul>
+  <li><strong>Somfy TaHoma:</strong> Somfy’s <a href="https://service.somfy.com/downloads/sk_v5/compatibilitylist_tahoma_switch_-_rail_din_2025_v1.pdf">compatibility list 2025 v1</a> (page 12) lists Velux io roof windows, roller shutters (SSL/SML io) and screens (MML) for the TaHoma switch and TaHoma Rail-DIN S. Home Assistant’s <a href="https://www.home-assistant.io/integrations/overkiz/">Overkiz</a> integration can talk to the TaHoma switch locally. Check your exact products against the list.</li>
+  <li><strong>Directly from KNX:</strong> <a href="https://github.com/OpenKNX/OFM-IOHomeControl">OpenKNX OFM-IOHomeControl</a> is community firmware for an ESP32 with an 868 MHz radio that speaks io-homecontrol on one side and KNX on the other, without a manufacturer gateway. It is in active development, and the project says most device types are still untested.</li>
+</ul>
+
+<h2 id="how-the-bridge-works">How the bridge works</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>KNX button or visualization
+  → group address (move, stop, position)
+  → Home Assistant automation (knx.telegram trigger)
+  → one script per Velux product
+  → Velux cover entity → KLF 200 → io-homecontrol → window or screen
+
+Velux position changes
+  → Home Assistant automation (state trigger)
+  → knx.send to the position status address → button LEDs and visualization
+</code></pre></div></div>
+
+<p>Three design choices made it reliable:</p>
+
+<ol>
+  <li><strong>One script per Velux product, in <code class="language-plaintext highlighter-rouge">restart</code> mode.</strong> A new command for the same window replaces the one still running; other windows are not affected.
+The dispatching automation only starts the script and doesn’t wait, so a slow gateway never holds up the next telegram.</li>
+  <li><strong>Positions are converted once, in both directions.</strong> A KNX blind position (DPT 5.001) counts 0 % as fully up or open; a Home Assistant cover counts 100 as fully open.
+Commands from KNX become <code class="language-plaintext highlighter-rouge">100 − value</code>, and the status back to KNX does the same.</li>
+  <li><strong>No position, no status.</strong> When the gateway restarts or an entity is unavailable, the cover has no position.
+An early version of my bridge turned that missing value into 0 with a default, and then into 100 % for KNX: the visualization would show a closed window, whatever its real position. Only a real position from 0 to 100 goes to the bus.</li>
+</ol>
+
+<h2 id="the-example">The example</h2>
+
+<p>The example drives one roof window and its screen. All names and addresses are made up:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Function</th>
+      <th>Window</th>
+      <th>Screen</th>
+      <th>Data point type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Move (up/down)</td>
+      <td>24/0/1</td>
+      <td>24/0/2</td>
+      <td>1.008</td>
+    </tr>
+    <tr>
+      <td>Stop</td>
+      <td>24/1/1</td>
+      <td>24/1/2</td>
+      <td>1.007</td>
+    </tr>
+    <tr>
+      <td>Position</td>
+      <td>24/2/1</td>
+      <td>24/2/2</td>
+      <td>5.001</td>
+    </tr>
+    <tr>
+      <td>Position status</td>
+      <td>24/3/1</td>
+      <td>24/3/2</td>
+      <td>5.001</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="language-plaintext highlighter-rouge">cover.roof_window</code> and <code class="language-plaintext highlighter-rouge">cover.roof_window_screen</code> are the entities of the Velux integration, and <code class="language-plaintext highlighter-rouge">binary_sensor.rain</code> is a rain sensor, for example from a KNX weather station.
+The <code class="language-plaintext highlighter-rouge">type</code> on each trigger tells Home Assistant how to decode the value, so it works without importing the ETS project.</p>
+
+<p>Put it into a <a href="https://www.home-assistant.io/docs/configuration/packages/">package</a>, for example <code class="language-plaintext highlighter-rouge">packages/velux_knx.yaml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Velux window and screen, driven from KNX through Home Assistant (made-up addresses).</span>
+<span class="na">script</span><span class="pi">:</span>
+  <span class="na">velux_window</span><span class="pi">:</span>
+    <span class="na">alias</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Velux</span><span class="nv"> </span><span class="s">window:</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">command</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">time"</span>
+    <span class="na">mode</span><span class="pi">:</span> <span class="s">restart</span>
+    <span class="na">sequence</span><span class="pi">:</span> <span class="nl">&amp;velux_command</span>
+      <span class="pi">-</span> <span class="na">choose</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">conditions</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">command</span><span class="nv"> </span><span class="s">==</span><span class="nv"> </span><span class="s">'stop'</span><span class="nv"> </span><span class="s">}}"</span>
+            <span class="na">sequence</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="na">action</span><span class="pi">:</span> <span class="s">cover.stop_cover</span>
+                <span class="na">target</span><span class="pi">:</span> <span class="pi">{</span> <span class="nv">entity_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">cover</span><span class="nv"> </span><span class="s">}}"</span> <span class="pi">}</span>
+          <span class="pi">-</span> <span class="na">conditions</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">command</span><span class="nv"> </span><span class="s">==</span><span class="nv"> </span><span class="s">'open'</span><span class="nv"> </span><span class="s">}}"</span>
+            <span class="na">sequence</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="na">action</span><span class="pi">:</span> <span class="s">cover.open_cover</span>
+                <span class="na">target</span><span class="pi">:</span> <span class="pi">{</span> <span class="nv">entity_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">cover</span><span class="nv"> </span><span class="s">}}"</span> <span class="pi">}</span>
+          <span class="pi">-</span> <span class="na">conditions</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">command</span><span class="nv"> </span><span class="s">==</span><span class="nv"> </span><span class="s">'close'</span><span class="nv"> </span><span class="s">}}"</span>
+            <span class="na">sequence</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="na">action</span><span class="pi">:</span> <span class="s">cover.close_cover</span>
+                <span class="na">target</span><span class="pi">:</span> <span class="pi">{</span> <span class="nv">entity_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">cover</span><span class="nv"> </span><span class="s">}}"</span> <span class="pi">}</span>
+          <span class="pi">-</span> <span class="na">conditions</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">command</span><span class="nv"> </span><span class="s">==</span><span class="nv"> </span><span class="s">'position'</span><span class="nv"> </span><span class="s">}}"</span>
+            <span class="na">sequence</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="na">action</span><span class="pi">:</span> <span class="s">cover.set_cover_position</span>
+                <span class="na">target</span><span class="pi">:</span> <span class="pi">{</span> <span class="nv">entity_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">cover</span><span class="nv"> </span><span class="s">}}"</span> <span class="pi">}</span>
+                <span class="na">data</span><span class="pi">:</span> <span class="pi">{</span> <span class="nv">position</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">position</span><span class="nv"> </span><span class="s">}}"</span> <span class="pi">}</span>
+  <span class="na">velux_screen</span><span class="pi">:</span>
+    <span class="na">alias</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Velux</span><span class="nv"> </span><span class="s">screen:</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">command</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">time"</span>
+    <span class="na">mode</span><span class="pi">:</span> <span class="s">restart</span>
+    <span class="na">sequence</span><span class="pi">:</span> <span class="nv">*velux_command</span>
+
+<span class="na">automation</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">velux_from_knx</span>
+    <span class="na">alias</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Velux:</span><span class="nv"> </span><span class="s">commands</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">KNX"</span>
+    <span class="na">mode</span><span class="pi">:</span> <span class="s">queued</span>
+    <span class="na">max</span><span class="pi">:</span> <span class="m">20</span>
+    <span class="na">triggers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">trigger</span><span class="pi">:</span> <span class="s">knx.telegram</span>
+        <span class="na">id</span><span class="pi">:</span> <span class="s">move</span>
+        <span class="na">destination</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">24/0/1"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">24/0/2"</span><span class="pi">]</span>
+        <span class="na">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1.008"</span>
+        <span class="na">group_value_read</span><span class="pi">:</span> <span class="no">false</span>
+        <span class="na">group_value_response</span><span class="pi">:</span> <span class="no">false</span>
+        <span class="na">outgoing</span><span class="pi">:</span> <span class="no">false</span>
+      <span class="pi">-</span> <span class="na">trigger</span><span class="pi">:</span> <span class="s">knx.telegram</span>
+        <span class="na">id</span><span class="pi">:</span> <span class="s">stop</span>
+        <span class="na">destination</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">24/1/1"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">24/1/2"</span><span class="pi">]</span>
+        <span class="na">group_value_read</span><span class="pi">:</span> <span class="no">false</span>
+        <span class="na">group_value_response</span><span class="pi">:</span> <span class="no">false</span>
+        <span class="na">outgoing</span><span class="pi">:</span> <span class="no">false</span>
+      <span class="pi">-</span> <span class="na">trigger</span><span class="pi">:</span> <span class="s">knx.telegram</span>
+        <span class="na">id</span><span class="pi">:</span> <span class="s">position</span>
+        <span class="na">destination</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">24/2/1"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">24/2/2"</span><span class="pi">]</span>
+        <span class="na">type</span><span class="pi">:</span> <span class="s">percent</span>
+        <span class="na">group_value_read</span><span class="pi">:</span> <span class="no">false</span>
+        <span class="na">group_value_response</span><span class="pi">:</span> <span class="no">false</span>
+        <span class="na">outgoing</span><span class="pi">:</span> <span class="no">false</span>
+    <span class="na">variables</span><span class="pi">:</span>
+      <span class="c1"># The last part of the address is the product.</span>
+      <span class="na">products</span><span class="pi">:</span>
+        <span class="s2">"</span><span class="s">1"</span><span class="err">:</span> <span class="pi">{</span> <span class="nv">cover</span><span class="pi">:</span> <span class="nv">cover.roof_window</span><span class="pi">,</span> <span class="nv">script</span><span class="pi">:</span> <span class="nv">script.velux_window</span> <span class="pi">}</span>
+        <span class="s2">"</span><span class="s">2"</span><span class="err">:</span> <span class="pi">{</span> <span class="nv">cover</span><span class="pi">:</span> <span class="nv">cover.roof_window_screen</span><span class="pi">,</span> <span class="nv">script</span><span class="pi">:</span> <span class="nv">script.velux_screen</span> <span class="pi">}</span>
+      <span class="na">product</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">products[trigger.destination.split('/')[2]]</span><span class="nv"> </span><span class="s">}}"</span>
+      <span class="na">command</span><span class="pi">:</span> <span class="pi">&gt;-</span>
+        <span class="s">{% if trigger.id == 'move' %}{{ 'open' if trigger.value == 'up' else 'close' }}{% else %}{{ trigger.id }}{% endif %}</span>
+    <span class="na">actions</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">action</span><span class="pi">:</span> <span class="s">script.turn_on</span>
+        <span class="na">target</span><span class="pi">:</span> <span class="pi">{</span> <span class="nv">entity_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">product.script</span><span class="nv"> </span><span class="s">}}"</span> <span class="pi">}</span>
+        <span class="na">data</span><span class="pi">:</span>
+          <span class="na">variables</span><span class="pi">:</span>
+            <span class="na">cover</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">product.cover</span><span class="nv"> </span><span class="s">}}"</span>
+            <span class="na">command</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">command</span><span class="nv"> </span><span class="s">}}"</span>
+            <span class="c1"># KNX counts 0 % as open, Home Assistant 100.</span>
+            <span class="na">position</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">100</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">trigger.value</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">trigger.id</span><span class="nv"> </span><span class="s">==</span><span class="nv"> </span><span class="s">'position'</span><span class="nv"> </span><span class="s">else</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">}}"</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">velux_to_knx</span>
+    <span class="na">alias</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Velux:</span><span class="nv"> </span><span class="s">position</span><span class="nv"> </span><span class="s">status</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">KNX"</span>
+    <span class="na">mode</span><span class="pi">:</span> <span class="s">queued</span>
+    <span class="na">max</span><span class="pi">:</span> <span class="m">20</span>
+    <span class="na">triggers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">trigger</span><span class="pi">:</span> <span class="s">state</span>
+        <span class="na">entity_id</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">cover.roof_window</span><span class="pi">,</span> <span class="nv">cover.roof_window_screen</span><span class="pi">]</span>
+        <span class="na">attribute</span><span class="pi">:</span> <span class="s">current_position</span>
+    <span class="na">variables</span><span class="pi">:</span>
+      <span class="na">status</span><span class="pi">:</span> <span class="pi">{</span> <span class="nv">cover.roof_window</span><span class="pi">:</span> <span class="s2">"</span><span class="s">24/3/1"</span><span class="pi">,</span> <span class="nv">cover.roof_window_screen</span><span class="pi">:</span> <span class="s2">"</span><span class="s">24/3/2"</span> <span class="pi">}</span>
+      <span class="na">position</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">state_attr(trigger.entity_id,</span><span class="nv"> </span><span class="s">'current_position')</span><span class="nv"> </span><span class="s">}}"</span>
+    <span class="na">conditions</span><span class="pi">:</span>
+      <span class="c1"># Only a real position. Without one (gateway restart, entity unavailable) nothing is sent.</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">has_value(trigger.entity_id)</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">position</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">number</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">&lt;=</span><span class="nv"> </span><span class="s">position</span><span class="nv"> </span><span class="s">&lt;=</span><span class="nv"> </span><span class="s">100</span><span class="nv"> </span><span class="s">}}"</span>
+    <span class="na">actions</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">action</span><span class="pi">:</span> <span class="s">knx.send</span>
+        <span class="na">data</span><span class="pi">:</span>
+          <span class="na">address</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">status[trigger.entity_id]</span><span class="nv"> </span><span class="s">}}"</span>
+          <span class="na">payload</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">100</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">position</span><span class="nv"> </span><span class="s">}}"</span>
+          <span class="na">type</span><span class="pi">:</span> <span class="s">percent</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">velux_screen_up_in_rain</span>
+    <span class="na">alias</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Velux:</span><span class="nv"> </span><span class="s">screen</span><span class="nv"> </span><span class="s">up</span><span class="nv"> </span><span class="s">when</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">starts</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">rain"</span>
+    <span class="na">triggers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">trigger</span><span class="pi">:</span> <span class="s">state</span>
+        <span class="na">entity_id</span><span class="pi">:</span> <span class="s">binary_sensor.rain</span>
+        <span class="na">from</span><span class="pi">:</span> <span class="s2">"</span><span class="s">off"</span>
+        <span class="na">to</span><span class="pi">:</span> <span class="s2">"</span><span class="s">on"</span>
+    <span class="na">conditions</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">has_value('cover.roof_window_screen')</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">is_state_attr('cover.roof_window_screen',</span><span class="nv"> </span><span class="s">'current_position',</span><span class="nv"> </span><span class="s">100)</span><span class="nv"> </span><span class="s">}}"</span>
+    <span class="na">actions</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">action</span><span class="pi">:</span> <span class="s">cover.open_cover</span>
+        <span class="na">target</span><span class="pi">:</span> <span class="pi">{</span> <span class="nv">entity_id</span><span class="pi">:</span> <span class="nv">cover.roof_window_screen</span> <span class="pi">}</span>
+</code></pre></div></div>
+
+<p>What each part does:</p>
+
+<ul>
+  <li><strong>The scripts</strong> run the actual Velux command. The YAML anchor <code class="language-plaintext highlighter-rouge">&amp;velux_command</code> gives both scripts the same steps without copying them; each still has its own <code class="language-plaintext highlighter-rouge">restart</code> queue.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">velux_from_knx</code></strong> listens only to writes on the listed addresses, and not to Home Assistant’s own telegrams (<code class="language-plaintext highlighter-rouge">outgoing: false</code>). It works out the product and the command, and starts that product’s script.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">velux_to_knx</code></strong> sends every real position change back, as KNX percent. Buttons with status LEDs and the visualization show the actual position, also when someone used the Velux remote.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">velux_screen_up_in_rain</code></strong> raises the screen when it starts to rain, unless it is already up. In our house the screens go up in rain; adapt this to your own rule.</li>
+</ul>
+
+<p>To test it, press a KNX button or write a value from the ETS group monitor, and watch the automation’s trace in Home Assistant. A <code class="language-plaintext highlighter-rouge">knx.send</code> from Home Assistant itself is ignored on purpose (<code class="language-plaintext highlighter-rouge">outgoing: false</code>).</p>
+
+<h2 id="airing-with-guards">Airing with guards</h2>
+
+<p>The same bridge carries a second feature: “airing” from a KNX button or the phone. A window opens, a timer runs, and the window closes again afterwards. Two guards proved necessary:</p>
+
+<ul>
+  <li><strong>Not in rain.</strong> Velux windows with a rain sensor only open a gap while it rains, and the Home Assistant integration reports that sensor: it reads the window’s opening limitation every 5 minutes, so a limitation set by other means also reads as rain. The rain sensor entities are disabled by default; enable them in the entity settings. Airing doesn’t start while either the weather station or a window reports rain.</li>
+  <li><strong>No overlapping runs.</strong> A single window, its group and “all windows” can each start an airing. A new one only starts when none of its windows is already in a running one, so one timer never closes a window that another just opened.</li>
+</ul>
+
+<p>The status LED on the KNX button follows the timer, so you can see from the wall that airing is running.</p>
+
+<h2 id="on-the-phone">On the phone</h2>
+
+<p>The phone dashboard shows the screens and the airing on the start page, and each roof window with its screen in its room.
+The screenshots are from an invented demo house, built with the same dashboard script as ours (<a href="/pr-preview/pr-49/projects/home-automation/ets-to-home-assistant/#rooms-and-the-phone-dashboard">From ETS to Home Assistant</a>):</p>
+
+<figure class="half">
+  <a href="/pr-preview/pr-49/assets/collections/home-automation/velux-klf200-knx/dashboard-screens-airing.png"><img src="/pr-preview/pr-49/assets/collections/home-automation/velux-klf200-knx/dashboard-screens-airing.png" alt="Phone screenshot: the section 'Beschattung' with the averaged screens per floor, switches for the automatic shading and for lowering at dusk, and a tile for all Velux screens; below, the section 'Lüften' with one tile per roof window, one of them airing with 14:52 minutes left." /></a>
+  <a href="/pr-preview/pr-49/assets/collections/home-automation/velux-klf200-knx/dashboard-roof-windows.png"><img src="/pr-preview/pr-49/assets/collections/home-automation/velux-klf200-knx/dashboard-roof-windows.png" alt="Phone screenshot of the upper floor: in each room a light, the roof window with up, stop, down and a position slider, and the roof window's screen with its own buttons and slider." /></a>
+  <figcaption>Screens and airing on the start page, and the roof windows in their rooms (demo house, German like ours).</figcaption>
+</figure>
+
+<h2 id="what-i-would-check-first">What I would check first</h2>
+
+<ul>
+  <li><strong>The gateway’s firmware and connection:</strong> the Home Assistant integration needs KLF 200 firmware newer than 2.0.0.0. The setup has to be finished within five minutes of restarting the gateway, while its Wi-Fi access point is still visible, with Home Assistant on your regular network (see the <a href="https://www.home-assistant.io/integrations/velux/">integration docs</a>).</li>
+  <li><strong>The direction of positions:</strong> send 25 % from KNX to a screen and check that it moves a quarter of the way down (Home Assistant shows 75), not three quarters.</li>
+  <li><strong>Missing positions:</strong> restart the gateway and watch the status addresses in the group monitor. Nothing should be sent until the positions are back.</li>
+  <li><strong>Who answers reads on the status addresses:</strong> if a visualization server also answers them, the buttons can show an old position. See <a href="/pr-preview/pr-49/projects/home-automation/ets-to-home-assistant/#pitfall-which-device-answers-the-read">which device answers the read</a>.</li>
+</ul>
+
+<p>The way the KNX project itself becomes Home Assistant configuration is on <a href="/pr-preview/pr-49/projects/home-automation/ets-to-home-assistant/">From ETS to Home Assistant</a>.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-49/tags/#automation" class="page__taxonomy-item p-category" rel="tag">automation</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#awning" class="page__taxonomy-item p-category" rel="tag">awning</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#bridge" class="page__taxonomy-item p-category" rel="tag">bridge</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#home-assistant" class="page__taxonomy-item p-category" rel="tag">home assistant</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#home-automation" class="page__taxonomy-item p-category" rel="tag">home automation</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#homekit" class="page__taxonomy-item p-category" rel="tag">homekit</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#io-homecontrol" class="page__taxonomy-item p-category" rel="tag">io-homecontrol</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#kig-300" class="page__taxonomy-item p-category" rel="tag">kig 300</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#klf-150" class="page__taxonomy-item p-category" rel="tag">klf 150</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#klf-200" class="page__taxonomy-item p-category" rel="tag">klf 200</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#knx" class="page__taxonomy-item p-category" rel="tag">knx</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#rain" class="page__taxonomy-item p-category" rel="tag">rain</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#roof-window" class="page__taxonomy-item p-category" rel="tag">roof window</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#screen" class="page__taxonomy-item p-category" rel="tag">screen</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#velux" class="page__taxonomy-item p-category" rel="tag">velux</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#velux-active" class="page__taxonomy-item p-category" rel="tag">velux active</a>
+    
+    </span>
+  </p>
+
+
+  
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-49/categories/#home-assistant" class="page__taxonomy-item p-category" rel="tag">home assistant</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/categories/#home-automation" class="page__taxonomy-item p-category" rel="tag">home automation</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/categories/#knx" class="page__taxonomy-item p-category" rel="tag">knx</a>
+    
+    </span>
+  </p>
+
+
+  
+
+
+        
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2026-10-12T22:00:00+02:00">October 12, 2026</time></p>
+
+
+      </footer>
+
+      
+
+      
+
+  <nav class="pagination" aria-label="Post pagination">
+    
+      <a href="/pr-preview/pr-49/projects/home-automation/ets-to-home-assistant/" class="pagination--pager" title="From ETS to Home Assistant: Generating the KNX Configuration">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div class="page__footer-copyright">
+  <a href="/pr-preview/pr-49/legal-notice/">Legal notice</a> &middot; <a href="/pr-preview/pr-49/privacy/">Privacy</a> &middot; <a href="#cookie-settings">Cookie settings</a>
+  <br>As an Amazon Associate I earn from qualifying purchases.
+</div>
+<script>
+  // "Cookie settings" reopens the AdSense consent message, or explains why it can't
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest('a[href="#cookie-settings"]')) return;
+    event.preventDefault();
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    var timer = null, opened = false;
+    window.googlefc.callbackQueue.push(function () {
+      // the tool is there (possibly late): drop the pending or shown note, then open the settings
+      opened = true;
+      clearTimeout(timer);
+      var shown = document.getElementById("cookie-settings-note");
+      if (shown) shown.remove();
+      window.googlefc.showRevocationMessage();
+    });
+    // If Google's consent tool is blocked (ad blockers usually block it), the queue never runs: say so
+    timer = setTimeout(function () {
+      if (opened || document.getElementById("cookie-settings-note")) return;
+      var note = document.createElement("div");
+      note.id = "cookie-settings-note";
+      note.setAttribute("role", "status");
+      note.textContent = "Google's consent tool isn't available in this browser right now, probably because of an ad blocker or privacy extension, so the cookie settings can't be opened here. Any earlier choice stays as it was, and Google Analytics doesn't start on this page while the tool is blocked.";
+      note.style.cssText = "position:fixed;left:50%;bottom:1rem;transform:translateX(-50%);z-index:1000;box-sizing:border-box;" +
+        "width:calc(100vw - 2rem);max-width:32rem;padding:.8em 1em;background:#333;color:#fff;border-radius:4px;" +
+        "font-size:.8rem;line-height:1.4;box-shadow:0 2px 8px rgba(0,0,0,.3)";
+      document.body.appendChild(note);
+      setTimeout(function () { note.remove(); }, 12000);
+    }, 2500);
+  });
+</script>
+
+<style>
+  .consent-embed { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5em;
+    max-width: 100%; aspect-ratio: 16 / 9; padding: 1em; box-sizing: border-box; text-align: center; font-size: .8em;
+    background: #f5f5f5; border: 1px solid #ddd; }
+  .consent-embed p { margin: 0; max-width: 32em; }
+  .responsive-video-container .consent-embed { position: absolute; inset: 0; width: 100%; height: 100%; }
+</style>
+<script>
+  // Videos load only after a click: their iframes use data-consent-src instead of src, so nothing is requested
+  // from YouTube or Vimeo until the visitor agrees.
+  document.addEventListener("DOMContentLoaded", function () {
+    var names = { "www.youtube-nocookie.com": "YouTube (Google)", "player.vimeo.com": "Vimeo (USA)" };
+    document.querySelectorAll("iframe[data-consent-src]").forEach(function (frame) {
+      var url = new URL(frame.getAttribute("data-consent-src"), location.href);
+      var name = names[url.hostname] || url.hostname;
+      var box = document.createElement("div");
+      box.className = "consent-embed";
+      var width = frame.getAttribute("width");
+      if (width) box.style.width = /%$/.test(width) ? width : width + "px";
+      var note = document.createElement("p");
+      note.textContent = "This video is hosted by " + name + ". Loading it sends your IP address to " + name + ", which may store cookies.";
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn--primary";
+      button.textContent = "Load video";
+      button.addEventListener("click", function () {
+        frame.src = url.href;
+        frame.hidden = false;
+        box.remove();
+        // The theme runs FitVids on page load, when these iframes had no src yet; size them now.
+        // Videos from the theme's video include already sit in a responsive container.
+        if (!frame.closest(".responsive-video-container") && window.jQuery && jQuery.fn.fitVids) {
+          if (/%$/.test(frame.getAttribute("width") || "")) { frame.setAttribute("width", "560"); frame.setAttribute("height", "315"); }
+          jQuery(frame.parentNode).fitVids();
+        }
+      });
+      box.append(note, button);
+      frame.hidden = true;
+      frame.parentNode.insertBefore(box, frame);
+    });
+  });
+</script>
+
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/fjp" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/pr-preview/pr-49/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+
+  <script src="/pr-preview/pr-49/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/pr-preview/pr-49/assets/js/lunr/lunr.min.js"></script>
+<script src="/pr-preview/pr-49/assets/js/lunr/lunr-store.js"></script>
+<script src="/pr-preview/pr-49/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+    
+  <!--
+    Overrides the theme's Disqus include. Disqus loads only when a visitor clicks the button
+    above the comment thread, which says that Disqus sets cookies and shows ads. The click is the
+    consent for Disqus; the consent message isn't asked.
+  -->
+  <script>
+    (function () {
+      var thread = document.getElementById("disqus_thread");
+      if (!thread) return;
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn--primary";
+      button.textContent = "Show comments";
+      var note = document.createElement("p");
+      note.className = "small";
+      note.innerHTML = 'Comments are hosted by Disqus. Clicking loads Disqus, which sets cookies and shows ads. See the <a href="/pr-preview/pr-49/privacy/">privacy policy</a>.';
+      thread.parentNode.insertBefore(button, thread);
+      thread.parentNode.insertBefore(note, thread);
+      button.addEventListener("click", function () {
+        button.remove();
+        note.remove();
+        window.disqus_config = function () {
+          this.page.url = "https://fjp.at/pr-preview/pr-49/projects/home-automation/velux-klf200-knx/";
+          this.page.identifier = "/projects/home-automation/velux-klf200-knx";
+        };
+        var script = document.createElement("script");
+        script.src = "https://fjp-github-io.disqus.com/embed.js";
+        script.setAttribute("data-timestamp", +new Date());
+        (document.head || document.body).appendChild(script);
+      });
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

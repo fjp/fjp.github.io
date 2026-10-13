@@ -1,0 +1,1281 @@
+
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.28.1 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js" dir="ltr">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+<!-- begin _includes/seo.html --><title>From ETS to Home Assistant: Generating the KNX Configuration - fjp.github.io</title>
+<meta name="description" content="How a KNX house with hundreds of group addresses gets into Home Assistant: the ETS project, generated YAML packages per room, areas and a phone dashboard, and the read-flag pitfall that makes status values wrong.">
+
+
+  <meta name="author" content="Franz Pucher">
+  
+  <meta property="article:author" content="Franz Pucher">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="fjp.github.io">
+<meta property="og:title" content="From ETS to Home Assistant: Generating the KNX Configuration">
+<meta property="og:url" content="https://fjp.at/pr-preview/pr-49/projects/home-automation/ets-to-home-assistant/">
+
+
+  <meta property="og:description" content="How a KNX house with hundreds of group addresses gets into Home Assistant: the ETS project, generated YAML packages per room, areas and a phone dashboard, and the read-flag pitfall that makes status values wrong.">
+
+
+
+
+
+  <meta name="twitter:site" content="@franzpucher">
+  <meta name="twitter:title" content="From ETS to Home Assistant: Generating the KNX Configuration">
+  <meta name="twitter:description" content="How a KNX house with hundreds of group addresses gets into Home Assistant: the ETS project, generated YAML packages per room, areas and a phone dashboard, and the read-flag pitfall that makes status values wrong.">
+  <meta name="twitter:url" content="https://fjp.at/pr-preview/pr-49/projects/home-automation/ets-to-home-assistant/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+
+
+  <meta property="article:published_time" content="2026-10-12T21:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fjp.at/pr-preview/pr-49/projects/home-automation/ets-to-home-assistant/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/pr-preview/pr-49/feed.xml" type="application/atom+xml" rel="alternate" title="fjp.github.io Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pr-preview/pr-49/assets/css/main.css">
+<link rel="preload" href="/pr-preview/pr-49/assets/vendor/fontawesome-free-7.3.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/pr-preview/pr-49/assets/vendor/fontawesome-free-7.3.1/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!--
+  Consent comes from the European regulations message in AdSense (Privacy & messaging),
+  Google's certified consent tool, which the AdSense script below shows to visitors from the
+  EEA, UK and Switzerland. With consent mode turned on in AdSense, the message updates Google's
+  consent state itself, also for an Analytics tag that's already running. This script only
+  decides whether Analytics loads at all ("basic" consent mode):
+  - consent defaults: denied in the EEA, UK and Switzerland, granted elsewhere
+  - Analytics loads once per page, when the Analytics choice is granted or doesn't apply
+  - a later change of the choice (e.g. via "Cookie settings") reloads the page, so the new
+    page starts from the settled choice
+  - a denied choice deletes the _ga cookies
+  It replaces the theme's Analytics include (see analytics-providers/google-gtag.html) and only
+  loads Analytics in production builds. API: https://developers.google.com/funding-choices/fc-api-docs
+-->
+<script>
+  (function () {
+    var property = "";
+    window.dataLayer = window.dataLayer || [];
+    var gtag = window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+    var europe = ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE",
+      "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
+      "IS", "LI", "NO", "GB", "CH"];
+    var denied = { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" };
+    gtag("consent", "default", Object.assign({ region: europe }, denied));
+    gtag("consent", "default", { analytics_storage: "granted", ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted" });
+
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    // Values of googlefc.ConsentModePurposeStatusEnum
+    var GRANTED = 1, NOT_APPLICABLE = 3;
+
+    function analyticsAllowed() {
+      var values = typeof googlefc.getGoogleConsentModeValues === "function" ? googlefc.getGoogleConsentModeValues() : null;
+      var status = values ? values.analyticsStoragePurposeConsentStatus : 0;
+      return status === GRANTED || status === NOT_APPLICABLE;
+    }
+
+    // Also removes cookies that earlier versions of the site set without asking
+    function deleteAnalyticsCookies() {
+      var site = location.hostname.split(".").slice(-2).join(".");
+      document.cookie.split(";").forEach(function (cookie) {
+        var name = cookie.split("=")[0].trim();
+        if (name !== "_ga" && name.indexOf("_ga_") !== 0) return;
+        ["", "; domain=" + location.hostname, "; domain=." + site].forEach(function (domain) {
+          document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + domain;
+        });
+      });
+    }
+
+    function startAnalytics() {
+      if (!property) return;
+      gtag("js", new Date());
+      gtag("config", property, { anonymize_ip: false });
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + property;
+      document.head.appendChild(script);
+    }
+
+    // Once per page, when Google's message knows the answer: from an earlier visit, after the
+    // visitor's first choice, or because the message doesn't apply. With an ad blocker the
+    // message never loads, and Analytics stays off.
+    var decided = false;
+    function decide() {
+      if (decided) return;
+      decided = true;
+      if (analyticsAllowed()) startAnalytics();
+      else deleteAnalyticsCookies();
+    }
+
+    // Later changes only reach a TCF listener; the readiness callbacks run once. Incomplete
+    // answers and "message shown" events are skipped. The first completed answer on a page is
+    // handled by decide(); a later one switches Analytics off and reloads, because Google's
+    // value reader still returns the old choice at that moment.
+    var firstAnswer = true;
+    function onTcData(data, success) {
+      if (!success || !data) return;
+      if (data.eventStatus === "tcloaded") { firstAnswer = false; return; }
+      if (data.eventStatus !== "useractioncomplete") return;
+      if (firstAnswer) { firstAnswer = false; return; }
+      if (property) window["ga-disable-" + property] = true;
+      location.reload();
+    }
+    var listening = false;
+    function listen() {
+      if (listening || typeof window.__tcfapi !== "function") return;
+      listening = true;
+      window.__tcfapi("addEventListener", 2, onTcData);
+    }
+
+    window.googlefc.callbackQueue.push({ CONSENT_API_READY: listen });
+    window.googlefc.callbackQueue.push({ CONSENT_MODE_DATA_READY: function () { listen(); decide(); } });
+  })();
+</script>
+
+<!-- AdSense (Auto ads are configured in AdSense), which also brings the consent message -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2214309606626131"
+     crossorigin="anonymous"></script>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+<!-- KaTeX and pseudocode.js are served from assets/vendor, so visitors don't contact a CDN.
+     The pseudocode include renders while the page loads and needs KaTeX at that point, so
+     pages with pseudocode load KaTeX right away; all other pages defer it. -->
+<link rel="stylesheet" href="/pr-preview/pr-49/assets/vendor/katex-0.19.0/katex.min.css">
+<script defer src="/pr-preview/pr-49/assets/vendor/katex-0.19.0/katex.min.js"></script>
+<script defer src="/pr-preview/pr-49/assets/vendor/katex-0.19.0/contrib/auto-render.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError : false
+        });
+    });
+</script>
+
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    
+<nav class="skip-links" aria-label="Skip links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
+        
+        <a class="site-title" href="/pr-preview/pr-49/">
+          fjp.github.io
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/"
+                
+                
+              >Home</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/blog/"
+                
+                
+              >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/projects/"
+                
+                
+              >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/design-patterns/"
+                
+                
+              >Design Patterns</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/cpp/"
+                
+                
+              >C++</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/projects/fpv/"
+                
+                
+              >FPV</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/about/"
+                
+                
+              >About</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/privacy/"
+                
+                
+              >Privacy</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/pr-preview/pr-49/sitemap/"
+                
+                
+              >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/pr-preview/pr-49/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-49/projects/" itemprop="item"><span itemprop="name">Projects</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/pr-preview/pr-49/projects/home-automation/" itemprop="item"><span itemprop="name">Home automation</span></a>
+            <meta itemprop="position" content="3" />
+          </li>
+        
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">From ETS to Home Assistant: Generating the KNX Configuration</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/pr-preview/pr-49/projects/home-automation/"><span class="nav__sub-title">Home Automation</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-49/projects/home-automation/voltus">Voltus - Bauprogramm</a></li>
+            
+              <li><a href="/pr-preview/pr-49/projects/home-automation/knx-button-selection">KNX Button Selection</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">KNX + Home Assistant</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-49/projects/home-automation/ets-to-home-assistant">From ETS to Home Assistant</a></li>
+            
+              <li><a href="/pr-preview/pr-49/projects/home-automation/velux-klf200-knx">Velux Windows with KNX Buttons</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">Older projects</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/pr-preview/pr-49/projects/home-automation/setup">Raspberry Pi 4 Setup (2022)</a></li>
+            
+              <li><a href="/pr-preview/pr-49/projects/home-automation/esp8266-dht">Temperature and Humidity (2019)</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="From ETS to Home Assistant: Generating the KNX Configuration">
+    <meta itemprop="description" content="How a KNX house with hundreds of group addresses gets into Home Assistant: the ETS project, generated YAML packages per room, areas and a phone dashboard, and the read-flag pitfall that makes status values wrong.">
+    <meta itemprop="datePublished" content="2026-10-12T21:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://fjp.at/pr-preview/pr-49/projects/home-automation/ets-to-home-assistant/" itemprop="url">From ETS to Home Assistant: Generating the KNX Configuration
+</a>
+          </h1>
+          
+
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc" aria-label="Table of contents">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#the-options">The options</a></li><li><a href="#why-i-wrote-a-generator">Why I wrote a generator</a></li><li><a href="#the-pipeline">The pipeline</a></li><li><a href="#the-rules-that-do-the-work">The rules that do the work</a></li><li><a href="#rooms-and-the-phone-dashboard">Rooms and the phone dashboard</a></li><li><a href="#pitfall-which-device-answers-the-read">Pitfall: which device answers the read?</a><ul><li><a href="#write-read-and-response">Write, read and response</a></li><li><a href="#the-flags-in-ets">The flags in ETS</a></li><li><a href="#an-example-with-two-answers">An example with two answers</a></li><li><a href="#finding-the-second-responder-on-the-bus">Finding the second responder on the bus</a></li><li><a href="#finding-candidates-in-the-ets-project">Finding candidates in the ETS project</a></li><li><a href="#the-fix">The fix</a></li><li><a href="#on-the-home-assistant-side">On the Home Assistant side</a></li><li><a href="#checklist">Checklist</a></li></ul></li><li><a href="#what-i-learned">What I learned</a></li><li><a href="#which-option-fits">Which option fits</a></li><li><a href="#my-setup">My setup</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>Our house runs on KNX: lights and dimmers, screens, heating, window and door contacts, sockets with power metering and a weather station.
+Everything was planned in ETS, and a visualization server was the only user interface.
+I wanted <a href="https://www.home-assistant.io/">Home Assistant</a> as the main interface instead, mostly for its phone app and its automations.</p>
+
+<p>That raised the first practical question: how do hundreds of group addresses get into Home Assistant without typing all of them by hand?
+This page compares the options, and describes the route I took: a small generator that turns the ETS project into Home Assistant YAML, one file per room.
+It ends with the pitfall that cost me the most time: two devices answering the same read.</p>
+
+<h2 id="the-options">The options</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Good for</th>
+      <th>Where the configuration lives</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Home Assistant’s KNX panel</td>
+      <td>A few dozen entities, created and edited in the UI</td>
+      <td>Home Assistant’s own storage</td>
+    </tr>
+    <tr>
+      <td>YAML by hand</td>
+      <td>Small installations, or a few special entities</td>
+      <td>Your YAML files</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/laurent-martin/ets-to-homeassistant">ets-to-homeassistant</a></td>
+      <td>Converting a whole <code class="language-plaintext highlighter-rouge">.knxproj</code> once, structured by ETS functions</td>
+      <td>Generated YAML</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/NickoScope/nickol-knx-mcp">nickol-knx-mcp</a></td>
+      <td>Auditing and generating with an AI assistant</td>
+      <td>Generated YAML</td>
+    </tr>
+    <tr>
+      <td>An own generator</td>
+      <td>Many entities, house-specific rules, regenerating after every ETS change</td>
+      <td>Generated YAML in git</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Home Assistant’s KNX panel.</strong> You import the ETS project into the panel. Home Assistant parses it with <a href="https://github.com/XKNX/xknxproject">xknxproject</a> and then knows every group address with its name and data point type.
+The group monitor shows telegrams with those names, and you can create entities in the UI and pick their group addresses from the project.
+In Home Assistant 2026.9 the UI covers all 17 KNX platforms that YAML supports, from lights and covers to climate and sensors.
+For a few dozen entities that is the easiest way, and it needs no YAML at all.</p>
+
+<p><strong>ets-to-homeassistant</strong> is a Ruby tool that converts a <code class="language-plaintext highlighter-rouge">.knxproj</code> into Home Assistant YAML.
+It groups group addresses into devices using the ETS <em>functions</em> (or the building structure) and the data point types, and accepts a custom script for project-specific fixes.
+If your project uses ETS functions consistently, it is a quick start.</p>
+
+<p><strong>nickol-knx-mcp</strong> is a newer Python project, also based on xknxproject: an MCP server for AI assistants that audits ETS projects (naming, data point types, command/status pairs) and can generate Home Assistant YAML.
+It reads projects read-only and never talks to the bus. It describes itself as a public beta.</p>
+
+<h2 id="why-i-wrote-a-generator">Why I wrote a generator</h2>
+
+<p>Our project has hundreds of group addresses with very consistent names and numbering. Three things tipped the balance:</p>
+
+<ol>
+  <li><strong>The names carry the structure.</strong> Each group address name starts with a room and device code, followed by the room, the device and the function, for example <code class="language-plaintext highlighter-rouge">GF2-L1 Office - Ceiling light - Switch</code>.
+The numbering is parallel: the middle group is the function (switch, status, brightness, …) and the sub-address is the device.
+A few rules turn that into entities.</li>
+  <li><strong>YAML in git can be reviewed.</strong> Every change to the generator or to the ETS project shows up as a diff of the generated files before it reaches Home Assistant.
+After an ETS change I export the project again and regenerate everything; nothing is edited by hand.</li>
+  <li><strong>Lessons become rules.</strong> Once I learned that a status address only helps when a real device answers it, that became one line in the generator instead of a note somewhere.</li>
+</ol>
+
+<h2 id="the-pipeline">The pipeline</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ETS project (.knxproj)
+  → imported in Home Assistant's KNX panel (parsed by xknxproject)
+  → the generator reads the parsed project
+  → one YAML package per room
+  → copied to Home Assistant, configuration check, KNX reload
+  → each entity assigned to its room (area) through the WebSocket API
+  → the phone dashboard generated from the areas
+</code></pre></div></div>
+
+<p>The generator doesn’t parse the <code class="language-plaintext highlighter-rouge">.knxproj</code> itself: it reads the project that Home Assistant has already parsed for its KNX panel.
+That saves handling the project password and keeps both on the same parser version.
+The catch: the parsed project sits in Home Assistant’s internal storage, whose format is not a public interface. A tool for other people should read the <code class="language-plaintext highlighter-rouge">.knxproj</code> with xknxproject directly.</p>
+
+<p>The output goes into Home Assistant <a href="https://www.home-assistant.io/docs/configuration/packages/">packages</a>: one file per room, each starting with “generated, do not edit”.
+Every entity gets a comment with the group addresses it uses, and anything the generator leaves out is printed with the reason, so nothing disappears silently.</p>
+
+<h2 id="the-rules-that-do-the-work">The rules that do the work</h2>
+
+<p><strong>Command and status belong together</strong> when they share the device code and the main data point type: the light’s switch address and its status, the screen’s move and position addresses and its position status.</p>
+
+<p><strong>A status address needs a device that answers.</strong> If no device sends on it or answers reads, Home Assistant would read an address nobody serves. The generator only uses status addresses where a device has the transmit or the read flag.
+The opposite problem, two devices answering the same address, is <a href="#pitfall-which-device-answers-the-read">the pitfall below</a>.</p>
+
+<p><strong>Only real devices count.</strong> An address linked only to the visualization server is not a function of the house. It is left out.</p>
+
+<p><strong>Per platform:</strong></p>
+<ul>
+  <li>Lights: switch and status, brightness, colour temperature and colour where the project has them.</li>
+  <li>Covers: move, stop, position and position status, for screens and blinds.</li>
+  <li>Climate: the room temperature controllers with their set points.</li>
+  <li>Binary sensors: window and door contacts, with the polarity of the contact.</li>
+  <li>Sensors: temperatures, brightness, wind, power readings.</li>
+  <li>Energy: each individual power reading without an energy counter of its own gets an integrated kWh sensor for Home Assistant’s Energy dashboard. Actuator totals are left out, so nothing is counted twice.</li>
+</ul>
+
+<p>For four group addresses of a made-up office light:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Group address</th>
+      <th>Name</th>
+      <th>Data point type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>20/0/1</td>
+      <td>GF2-L1 Office - Ceiling light - Switch</td>
+      <td>1.001</td>
+    </tr>
+    <tr>
+      <td>20/1/1</td>
+      <td>GF2-L1 Office - Ceiling light - Status</td>
+      <td>1.001</td>
+    </tr>
+    <tr>
+      <td>20/4/1</td>
+      <td>GF2-L1 Office - Ceiling light - Brightness</td>
+      <td>5.001</td>
+    </tr>
+    <tr>
+      <td>20/5/1</td>
+      <td>GF2-L1 Office - Ceiling light - Brightness status</td>
+      <td>5.001</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>the generated package contains:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Office: generated from the ETS project, do not edit; change the generator and rerun.</span>
+<span class="na">knx</span><span class="pi">:</span>
+  <span class="na">light</span><span class="pi">:</span>
+    <span class="c1"># 20/0/1 GF2-L1 Office - Ceiling light - Switch / 20/1/1 … Status / 20/4/1 … Brightness / 20/5/1 … Brightness status</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Office</span><span class="nv"> </span><span class="s">Ceiling</span><span class="nv"> </span><span class="s">light"</span>
+      <span class="na">address</span><span class="pi">:</span> <span class="s2">"</span><span class="s">20/0/1"</span>
+      <span class="na">state_address</span><span class="pi">:</span> <span class="s2">"</span><span class="s">20/1/1"</span>
+      <span class="na">brightness_address</span><span class="pi">:</span> <span class="s2">"</span><span class="s">20/4/1"</span>
+      <span class="na">brightness_state_address</span><span class="pi">:</span> <span class="s2">"</span><span class="s">20/5/1"</span>
+</code></pre></div></div>
+
+<p>The generator itself is still specific to our house: its room table, name patterns and a few overrides.
+I may publish a generalized version later, if it turns out to be useful beyond our project.</p>
+
+<h2 id="rooms-and-the-phone-dashboard">Rooms and the phone dashboard</h2>
+
+<p>Home Assistant groups entities by <strong>area</strong>. A second script puts every generated entity into the area of its room through the WebSocket API.
+It only fills empty areas, so a room I assigned by hand stays as it is.</p>
+
+<p>The phone dashboard is generated from the areas, too:</p>
+
+<ul>
+  <li><strong>A start page that shows only what needs attention:</strong> open windows and lights that are on, each list hidden while it is empty, plus a few energy values at the top.</li>
+  <li><strong>Every room on the start page,</strong> with its temperature and buttons for its lights and screens.</li>
+  <li><strong>One page per floor,</strong> with the controls of each room.</li>
+  <li><strong>The weather and the outside lights on their own page.</strong></li>
+</ul>
+
+<p>The script saves the dashboard through the API and writes a YAML copy into the repository, so a dashboard change is a reviewable diff as well.</p>
+
+<figure class="third">
+  <a href="/pr-preview/pr-49/assets/collections/home-automation/ets-to-home-assistant/dashboard-start.png"><img src="/pr-preview/pr-49/assets/collections/home-automation/ets-to-home-assistant/dashboard-start.png" alt="Phone screenshot of the start page: energy values at the top (outside temperature, PV power and yield, consumption, heat pump, car), a card 'Offen' with a tilted window and an open roof window, and a card 'Licht an' with three lights." /></a>
+  <a href="/pr-preview/pr-49/assets/collections/home-automation/ets-to-home-assistant/dashboard-rooms.png"><img src="/pr-preview/pr-49/assets/collections/home-automation/ets-to-home-assistant/dashboard-rooms.png" alt="Phone screenshot of the room list on the start page: one card per room on two floors, each with its temperature and buttons for its lights and screens." /></a>
+  <a href="/pr-preview/pr-49/assets/collections/home-automation/ets-to-home-assistant/dashboard-floor.png"><img src="/pr-preview/pr-49/assets/collections/home-automation/ets-to-home-assistant/dashboard-floor.png" alt="Phone screenshot of a floor page: the living room with two lights and two screens, and the kitchen with two lights and a screen, each as a tile with a slider." /></a>
+  <figcaption>The generated dashboard on a phone, here for an invented demo house built with the same script (in German, like ours): the start page, the rooms, and a floor page.</figcaption>
+</figure>
+
+<h2 id="pitfall-which-device-answers-the-read">Pitfall: which device answers the read?</h2>
+
+<p>Generated entities are only as good as the status values behind them.
+After the switch, a few values were wrong in a strange way: the twilight value of the weather station stayed at 23 lx all night, although it was pitch dark outside, and other status values flipped back to an old value once an hour.
+Nothing was broken on the bus. Two devices answered the same question, and Home Assistant believed whichever answer came last.
+The addresses and devices in this section are a made-up example, not our installation.</p>
+
+<h3 id="write-read-and-response">Write, read and response</h3>
+
+<p>KNX devices talk through group addresses with three kinds of telegrams:</p>
+
+<ul>
+  <li><strong>GroupValueWrite</strong>: a device sends a new value, for example a button switching a light on, or an actuator reporting its new state on a status address.</li>
+  <li><strong>GroupValueRead</strong>: a device asks “what is the current value of this address?”. Visualizations and Home Assistant do this at start-up, and again later to stay in sync.</li>
+  <li><strong>GroupValueResponse</strong>: the answer to a read. Home Assistant and visualizations take it over as the new value; a KNX device does so where its object has the update flag (A, see below).</li>
+</ul>
+
+<p>A read should get exactly <strong>one</strong> response: from the device that owns the value.
+For a light’s status, that is the actuator channel that switches the light. For a sensor value, it is the sensor.
+Every other device linked to the address may listen, but it should not answer.</p>
+
+<h3 id="the-flags-in-ets">The flags in ETS</h3>
+
+<p>Which device answers is decided by the flags of each communication object in ETS.
+The German ETS shows them as letters:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>ETS (German)</th>
+      <th>ETS (English)</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>K (Kommunikation)</td>
+      <td>C (Communication)</td>
+      <td>The object talks on the bus at all.</td>
+    </tr>
+    <tr>
+      <td>L (Lesen)</td>
+      <td>R (Read)</td>
+      <td>The object <strong>answers read requests</strong> with its value.</td>
+    </tr>
+    <tr>
+      <td>S (Schreiben)</td>
+      <td>W (Write)</td>
+      <td>The object accepts writes from the bus.</td>
+    </tr>
+    <tr>
+      <td>Ü (Übertragen)</td>
+      <td>T (Transmit)</td>
+      <td>The object sends its value by itself when it changes.</td>
+    </tr>
+    <tr>
+      <td>A (Aktualisieren)</td>
+      <td>U (Update)</td>
+      <td>The object takes over values from <strong>responses</strong>, not only from writes.</td>
+    </tr>
+    <tr>
+      <td>I (Lesen bei Init)</td>
+      <td>I (Read on Init)</td>
+      <td>The device sends a read for this object when it starts.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The rule that prevents the problem: <strong>per group address, only the object that owns the value has L (Lesen).</strong>
+Objects that only mirror a value (a visualization, a logic server, a second display) need K and usually A, but not L.</p>
+
+<h3 id="an-example-with-two-answers">An example with two answers</h3>
+
+<p>Take a small installation with three devices:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Device</th>
+      <th>Individual address</th>
+      <th>Object on <code class="language-plaintext highlighter-rouge">22/0/1</code> “Twilight”</th>
+      <th>Flags</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Weather station</td>
+      <td>2.1.30</td>
+      <td>Twilight value (owner)</td>
+      <td>K, L, Ü</td>
+    </tr>
+    <tr>
+      <td>Visualization server</td>
+      <td>2.1.20</td>
+      <td>Twilight value (mirror for its display)</td>
+      <td>K, <strong>L</strong>, S, A</td>
+    </tr>
+    <tr>
+      <td>Home Assistant</td>
+      <td>2.1.250</td>
+      <td><code class="language-plaintext highlighter-rouge">sensor</code> entity for <code class="language-plaintext highlighter-rouge">22/0/1</code></td>
+      <td>–</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The weather station sends the twilight value when it changes, in steps.
+The visualization server keeps its own copy to show it, and because its object has L, it answers reads as well.</p>
+
+<p>Its copy can go stale for many reasons. The server may restart and begin with an old or default value. It may have missed a telegram while it was busy, or its object may not take values over from responses.
+The reason hardly matters: once the server answers reads, its stale copy goes on the bus as a proper response, and Home Assistant takes it over like any other answer.</p>
+
+<p>At start-up, Home Assistant reads the state address of each KNX entity that has one, as long as state synchronization is on, which is the default. With the default <code class="language-plaintext highlighter-rouge">sync_state: true</code>, it also reads again when it heard nothing on an address for 60 minutes (<a href="https://www.home-assistant.io/integrations/knx/">KNX integration docs</a>).
+At night the twilight value doesn’t change, so the station sends nothing, and Home Assistant reads once an hour. Each read gets two answers:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Source</th>
+      <th>Destination</th>
+      <th>Type</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>21:14:02.105</td>
+      <td>2.1.250</td>
+      <td>22/0/1</td>
+      <td>GroupValueRead</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>21:14:02.131</td>
+      <td>2.1.30</td>
+      <td>22/0/1</td>
+      <td>GroupValueResponse</td>
+      <td>1 lx</td>
+    </tr>
+    <tr>
+      <td>21:14:02.164</td>
+      <td>2.1.20</td>
+      <td>22/0/1</td>
+      <td>GroupValueResponse</td>
+      <td>23 lx</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Home Assistant keeps the last one, 23 lx. Which answer comes last is a race, so the value can flip between the two at every read.
+In the history graph, that looks like a value that jumps at the same minute every hour, or that stays at a daytime value all night.</p>
+
+<figure>
+  <a href="/pr-preview/pr-49/assets/collections/home-automation/ets-to-home-assistant/two-responders.svg"><img src="/pr-preview/pr-49/assets/collections/home-automation/ets-to-home-assistant/two-responders.svg" alt="Sequence diagram: Home Assistant sends a GroupValueRead on 22/0/1. The weather station answers 1 lx after 26 ms, the visualization server answers its stale 23 lx after 59 ms, and Home Assistant shows the last answer, 23 lx." /></a>
+  <figcaption>One read, two responses: the stale copy arrives last and wins.</figcaption>
+</figure>
+
+<p>The same happens with any status: a light whose status reads “off” while it is on, or a switch for the shading automatic that shows “on” after someone switched it off.</p>
+
+<h3 id="finding-the-second-responder-on-the-bus">Finding the second responder on the bus</h3>
+
+<ol>
+  <li>Open a group monitor: in ETS under <em>Diagnostics → Group Monitor</em>, or the group monitor in Home Assistant’s KNX panel (opened from the KNX integration in the settings).</li>
+  <li>Send a read to the address in question: in the ETS group monitor with <strong>Read</strong> under <em>Group Functions</em>, or in Home Assistant under <em>Developer tools → Actions</em> with <code class="language-plaintext highlighter-rouge">knx.read</code> and the address.</li>
+  <li>Look at the responses. More than one <strong>GroupValueResponse</strong> from different source addresses means more than one device answers.</li>
+</ol>
+
+<p>The source address tells you which device it is. If the values differ, you have found the reason for the wrong status.</p>
+
+<h3 id="finding-candidates-in-the-ets-project">Finding candidates in the ETS project</h3>
+
+<p>A double responder is usually visible in the project before anything goes wrong: two communication objects with the communication and read flags on the same group address.
+xknxproject reads the flags from a <code class="language-plaintext highlighter-rouge">.knxproj</code> export.
+This lists every group address with more than one candidate responder, devices with an object that has both K and L:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="kn">from</span> <span class="nn">xknxproject</span> <span class="kn">import</span> <span class="n">XKNXProj</span>
+
+<span class="n">project</span> <span class="o">=</span> <span class="n">XKNXProj</span><span class="p">(</span><span class="s">"house.knxproj"</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">).</span><span class="n">parse</span><span class="p">()</span>
+
+<span class="n">candidates</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>  <span class="c1"># group address → devices whose object has K and L
+</span><span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">project</span><span class="p">[</span><span class="s">"communication_objects"</span><span class="p">].</span><span class="n">values</span><span class="p">():</span>
+    <span class="n">flags</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="s">"flags"</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">flags</span><span class="p">[</span><span class="s">"communication"</span><span class="p">]</span> <span class="ow">and</span> <span class="n">flags</span><span class="p">[</span><span class="s">"read"</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">address</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">[</span><span class="s">"group_address_links"</span><span class="p">]:</span>
+            <span class="n">candidates</span><span class="p">[</span><span class="n">address</span><span class="p">].</span><span class="n">add</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="s">"device_address"</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">address</span><span class="p">,</span> <span class="n">devices</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">candidates</span><span class="p">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">devices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">project</span><span class="p">[</span><span class="s">"group_addresses"</span><span class="p">][</span><span class="n">address</span><span class="p">][</span><span class="s">"name"</span><span class="p">]</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">address</span><span class="si">:</span><span class="mi">10</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="mi">40</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="s">', '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">devices</span><span class="p">))</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>For the example above it prints one line:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>22/0/1     Twilight                                 2.1.20, 2.1.30
+</code></pre></div></div>
+
+<p>In our project the list was several hundred lines long, almost all of them with the visualization server next to the real device.
+Treat the list as candidates to check in the group monitor, not as faults:</p>
+
+<ul>
+  <li>A device can legitimately own a value that is also linked elsewhere.</li>
+  <li>An object linked to several group addresses responds on its <strong>sending address</strong>, the one marked S in ETS. A read on one of its other addresses is answered on the sending address, not on the address you asked. The script lists such an object under every linked address.</li>
+</ul>
+
+<h3 id="the-fix">The fix</h3>
+
+<p>In ETS, for each address on the list:</p>
+
+<ol>
+  <li>Decide which object <strong>owns</strong> the value: the actuator channel, the sensor, or the logic that produces it.</li>
+  <li>On every other object linked to that address, <strong>clear L (Lesen)</strong>. Keep K. Keep S if the device should accept commands on it, and A if it should take over values from responses. Set Ü only where the device really produces the value.</li>
+  <li>Program the changed devices (the application is enough).</li>
+  <li>Repeat the read test: one response.</li>
+</ol>
+
+<p>Before clearing flags on a visualization or logic server, check that it doesn’t need them for its own logic outputs. Only the mirrors of values that another device owns lose L.</p>
+
+<p>Home Assistant can become a responder too: a KNX <code class="language-plaintext highlighter-rouge">expose</code>, or an entity with <code class="language-plaintext highlighter-rouge">respond_to_read</code>, answers reads with Home Assistant’s value.
+The same rule applies: only where Home Assistant owns the value, and never next to a device that answers on the same address.</p>
+
+<h3 id="on-the-home-assistant-side">On the Home Assistant side</h3>
+
+<p><strong>A KNX light shows “off” until its first status.</strong>
+Home Assistant’s KNX light reports off while it has no state yet (<a href="https://github.com/home-assistant/core/blob/2026.9.4/homeassistant/components/knx/light.py#L335">source, 2026.9.4</a>: <code class="language-plaintext highlighter-rouge">is_on</code> returns <code class="language-plaintext highlighter-rouge">bool(state)</code>).
+After a restart, a light shows off until its actuator answers the start-up read or sends a new state.
+A light group or template built from those lights is therefore “all off” for a moment. Keep that in mind before an automation acts on it or sends it back to the bus.</p>
+
+<p><strong>Fewer reads hide the problem, they don’t fix it.</strong>
+<code class="language-plaintext highlighter-rouge">sync_state</code> can be set to <code class="language-plaintext highlighter-rouge">init</code> (read only at start-up) or <code class="language-plaintext highlighter-rouge">expire &lt;minutes&gt;</code>. With fewer reads you see the stale value less often, but the next read still gets two answers.
+Fix the flag instead.</p>
+
+<p>If you consume KNX telegrams in your own templates or automations (<code class="language-plaintext highlighter-rouge">knx_event</code>, or the <code class="language-plaintext highlighter-rouge">knx.telegram</code> trigger), each telegram carries its <code class="language-plaintext highlighter-rouge">source</code>.
+Where you can’t change the flags yet, accepting a value only from the owner’s individual address is a robust stopgap.</p>
+
+<h3 id="checklist">Checklist</h3>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A value jumps at regular intervals, or shows a daytime value at night: suspect a second responder.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Group monitor plus one read: how many responses, from which sources?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />List the group addresses with more than one K + L object in the project.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Per address, keep L only on the owner; keep K, S, A and Ü where they belong.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Program the devices and repeat the read test.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Check that Home Assistant doesn’t answer reads where a device owns the value.</li>
+</ul>
+
+<h2 id="what-i-learned">What I learned</h2>
+
+<ul>
+  <li><strong>Names are the real interface.</strong> A consistent naming scheme in ETS made the generator possible. A typo in a group address name becomes a typo in the app, so I fix names in ETS and export again rather than patching them in Home Assistant.</li>
+  <li><strong>Renames need care.</strong> Home Assistant keeps an entity’s ID when its name changes. When the generator renames an entity, I rename its ID on purpose, and check automations and the dashboard for the old one.</li>
+  <li><strong>Read the status from the right device.</strong> Generated entities are only as good as the status addresses behind them: see <a href="#pitfall-which-device-answers-the-read">the pitfall above</a>.</li>
+  <li><strong>Review before deploy.</strong> Every change goes through a pull request with an independent review and tests against a real Home Assistant version, before anything is copied to the house.</li>
+</ul>
+
+<h2 id="which-option-fits">Which option fits</h2>
+
+<ul>
+  <li><strong>Up to a few dozen entities, or you prefer clicking:</strong> Home Assistant’s KNX panel.</li>
+  <li><strong>A whole project at once, with ETS functions:</strong> try ets-to-homeassistant first.</li>
+  <li><strong>You want an audit of the project as well:</strong> have a look at nickol-knx-mcp.</li>
+  <li><strong>Hundreds of entities, consistent names, and you want every change reviewed in git:</strong> a small generator of your own on top of xknxproject.</li>
+</ul>
+
+<h2 id="my-setup">My setup</h2>
+
+<p>Home Assistant runs as a virtual machine on <a href="https://www.proxmox.com/">Proxmox</a> on a Beelink EQ14 mini PC (Intel N150, 16 GB RAM), which I bought directly from <a href="https://www.bee-link.com/products/beelink-eq14-n150">Beelink</a>.
+It talks to the bus through a KNX IP interface.</p>
+
+<p>Tested with Home Assistant 2026.9 and its KNX integration. The ETS flags and the group monitor work the same in ETS 5 and ETS 6.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-49/tags/#areas" class="page__taxonomy-item p-category" rel="tag">areas</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#dashboard" class="page__taxonomy-item p-category" rel="tag">dashboard</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#ets" class="page__taxonomy-item p-category" rel="tag">ets</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#generator" class="page__taxonomy-item p-category" rel="tag">generator</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#group-monitor" class="page__taxonomy-item p-category" rel="tag">group monitor</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#home-assistant" class="page__taxonomy-item p-category" rel="tag">home assistant</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#home-automation" class="page__taxonomy-item p-category" rel="tag">home automation</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#knx" class="page__taxonomy-item p-category" rel="tag">knx</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#lesen" class="page__taxonomy-item p-category" rel="tag">lesen</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#packages" class="page__taxonomy-item p-category" rel="tag">packages</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#read-flag" class="page__taxonomy-item p-category" rel="tag">read flag</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#troubleshooting" class="page__taxonomy-item p-category" rel="tag">troubleshooting</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#xknxproject" class="page__taxonomy-item p-category" rel="tag">xknxproject</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/tags/#yaml" class="page__taxonomy-item p-category" rel="tag">yaml</a>
+    
+    </span>
+  </p>
+
+
+  
+
+  
+    
+
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/pr-preview/pr-49/categories/#home-assistant" class="page__taxonomy-item p-category" rel="tag">home assistant</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/categories/#home-automation" class="page__taxonomy-item p-category" rel="tag">home automation</a><span class="sep">, </span>
+    
+      <a href="/pr-preview/pr-49/categories/#knx" class="page__taxonomy-item p-category" rel="tag">knx</a>
+    
+    </span>
+  </p>
+
+
+  
+
+
+        
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2026-10-12T21:00:00+02:00">October 12, 2026</time></p>
+
+
+      </footer>
+
+      
+
+      
+
+  <nav class="pagination" aria-label="Post pagination">
+    
+      <a href="/pr-preview/pr-49/projects/home-automation/knx-button-selection/" class="pagination--pager" title="KNX Light Switches and Presence Detectors">Previous</a>
+    
+    
+      <a href="/pr-preview/pr-49/projects/home-automation/velux-klf200-knx/" class="pagination--pager" title="Velux Roof Windows with KNX Buttons, through Home Assistant and the KLF 200">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        
+<div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div class="page__footer-copyright">
+  <a href="/pr-preview/pr-49/legal-notice/">Legal notice</a> &middot; <a href="/pr-preview/pr-49/privacy/">Privacy</a> &middot; <a href="#cookie-settings">Cookie settings</a>
+  <br>As an Amazon Associate I earn from qualifying purchases.
+</div>
+<script>
+  // "Cookie settings" reopens the AdSense consent message, or explains why it can't
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest('a[href="#cookie-settings"]')) return;
+    event.preventDefault();
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    var timer = null, opened = false;
+    window.googlefc.callbackQueue.push(function () {
+      // the tool is there (possibly late): drop the pending or shown note, then open the settings
+      opened = true;
+      clearTimeout(timer);
+      var shown = document.getElementById("cookie-settings-note");
+      if (shown) shown.remove();
+      window.googlefc.showRevocationMessage();
+    });
+    // If Google's consent tool is blocked (ad blockers usually block it), the queue never runs: say so
+    timer = setTimeout(function () {
+      if (opened || document.getElementById("cookie-settings-note")) return;
+      var note = document.createElement("div");
+      note.id = "cookie-settings-note";
+      note.setAttribute("role", "status");
+      note.textContent = "Google's consent tool isn't available in this browser right now, probably because of an ad blocker or privacy extension, so the cookie settings can't be opened here. Any earlier choice stays as it was, and Google Analytics doesn't start on this page while the tool is blocked.";
+      note.style.cssText = "position:fixed;left:50%;bottom:1rem;transform:translateX(-50%);z-index:1000;box-sizing:border-box;" +
+        "width:calc(100vw - 2rem);max-width:32rem;padding:.8em 1em;background:#333;color:#fff;border-radius:4px;" +
+        "font-size:.8rem;line-height:1.4;box-shadow:0 2px 8px rgba(0,0,0,.3)";
+      document.body.appendChild(note);
+      setTimeout(function () { note.remove(); }, 12000);
+    }, 2500);
+  });
+</script>
+
+<style>
+  .consent-embed { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5em;
+    max-width: 100%; aspect-ratio: 16 / 9; padding: 1em; box-sizing: border-box; text-align: center; font-size: .8em;
+    background: #f5f5f5; border: 1px solid #ddd; }
+  .consent-embed p { margin: 0; max-width: 32em; }
+  .responsive-video-container .consent-embed { position: absolute; inset: 0; width: 100%; height: 100%; }
+</style>
+<script>
+  // Videos load only after a click: their iframes use data-consent-src instead of src, so nothing is requested
+  // from YouTube or Vimeo until the visitor agrees.
+  document.addEventListener("DOMContentLoaded", function () {
+    var names = { "www.youtube-nocookie.com": "YouTube (Google)", "player.vimeo.com": "Vimeo (USA)" };
+    document.querySelectorAll("iframe[data-consent-src]").forEach(function (frame) {
+      var url = new URL(frame.getAttribute("data-consent-src"), location.href);
+      var name = names[url.hostname] || url.hostname;
+      var box = document.createElement("div");
+      box.className = "consent-embed";
+      var width = frame.getAttribute("width");
+      if (width) box.style.width = /%$/.test(width) ? width : width + "px";
+      var note = document.createElement("p");
+      note.textContent = "This video is hosted by " + name + ". Loading it sends your IP address to " + name + ", which may store cookies.";
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn--primary";
+      button.textContent = "Load video";
+      button.addEventListener("click", function () {
+        frame.src = url.href;
+        frame.hidden = false;
+        box.remove();
+        // The theme runs FitVids on page load, when these iframes had no src yet; size them now.
+        // Videos from the theme's video include already sit in a responsive container.
+        if (!frame.closest(".responsive-video-container") && window.jQuery && jQuery.fn.fitVids) {
+          if (/%$/.test(frame.getAttribute("width") || "")) { frame.setAttribute("width", "560"); frame.setAttribute("height", "315"); }
+          jQuery(frame.parentNode).fitVids();
+        }
+      });
+      box.append(note, button);
+      frame.hidden = true;
+      frame.parentNode.insertBefore(box, frame);
+    });
+  });
+</script>
+
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/fjp" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/pr-preview/pr-49/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://fjp.at">fjp.github.io</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+
+  <script src="/pr-preview/pr-49/assets/js/main.min.js"></script>
+
+
+
+
+
+<script src="/pr-preview/pr-49/assets/js/lunr/lunr.min.js"></script>
+<script src="/pr-preview/pr-49/assets/js/lunr/lunr-store.js"></script>
+<script src="/pr-preview/pr-49/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+    
+  <!--
+    Overrides the theme's Disqus include. Disqus loads only when a visitor clicks the button
+    above the comment thread, which says that Disqus sets cookies and shows ads. The click is the
+    consent for Disqus; the consent message isn't asked.
+  -->
+  <script>
+    (function () {
+      var thread = document.getElementById("disqus_thread");
+      if (!thread) return;
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn--primary";
+      button.textContent = "Show comments";
+      var note = document.createElement("p");
+      note.className = "small";
+      note.innerHTML = 'Comments are hosted by Disqus. Clicking loads Disqus, which sets cookies and shows ads. See the <a href="/pr-preview/pr-49/privacy/">privacy policy</a>.';
+      thread.parentNode.insertBefore(button, thread);
+      thread.parentNode.insertBefore(note, thread);
+      button.addEventListener("click", function () {
+        button.remove();
+        note.remove();
+        window.disqus_config = function () {
+          this.page.url = "https://fjp.at/pr-preview/pr-49/projects/home-automation/ets-to-home-assistant/";
+          this.page.identifier = "/projects/home-automation/ets-to-home-assistant";
+        };
+        var script = document.createElement("script");
+        script.src = "https://fjp-github-io.disqus.com/embed.js";
+        script.setAttribute("data-timestamp", +new Date());
+        (document.head || document.body).appendChild(script);
+      });
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>
