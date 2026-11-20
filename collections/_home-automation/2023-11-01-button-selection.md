@@ -15,8 +15,6 @@ header:
   teaser: /assets/collections/home-automation/voltus/voltus.svg
   overlay_image: /assets/collections/home-automation/voltus/voltus.svg
   overlay_filter: 0.5
-redirect_from:
-  - /projects/home-automation/
 sidebar:
   nav: "home-automation"
 ---
@@ -33,7 +31,7 @@ The Berker Q.3 series offers a wide array of options, allowing you to customize 
 
 <figure >
     <a href="/assets/collections/home-automation/buttons/berker/Berker-Q1-Q3.jpg"><img src="/assets/collections/home-automation/buttons/berker/Berker-Q1-Q3.jpg"></a>
-    <a href="/assets/collections/home-automation/buttons/buttons/berker/Berker-Q1-Q3-ang-view.jpg"><img src="/assets/collections/home-automation/buttons/berker/Berker-Q1-Q3-ang-view.jpg"></a>
+    <a href="/assets/collections/home-automation/buttons/berker/Berker-Q1-Q3-ang-view.jpg"><img src="/assets/collections/home-automation/buttons/berker/Berker-Q1-Q3-ang-view.jpg"></a>
     <figcaption>Top row shows the Q.1 covers from Berker, while the bottom row shows the Q.3 series.</figcaption>
 </figure>
 

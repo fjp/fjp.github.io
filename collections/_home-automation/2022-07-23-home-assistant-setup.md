@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "Home Automation - Raspberry Pi Setup"
+title:  "Raspberry Pi 4 Home Assistant Setup (2022)"
 permalink: /projects/home-automation/setup/
 excerpt: "Setup Home Assistant on an Raspberry Pi with Raspberry Pi OS running on an SSD."
 date:   2022-07-23 10:00:35 +0100
@@ -12,14 +12,15 @@ toc: true
 classes: wide
 # toc_label: "Unscented Kalman Filter"
 header:
-  teaser: /assets/collections/home-automation/components/argon-m-2.jpg
-  overlay_image: /assets/collections/home-automation/components/argon-m-2.jpg
+  teaser: /assets/collections/home-automation/components/argon-one-m-2.jpg
+  overlay_image: /assets/collections/home-automation/components/argon-one-m-2.jpg
   overlay_filter: 0.5
-redirect_from:
-  - /projects/home-automation/
 sidebar:
   nav: "home-automation"
 ---
+
+**Archived (2022):** this was my first Home Assistant setup. Home Assistant now runs on a mini PC under Proxmox; see [From ETS to Home Assistant](/projects/home-automation/ets-to-home-assistant/) and [Velux Roof Windows with KNX Buttons](/projects/home-automation/velux-klf200-knx/). The steps below are kept as they were and may be outdated.
+{: .notice--info}
 
 This page explains how to setup a Raspberry Pi 4 with 8GB and an SSD to run [Home Assistant](https://www.home-assistant.io/).
 
@@ -128,10 +129,7 @@ These instructions will set the Raspberry Pi 4 / 400 to look for a USB boot devi
 
 1. The fan and power button can only work with the driver. You can directly refer to the manual which comes with the case.
 
-    <figure >
-        <a href="https://www.waveshare.com/wiki/PI4-CASE-ARGON-ONE-M.2#/media/File:PI4-CASE-ARGON-ONE-14_960.jpg"><img src="https://www.waveshare.com/wiki/PI4-CASE-ARGON-ONE-M.2#/media/File:PI4-CASE-ARGON-ONE-14_960.jpg"></a>
-        <figcaption>FAN jumper settings (source Waveshare)</figcaption>
-    </figure>
+    The fan jumper settings are shown in [Waveshare's wiki for the case](https://www.waveshare.com/wiki/PI4-CASE-ARGON-ONE-M.2).
 
 
 2. Open terminal of Raspberry Pi, install the driver by the following command
@@ -192,59 +190,15 @@ The latest Home Assistant 64 bit can also be installed with Raspberry Pi Imager:
 1. Connect the bottom of the Argon One m.2 case that contains the m.2 connector board to a PC that has Raspberry Pi Imager installed
 2. Inside Raspberry Pi Imager choose OS
 3. Navigate to "Other specific-purpose OS"
-4. Select "Home assistans and home automation"
+4. Select "Home assistants and home automation"
 5. Home Assistant
 6. Home Assistant OS 8.2 (RPi 4/400)
-
-    <figure >
-        <a href="/assets/collections/home-automation/home-assistant/rpi-imager-home-assistant.gif"><img src="/assets/collections/home-automation/home-assistant/rpi-imager-home-assistant.gif"></a>
-        <figcaption>Write Home Assistant to the SSD</figcaption>
-    </figure>
-    
 7. Click write and confirm that the data on the SSD will be erased
-
-    <figure >
-        <a href="/assets/collections/home-automation/home-assistant/01-home-assistant-write-erase.png"><img src="/assets/collections/home-automation/home-assistant/01-home-assistant-write-erase.png"></a>
-        <figcaption>Write Home Assistant to the SSD</figcaption>
-    </figure>
-    
 8. This will prepare the data, write and verify the flashing process
-
-    <figure >
-        <a href="/assets/collections/home-automation/home-assistant/02-home-assistant-writing-prep.png"><img src="/assets/collections/home-automation/home-assistant/02-home-assistant-writing-prep.png"></a>
-        <figcaption>Write Home Assistant to the SSD</figcaption>
-    </figure>
-    
-    <figure >
-        <a href="/assets/collections/home-automation/home-assistant/03-home-assistant-writing-6.png"><img src="/assets/collections/home-automation/home-assistant/03-home-assistant-writing-6.png"></a>
-        <figcaption>Write Home Assistant to the SSD</figcaption>
-    </figure>
-    
-    <figure >
-        <a href="/assets/collections/home-automation/home-assistant/03-home-assistant-writing-91.png"><img src="/assets/collections/home-automation/home-assistant/03-home-assistant-writing-91.png"></a>
-        <figcaption>Write Home Assistant to the SSD</figcaption>
-    </figure>
-    
-    <figure >
-        <a href="/assets/collections/home-automation/home-assistant/04-home-assistant-write-verifying.png"><img src="/assets/collections/home-automation/home-assistant/04-home-assistant-write-verifying.png"></a>
-        <figcaption>Write Home Assistant to the SSD</figcaption>
-    </figure>
-
-7. Cli for the writing process to complete
-
-    <figure >
-        <a href="/assets/collections/home-automation/home-assistant/05-home-assistant-write-complete.png"><img src="/assets/collections/home-automation/home-assistant/05-home-assistant-write-complete.png"></a>
-        <figcaption>Home Assistant write complete</figcaption>
-    </figure>
-    
-8. Connect the Argon One m.2 bottom again with the Raspberry Pi and boot it up.
-9. Wait until the Home Assistant boot screen appears
-10. Access Home Assistant with the browser on you development PC
-
-    <figure >
-        <a href="/assets/collections/home-automation/home-assistant/06-home-assistant-browser-setup.png"><img src="/assets/collections/home-automation/home-assistant/06-home-assistant-browser-setup.png"></a>
-        <figcaption>Write Home Assistant to the SSD</figcaption>
-    </figure>
+9. Wait for the writing process to complete
+10. Connect the Argon One m.2 bottom again with the Raspberry Pi and boot it up.
+11. Wait until the Home Assistant boot screen appears
+12. Access Home Assistant with the browser on your development PC
 
 ## References
 

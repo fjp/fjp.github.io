@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" width="560" height="520" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <title id="t">Two devices answer the same read</title>
+  <desc id="d">Home Assistant sends a GroupValueRead on group address 22/0/1. The weather station answers first with the current value, 1 lx. The visualization server answers 33 milliseconds later with its stale copy, 23 lx. Home Assistant keeps the last answer and shows 23 lx.</desc>
+  <defs>
+    <marker id="read" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3d5a80"/></marker>
+    <marker id="good" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2b8a3e"/></marker>
+    <marker id="bad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c92a2a"/></marker>
+  </defs>
+  <rect width="560" height="520" rx="12" fill="#ffffff"/>
+
+  <!-- Devices -->
+  <g text-anchor="middle" fill="#222831">
+    <rect x="12" y="14" width="166" height="72" rx="8" fill="#f1f3f5" stroke="#adb5bd"/>
+    <text x="95" y="40" font-size="18" font-weight="600">Home</text>
+    <text x="95" y="60" font-size="18" font-weight="600">Assistant</text>
+    <text x="95" y="79" font-size="14" fill="#495057">2.1.250 · asks</text>
+
+    <rect x="197" y="14" width="166" height="72" rx="8" fill="#f1f3f5" stroke="#adb5bd"/>
+    <text x="280" y="40" font-size="18" font-weight="600">Weather</text>
+    <text x="280" y="60" font-size="18" font-weight="600">station</text>
+    <text x="280" y="79" font-size="14" fill="#495057">2.1.30 · K L Ü</text>
+
+    <rect x="382" y="14" width="166" height="72" rx="8" fill="#f1f3f5" stroke="#adb5bd"/>
+    <text x="465" y="40" font-size="18" font-weight="600">Visualization</text>
+    <text x="465" y="60" font-size="18" font-weight="600">server</text>
+    <text x="465" y="79" font-size="14" fill="#495057">2.1.20 · K <tspan fill="#c92a2a" font-weight="700">L</tspan> S A</text>
+  </g>
+
+  <!-- Lifelines -->
+  <g stroke="#adb5bd" stroke-width="2" stroke-dasharray="6 6">
+    <line x1="95" y1="86" x2="95" y2="390"/>
+    <line x1="280" y1="86" x2="280" y2="390"/>
+    <line x1="465" y1="86" x2="465" y2="390"/>
+  </g>
+
+  <!-- 1: the read reaches every device on the address -->
+  <text x="280" y="122" text-anchor="middle" font-size="16" fill="#3d5a80" font-weight="600" paint-order="stroke" stroke="#fff" stroke-width="6">① GroupValueRead 22/0/1</text>
+  <line x1="95" y1="140" x2="458" y2="140" stroke="#3d5a80" stroke-width="3" marker-end="url(#read)"/>
+  <circle cx="280" cy="140" r="5.5" fill="#3d5a80"/>
+  <text x="280" y="164" text-anchor="middle" font-size="14" fill="#3d5a80" paint-order="stroke" stroke="#fff" stroke-width="6">every device on the address hears it</text>
+
+  <!-- 2: the owner answers with the current value -->
+  <text x="188" y="202" text-anchor="middle" font-size="16" fill="#2b8a3e" font-weight="600" paint-order="stroke" stroke="#fff" stroke-width="6">② 1 lx · +26 ms</text>
+  <line x1="280" y1="216" x2="102" y2="216" stroke="#2b8a3e" stroke-width="3" marker-end="url(#good)"/>
+  <rect x="25" y="230" width="140" height="32" rx="6" fill="#ebfbee" stroke="#2b8a3e"/>
+  <text x="95" y="252" text-anchor="middle" font-size="16" fill="#2b8a3e">shows 1 lx</text>
+
+  <!-- 3: the mirror answers with its stale copy -->
+  <text x="372" y="292" text-anchor="middle" font-size="16" fill="#c92a2a" font-weight="600" paint-order="stroke" stroke="#fff" stroke-width="6">③ 23 lx, stale · +59 ms</text>
+  <line x1="465" y1="306" x2="102" y2="306" stroke="#c92a2a" stroke-width="3" marker-end="url(#bad)"/>
+  <rect x="20" y="320" width="150" height="32" rx="6" fill="#fff5f5" stroke="#c92a2a"/>
+  <text x="95" y="342" text-anchor="middle" font-size="16" fill="#c92a2a" font-weight="700">shows 23 lx</text>
+
+  <!-- Outcome -->
+  <rect x="12" y="404" width="536" height="102" rx="8" fill="#fff9db" stroke="#e8c547"/>
+  <g text-anchor="middle" font-size="16" fill="#222831">
+    <text x="280" y="432"><tspan font-weight="700">The last response wins:</tspan> Home Assistant</text>
+    <text x="280" y="456">shows 23 lx, although it is dark.</text>
+    <text x="280" y="488"><tspan font-weight="700">Fix:</tspan> clear L on the visualization server's object.</text>
+  </g>
+</svg>
